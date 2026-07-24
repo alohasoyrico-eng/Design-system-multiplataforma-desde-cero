@@ -17,6 +17,9 @@
 @import "./display/Avatar.css";
 @import "./display/Chip.css";
 @import "./display/Accordion.css";
+@import "./chat/ChatMessage.css";
+@import "./chat/ChatThread.css";
+@import "./chat/ChatComposer.css";
 @import "./data/Table.css";
 @import "./data/Donut.css";
 @import "./data/Sparkline.css";

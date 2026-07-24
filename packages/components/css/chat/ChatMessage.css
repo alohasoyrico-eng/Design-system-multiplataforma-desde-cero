@@ -1,0 +1,43 @@
+/* Flow · ChatMessage — consumes comp.chatMessage tokens. */
+.flow-chat-msg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-1);
+  max-width: 78%;
+}
+
+.flow-chat-msg[data-role="user"] {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.flow-chat-msg[data-role="assistant"] {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.flow-chat-msg__bubble {
+  padding: var(--comp-chat-message-pad-y) var(--comp-chat-message-pad-x);
+  border-radius: var(--comp-chat-message-radius);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  line-height: var(--sys-type-body-line);
+}
+
+.flow-chat-msg[data-role="user"] .flow-chat-msg__bubble {
+  background: var(--comp-chat-message-user-bg);
+  color: var(--comp-chat-message-user-fg);
+  border-bottom-right-radius: var(--sys-radius-xs);
+}
+
+.flow-chat-msg[data-role="assistant"] .flow-chat-msg__bubble {
+  background: var(--comp-chat-message-bot-bg);
+  color: var(--comp-chat-message-bot-fg);
+  border-bottom-left-radius: var(--sys-radius-xs);
+}
+
+.flow-chat-msg__time {
+  color: var(--comp-chat-message-time-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+}

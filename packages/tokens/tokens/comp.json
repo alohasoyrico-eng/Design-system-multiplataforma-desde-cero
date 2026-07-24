@@ -449,6 +449,27 @@
       "pinAccentBg": { "$type": "color", "$value": "{sys.action.accent}" },
       "pinAccentFg": { "$type": "color", "$value": "{sys.text.onAccent}" },
       "radius": { "$type": "dimension", "$value": "{sys.radius.lg}" }
+    },
+    "chatMessage": {
+      "userBg": { "$type": "color", "$value": "{sys.action.accent}" },
+      "userFg": { "$type": "color", "$value": "{sys.text.onAccent}" },
+      "botBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "botFg": { "$type": "color", "$value": "{sys.text.primary}" },
+      "radius": { "$type": "dimension", "$value": "{sys.radius.lg}" },
+      "padX": { "$type": "dimension", "$value": "{sys.pad.controlX}" },
+      "padY": { "$type": "dimension", "$value": "{sys.pad.controlY}" },
+      "timeColor": { "$type": "color", "$value": "{sys.text.muted}" }
+    },
+    "chatComposer": {
+      "bg": { "$type": "color", "$value": "{sys.surface.card}" },
+      "fg": { "$type": "color", "$value": "{sys.text.primary}" },
+      "placeholder": { "$type": "color", "$value": "{sys.text.muted}" },
+      "border": { "$type": "color", "$value": "{sys.border.default}" },
+      "borderFocus": { "$type": "color", "$value": "{sys.border.focus}" },
+      "radius": { "$type": "dimension", "$value": "{sys.radius.xl}" },
+      "sendBg": { "$type": "color", "$value": "{sys.action.accent}" },
+      "sendFg": { "$type": "color", "$value": "{sys.text.onAccent}" },
+      "focusRing": { "$type": "shadow", "$value": "{sys.focus.ring}" }
     }
   }
 }

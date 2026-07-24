@@ -1,0 +1,33 @@
+/* Flow · AgentChat — conversational assistant. Tokens only. */
+.flow-agent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--sys-surface-canvas);
+  color: var(--sys-text-primary);
+}
+
+.flow-agent__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sys-space-4) var(--sys-pad-card);
+  background: var(--sys-surface-card);
+  border-bottom: var(--sys-border-width-thin) solid var(--sys-border-subtle);
+}
+
+.flow-agent__spark {
+  margin-left: auto;
+  color: var(--sys-text-accent);
+}
+
+.flow-agent .flow-chat-thread {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.flow-agent__composer {
+  padding: var(--sys-space-3) var(--sys-pad-card) var(--sys-pad-card);
+  background: var(--sys-surface-canvas);
+}
