@@ -37,14 +37,34 @@ import {
   FlowBreadcrumb,
   FlowPagination,
   FlowDrawer,
+  FlowStatusView,
   useToast,
   AuthScreen,
   FleetDashboard,
   WalletScreen,
+  OnboardingScreen,
   type TableColumn,
   type FleetUnit,
   type WalletTransaction,
 } from "@flow/design-system";
+
+const ONBOARDING_SLIDES = [
+  {
+    icon: "bolt",
+    title: "Todo tu día, en movimiento",
+    description: "Conéctate a tu turno y acepta viajes con un toque.",
+  },
+  {
+    icon: "map",
+    title: "La ciudad es tu turno",
+    description: "Ve la demanda en tiempo real y encuentra las mejores rutas.",
+  },
+  {
+    icon: "savings",
+    title: "Tus ganancias, claras",
+    description: "Consulta tu saldo y movimientos cuando quieras.",
+  },
+];
 
 const WALLET_TX: WalletTransaction[] = [
   {
@@ -568,6 +588,46 @@ export function App() {
                 <FlowOTPInput value={otp} onChange={setOtp} />
               </Stack>
             </Grid>
+          </Section>
+
+          <Section title="Feedback — StatusView">
+            <Grid columns="repeat(auto-fit, minmax(240px, 1fr))" gap="4">
+              <FlowCard>
+                <FlowStatusView
+                  tone="success"
+                  title="Viaje asignado"
+                  message="La unidad 214 va en camino."
+                />
+              </FlowCard>
+              <FlowCard>
+                <FlowStatusView
+                  tone="error"
+                  title="No pudimos conectar"
+                  message="Revisa tu conexión e inténtalo de nuevo."
+                  primaryAction={<FlowButton variant="accent">Reintentar</FlowButton>}
+                />
+              </FlowCard>
+              <FlowCard>
+                <FlowStatusView
+                  tone="pending"
+                  title="Procesando pago"
+                  message="Esto toma unos segundos."
+                />
+              </FlowCard>
+              <FlowCard>
+                <FlowStatusView
+                  tone="offline"
+                  title="Sin conexión"
+                  message="Volveremos a intentar automáticamente."
+                />
+              </FlowCard>
+            </Grid>
+          </Section>
+
+          <Section title="Template (L5) — OnboardingScreen (móvil)">
+            <div className="docs-frame docs-frame--tall docs-frame--phone">
+              <OnboardingScreen slides={ONBOARDING_SLIDES} onFinish={() => {}} />
+            </div>
           </Section>
 
           <Section title="Template (L5) — AuthScreen">

@@ -62,6 +62,11 @@ export {
   type BreadcrumbItem,
 } from "./navigation/FlowBreadcrumb";
 export { FlowPagination, type FlowPaginationProps } from "./navigation/FlowPagination";
+export {
+  FlowOnboardingCarousel,
+  type FlowOnboardingCarouselProps,
+  type OnboardingSlide,
+} from "./navigation/FlowOnboardingCarousel";
 // overlays
 export { FlowDialog, type FlowDialogProps } from "./overlays/FlowDialog";
 export { FlowDrawer, type FlowDrawerProps } from "./overlays/FlowDrawer";
@@ -70,6 +75,11 @@ export { FlowSpinner, type FlowSpinnerProps } from "./feedback/FlowSpinner";
 export { FlowProgressBar, type FlowProgressBarProps } from "./feedback/FlowProgressBar";
 export { FlowTooltip, type FlowTooltipProps } from "./feedback/FlowTooltip";
 export { FlowBottomSheet, type FlowBottomSheetProps } from "./feedback/FlowBottomSheet";
+export {
+  FlowStatusView,
+  type FlowStatusViewProps,
+  type StatusTone,
+} from "./feedback/FlowStatusView";
 export {
   FlowToastProvider,
   useToast,
