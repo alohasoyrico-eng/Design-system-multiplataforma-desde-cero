@@ -52,6 +52,8 @@ import {
   WizardScreen,
   SettingsScreen,
   AuthOTPScreen,
+  DriversApp,
+  RoutesScreen,
   type TableColumn,
   type FleetUnit,
   type WalletTransaction,
@@ -728,6 +730,48 @@ export function App() {
           <Section title="Template (L5) — SettingsScreen">
             <div className="docs-frame docs-frame--tall">
               <SettingsScreen />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — DriversApp (móvil)">
+            <div className="docs-frame docs-frame--tall docs-frame--phone">
+              <DriversApp
+                driver="Ana Ruiz"
+                earningsToday="$1,840"
+                trips="12"
+                demand={[
+                  { x: 30, y: 40, label: "1.8×", accent: true },
+                  { x: 66, y: 60, label: "1.3×" },
+                ]}
+                incoming={{
+                  pickup: "Av. Reforma 222",
+                  dropoff: "Aeropuerto T1",
+                  fare: "$185",
+                  eta: "3 min",
+                }}
+              />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — RoutesScreen (móvil)">
+            <div className="docs-frame docs-frame--tall docs-frame--phone">
+              <RoutesScreen
+                pins={[
+                  { x: 24, y: 40, label: "$22", accent: true },
+                  { x: 58, y: 34, label: "$25" },
+                  { x: 76, y: 66, label: "$21" },
+                ]}
+                route={[
+                  { x: 14, y: 78 },
+                  { x: 40, y: 55 },
+                  { x: 72, y: 60 },
+                ]}
+                stations={[
+                  { name: "Estación Centro", price: "$22.10", distance: "1.2 km" },
+                  { name: "Estación Norte", price: "$25.40", distance: "3.6 km" },
+                  { name: "Estación Sur", price: "$21.80", distance: "5.1 km" },
+                ]}
+              />
             </div>
           </Section>
 
