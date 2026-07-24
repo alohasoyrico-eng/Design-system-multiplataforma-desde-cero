@@ -13,7 +13,7 @@
     "tokens:build": "npm run build --workspace @flow/tokens",
     "mailings:build": "npm run build --workspace @flow/mailings",
     "build": "turbo run build",
-    "dev": "npm run dev --workspace @flow/docs",
+    "dev": "turbo run build --filter=!@flow/docs && npm run dev --workspace @flow/docs",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "lint": "eslint .",
@@ -21,9 +21,13 @@
     "audit:hardcoded": "node scripts/audit-hardcoded.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish",
     "verify": "npm run tokens:build && npm run lint && npm run lint:css && npm run audit:hardcoded && npm run typecheck && npm run test"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.1",
     "@eslint/js": "^9.17.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",

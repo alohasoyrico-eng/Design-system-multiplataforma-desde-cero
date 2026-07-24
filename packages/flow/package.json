@@ -7,25 +7,41 @@
     "*.css"
   ],
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./styles": "./css/styles.css",
     "./fonts": "./css/fonts.css"
   },
+  "files": [
+    "dist",
+    "css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git",
+    "directory": "packages/flow"
+  },
+  "homepage": "https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero#readme",
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "vite build",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run --config ../../vitest.config.ts"
   },
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@flow/tokens": "*",
-    "@flow/primitives": "*",
-    "@flow/components": "*",
-    "@flow/patterns": "*",
-    "@flow/templates": "*",
+    "@flow/tokens": "^0.1.0",
+    "@flow/primitives": "^0.1.0",
+    "@flow/components": "^0.1.0",
+    "@flow/patterns": "^0.1.0",
+    "@flow/templates": "^0.1.0",
     "@fontsource/sora": "^5.1.0",
     "@fontsource/jetbrains-mono": "^5.1.0",
     "@fontsource/archivo": "^5.1.0",
