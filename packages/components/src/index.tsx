@@ -42,6 +42,10 @@ export {
   type FlowAccordionProps,
   type AccordionItem,
 } from "./display/FlowAccordion";
+// chat
+export { FlowChatMessage, type FlowChatMessageProps } from "./chat/FlowChatMessage";
+export { FlowChatThread, type FlowChatThreadProps } from "./chat/FlowChatThread";
+export { FlowChatComposer, type FlowChatComposerProps } from "./chat/FlowChatComposer";
 // data
 export { FlowTable, type FlowTableProps, type TableColumn } from "./data/FlowTable";
 export { FlowDonut, type FlowDonutProps } from "./data/FlowDonut";

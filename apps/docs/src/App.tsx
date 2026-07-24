@@ -54,6 +54,7 @@ import {
   AuthOTPScreen,
   DriversApp,
   RoutesScreen,
+  AgentChat,
   type TableColumn,
   type FleetUnit,
   type WalletTransaction,
@@ -730,6 +731,12 @@ export function App() {
           <Section title="Template (L5) — SettingsScreen">
             <div className="docs-frame docs-frame--tall">
               <SettingsScreen />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — AgentChat (asistente)">
+            <div className="docs-frame docs-frame--tall docs-frame--phone">
+              <AgentChat />
             </div>
           </Section>
 
