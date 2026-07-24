@@ -1,0 +1,80 @@
+/* Flow · Toast — consumes comp.toast tokens. Stacked region, bottom-center. */
+.flow-toast-region {
+  position: fixed;
+  left: 50%;
+  bottom: var(--sys-space-6);
+  transform: translateX(-50%);
+  z-index: var(--sys-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-2);
+  width: max-content;
+  max-width: calc(100vw - var(--sys-space-8));
+  pointer-events: none;
+}
+
+.flow-toast {
+  display: flex;
+  align-items: center;
+  gap: var(--comp-toast-gap);
+  padding: var(--comp-toast-pad);
+  border-radius: var(--comp-toast-radius);
+  background: var(--comp-toast-bg);
+  color: var(--comp-toast-fg);
+  box-shadow: var(--comp-toast-shadow);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-toast-font-size);
+  border-left: var(--sys-space-1) solid transparent;
+  pointer-events: auto;
+  animation: flow-toast-in var(--sys-motion-dur-base) var(--sys-motion-ease-spring);
+}
+
+.flow-toast[data-tone="success"] {
+  border-left-color: var(--comp-toast-accent-success);
+}
+
+.flow-toast[data-tone="danger"] {
+  border-left-color: var(--comp-toast-accent-danger);
+}
+
+.flow-toast__message {
+  flex: 1 1 auto;
+}
+
+.flow-toast__action {
+  border: none;
+  background: transparent;
+  color: var(--comp-toast-action-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-toast-font-size);
+  font-weight: var(--sys-type-body-strong-weight);
+  cursor: pointer;
+}
+
+.flow-toast__close {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: currentcolor;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.flow-toast__action:focus-visible,
+.flow-toast__close:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+  border-radius: var(--sys-radius-xs);
+}
+@keyframes flow-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--sys-space-4));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-toast {
+    animation: none;
+  }
+}

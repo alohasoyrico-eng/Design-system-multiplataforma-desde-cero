@@ -1,0 +1,30 @@
+/* Flow · Divider — consumes comp.divider tokens. */
+.flow-divider[data-orientation="horizontal"] {
+  width: 100%;
+  height: var(--comp-divider-thickness);
+  background: var(--comp-divider-color);
+  border: none;
+}
+
+.flow-divider[data-orientation="vertical"] {
+  width: var(--comp-divider-thickness);
+  align-self: stretch;
+  background: var(--comp-divider-color);
+}
+
+.flow-divider--labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-3);
+  color: var(--sys-text-muted);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+}
+
+.flow-divider--labeled::before,
+.flow-divider--labeled::after {
+  content: "";
+  flex: 1 1 auto;
+  height: var(--comp-divider-thickness);
+  background: var(--comp-divider-color);
+}

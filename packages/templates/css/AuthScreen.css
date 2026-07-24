@@ -1,0 +1,73 @@
+/* Flow · AuthScreen — full-page sign-in. Tokens only; re-themes across Canvas/Asphalt/Brutal. */
+.flow-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--sys-space-6);
+  background: var(--sys-surface-canvas);
+}
+
+.flow-auth__panel {
+  width: 100%;
+  max-width: 420px;
+  background: var(--sys-surface-card);
+  border: var(--sys-border-width-thin) solid var(--sys-border-subtle);
+  border-radius: var(--sys-radius-xl);
+  box-shadow: var(--sys-elevation-float);
+  padding: var(--sys-space-8);
+}
+
+.flow-auth__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-space-2);
+  color: var(--sys-text-accent);
+}
+
+.flow-auth__wordmark {
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-size);
+  font-weight: var(--sys-type-display-xl-weight);
+  letter-spacing: var(--sys-type-title-tracking);
+  color: var(--sys-text-primary);
+}
+
+.flow-auth__link {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--sys-text-link);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+  cursor: pointer;
+}
+
+.flow-auth__link:hover {
+  text-decoration: underline;
+}
+
+.flow-auth__link:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+  border-radius: var(--sys-radius-xs);
+}
+
+@media (max-width: 575px) {
+  .flow-auth {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .flow-auth__panel {
+    max-width: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: var(--sys-space-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

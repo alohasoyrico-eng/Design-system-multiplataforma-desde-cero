@@ -1,0 +1,15 @@
+/* Flow · WalletScreen — mobile wallet. Tokens only; re-themes across all three themes. */
+.flow-wallet {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  min-height: 100%;
+  padding: var(--sys-pad-section) var(--sys-space-5);
+  background: var(--sys-surface-canvas);
+  color: var(--sys-text-primary);
+}
+
+.flow-wallet__balance {
+  font-family: var(--sys-font-mono);
+  font-variant-numeric: tabular-nums;
+}

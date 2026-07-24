@@ -1,0 +1,86 @@
+/* Flow · Stepper — consumes comp.stepper tokens. */
+.flow-stepper {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-stepper__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-2);
+  flex: 1 1 0;
+  text-align: center;
+}
+
+.flow-stepper__step::before,
+.flow-stepper__step::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--comp-stepper-size) / 2);
+  height: var(--sys-border-width-strong);
+  background: var(--comp-stepper-line);
+  width: 50%;
+}
+
+.flow-stepper__step::before {
+  left: 0;
+}
+
+.flow-stepper__step::after {
+  right: 0;
+}
+
+.flow-stepper__step:first-child::before,
+.flow-stepper__step:last-child::after {
+  display: none;
+}
+
+.flow-stepper__step[data-state="done"]::before,
+.flow-stepper__step[data-state="done"]::after,
+.flow-stepper__step[data-state="active"]::before {
+  background: var(--comp-stepper-line-done);
+}
+
+.flow-stepper__dot {
+  position: relative;
+  z-index: var(--sys-z-raised);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--comp-stepper-size);
+  height: var(--comp-stepper-size);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-stepper-dot-bg);
+  border: var(--sys-border-width-strong) solid var(--comp-stepper-dot-border);
+  color: var(--comp-stepper-label-color);
+  font-family: var(--sys-font-mono);
+  font-size: var(--sys-type-caption-size);
+  font-weight: var(--sys-type-body-strong-weight);
+}
+
+.flow-stepper__step[data-state="active"] .flow-stepper__dot {
+  background: var(--comp-stepper-dot-active);
+  border-color: var(--comp-stepper-dot-active);
+  color: var(--comp-stepper-dot-fg);
+}
+
+.flow-stepper__step[data-state="done"] .flow-stepper__dot {
+  background: var(--comp-stepper-dot-done);
+  border-color: var(--comp-stepper-dot-done);
+  color: var(--comp-stepper-dot-fg);
+}
+
+.flow-stepper__label {
+  color: var(--comp-stepper-label-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+}
+
+.flow-stepper__step[data-state="active"] .flow-stepper__label {
+  color: var(--comp-stepper-label-color-active);
+  font-weight: var(--sys-type-body-strong-weight);
+}

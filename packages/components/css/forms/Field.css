@@ -1,0 +1,29 @@
+/* Flow · Field — label + control + messaging. Consumes comp.field tokens. */
+.flow-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--comp-field-gap);
+}
+
+.flow-field__label {
+  color: var(--comp-field-label-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-field-label-size);
+  font-weight: var(--comp-field-label-weight);
+}
+
+.flow-field__required {
+  color: var(--sys-status-danger-text);
+}
+
+.flow-field__hint {
+  color: var(--comp-field-hint-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-field-hint-size);
+}
+
+.flow-field__error {
+  color: var(--comp-field-error-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-field-hint-size);
+}

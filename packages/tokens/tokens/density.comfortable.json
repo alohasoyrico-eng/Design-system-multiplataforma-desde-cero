@@ -1,0 +1,18 @@
+{
+  "$description": "DENSITY · Comfortable — roomier paddings/gaps/control heights. Emitted under [data-density=comfortable].",
+  "sys": {
+    "pad": {
+      "controlY": { "$type": "dimension", "$value": "{ref.space.4}" },
+      "controlX": { "$type": "dimension", "$value": "{ref.space.6}" },
+      "card": { "$type": "dimension", "$value": "{ref.space.8}" },
+      "section": { "$type": "dimension", "$value": "{ref.space.12}" }
+    },
+    "gap": {
+      "inline": { "$type": "dimension", "$value": "{ref.space.3}" },
+      "stack": { "$type": "dimension", "$value": "{ref.space.5}" }
+    },
+    "size": {
+      "control": { "$type": "dimension", "$value": "{ref.size.controlLg}" }
+    }
+  }
+}

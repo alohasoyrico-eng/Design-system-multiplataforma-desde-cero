@@ -1,0 +1,49 @@
+/* Flow · Tabs — consumes comp.tabs tokens. */
+.flow-tabs {
+  display: inline-flex;
+  gap: var(--comp-tabs-gap);
+  border-bottom: var(--sys-border-width-thin) solid var(--comp-tabs-track-border);
+}
+
+.flow-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-gap-inline);
+  padding-block: var(--comp-tabs-pad-y);
+  border: none;
+  background: transparent;
+  color: var(--comp-tabs-fg);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-tabs-font-size);
+  font-weight: var(--comp-tabs-font-weight);
+  cursor: pointer;
+  transition: color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1 * var(--sys-border-width-thin));
+  height: var(--sys-border-width-strong);
+  background: var(--comp-tabs-indicator);
+  border-radius: var(--sys-radius-pill);
+  transform: scaleX(0);
+  transition: transform var(--sys-motion-dur-base) var(--sys-motion-ease-spring);
+}
+
+.flow-tab[data-active] {
+  color: var(--comp-tabs-fg-active);
+}
+
+.flow-tab[data-active]::after {
+  transform: scaleX(1);
+}
+
+.flow-tab:focus-visible {
+  outline: none;
+  box-shadow: var(--comp-tabs-focus-ring);
+  border-radius: var(--sys-radius-xs);
+}

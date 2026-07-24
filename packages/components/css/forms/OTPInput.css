@@ -1,0 +1,27 @@
+/* Flow · OTPInput — consumes comp.otp tokens. */
+.flow-otp {
+  display: inline-flex;
+  gap: var(--comp-otp-gap);
+}
+
+.flow-otp__box {
+  width: var(--comp-otp-size);
+  height: var(--comp-otp-size);
+  text-align: center;
+  background: var(--comp-otp-bg);
+  color: var(--comp-otp-fg);
+  border: var(--comp-otp-border-width) solid var(--comp-otp-border);
+  border-radius: var(--comp-otp-radius);
+  font-family: var(--comp-otp-font);
+  font-size: var(--comp-otp-font-size);
+  font-variant-numeric: tabular-nums;
+  transition:
+    border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    box-shadow var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-otp__box:focus {
+  outline: none;
+  border-color: var(--comp-otp-border-focus);
+  box-shadow: var(--comp-otp-focus-ring);
+}

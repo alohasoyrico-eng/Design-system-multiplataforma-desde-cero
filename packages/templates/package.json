@@ -1,0 +1,27 @@
+{
+  "name": "@flow/templates",
+  "version": "0.1.0",
+  "description": "Flow L5 templates — full page compositions. Exemplar: AuthScreen.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.tsx",
+    "./css": "./css/templates.css"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@flow/components": "*",
+    "@flow/patterns": "*",
+    "@flow/primitives": "*"
+  }
+}

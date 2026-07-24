@@ -1,0 +1,26 @@
+{
+  "name": "@flow/patterns",
+  "version": "0.1.0",
+  "description": "Flow L4 patterns — multi-component compositions. Exemplar: LoginForm.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.tsx",
+    "./css": "./css/patterns.css"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@flow/components": "*",
+    "@flow/primitives": "*"
+  }
+}

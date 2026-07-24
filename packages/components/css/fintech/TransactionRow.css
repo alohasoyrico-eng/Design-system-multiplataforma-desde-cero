@@ -1,0 +1,58 @@
+/* Flow · TransactionRow — consumes comp.transactionRow tokens. */
+.flow-tx-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-3);
+  padding-block: var(--comp-transaction-row-pad-y);
+  border-bottom: var(--sys-border-width-thin) solid var(--comp-transaction-row-border);
+}
+
+.flow-tx-row:last-child {
+  border-bottom: none;
+}
+
+.flow-tx-row__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--comp-transaction-row-icon-size);
+  height: var(--comp-transaction-row-icon-size);
+  flex: 0 0 auto;
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-transaction-row-icon-bg);
+  color: var(--comp-transaction-row-icon-fg);
+}
+
+.flow-tx-row__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-1);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.flow-tx-row__title {
+  color: var(--comp-transaction-row-title-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+}
+
+.flow-tx-row__subtitle {
+  color: var(--comp-transaction-row-subtitle-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+}
+
+.flow-tx-row__amount {
+  color: var(--comp-transaction-row-amount-color);
+  font-family: var(--comp-transaction-row-amount-font);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.flow-tx-row__amount[data-positive] {
+  color: var(--comp-transaction-row-amount-positive);
+}

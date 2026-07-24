@@ -1,0 +1,28 @@
+{
+  "name": "@flow/tokens",
+  "version": "0.1.0",
+  "description": "Flow design tokens — DTCG single source of truth (ref → sys → comp), 3 themes, multiplatform outputs.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./css": "./dist/tokens.css",
+    "./json": "./dist/tokens.json",
+    "./scss": "./dist/scss/_flow.scss",
+    "./flutter": "./dist/flutter/flow_tokens.dart"
+  },
+  "files": [
+    "dist",
+    "tokens"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}

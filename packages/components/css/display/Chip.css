@@ -1,0 +1,40 @@
+/* Flow · Chip — consumes comp.chip tokens. */
+.flow-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-space-1);
+  padding-inline: var(--comp-chip-pad-x);
+  padding-block: var(--comp-chip-pad-y);
+  border: var(--sys-border-width-thin) solid var(--comp-chip-border);
+  border-radius: var(--comp-chip-radius);
+  background: var(--comp-chip-bg);
+  color: var(--comp-chip-fg);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-chip-font-size);
+  white-space: nowrap;
+}
+
+.flow-chip[data-selected] {
+  background: var(--comp-chip-selected-bg);
+  color: var(--comp-chip-selected-fg);
+  border-color: var(--comp-chip-selected-fg);
+}
+
+.flow-chip__remove {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--comp-chip-remove-color);
+  cursor: pointer;
+}
+
+.flow-chip__remove:hover {
+  color: var(--comp-chip-fg);
+}
+
+.flow-chip__remove:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+  border-radius: var(--sys-radius-pill);
+}

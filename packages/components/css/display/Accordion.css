@@ -1,0 +1,50 @@
+/* Flow · Accordion — consumes comp.accordion tokens. */
+.flow-accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.flow-accordion__item {
+  border-bottom: var(--sys-border-width-thin) solid var(--comp-accordion-border);
+}
+
+.flow-accordion__heading {
+  margin: 0;
+}
+
+.flow-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sys-space-3);
+  width: 100%;
+  padding: var(--comp-accordion-pad-y) 0;
+  border: none;
+  background: transparent;
+  color: var(--comp-accordion-header-color);
+  font-family: var(--sys-font-display);
+  font-size: var(--comp-accordion-header-size);
+  font-weight: var(--comp-accordion-header-weight);
+  text-align: left;
+  cursor: pointer;
+}
+
+.flow-accordion__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--comp-accordion-focus-ring);
+  border-radius: var(--sys-radius-xs);
+}
+
+.flow-accordion__icon {
+  color: var(--comp-accordion-icon-color);
+  flex: 0 0 auto;
+  transition: transform var(--sys-motion-dur-base) var(--sys-motion-ease-spring);
+}
+
+.flow-accordion__content {
+  padding-bottom: var(--comp-accordion-pad-y);
+  color: var(--comp-accordion-content-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  line-height: var(--sys-type-body-line);
+}

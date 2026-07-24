@@ -1,0 +1,25 @@
+{
+  "name": "@flow/primitives",
+  "version": "0.1.0",
+  "description": "Flow L2 primitives — Surface, Text, layout, FlowIcon. Consume system tokens only.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.tsx",
+    "./css": "./css/primitives.css"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@flow/tokens": "*"
+  }
+}

@@ -1,0 +1,52 @@
+/* Flow · Input — consumes comp.input tokens. Border/focus live on the wrapper. */
+.flow-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-gap-inline);
+  min-height: var(--comp-input-height);
+  padding-inline: var(--comp-input-pad-x);
+  background: var(--comp-input-bg);
+  border: var(--comp-input-border-width) solid var(--comp-input-border);
+  border-radius: var(--comp-input-radius);
+  transition:
+    border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    box-shadow var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-input-wrap:hover:not([data-disabled]) {
+  border-color: var(--comp-input-border-hover);
+}
+
+.flow-input-wrap:focus-within {
+  border-color: var(--comp-input-border-focus);
+  box-shadow: var(--comp-input-focus-ring);
+}
+
+.flow-input-wrap[data-invalid] {
+  border-color: var(--comp-input-border-error);
+}
+
+.flow-input-wrap[data-disabled] {
+  opacity: 0.55;
+}
+
+.flow-input__icon {
+  color: var(--comp-input-placeholder);
+  flex: 0 0 auto;
+}
+
+.flow-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--comp-input-fg);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-input-font-size);
+  line-height: 1.4;
+}
+
+.flow-input::placeholder {
+  color: var(--comp-input-placeholder);
+}

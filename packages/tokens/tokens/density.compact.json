@@ -1,0 +1,18 @@
+{
+  "$description": "DENSITY · Compact — tighter paddings/gaps/control heights. Emitted under [data-density=compact].",
+  "sys": {
+    "pad": {
+      "controlY": { "$type": "dimension", "$value": "{ref.space.2}" },
+      "controlX": { "$type": "dimension", "$value": "{ref.space.4}" },
+      "card": { "$type": "dimension", "$value": "{ref.space.5}" },
+      "section": { "$type": "dimension", "$value": "{ref.space.6}" }
+    },
+    "gap": {
+      "inline": { "$type": "dimension", "$value": "{ref.space.1}" },
+      "stack": { "$type": "dimension", "$value": "{ref.space.3}" }
+    },
+    "size": {
+      "control": { "$type": "dimension", "$value": "{ref.size.controlSm}" }
+    }
+  }
+}

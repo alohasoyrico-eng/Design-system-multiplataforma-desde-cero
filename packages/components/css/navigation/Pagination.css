@@ -1,0 +1,56 @@
+/* Flow · Pagination — consumes comp.pagination tokens. */
+.flow-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-space-1);
+}
+
+.flow-pagination__item,
+.flow-pagination__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--comp-pagination-size);
+  height: var(--comp-pagination-size);
+  padding: 0 var(--sys-space-2);
+  border: none;
+  border-radius: var(--comp-pagination-radius);
+  background: transparent;
+  color: var(--comp-pagination-item-color);
+  font-family: var(--comp-pagination-font);
+  font-size: var(--sys-type-data-size);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-pagination__item:hover:not([data-active]),
+.flow-pagination__nav:hover:not(:disabled) {
+  background: var(--comp-pagination-item-bg-hover);
+}
+
+.flow-pagination__item[data-active] {
+  background: var(--comp-pagination-item-bg-active);
+  color: var(--comp-pagination-item-color-active);
+}
+
+.flow-pagination__nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.flow-pagination__item:focus-visible,
+.flow-pagination__nav:focus-visible {
+  outline: none;
+  box-shadow: var(--comp-pagination-focus-ring);
+}
+
+.flow-pagination__gap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--comp-pagination-size);
+  color: var(--comp-pagination-item-color);
+}

@@ -1,0 +1,70 @@
+/* Flow · Table — consumes comp.table tokens. */
+.flow-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--comp-table-bg);
+  border: var(--sys-border-width-thin) solid var(--comp-table-border);
+  border-radius: var(--comp-table-radius);
+}
+
+.flow-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sys-font-body);
+}
+
+.flow-table__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.flow-table thead th {
+  text-align: left;
+  padding: var(--comp-table-cell-pad-y) var(--comp-table-cell-pad-x);
+  background: var(--comp-table-header-bg);
+  color: var(--comp-table-header-color);
+  font-size: var(--comp-table-header-size);
+  font-weight: var(--comp-table-header-weight);
+  letter-spacing: var(--comp-table-header-tracking);
+  text-transform: uppercase;
+  border-bottom: var(--sys-border-width-thin) solid var(--comp-table-row-border);
+  white-space: nowrap;
+}
+
+.flow-table tbody td {
+  padding: var(--comp-table-cell-pad-y) var(--comp-table-cell-pad-x);
+  color: var(--comp-table-cell-color);
+  font-size: var(--comp-table-cell-size);
+  border-bottom: var(--sys-border-width-thin) solid var(--comp-table-row-border);
+  vertical-align: middle;
+}
+
+.flow-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.flow-table tbody tr[data-clickable] {
+  cursor: pointer;
+  transition: background var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-table tbody tr[data-clickable]:hover {
+  background: var(--comp-table-row-hover);
+}
+
+.flow-table [data-align="end"] {
+  text-align: right;
+}
+
+.flow-table [data-align="center"] {
+  text-align: center;
+}
+
+.flow-table td[data-mono] {
+  font-family: var(--comp-table-data-font);
+  font-variant-numeric: tabular-nums;
+}

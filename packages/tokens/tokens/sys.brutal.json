@@ -1,0 +1,112 @@
+{
+  "$description": "SYSTEM · Brutal (Nothing × Rams × Apple-80s). Near-monochrome; square, structural, mechanical. Emitted under [data-theme=brutal]. Overrides colors AND structure (radius/border/font/type/motion).",
+  "sys": {
+    "surface": {
+      "canvas": { "$type": "color", "$value": "{ref.color.paper.100}" },
+      "card": { "$type": "color", "$value": "{ref.color.white}" },
+      "sunken": { "$type": "color", "$value": "{ref.color.paper.200}" },
+      "inverse": { "$type": "color", "$value": "{ref.color.carbon}" },
+      "accentSubtle": { "$type": "color", "$value": "{ref.color.white}" }
+    },
+    "text": {
+      "primary": { "$type": "color", "$value": "{ref.color.carbon}" },
+      "secondary": { "$type": "color", "$value": "{ref.color.carbonGrey.700}" },
+      "muted": { "$type": "color", "$value": "{ref.color.carbonGrey.500}" },
+      "onAccent": { "$type": "color", "$value": "{ref.color.white}" },
+      "onInverse": { "$type": "color", "$value": "{ref.color.paper.100}" },
+      "accent": { "$type": "color", "$value": "{ref.color.red.500}" },
+      "link": { "$type": "color", "$value": "{ref.color.carbon}" }
+    },
+    "border": {
+      "subtle": { "$type": "color", "$value": "{ref.color.paper.300}" },
+      "default": { "$type": "color", "$value": "{ref.color.carbon}" },
+      "strong": { "$type": "color", "$value": "{ref.color.carbon}" },
+      "focus": { "$type": "color", "$value": "{ref.color.carbon}" }
+    },
+    "action": {
+      "primary": { "$type": "color", "$value": "{ref.color.carbon}" },
+      "primaryHover": { "$type": "color", "$value": "{ref.color.black}" },
+      "accent": { "$type": "color", "$value": "{ref.color.red.500}" },
+      "accentHover": { "$type": "color", "$value": "{ref.color.black}" }
+    },
+    "status": {
+      "success": { "$type": "color", "$value": "{ref.color.green.700}" },
+      "successText": { "$type": "color", "$value": "{ref.color.green.700}" },
+      "successBg": { "$type": "color", "$value": "{ref.color.white}" },
+      "warning": { "$type": "color", "$value": "{ref.color.amber.700}" },
+      "warningText": { "$type": "color", "$value": "{ref.color.amber.700}" },
+      "warningBg": { "$type": "color", "$value": "{ref.color.white}" },
+      "danger": { "$type": "color", "$value": "{ref.color.red.500}" },
+      "dangerText": { "$type": "color", "$value": "{ref.color.red.500}" },
+      "dangerBg": { "$type": "color", "$value": "{ref.color.white}" },
+      "info": { "$type": "color", "$value": "{ref.color.blue.700}" },
+      "infoText": { "$type": "color", "$value": "{ref.color.blue.700}" },
+      "infoBg": { "$type": "color", "$value": "{ref.color.white}" },
+      "live": { "$type": "color", "$value": "{ref.color.red.500}" }
+    },
+    "focus": {
+      "ring": { "$type": "shadow", "$value": "{ref.focus.ringBrutal}" }
+    },
+    "elevation": {
+      "rest": { "$type": "shadow", "$value": "{ref.shadow.none}" },
+      "raised": { "$type": "shadow", "$value": "{ref.shadow.hardRaised}" },
+      "float": { "$type": "shadow", "$value": "{ref.shadow.hardFloat}" },
+      "overlay": { "$type": "shadow", "$value": "{ref.shadow.hardOverlay}" },
+      "glow": { "$type": "shadow", "$value": "{ref.shadow.hardGlow}" }
+    },
+    "radius": {
+      "xs": { "$type": "dimension", "$value": "{ref.radius.none}" },
+      "sm": { "$type": "dimension", "$value": "{ref.radius.none}" },
+      "md": { "$type": "dimension", "$value": "{ref.radius.brutalMd}" },
+      "lg": { "$type": "dimension", "$value": "{ref.radius.brutalMd}" },
+      "xl": { "$type": "dimension", "$value": "{ref.radius.brutalXl}" },
+      "pill": { "$type": "dimension", "$value": "{ref.radius.brutalMd}" }
+    },
+    "borderWidth": {
+      "thin": { "$type": "dimension", "$value": "{ref.borderWidth.strong}" },
+      "strong": { "$type": "dimension", "$value": "{ref.borderWidth.structural}" }
+    },
+    "font": {
+      "display": { "$type": "fontFamily", "$value": "{ref.fontFamily.brutal}" },
+      "body": { "$type": "fontFamily", "$value": "{ref.fontFamily.brutal}" }
+    },
+    "type": {
+      "displayXl": {
+        "weight": { "$type": "fontWeight", "$value": "{ref.fontWeight.bold}" },
+        "tracking": { "$type": "dimension", "$value": "0" }
+      },
+      "display": {
+        "weight": { "$type": "fontWeight", "$value": "{ref.fontWeight.bold}" },
+        "tracking": { "$type": "dimension", "$value": "0" }
+      },
+      "titleLg": {
+        "weight": { "$type": "fontWeight", "$value": "{ref.fontWeight.bold}" },
+        "tracking": { "$type": "dimension", "$value": "0" }
+      },
+      "title": {
+        "weight": { "$type": "fontWeight", "$value": "{ref.fontWeight.bold}" },
+        "tracking": { "$type": "dimension", "$value": "0" }
+      },
+      "titleSm": {
+        "weight": { "$type": "fontWeight", "$value": "{ref.fontWeight.bold}" },
+        "tracking": { "$type": "dimension", "$value": "0" }
+      },
+      "overline": {
+        "weight": { "$type": "fontWeight", "$value": "{ref.fontWeight.bold}" },
+        "tracking": { "$type": "dimension", "$value": "{ref.letterSpacing.brutalOverline}" }
+      }
+    },
+    "motion": {
+      "easeSpring": { "$type": "cubicBezier", "$value": "{ref.easing.linear}" },
+      "easeOut": { "$type": "cubicBezier", "$value": "{ref.easing.brutalOut}" },
+      "easeInOut": { "$type": "cubicBezier", "$value": "{ref.easing.linear}" },
+      "durInstant": { "$type": "duration", "$value": "{ref.duration.brutalInstant}" },
+      "durFast": { "$type": "duration", "$value": "{ref.duration.brutalFast}" },
+      "durBase": { "$type": "duration", "$value": "{ref.duration.brutalBase}" },
+      "durSlow": { "$type": "duration", "$value": "{ref.duration.brutalSlow}" },
+      "liftHover": { "$type": "other", "$value": "{ref.transform.none}" },
+      "pressScale": { "$type": "other", "$value": "{ref.transform.none}" },
+      "hoverScale": { "$type": "other", "$value": "{ref.transform.none}" }
+    }
+  }
+}

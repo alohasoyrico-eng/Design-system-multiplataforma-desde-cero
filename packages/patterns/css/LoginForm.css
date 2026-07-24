@@ -1,0 +1,14 @@
+/* Flow · LoginForm — layout only; all visuals come from the composed components' tokens. */
+.flow-login-form {
+  width: 100%;
+}
+
+.flow-login-form__error {
+  margin: 0;
+  padding: var(--sys-space-3) var(--sys-space-4);
+  border-radius: var(--sys-radius-md);
+  background: var(--sys-status-danger-bg);
+  color: var(--sys-status-danger-text);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+}

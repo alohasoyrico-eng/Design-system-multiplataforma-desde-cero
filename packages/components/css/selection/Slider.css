@@ -1,0 +1,67 @@
+/* Flow · Slider — consumes comp.slider tokens. Filled track via --flow-slider-pct. */
+.flow-slider {
+  appearance: none;
+  width: 100%;
+  height: var(--comp-slider-thumb-size);
+  background: transparent;
+  cursor: pointer;
+}
+
+.flow-slider:focus-visible {
+  outline: none;
+}
+
+/* WebKit */
+.flow-slider::-webkit-slider-runnable-track {
+  height: var(--comp-slider-track-height);
+  border-radius: var(--sys-radius-pill);
+  background: linear-gradient(
+    to right,
+    var(--comp-slider-track-filled) 0 var(--flow-slider-pct, 0%),
+    var(--comp-slider-track) var(--flow-slider-pct, 0%) 100%
+  );
+}
+
+.flow-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--comp-slider-thumb-size);
+  height: var(--comp-slider-thumb-size);
+  margin-top: calc((var(--comp-slider-track-height) - var(--comp-slider-thumb-size)) / 2);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-slider-thumb);
+  border: var(--sys-border-width-strong) solid var(--comp-slider-thumb-border);
+  transition: box-shadow var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--comp-slider-focus-ring);
+}
+
+.flow-slider:active::-webkit-slider-thumb {
+  box-shadow: var(--comp-slider-glow);
+}
+
+/* Firefox */
+.flow-slider::-moz-range-track {
+  height: var(--comp-slider-track-height);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-slider-track);
+}
+
+.flow-slider::-moz-range-progress {
+  height: var(--comp-slider-track-height);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-slider-track-filled);
+}
+
+.flow-slider::-moz-range-thumb {
+  width: var(--comp-slider-thumb-size);
+  height: var(--comp-slider-thumb-size);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-slider-thumb);
+  border: var(--sys-border-width-strong) solid var(--comp-slider-thumb-border);
+}
+
+.flow-slider:focus-visible::-moz-range-thumb {
+  box-shadow: var(--comp-slider-focus-ring);
+}

@@ -1,0 +1,86 @@
+/* Flow · RadioGroup — consumes comp.radio tokens. */
+.flow-radio-group {
+  display: flex;
+  gap: var(--sys-space-4);
+}
+
+.flow-radio-group[data-orientation="vertical"] {
+  flex-direction: column;
+}
+
+.flow-radio {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--sys-gap-inline);
+  cursor: pointer;
+}
+
+.flow-radio[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.flow-radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  margin: 0;
+}
+
+.flow-radio__circle {
+  position: relative;
+  display: inline-flex;
+  width: var(--comp-radio-size);
+  height: var(--comp-radio-size);
+  flex: 0 0 auto;
+  margin-top: var(--sys-space-1);
+  background: var(--comp-radio-bg);
+  border: var(--comp-radio-border-width) solid var(--comp-radio-border);
+  border-radius: var(--sys-radius-pill);
+  transition: border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-radio__circle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-radio-dot);
+  transform: scale(0);
+  transition: transform var(--sys-motion-dur-fast) var(--sys-motion-ease-spring);
+}
+
+.flow-radio__input:checked + .flow-radio__circle {
+  border-color: var(--comp-radio-border-checked);
+}
+
+.flow-radio__input:checked + .flow-radio__circle::after {
+  transform: scale(1);
+}
+
+.flow-radio__input:focus-visible + .flow-radio__circle {
+  outline: none;
+  box-shadow: var(--comp-radio-focus-ring);
+}
+
+.flow-radio__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-1);
+}
+
+.flow-radio__label {
+  color: var(--comp-radio-label-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+}
+
+.flow-radio__desc {
+  color: var(--comp-radio-desc-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+}

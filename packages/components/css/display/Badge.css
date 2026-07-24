@@ -1,0 +1,60 @@
+/* Flow · Badge — consumes comp.badge tokens. */
+.flow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-space-1);
+  padding-inline: var(--comp-badge-pad-x);
+  padding-block: var(--comp-badge-pad-y);
+  border-radius: var(--comp-badge-radius);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-badge-font-size);
+  font-weight: var(--comp-badge-font-weight);
+  letter-spacing: var(--sys-type-overline-tracking);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.flow-badge[data-tone="neutral"] {
+  background: var(--comp-badge-neutral-bg);
+  color: var(--comp-badge-neutral-fg);
+}
+
+.flow-badge[data-tone="success"] {
+  background: var(--comp-badge-success-bg);
+  color: var(--comp-badge-success-fg);
+}
+
+.flow-badge[data-tone="warning"] {
+  background: var(--comp-badge-warning-bg);
+  color: var(--comp-badge-warning-fg);
+}
+
+.flow-badge[data-tone="danger"] {
+  background: var(--comp-badge-danger-bg);
+  color: var(--comp-badge-danger-fg);
+}
+
+.flow-badge__dot {
+  width: var(--sys-space-2);
+  height: var(--sys-space-2);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-badge-live-dot);
+  animation: flow-badge-pulse 1600ms var(--sys-motion-ease-in-out) infinite;
+}
+@keyframes flow-badge-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-badge__dot {
+    animation: none;
+  }
+}

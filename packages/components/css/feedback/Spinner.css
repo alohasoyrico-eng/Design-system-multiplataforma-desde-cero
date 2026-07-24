@@ -1,0 +1,28 @@
+/* Flow · Spinner — consumes comp.spinner tokens. */
+.flow-spinner {
+  display: inline-flex;
+}
+
+.flow-spinner__ring {
+  width: var(--sys-icon-md);
+  height: var(--sys-icon-md);
+  border: var(--sys-border-width-strong) solid var(--comp-spinner-track);
+  border-top-color: var(--comp-spinner-indicator);
+  border-radius: var(--sys-radius-pill);
+  animation: flow-spinner-turn var(--sys-motion-dur-slow) linear infinite;
+}
+
+.flow-spinner[data-size="sm"] .flow-spinner__ring {
+  width: var(--sys-icon-sm);
+  height: var(--sys-icon-sm);
+}
+
+.flow-spinner[data-size="lg"] .flow-spinner__ring {
+  width: var(--sys-icon-xl);
+  height: var(--sys-icon-xl);
+}
+@keyframes flow-spinner-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}

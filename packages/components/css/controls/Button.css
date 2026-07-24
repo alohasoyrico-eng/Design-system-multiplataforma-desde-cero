@@ -1,0 +1,119 @@
+/* Flow · Button — consumes comp.button tokens only. */
+.flow-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--comp-button-gap);
+  min-height: var(--comp-button-height-md);
+  padding-inline: var(--comp-button-pad-x);
+  border: var(--comp-button-border-width) solid transparent;
+  border-radius: var(--comp-button-radius);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-button-font-size);
+  font-weight: var(--comp-button-font-weight);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition:
+    transform var(--sys-motion-dur-instant) var(--sys-motion-ease-spring),
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    box-shadow var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-button[data-size="sm"] {
+  min-height: var(--comp-button-height-sm);
+}
+
+.flow-button[data-size="lg"] {
+  min-height: var(--comp-button-height-lg);
+}
+
+.flow-button[data-full-width] {
+  display: flex;
+  width: 100%;
+}
+
+.flow-button:focus-visible {
+  outline: none;
+  box-shadow: var(--comp-button-focus-ring);
+}
+
+.flow-button:active:not(:disabled) {
+  transform: var(--sys-motion-press-scale);
+}
+
+.flow-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Primary — ink surface */
+.flow-button[data-variant="primary"] {
+  background: var(--comp-button-primary-bg);
+  color: var(--comp-button-primary-fg);
+}
+
+.flow-button[data-variant="primary"]:hover:not(:disabled) {
+  background: var(--comp-button-primary-bg-hover);
+}
+
+/* Accent — surgical red CTA */
+.flow-button[data-variant="accent"] {
+  background: var(--comp-button-accent-bg);
+  color: var(--comp-button-accent-fg);
+}
+
+.flow-button[data-variant="accent"]:hover:not(:disabled) {
+  background: var(--comp-button-accent-bg-hover);
+  box-shadow: var(--comp-button-accent-glow);
+  transform: var(--sys-motion-hover-scale);
+}
+
+/* Secondary — outline on card */
+.flow-button[data-variant="secondary"] {
+  background: var(--comp-button-secondary-bg);
+  color: var(--comp-button-secondary-fg);
+  border-color: var(--comp-button-secondary-border);
+}
+
+.flow-button[data-variant="secondary"]:hover:not(:disabled) {
+  background: var(--comp-button-secondary-bg-hover);
+}
+
+/* Ghost — bare */
+.flow-button[data-variant="ghost"] {
+  background: var(--comp-button-ghost-bg);
+  color: var(--comp-button-ghost-fg);
+}
+
+.flow-button[data-variant="ghost"]:hover:not(:disabled) {
+  background: var(--comp-button-ghost-bg-hover);
+}
+
+/* Danger — destructive */
+.flow-button[data-variant="danger"] {
+  background: var(--comp-button-danger-bg);
+  color: var(--comp-button-danger-fg);
+}
+
+.flow-button[data-variant="danger"]:hover:not(:disabled) {
+  background: var(--comp-button-danger-bg-hover);
+}
+
+.flow-button__spinner {
+  width: var(--sys-icon-sm);
+  height: var(--sys-icon-sm);
+  border: var(--sys-border-width-strong) solid currentcolor;
+  border-top-color: transparent;
+  border-radius: var(--sys-radius-pill);
+  animation: flow-button-spin var(--sys-motion-dur-slow) linear infinite;
+}
+@keyframes flow-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* The spinner is essential loading feedback, so it keeps turning under reduced-motion. */

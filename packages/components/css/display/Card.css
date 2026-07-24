@@ -1,0 +1,21 @@
+/* Flow · Card — consumes comp.card tokens. */
+.flow-card {
+  background: var(--comp-card-bg);
+  color: var(--comp-card-fg);
+  border: var(--comp-card-border-width) solid var(--comp-card-border);
+  border-radius: var(--comp-card-radius);
+  padding: var(--comp-card-pad);
+  box-shadow: var(--comp-card-shadow);
+  transition:
+    transform var(--sys-motion-dur-base) var(--sys-motion-ease-spring),
+    box-shadow var(--sys-motion-dur-base) var(--sys-motion-ease-out);
+}
+
+.flow-card[data-interactive] {
+  cursor: pointer;
+}
+
+.flow-card[data-interactive]:hover {
+  transform: var(--comp-card-lift-hover);
+  box-shadow: var(--comp-card-shadow-hover);
+}

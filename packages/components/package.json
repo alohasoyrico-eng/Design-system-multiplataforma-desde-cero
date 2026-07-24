@@ -1,0 +1,26 @@
+{
+  "name": "@flow/components",
+  "version": "0.1.0",
+  "description": "Flow L3 components — one exemplar per domain, consuming component tokens only.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.tsx",
+    "./css": "./css/components.css"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@flow/primitives": "*",
+    "@flow/tokens": "*"
+  }
+}

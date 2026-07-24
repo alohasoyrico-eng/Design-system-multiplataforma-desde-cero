@@ -1,0 +1,68 @@
+/* Flow · PaymentCard — consumes comp.paymentCard tokens. Credit-card aspect ratio. */
+.flow-payment-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-3);
+  aspect-ratio: 1.586;
+  width: 100%;
+  max-width: 340px;
+  padding: var(--comp-payment-card-pad);
+  border-radius: var(--comp-payment-card-radius);
+  box-shadow: var(--comp-payment-card-shadow);
+}
+
+.flow-payment-card[data-variant="ink"] {
+  background: var(--comp-payment-card-ink-bg);
+  color: var(--comp-payment-card-ink-fg);
+}
+
+.flow-payment-card[data-variant="accent"] {
+  background: var(--comp-payment-card-accent-bg);
+  color: var(--comp-payment-card-accent-fg);
+}
+
+.flow-payment-card[data-variant="sand"] {
+  background: var(--comp-payment-card-sand-bg);
+  color: var(--comp-payment-card-sand-fg);
+}
+
+.flow-payment-card[data-frozen] {
+  opacity: 0.6;
+}
+
+.flow-payment-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flow-payment-card__brand {
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-size);
+  font-weight: var(--sys-type-display-xl-weight);
+  letter-spacing: var(--sys-type-title-tracking);
+}
+
+.flow-payment-card__chip {
+  width: var(--sys-space-10);
+  height: var(--sys-space-8);
+  border-radius: var(--sys-radius-xs);
+  background: var(--comp-payment-card-chip);
+  opacity: 0.7;
+}
+
+.flow-payment-card__number {
+  margin-top: auto;
+  font-family: var(--comp-payment-card-number-font);
+  font-size: var(--sys-type-title-size);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.flow-payment-card__holder {
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+  text-transform: uppercase;
+  letter-spacing: var(--sys-type-overline-tracking);
+  opacity: 0.85;
+}

@@ -1,0 +1,58 @@
+{
+  "$description": "SYSTEM · Canvas (light, default) — warm sand + surgical red. Emitted under :root and [data-theme=canvas].",
+  "sys": {
+    "surface": {
+      "canvas": { "$type": "color", "$value": "{ref.color.sand.25}" },
+      "card": { "$type": "color", "$value": "{ref.color.white}" },
+      "sunken": { "$type": "color", "$value": "{ref.color.sand.50}" },
+      "inverse": { "$type": "color", "$value": "{ref.color.ink.900}" },
+      "accentSubtle": { "$type": "color", "$value": "{ref.color.red.50}" }
+    },
+    "text": {
+      "primary": { "$type": "color", "$value": "{ref.color.ink.900}" },
+      "secondary": { "$type": "color", "$value": "{ref.color.ink.600}" },
+      "muted": { "$type": "color", "$value": "{ref.color.ink.400}" },
+      "onAccent": { "$type": "color", "$value": "{ref.color.white}" },
+      "onInverse": { "$type": "color", "$value": "{ref.color.ink.50}" },
+      "accent": { "$type": "color", "$value": "{ref.color.red.600}" },
+      "link": { "$type": "color", "$value": "{ref.color.red.600}" }
+    },
+    "border": {
+      "subtle": { "$type": "color", "$value": "{ref.color.sand.100}" },
+      "default": { "$type": "color", "$value": "{ref.color.sand.200}" },
+      "strong": { "$type": "color", "$value": "{ref.color.ink.300}" },
+      "focus": { "$type": "color", "$value": "{ref.color.red.500}" }
+    },
+    "action": {
+      "primary": { "$type": "color", "$value": "{ref.color.ink.900}" },
+      "primaryHover": { "$type": "color", "$value": "{ref.color.black}" },
+      "accent": { "$type": "color", "$value": "{ref.color.red.500}" },
+      "accentHover": { "$type": "color", "$value": "{ref.color.red.600}" }
+    },
+    "status": {
+      "success": { "$type": "color", "$value": "{ref.color.green.500}" },
+      "successText": { "$type": "color", "$value": "{ref.color.green.800}" },
+      "successBg": { "$type": "color", "$value": "{ref.color.green.50}" },
+      "warning": { "$type": "color", "$value": "{ref.color.amber.500}" },
+      "warningText": { "$type": "color", "$value": "{ref.color.amber.600}" },
+      "warningBg": { "$type": "color", "$value": "{ref.color.amber.50}" },
+      "danger": { "$type": "color", "$value": "{ref.color.danger.500}" },
+      "dangerText": { "$type": "color", "$value": "{ref.color.danger.600}" },
+      "dangerBg": { "$type": "color", "$value": "{ref.color.danger.50}" },
+      "info": { "$type": "color", "$value": "{ref.color.blue.500}" },
+      "infoText": { "$type": "color", "$value": "{ref.color.blue.600}" },
+      "infoBg": { "$type": "color", "$value": "{ref.color.blue.50}" },
+      "live": { "$type": "color", "$value": "{ref.color.red.500}" }
+    },
+    "focus": {
+      "ring": { "$type": "shadow", "$value": "{ref.focus.ringSoft}" }
+    },
+    "elevation": {
+      "rest": { "$type": "shadow", "$value": "{ref.shadow.softRest}" },
+      "raised": { "$type": "shadow", "$value": "{ref.shadow.softRaised}" },
+      "float": { "$type": "shadow", "$value": "{ref.shadow.softFloat}" },
+      "overlay": { "$type": "shadow", "$value": "{ref.shadow.softOverlay}" },
+      "glow": { "$type": "shadow", "$value": "{ref.shadow.softGlow}" }
+    }
+  }
+}

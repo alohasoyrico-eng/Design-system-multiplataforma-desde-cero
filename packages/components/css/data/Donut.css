@@ -1,0 +1,29 @@
+/* Flow · Donut — consumes comp.donut tokens. */
+.flow-donut {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+}
+
+.flow-donut__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.flow-donut__track {
+  stroke: var(--comp-donut-track);
+}
+
+.flow-donut__indicator {
+  stroke: var(--comp-donut-indicator);
+  transition: stroke-dasharray var(--sys-motion-dur-slow) var(--sys-motion-ease-out);
+}
+
+.flow-donut__value {
+  position: absolute;
+  color: var(--comp-donut-value-color);
+  font-family: var(--comp-donut-value-font);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+  font-variant-numeric: tabular-nums;
+}

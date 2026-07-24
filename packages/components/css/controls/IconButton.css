@@ -1,0 +1,47 @@
+/* Flow · IconButton — consumes comp.iconButton tokens. */
+.flow-icon-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--comp-icon-button-size);
+  height: var(--comp-icon-button-size);
+  padding: 0;
+  border: none;
+  border-radius: var(--comp-icon-button-radius);
+  background: transparent;
+  color: var(--comp-icon-button-fg);
+  cursor: pointer;
+  transition:
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    transform var(--sys-motion-dur-instant) var(--sys-motion-ease-spring);
+}
+
+.flow-icon-button:hover:not(:disabled) {
+  background: var(--comp-icon-button-bg-hover);
+}
+
+.flow-icon-button:active:not(:disabled) {
+  transform: var(--sys-motion-press-scale);
+}
+
+.flow-icon-button:focus-visible {
+  outline: none;
+  box-shadow: var(--comp-icon-button-focus-ring);
+}
+
+.flow-icon-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.flow-icon-button__badge {
+  position: absolute;
+  top: var(--sys-space-2);
+  right: var(--sys-space-2);
+  width: var(--sys-space-2);
+  height: var(--sys-space-2);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-icon-button-badge-bg);
+  box-shadow: 0 0 0 var(--sys-border-width-strong) var(--sys-surface-card);
+}

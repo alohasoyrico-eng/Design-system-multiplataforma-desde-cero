@@ -1,0 +1,37 @@
+/* Flow · ProgressBar — consumes comp.progressBar tokens. */
+.flow-progress {
+  position: relative;
+  width: 100%;
+  height: var(--comp-progress-bar-height);
+  overflow: hidden;
+  background: var(--comp-progress-bar-track);
+  border-radius: var(--comp-progress-bar-radius);
+}
+
+.flow-progress__indicator {
+  display: block;
+  height: 100%;
+  background: var(--comp-progress-bar-indicator);
+  border-radius: var(--comp-progress-bar-radius);
+  transition: width var(--sys-motion-dur-base) var(--sys-motion-ease-out);
+}
+
+.flow-progress[data-indeterminate] .flow-progress__indicator {
+  width: 40%;
+  animation: flow-progress-slide var(--sys-motion-dur-slow) var(--sys-motion-ease-in-out) infinite;
+}
+@keyframes flow-progress-slide {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(350%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-progress[data-indeterminate] .flow-progress__indicator {
+    animation: none;
+    width: 100%;
+  }
+}

@@ -1,0 +1,64 @@
+/* Flow · Checkbox — consumes comp.checkbox tokens. Native input drives state; box is presentational. */
+.flow-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-gap-inline);
+  cursor: pointer;
+  color: var(--comp-checkbox-label-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+}
+
+.flow-checkbox[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.flow-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  margin: 0;
+}
+
+.flow-checkbox__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--comp-checkbox-size);
+  height: var(--comp-checkbox-size);
+  flex: 0 0 auto;
+  background: var(--comp-checkbox-bg);
+  border: var(--comp-checkbox-border-width) solid var(--comp-checkbox-border);
+  border-radius: var(--comp-checkbox-radius);
+  color: var(--comp-checkbox-check-color);
+  transition:
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-spring),
+    border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-checkbox__box .flow-icon {
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    transform var(--sys-motion-dur-fast) var(--sys-motion-ease-spring);
+}
+
+.flow-checkbox__input:checked + .flow-checkbox__box,
+.flow-checkbox__input:indeterminate + .flow-checkbox__box {
+  background: var(--comp-checkbox-bg-checked);
+  border-color: var(--comp-checkbox-bg-checked);
+}
+
+.flow-checkbox__input:checked + .flow-checkbox__box .flow-icon,
+.flow-checkbox__input:indeterminate + .flow-checkbox__box .flow-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.flow-checkbox__input:focus-visible + .flow-checkbox__box {
+  outline: none;
+  box-shadow: var(--comp-checkbox-focus-ring);
+}

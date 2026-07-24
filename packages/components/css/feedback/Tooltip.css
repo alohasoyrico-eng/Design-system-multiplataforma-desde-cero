@@ -1,0 +1,54 @@
+/* Flow · Tooltip — consumes comp.tooltip tokens. */
+.flow-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.flow-tooltip__trigger {
+  display: inline-flex;
+  border-radius: var(--sys-radius-xs);
+}
+
+.flow-tooltip__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+}
+
+.flow-tooltip__bubble {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--sys-space-1));
+  padding: var(--comp-tooltip-pad-y) var(--comp-tooltip-pad-x);
+  background: var(--comp-tooltip-bg);
+  color: var(--comp-tooltip-fg);
+  border-radius: var(--comp-tooltip-radius);
+  box-shadow: var(--comp-tooltip-shadow);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-tooltip-font-size);
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    transform var(--sys-motion-dur-fast) var(--sys-motion-ease-spring);
+  z-index: var(--sys-z-overlay);
+}
+
+.flow-tooltip__bubble[data-placement="top"] {
+  bottom: 100%;
+  margin-bottom: var(--sys-space-2);
+}
+
+.flow-tooltip__bubble[data-placement="bottom"] {
+  top: 100%;
+  margin-top: var(--sys-space-2);
+}
+
+.flow-tooltip:hover .flow-tooltip__bubble,
+.flow-tooltip__trigger:focus-visible + .flow-tooltip__bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}

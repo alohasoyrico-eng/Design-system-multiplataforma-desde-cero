@@ -1,0 +1,23 @@
+/* Flow · Sparkline — consumes comp.sparkline tokens. */
+.flow-sparkline {
+  display: block;
+}
+
+.flow-sparkline__line {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.flow-sparkline[data-tone="accent"] .flow-sparkline__line {
+  stroke: var(--comp-sparkline-stroke);
+}
+
+.flow-sparkline[data-tone="positive"] .flow-sparkline__line {
+  stroke: var(--comp-sparkline-positive);
+}
+
+.flow-sparkline[data-tone="muted"] .flow-sparkline__line {
+  stroke: var(--comp-sparkline-muted);
+}

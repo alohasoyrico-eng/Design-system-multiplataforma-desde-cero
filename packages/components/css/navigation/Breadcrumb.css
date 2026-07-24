@@ -1,0 +1,44 @@
+/* Flow · Breadcrumb — consumes comp.breadcrumb tokens. */
+.flow-breadcrumb__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--comp-breadcrumb-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-breadcrumb__item {
+  display: inline-flex;
+}
+
+.flow-breadcrumb__link {
+  color: var(--comp-breadcrumb-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-breadcrumb-font-size);
+  text-decoration: none;
+}
+
+.flow-breadcrumb__link:hover {
+  text-decoration: underline;
+}
+
+.flow-breadcrumb__link:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+  border-radius: var(--sys-radius-xs);
+}
+
+.flow-breadcrumb__current {
+  color: var(--comp-breadcrumb-color-current);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-breadcrumb-font-size);
+  font-weight: var(--sys-type-body-strong-weight);
+}
+
+.flow-breadcrumb__sep {
+  display: inline-flex;
+  align-items: center;
+  color: var(--comp-breadcrumb-separator);
+}

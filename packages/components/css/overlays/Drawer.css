@@ -1,0 +1,97 @@
+/* Flow · Drawer — consumes comp.drawer tokens. */
+.flow-drawer-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--sys-z-overlay);
+  display: flex;
+  background: var(--comp-drawer-scrim-bg);
+  backdrop-filter: blur(var(--comp-drawer-scrim-blur));
+  animation: flow-drawer-fade var(--sys-motion-dur-base) var(--sys-motion-ease-out);
+}
+
+.flow-drawer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--comp-drawer-width);
+  height: 100%;
+  padding: var(--comp-drawer-pad);
+  background: var(--comp-drawer-bg);
+  color: var(--comp-drawer-fg);
+  box-shadow: var(--comp-drawer-shadow);
+  animation: flow-drawer-in var(--sys-motion-dur-base) var(--sys-motion-ease-out);
+}
+
+.flow-drawer[data-side="right"] {
+  margin-left: auto;
+  border-top-left-radius: var(--comp-drawer-radius);
+  border-bottom-left-radius: var(--comp-drawer-radius);
+}
+
+.flow-drawer[data-side="left"] {
+  margin-right: auto;
+  border-top-right-radius: var(--comp-drawer-radius);
+  border-bottom-right-radius: var(--comp-drawer-radius);
+  animation-name: flow-drawer-in-left;
+}
+
+.flow-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sys-space-3);
+  margin-bottom: var(--sys-space-5);
+}
+
+.flow-drawer__title {
+  margin: 0;
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-size);
+  font-weight: var(--sys-type-title-weight);
+  letter-spacing: var(--sys-type-title-tracking);
+}
+
+.flow-drawer__close {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--sys-text-muted);
+  cursor: pointer;
+}
+
+.flow-drawer__close:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+  border-radius: var(--sys-radius-pill);
+}
+
+.flow-drawer__body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  color: var(--sys-text-secondary);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  line-height: var(--sys-type-body-line);
+}
+@keyframes flow-drawer-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes flow-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes flow-drawer-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-drawer-scrim,
+  .flow-drawer {
+    animation: none;
+  }
+}

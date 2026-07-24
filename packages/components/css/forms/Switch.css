@@ -1,0 +1,57 @@
+/* Flow · Switch — consumes comp.switch tokens. */
+.flow-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-gap-inline);
+  cursor: pointer;
+  color: var(--sys-text-primary);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+}
+
+.flow-switch[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.flow-switch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  margin: 0;
+}
+
+.flow-switch__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: var(--comp-switch-track-width);
+  height: var(--comp-switch-track-height);
+  flex: 0 0 auto;
+  padding: var(--sys-space-1);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-switch-track-off);
+  transition: background var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-switch__thumb {
+  width: var(--sys-space-4);
+  height: var(--sys-space-4);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-switch-thumb);
+  transition: transform var(--sys-motion-dur-base) var(--sys-motion-ease-spring);
+}
+
+.flow-switch__input:checked + .flow-switch__track {
+  background: var(--comp-switch-track-on);
+}
+
+.flow-switch__input:checked + .flow-switch__track .flow-switch__thumb {
+  transform: translateX(var(--sys-space-4));
+}
+
+.flow-switch__input:focus-visible + .flow-switch__track {
+  outline: none;
+  box-shadow: var(--comp-switch-focus-ring);
+}

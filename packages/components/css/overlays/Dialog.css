@@ -1,0 +1,65 @@
+/* Flow · Dialog — consumes comp.dialog tokens. Scrim blur + spring entrance. */
+.flow-dialog-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--sys-z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sys-space-4);
+  background: var(--comp-dialog-scrim-bg);
+  backdrop-filter: blur(var(--comp-dialog-scrim-blur));
+  animation: flow-dialog-fade var(--sys-motion-dur-base) var(--sys-motion-ease-out);
+}
+
+.flow-dialog {
+  width: 100%;
+  max-width: var(--comp-dialog-max-width);
+  max-height: calc(100vh - var(--sys-space-10));
+  overflow-y: auto;
+  background: var(--comp-dialog-bg);
+  color: var(--comp-dialog-fg);
+  border-radius: var(--comp-dialog-radius);
+  padding: var(--comp-dialog-pad);
+  box-shadow: var(--comp-dialog-shadow);
+  animation: flow-dialog-in var(--sys-motion-dur-base) var(--sys-motion-ease-spring);
+}
+
+.flow-dialog__title {
+  margin: 0 0 var(--sys-space-4);
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-size);
+  font-weight: var(--sys-type-title-weight);
+  letter-spacing: var(--sys-type-title-tracking);
+}
+
+.flow-dialog__body {
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  line-height: var(--sys-type-body-line);
+  color: var(--sys-text-secondary);
+}
+
+.flow-dialog__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sys-space-3);
+  margin-top: var(--sys-space-6);
+}
+@keyframes flow-dialog-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes flow-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--sys-space-4)) scale(0.98);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-dialog-scrim,
+  .flow-dialog {
+    animation: none;
+  }
+}

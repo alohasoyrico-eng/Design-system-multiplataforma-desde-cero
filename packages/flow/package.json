@@ -1,0 +1,34 @@
+{
+  "name": "@flow/design-system",
+  "version": "0.1.0",
+  "description": "Flow Design System — umbrella package. Re-exports every layer + the aggregated stylesheet.",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./css/styles.css",
+    "./fonts": "./css/fonts.css"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@flow/tokens": "*",
+    "@flow/primitives": "*",
+    "@flow/components": "*",
+    "@flow/patterns": "*",
+    "@flow/templates": "*",
+    "@fontsource/sora": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.0",
+    "@fontsource/archivo": "^5.1.0",
+    "material-symbols": "^0.28.0"
+  }
+}

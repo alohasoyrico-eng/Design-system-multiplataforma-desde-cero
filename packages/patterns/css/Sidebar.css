@@ -1,0 +1,59 @@
+/* Flow · Sidebar — consumes comp.sidebar tokens. */
+.flow-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-6);
+  width: var(--comp-sidebar-width);
+  flex: 0 0 auto;
+  padding: var(--sys-space-6) var(--sys-space-4);
+  background: var(--comp-sidebar-bg);
+  border-right: var(--sys-border-width-thin) solid var(--comp-sidebar-border);
+}
+
+.flow-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-2);
+  padding-inline: var(--sys-space-2);
+  color: var(--comp-sidebar-accent);
+}
+
+.flow-sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-3);
+  width: 100%;
+  padding: var(--comp-sidebar-item-pad-y) var(--comp-sidebar-item-pad-x);
+  border: none;
+  border-radius: var(--comp-sidebar-item-radius);
+  background: transparent;
+  color: var(--comp-sidebar-item-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+  cursor: pointer;
+  transition: background var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-sidebar__item:hover {
+  background: var(--comp-sidebar-item-bg-hover);
+}
+
+.flow-sidebar__item[data-active] {
+  background: var(--comp-sidebar-item-bg-active);
+  color: var(--comp-sidebar-item-color-active);
+}
+
+.flow-sidebar__item:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+}

@@ -1,0 +1,38 @@
+/* Flow · SegmentedControl — consumes comp.segmented tokens. */
+.flow-segmented {
+  display: inline-flex;
+  gap: var(--comp-segmented-gap);
+  padding: var(--comp-segmented-pad);
+  background: var(--comp-segmented-bg);
+  border-radius: var(--comp-segmented-radius);
+}
+
+.flow-segmented__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sys-gap-inline);
+  padding: var(--sys-space-2) var(--sys-space-4);
+  border: none;
+  border-radius: var(--comp-segmented-radius);
+  background: transparent;
+  color: var(--comp-segmented-segment-fg);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-segmented-font-size);
+  font-weight: var(--comp-segmented-font-weight);
+  cursor: pointer;
+  transition:
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-segmented__item[data-active] {
+  background: var(--comp-segmented-segment-bg-active);
+  color: var(--comp-segmented-segment-fg-active);
+  box-shadow: var(--comp-segmented-segment-shadow);
+}
+
+.flow-segmented__item:focus-visible {
+  outline: none;
+  box-shadow: var(--comp-segmented-focus-ring);
+}

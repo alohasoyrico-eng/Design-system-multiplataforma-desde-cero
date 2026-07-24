@@ -1,0 +1,54 @@
+/* Flow · Select — consumes comp.select tokens. Styled native select. */
+.flow-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+.flow-select__control {
+  appearance: none;
+  width: 100%;
+  min-height: var(--comp-select-height);
+  padding-inline: var(--comp-select-pad-x);
+  padding-right: var(--sys-space-10);
+  background: var(--comp-select-bg);
+  color: var(--comp-select-fg);
+  border: var(--comp-select-border-width) solid var(--comp-select-border);
+  border-radius: var(--comp-select-radius);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-select-font-size);
+  cursor: pointer;
+  transition:
+    border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    box-shadow var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-select__control:hover:not(:disabled) {
+  border-color: var(--comp-select-border-hover);
+}
+
+.flow-select__control:focus-visible {
+  outline: none;
+  border-color: var(--comp-select-border-focus);
+  box-shadow: var(--comp-select-focus-ring);
+}
+
+.flow-select[data-invalid] .flow-select__control {
+  border-color: var(--comp-select-border-error);
+}
+
+.flow-select[data-disabled] {
+  opacity: 0.55;
+}
+
+.flow-select[data-placeholder] .flow-select__control {
+  color: var(--comp-select-placeholder);
+}
+
+.flow-select__chevron {
+  position: absolute;
+  right: var(--comp-select-pad-x);
+  color: var(--comp-select-chevron);
+  pointer-events: none;
+}

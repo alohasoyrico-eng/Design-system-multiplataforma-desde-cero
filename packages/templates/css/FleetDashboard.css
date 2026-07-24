@@ -1,0 +1,43 @@
+/* Flow · FleetDashboard — dense product shell. Tokens only; re-themes across all three themes. */
+.fleet {
+  display: flex;
+  min-height: 100%;
+  background: var(--sys-surface-canvas);
+}
+
+.fleet__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.fleet__content {
+  flex: 1 1 auto;
+  padding: var(--sys-pad-section);
+  overflow-y: auto;
+}
+
+.fleet-driver {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-space-2);
+}
+
+@media (max-width: 767px) {
+  .fleet {
+    flex-direction: column;
+  }
+
+  .fleet .flow-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: var(--sys-border-width-thin) solid var(--comp-sidebar-border);
+  }
+
+  .fleet .flow-sidebar__list {
+    flex-direction: row;
+  }
+}

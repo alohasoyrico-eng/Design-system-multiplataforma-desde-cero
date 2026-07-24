@@ -1,0 +1,58 @@
+{
+  "$description": "SYSTEM · Asphalt (dark). Same structure as Canvas, remapped to dark ref values. Emitted under [data-theme=asphalt].",
+  "sys": {
+    "surface": {
+      "canvas": { "$type": "color", "$value": "{ref.color.slate.950}" },
+      "card": { "$type": "color", "$value": "{ref.color.slate.900}" },
+      "sunken": { "$type": "color", "$value": "{ref.color.slate.925}" },
+      "inverse": { "$type": "color", "$value": "{ref.color.ink.50}" },
+      "accentSubtle": { "$type": "color", "$value": "{ref.color.redAlpha.14}" }
+    },
+    "text": {
+      "primary": { "$type": "color", "$value": "{ref.color.ink.50}" },
+      "secondary": { "$type": "color", "$value": "{ref.color.slate.300}" },
+      "muted": { "$type": "color", "$value": "{ref.color.slate.500}" },
+      "onAccent": { "$type": "color", "$value": "{ref.color.white}" },
+      "onInverse": { "$type": "color", "$value": "{ref.color.ink.900}" },
+      "accent": { "$type": "color", "$value": "{ref.color.red.400}" },
+      "link": { "$type": "color", "$value": "{ref.color.red.400}" }
+    },
+    "border": {
+      "subtle": { "$type": "color", "$value": "{ref.color.slate.850}" },
+      "default": { "$type": "color", "$value": "{ref.color.slate.800}" },
+      "strong": { "$type": "color", "$value": "{ref.color.slate.700}" },
+      "focus": { "$type": "color", "$value": "{ref.color.red.400}" }
+    },
+    "action": {
+      "primary": { "$type": "color", "$value": "{ref.color.ink.50}" },
+      "primaryHover": { "$type": "color", "$value": "{ref.color.white}" },
+      "accent": { "$type": "color", "$value": "{ref.color.red.500}" },
+      "accentHover": { "$type": "color", "$value": "{ref.color.red.450}" }
+    },
+    "status": {
+      "success": { "$type": "color", "$value": "{ref.color.green.500}" },
+      "successText": { "$type": "color", "$value": "{ref.color.green.300}" },
+      "successBg": { "$type": "color", "$value": "{ref.color.greenAlpha.16}" },
+      "warning": { "$type": "color", "$value": "{ref.color.amber.500}" },
+      "warningText": { "$type": "color", "$value": "{ref.color.amber.300}" },
+      "warningBg": { "$type": "color", "$value": "{ref.color.amberAlpha.16}" },
+      "danger": { "$type": "color", "$value": "{ref.color.danger.500}" },
+      "dangerText": { "$type": "color", "$value": "{ref.color.danger.300}" },
+      "dangerBg": { "$type": "color", "$value": "{ref.color.dangerAlpha.18}" },
+      "info": { "$type": "color", "$value": "{ref.color.blue.500}" },
+      "infoText": { "$type": "color", "$value": "{ref.color.blue.300}" },
+      "infoBg": { "$type": "color", "$value": "{ref.color.blueAlpha.16}" },
+      "live": { "$type": "color", "$value": "{ref.color.red.500}" }
+    },
+    "focus": {
+      "ring": { "$type": "shadow", "$value": "{ref.focus.ringDark}" }
+    },
+    "elevation": {
+      "rest": { "$type": "shadow", "$value": "{ref.shadow.darkRest}" },
+      "raised": { "$type": "shadow", "$value": "{ref.shadow.darkRaised}" },
+      "float": { "$type": "shadow", "$value": "{ref.shadow.darkFloat}" },
+      "overlay": { "$type": "shadow", "$value": "{ref.shadow.darkOverlay}" },
+      "glow": { "$type": "shadow", "$value": "{ref.shadow.softGlow}" }
+    }
+  }
+}

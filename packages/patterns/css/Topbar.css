@@ -1,0 +1,26 @@
+/* Flow · Topbar — consumes comp.topbar tokens. */
+.flow-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sys-space-4);
+  min-height: var(--comp-topbar-height);
+  padding: var(--sys-space-4) var(--comp-topbar-pad-x);
+  background: var(--comp-topbar-bg);
+  border-bottom: var(--sys-border-width-thin) solid var(--comp-topbar-border);
+}
+
+.flow-topbar__title {
+  margin: 0;
+  color: var(--comp-topbar-title-color);
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-size);
+  font-weight: var(--sys-type-title-weight);
+  letter-spacing: var(--sys-type-title-tracking);
+}
+
+.flow-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-3);
+}
