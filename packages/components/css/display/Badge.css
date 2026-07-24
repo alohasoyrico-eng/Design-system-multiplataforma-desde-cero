@@ -39,7 +39,7 @@
   height: var(--sys-space-2);
   border-radius: var(--sys-radius-pill);
   background: var(--comp-badge-live-dot);
-  animation: flow-badge-pulse 1600ms var(--sys-motion-ease-in-out) infinite;
+  animation: flow-badge-pulse var(--sys-motion-loop-pulse) var(--sys-motion-ease-in-out) infinite;
 }
 @keyframes flow-badge-pulse {
   0%,

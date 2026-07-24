@@ -108,7 +108,7 @@
   border: var(--sys-border-width-strong) solid currentcolor;
   border-top-color: transparent;
   border-radius: var(--sys-radius-pill);
-  animation: flow-button-spin var(--sys-motion-dur-slow) linear infinite;
+  animation: flow-button-spin var(--sys-motion-loop-spin) linear infinite;
 }
 @keyframes flow-button-spin {
   to {

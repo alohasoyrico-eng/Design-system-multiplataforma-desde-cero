@@ -185,7 +185,10 @@
       "brutalInstant": { "$type": "duration", "$value": "60ms" },
       "brutalFast": { "$type": "duration", "$value": "100ms" },
       "brutalBase": { "$type": "duration", "$value": "140ms" },
-      "brutalSlow": { "$type": "duration", "$value": "200ms" }
+      "brutalSlow": { "$type": "duration", "$value": "200ms" },
+      "loopSpin": { "$type": "duration", "$value": "900ms", "$description": "One full rotation for spinners." },
+      "loopProgress": { "$type": "duration", "$value": "1400ms", "$description": "Indeterminate progress cycle." },
+      "loopPulse": { "$type": "duration", "$value": "1600ms", "$description": "Live-status pulse." }
     },
     "easing": {
       "spring": { "$type": "cubicBezier", "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)" },
