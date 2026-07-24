@@ -126,7 +126,7 @@ export function InternalTools() {
             />
           ) : nav === "resumen" ? (
             <Stack gap="6">
-              <Grid columns="repeat(auto-fit, minmax(160px, 1fr))" gap="4">
+              <Grid columns="repeat(auto-fit, minmax(var(--sys-grid-col-sm), 1fr))" gap="4">
                 <FlowStatTile label="Tickets abiertos" value="18" detail="−3" />
                 <FlowStatTile label="Cuentas nuevas" value="42" detail="+12" />
                 <FlowStatTile label="Casos" value="5" detail="fraude" />

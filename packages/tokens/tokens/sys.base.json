@@ -46,6 +46,12 @@
       "lg": { "$type": "dimension", "$value": "{ref.size.containerLg}" },
       "xl": { "$type": "dimension", "$value": "{ref.size.containerXl}" }
     },
+    "grid": {
+      "$description": "Minimum column width for auto-fit responsive grids — minmax(var(--sys-grid-col-*), 1fr).",
+      "colSm": { "$type": "dimension", "$value": "{ref.size.gridColSm}" },
+      "colMd": { "$type": "dimension", "$value": "{ref.size.gridColMd}" },
+      "colLg": { "$type": "dimension", "$value": "{ref.size.gridColLg}" }
+    },
     "opacity": {
       "disabled": { "$type": "number", "$value": "{ref.opacity.disabled}" },
       "frozen": { "$type": "number", "$value": "{ref.opacity.frozen}" },

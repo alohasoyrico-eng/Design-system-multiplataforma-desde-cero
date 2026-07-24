@@ -134,7 +134,10 @@
       "menuMax": { "$type": "dimension", "$value": "260px" },
       "composerMax": { "$type": "dimension", "$value": "120px" },
       "kanbanColumn": { "$type": "dimension", "$value": "260px" },
-      "controlWide": { "$type": "dimension", "$value": "160px" }
+      "controlWide": { "$type": "dimension", "$value": "160px" },
+      "gridColSm": { "$type": "dimension", "$value": "160px" },
+      "gridColMd": { "$type": "dimension", "$value": "180px" },
+      "gridColLg": { "$type": "dimension", "$value": "320px" }
     },
     "opacity": {
       "disabled": { "$type": "number", "$value": 0.5 },

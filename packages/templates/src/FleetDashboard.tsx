@@ -149,7 +149,7 @@ export function FleetDashboard({ kpis, units }: FleetDashboardProps) {
         <main className="fleet__content">
           {nav === "resumen" && (
             <Stack gap="6">
-              <Grid columns="repeat(auto-fit, minmax(180px, 1fr))" gap="4">
+              <Grid columns="repeat(auto-fit, minmax(var(--sys-grid-col-md), 1fr))" gap="4">
                 {kpis.map((k) => (
                   <FlowStatTile key={k.label} label={k.label} value={k.value} detail={k.detail} />
                 ))}
@@ -203,7 +203,7 @@ export function FleetDashboard({ kpis, units }: FleetDashboardProps) {
           )}
 
           {nav === "reportes" && (
-            <Grid columns="repeat(auto-fit, minmax(320px, 1fr))" gap="6">
+            <Grid columns="repeat(auto-fit, minmax(var(--sys-grid-col-lg), 1fr))" gap="6">
               <FlowCard>
                 <FlowBarChart
                   title="Viajes por día y turno"
