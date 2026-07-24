@@ -34,7 +34,9 @@ const ZINDEX = /z-index\s*:\s*-?\d+/;
 const REF_REACH = /var\(\s*--ref-/;
 const TSX_PX = /:\s*["'`]\s*-?\d*\.?\d+px\b/;
 const TSX_MS = /:\s*["'`]\s*-?\d*\.?\d+ms\b/;
-const COORD_FILE = /(Chart|MapCanvas|Donut|Sparkline)\.css$/;
+// px/rem literal anywhere inside a JSX/TS string (e.g. grid-template columns="… minmax(180px,1fr)")
+const TSX_DIM_STR = /["'`][^"'`]*?\b\d+(?:\.\d+)?(?:px|rem)\b/;
+const COORD_FILE = /(Chart|MapCanvas|Donut|Sparkline)\.(css|tsx)$/;
 
 function stripComments(src) {
   return src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/[^\n]*/g, "$1");
@@ -110,6 +112,12 @@ function check(file, layerName) {
     } else {
       if (TSX_PX.test(line)) violations.push(`${at}  px literal in inline style → use a token`);
       if (TSX_MS.test(line)) violations.push(`${at}  ms literal in inline style → use a token`);
+      // JSX string dimensions (grid templates, size props). SVG coordinate files are exempt —
+      // their em/px baseline-shifts and offsets live in the chart's own viewBox space.
+      if (!coord && TSX_DIM_STR.test(line))
+        violations.push(
+          `${at}  px/rem literal in JSX string → use a size/grid token (minmax accepts var())`,
+        );
     }
   });
 }

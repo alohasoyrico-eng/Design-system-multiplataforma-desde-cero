@@ -75,12 +75,12 @@ export function DashboardOverview({
         <main className="flow-dash__content">
           {nav === "resumen" && (
             <Stack gap="6">
-              <Grid columns="repeat(auto-fit, minmax(180px, 1fr))" gap="4">
+              <Grid columns="repeat(auto-fit, minmax(var(--sys-grid-col-md), 1fr))" gap="4">
                 {stats.map((s) => (
                   <FlowStatTile key={s.label} label={s.label} value={s.value} detail={s.detail} />
                 ))}
               </Grid>
-              <Grid columns="repeat(auto-fit, minmax(320px, 1fr))" gap="6">
+              <Grid columns="repeat(auto-fit, minmax(var(--sys-grid-col-lg), 1fr))" gap="6">
                 <FlowCard>{bar}</FlowCard>
                 <FlowCard>{line}</FlowCard>
               </Grid>
