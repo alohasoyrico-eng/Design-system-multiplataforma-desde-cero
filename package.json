@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "tokens:build": "npm run build --workspace @flow/tokens",
+    "mailings:build": "npm run build --workspace @flow/mailings",
     "build": "turbo run build",
     "dev": "npm run dev --workspace @flow/docs",
     "typecheck": "turbo run typecheck",
