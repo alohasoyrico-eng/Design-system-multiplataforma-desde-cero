@@ -53,6 +53,13 @@
       "float": { "$type": "shadow", "$value": "{ref.shadow.darkFloat}" },
       "overlay": { "$type": "shadow", "$value": "{ref.shadow.darkOverlay}" },
       "glow": { "$type": "shadow", "$value": "{ref.shadow.softGlow}" }
+    },
+    "chart": {
+      "cat1": { "$type": "color", "$value": "{ref.chart.blue}" },
+      "cat2": { "$type": "color", "$value": "{ref.chart.greenDark}" },
+      "cat3": { "$type": "color", "$value": "{ref.chart.violet}" },
+      "cat4": { "$type": "color", "$value": "{ref.chart.amberDark}" },
+      "cat5": { "$type": "color", "$value": "{ref.chart.pink}" }
     }
   }
 }

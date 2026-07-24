@@ -396,6 +396,59 @@
       "scrimBlur": { "$type": "dimension", "$value": "{sys.scrim.blur}" },
       "width": { "$type": "dimension", "$value": "400px" },
       "radius": { "$type": "dimension", "$value": "{sys.radius.xl}" }
+    },
+    "statusView": {
+      "iconSize": { "$type": "dimension", "$value": "{sys.space.16}" },
+      "titleColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "messageColor": { "$type": "color", "$value": "{sys.text.secondary}" },
+      "successBg": { "$type": "color", "$value": "{sys.status.successBg}" },
+      "successFg": { "$type": "color", "$value": "{sys.status.success}" },
+      "errorBg": { "$type": "color", "$value": "{sys.status.dangerBg}" },
+      "errorFg": { "$type": "color", "$value": "{sys.status.danger}" },
+      "pendingBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "pendingFg": { "$type": "color", "$value": "{sys.text.secondary}" },
+      "offlineBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "offlineFg": { "$type": "color", "$value": "{sys.text.muted}" },
+      "infoBg": { "$type": "color", "$value": "{sys.status.infoBg}" },
+      "infoFg": { "$type": "color", "$value": "{sys.status.info}" }
+    },
+    "onboardingCarousel": {
+      "dot": { "$type": "color", "$value": "{sys.border.strong}" },
+      "dotActive": { "$type": "color", "$value": "{sys.action.accent}" },
+      "illustrationBg": { "$type": "color", "$value": "{sys.surface.accentSubtle}" },
+      "illustrationFg": { "$type": "color", "$value": "{sys.action.accent}" },
+      "illustrationSize": { "$type": "dimension", "$value": "{sys.space.16}" },
+      "titleColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "descColor": { "$type": "color", "$value": "{sys.text.secondary}" }
+    },
+    "passcode": {
+      "keyBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "keyBgHover": { "$type": "color", "$value": "{sys.surface.accentSubtle}" },
+      "keyFg": { "$type": "color", "$value": "{sys.text.primary}" },
+      "keyFont": { "$type": "fontFamily", "$value": "{sys.font.mono}" },
+      "keySize": { "$type": "dimension", "$value": "{sys.size.controlLg}" },
+      "keyRadius": { "$type": "dimension", "$value": "{sys.radius.pill}" },
+      "dotFilled": { "$type": "color", "$value": "{sys.action.accent}" },
+      "dotEmpty": { "$type": "color", "$value": "{sys.border.strong}" },
+      "dotSize": { "$type": "dimension", "$value": "{sys.space.3}" },
+      "focusRing": { "$type": "shadow", "$value": "{sys.focus.ring}" }
+    },
+    "biometric": {
+      "iconBg": { "$type": "color", "$value": "{sys.surface.accentSubtle}" },
+      "iconFg": { "$type": "color", "$value": "{sys.action.accent}" },
+      "iconSize": { "$type": "dimension", "$value": "{sys.space.16}" },
+      "titleColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "messageColor": { "$type": "color", "$value": "{sys.text.secondary}" }
+    },
+    "mapCanvas": {
+      "surfaceBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "grid": { "$type": "color", "$value": "{sys.border.subtle}" },
+      "route": { "$type": "color", "$value": "{sys.action.accent}" },
+      "pinBg": { "$type": "color", "$value": "{sys.surface.inverse}" },
+      "pinFg": { "$type": "color", "$value": "{sys.text.onInverse}" },
+      "pinAccentBg": { "$type": "color", "$value": "{sys.action.accent}" },
+      "pinAccentFg": { "$type": "color", "$value": "{sys.text.onAccent}" },
+      "radius": { "$type": "dimension", "$value": "{sys.radius.lg}" }
     }
   }
 }

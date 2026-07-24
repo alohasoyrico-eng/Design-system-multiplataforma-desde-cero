@@ -1,0 +1,105 @@
+/* Flow · OnboardingCarousel — consumes comp.onboardingCarousel tokens. */
+.flow-onboarding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-6);
+  text-align: center;
+}
+
+.flow-onboarding__slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-4);
+}
+
+.flow-onboarding__illustration {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--comp-onboarding-carousel-illustration-size);
+  height: var(--comp-onboarding-carousel-illustration-size);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-onboarding-carousel-illustration-bg);
+  color: var(--comp-onboarding-carousel-illustration-fg);
+}
+
+.flow-onboarding__title {
+  margin: 0;
+  color: var(--comp-onboarding-carousel-title-color);
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-lg-size);
+  font-weight: var(--sys-type-title-lg-weight);
+  letter-spacing: var(--sys-type-title-lg-tracking);
+}
+
+.flow-onboarding__desc {
+  margin: 0;
+  max-width: 38ch;
+  color: var(--comp-onboarding-carousel-desc-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  line-height: var(--sys-type-body-line);
+}
+
+.flow-onboarding__dots {
+  display: flex;
+  gap: var(--sys-space-2);
+}
+
+.flow-onboarding__dot {
+  width: var(--sys-space-2);
+  height: var(--sys-space-2);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-onboarding-carousel-dot);
+  transition:
+    width var(--sys-motion-dur-base) var(--sys-motion-ease-spring),
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-onboarding__dot[data-active] {
+  width: var(--sys-space-6);
+  background: var(--comp-onboarding-carousel-dot-active);
+}
+
+.flow-onboarding__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sys-space-4);
+  width: 100%;
+}
+
+.flow-onboarding__back,
+.flow-onboarding__next {
+  min-height: var(--sys-size-control);
+  padding-inline: var(--sys-pad-control-x);
+  border-radius: var(--sys-radius-pill);
+  border: none;
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+  cursor: pointer;
+}
+
+.flow-onboarding__back {
+  background: transparent;
+  color: var(--sys-text-secondary);
+}
+
+.flow-onboarding__back:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flow-onboarding__next {
+  background: var(--sys-action-accent);
+  color: var(--sys-text-on-accent);
+}
+
+.flow-onboarding__back:focus-visible,
+.flow-onboarding__next:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+}

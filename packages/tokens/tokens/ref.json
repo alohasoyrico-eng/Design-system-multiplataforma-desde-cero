@@ -92,6 +92,16 @@
       "dangerAlpha": { "18": { "$type": "color", "$value": "rgba(217,45,32,0.18)" } },
       "scrim": { "$type": "color", "$value": "rgba(23,23,26,0.40)" }
     },
+    "chart": {
+      "$description": "Categorical data-viz palette (fixed order). Validated CVD-safe against light & dark surfaces.",
+      "blue": { "$type": "color", "$value": "#2E7CF6" },
+      "green": { "$type": "color", "$value": "#12B76A" },
+      "greenDark": { "$type": "color", "$value": "#12A05C" },
+      "violet": { "$type": "color", "$value": "#7C5CFC" },
+      "amber": { "$type": "color", "$value": "#E8930C" },
+      "amberDark": { "$type": "color", "$value": "#BE7810" },
+      "pink": { "$type": "color", "$value": "#E8368F" }
+    },
     "space": {
       "0": { "$type": "dimension", "$value": "0" },
       "1": { "$type": "dimension", "$value": "4px" },

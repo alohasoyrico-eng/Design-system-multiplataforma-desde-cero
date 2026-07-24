@@ -1,0 +1,67 @@
+/* Flow · PasscodeKeypad — consumes comp.passcode tokens. */
+.flow-passcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-8);
+}
+
+.flow-passcode__dots {
+  display: flex;
+  gap: var(--sys-space-4);
+}
+
+.flow-passcode__dot {
+  width: var(--comp-passcode-dot-size);
+  height: var(--comp-passcode-dot-size);
+  border-radius: var(--sys-radius-pill);
+  background: transparent;
+  border: var(--sys-border-width-strong) solid var(--comp-passcode-dot-empty);
+  transition:
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-spring),
+    border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-passcode__dot[data-filled] {
+  background: var(--comp-passcode-dot-filled);
+  border-color: var(--comp-passcode-dot-filled);
+}
+
+.flow-passcode__keys {
+  display: grid;
+  grid-template-columns: repeat(3, var(--comp-passcode-key-size));
+  gap: var(--sys-space-4);
+}
+
+.flow-passcode__spacer {
+  display: block;
+}
+
+.flow-passcode__key {
+  width: var(--comp-passcode-key-size);
+  height: var(--comp-passcode-key-size);
+  border: none;
+  border-radius: var(--comp-passcode-key-radius);
+  background: var(--comp-passcode-key-bg);
+  color: var(--comp-passcode-key-fg);
+  font-family: var(--comp-passcode-key-font);
+  font-size: var(--sys-type-title-size);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    transform var(--sys-motion-dur-instant) var(--sys-motion-ease-spring);
+}
+
+.flow-passcode__key:hover {
+  background: var(--comp-passcode-key-bg-hover);
+}
+
+.flow-passcode__key:active {
+  transform: var(--sys-motion-press-scale);
+}
+
+.flow-passcode__key:focus-visible {
+  outline: none;
+  box-shadow: var(--comp-passcode-focus-ring);
+}

@@ -46,6 +46,9 @@ export {
 export { FlowTable, type FlowTableProps, type TableColumn } from "./data/FlowTable";
 export { FlowDonut, type FlowDonutProps } from "./data/FlowDonut";
 export { FlowSparkline, type FlowSparklineProps } from "./data/FlowSparkline";
+export { FlowBarChart, type FlowBarChartProps } from "./data/FlowBarChart";
+export { FlowLineChart, type FlowLineChartProps } from "./data/FlowLineChart";
+export type { ChartSeries } from "./data/chart-utils";
 // fintech
 export {
   FlowPaymentCard,
@@ -53,6 +56,9 @@ export {
   type PaymentCardVariant,
 } from "./fintech/FlowPaymentCard";
 export { FlowTransactionRow, type FlowTransactionRowProps } from "./fintech/FlowTransactionRow";
+export { FlowPasscodeKeypad, type FlowPasscodeKeypadProps } from "./fintech/FlowPasscodeKeypad";
+export { FlowBiometricPrompt, type FlowBiometricPromptProps } from "./fintech/FlowBiometricPrompt";
+export { FlowMapCanvas, type FlowMapCanvasProps, type MapPin } from "./fintech/FlowMapCanvas";
 // navigation
 export { FlowTabs, type FlowTabsProps, type TabItem } from "./navigation/FlowTabs";
 export { FlowStepper, type FlowStepperProps, type StepItem } from "./navigation/FlowStepper";
@@ -62,6 +68,11 @@ export {
   type BreadcrumbItem,
 } from "./navigation/FlowBreadcrumb";
 export { FlowPagination, type FlowPaginationProps } from "./navigation/FlowPagination";
+export {
+  FlowOnboardingCarousel,
+  type FlowOnboardingCarouselProps,
+  type OnboardingSlide,
+} from "./navigation/FlowOnboardingCarousel";
 // overlays
 export { FlowDialog, type FlowDialogProps } from "./overlays/FlowDialog";
 export { FlowDrawer, type FlowDrawerProps } from "./overlays/FlowDrawer";
@@ -70,6 +81,11 @@ export { FlowSpinner, type FlowSpinnerProps } from "./feedback/FlowSpinner";
 export { FlowProgressBar, type FlowProgressBarProps } from "./feedback/FlowProgressBar";
 export { FlowTooltip, type FlowTooltipProps } from "./feedback/FlowTooltip";
 export { FlowBottomSheet, type FlowBottomSheetProps } from "./feedback/FlowBottomSheet";
+export {
+  FlowStatusView,
+  type FlowStatusViewProps,
+  type StatusTone,
+} from "./feedback/FlowStatusView";
 export {
   FlowToastProvider,
   useToast,

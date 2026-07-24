@@ -1,0 +1,46 @@
+/* Flow · BiometricPrompt — consumes comp.biometric tokens. */
+.flow-biometric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-4);
+  text-align: center;
+}
+
+.flow-biometric__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--comp-biometric-icon-size);
+  height: var(--comp-biometric-icon-size);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-biometric-icon-bg);
+  color: var(--comp-biometric-icon-fg);
+}
+
+.flow-biometric__title {
+  margin: 0;
+  color: var(--comp-biometric-title-color);
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-size);
+  font-weight: var(--sys-type-title-weight);
+  letter-spacing: var(--sys-type-title-tracking);
+}
+
+.flow-biometric__message {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--comp-biometric-message-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  line-height: var(--sys-type-body-line);
+}
+
+.flow-biometric__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--sys-space-3);
+  margin-top: var(--sys-space-4);
+  width: 100%;
+}

@@ -6,3 +6,4 @@ export {
   type FleetKpi,
 } from "./FleetDashboard";
 export { WalletScreen, type WalletScreenProps, type WalletTransaction } from "./WalletScreen";
+export { OnboardingScreen, type OnboardingScreenProps } from "./OnboardingScreen";

@@ -21,9 +21,14 @@ import {
   FlowTable,
   FlowPaymentCard,
   FlowTransactionRow,
+  FlowPasscodeKeypad,
+  FlowBiometricPrompt,
+  FlowMapCanvas,
   FlowOTPInput,
   FlowDonut,
   FlowSparkline,
+  FlowBarChart,
+  FlowLineChart,
   FlowSpinner,
   FlowProgressBar,
   FlowTooltip,
@@ -37,14 +42,34 @@ import {
   FlowBreadcrumb,
   FlowPagination,
   FlowDrawer,
+  FlowStatusView,
   useToast,
   AuthScreen,
   FleetDashboard,
   WalletScreen,
+  OnboardingScreen,
   type TableColumn,
   type FleetUnit,
   type WalletTransaction,
 } from "@flow/design-system";
+
+const ONBOARDING_SLIDES = [
+  {
+    icon: "bolt",
+    title: "Todo tu día, en movimiento",
+    description: "Conéctate a tu turno y acepta viajes con un toque.",
+  },
+  {
+    icon: "map",
+    title: "La ciudad es tu turno",
+    description: "Ve la demanda en tiempo real y encuentra las mejores rutas.",
+  },
+  {
+    icon: "savings",
+    title: "Tus ganancias, claras",
+    description: "Consulta tu saldo y movimientos cuando quieras.",
+  },
+];
 
 const WALLET_TX: WalletTransaction[] = [
   {
@@ -155,6 +180,7 @@ export function App() {
   const [segment, setSegment] = useState("dia");
   const [pageNum, setPageNum] = useState(4);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [passcode, setPasscode] = useState("");
   const toast = useToast();
 
   return (
@@ -567,6 +593,97 @@ export function App() {
                 </Inline>
                 <FlowOTPInput value={otp} onChange={setOtp} />
               </Stack>
+            </Grid>
+          </Section>
+
+          <Section title="Data-viz — BarChart · LineChart (paleta categórica validada CVD)">
+            <Grid columns="repeat(auto-fit, minmax(320px, 1fr))" gap="6">
+              <FlowBarChart
+                title="Viajes por día y turno"
+                categories={["Lun", "Mar", "Mié", "Jue", "Vie"]}
+                formatValue={(n) => `${n}`}
+                series={[
+                  { name: "Día", values: [120, 145, 132, 160, 178] },
+                  { name: "Noche", values: [80, 92, 100, 88, 120] },
+                ]}
+              />
+              <FlowLineChart
+                title="Ingresos de la semana (miles)"
+                categories={["Lun", "Mar", "Mié", "Jue", "Vie"]}
+                formatValue={(n) => `$${n}k`}
+                series={[
+                  { name: "Centro", values: [8, 12, 10, 14, 18] },
+                  { name: "Norte", values: [5, 7, 9, 8, 11] },
+                  { name: "Aeropuerto", values: [3, 5, 6, 9, 10] },
+                ]}
+              />
+            </Grid>
+          </Section>
+
+          <Section title="Feedback — StatusView">
+            <Grid columns="repeat(auto-fit, minmax(240px, 1fr))" gap="4">
+              <FlowCard>
+                <FlowStatusView
+                  tone="success"
+                  title="Viaje asignado"
+                  message="La unidad 214 va en camino."
+                />
+              </FlowCard>
+              <FlowCard>
+                <FlowStatusView
+                  tone="error"
+                  title="No pudimos conectar"
+                  message="Revisa tu conexión e inténtalo de nuevo."
+                  primaryAction={<FlowButton variant="accent">Reintentar</FlowButton>}
+                />
+              </FlowCard>
+              <FlowCard>
+                <FlowStatusView
+                  tone="pending"
+                  title="Procesando pago"
+                  message="Esto toma unos segundos."
+                />
+              </FlowCard>
+              <FlowCard>
+                <FlowStatusView
+                  tone="offline"
+                  title="Sin conexión"
+                  message="Volveremos a intentar automáticamente."
+                />
+              </FlowCard>
+            </Grid>
+          </Section>
+
+          <Section title="Template (L5) — OnboardingScreen (móvil)">
+            <div className="docs-frame docs-frame--tall docs-frame--phone">
+              <OnboardingScreen slides={ONBOARDING_SLIDES} onFinish={() => {}} />
+            </div>
+          </Section>
+
+          <Section title="Fintech/movilidad — PasscodeKeypad · Biometric · MapCanvas">
+            <Grid columns="repeat(auto-fit, minmax(240px, 1fr))" gap="6">
+              <FlowPasscodeKeypad length={6} value={passcode} onChange={setPasscode} />
+              <FlowBiometricPrompt
+                icon="fingerprint"
+                title="Confirma con tu huella"
+                message="Toca el sensor para autorizar el pago."
+                fallback={<FlowButton variant="secondary">Usar código</FlowButton>}
+                cancel={<FlowButton variant="ghost">Cancelar</FlowButton>}
+              />
+              <FlowMapCanvas
+                ariaLabel="Mapa con demanda y ruta"
+                route={[
+                  { x: 12, y: 80 },
+                  { x: 40, y: 60 },
+                  { x: 62, y: 66 },
+                  { x: 86, y: 30 },
+                ]}
+                pins={[
+                  { x: 30, y: 40, label: "1.8×", accent: true },
+                  { x: 68, y: 68, label: "$45" },
+                  { x: 86, y: 30, label: "Meta" },
+                ]}
+              />
             </Grid>
           </Section>
 

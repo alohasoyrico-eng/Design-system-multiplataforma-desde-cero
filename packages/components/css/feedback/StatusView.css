@@ -1,0 +1,71 @@
+/* Flow · StatusView — consumes comp.statusView tokens. */
+.flow-status-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sys-space-4);
+  text-align: center;
+  padding: var(--sys-pad-section);
+}
+
+.flow-status-view__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--comp-status-view-icon-size);
+  height: var(--comp-status-view-icon-size);
+  border-radius: var(--sys-radius-pill);
+  margin-bottom: var(--sys-space-2);
+}
+
+.flow-status-view[data-tone="success"] .flow-status-view__icon {
+  background: var(--comp-status-view-success-bg);
+  color: var(--comp-status-view-success-fg);
+}
+
+.flow-status-view[data-tone="error"] .flow-status-view__icon {
+  background: var(--comp-status-view-error-bg);
+  color: var(--comp-status-view-error-fg);
+}
+
+.flow-status-view[data-tone="pending"] .flow-status-view__icon {
+  background: var(--comp-status-view-pending-bg);
+  color: var(--comp-status-view-pending-fg);
+}
+
+.flow-status-view[data-tone="offline"] .flow-status-view__icon {
+  background: var(--comp-status-view-offline-bg);
+  color: var(--comp-status-view-offline-fg);
+}
+
+.flow-status-view[data-tone="info"] .flow-status-view__icon {
+  background: var(--comp-status-view-info-bg);
+  color: var(--comp-status-view-info-fg);
+}
+
+.flow-status-view__title {
+  margin: 0;
+  color: var(--comp-status-view-title-color);
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-lg-size);
+  font-weight: var(--sys-type-title-lg-weight);
+  letter-spacing: var(--sys-type-title-lg-tracking);
+}
+
+.flow-status-view__message {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--comp-status-view-message-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  line-height: var(--sys-type-body-line);
+}
+
+.flow-status-view__actions {
+  display: flex;
+  gap: var(--sys-space-3);
+  margin-top: var(--sys-space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}

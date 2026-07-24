@@ -107,6 +107,13 @@
       "liftHover": { "$type": "other", "$value": "{ref.transform.none}" },
       "pressScale": { "$type": "other", "$value": "{ref.transform.none}" },
       "hoverScale": { "$type": "other", "$value": "{ref.transform.none}" }
+    },
+    "chart": {
+      "cat1": { "$type": "color", "$value": "{ref.color.carbon}" },
+      "cat2": { "$type": "color", "$value": "{ref.color.carbonGrey.700}" },
+      "cat3": { "$type": "color", "$value": "{ref.color.carbonGrey.500}" },
+      "cat4": { "$type": "color", "$value": "{ref.color.ink.300}" },
+      "cat5": { "$type": "color", "$value": "{ref.color.red.500}" }
     }
   }
 }
