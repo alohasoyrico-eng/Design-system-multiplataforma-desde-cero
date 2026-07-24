@@ -18,9 +18,11 @@
   font-family: var(--sys-font-body);
   font-size: var(--comp-breadcrumb-font-size);
   text-decoration: none;
+  transition: color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
 }
 
 .flow-breadcrumb__link:hover {
+  color: var(--comp-breadcrumb-color-current);
   text-decoration: underline;
 }
 

@@ -76,7 +76,7 @@ export function WizardScreen({ onComplete }: WizardScreenProps) {
                 <FlowSelect
                   placeholder="Elige un tipo"
                   value={form.tipo}
-                  onChange={(e) => set("tipo", e.target.value)}
+                  onChange={(v) => set("tipo", v)}
                   options={[
                     { value: "sedan", label: "Sedán" },
                     { value: "suv", label: "SUV" },

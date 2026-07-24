@@ -12,6 +12,10 @@
   font-family: var(--sys-font-body);
   font-size: var(--comp-chip-font-size);
   white-space: nowrap;
+  transition:
+    background var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    color var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
+    border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
 }
 
 .flow-chip[data-selected] {

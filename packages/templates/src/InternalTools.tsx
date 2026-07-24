@@ -106,7 +106,7 @@ export function InternalTools() {
             <div className="flow-crm__role">
               <FlowSelect
                 value={role}
-                onChange={(e) => setRole(e.target.value as Role)}
+                onChange={(v) => setRole(v as Role)}
                 options={[
                   { value: "admin", label: "Admin" },
                   { value: "soporte", label: "Soporte" },

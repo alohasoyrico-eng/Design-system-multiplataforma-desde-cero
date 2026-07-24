@@ -323,7 +323,17 @@
       "height": { "$type": "dimension", "$value": "{sys.size.control}" },
       "fontSize": { "$type": "dimension", "$value": "{sys.type.body.size}" },
       "chevron": { "$type": "color", "$value": "{sys.text.muted}" },
-      "focusRing": { "$type": "shadow", "$value": "{sys.focus.ring}" }
+      "focusRing": { "$type": "shadow", "$value": "{sys.focus.ring}" },
+      "menuBg": { "$type": "color", "$value": "{sys.surface.card}" },
+      "menuBorder": { "$type": "color", "$value": "{sys.border.subtle}" },
+      "menuShadow": { "$type": "shadow", "$value": "{sys.elevation.float}" },
+      "menuRadius": { "$type": "dimension", "$value": "{sys.radius.md}" },
+      "optionColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "optionActiveBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "optionSelectedBg": { "$type": "color", "$value": "{sys.surface.accentSubtle}" },
+      "optionSelectedColor": { "$type": "color", "$value": "{sys.text.accent}" },
+      "optionPadX": { "$type": "dimension", "$value": "{sys.space.3}" },
+      "optionPadY": { "$type": "dimension", "$value": "{sys.space.3}" }
     },
     "slider": {
       "trackHeight": { "$type": "dimension", "$value": "{sys.space.1}" },

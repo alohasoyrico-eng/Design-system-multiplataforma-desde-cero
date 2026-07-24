@@ -60,6 +60,10 @@
   font-family: var(--sys-font-mono);
   font-size: var(--sys-type-caption-size);
   font-weight: var(--sys-type-body-strong-weight);
+  transition:
+    background var(--sys-motion-dur-base) var(--sys-motion-ease-spring),
+    border-color var(--sys-motion-dur-base) var(--sys-motion-ease-out),
+    color var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
 }
 
 .flow-stepper__step[data-state="active"] .flow-stepper__dot {
