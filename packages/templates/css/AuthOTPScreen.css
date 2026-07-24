@@ -1,0 +1,30 @@
+/* Flow · AuthOTPScreen — mobile OTP verification. Tokens only. */
+.flow-otp-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  min-height: 100%;
+  padding: var(--sys-pad-section) var(--sys-space-6);
+  background: var(--sys-surface-canvas);
+  color: var(--sys-text-primary);
+}
+
+.flow-otp-screen__resend {
+  padding: var(--sys-space-2);
+  border: none;
+  background: transparent;
+  color: var(--sys-text-link);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+  cursor: pointer;
+}
+
+.flow-otp-screen__resend:focus-visible {
+  outline: none;
+  box-shadow: var(--sys-focus-ring);
+  border-radius: var(--sys-radius-xs);
+}

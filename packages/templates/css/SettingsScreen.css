@@ -1,0 +1,10 @@
+/* Flow · SettingsScreen — centered settings page. Tokens only. */
+.flow-settings {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 100%;
+  padding: var(--sys-pad-section) var(--sys-space-6);
+  background: var(--sys-surface-canvas);
+  color: var(--sys-text-primary);
+}

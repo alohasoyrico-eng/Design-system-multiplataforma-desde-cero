@@ -48,6 +48,10 @@ import {
   FleetDashboard,
   WalletScreen,
   OnboardingScreen,
+  DashboardOverview,
+  WizardScreen,
+  SettingsScreen,
+  AuthOTPScreen,
   type TableColumn,
   type FleetUnit,
   type WalletTransaction,
@@ -693,6 +697,46 @@ export function App() {
                 onSubmit={(v) => alert(`Iniciar sesión: ${v.email}`)}
                 onCreateAccount={() => {}}
                 onForgotPassword={() => {}}
+              />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — DashboardOverview (analytics)">
+            <div className="docs-frame docs-frame--tall">
+              <DashboardOverview
+                stats={FLEET_KPIS}
+                categories={["Lun", "Mar", "Mié", "Jue", "Vie"]}
+                ocupacion={72}
+                viajesSeries={[
+                  { name: "Día", values: [120, 145, 132, 160, 178] },
+                  { name: "Noche", values: [80, 92, 100, 88, 120] },
+                ]}
+                ingresosSeries={[
+                  { name: "Centro", values: [8, 12, 10, 14, 18] },
+                  { name: "Norte", values: [5, 7, 9, 8, 11] },
+                ]}
+              />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — WizardScreen (alta multi-paso)">
+            <div className="docs-frame docs-frame--tall">
+              <WizardScreen onComplete={() => {}} />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — SettingsScreen">
+            <div className="docs-frame docs-frame--tall">
+              <SettingsScreen />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — AuthOTPScreen (móvil)">
+            <div className="docs-frame docs-frame--tall docs-frame--phone">
+              <AuthOTPScreen
+                destination="+52 ·· ·· 4821"
+                onVerified={() => {}}
+                onResend={() => {}}
               />
             </div>
           </Section>
