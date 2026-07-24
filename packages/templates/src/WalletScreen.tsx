@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Stack, Inline, Text } from "@flow/primitives";
 import {
   FlowPaymentCard,
@@ -6,6 +7,9 @@ import {
   FlowDonut,
   FlowSparkline,
   FlowTransactionRow,
+  FlowBottomSheet,
+  FlowField,
+  FlowInput,
   type PaymentCardVariant,
 } from "@flow/components";
 import "../css/WalletScreen.css";
@@ -32,7 +36,15 @@ export interface WalletScreenProps {
   transactions: WalletTransaction[];
 }
 
-/** WalletScreen — mobile wallet: card, quick actions, budget ring + trend, movements. */
+type Action = "agregar" | "enviar" | "cobrar";
+
+const ACTION_TITLE: Record<Action, string> = {
+  agregar: "Agregar fondos",
+  enviar: "Enviar dinero",
+  cobrar: "Cobrar",
+};
+
+/** WalletScreen — mobile wallet: card, quick actions (real bottom-sheet flows), budget + movements. */
 export function WalletScreen({
   holder,
   last4,
@@ -42,6 +54,16 @@ export function WalletScreen({
   trend,
   transactions,
 }: WalletScreenProps) {
+  const [action, setAction] = useState<Action | null>(null);
+  const [amount, setAmount] = useState("");
+  const [to, setTo] = useState("");
+
+  const close = () => {
+    setAction(null);
+    setAmount("");
+    setTo("");
+  };
+
   return (
     <div className="flow-wallet">
       <Stack gap="6">
@@ -57,13 +79,28 @@ export function WalletScreen({
         <FlowPaymentCard holder={holder} last4={last4} variant={cardVariant} />
 
         <Inline gap="3" justify="between">
-          <FlowButton variant="accent" iconStart="add" fullWidth>
+          <FlowButton
+            variant="accent"
+            iconStart="add"
+            fullWidth
+            onClick={() => setAction("agregar")}
+          >
             Agregar
           </FlowButton>
-          <FlowButton variant="secondary" iconStart="send" fullWidth>
+          <FlowButton
+            variant="secondary"
+            iconStart="send"
+            fullWidth
+            onClick={() => setAction("enviar")}
+          >
             Enviar
           </FlowButton>
-          <FlowButton variant="secondary" iconStart="qr_code_scanner" fullWidth>
+          <FlowButton
+            variant="secondary"
+            iconStart="qr_code_scanner"
+            fullWidth
+            onClick={() => setAction("cobrar")}
+          >
             Cobrar
           </FlowButton>
         </Inline>
@@ -103,6 +140,43 @@ export function WalletScreen({
           </FlowCard>
         </Stack>
       </Stack>
+
+      <FlowBottomSheet
+        open={action !== null}
+        onClose={close}
+        title={action ? ACTION_TITLE[action] : ""}
+      >
+        <Stack gap="5">
+          {action === "enviar" && (
+            <FlowField label="Para">
+              <FlowInput
+                iconStart="person"
+                placeholder="Nombre o teléfono"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+              />
+            </FlowField>
+          )}
+          {action === "cobrar" ? (
+            <Text variant="body" color="secondary">
+              Muestra este código para que te paguen. Comparte tu QR desde la app.
+            </Text>
+          ) : (
+            <FlowField label="Monto">
+              <FlowInput
+                inputMode="decimal"
+                iconStart="attach_money"
+                placeholder="0.00"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+            </FlowField>
+          )}
+          <FlowButton variant="accent" size="lg" fullWidth onClick={close}>
+            {action === "enviar" ? "Enviar" : action === "cobrar" ? "Mostrar QR" : "Agregar"}
+          </FlowButton>
+        </Stack>
+      </FlowBottomSheet>
     </div>
   );
 }

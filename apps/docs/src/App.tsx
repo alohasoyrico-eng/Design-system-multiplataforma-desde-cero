@@ -699,7 +699,9 @@ export function App() {
           <Section title="Template (L5) — AuthScreen">
             <div className="docs-frame">
               <AuthScreen
-                onSubmit={(v) => alert(`Iniciar sesión: ${v.email}`)}
+                onSubmit={(v) =>
+                  toast.show(`Iniciando sesión como ${v.email}`, { tone: "success" })
+                }
                 onCreateAccount={() => {}}
                 onForgotPassword={() => {}}
               />

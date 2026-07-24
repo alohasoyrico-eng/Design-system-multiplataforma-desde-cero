@@ -9,5 +9,8 @@
   "dependencies": {
     "@flow/tokens": "*"
   },
-  "files": ["dist", "build.mjs"]
+  "files": [
+    "dist",
+    "build.mjs"
+  ]
 }

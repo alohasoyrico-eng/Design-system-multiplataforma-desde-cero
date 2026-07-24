@@ -54,9 +54,12 @@ const base = (title, preheader, inner) => `<!doctype html>
   </table>
 </td></tr></table></body></html>`;
 
-const h1 = (t) => `<h1 style="margin:0 0 12px;font-family:${FONT};font-size:24px;font-weight:700;color:${c.ink};letter-spacing:-0.02em;">${t}</h1>`;
-const p = (t) => `<p style="margin:0 0 16px;font-family:${FONT};font-size:15px;line-height:1.55;color:${c.sec};">${t}</p>`;
-const overline = (t) => `<div style="font-family:${FONT};font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:${c.muted};margin-bottom:6px;">${t}</div>`;
+const h1 = (t) =>
+  `<h1 style="margin:0 0 12px;font-family:${FONT};font-size:24px;font-weight:700;color:${c.ink};letter-spacing:-0.02em;">${t}</h1>`;
+const p = (t) =>
+  `<p style="margin:0 0 16px;font-family:${FONT};font-size:15px;line-height:1.55;color:${c.sec};">${t}</p>`;
+const overline = (t) =>
+  `<div style="font-family:${FONT};font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:${c.muted};margin-bottom:6px;">${t}</div>`;
 
 const templates = {
   "bienvenida.html": base(
@@ -117,4 +120,6 @@ const templates = {
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
 for (const [name, html] of Object.entries(templates)) writeFileSync(join(DIST, name), html);
-console.log(`✓ mailings built → dist/ (${Object.keys(templates).length} plantillas, colores desde tokens)`);
+console.log(
+  `✓ mailings built → dist/ (${Object.keys(templates).length} plantillas, colores desde tokens)`,
+);
