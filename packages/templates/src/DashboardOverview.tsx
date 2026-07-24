@@ -28,13 +28,12 @@ export interface DashboardOverviewProps {
 
 const NAV: SidebarItem[] = [
   { id: "resumen", label: "Resumen", icon: "dashboard" },
-  { id: "unidades", label: "Unidades", icon: "local_shipping" },
-  { id: "rutas", label: "Rutas", icon: "map" },
-  { id: "reportes", label: "Reportes", icon: "bar_chart" },
-  { id: "ajustes", label: "Ajustes", icon: "settings" },
+  { id: "viajes", label: "Viajes", icon: "local_shipping" },
+  { id: "ingresos", label: "Ingresos", icon: "payments" },
+  { id: "ocupacion", label: "Ocupación", icon: "donut_large" },
 ];
 
-/** DashboardOverview — desktop analytics screen. Shell + KPIs + charts. */
+/** DashboardOverview — desktop analytics. The sidebar switches between chart views. */
 export function DashboardOverview({
   stats,
   categories,
@@ -43,6 +42,19 @@ export function DashboardOverview({
   ocupacion,
 }: DashboardOverviewProps) {
   const [nav, setNav] = useState("resumen");
+
+  const bar = (
+    <FlowBarChart title="Viajes por día y turno" categories={categories} series={viajesSeries} />
+  );
+  const line = (
+    <FlowLineChart
+      title="Ingresos de la semana (miles)"
+      categories={categories}
+      formatValue={(n) => `$${n}k`}
+      series={ingresosSeries}
+    />
+  );
+
   return (
     <div className="flow-dash">
       <FlowSidebar
@@ -59,34 +71,30 @@ export function DashboardOverview({
         }
       />
       <div className="flow-dash__body">
-        <FlowTopbar title="Resumen" />
+        <FlowTopbar title={NAV.find((n) => n.id === nav)?.label ?? ""} />
         <main className="flow-dash__content">
-          <Stack gap="6">
-            <Grid columns="repeat(auto-fit, minmax(180px, 1fr))" gap="4">
-              {stats.map((s) => (
-                <FlowStatTile key={s.label} label={s.label} value={s.value} detail={s.detail} />
-              ))}
-            </Grid>
-            <Grid columns="repeat(auto-fit, minmax(320px, 1fr))" gap="6">
-              <FlowCard>
-                <FlowBarChart
-                  title="Viajes por día y turno"
-                  categories={categories}
-                  series={viajesSeries}
-                />
-              </FlowCard>
-              <FlowCard>
-                <FlowLineChart
-                  title="Ingresos de la semana (miles)"
-                  categories={categories}
-                  formatValue={(n) => `$${n}k`}
-                  series={ingresosSeries}
-                />
-              </FlowCard>
-            </Grid>
+          {nav === "resumen" && (
+            <Stack gap="6">
+              <Grid columns="repeat(auto-fit, minmax(180px, 1fr))" gap="4">
+                {stats.map((s) => (
+                  <FlowStatTile key={s.label} label={s.label} value={s.value} detail={s.detail} />
+                ))}
+              </Grid>
+              <Grid columns="repeat(auto-fit, minmax(320px, 1fr))" gap="6">
+                <FlowCard>{bar}</FlowCard>
+                <FlowCard>{line}</FlowCard>
+              </Grid>
+            </Stack>
+          )}
+
+          {nav === "viajes" && <FlowCard>{bar}</FlowCard>}
+
+          {nav === "ingresos" && <FlowCard>{line}</FlowCard>}
+
+          {nav === "ocupacion" && (
             <FlowCard>
               <Inline gap="6" align="center">
-                <FlowDonut value={ocupacion} size={112} label="Ocupación de flota" />
+                <FlowDonut value={ocupacion} size={140} label="Ocupación de flota" />
                 <Stack gap="1">
                   <Text variant="title-sm" as="h3">
                     Ocupación de flota
@@ -97,7 +105,7 @@ export function DashboardOverview({
                 </Stack>
               </Inline>
             </FlowCard>
-          </Stack>
+          )}
         </main>
       </div>
     </div>
