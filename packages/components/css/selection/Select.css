@@ -41,7 +41,7 @@
 }
 
 .flow-select[data-disabled] {
-  opacity: 0.55;
+  opacity: var(--sys-opacity-disabled);
 }
 
 .flow-select__control[data-placeholder] .flow-select__value {
@@ -72,7 +72,7 @@
   left: 0;
   right: 0;
   z-index: var(--sys-z-overlay);
-  max-height: 260px;
+  max-height: var(--comp-select-menu-max-height);
   overflow-y: auto;
   margin: 0;
   padding: var(--sys-space-1);
@@ -112,7 +112,7 @@
 }
 
 .flow-select__option[aria-disabled] {
-  opacity: 0.4;
+  opacity: var(--sys-opacity-disabled);
   cursor: not-allowed;
 }
 @keyframes flow-select-in {

@@ -27,7 +27,7 @@
 }
 
 .flow-input-wrap[data-disabled] {
-  opacity: 0.55;
+  opacity: var(--sys-opacity-disabled);
 }
 
 .flow-input__icon {
@@ -44,7 +44,7 @@
   color: var(--comp-input-fg);
   font-family: var(--sys-font-body);
   font-size: var(--comp-input-font-size);
-  line-height: 1.4;
+  line-height: var(--sys-line-height-normal);
 }
 
 .flow-input::placeholder {

@@ -24,7 +24,7 @@
   font-size: var(--comp-stat-tile-value-size);
   font-weight: var(--comp-stat-tile-value-weight);
   font-variant-numeric: tabular-nums;
-  line-height: 1.1;
+  line-height: var(--sys-line-height-tight);
 }
 
 .flow-stat-tile__detail {

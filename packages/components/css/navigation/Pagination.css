@@ -37,7 +37,7 @@
 }
 
 .flow-pagination__nav:disabled {
-  opacity: 0.4;
+  opacity: var(--sys-opacity-disabled);
   cursor: not-allowed;
 }
 

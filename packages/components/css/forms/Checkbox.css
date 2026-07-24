@@ -10,7 +10,7 @@
 }
 
 .flow-checkbox[data-disabled] {
-  opacity: 0.5;
+  opacity: var(--sys-opacity-disabled);
   cursor: not-allowed;
 }
 
