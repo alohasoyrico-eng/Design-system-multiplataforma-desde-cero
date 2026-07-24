@@ -20,6 +20,7 @@
 @import "./data/Table.css";
 @import "./data/Donut.css";
 @import "./data/Sparkline.css";
+@import "./data/Chart.css";
 @import "./fintech/PaymentCard.css";
 @import "./fintech/TransactionRow.css";
 @import "./navigation/Tabs.css";

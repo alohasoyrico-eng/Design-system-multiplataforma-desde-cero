@@ -1,0 +1,98 @@
+/* Flow · Charts (Bar/Line) — categorical palette from sys.chart.cat1..5.
+   Text wears text tokens; only marks carry series color. Numeric label sizes are
+   viewBox units (the chart's own coordinate space), not CSS px design tokens. */
+.flow-chart {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-3);
+}
+
+.flow-chart__title {
+  color: var(--sys-text-primary);
+  font-family: var(--sys-font-display);
+  font-size: var(--sys-type-title-sm-size);
+  font-weight: var(--sys-type-title-sm-weight);
+}
+
+.flow-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sys-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-chart__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sys-space-2);
+  color: var(--sys-text-secondary);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+}
+
+.flow-chart__swatch {
+  width: var(--sys-space-3);
+  height: var(--sys-space-3);
+  border-radius: var(--sys-radius-xs);
+  flex: 0 0 auto;
+}
+
+.flow-chart__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.flow-chart__grid {
+  stroke: var(--sys-border-subtle);
+  stroke-width: 1;
+}
+
+.flow-chart__tick {
+  fill: var(--sys-text-muted);
+  font-family: var(--sys-font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.flow-chart__label {
+  fill: var(--sys-text-muted);
+  font-family: var(--sys-font-body);
+  font-size: 12px;
+}
+
+.flow-chart__bar {
+  transition: opacity var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-chart__bar:hover {
+  opacity: 0.82;
+}
+
+.flow-chart__line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.flow-chart__dot {
+  stroke: var(--sys-surface-card);
+  stroke-width: 2;
+}
+
+.flow-chart__table {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

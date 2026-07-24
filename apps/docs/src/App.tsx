@@ -24,6 +24,8 @@ import {
   FlowOTPInput,
   FlowDonut,
   FlowSparkline,
+  FlowBarChart,
+  FlowLineChart,
   FlowSpinner,
   FlowProgressBar,
   FlowTooltip,
@@ -587,6 +589,30 @@ export function App() {
                 </Inline>
                 <FlowOTPInput value={otp} onChange={setOtp} />
               </Stack>
+            </Grid>
+          </Section>
+
+          <Section title="Data-viz — BarChart · LineChart (paleta categórica validada CVD)">
+            <Grid columns="repeat(auto-fit, minmax(320px, 1fr))" gap="6">
+              <FlowBarChart
+                title="Viajes por día y turno"
+                categories={["Lun", "Mar", "Mié", "Jue", "Vie"]}
+                formatValue={(n) => `${n}`}
+                series={[
+                  { name: "Día", values: [120, 145, 132, 160, 178] },
+                  { name: "Noche", values: [80, 92, 100, 88, 120] },
+                ]}
+              />
+              <FlowLineChart
+                title="Ingresos de la semana (miles)"
+                categories={["Lun", "Mar", "Mié", "Jue", "Vie"]}
+                formatValue={(n) => `$${n}k`}
+                series={[
+                  { name: "Centro", values: [8, 12, 10, 14, 18] },
+                  { name: "Norte", values: [5, 7, 9, 8, 11] },
+                  { name: "Aeropuerto", values: [3, 5, 6, 9, 10] },
+                ]}
+              />
             </Grid>
           </Section>
 

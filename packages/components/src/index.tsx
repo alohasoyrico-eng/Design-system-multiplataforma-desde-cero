@@ -46,6 +46,9 @@ export {
 export { FlowTable, type FlowTableProps, type TableColumn } from "./data/FlowTable";
 export { FlowDonut, type FlowDonutProps } from "./data/FlowDonut";
 export { FlowSparkline, type FlowSparklineProps } from "./data/FlowSparkline";
+export { FlowBarChart, type FlowBarChartProps } from "./data/FlowBarChart";
+export { FlowLineChart, type FlowLineChartProps } from "./data/FlowLineChart";
+export type { ChartSeries } from "./data/chart-utils";
 // fintech
 export {
   FlowPaymentCard,
