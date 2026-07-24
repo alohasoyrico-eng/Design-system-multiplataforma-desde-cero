@@ -1,0 +1,84 @@
+/* Flow · KanbanBoard — consumes comp.kanban tokens. */
+.flow-kanban {
+  display: flex;
+  gap: var(--sys-space-4);
+  overflow-x: auto;
+  padding-bottom: var(--sys-space-2);
+}
+
+.flow-kanban__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-3);
+  flex: 0 0 260px;
+  padding: var(--sys-space-3);
+  background: var(--comp-kanban-column-bg);
+  border-radius: var(--comp-kanban-column-radius);
+}
+
+.flow-kanban__col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--sys-space-1);
+}
+
+.flow-kanban__col-title {
+  color: var(--comp-kanban-column-header-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-overline-size);
+  font-weight: var(--sys-type-overline-weight);
+  letter-spacing: var(--sys-type-overline-tracking);
+  text-transform: uppercase;
+}
+
+.flow-kanban__count {
+  min-width: var(--sys-space-5);
+  padding: 0 var(--sys-space-2);
+  border-radius: var(--sys-radius-pill);
+  background: var(--comp-kanban-count-bg);
+  color: var(--comp-kanban-count-color);
+  font-family: var(--sys-font-mono);
+  font-size: var(--sys-type-caption-size);
+  text-align: center;
+}
+
+.flow-kanban__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-2);
+}
+
+.flow-kanban__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-1);
+  padding: var(--sys-space-3);
+  background: var(--comp-kanban-card-bg);
+  border: var(--sys-border-width-thin) solid var(--comp-kanban-card-border);
+  border-left-width: var(--sys-space-1);
+  border-left-color: transparent;
+  border-radius: var(--comp-kanban-card-radius);
+  box-shadow: var(--comp-kanban-card-shadow);
+}
+
+.flow-kanban__card[data-tone="warning"] {
+  border-left-color: var(--sys-status-warning);
+}
+
+.flow-kanban__card[data-tone="danger"] {
+  border-left-color: var(--sys-status-danger);
+}
+
+.flow-kanban__card-title {
+  color: var(--comp-kanban-card-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+}
+
+.flow-kanban__card-meta {
+  color: var(--sys-text-muted);
+  font-family: var(--sys-font-body);
+  font-size: var(--sys-type-caption-size);
+}

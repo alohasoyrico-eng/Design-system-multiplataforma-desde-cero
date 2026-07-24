@@ -1,0 +1,63 @@
+/* Flow · RoleMatrix — consumes comp.roleMatrix tokens. */
+.flow-role-matrix {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--comp-role-matrix-bg);
+  border: var(--sys-border-width-thin) solid var(--comp-role-matrix-border);
+  border-radius: var(--comp-role-matrix-radius);
+}
+
+.flow-role-matrix__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sys-font-body);
+}
+
+.flow-role-matrix__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.flow-role-matrix__table thead th {
+  padding: var(--comp-role-matrix-cell-pad-y) var(--comp-role-matrix-cell-pad-x);
+  background: var(--comp-role-matrix-header-bg);
+  color: var(--comp-role-matrix-header-color);
+  font-size: var(--sys-type-overline-size);
+  font-weight: var(--sys-type-overline-weight);
+  letter-spacing: var(--sys-type-overline-tracking);
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.flow-role-matrix__table thead th:first-child {
+  text-align: left;
+}
+
+.flow-role-matrix__table tbody th {
+  padding: var(--comp-role-matrix-cell-pad-y) var(--comp-role-matrix-cell-pad-x);
+  color: var(--comp-role-matrix-row-label-color);
+  font-size: var(--sys-type-body-size);
+  font-weight: var(--sys-type-body-strong-weight);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.flow-role-matrix__table tbody td {
+  padding: var(--comp-role-matrix-cell-pad-y) var(--comp-role-matrix-cell-pad-x);
+  text-align: center;
+  color: var(--comp-role-matrix-deny-color);
+}
+
+.flow-role-matrix__table tbody td[data-allowed] {
+  color: var(--comp-role-matrix-allow-color);
+}
+
+.flow-role-matrix__table tbody tr:not(:last-child) th,
+.flow-role-matrix__table tbody tr:not(:last-child) td {
+  border-bottom: var(--sys-border-width-thin) solid var(--comp-role-matrix-border);
+}

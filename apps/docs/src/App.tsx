@@ -55,6 +55,8 @@ import {
   DriversApp,
   RoutesScreen,
   AgentChat,
+  ConfigScreen,
+  InternalTools,
   type TableColumn,
   type FleetUnit,
   type WalletTransaction,
@@ -731,6 +733,26 @@ export function App() {
           <Section title="Template (L5) — SettingsScreen">
             <div className="docs-frame docs-frame--tall">
               <SettingsScreen />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — InternalTools (CRM con roles)">
+            <div className="docs-frame docs-frame--tall">
+              <InternalTools />
+            </div>
+          </Section>
+
+          <Section title="Template (L5) — ConfigScreen (roles y permisos)">
+            <div className="docs-frame docs-frame--tall">
+              <ConfigScreen
+                roles={["Admin", "Soporte", "Pricing", "Growth"]}
+                permissions={[
+                  { label: "Ver tickets", allowed: [true, true, false, false] },
+                  { label: "Editar pricing", allowed: [true, false, true, false] },
+                  { label: "Gestionar roles", allowed: [true, false, false, false] },
+                  { label: "Ver growth", allowed: [true, false, false, true] },
+                ]}
+              />
             </div>
           </Section>
 
