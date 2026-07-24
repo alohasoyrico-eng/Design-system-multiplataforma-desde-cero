@@ -9,7 +9,7 @@
   border: var(--sys-border-width-strong) solid var(--comp-spinner-track);
   border-top-color: var(--comp-spinner-indicator);
   border-radius: var(--sys-radius-pill);
-  animation: flow-spinner-turn var(--sys-motion-dur-slow) linear infinite;
+  animation: flow-spinner-turn var(--sys-motion-loop-spin) linear infinite;
 }
 
 .flow-spinner[data-size="sm"] .flow-spinner__ring {

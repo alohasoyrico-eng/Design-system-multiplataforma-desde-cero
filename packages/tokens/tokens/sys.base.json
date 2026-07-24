@@ -132,6 +132,9 @@
       "durFast": { "$type": "duration", "$value": "{ref.duration.fast}" },
       "durBase": { "$type": "duration", "$value": "{ref.duration.base}" },
       "durSlow": { "$type": "duration", "$value": "{ref.duration.slow}" },
+      "loopSpin": { "$type": "duration", "$value": "{ref.duration.loopSpin}" },
+      "loopProgress": { "$type": "duration", "$value": "{ref.duration.loopProgress}" },
+      "loopPulse": { "$type": "duration", "$value": "{ref.duration.loopPulse}" },
       "liftHover": { "$type": "other", "$value": "{ref.transform.liftHover}" },
       "pressScale": { "$type": "other", "$value": "{ref.transform.pressScale}" },
       "hoverScale": { "$type": "other", "$value": "{ref.transform.hoverScale}" }
