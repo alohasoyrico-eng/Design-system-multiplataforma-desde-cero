@@ -123,7 +123,30 @@
       "iconSm": { "$type": "dimension", "$value": "18px" },
       "iconMd": { "$type": "dimension", "$value": "20px" },
       "iconLg": { "$type": "dimension", "$value": "24px" },
-      "iconXl": { "$type": "dimension", "$value": "32px" }
+      "iconXl": { "$type": "dimension", "$value": "32px" },
+      "containerXs": { "$type": "dimension", "$value": "400px" },
+      "containerSm": { "$type": "dimension", "$value": "480px" },
+      "containerMd": { "$type": "dimension", "$value": "560px" },
+      "containerLg": { "$type": "dimension", "$value": "640px" },
+      "containerXl": { "$type": "dimension", "$value": "860px" },
+      "sheetMax": { "$type": "dimension", "$value": "520px" },
+      "cardMax": { "$type": "dimension", "$value": "340px" },
+      "menuMax": { "$type": "dimension", "$value": "260px" },
+      "composerMax": { "$type": "dimension", "$value": "120px" },
+      "kanbanColumn": { "$type": "dimension", "$value": "260px" },
+      "controlWide": { "$type": "dimension", "$value": "160px" }
+    },
+    "opacity": {
+      "disabled": { "$type": "number", "$value": 0.5 },
+      "frozen": { "$type": "number", "$value": 0.6 },
+      "muted": { "$type": "number", "$value": 0.7 },
+      "faint": { "$type": "number", "$value": 0.85 }
+    },
+    "breakpoint": {
+      "$description": "Layout breakpoints. CSS @media cannot read custom properties, so component CSS repeats these literals; this is their canonical home for JS/SCSS/Dart.",
+      "sm": { "$type": "dimension", "$value": "575px" },
+      "md": { "$type": "dimension", "$value": "767px" },
+      "lg": { "$type": "dimension", "$value": "1024px" }
     },
     "radius": {
       "none": { "$type": "dimension", "$value": "0px" },
@@ -186,8 +209,16 @@
       "brutalFast": { "$type": "duration", "$value": "100ms" },
       "brutalBase": { "$type": "duration", "$value": "140ms" },
       "brutalSlow": { "$type": "duration", "$value": "200ms" },
-      "loopSpin": { "$type": "duration", "$value": "900ms", "$description": "One full rotation for spinners." },
-      "loopProgress": { "$type": "duration", "$value": "1400ms", "$description": "Indeterminate progress cycle." },
+      "loopSpin": {
+        "$type": "duration",
+        "$value": "900ms",
+        "$description": "One full rotation for spinners."
+      },
+      "loopProgress": {
+        "$type": "duration",
+        "$value": "1400ms",
+        "$description": "Indeterminate progress cycle."
+      },
       "loopPulse": { "$type": "duration", "$value": "1600ms", "$description": "Live-status pulse." }
     },
     "easing": {

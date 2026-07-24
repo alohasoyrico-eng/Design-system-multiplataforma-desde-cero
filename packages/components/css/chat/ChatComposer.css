@@ -20,7 +20,7 @@
 .flow-chat-composer__input {
   flex: 1 1 auto;
   min-width: 0;
-  max-height: 120px;
+  max-height: var(--comp-chat-composer-max-height);
   padding: var(--sys-space-2) var(--sys-space-3);
   border: none;
   outline: none;
@@ -56,7 +56,7 @@
 }
 
 .flow-chat-composer__send:disabled {
-  opacity: 0.4;
+  opacity: var(--sys-opacity-disabled);
   cursor: not-allowed;
 }
 

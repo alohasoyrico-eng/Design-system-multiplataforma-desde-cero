@@ -69,7 +69,7 @@
 }
 
 .flow-chart__bar:hover {
-  opacity: 0.82;
+  opacity: var(--sys-opacity-faint);
 }
 
 .flow-chart__line {

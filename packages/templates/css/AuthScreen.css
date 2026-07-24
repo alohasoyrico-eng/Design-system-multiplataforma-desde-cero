@@ -10,7 +10,7 @@
 
 .flow-auth__panel {
   width: 100%;
-  max-width: 420px;
+  max-width: var(--sys-container-xs);
   background: var(--sys-surface-card);
   border: var(--sys-border-width-thin) solid var(--sys-border-subtle);
   border-radius: var(--sys-radius-xl);

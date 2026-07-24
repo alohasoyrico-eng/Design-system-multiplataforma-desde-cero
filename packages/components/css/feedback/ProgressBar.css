@@ -18,7 +18,8 @@
 
 .flow-progress[data-indeterminate] .flow-progress__indicator {
   width: 40%;
-  animation: flow-progress-slide var(--sys-motion-loop-progress) var(--sys-motion-ease-in-out) infinite;
+  animation: flow-progress-slide var(--sys-motion-loop-progress) var(--sys-motion-ease-in-out)
+    infinite;
 }
 @keyframes flow-progress-slide {
   from {

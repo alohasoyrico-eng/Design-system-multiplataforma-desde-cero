@@ -9,5 +9,5 @@
 
 .flow-wizard > .flow-card {
   width: 100%;
-  max-width: 560px;
+  max-width: var(--sys-container-md);
 }

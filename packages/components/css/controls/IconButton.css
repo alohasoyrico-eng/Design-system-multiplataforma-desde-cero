@@ -31,7 +31,7 @@
 }
 
 .flow-icon-button:disabled {
-  opacity: 0.45;
+  opacity: var(--sys-opacity-disabled);
   cursor: not-allowed;
 }
 

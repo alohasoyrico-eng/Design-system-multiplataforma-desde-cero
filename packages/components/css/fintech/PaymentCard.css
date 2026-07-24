@@ -5,7 +5,7 @@
   gap: var(--sys-space-3);
   aspect-ratio: 1.586;
   width: 100%;
-  max-width: 340px;
+  max-width: var(--comp-payment-card-max-width);
   padding: var(--comp-payment-card-pad);
   border-radius: var(--comp-payment-card-radius);
   box-shadow: var(--comp-payment-card-shadow);
@@ -27,7 +27,7 @@
 }
 
 .flow-payment-card[data-frozen] {
-  opacity: 0.6;
+  opacity: var(--sys-opacity-frozen);
 }
 
 .flow-payment-card__top {
@@ -48,7 +48,7 @@
   height: var(--sys-space-8);
   border-radius: var(--sys-radius-xs);
   background: var(--comp-payment-card-chip);
-  opacity: 0.7;
+  opacity: var(--sys-opacity-muted);
 }
 
 .flow-payment-card__number {
@@ -56,7 +56,7 @@
   font-family: var(--comp-payment-card-number-font);
   font-size: var(--sys-type-title-size);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--sys-type-overline-tracking);
 }
 
 .flow-payment-card__holder {
@@ -64,5 +64,5 @@
   font-size: var(--sys-type-caption-size);
   text-transform: uppercase;
   letter-spacing: var(--sys-type-overline-tracking);
-  opacity: 0.85;
+  opacity: var(--sys-opacity-faint);
 }

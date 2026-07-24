@@ -31,7 +31,37 @@
       "hitTarget": { "$type": "dimension", "$value": "{ref.size.hitTarget}" },
       "control": { "$type": "dimension", "$value": "{ref.size.controlMd}" },
       "controlSm": { "$type": "dimension", "$value": "{ref.size.controlSm}" },
-      "controlLg": { "$type": "dimension", "$value": "{ref.size.controlLg}" }
+      "controlLg": { "$type": "dimension", "$value": "{ref.size.controlLg}" },
+      "controlWide": { "$type": "dimension", "$value": "{ref.size.controlWide}" },
+      "sheetMax": { "$type": "dimension", "$value": "{ref.size.sheetMax}" },
+      "cardMax": { "$type": "dimension", "$value": "{ref.size.cardMax}" },
+      "menuMax": { "$type": "dimension", "$value": "{ref.size.menuMax}" },
+      "composerMax": { "$type": "dimension", "$value": "{ref.size.composerMax}" },
+      "kanbanColumn": { "$type": "dimension", "$value": "{ref.size.kanbanColumn}" }
+    },
+    "container": {
+      "xs": { "$type": "dimension", "$value": "{ref.size.containerXs}" },
+      "sm": { "$type": "dimension", "$value": "{ref.size.containerSm}" },
+      "md": { "$type": "dimension", "$value": "{ref.size.containerMd}" },
+      "lg": { "$type": "dimension", "$value": "{ref.size.containerLg}" },
+      "xl": { "$type": "dimension", "$value": "{ref.size.containerXl}" }
+    },
+    "opacity": {
+      "disabled": { "$type": "number", "$value": "{ref.opacity.disabled}" },
+      "frozen": { "$type": "number", "$value": "{ref.opacity.frozen}" },
+      "muted": { "$type": "number", "$value": "{ref.opacity.muted}" },
+      "faint": { "$type": "number", "$value": "{ref.opacity.faint}" }
+    },
+    "breakpoint": {
+      "sm": { "$type": "dimension", "$value": "{ref.breakpoint.sm}" },
+      "md": { "$type": "dimension", "$value": "{ref.breakpoint.md}" },
+      "lg": { "$type": "dimension", "$value": "{ref.breakpoint.lg}" }
+    },
+    "lineHeight": {
+      "tight": { "$type": "number", "$value": "{ref.lineHeight.tight}" },
+      "snug": { "$type": "number", "$value": "{ref.lineHeight.snug}" },
+      "normal": { "$type": "number", "$value": "{ref.lineHeight.normal}" },
+      "relaxed": { "$type": "number", "$value": "{ref.lineHeight.relaxed}" }
     },
     "icon": {
       "sm": { "$type": "dimension", "$value": "{ref.size.iconSm}" },
