@@ -420,6 +420,35 @@
       "illustrationSize": { "$type": "dimension", "$value": "{sys.space.16}" },
       "titleColor": { "$type": "color", "$value": "{sys.text.primary}" },
       "descColor": { "$type": "color", "$value": "{sys.text.secondary}" }
+    },
+    "passcode": {
+      "keyBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "keyBgHover": { "$type": "color", "$value": "{sys.surface.accentSubtle}" },
+      "keyFg": { "$type": "color", "$value": "{sys.text.primary}" },
+      "keyFont": { "$type": "fontFamily", "$value": "{sys.font.mono}" },
+      "keySize": { "$type": "dimension", "$value": "{sys.size.controlLg}" },
+      "keyRadius": { "$type": "dimension", "$value": "{sys.radius.pill}" },
+      "dotFilled": { "$type": "color", "$value": "{sys.action.accent}" },
+      "dotEmpty": { "$type": "color", "$value": "{sys.border.strong}" },
+      "dotSize": { "$type": "dimension", "$value": "{sys.space.3}" },
+      "focusRing": { "$type": "shadow", "$value": "{sys.focus.ring}" }
+    },
+    "biometric": {
+      "iconBg": { "$type": "color", "$value": "{sys.surface.accentSubtle}" },
+      "iconFg": { "$type": "color", "$value": "{sys.action.accent}" },
+      "iconSize": { "$type": "dimension", "$value": "{sys.space.16}" },
+      "titleColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "messageColor": { "$type": "color", "$value": "{sys.text.secondary}" }
+    },
+    "mapCanvas": {
+      "surfaceBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "grid": { "$type": "color", "$value": "{sys.border.subtle}" },
+      "route": { "$type": "color", "$value": "{sys.action.accent}" },
+      "pinBg": { "$type": "color", "$value": "{sys.surface.inverse}" },
+      "pinFg": { "$type": "color", "$value": "{sys.text.onInverse}" },
+      "pinAccentBg": { "$type": "color", "$value": "{sys.action.accent}" },
+      "pinAccentFg": { "$type": "color", "$value": "{sys.text.onAccent}" },
+      "radius": { "$type": "dimension", "$value": "{sys.radius.lg}" }
     }
   }
 }

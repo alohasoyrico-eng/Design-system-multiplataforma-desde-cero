@@ -1,0 +1,63 @@
+/* Flow · MapCanvas — consumes comp.mapCanvas tokens. Schematic; slot real tiles via children.
+   Numeric label sizes are viewBox units (the map's own coordinate space). */
+.flow-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.6;
+  border-radius: var(--comp-map-canvas-radius);
+  overflow: hidden;
+  background: var(--comp-map-canvas-surface-bg);
+}
+
+.flow-map__tiles {
+  position: absolute;
+  inset: 0;
+}
+
+.flow-map__svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.flow-map__grid line {
+  stroke: var(--comp-map-canvas-grid);
+  stroke-width: 1;
+}
+
+.flow-map__route {
+  fill: none;
+  stroke: var(--comp-map-canvas-route);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.flow-map__pin-bg {
+  fill: var(--comp-map-canvas-pin-bg);
+}
+
+.flow-map__pin-label {
+  fill: var(--comp-map-canvas-pin-fg);
+  font-family: var(--sys-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.flow-map__pin-dot {
+  fill: var(--comp-map-canvas-pin-bg);
+  stroke: var(--sys-surface-card);
+  stroke-width: 2;
+}
+
+.flow-map__pin[data-accent] .flow-map__pin-bg,
+.flow-map__pin[data-accent] .flow-map__pin-dot {
+  fill: var(--comp-map-canvas-pin-accent-bg);
+}
+
+.flow-map__pin[data-accent] .flow-map__pin-label {
+  fill: var(--comp-map-canvas-pin-accent-fg);
+}

@@ -56,6 +56,9 @@ export {
   type PaymentCardVariant,
 } from "./fintech/FlowPaymentCard";
 export { FlowTransactionRow, type FlowTransactionRowProps } from "./fintech/FlowTransactionRow";
+export { FlowPasscodeKeypad, type FlowPasscodeKeypadProps } from "./fintech/FlowPasscodeKeypad";
+export { FlowBiometricPrompt, type FlowBiometricPromptProps } from "./fintech/FlowBiometricPrompt";
+export { FlowMapCanvas, type FlowMapCanvasProps, type MapPin } from "./fintech/FlowMapCanvas";
 // navigation
 export { FlowTabs, type FlowTabsProps, type TabItem } from "./navigation/FlowTabs";
 export { FlowStepper, type FlowStepperProps, type StepItem } from "./navigation/FlowStepper";

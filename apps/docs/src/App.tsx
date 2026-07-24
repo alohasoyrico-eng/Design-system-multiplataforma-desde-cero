@@ -21,6 +21,9 @@ import {
   FlowTable,
   FlowPaymentCard,
   FlowTransactionRow,
+  FlowPasscodeKeypad,
+  FlowBiometricPrompt,
+  FlowMapCanvas,
   FlowOTPInput,
   FlowDonut,
   FlowSparkline,
@@ -177,6 +180,7 @@ export function App() {
   const [segment, setSegment] = useState("dia");
   const [pageNum, setPageNum] = useState(4);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [passcode, setPasscode] = useState("");
   const toast = useToast();
 
   return (
@@ -654,6 +658,33 @@ export function App() {
             <div className="docs-frame docs-frame--tall docs-frame--phone">
               <OnboardingScreen slides={ONBOARDING_SLIDES} onFinish={() => {}} />
             </div>
+          </Section>
+
+          <Section title="Fintech/movilidad — PasscodeKeypad · Biometric · MapCanvas">
+            <Grid columns="repeat(auto-fit, minmax(240px, 1fr))" gap="6">
+              <FlowPasscodeKeypad length={6} value={passcode} onChange={setPasscode} />
+              <FlowBiometricPrompt
+                icon="fingerprint"
+                title="Confirma con tu huella"
+                message="Toca el sensor para autorizar el pago."
+                fallback={<FlowButton variant="secondary">Usar código</FlowButton>}
+                cancel={<FlowButton variant="ghost">Cancelar</FlowButton>}
+              />
+              <FlowMapCanvas
+                ariaLabel="Mapa con demanda y ruta"
+                route={[
+                  { x: 12, y: 80 },
+                  { x: 40, y: 60 },
+                  { x: 62, y: 66 },
+                  { x: 86, y: 30 },
+                ]}
+                pins={[
+                  { x: 30, y: 40, label: "1.8×", accent: true },
+                  { x: 68, y: 68, label: "$45" },
+                  { x: 86, y: 30, label: "Meta" },
+                ]}
+              />
+            </Grid>
           </Section>
 
           <Section title="Template (L5) — AuthScreen">

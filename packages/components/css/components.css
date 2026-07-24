@@ -23,6 +23,9 @@
 @import "./data/Chart.css";
 @import "./fintech/PaymentCard.css";
 @import "./fintech/TransactionRow.css";
+@import "./fintech/PasscodeKeypad.css";
+@import "./fintech/BiometricPrompt.css";
+@import "./fintech/MapCanvas.css";
 @import "./navigation/Tabs.css";
 @import "./navigation/Stepper.css";
 @import "./navigation/Breadcrumb.css";
