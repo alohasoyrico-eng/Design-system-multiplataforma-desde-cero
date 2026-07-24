@@ -20,9 +20,18 @@
     "dist",
     "tokens"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero#readme",
   "scripts": {
     "build": "node build.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run --config ../../vitest.config.ts"
   }
 }

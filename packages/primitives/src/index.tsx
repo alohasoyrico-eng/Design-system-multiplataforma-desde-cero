@@ -1,3 +1,5 @@
+import "../css/primitives.css";
+
 export { Text, type TextProps } from "./typography";
 export { Surface, type SurfaceProps } from "./surfaces";
 export { Stack, Inline, Grid, type GridProps } from "./layout";

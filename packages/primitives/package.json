@@ -7,19 +7,34 @@
     "*.css"
   ],
   "exports": {
-    ".": "./src/index.tsx",
-    "./css": "./css/primitives.css"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./css": "./dist/styles.css"
   },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git",
+    "directory": "packages/primitives"
+  },
+  "homepage": "https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero#readme",
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "vite build",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run --config ../../vitest.config.ts"
   },
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@flow/tokens": "*"
+    "@flow/tokens": "^0.1.0"
   }
 }

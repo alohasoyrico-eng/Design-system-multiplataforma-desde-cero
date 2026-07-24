@@ -1,0 +1,17 @@
+# Flow Design System — code ownership.
+# Governance note: this repo owns the SYSTEM (tokens → templates) and publishes @flow/* to npm.
+# The public documentation lives in a separate repo with its own owners:
+#   https://github.com/alohasoyrico-eng/Docs-para-design-system-multiplataforma-desde-cero
+# The contract between the two repos is the published, versioned @flow/* packages — docs never
+# redefines a token or a prop, it consumes them.
+
+# Default owner for everything in this repo.
+*                       @alohasoyrico-eng
+
+# Token pipeline is the single source of truth — guard it closely.
+/packages/tokens/       @alohasoyrico-eng
+
+# Release tooling & enforcement.
+/.changeset/            @alohasoyrico-eng
+/scripts/               @alohasoyrico-eng
+/build/                 @alohasoyrico-eng
