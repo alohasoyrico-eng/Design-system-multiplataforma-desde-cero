@@ -17,6 +17,18 @@
   height: var(--comp-status-view-icon-size);
   border-radius: var(--sys-radius-pill);
   margin-bottom: var(--sys-space-2);
+  animation: flow-status-pop var(--sys-motion-dur-base) var(--sys-motion-ease-spring);
+}
+@keyframes flow-status-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-status-view__icon {
+    animation: none;
+  }
 }
 
 .flow-status-view[data-tone="success"] .flow-status-view__icon {

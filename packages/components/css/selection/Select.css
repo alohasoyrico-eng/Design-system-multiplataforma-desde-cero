@@ -1,23 +1,25 @@
-/* Flow · Select — consumes comp.select tokens. Styled native select. */
+/* Flow · Select — custom listbox (not native). Consumes comp.select tokens. */
 .flow-select {
   position: relative;
   display: inline-flex;
-  align-items: center;
   width: 100%;
 }
 
 .flow-select__control {
-  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sys-space-2);
   width: 100%;
   min-height: var(--comp-select-height);
   padding-inline: var(--comp-select-pad-x);
-  padding-right: var(--sys-space-10);
   background: var(--comp-select-bg);
   color: var(--comp-select-fg);
   border: var(--comp-select-border-width) solid var(--comp-select-border);
   border-radius: var(--comp-select-radius);
   font-family: var(--sys-font-body);
   font-size: var(--comp-select-font-size);
+  text-align: left;
   cursor: pointer;
   transition:
     border-color var(--sys-motion-dur-fast) var(--sys-motion-ease-out),
@@ -42,13 +44,85 @@
   opacity: 0.55;
 }
 
-.flow-select[data-placeholder] .flow-select__control {
+.flow-select__control[data-placeholder] .flow-select__value {
   color: var(--comp-select-placeholder);
 }
 
+.flow-select__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .flow-select__chevron {
-  position: absolute;
-  right: var(--comp-select-pad-x);
+  flex: 0 0 auto;
   color: var(--comp-select-chevron);
-  pointer-events: none;
+  transition: transform var(--sys-motion-dur-fast) var(--sys-motion-ease-spring);
+}
+
+.flow-select[data-open] .flow-select__chevron {
+  transform: rotate(180deg);
+}
+
+.flow-select__menu {
+  position: absolute;
+  top: calc(100% + var(--sys-space-1));
+  left: 0;
+  right: 0;
+  z-index: var(--sys-z-overlay);
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 0;
+  padding: var(--sys-space-1);
+  list-style: none;
+  background: var(--comp-select-menu-bg);
+  border: var(--sys-border-width-thin) solid var(--comp-select-menu-border);
+  border-radius: var(--comp-select-menu-radius);
+  box-shadow: var(--comp-select-menu-shadow);
+  animation: flow-select-in var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sys-space-2);
+  padding: var(--comp-select-option-pad-y) var(--comp-select-option-pad-x);
+  border-radius: var(--sys-radius-sm);
+  color: var(--comp-select-option-color);
+  font-family: var(--sys-font-body);
+  font-size: var(--comp-select-font-size);
+  cursor: pointer;
+  transition: background var(--sys-motion-dur-instant) var(--sys-motion-ease-out);
+}
+
+.flow-select__option[data-active] {
+  background: var(--comp-select-option-active-bg);
+}
+
+.flow-select__option[aria-selected="true"] {
+  color: var(--comp-select-option-selected-color);
+  font-weight: var(--sys-type-body-strong-weight);
+}
+
+.flow-select__option[aria-selected="true"][data-active] {
+  background: var(--comp-select-option-selected-bg);
+}
+
+.flow-select__option[aria-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+@keyframes flow-select-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--sys-space-1)));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-select__menu {
+    animation: none;
+  }
 }

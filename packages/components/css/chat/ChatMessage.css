@@ -4,6 +4,18 @@
   flex-direction: column;
   gap: var(--sys-space-1);
   max-width: 78%;
+  animation: flow-chat-in var(--sys-motion-dur-base) var(--sys-motion-ease-out);
+}
+@keyframes flow-chat-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--sys-space-2));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-chat-msg {
+    animation: none;
+  }
 }
 
 .flow-chat-msg[data-role="user"] {

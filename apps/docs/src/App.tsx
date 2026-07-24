@@ -484,7 +484,7 @@ export function App() {
                 <FlowSelect
                   placeholder="Elige una ciudad"
                   value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  onChange={setCity}
                   options={[
                     { value: "cdmx", label: "Ciudad de México" },
                     { value: "gdl", label: "Guadalajara" },

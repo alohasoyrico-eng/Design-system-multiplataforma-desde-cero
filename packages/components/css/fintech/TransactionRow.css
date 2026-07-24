@@ -4,7 +4,14 @@
   align-items: center;
   gap: var(--sys-space-3);
   padding-block: var(--comp-transaction-row-pad-y);
+  padding-inline: var(--sys-space-2);
   border-bottom: var(--sys-border-width-thin) solid var(--comp-transaction-row-border);
+  border-radius: var(--sys-radius-sm);
+  transition: background var(--sys-motion-dur-fast) var(--sys-motion-ease-out);
+}
+
+.flow-tx-row:hover {
+  background: var(--sys-surface-sunken);
 }
 
 .flow-tx-row:last-child {

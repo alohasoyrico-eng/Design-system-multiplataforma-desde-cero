@@ -16,6 +16,7 @@ export function SettingsScreen() {
   const [push, setPush] = useState(true);
   const [email, setEmail] = useState(false);
   const [weekly, setWeekly] = useState(true);
+  const [lang, setLang] = useState("es");
   const [tema, setTema] = useState("auto");
 
   const SwitchRow = ({
@@ -59,7 +60,8 @@ export function SettingsScreen() {
             </FlowField>
             <FlowField label="Idioma">
               <FlowSelect
-                defaultValue="es"
+                value={lang}
+                onChange={setLang}
                 options={[
                   { value: "es", label: "Español" },
                   { value: "en", label: "English" },

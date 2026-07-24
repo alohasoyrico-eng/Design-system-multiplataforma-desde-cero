@@ -60,6 +60,14 @@
   border-left-color: transparent;
   border-radius: var(--comp-kanban-card-radius);
   box-shadow: var(--comp-kanban-card-shadow);
+  transition:
+    transform var(--sys-motion-dur-base) var(--sys-motion-ease-spring),
+    box-shadow var(--sys-motion-dur-base) var(--sys-motion-ease-out);
+}
+
+.flow-kanban__card:hover {
+  transform: var(--sys-motion-lift-hover);
+  box-shadow: var(--sys-elevation-float);
 }
 
 .flow-kanban__card[data-tone="warning"] {
