@@ -18,3 +18,5 @@ export { AuthOTPScreen, type AuthOTPScreenProps } from "./AuthOTPScreen";
 export { DriversApp, type DriversAppProps, type IncomingTrip } from "./DriversApp";
 export { RoutesScreen, type RoutesScreenProps, type Station } from "./RoutesScreen";
 export { AgentChat } from "./AgentChat";
+export { ConfigScreen, type ConfigScreenProps } from "./ConfigScreen";
+export { InternalTools } from "./InternalTools";

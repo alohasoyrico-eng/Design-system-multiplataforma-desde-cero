@@ -42,6 +42,7 @@ export {
   type FlowAccordionProps,
   type AccordionItem,
 } from "./display/FlowAccordion";
+export { FlowTimeline, type FlowTimelineProps, type TimelineItem } from "./display/FlowTimeline";
 // chat
 export { FlowChatMessage, type FlowChatMessageProps } from "./chat/FlowChatMessage";
 export { FlowChatThread, type FlowChatThreadProps } from "./chat/FlowChatThread";
@@ -52,6 +53,13 @@ export { FlowDonut, type FlowDonutProps } from "./data/FlowDonut";
 export { FlowSparkline, type FlowSparklineProps } from "./data/FlowSparkline";
 export { FlowBarChart, type FlowBarChartProps } from "./data/FlowBarChart";
 export { FlowLineChart, type FlowLineChartProps } from "./data/FlowLineChart";
+export { FlowRoleMatrix, type FlowRoleMatrixProps, type Permission } from "./data/FlowRoleMatrix";
+export {
+  FlowKanbanBoard,
+  type FlowKanbanBoardProps,
+  type KanbanColumn,
+  type KanbanCard,
+} from "./data/FlowKanbanBoard";
 export type { ChartSeries } from "./data/chart-utils";
 // fintech
 export {

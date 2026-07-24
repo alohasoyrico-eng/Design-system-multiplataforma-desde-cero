@@ -17,6 +17,7 @@
 @import "./display/Avatar.css";
 @import "./display/Chip.css";
 @import "./display/Accordion.css";
+@import "./display/Timeline.css";
 @import "./chat/ChatMessage.css";
 @import "./chat/ChatThread.css";
 @import "./chat/ChatComposer.css";
@@ -24,6 +25,8 @@
 @import "./data/Donut.css";
 @import "./data/Sparkline.css";
 @import "./data/Chart.css";
+@import "./data/RoleMatrix.css";
+@import "./data/KanbanBoard.css";
 @import "./fintech/PaymentCard.css";
 @import "./fintech/TransactionRow.css";
 @import "./fintech/PasscodeKeypad.css";

@@ -470,6 +470,39 @@
       "sendBg": { "$type": "color", "$value": "{sys.action.accent}" },
       "sendFg": { "$type": "color", "$value": "{sys.text.onAccent}" },
       "focusRing": { "$type": "shadow", "$value": "{sys.focus.ring}" }
+    },
+    "timeline": {
+      "line": { "$type": "color", "$value": "{sys.border.default}" },
+      "dotBg": { "$type": "color", "$value": "{sys.surface.card}" },
+      "dotBorder": { "$type": "color", "$value": "{sys.action.accent}" },
+      "dotSize": { "$type": "dimension", "$value": "{sys.space.4}" },
+      "titleColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "timeColor": { "$type": "color", "$value": "{sys.text.muted}" },
+      "descColor": { "$type": "color", "$value": "{sys.text.secondary}" }
+    },
+    "roleMatrix": {
+      "bg": { "$type": "color", "$value": "{sys.surface.card}" },
+      "border": { "$type": "color", "$value": "{sys.border.subtle}" },
+      "radius": { "$type": "dimension", "$value": "{sys.radius.lg}" },
+      "headerBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "headerColor": { "$type": "color", "$value": "{sys.text.muted}" },
+      "rowLabelColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "allowColor": { "$type": "color", "$value": "{sys.status.success}" },
+      "denyColor": { "$type": "color", "$value": "{sys.text.muted}" },
+      "cellPadX": { "$type": "dimension", "$value": "{sys.pad.controlX}" },
+      "cellPadY": { "$type": "dimension", "$value": "{sys.pad.controlY}" }
+    },
+    "kanban": {
+      "columnBg": { "$type": "color", "$value": "{sys.surface.sunken}" },
+      "columnRadius": { "$type": "dimension", "$value": "{sys.radius.lg}" },
+      "columnHeaderColor": { "$type": "color", "$value": "{sys.text.secondary}" },
+      "cardBg": { "$type": "color", "$value": "{sys.surface.card}" },
+      "cardBorder": { "$type": "color", "$value": "{sys.border.subtle}" },
+      "cardRadius": { "$type": "dimension", "$value": "{sys.radius.md}" },
+      "cardShadow": { "$type": "shadow", "$value": "{sys.elevation.rest}" },
+      "cardColor": { "$type": "color", "$value": "{sys.text.primary}" },
+      "countBg": { "$type": "color", "$value": "{sys.surface.card}" },
+      "countColor": { "$type": "color", "$value": "{sys.text.muted}" }
     }
   }
 }
