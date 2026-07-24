@@ -1,0 +1,37 @@
+/* Flow · DashboardOverview — desktop analytics shell. Tokens only; re-themes across all three themes. */
+.flow-dash {
+  display: flex;
+  min-height: 100%;
+  background: var(--sys-surface-canvas);
+}
+
+.flow-dash__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.flow-dash__content {
+  flex: 1 1 auto;
+  padding: var(--sys-pad-section);
+  overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+  .flow-dash {
+    flex-direction: column;
+  }
+
+  .flow-dash .flow-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: var(--sys-border-width-thin) solid var(--comp-sidebar-border);
+  }
+
+  .flow-dash .flow-sidebar__list {
+    flex-direction: row;
+  }
+}

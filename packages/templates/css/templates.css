@@ -3,3 +3,7 @@
 @import "./FleetDashboard.css";
 @import "./WalletScreen.css";
 @import "./OnboardingScreen.css";
+@import "./DashboardOverview.css";
+@import "./WizardScreen.css";
+@import "./SettingsScreen.css";
+@import "./AuthOTPScreen.css";

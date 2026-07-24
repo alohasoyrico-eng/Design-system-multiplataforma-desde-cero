@@ -1,0 +1,13 @@
+/* Flow · WizardScreen — centered multi-step form. Tokens only. */
+.flow-wizard {
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+  padding: var(--sys-pad-section) var(--sys-space-6);
+  background: var(--sys-surface-canvas);
+}
+
+.flow-wizard > .flow-card {
+  width: 100%;
+  max-width: 560px;
+}
