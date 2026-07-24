@@ -1,0 +1,37 @@
+/* Flow · RoutesScreen — mobile stations map. Tokens only. */
+.flow-routes {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  min-height: 100%;
+  padding: var(--sys-pad-section) var(--sys-space-5);
+  background: var(--sys-surface-canvas);
+  color: var(--sys-text-primary);
+}
+
+.flow-routes__map {
+  border-radius: var(--sys-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--sys-elevation-rest);
+}
+
+.flow-routes__row {
+  padding-block: var(--sys-pad-control-y);
+  border-bottom: var(--sys-border-width-thin) solid var(--sys-border-subtle);
+}
+
+.flow-routes__row:last-child {
+  border-bottom: none;
+}
+
+.flow-routes__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sys-size-control);
+  height: var(--sys-size-control);
+  flex: 0 0 auto;
+  border-radius: var(--sys-radius-pill);
+  background: var(--sys-surface-sunken);
+  color: var(--sys-text-secondary);
+}
