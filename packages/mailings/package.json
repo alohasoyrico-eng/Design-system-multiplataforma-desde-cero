@@ -1,0 +1,13 @@
+{
+  "name": "@flow/mailings",
+  "version": "0.1.0",
+  "description": "Flow email templates — table-based HTML generated from the design tokens (email-safe, inlined values).",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@flow/tokens": "*"
+  },
+  "files": ["dist", "build.mjs"]
+}
