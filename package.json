@@ -6,14 +6,13 @@
   "type": "module",
   "packageManager": "npm@11.11.0",
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "packages/*"
   ],
   "scripts": {
     "tokens:build": "npm run build --workspace @flow/tokens",
     "mailings:build": "npm run build --workspace @flow/mailings",
     "build": "turbo run build",
-    "dev": "turbo run build --filter=!@flow/docs && npm run dev --workspace @flow/docs",
+    "dev": "turbo run build --watch",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "lint": "eslint .",
