@@ -1,6 +1,6 @@
-import { Stack, Text, FlowIcon } from "@flow/primitives";
-import { FlowDivider, FlowButton } from "@flow/components";
-import { FlowLoginForm, type LoginValues } from "@flow/patterns";
+import { Stack, Text, FlowIcon } from "@flowds/primitives";
+import { FlowDivider, FlowButton } from "@flowds/components";
+import { FlowLoginForm, type LoginValues } from "@flowds/patterns";
 import "../css/AuthScreen.css";
 
 export interface AuthScreenProps {

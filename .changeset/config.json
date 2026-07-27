@@ -4,17 +4,17 @@
   "commit": false,
   "fixed": [
     [
-      "@flow/tokens",
-      "@flow/primitives",
-      "@flow/components",
-      "@flow/patterns",
-      "@flow/templates",
-      "@flow/design-system"
+      "@flowds/tokens",
+      "@flowds/primitives",
+      "@flowds/components",
+      "@flowds/patterns",
+      "@flowds/templates",
+      "@flowds/design-system"
     ]
   ],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@flow/docs"]
+  "ignore": ["@flowds/docs"]
 }

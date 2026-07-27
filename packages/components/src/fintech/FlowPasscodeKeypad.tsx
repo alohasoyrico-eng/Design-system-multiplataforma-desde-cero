@@ -1,4 +1,4 @@
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/fintech/PasscodeKeypad.css";
 
 export interface FlowPasscodeKeypadProps {

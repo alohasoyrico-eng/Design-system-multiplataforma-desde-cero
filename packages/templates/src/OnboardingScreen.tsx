@@ -4,7 +4,7 @@ import {
   FlowStatusView,
   FlowButton,
   type OnboardingSlide,
-} from "@flow/components";
+} from "@flowds/components";
 import "../css/OnboardingScreen.css";
 
 export interface OnboardingScreenProps {

@@ -1,5 +1,5 @@
-import { Stack, Inline, Text, FlowIcon } from "@flow/primitives";
-import { FlowCard, FlowMapCanvas, type MapPin } from "@flow/components";
+import { Stack, Inline, Text, FlowIcon } from "@flowds/primitives";
+import { FlowCard, FlowMapCanvas, type MapPin } from "@flowds/components";
 import "../css/RoutesScreen.css";
 
 export interface Station {

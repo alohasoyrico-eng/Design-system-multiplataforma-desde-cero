@@ -1,5 +1,5 @@
 import { useEffect, useRef, type InputHTMLAttributes, type ReactNode } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/forms/Checkbox.css";
 
 export interface FlowCheckboxProps extends Omit<

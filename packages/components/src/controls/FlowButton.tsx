@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/controls/Button.css";
 
 export type ButtonVariant = "primary" | "accent" | "secondary" | "ghost" | "danger";

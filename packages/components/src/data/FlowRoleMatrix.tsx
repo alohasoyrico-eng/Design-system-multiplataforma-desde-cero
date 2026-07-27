@@ -1,4 +1,4 @@
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/data/RoleMatrix.css";
 
 export interface Permission {

@@ -1,5 +1,5 @@
 import { useId, useState, type ReactNode } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/display/Accordion.css";
 
 export interface AccordionItem {

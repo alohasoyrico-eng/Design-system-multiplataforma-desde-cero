@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack, Inline, Grid, Text } from "@flow/primitives";
+import { Stack, Inline, Grid, Text } from "@flowds/primitives";
 import {
   FlowCard,
   FlowButton,
@@ -9,7 +9,7 @@ import {
   FlowAvatar,
   FlowMapCanvas,
   type MapPin,
-} from "@flow/components";
+} from "@flowds/components";
 import "../css/DriversApp.css";
 
 export interface IncomingTrip {

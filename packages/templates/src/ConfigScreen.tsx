@@ -1,5 +1,5 @@
-import { Stack, Text } from "@flow/primitives";
-import { FlowRoleMatrix, type Permission } from "@flow/components";
+import { Stack, Text } from "@flowds/primitives";
+import { FlowRoleMatrix, type Permission } from "@flowds/components";
 import "../css/ConfigScreen.css";
 
 export interface ConfigScreenProps {

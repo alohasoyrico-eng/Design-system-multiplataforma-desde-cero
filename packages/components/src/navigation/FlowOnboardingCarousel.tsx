@@ -1,5 +1,5 @@
 import { useRef, useState, type TouchEvent } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/navigation/OnboardingCarousel.css";
 
 export interface OnboardingSlide {

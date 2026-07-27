@@ -18,7 +18,7 @@ packages/
 ├── components/   L3   · Button, IconButton, Field, Input, Checkbox, Card, Badge, StatTile, Divider, Tabs, Dialog
 ├── patterns/     L4   · FlowLoginForm (composición de componentes)
 ├── templates/    L5   · AuthScreen (página completa)
-└── flow/         umbrella @flow/design-system — re-exporta todo + ./styles
+└── flow/         umbrella @flowds/design-system — re-exporta todo + ./styles
 apps/docs/        showcase con selector de tema/densidad (Vite + React)
 ```
 
@@ -48,8 +48,8 @@ npm run dev            # levanta apps/docs
 ## Uso
 
 ```tsx
-import { FlowButton, AuthScreen } from "@flow/design-system";
-import "@flow/design-system/styles";
+import { FlowButton, AuthScreen } from "@flowds/design-system";
+import "@flowds/design-system/styles";
 
 <div data-theme="asphalt" data-density="compact">
   <FlowButton variant="accent" size="lg">

@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/forms/Input.css";
 
 export interface FlowInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "className"> {

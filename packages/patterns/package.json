@@ -1,5 +1,5 @@
 {
-  "name": "@flow/patterns",
+  "name": "@flowds/patterns",
   "version": "0.1.0",
   "description": "Flow L4 patterns — multi-component compositions. Exemplar: LoginForm.",
   "type": "module",
@@ -35,7 +35,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@flow/components": "^0.1.0",
-    "@flow/primitives": "^0.1.0"
+    "@flowds/components": "^0.1.0",
+    "@flowds/primitives": "^0.1.0"
   }
 }

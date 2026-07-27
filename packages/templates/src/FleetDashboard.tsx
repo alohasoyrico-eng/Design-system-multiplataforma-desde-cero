@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grid, Stack, Text } from "@flow/primitives";
+import { Grid, Stack, Text } from "@flowds/primitives";
 import {
   FlowStatTile,
   FlowTable,
@@ -13,8 +13,8 @@ import {
   FlowCard,
   type TableColumn,
   type BadgeTone,
-} from "@flow/components";
-import { FlowSidebar, FlowTopbar, type SidebarItem } from "@flow/patterns";
+} from "@flowds/components";
+import { FlowSidebar, FlowTopbar, type SidebarItem } from "@flowds/patterns";
 import "../css/FleetDashboard.css";
 
 export interface FleetUnit {

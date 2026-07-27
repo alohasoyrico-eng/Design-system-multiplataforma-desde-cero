@@ -5,7 +5,7 @@ import dts from "vite-plugin-dts";
 /**
  * Shared library-build config for every publishable Flow React package.
  * - preserveModules keeps the src tree in dist → tree-shakeable, CSS resolves per module.
- * - react + @flow/* (+ any extraExternal) are externalized; the consumer provides them.
+ * - react + @flowds/* (+ any extraExternal) are externalized; the consumer provides them.
  * - vite-plugin-dts emits .d.ts mirroring src.
  * - all imported CSS is extracted into a single dist/styles.css (consume via the "./css" export).
  */

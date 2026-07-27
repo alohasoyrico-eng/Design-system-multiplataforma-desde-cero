@@ -1,5 +1,5 @@
 {
-  "name": "@flow/templates",
+  "name": "@flowds/templates",
   "version": "0.1.0",
   "description": "Flow L5 templates — full page compositions. Exemplar: AuthScreen.",
   "type": "module",
@@ -35,8 +35,8 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@flow/components": "^0.1.0",
-    "@flow/patterns": "^0.1.0",
-    "@flow/primitives": "^0.1.0"
+    "@flowds/components": "^0.1.0",
+    "@flowds/patterns": "^0.1.0",
+    "@flowds/primitives": "^0.1.0"
   }
 }

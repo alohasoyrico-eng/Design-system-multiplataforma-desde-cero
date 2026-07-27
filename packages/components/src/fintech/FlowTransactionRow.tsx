@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/fintech/TransactionRow.css";
 
 export interface FlowTransactionRowProps extends HTMLAttributes<HTMLDivElement> {

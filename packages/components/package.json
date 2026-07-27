@@ -1,5 +1,5 @@
 {
-  "name": "@flow/components",
+  "name": "@flowds/components",
   "version": "0.1.0",
   "description": "Flow L3 components — one exemplar per domain, consuming component tokens only.",
   "type": "module",
@@ -35,7 +35,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@flow/primitives": "^0.1.0",
-    "@flow/tokens": "^0.1.0"
+    "@flowds/primitives": "^0.1.0",
+    "@flowds/tokens": "^0.1.0"
   }
 }

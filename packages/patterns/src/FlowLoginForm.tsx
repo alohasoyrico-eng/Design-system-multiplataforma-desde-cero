@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { Stack } from "@flow/primitives";
-import { FlowField, FlowInput, FlowCheckbox, FlowButton } from "@flow/components";
+import { Stack } from "@flowds/primitives";
+import { FlowField, FlowInput, FlowCheckbox, FlowButton } from "@flowds/components";
 import "../css/LoginForm.css";
 
 export interface LoginValues {
