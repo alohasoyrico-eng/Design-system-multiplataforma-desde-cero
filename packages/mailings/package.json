@@ -1,6 +1,7 @@
 {
   "name": "@flowds/mailings",
   "version": "0.1.0",
+  "private": true,
   "description": "Flow email templates — table-based HTML generated from the design tokens (email-safe, inlined values).",
   "type": "module",
   "scripts": {
