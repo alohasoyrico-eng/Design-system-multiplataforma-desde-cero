@@ -15,7 +15,7 @@ export function libConfig({ entry, extraExternal = [] }) {
     build: {
       lib: { entry, formats: ["es"], cssFileName: "styles" },
       rollupOptions: {
-        external: [/^react/, /^react-dom/, /^@flow\//, ...extraExternal],
+        external: [/^react/, /^react-dom/, /^@flowds\//, ...extraExternal],
         output: {
           preserveModules: true,
           preserveModulesRoot: "src",
