@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import { FlowSpinner } from "./FlowSpinner";
 import "../../css/feedback/StatusView.css";
 

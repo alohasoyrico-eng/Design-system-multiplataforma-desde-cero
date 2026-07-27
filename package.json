@@ -9,8 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "tokens:build": "npm run build --workspace @flow/tokens",
-    "mailings:build": "npm run build --workspace @flow/mailings",
+    "tokens:build": "npm run build --workspace @flowds/tokens",
+    "mailings:build": "npm run build --workspace @flowds/mailings",
     "build": "turbo run build",
     "dev": "turbo run build --watch",
     "typecheck": "turbo run typecheck",

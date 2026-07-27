@@ -1,5 +1,5 @@
 {
-  "name": "@flow/tokens",
+  "name": "@flowds/tokens",
   "version": "0.1.0",
   "description": "Flow design tokens — DTCG single source of truth (ref → sys → comp), 3 themes, multiplatform outputs.",
   "type": "module",

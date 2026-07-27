@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/display/Chip.css";
 
 export interface FlowChipProps extends HTMLAttributes<HTMLSpanElement> {

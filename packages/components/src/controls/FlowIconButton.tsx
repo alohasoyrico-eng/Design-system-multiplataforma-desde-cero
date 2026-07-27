@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/controls/IconButton.css";
 
 export interface FlowIconButtonProps extends Omit<

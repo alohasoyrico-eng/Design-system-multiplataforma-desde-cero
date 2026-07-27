@@ -1,4 +1,4 @@
-# @flow/mailings
+# @flowds/mailings
 
 Plantillas de **correo electrónico** de Flow.
 
@@ -12,7 +12,7 @@ eligen a mano. Por esta razón viven **fuera del runtime de componentes** y no c
 
 ```sh
 npm run tokens:build           # genera tokens.json (fuente de valores)
-npm run build --workspace @flow/mailings   # o: npm run mailings:build
+npm run build --workspace @flowds/mailings   # o: npm run mailings:build
 ```
 
 Salida en `dist/`:

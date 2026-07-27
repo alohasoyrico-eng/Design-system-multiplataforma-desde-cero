@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { FlowIcon } from "@flow/primitives";
+import { FlowIcon } from "@flowds/primitives";
 import "../../css/navigation/Breadcrumb.css";
 
 export interface BreadcrumbItem {

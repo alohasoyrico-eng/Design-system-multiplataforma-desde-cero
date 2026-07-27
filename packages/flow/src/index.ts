@@ -1,5 +1,5 @@
-export * from "@flow/primitives";
-export * from "@flow/components";
-export * from "@flow/patterns";
-export * from "@flow/templates";
-export { tokens } from "@flow/tokens";
+export * from "@flowds/primitives";
+export * from "@flowds/components";
+export * from "@flowds/patterns";
+export * from "@flowds/templates";
+export { tokens } from "@flowds/tokens";

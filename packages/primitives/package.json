@@ -1,5 +1,5 @@
 {
-  "name": "@flow/primitives",
+  "name": "@flowds/primitives",
   "version": "0.1.0",
   "description": "Flow L2 primitives — Surface, Text, layout, FlowIcon. Consume system tokens only.",
   "type": "module",
@@ -35,6 +35,6 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@flow/tokens": "^0.1.0"
+    "@flowds/tokens": "^0.1.0"
   }
 }

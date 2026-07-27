@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack, Inline, Text } from "@flow/primitives";
+import { Stack, Inline, Text } from "@flowds/primitives";
 import {
   FlowCard,
   FlowField,
@@ -8,7 +8,7 @@ import {
   FlowSwitch,
   FlowRadioGroup,
   FlowDivider,
-} from "@flow/components";
+} from "@flowds/components";
 import "../css/SettingsScreen.css";
 
 /** SettingsScreen — grouped preferences: account, notifications, appearance. */

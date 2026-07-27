@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack, Inline, Text } from "@flow/primitives";
+import { Stack, Inline, Text } from "@flowds/primitives";
 import {
   FlowCard,
   FlowStepper,
@@ -9,7 +9,7 @@ import {
   FlowRadioGroup,
   FlowButton,
   FlowStatusView,
-} from "@flow/components";
+} from "@flowds/components";
 import "../css/WizardScreen.css";
 
 export interface WizardScreenProps {

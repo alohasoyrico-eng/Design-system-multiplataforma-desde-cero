@@ -1,5 +1,5 @@
 {
-  "name": "@flow/design-system",
+  "name": "@flowds/design-system",
   "version": "0.1.0",
   "description": "Flow Design System — umbrella package. Re-exports every layer + the aggregated stylesheet.",
   "type": "module",
@@ -37,11 +37,11 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@flow/tokens": "^0.1.0",
-    "@flow/primitives": "^0.1.0",
-    "@flow/components": "^0.1.0",
-    "@flow/patterns": "^0.1.0",
-    "@flow/templates": "^0.1.0",
+    "@flowds/tokens": "^0.1.0",
+    "@flowds/primitives": "^0.1.0",
+    "@flowds/components": "^0.1.0",
+    "@flowds/patterns": "^0.1.0",
+    "@flowds/templates": "^0.1.0",
     "@fontsource/sora": "^5.1.0",
     "@fontsource/jetbrains-mono": "^5.1.0",
     "@fontsource/archivo": "^5.1.0",

@@ -1,7 +1,7 @@
 /* Flow Design System — single stylesheet entry. Import once at your app root. */
 @import "./fonts.css";
-@import "@flow/tokens/css";
-@import "@flow/primitives/css";
-@import "@flow/components/css";
-@import "@flow/patterns/css";
-@import "@flow/templates/css";
+@import "@flowds/tokens/css";
+@import "@flowds/primitives/css";
+@import "@flowds/components/css";
+@import "@flowds/patterns/css";
+@import "@flowds/templates/css";

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Inline, Text, FlowIcon } from "@flow/primitives";
-import { FlowChatThread, FlowChatMessage, FlowChatComposer, FlowAvatar } from "@flow/components";
+import { Inline, Text, FlowIcon } from "@flowds/primitives";
+import { FlowChatThread, FlowChatMessage, FlowChatComposer, FlowAvatar } from "@flowds/components";
 import "../css/AgentChat.css";
 
 interface Msg {

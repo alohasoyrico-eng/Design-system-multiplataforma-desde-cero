@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Stack, Text } from "@flow/primitives";
-import { FlowOTPInput, FlowButton, FlowStatusView } from "@flow/components";
+import { Stack, Text } from "@flowds/primitives";
+import { FlowOTPInput, FlowButton, FlowStatusView } from "@flowds/components";
 import "../css/AuthOTPScreen.css";
 
 export interface AuthOTPScreenProps {
