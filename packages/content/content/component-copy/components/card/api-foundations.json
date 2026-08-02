@@ -1,0 +1,131 @@
+{
+  "components": {
+    "card": {
+      "api-foundations": {
+        "copy": "Card owns the surface contract. Slots may contain components; product sequencing belongs to patterns.",
+        "props": [
+          {
+            "name": "title",
+            "type": "string",
+            "required": "yes",
+            "notes": "Visible title and accessible name source."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": "no",
+            "notes": "Prominent value, status, or object summary."
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "required": "no",
+            "notes": "Optional unit prefix for stats composition values."
+          },
+          {
+            "name": "detail",
+            "type": "string",
+            "required": "no",
+            "notes": "Supporting text that explains scan value or recovery."
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": "no",
+            "notes": "Short visible status label."
+          },
+          {
+            "name": "trend",
+            "type": "up | down | neutral",
+            "required": "no",
+            "notes": "Trend tone for stats composition status."
+          },
+          {
+            "name": "icon",
+            "type": "IconName",
+            "required": "no",
+            "notes": "Optional approved symbol for recognition."
+          },
+          {
+            "name": "media",
+            "type": "string",
+            "required": "no",
+            "notes": "Optional media URL for media composition."
+          },
+          {
+            "name": "mediaAlt",
+            "type": "string",
+            "required": "no",
+            "notes": "Accessible alt text when the media carries meaning."
+          },
+          {
+            "name": "variant",
+            "type": "default | minimal | elevated | ghost",
+            "required": "no",
+            "notes": "Surface treatment governed by Flow tokens."
+          },
+          {
+            "name": "composition",
+            "type": "standard | stats | compact | media",
+            "required": "no",
+            "notes": "Card anatomy composition informed by the ZIP reference without changing the surface variant API."
+          },
+          {
+            "name": "state",
+            "type": "default | hover | focus | selected | loading | error | disabled | muted | interactive",
+            "required": "no",
+            "notes": "Resolved UI state before styling."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": "no",
+            "notes": "Density context from Flow."
+          },
+          {
+            "name": "fullWidth",
+            "type": "boolean",
+            "required": "no",
+            "notes": "Allows the Card to fill its owning layout."
+          },
+          {
+            "name": "interactive",
+            "type": "boolean",
+            "required": "no",
+            "notes": "Makes the whole surface keyboard/actionable when no nested actions exist."
+          },
+          {
+            "name": "selected",
+            "type": "boolean",
+            "required": "no",
+            "notes": "Marks the surface as selected and syncs aria-pressed when interactive."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": "no",
+            "notes": "Removes whole-surface activation and applies disabled state."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": "no",
+            "notes": "Shows loading state and aria-busy."
+          },
+          {
+            "name": "actions",
+            "type": "(ButtonProps | IconButtonProps & { iconOnly?: boolean })[]",
+            "required": "no",
+            "notes": "Nested Flow Button or IconButton actions; disables whole-card button behavior."
+          },
+          {
+            "name": "onAction",
+            "type": "event",
+            "required": "no",
+            "notes": "Whole-surface action handler when Card is interactive."
+          }
+        ]
+      }
+    }
+  }
+}

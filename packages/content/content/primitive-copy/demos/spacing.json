@@ -1,0 +1,28 @@
+{
+  "demos": {
+    "Spacing": {
+      "type": "stack",
+      "initial": "md",
+      "ariaLabel": "Spacing examples",
+      "choices": [
+        [
+          "sm",
+          "SM"
+        ],
+        [
+          "md",
+          "MD"
+        ],
+        [
+          "lg",
+          "LG"
+        ]
+      ],
+      "items": [
+        "Item 1",
+        "Item 2",
+        "Item 3"
+      ]
+    }
+  }
+}

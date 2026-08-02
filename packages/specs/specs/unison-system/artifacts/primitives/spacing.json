@@ -1,0 +1,135 @@
+{
+  "artifacts": {
+    "primitives": {
+      "spacing": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Spacing",
+        "purpose": "Turn Frame foundation roles into implementation-ready spacing primitives for page, section, panel, component, inline, grid, and density behavior.",
+        "governingFoundations": [
+          "Frame",
+          "Depth",
+          "State",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "ref.frame.space.*",
+          "sys.frame.*",
+          "sys.depth.*",
+          "sys.a11y.*"
+        ],
+        "roles": [
+          {
+            "id": "inline",
+            "token": "spacing.inline.*",
+            "use": "Icon/label gaps, compact metadata, table cell internals."
+          },
+          {
+            "id": "component",
+            "token": "spacing.component.*",
+            "use": "Field stacks, button rows, card internals, menu options."
+          },
+          {
+            "id": "section",
+            "token": "spacing.section.*",
+            "use": "Major document/product sections and dashboard group rhythm."
+          },
+          {
+            "id": "page",
+            "token": "spacing.page.*",
+            "use": "Page rhythm and template-level breathing room."
+          },
+          {
+            "id": "grid",
+            "token": "spacing.grid.*",
+            "use": "Dashboard, settings, tablet, and mobile layout gutters/margins."
+          },
+          {
+            "id": "density",
+            "token": "spacing.density.*",
+            "use": "Compact/default/comfortable remapping by product context."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Mobile wallet",
+            "example": "Card, quick actions, and movements use touch-safe component spacing and page margins."
+          },
+          {
+            "context": "Station detail",
+            "example": "Map overlay, sheet header, route CTA, and fallback list use predictable section spacing."
+          },
+          {
+            "context": "Dashboard",
+            "example": "Filters, KPI tiles, chart panels, and tables align to desktop grid and section rhythm."
+          },
+          {
+            "context": "Settings table",
+            "example": "Dense rows remain scannable without sacrificing focus and touch targets."
+          }
+        ],
+        "api": {
+          "props": [
+            "gap",
+            "padding",
+            "margin",
+            "density",
+            "columns",
+            "breakpoint"
+          ],
+          "outputs": [
+            "layoutTokens",
+            "cssCustomProperties",
+            "responsiveRules"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.frame.space.*",
+          "sys.frame.*",
+          "spacing.*",
+          "comp.*.frame aliases"
+        ],
+        "states": [
+          "sm",
+          "md",
+          "lg",
+          "mobile",
+          "tablet",
+          "laptop",
+          "desktop"
+        ],
+        "agentInstructions": [
+          "Choose spacing by relationship and hierarchy, not visual patching.",
+          "Declare density at surface/page level and let components inherit.",
+          "Do not wrap content in containers that reduce useful space without hierarchy reason.",
+          "Check navigation and tabs for unintended horizontal scroll."
+        ],
+        "rejectIf": [
+          "Raw margin, padding, gap, radius, or grid values appear outside tokens.",
+          "A page-level wrapper compresses content without purpose.",
+          "Spacing is fixed for one viewport only.",
+          "Component solves layout locally instead of consuming Frame/Spacing."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "visualSections": {
+    "voiceTokens": {
+      "title": "Voice Tokens",
+      "description": "The foundation now exposes the same base ingredients as the zip: families, weights, size scale, letter spacing, and line height. Components should consume semantic sys.voice roles, not raw CSS values.",
+      "summary": [
+        {
+          "value": "3",
+          "label": "font families"
+        },
+        {
+          "value": "14",
+          "label": "size steps"
+        },
+        {
+          "value": "17",
+          "label": "rhythm tokens"
+        }
+      ],
+      "groups": [
+        {
+          "label": "Families",
+          "count": "3",
+          "tokens": [
+            [
+              "brand",
+              "Edenred + Ubuntu fallback"
+            ],
+            [
+              "sans",
+              "Ubuntu + system fallback"
+            ],
+            [
+              "mono",
+              "Ubuntu Mono + monospace fallback"
+            ]
+          ]
+        },
+        {
+          "label": "Weights",
+          "count": "4",
+          "tokens": [
+            [
+              "regular",
+              "400"
+            ],
+            [
+              "medium",
+              "500"
+            ],
+            [
+              "semibold",
+              "600"
+            ],
+            [
+              "bold",
+              "700"
+            ]
+          ]
+        },
+        {
+          "label": "Sizes",
+          "count": "14",
+          "tokens": [
+            [
+              "1",
+              "10px"
+            ],
+            [
+              "2",
+              "11px"
+            ],
+            [
+              "3",
+              "12px"
+            ],
+            [
+              "4",
+              "13px"
+            ],
+            [
+              "5",
+              "14px"
+            ],
+            [
+              "6",
+              "16px"
+            ],
+            [
+              "7",
+              "18px"
+            ],
+            [
+              "8",
+              "20px"
+            ],
+            [
+              "9",
+              "24px"
+            ],
+            [
+              "10",
+              "32px"
+            ],
+            [
+              "11",
+              "40px"
+            ],
+            [
+              "12",
+              "48px"
+            ],
+            [
+              "13",
+              "54px"
+            ],
+            [
+              "14",
+              "62px"
+            ]
+          ]
+        },
+        {
+          "label": "Letter Spacing",
+          "count": "8",
+          "tokens": [
+            [
+              "tighter",
+              "-0.02em"
+            ],
+            [
+              "tight",
+              "-0.01em"
+            ],
+            [
+              "snug",
+              "-0.005em"
+            ],
+            [
+              "normal",
+              "0em"
+            ],
+            [
+              "wide",
+              "0.02em"
+            ],
+            [
+              "wider",
+              "0.06em"
+            ],
+            [
+              "widest",
+              "0.08em"
+            ],
+            [
+              "caps",
+              "0.12em"
+            ]
+          ]
+        },
+        {
+          "label": "Line Height",
+          "count": "9",
+          "tokens": [
+            [
+              "none",
+              "1"
+            ],
+            [
+              "tight",
+              "1.2"
+            ],
+            [
+              "dense",
+              "1.333"
+            ],
+            [
+              "snug",
+              "1.35"
+            ],
+            [
+              "display",
+              "1.484"
+            ],
+            [
+              "normal",
+              "1.5"
+            ],
+            [
+              "relaxed",
+              "1.556"
+            ],
+            [
+              "loose",
+              "1.6"
+            ],
+            [
+              "body",
+              "1.7"
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

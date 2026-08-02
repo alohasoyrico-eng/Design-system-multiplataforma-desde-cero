@@ -1,0 +1,124 @@
+{
+  "components": {
+    "button": {
+      "variants": {
+        "copy": "Variant controls hierarchy with action energy: primary is action-primary blue, secondary is white with neutral 900 outline, and outlined is white with neutral 200 outline. Intent controls semantic risk.",
+        "demos": [
+          {
+            "label": "Primary",
+            "button": {
+              "label": "Continue",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "arrow_forward",
+              "state": "",
+              "density": ""
+            },
+            "variant": "primary",
+            "intent": "default"
+          },
+          {
+            "label": "Secondary",
+            "button": {
+              "label": "Save draft",
+              "variant": "secondary",
+              "intent": "",
+              "size": "md",
+              "icon": "save",
+              "state": "",
+              "density": ""
+            },
+            "variant": "secondary",
+            "intent": "default"
+          },
+          {
+            "label": "Tertiary",
+            "button": {
+              "label": "View detail",
+              "variant": "tertiary",
+              "intent": "",
+              "size": "md",
+              "icon": "visibility",
+              "state": "",
+              "density": ""
+            },
+            "variant": "tertiary",
+            "intent": "default"
+          },
+          {
+            "label": "Trailing icon",
+            "button": {
+              "label": "Continue",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "",
+              "trailingIcon": "arrow_forward",
+              "state": "",
+              "density": ""
+            },
+            "variant": "primary",
+            "intent": "default"
+          },
+          {
+            "label": "Outlined",
+            "button": {
+              "label": "Export CSV",
+              "variant": "outlined",
+              "intent": "",
+              "size": "md",
+              "icon": "download",
+              "state": "",
+              "density": ""
+            },
+            "variant": "outlined",
+            "intent": "default"
+          },
+          {
+            "label": "Ghost",
+            "button": {
+              "label": "Dismiss",
+              "variant": "ghost",
+              "intent": "",
+              "size": "md",
+              "icon": "close",
+              "state": "",
+              "density": ""
+            },
+            "variant": "ghost",
+            "intent": "default"
+          },
+          {
+            "label": "Danger",
+            "button": {
+              "label": "Block card",
+              "variant": "primary",
+              "intent": "danger",
+              "size": "md",
+              "icon": "block",
+              "state": "",
+              "density": ""
+            },
+            "variant": "primary",
+            "intent": "danger"
+          },
+          {
+            "label": "Warning",
+            "button": {
+              "label": "Reset limits",
+              "variant": "primary",
+              "intent": "warning",
+              "size": "md",
+              "icon": "warning",
+              "state": "",
+              "density": ""
+            },
+            "variant": "primary",
+            "intent": "warning"
+          }
+        ]
+      }
+    }
+  }
+}

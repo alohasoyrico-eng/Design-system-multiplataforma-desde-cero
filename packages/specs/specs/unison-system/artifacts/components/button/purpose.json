@@ -1,0 +1,9 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "purpose": "Trigger one explicit user or system action with clear hierarchy, state, risk, accessibility, telemetry, and tokenized behavior."
+      }
+    }
+  }
+}

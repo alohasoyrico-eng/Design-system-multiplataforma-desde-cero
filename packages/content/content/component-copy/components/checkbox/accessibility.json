@@ -1,0 +1,17 @@
+{
+  "components": {
+    "checkbox": {
+      "accessibility": {
+        "statePrecedence": "disabled, error, focus, indeterminate, checked, unchecked",
+        "items": [
+          "Associate every checkbox with a visible label.",
+          "Support keyboard focus and Space toggling.",
+          "Expose indeterminate as mixed, not checked.",
+          "Keep focus visible around the control box.",
+          "Associate error text with the checkbox when validation is present.",
+          "Do not rely on color alone to communicate checked, mixed, or error states."
+        ]
+      }
+    }
+  }
+}

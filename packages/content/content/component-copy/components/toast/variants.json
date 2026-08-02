@@ -1,0 +1,62 @@
+{
+  "components": {
+    "toast": {
+      "variants": {
+        "copy": "Toast variants describe the feedback job: status confirmation, progress update, recovery path, warning, and undo.",
+        "demos": [
+          {
+            "label": "Unidad asignada a Ana Sosa.",
+            "tone": "success",
+            "variant": "status",
+            "state": "visible",
+            "icon": "check_circle",
+            "dismissible": true,
+            "density": "md"
+          },
+          {
+            "label": "Report is processing.",
+            "description": "The download will start soon.",
+            "tone": "info",
+            "variant": "progress",
+            "state": "visible",
+            "icon": "download",
+            "dismissible": true,
+            "density": "sm"
+          },
+          {
+            "label": "Connection is unstable.",
+            "description": "Some dashboard data may be delayed.",
+            "tone": "warning",
+            "variant": "warning",
+            "state": "visible",
+            "icon": "warning",
+            "dismissible": true,
+            "density": "md"
+          },
+          {
+            "label": "Vehicle sync failed.",
+            "description": "Last saved data is still available.",
+            "tone": "danger",
+            "variant": "recovery",
+            "state": "action",
+            "icon": "error",
+            "actionLabel": "Retry",
+            "dismissible": true,
+            "density": "md"
+          },
+          {
+            "label": "Driver removed.",
+            "description": "This can be undone for a short time.",
+            "tone": "neutral",
+            "variant": "undo",
+            "state": "action",
+            "icon": "undo",
+            "actionLabel": "Undo",
+            "dismissible": true,
+            "density": "md"
+          }
+        ]
+      }
+    }
+  }
+}

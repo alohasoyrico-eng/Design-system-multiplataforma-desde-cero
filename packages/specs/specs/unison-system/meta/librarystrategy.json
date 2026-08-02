@@ -1,0 +1,53 @@
+{
+  "libraryStrategy": {
+    "motion": {
+      "primary": "Motion",
+      "useFor": [
+        "tabs",
+        "sheets",
+        "drawers",
+        "quick actions",
+        "loading transitions",
+        "page transitions",
+        "filter updates"
+      ],
+      "rule": "Use for UI behavior that explains structure or state."
+    },
+    "illustrativeAnimation": {
+      "primary": "dotLottie",
+      "useFor": [
+        "onboarding",
+        "success",
+        "empty states",
+        "OTP",
+        "biometric",
+        "route moments"
+      ],
+      "rule": "Use for teaching or emotional clarity; never for required task comprehension."
+    },
+    "editorialMotion": {
+      "optional": "GSAP",
+      "useFor": [
+        "immersive documentation",
+        "scroll choreography",
+        "complex SVG studies"
+      ],
+      "rule": "Optional and gated by performance and accessibility review."
+    },
+    "icons": {
+      "primary": "Material Symbols",
+      "rule": "Use as raw icon material, not as Material Design. Every icon needs a semantic role and accessible-name policy."
+    },
+    "charts": {
+      "primary": "Apache ECharts",
+      "rule": "Every chart needs title, description, text summary, color-safe encoding, empty state, and keyboard-reachable data access."
+    },
+    "maps": {
+      "options": [
+        "MapLibre GL",
+        "Mapbox"
+      ],
+      "rule": "Map flows must include geolocation permission, denied state, fallback list, station detail, and route handoff."
+    }
+  }
+}

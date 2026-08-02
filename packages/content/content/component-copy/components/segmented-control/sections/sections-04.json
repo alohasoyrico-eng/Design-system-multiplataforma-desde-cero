@@ -1,0 +1,116 @@
+{
+  "components": {
+    "segmented-control": {
+      "api-foundations": {
+        "copy": "Segmented Control API exposes items, selectedKey, variant, state, density, and ariaLabel while Design System owns focus, spacing, and state precedence.",
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": "Yes",
+            "notes": "Accessible group label."
+          },
+          {
+            "name": "items",
+            "type": "Array<{ key?: string; value?: string; label: string; icon?: string }>",
+            "required": "Yes",
+            "notes": "Visible segments with stable keys and optional icons."
+          },
+          {
+            "name": "selectedKey",
+            "type": "string",
+            "required": "No",
+            "notes": "Currently selected item key."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(key: string) => void",
+            "required": "No",
+            "notes": "Called when local selection changes."
+          },
+          {
+            "name": "variant",
+            "type": "\"outlined\" | \"toolbar\" | \"compact\" | \"icon-only\"",
+            "required": "No",
+            "notes": "Presentation variant for the local segmented surface."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": "No",
+            "notes": "Maps segment target sizing to Density."
+          }
+        ]
+      },
+      "guidelines": {
+        "groups": [
+          {
+            "title": "Use",
+            "items": [
+              "Use for one local mutually exclusive choice.",
+              "Keep labels visible even when icons are present.",
+              "Keep the selected item announced with aria-selected."
+            ]
+          },
+          {
+            "title": "Avoid",
+            "items": [
+              "Do not use for page navigation.",
+              "Do not combine unrelated controls inside the group.",
+              "Do not use it as a dashboard filter bar."
+            ]
+          },
+          {
+            "title": "Review",
+            "items": [
+              "Check keyboard arrow movement.",
+              "Check mobile wrapping and label fit.",
+              "Check selected/current uses Flow action-primary with enough contrast.",
+              "Check the control remains visually distinct from Tabs."
+            ]
+          }
+        ]
+      },
+      "tests-rejection-rules": {
+        "mustTest": [
+          "Visible labels",
+          "aria-selected state",
+          "Keyboard movement",
+          "Focus ring",
+          "Mobile wrapping",
+          "Disabled segment",
+          "Selected/current uses Flow action-primary",
+          "Outlined, toolbar, compact, and icon-only variants render distinct geometry"
+        ],
+        "rejectIf": [
+          "It changes routes or pages.",
+          "It coordinates multiple filters.",
+          "Segments rely on icons only.",
+          "Selected state is color-only.",
+          "Selected/current uses non-Flow color.",
+          "Toolbar or compact is only documented but not implemented in package styles."
+        ]
+      },
+      "miel": {
+        "copy": "MIEL treats Segmented Control as one local exclusive choice. Agents may place it for view mode or density mode, while humans confirm whether the request is actually navigation, tabs, or a filter pattern.",
+        "canDecide": [
+          "Use Segmented Control for view mode, chart mode, local layout density, or map/list switch.",
+          "Keep each segment as a single option with visible text.",
+          "Use warning only when the current mode has a policy or availability caveat."
+        ],
+        "mustAsk": [
+          "The control changes page route, saved view, or dashboard query.",
+          "The group needs more than one selected value.",
+          "Labels cannot fit in the available viewport."
+        ],
+        "rejectIf": [
+          "It changes routes or pages.",
+          "It coordinates multiple filters.",
+          "Segments rely on icons only.",
+          "Selected state is color-only."
+        ],
+        "handoff": "I am using Segmented Control for one local exclusive mode. Please confirm labels, selected key, keyboard movement, responsive wrapping, and that this is not navigation or a filter bar."
+      }
+    }
+  }
+}

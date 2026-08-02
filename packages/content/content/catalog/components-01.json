@@ -1,0 +1,344 @@
+{
+  "components": [
+    {
+      "type": "component",
+      "id": "button",
+      "title": "Button",
+      "group": "Core",
+      "summary": "Primary actions, secondary actions, destructive actions, and low-emphasis commands with Motion-based feedback.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "icon-button",
+      "title": "Icon Button",
+      "group": "Core",
+      "summary": "Compact Material Symbols actions with accessible names and touch-safe hit areas.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "input",
+      "title": "Input",
+      "group": "Core",
+      "summary": "Data entry for OTP fallback, driver search, vehicle plates, station filters, and configuration forms.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "card-number-input",
+      "title": "Card Number Input",
+      "group": "Core",
+      "summary": "Grouped card number capture with numeric keyboard, cc-number autocomplete, local Luhn validation, and Design System field states.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "card-expiry-input",
+      "title": "Card Expiry Input",
+      "group": "Core",
+      "summary": "Card expiry capture with MM/YY formatting, cc-exp autocomplete, month validation, expired-state recovery, and Design System field states.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "card-security-code-input",
+      "title": "Card Security Code Input",
+      "group": "Core",
+      "summary": "Card security code capture with numeric keyboard, cc-csc autocomplete, local length validation, optional reveal, and Design System field states.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "code-input",
+      "title": "Code Input",
+      "group": "Core",
+      "summary": "One-time-code entry with paste, resend, timer, masking, error recovery, and screen-reader grouping.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "biometric-prompt",
+      "title": "Biometric Prompt",
+      "group": "Core",
+      "summary": "Mobile authentication confirmation with fallback, device support, and trust copy.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "floating-action-button",
+      "title": "Floating Action Button",
+      "group": "Core",
+      "summary": "High-prominence single action for mobile maps, sheets, and focused creation flows.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "segmented-control",
+      "title": "Segmented Control",
+      "group": "Selection",
+      "summary": "Mutually exclusive mode switching for dashboard views, movement filters, route options, and setup steps.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "checkbox",
+      "title": "Checkbox",
+      "group": "Selection",
+      "summary": "Binary selection with indeterminate support for permissions, bulk actions, filters, and setup tasks.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "radio-button",
+      "title": "Radio Button",
+      "group": "Selection",
+      "summary": "Single-choice option for plans, route preferences, authentication fallback, and configuration decisions.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "switch",
+      "title": "Switch",
+      "group": "Selection",
+      "summary": "Immediate on/off setting for notifications, biometric login, vehicle status, and dashboard preferences.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "select",
+      "title": "Select",
+      "group": "Selection",
+      "summary": "Single closed-choice option picker for fleets, regions, fuel types, and roles.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "combobox",
+      "title": "Combobox",
+      "group": "Selection",
+      "summary": "Editable single-select input for filtering known fleets, drivers, vehicles, regions, and support entities.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "slider",
+      "title": "Slider",
+      "group": "Selection",
+      "summary": "Bounded numeric adjustment for limits, thresholds, ranges, and dashboard sensitivity controls.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "text-area",
+      "title": "Text Area",
+      "group": "Inputs",
+      "summary": "Multi-line entry for support notes, audit reasons, driver comments, and configuration explanations.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "fallbacks": {
+    "primary": "Template blueprint missing.",
+    "standard": "Template standard missing.",
+    "screenSystem": "Template screen system missing.",
+    "informationArchitecture": "Template information architecture missing.",
+    "processDetail": "Design System detail missing.",
+    "moduleDetail": "Module detail missing.",
+    "dataSources": "Template data sources missing.",
+    "permissions": "Template permissions missing.",
+    "states": "Template states missing.",
+    "telemetry": "Template telemetry missing.",
+    "surfaces": "Template surfaces missing.",
+    "modules": "Template modules missing.",
+    "patternDependencies": "Template pattern dependencies missing.",
+    "stateMatrixCopy": "{{title}} must show how critical states behave across its actual surfaces and roles.",
+    "dataPermissions": [
+      "Every screen declares owner, source, freshness, sync behavior, and stale-data copy.",
+      "Permission checks are visible before irreversible actions.",
+      "Audit events are generated for roles, drivers, vehicles, cards, limits, and finance changes when relevant.",
+      "Sensitive information has privacy, masking, export, and retention rules."
+    ]
+  },
+  "templates": {
+    "Driver Mobile App": {
+      "nav": ["Inicio", "Tarjeta", "Rutas", "Soporte"],
+      "metrics": [["$4,280", "Disponible"], ["3", "Movimientos nuevos"]],
+      "modules": ["Card hero with limits", "Recent movement feed", "Nearby station shortcut", "Support and dispute path"],
+      "moduleDetails": {
+        "Card hero with limits": { "icon": "account_balance_wallet", "copy": "Shows card readiness, available amount, limit context, and blocked-state explanation before any action." },
+        "Recent movement feed": { "icon": "receipt_long", "copy": "Keeps recent authorizations scannable with status, merchant, amount, and route to detail." },
+        "Nearby station shortcut": { "icon": "local_gas_station", "copy": "Starts station discovery while preserving location permission and fallback-list behavior." },
+        "Support and dispute path": { "icon": "support_agent", "copy": "Gives drivers a clear recovery route for blocked cards, suspicious movements, or failed payments." }
+      },
+      "processDetails": {
+        "Driver Onboarding Mobile": "Proves identity, consent, first-use guidance, and recovery before the driver reaches card controls.",
+        "Mobile Card Overview": "Turns card readiness, limit context, blocked states, and recent movements into the first useful screen.",
+        "Routes and Nearby Stations Mobile": "Connects station discovery to location permission, fallback list, selected station, and route handoff."
+      },
+      "standard": "This template is the driver entry point: it must connect authentication, card readiness, nearby stations, recent activity, and support without making the driver hunt across separate screens.",
+      "screenSystem": "The screen system prioritizes first-use readiness, then repeated driver actions, then recovery. Modules should behave like one mobile product surface rather than disconnected shortcuts.",
+      "informationArchitecture": "Navigation follows the driver's daily jobs: start, control card, find fuel, and recover through support.",
+      "primary": "Driver opens the app at a station and needs to know if the card is ready, where to fuel, and what to do if something fails.",
+      "permissions": ["biometric login", "location", "push notifications"],
+      "data": ["card status", "limits", "movements", "station distance"],
+      "states": ["loaded", "loading", "empty", "error", "permission", "offline"],
+      "surfaces": ["Mobile", "Tablet", "Reduced motion"],
+      "telemetry": ["card readiness viewed", "nearby station opened", "support path started"],
+      "qualityGates": ["Card readiness, route access, and support recovery are visible on first load.", "Location denial keeps route and station discovery usable.", "Biometric fallback preserves trust copy and recovery."]
+    },
+    "Fleet Manager Desktop": {
+      "nav": ["Overview", "Fuel", "Maintenance", "Fleet", "Config"],
+      "metrics": [["93%", "Fleet health"], ["18", "Open exceptions"]],
+      "modules": ["Executive KPI band", "Exception inbox", "Fleet activity timeline", "Cost center filter set"],
+      "moduleDetails": {
+        "Executive KPI band": { "icon": "monitoring", "copy": "Summarizes health, spend, risk, and trend signals with clear threshold ownership." },
+        "Exception inbox": { "icon": "inbox", "copy": "Prioritizes operational exceptions with owner, severity, age, and next action." },
+        "Fleet activity timeline": { "icon": "timeline", "copy": "Shows recent driver, vehicle, fuel, maintenance, and support events in accountable sequence." },
+        "Cost center filter set": { "icon": "filter_alt", "copy": "Preserves fleet scope, saved views, and reset behavior across dashboard modules." }
+      },
+      "processDetails": {
+        "Topbar": "Provides global actions, search entry, identity, and workspace affordances without redefining button, input, or avatar behavior.",
+        "Sidebar": "Provides desktop product navigation, hierarchy, active state, and section persistence without owning module content.",
+        "Fleet Dashboard Overview": "Sets the shared dashboard shell, filter memory, KPI hierarchy, and exception routing.",
+        "Fuel Dashboard": "Tracks spend, authorization anomalies, station usage, and drill-down evidence for fuel operations.",
+        "Roles and Permissions": "Controls who can see, change, approve, and audit fleet-management actions."
+      },
+      "standard": "This template is the manager operating console: it must preserve context while moving from health scan to exception triage to accountable follow-up.",
+      "screenSystem": "The screen system is built around overview, exception handling, activity history, and scope controls so managers can move without losing operational context.",
+      "informationArchitecture": "Navigation follows fleet-management responsibility: overview first, then operational domains, then configuration.",
+      "primary": "Fleet manager scans operational health, isolates exceptions, and assigns follow-up without leaving the dashboard.",
+      "permissions": ["fleet scope", "cost center", "admin role"],
+      "data": ["vehicle health", "driver status", "alerts", "spend"],
+      "states": ["loaded", "loading", "empty", "error", "permission", "offline"],
+      "surfaces": ["Laptop", "Desktop", "TV"],
+      "telemetry": ["dashboard filtered", "exception opened", "follow-up assigned"],
+      "qualityGates": ["Filters persist across dashboard modules.", "Exceptions keep owner, severity, and recovery route.", "Permission scope changes visible data and actions."]
+    },
+    "Driver Card Wallet": {
+      "nav": ["Card", "Movements", "Limits", "Help"],
+      "metrics": [["Active", "Card status"], ["$820", "Today spent"]],
+      "modules": ["Card status block", "Quick actions", "Movement receipt detail", "Dispute entry point"],
+      "moduleDetails": {
+        "Card status block": { "icon": "account_balance_wallet", "copy": "Keeps status, limit, risk, and usable balance visible before card-level actions." },
+        "Quick actions": { "icon": "bolt", "copy": "Groups frequent controls while preserving confirmation, disabled reasons, and support routing." },
+        "Movement receipt detail": { "icon": "receipt_long", "copy": "Explains a movement with merchant, amount, authorization, timestamp, card, and support evidence." },
+        "Dispute entry point": { "icon": "support_agent", "copy": "Starts recovery with eligibility, required evidence, expected timing, and audit trail." }
+      },
+      "processDetails": {
+        "Mobile Card Overview": "Keeps status, limit, movement summary, blocked states, and next useful action visible.",
+        "Mobile Card Detail and Quick Actions": "Lets drivers control a card while preserving confirmation, disabled reasons, and support handoff.",
+        "Mobile Movement Detail": "Turns each movement into receipt-like evidence with recovery, dispute, and audit context."
+      },
+      "standard": "This template is the card-control workspace: it must keep status, limits, movements, quick actions, and dispute recovery in one accountable system.",
+      "screenSystem": "The screen system separates card state, actions, movement evidence, and support entry so each module can fail or recover without hiding the card context.",
+      "informationArchitecture": "Navigation follows the wallet mental model: card first, movements second, limits third, help always available.",
+      "primary": "Driver needs fast control over a payment card while understanding risk, limits, support, and movement history.",
+      "permissions": ["card ownership", "support access"],
+      "data": ["card status", "movement detail", "merchant", "authorization code"],
+      "states": ["loaded", "loading", "empty", "error", "permission", "offline"],
+      "surfaces": ["Mobile", "Tablet", "Reduced motion"],
+      "telemetry": ["quick action started", "movement detail opened", "dispute entry opened"],
+      "qualityGates": ["Card status and limits remain visible before quick actions.", "Movement detail includes merchant, amount, authorization, and support route.", "Blocked or risky states explain the next safe action."]
+    },
+    "Routes and Stations": {
+      "nav": ["Map", "List", "Station", "Route"],
+      "metrics": [["1.2 km", "Nearest station"], ["8 min", "ETA"]],
+      "modules": ["Map with station pins", "Fallback station list", "Station services panel", "Route handoff"],
+      "moduleDetails": {
+        "Map with station pins": { "icon": "map", "copy": "Shows nearby stations with permission, loading, cluster, and selected-pin states." },
+        "Fallback station list": { "icon": "list_alt", "copy": "Keeps station discovery usable when map, GPS, or network context is unavailable." },
+        "Station services panel": { "icon": "local_gas_station", "copy": "Compares service availability, distance, fuel types, schedule, and restrictions." },
+        "Route handoff": { "icon": "near_me", "copy": "Transfers station context to navigation while preserving ETA, destination, and recovery copy." }
+      },
+      "processDetails": {
+        "Routes and Nearby Stations Mobile": "Keeps map, list, permissions, distance, and selected station in the same decision path.",
+        "Station Detail and Route Guidance": "Moves from station comparison to external navigation with ETA, service restrictions, and recovery."
+      },
+      "standard": "This template is the station-discovery workspace: map, list, station detail, and route handoff must stay equivalent, especially when location or network context fails.",
+      "screenSystem": "The screen system keeps map and list as parallel paths, with station detail and navigation handoff as explicit decisions.",
+      "informationArchitecture": "Navigation follows travel intent: discover, compare, inspect, and route.",
+      "primary": "Driver searches nearby stations, compares useful station information, and starts navigation with graceful location fallback.",
+      "permissions": ["location", "external navigation handoff"],
+      "data": ["station services", "distance", "fuel types", "route ETA"],
+      "states": ["loaded", "loading", "empty", "error", "permission", "offline"],
+      "surfaces": ["Mobile", "Tablet", "Reduced motion"],
+      "telemetry": ["station selected", "route handoff started", "fallback list opened"],
+      "qualityGates": ["Map and list remain equivalent paths.", "Location denial shows fallback list and manual station search.", "Route handoff preserves station context and recovery copy."]
+    },
+    "Fleet Dashboard Suite": {
+      "nav": ["Overview", "Combustible", "Mantenimiento", "EV", "Peaje", "Finanzas"],
+      "metrics": [["$1.8M", "Monthly spend"], ["7", "Dashboards"]],
+      "modules": ["Dashboard switcher", "Shared filter bar", "Domain KPI stack", "Drill-down table"],
+      "moduleDetails": {
+        "Dashboard switcher": { "icon": "dashboard_customize", "copy": "Moves between operational domains without losing scope, period, or comparison context." },
+        "Shared filter bar": { "icon": "filter_alt", "copy": "Controls fleet segment, time range, cost center, and saved views across dashboards." },
+        "Domain KPI stack": { "icon": "monitoring", "copy": "Pairs each KPI with definition, threshold, trend, and drill-in responsibility." },
+        "Drill-down table": { "icon": "table", "copy": "Supports sorting, filtering, density, export, keyboard use, and audit-ready row detail." }
+      },
+      "processDetails": {
+        "Topbar": "Provides global actions, search entry, identity, and workspace affordances without redefining button, input, or avatar behavior.",
+        "Sidebar": "Provides desktop product navigation, hierarchy, active state, and section persistence without owning module content.",
+        "Fleet Dashboard Overview": "Provides the shared shell, filters, health summary, and exception entry point.",
+        "Fuel Dashboard": "Tracks fuel spend, authorization health, station behavior, and anomaly recovery.",
+        "Maintenance Dashboard": "Connects vehicle maintenance status, cost, overdue work, and service follow-up.",
+        "Electromobility Dashboard": "Shows EV utilization, charging behavior, battery context, and operational thresholds.",
+        "Toll Dashboard": "Explains toll spend, route usage, exceptions, and finance reconciliation.",
+        "Fleet Dashboard": "Connects vehicles, drivers, segments, alerts, and operational ownership.",
+        "Finance Dashboard": "Controls spend visibility, exports, reconciliation, and audit-ready drill-down."
+      },
+      "standard": "This template is the multi-domain dashboard suite: each dashboard must share filters and navigation while preserving its own KPI definitions, thresholds, and drill-down evidence.",
+      "screenSystem": "The screen system coordinates dashboard switching, shared filters, KPI stacks, and drill-down tables across operational domains.",
+      "informationArchitecture": "Navigation follows domain accountability: overview, fuel, maintenance, EV, toll, fleet, and finance.",
+      "primary": "Fleet team moves across seven operational dashboards while preserving filters, context, thresholds, and accountability.",
+      "permissions": ["dashboard access", "finance visibility", "fleet segment"],
+      "data": ["fuel", "maintenance", "EV", "toll", "fleet", "finance"],
+      "states": ["loaded", "loading", "empty", "error", "permission", "offline"],
+      "surfaces": ["Laptop", "Desktop", "TV"],
+      "telemetry": ["dashboard switched", "threshold inspected", "drill-down opened"],
+      "qualityGates": ["Shared filters carry across all dashboards.", "Each KPI includes definition, threshold, trend, and drill-down.", "Finance visibility changes both data and available exports."]
+    },
+    "Configuration Console": {
+      "nav": ["Roles", "Drivers", "Vehicles", "Audit"],
+      "metrics": [["24", "Pending changes"], ["6", "Roles"]],
+      "modules": ["Permission matrix", "Driver lifecycle table", "Vehicle lifecycle table", "Audit trail"],
+      "moduleDetails": {
+        "Permission matrix": { "icon": "admin_panel_settings", "copy": "Shows role capabilities, dependencies, approval needs, and risky changes before save." },
+        "Driver lifecycle table": { "icon": "badge", "copy": "Manages driver creation, suspension, recovery, ownership, and evidence states." },
+        "Vehicle lifecycle table": { "icon": "local_shipping", "copy": "Manages vehicle status, assignment, eligibility, documents, and operational blockers." },
+        "Audit trail": { "icon": "manage_history", "copy": "Explains who changed what, when, why, and what downstream object was affected." }
+      },
+      "processDetails": {
+        "Topbar": "Provides global actions, search entry, identity, and workspace affordances without redefining button, input, or avatar behavior.",
+        "Sidebar": "Provides desktop product navigation, hierarchy, active state, and section persistence without owning module content.",
+        "Roles and Permissions": "Defines capability changes, approval gates, dependency warnings, and audit evidence.",
+        "Driver and Vehicle Administration": "Covers creation, update, suspension, reassignment, blocked states, and recovery for operational records.",
+        "Authentication, Login, Biometrics and OTP": "Protects access to admin actions with risk copy, fallback paths, and identity recovery."
+      },
+      "standard": "This template is the administrative control surface: permission changes, driver records, vehicle records, and audit evidence must stay connected.",
+      "screenSystem": "The screen system separates permissions, lifecycle tables, and audit history while preserving approval and dependency context.",
+      "informationArchitecture": "Navigation follows admin responsibility: roles, drivers, vehicles, and audit.",
+      "primary": "Admin manages roles, permissions, drivers, and vehicles with dependency warnings and auditability.",
+      "permissions": ["admin", "approver", "audit viewer"],
+      "data": ["roles", "permissions", "drivers", "vehicles", "audit events"],
+      "states": ["loaded", "loading", "empty", "error", "permission", "offline"],
+      "surfaces": ["Laptop", "Desktop"],
+      "telemetry": ["role changed", "driver lifecycle action submitted", "audit event opened"],
+      "qualityGates": ["Permission changes expose dependency warnings before save.", "Driver and vehicle lifecycle actions produce audit evidence.", "Approver and audit viewer roles see distinct capabilities."]
+    }
+  }
+}

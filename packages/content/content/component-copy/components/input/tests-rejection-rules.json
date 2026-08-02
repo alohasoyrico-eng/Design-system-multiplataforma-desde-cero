@@ -1,0 +1,22 @@
+{
+  "components": {
+    "input": {
+      "tests-rejection-rules": {
+        "mustTest": [
+          "Label, value, placeholder, helper, suffix, mono value, and error render from props.",
+          "Focus, typing, Tab, disabled, loading, and error states work.",
+          "Helper and error text are associated with the input.",
+          "Field Action reveal toggles value visibility, aria-pressed, and aria-label without adding a visible button container.",
+          "Responsive examples do not overflow at small viewports."
+        ],
+        "rejectIf": [
+          "Placeholder is the only label.",
+          "Error is only a color.",
+          "Value disappears during loading or validation.",
+          "Scale bypasses Density or uses raw spacing.",
+          "A field-local action is implemented as a one-off icon button style instead of the Field Action primitive."
+        ]
+      }
+    }
+  }
+}

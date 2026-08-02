@@ -1,0 +1,14 @@
+{
+  "demos": {
+    "fallback": {
+      "type": "surface",
+      "roles": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "sunken",
+        "inverse"
+      ]
+    }
+  }
+}

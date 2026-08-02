@@ -1,0 +1,51 @@
+{
+  "explorers": {
+    "items": {
+      "Growth": {
+        "type": "growth",
+        "initial": "seed",
+        "ariaLabel": "Growth maturity examples",
+        "choices": [
+          [
+            "seed",
+            "Seed"
+          ],
+          [
+            "stable",
+            "Stable"
+          ],
+          [
+            "measured",
+            "Measured"
+          ],
+          [
+            "deprecated",
+            "Deprecated"
+          ]
+        ],
+        "states": {
+          "seed": [
+            "Seed proposal",
+            "Document the use case, owner, tokens, and first validation path before broad adoption.",
+            "system.foundation.seed.impression"
+          ],
+          "stable": [
+            "Stable contract",
+            "The artifact has token coverage, tests, examples, and adoption guidance.",
+            "system.foundation.stable.usage"
+          ],
+          "measured": [
+            "Measured adoption",
+            "Usage, task success, and support signals are reviewed before expansion.",
+            "system.foundation.measured.outcome"
+          ],
+          "deprecated": [
+            "Deprecated safely",
+            "Migration path, replacement, and removal window are visible to all teams.",
+            "system.foundation.deprecated.notice"
+          ]
+        }
+      }
+    }
+  }
+}

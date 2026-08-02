@@ -1,0 +1,29 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "guidelines": {
+          "do": [
+            "Use one primary action per surface or decision group.",
+            "Write verb-first labels that describe the action outcome.",
+            "Use danger only for destructive or irreversible actions.",
+            "Use warning for risky but non-destructive actions.",
+            "Keep loading visually distinct from disabled."
+          ],
+          "dont": [
+            "Do not use generic labels like OK or Click here.",
+            "Do not use Button for icon-only actions; use the icon button component pattern.",
+            "Do not encode risk only through color.",
+            "Do not expose raw colors, spacing, shadows, or durations as public API.",
+            "Do not show growth metadata as visible decoration."
+          ],
+          "info": [
+            "fullWidth belongs to mobile sheets, stacked actions, and constrained containers.",
+            "Material Symbols are allowed through Symbol/Iconography foundations.",
+            "State precedence must stay stable for designers, developers, and agents."
+          ]
+        }
+      }
+    }
+  }
+}

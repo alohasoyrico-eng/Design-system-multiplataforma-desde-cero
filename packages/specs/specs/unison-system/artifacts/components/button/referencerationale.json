@@ -1,0 +1,9 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "referenceRationale": "Use the reference Button documentation model: spec, live demos, anatomy, accessibility, playground, API, guidelines, and tests. Do not copy vendor prefixes, Storybook dependency, generic examples, or unrelated naming."
+      }
+    }
+  }
+}

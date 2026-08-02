@@ -1,0 +1,157 @@
+{
+  "components": {
+    "spinner": {
+      "renderer": "spinner",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "skeleton": {
+      "renderer": "skeleton",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "dialog": {
+      "renderer": "dialog",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "menu": {
+      "renderer": "menu",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "drawer": {
+      "renderer": "drawer",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "accordion": {
+      "renderer": "accordion",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "empty-state": {
+      "renderer": "empty-state",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "table": {
+      "renderer": "table",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "avatar": {
+      "renderer": "avatar",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "slider": {
+      "renderer": "slider",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "stepper": {
+      "renderer": "stepper",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "list": {
+      "renderer": "list",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "kpi-tile": {
+      "renderer": "kpi-tile",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "chart-panel": {
+      "renderer": "chart-panel",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "station-pin": {
+      "renderer": "station-pin",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "route-summary": {
+      "renderer": "route-summary",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "code-input": {
+      "renderer": "code-input",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "components": {
+    "input": {
+      "api-foundations": {
+        "copy": "The API keeps free-form input controlled, visible, and recoverable. Density owns scale; state owns behavior.",
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": "Yes",
+            "notes": "Visible label and accessible name."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": "No",
+            "notes": "Input value."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": "No",
+            "notes": "Native input name."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": "No",
+            "notes": "Hint only; never the only label."
+          },
+          {
+            "name": "helper",
+            "type": "string",
+            "required": "No",
+            "notes": "Package alias for helper text."
+          },
+          {
+            "name": "helperText",
+            "type": "string",
+            "required": "No",
+            "notes": "Format, source, or recovery guidance."
+          },
+          {
+            "name": "error",
+            "type": "string",
+            "required": "No",
+            "notes": "Visible validation message."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Blocks edits; explain with helper text."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Shows lookup or validation progress."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Marks value as required."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": "No",
+            "notes": "Density-owned scale."
+          },
+          {
+            "name": "state",
+            "type": "\"default\" | \"focus\" | \"filled\" | \"loading\" | \"error\" | \"disabled\"",
+            "required": "No",
+            "notes": "Preview state; behavior props win."
+          },
+          {
+            "name": "variant",
+            "type": "\"text\" | \"email\" | \"password\" | \"number\" | \"currency\" | \"unit\" | \"search\"",
+            "required": "No",
+            "notes": "Capture role. It sets native type/input mode defaults without changing state rules."
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "required": "No",
+            "notes": "Optional leading symbol."
+          },
+          {
+            "name": "prefix",
+            "type": "string",
+            "required": "No",
+            "notes": "Optional short qualifier before the value; avoid using it as the only currency identifier."
+          },
+          {
+            "name": "mono",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Uses code typography for plates, IDs, card fragments, or amounts."
+          },
+          {
+            "name": "suffix",
+            "type": "string",
+            "required": "No",
+            "notes": "Adds a short non-interactive qualifier such as MXN, USD, EUR, kg, t, plate, or card."
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "required": "No",
+            "notes": "Native input type override when variant defaults are not enough."
+          },
+          {
+            "name": "inputMode",
+            "type": "string",
+            "required": "No",
+            "notes": "Native inputmode override for keyboards."
+          },
+          {
+            "name": "autocomplete",
+            "type": "string",
+            "required": "No",
+            "notes": "Native autocomplete hint."
+          },
+          {
+            "name": "align",
+            "type": "\"start\" | \"end\"",
+            "required": "No",
+            "notes": "Value alignment, usually end for numeric capture."
+          },
+          {
+            "name": "revealable",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Adds the show/hide affordance for password-like values."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(value: string, meta: InputValueMeta) => void",
+            "required": "No",
+            "notes": "Called with normalized value and display metadata for numeric, currency, and unit variants."
+          }
+        ]
+      }
+    }
+  }
+}

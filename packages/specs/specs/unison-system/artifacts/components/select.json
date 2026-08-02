@@ -1,0 +1,389 @@
+{
+  "artifacts": {
+    "components": {
+      "select": {
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Let people choose valid operational values while preserving label, selected value, source, loading, recovery, keyboard behavior, and responsive option access.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "Adopt the richer reference behavior for stateful selects, but translate visuals, spacing, typography, motion, and option semantics through Design System foundations and primitives.",
+        "anatomy": [
+          {
+            "part": "field wrapper",
+            "rule": "Owns label, helper, validation, and disabled/loading relationship.",
+            "tokens": [
+              "comp.select.*",
+              "sys.frame.*"
+            ]
+          },
+          {
+            "part": "trigger",
+            "rule": "Exposes current value and opens the option layer.",
+            "tokens": [
+              "sys.energy.*",
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "value",
+            "rule": "Visible selected option remains the accessible value summary.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "option layer",
+            "rule": "Popover or sheet presents options, groups, disabled reasons, and active option.",
+            "tokens": [
+              "sys.depth.*",
+              "sys.momentum.*"
+            ]
+          },
+          {
+            "part": "helper text",
+            "rule": "Explains source, freshness, validation, or recovery.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.accessibility.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "default",
+            "use": "Ordinary closed-choice field trigger."
+          },
+          {
+            "id": "inline",
+            "use": "Compact Select trigger embedded inside another field surface, such as Phone Input country code."
+          }
+        ],
+        "states": [
+          "default",
+          "open",
+          "focus",
+          "filled",
+          "loading",
+          "error",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > loading > error > open > focus > filled > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Energy for field surface, border, selected value emphasis, error identity, disabled identity, and option affordance.",
+            "tokens": [
+              "comp.select.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Energy changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Energy appears in mobility contexts.",
+            "test": "Verify select Energy behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Energy is only named in documentation without changing select behavior or validation."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice for label, selected value, helper text, option copy, recovery copy, and source freshness language.",
+            "tokens": [
+              "comp.select.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Voice changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Voice appears in mobility contexts.",
+            "test": "Verify select Voice behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Voice is only named in documentation without changing select behavior or validation."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame for field sizing, option layer width, sheet behavior, touch target, grid fit, and no-overflow layouts.",
+            "tokens": [
+              "comp.select.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Frame changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Frame appears in mobility contexts.",
+            "test": "Verify select Frame behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Frame is only named in documentation without changing select behavior or validation."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth for popover/sheet stacking and selected option affordance without decoration.",
+            "tokens": [
+              "comp.select.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Depth changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Depth appears in mobility contexts.",
+            "test": "Verify select Depth behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Depth is only named in documentation without changing select behavior or validation."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum for opening, closing, loading, and reduced-motion behavior.",
+            "tokens": [
+              "comp.select.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "Momentum changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Momentum appears in mobility contexts.",
+            "test": "Verify select Momentum behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Momentum is only named in documentation without changing select behavior or validation."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use State to resolve disabled, loading, error, open, focus, filled, and default before styling.",
+            "tokens": [
+              "comp.select.*",
+              "sys.state.*"
+            ],
+            "behavior": "State changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how State appears in mobility contexts.",
+            "test": "Verify select State behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "State is only named in documentation without changing select behavior or validation."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone to govern select behavior through Design System foundations and primitives.",
+            "tokens": [
+              "comp.select.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Tone changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Tone appears in mobility contexts.",
+            "test": "Verify select Tone behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Tone is only named in documentation without changing select behavior or validation."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth to govern select behavior through Design System foundations and primitives.",
+            "tokens": [
+              "comp.select.*",
+              "sys.growth.*"
+            ],
+            "behavior": "Growth changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Growth appears in mobility contexts.",
+            "test": "Verify select Growth behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Growth is only named in documentation without changing select behavior or validation."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol to govern select behavior through Design System foundations and primitives.",
+            "tokens": [
+              "comp.select.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Symbol changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Symbol appears in mobility contexts.",
+            "test": "Verify select Symbol behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Symbol is only named in documentation without changing select behavior or validation."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography to govern select behavior through Design System foundations and primitives.",
+            "tokens": [
+              "comp.select.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Iconography changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Iconography appears in mobility contexts.",
+            "test": "Verify select Iconography behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Iconography is only named in documentation without changing select behavior or validation."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility for combobox/listbox semantics, keyboard navigation, focus return, and announced recovery states.",
+            "tokens": [
+              "comp.select.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Accessibility changes select behavior, documentation, or validation in a testable way.",
+            "example": "select examples document how Accessibility appears in mobility contexts.",
+            "test": "Verify select Accessibility behavior through visual, state, accessibility, and contract checks.",
+            "rejectIf": "Accessibility is only named in documentation without changing select behavior or validation."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Density",
+          "Focus",
+          "Loading",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.select.*",
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*",
+          "sys.symbol.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "Visible label and accessible name source."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "Controlled selected value."
+          },
+          {
+            "name": "options",
+            "type": "Option[]",
+            "required": true,
+            "default": null,
+            "description": "Options with stable value, label, helper, disabled reason, and metadata."
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Optional leading Material Symbol for the selected domain."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Explains what kind of entity is expected."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Shows progress and prevents misleading stale options."
+          },
+          {
+            "name": "error",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Visible recovery copy associated with the field."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean | reason",
+            "required": false,
+            "default": false,
+            "description": "Blocks interaction and explains permission or availability."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": false,
+            "default": "md",
+            "description": "Maps the trigger and option rhythm to Design System Density."
+          },
+          {
+            "name": "state",
+            "type": "\"default\" | \"open\" | \"focus\" | \"filled\" | \"loading\" | \"error\" | \"disabled\"",
+            "required": false,
+            "default": "default",
+            "description": "Documents the visual and interaction state of the single-select field."
+          },
+          {
+            "name": "onChange",
+            "type": "(value, option) => void",
+            "required": true,
+            "default": null,
+            "description": "Emits semantic value, selected option, source, and analytics metadata."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Fleet filters",
+            "example": "Fleet Select filters dashboard, URL state, analytics, and table queries."
+          },
+          {
+            "context": "Vehicle selector",
+            "example": "Vehicle Select stays a field trigger; long, grouped, or searchable option journeys escalate to a pattern."
+          },
+          {
+            "context": "Permissioned options",
+            "example": "Unavailable options explain disabled reason instead of disappearing."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Keep label, value, helper text, and source visible.",
+            "Escalate long or searchable option journeys to a pattern.",
+            "Show disabled reasons inside unavailable options."
+          ],
+          "dont": [
+            "Do not use Select for free-form input.",
+            "Do not hide loading or permission states.",
+            "Do not expose raw option data without labels."
+          ],
+          "info": [
+            "Searchable and multi-select behavior become patterns when they sequence more than one decision."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "sheet or stacked field with full-width trigger"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "inline filters and popovers with visible helper text"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "larger filter surfaces and inspector panels"
+          }
+        ],
+        "tests": [
+          "Renders label, selected value, helper text, and combobox/listbox semantics.",
+          "Opens by click, Enter, Space, and ArrowDown.",
+          "Restores focus after selection, cancel, Escape, or outside click.",
+          "Announces loading, empty, error, disabled, and permission-blocked states.",
+          "Mobile fallback preserves selected value."
+        ],
+        "agentInstructions": [
+          "Use Select only for valid options, not free-form input.",
+          "Preserve label, value, helper, source, and recovery copy.",
+          "Ask before making searchable, multi-select, or product-system behavior."
+        ],
+        "rejectIf": [
+          "Label or helper text is missing.",
+          "Options do not have stable value and label.",
+          "Disabled or loading state is only visual.",
+          "Raw color, spacing, radius, or motion bypasses tokens."
+        ]
+      }
+    }
+  }
+}

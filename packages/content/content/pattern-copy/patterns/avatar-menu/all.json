@@ -1,0 +1,136 @@
+{
+  "patterns": {
+    "avatar-menu": {
+      "purpose": "Expose account, settings, and session actions from an avatar trigger while preserving one shared menu interaction model.",
+      "useWhen": [
+        "A shell or product surface needs account-level actions.",
+        "The trigger identity matters more than an icon-only overflow action.",
+        "Actions are compact, secondary, and tied to user/session context."
+      ],
+      "doNotUseWithoutReview": [
+        "The menu contains forms, long explanations, or multi-step settings.",
+        "The avatar is used only as decoration and does not open account actions.",
+        "The action set includes destructive or compliance actions without confirmation rules."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines trigger size, panel width, section separation, and edge alignment."
+        ],
+        [
+          "Voice",
+          "Owns short account labels, session action labels, and destructive copy."
+        ],
+        [
+          "Energy",
+          "Preserves neutral shell behavior; danger is only used for risky session actions when needed."
+        ],
+        [
+          "Depth",
+          "Menu panel floats above shell content without becoming a card."
+        ],
+        [
+          "Momentum",
+          "Trigger and panel reveal use the same menu rhythm as other contextual actions."
+        ],
+        [
+          "Accessibility",
+          "Avatar trigger announces the account menu, expanded state, menu role, and focus return."
+        ]
+      ],
+      "slots": [
+        [
+          "trigger",
+          "Menu variant: avatar-trigger",
+          "yes",
+          "Uses the shared Menu trigger that composes Avatar internally."
+        ],
+        [
+          "avatar",
+          "Avatar",
+          "yes",
+          "Shows account identity and optional status inside the trigger."
+        ],
+        [
+          "items",
+          "MenuItem[]",
+          "yes",
+          "Profile, settings, help, and session actions."
+        ],
+        [
+          "sections",
+          "separator",
+          "conditional",
+          "Separates account actions from session/destructive actions."
+        ]
+      ],
+      "componentsUsed": [
+        "Menu",
+        "Avatar"
+      ],
+      "variants": [
+        [
+          "Account",
+          "Current",
+          "Avatar trigger with profile, settings, and sign out."
+        ],
+        [
+          "Workspace",
+          "Supported",
+          "Avatar trigger with workspace and help actions."
+        ],
+        [
+          "Session risk",
+          "Supported",
+          "Session action uses danger tone when it ends access."
+        ]
+      ],
+      "motion": [
+        [
+          "Open",
+          "Panel opens after user interaction and inherits Menu reveal motion."
+        ],
+        [
+          "Close",
+          "Escape, outside click, or item selection closes and returns focus."
+        ],
+        [
+          "Selection",
+          "Selected actions close the panel and hand off feedback to the caller."
+        ]
+      ],
+      "accessibility": [
+        "Trigger uses aria-haspopup menu and aria-expanded.",
+        "Panel uses role menu and items use role menuitem.",
+        "Escape closes and returns focus to the avatar trigger.",
+        "The avatar has an accessible name through the trigger label.",
+        "Danger actions are not communicated through color alone."
+      ],
+      "tests": [
+        "Avatar trigger opens and closes the shared Menu panel.",
+        "Keyboard users can open with Enter or ArrowDown.",
+        "Escape closes and restores focus.",
+        "Account and session sections are separated.",
+        "No shell or template creates a parallel account menu implementation."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Avatar Menu for compact account/session actions.",
+          "Use separators when account and session actions have different risk.",
+          "Use the shared Menu avatar-trigger variant instead of local details markup."
+        ],
+        "mustAsk": [
+          "Actions change permissions, billing, legal state, or identity.",
+          "The menu needs forms, long settings, or onboarding content.",
+          "The avatar identity source is unknown."
+        ],
+        "rejectIf": [
+          "The trigger is a raw button or details element outside Menu.",
+          "Avatar and menu are implemented separately for the same trigger.",
+          "Session actions lack close behavior or focus recovery."
+        ],
+        "handoff": "Confirm identity source, action order, session risk, and whether any item should escalate to Dialog or Drawer."
+      }
+    }
+  }
+}

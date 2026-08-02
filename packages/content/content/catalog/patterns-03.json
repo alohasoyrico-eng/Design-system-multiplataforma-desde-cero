@@ -1,0 +1,143 @@
+{
+  "patterns": [
+    {
+      "type": "pattern",
+      "id": "drag-sortable-list",
+      "title": "Drag Sortable List",
+      "platform": "Cross-platform",
+      "summary": "Reorder dashboard modules, route stops, rules, or settings with keyboard alternatives and undo.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Motion Boundary",
+        "Button",
+        "Toast"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "advanced-filters",
+      "title": "Advanced Filters",
+      "platform": "Desktop",
+      "summary": "Compose complex dashboard, audit, and movement filters with saved views and reset behavior.",
+      "audiences": [
+        "PMs",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Select",
+        "Date Picker",
+        "Button",
+        "Date Range Picker"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "column-configurator",
+      "title": "Column Configurator",
+      "platform": "Desktop",
+      "summary": "Let users show, hide, reorder, and persist table columns without breaking exported data.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "PMs"
+      ],
+      "componentsUsed": [
+        "Table",
+        "Checkbox",
+        "Dialog"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "calendar-view",
+      "title": "Calendar View",
+      "platform": "Desktop",
+      "summary": "Represent scheduled maintenance, renewals, billing, and route windows with accessible date navigation.",
+      "audiences": [
+        "Service Designers",
+        "PMs",
+        "Developers"
+      ],
+      "componentsUsed": [
+        "Date Picker",
+        "Tooltip",
+        "Popover"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "chart-wrapper",
+      "title": "Chart Wrapper",
+      "platform": "Desktop",
+      "summary": "Standardize chart title, description, legend, tooltip, empty, loading, export, and accessible summary.",
+      "audiences": [
+        "PMs",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Chart Panel",
+        "Skeleton",
+        "Empty State"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "authentication-login-biometrics-and-otp",
+      "title": "Authentication, Login, Biometrics and OTP",
+      "platform": "Cross-platform",
+      "summary": "Authenticate safely across desktop and mobile with password, OTP, biometric fallback, risk copy, and recovery.",
+      "audiences": [
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Code Input",
+        "Biometric Prompt",
+        "Error Panel"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    }
+  ]
+}

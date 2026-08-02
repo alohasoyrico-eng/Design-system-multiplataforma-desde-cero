@@ -1,0 +1,34 @@
+{
+  "demos": {
+    "Motion Curves": {
+      "type": "motionToken",
+      "initial": "touch",
+      "ariaLabelTemplate": "{{title}} examples",
+      "choices": [
+        [
+          "touch",
+          "Touch"
+        ],
+        [
+          "local",
+          "Local"
+        ],
+        [
+          "page",
+          "Page"
+        ],
+        [
+          "route",
+          "Route"
+        ]
+      ],
+      "labels": {
+        "touch": "duration.touch / curve.touch",
+        "local": "duration.base / curve.enter",
+        "page": "duration.base / curve.move",
+        "route": "duration.slow / curve.enter"
+      },
+      "initialLabel": "curve.touch"
+    }
+  }
+}

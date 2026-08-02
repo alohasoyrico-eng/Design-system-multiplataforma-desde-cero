@@ -1,0 +1,98 @@
+{
+  "components": {
+    "date-range-picker": {
+      "operational-example": {
+        "copy": "Use Date Range Picker to capture one bounded start and end date range with readable value, local presets, and calendar selection. ZIP reference: DateRangePicker plus combo-range header composition.",
+        "scenario": {
+          "icon": "date_range",
+          "title": "Reporting window",
+          "meta": "Start date, end date, and local presets",
+          "items": [
+            {
+              "label": "Reporting range",
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-15"
+              },
+              "state": "selected"
+            },
+            {
+              "label": "Open range",
+              "value": {
+                "from": "2026-07-10"
+              },
+              "state": "focus"
+            },
+            {
+              "label": "Invalid range",
+              "value": {
+                "from": "2026-07-18",
+                "to": "2026-07-01"
+              },
+              "state": "error",
+              "helper": "End date must be after start date."
+            }
+          ],
+          "rationaleTitle": "Why Date Range Picker",
+          "rationale": [
+            "The ZIP includes a dedicated DateRangePicker and a combo-range demo. Flow keeps the field as the component and documents combo-range as composition.",
+            "It owns only local start/end selection, presets, selected range display, and calendar state.",
+            "Dashboard filters, comparison windows, URL persistence, and data refresh remain pattern responsibilities."
+          ]
+        }
+      },
+      "anatomy": {
+        "items": [
+          {
+            "part": "Label",
+            "rule": "Names the range purpose in visible text.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Range field",
+            "rule": "Shows the selected start and end dates as text.",
+            "tokens": [
+              "comp.date-picker.*"
+            ]
+          },
+          {
+            "part": "Preset row",
+            "rule": "Offers local shortcuts without owning reporting sync.",
+            "tokens": [
+              "sys.frame.*",
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "Calendar surface",
+            "rule": "Shows month navigation and day targets.",
+            "tokens": [
+              "sys.frame.*",
+              "sys.depth.*"
+            ]
+          },
+          {
+            "part": "Range state",
+            "rule": "Distinguishes start, in-range, and end dates.",
+            "tokens": [
+              "sys.state.*",
+              "sys.energy.*"
+            ]
+          }
+        ]
+      },
+      "accessibility": {
+        "statePrecedence": "disabled, error, warning, selected, focus, hover, default",
+        "items": [
+          "Associate the label and selected range with the trigger.",
+          "Expose the panel as a dialog with grid day semantics.",
+          "Keep start and end values visible as text.",
+          "Support keyboard opening, day selection, month navigation, and Escape close.",
+          "Do not use the component to own dashboard refresh or URL persistence."
+        ]
+      }
+    }
+  }
+}

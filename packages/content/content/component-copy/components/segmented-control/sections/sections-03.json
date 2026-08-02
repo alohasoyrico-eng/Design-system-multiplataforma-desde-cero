@@ -1,0 +1,150 @@
+{
+  "components": {
+    "segmented-control": {
+      "full-width": {
+        "copy": "Segmented Control may fill a form row or toolbar only when every segment remains readable and the group remains a single choice.",
+        "items": [
+          {
+            "label": "Form row",
+            "layout": "button-stack",
+            "demo": {
+              "variant": "outlined",
+              "state": "default",
+              "fullWidth": true
+            }
+          },
+          {
+            "label": "Dense panel",
+            "layout": "button-stack",
+            "demo": {
+              "variant": "toolbar",
+              "fullWidth": true
+            }
+          },
+          {
+            "label": "Mobile surface",
+            "layout": "button-stack",
+            "demo": {
+              "variant": "compact",
+              "fullWidth": true
+            }
+          }
+        ]
+      },
+      "responsive-layout-patterns": {
+        "copy": "Stack or compact segments on small viewports; do not let responsive behavior turn the control into navigation.",
+        "examples": [
+          {
+            "label": "Phone",
+            "layout": "button-stack",
+            "density": "lg",
+            "demos": [
+              {
+                "variant": "outlined",
+                "state": "default",
+                "fullWidth": true
+              }
+            ]
+          },
+          {
+            "label": "Desktop",
+            "layout": "simple-demo-row",
+            "density": "md",
+            "demos": [
+              {
+                "variant": "toolbar"
+              },
+              {
+                "variant": "icon-only"
+              }
+            ]
+          }
+        ]
+      },
+      "viewport-organization": {
+        "copy": "Viewport rules adjust density and wrapping while keeping the control local to one decision.",
+        "items": [
+          {
+            "title": "Phone",
+            "icon": "smartphone",
+            "rule": "Use touch-safe targets and avoid covering critical content.",
+            "layout": "touch surface",
+            "density": "lg",
+            "demo": {
+              "variant": "outlined"
+            }
+          },
+          {
+            "title": "Tablet",
+            "icon": "tablet_mac",
+            "rule": "Keep the component close to the surface it controls.",
+            "layout": "contextual panel",
+            "density": "md",
+            "demo": {
+              "variant": "toolbar"
+            }
+          },
+          {
+            "title": "Desktop",
+            "icon": "desktop_windows",
+            "rule": "Use compact density only when labels and focus remain visible.",
+            "layout": "work surface",
+            "density": "sm",
+            "demo": {
+              "variant": "icon-only"
+            }
+          }
+        ]
+      },
+      "playground": {
+        "copy": "Use the playground to verify labels, selected value, variant, state, and full-width behavior for one exclusive mode switch.",
+        "controls": [
+          {
+            "name": "label",
+            "label": "Label",
+            "type": "text",
+            "value": "Segmented Control"
+          },
+          {
+            "name": "variant",
+            "label": "Variant",
+            "type": "select",
+            "value": "outlined",
+            "options": [
+              "outlined",
+              "toolbar",
+              "compact",
+              "icon-only"
+            ]
+          },
+          {
+            "name": "state",
+            "label": "State",
+            "type": "select",
+            "value": "default",
+            "options": [
+              "default",
+              "hover",
+              "focus",
+              "selected",
+              "warning",
+              "disabled"
+            ]
+          },
+          {
+            "name": "fullWidth",
+            "label": "Full width",
+            "type": "checkbox",
+            "value": false
+          }
+        ],
+        "preview": {
+          "label": "Segmented Control",
+          "variant": "outlined",
+          "state": "default"
+        },
+        "snippet": "<SegmentedControl label=\"Segmented Control\" />"
+      }
+    }
+  }
+}

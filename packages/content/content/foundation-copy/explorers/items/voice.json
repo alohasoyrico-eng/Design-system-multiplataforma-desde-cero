@@ -1,0 +1,56 @@
+{
+  "explorers": {
+    "items": {
+      "Voice": {
+        "type": "voice",
+        "initial": "repair",
+        "ariaLabel": "Voice role examples",
+        "choices": [
+          [
+            "label",
+            "Label"
+          ],
+          [
+            "guidance",
+            "Guidance"
+          ],
+          [
+            "repair",
+            "Repair"
+          ],
+          [
+            "confirm",
+            "Confirm"
+          ]
+        ],
+        "states": {
+          "label": [
+            "Card status",
+            "Available balance and usage limit",
+            "Label copy",
+            "Use labels to name the object before explaining state."
+          ],
+          "guidance": [
+            "Before you continue",
+            "Enable location to find nearby stations faster.",
+            "Guidance copy",
+            "Guidance appears before failure and explains why the permission matters."
+          ],
+          "repair": [
+            "Card declined at station",
+            "Try another payment method or contact fleet support.",
+            "Repair copy",
+            "Your card is safe. The transaction was not completed and no charge was made."
+          ],
+          "confirm": [
+            "Card locked",
+            "Fuel purchases are now blocked for this card.",
+            "Confirmation copy",
+            "Confirmations use past tense and record the result of the action."
+          ]
+        },
+        "code": "voice.repair + typography.edenred-black-title + typography.ubuntu-body"
+      }
+    }
+  }
+}

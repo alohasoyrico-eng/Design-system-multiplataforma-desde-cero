@@ -1,0 +1,89 @@
+{
+  "components": {
+    "button": {
+      "states": {
+        "copy": "States tell the user whether the system can act, is acting, rejected the action, or needs recovery.",
+        "demos": [
+          {
+            "label": "Default",
+            "button": {
+              "label": "Approve",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "",
+              "state": "",
+              "density": ""
+            },
+            "state": "default"
+          },
+          {
+            "label": "Hover",
+            "button": {
+              "label": "Approve",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "",
+              "state": "hover",
+              "density": ""
+            },
+            "state": "hover"
+          },
+          {
+            "label": "Focus",
+            "button": {
+              "label": "Approve",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "",
+              "state": "focus",
+              "density": ""
+            },
+            "state": "focus"
+          },
+          {
+            "label": "Pressed",
+            "button": {
+              "label": "Approve",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "",
+              "state": "pressed",
+              "density": ""
+            },
+            "state": "pressed"
+          },
+          {
+            "label": "Disabled",
+            "button": {
+              "label": "Approve",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "",
+              "state": "disabled",
+              "density": ""
+            },
+            "state": "disabled"
+          },
+          {
+            "label": "Loading",
+            "button": {
+              "label": "Approving...",
+              "variant": "primary",
+              "intent": "",
+              "size": "md",
+              "icon": "progress_activity",
+              "state": "loading",
+              "density": ""
+            },
+            "state": "loading"
+          }
+        ]
+      }
+    }
+  }
+}

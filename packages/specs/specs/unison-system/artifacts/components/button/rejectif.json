@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "rejectIf": [
+          "No visible label or accessible name.",
+          "More than one primary action in the same decision group without rationale.",
+          "Danger or warning action lacks clear consequence copy nearby.",
+          "Loading state looks identical to disabled.",
+          "Icon replaces the label.",
+          "Raw hex, px, ms, shadow, or icon glyph appears in the public contract.",
+          "Growth metadata changes the visual appearance of the button.",
+          "Any foundation coverage is partial, missing, or token-only.",
+          "Viewport adaptation relies on breakpoints without density/context rules.",
+          "Button exposes public size as an independent scale decision.",
+          "Icon color diverges from label color in filled danger or warning states.",
+          "Secondary and outlined are visually indistinguishable.",
+          "Primary Button does not use action-primary, or secondary/outlined Button uses filled blue action color."
+        ]
+      }
+    }
+  }
+}

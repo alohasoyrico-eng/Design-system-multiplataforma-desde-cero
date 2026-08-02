@@ -1,0 +1,156 @@
+{
+  "patterns": {
+    "fullscreen-sheet": {
+      "purpose": "Run a focused mobile task in a near-fullscreen sheet while preserving route context, recovery, validation, and a clear close path.",
+      "useWhen": [
+        "A mobile system needs more than one short action but should not become a new page.",
+        "Users need to edit or review contextual data without losing their place.",
+        "The task needs step progress, validation, and submit feedback."
+      ],
+      "doNotUseWithoutReview": [
+        "The task is permanent navigation or a full screen destination.",
+        "The sheet hides critical context needed to make the decision.",
+        "Close, back, validation, or focus recovery rules are unclear."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines safe area, sheet edge, internal scrolling, action rail, and responsive density."
+        ],
+        [
+          "Voice",
+          "Owns title, helper copy, validation, close, back, and submit labels."
+        ],
+        [
+          "Energy",
+          "Controls action priority, focus, invalid, disabled, and success states."
+        ],
+        [
+          "Depth",
+          "Separates the sheet from the current route only when it leaves document system."
+        ],
+        [
+          "Momentum",
+          "Uses sheet reveal, step transition, and reduced-motion fallback."
+        ],
+        [
+          "Accessibility",
+          "Requires labelled surface, focus containment, Escape/back close, and restored focus."
+        ]
+      ],
+      "slots": [
+        [
+          "trigger",
+          "Button",
+          "yes",
+          "Opens the mobile task after user intent."
+        ],
+        [
+          "sheet",
+          "BottomSheet",
+          "yes",
+          "Owns the mobile container and close recovery."
+        ],
+        [
+          "progress",
+          "Stepper",
+          "conditional",
+          "Shows task position for multi-step work."
+        ],
+        [
+          "content",
+          "Input | Select | Custom",
+          "yes",
+          "Task fields or review content."
+        ],
+        [
+          "validation",
+          "InlineValidation",
+          "conditional",
+          "Explains blocked progress."
+        ],
+        [
+          "actions",
+          "Button[]",
+          "yes",
+          "Back, continue, submit, and cancel actions."
+        ],
+        [
+          "feedback",
+          "Toast",
+          "conditional",
+          "Confirms completion without replacing navigation."
+        ]
+      ],
+      "componentsUsed": [
+        "Stepper",
+        "Input",
+        "Button",
+        "Inline Validation",
+        "Card Summary",
+        "Toast"
+      ],
+      "variants": [
+        [
+          "Single task",
+          "Candidate",
+          "One sheet with one submit step."
+        ],
+        [
+          "Stepped task",
+          "Current candidate",
+          "Step progress, back/continue, validation, and submit."
+        ],
+        [
+          "Review task",
+          "Candidate",
+          "Final step summarizes values before submit."
+        ]
+      ],
+      "motion": [
+        [
+          "Open",
+          "Sheet enters after trigger with Design System reveal timing."
+        ],
+        [
+          "Step change",
+          "Content changes only after explicit continue/back."
+        ],
+        [
+          "Close",
+          "Cancel or submit restores focus to the trigger."
+        ]
+      ],
+      "accessibility": [
+        "The sheet has an accessible title.",
+        "Open state starts closed and only changes after user action.",
+        "Validation appears after attempted progress.",
+        "Back and close paths are keyboard reachable.",
+        "Focus returns to the trigger after close."
+      ],
+      "tests": [
+        "Trigger opens sheet from closed state.",
+        "Continue advances only when required data is present.",
+        "Back returns to the previous step.",
+        "Submit shows feedback and closes the sheet.",
+        "Phone viewport keeps actions visible without overlap."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Fullscreen Sheet for contextual mobile tasks that are larger than an Action Sheet.",
+          "Use Stepper when the task has clear ordered steps.",
+          "Use Inline Validation for blocked progress."
+        ],
+        "mustAsk": [
+          "Navigation ownership, close recovery, destructive submit, or persistence rules are unclear."
+        ],
+        "rejectIf": [
+          "The sheet replaces primary navigation.",
+          "The task has no close or back path.",
+          "Validation appears before user action."
+        ],
+        "handoff": "Confirm trigger, step model, required fields, close behavior, submit consequence, and feedback."
+      }
+    }
+  }
+}

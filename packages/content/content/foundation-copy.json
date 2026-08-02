@@ -1,0 +1,33 @@
+{
+  "$systemShards": [
+    "foundation-copy/foundations.json",
+    "foundation-copy/fallbacksubtitle.json",
+    "foundation-copy/referencedetails.json",
+    "foundation-copy/purposepoints.json",
+    "foundation-copy/specsection.json",
+    "foundation-copy/specfallbacks.json",
+    "foundation-copy/tokenarchitecture.json",
+    "foundation-copy/dependencyrules.json",
+    "foundation-copy/visual-sections/energypalette.json",
+    "foundation-copy/visual-sections/energyfilledstatus.json",
+    "foundation-copy/visual-sections/voicetypography.json",
+    "foundation-copy/visual-sections/voicetokens.json",
+    "foundation-copy/visual-sections/framespacing.json",
+    "foundation-copy/visual-sections/framegrid.json",
+    "foundation-copy/visual-sections/framedensity.json",
+    "foundation-copy/visual-sections/frametokens.json",
+    "foundation-copy/visual-sections/framesystem.json",
+    "foundation-copy/explorers/sectiontitletemplate.json",
+    "foundation-copy/explorers/description.json",
+    "foundation-copy/explorers/fallback.json",
+    "foundation-copy/explorers/items/energy.json",
+    "foundation-copy/explorers/items/frame.json",
+    "foundation-copy/explorers/items/voice.json",
+    "foundation-copy/explorers/items/depth.json",
+    "foundation-copy/explorers/items/momentum.json",
+    "foundation-copy/explorers/items/symbol.json",
+    "foundation-copy/explorers/items/tone.json",
+    "foundation-copy/explorers/items/growth.json",
+    "foundation-copy/explorers/items/accessibility.json"
+  ]
+}

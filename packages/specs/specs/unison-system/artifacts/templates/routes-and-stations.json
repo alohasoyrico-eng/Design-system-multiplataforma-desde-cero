@@ -1,0 +1,108 @@
+{
+  "artifacts": {
+    "templates": {
+      "routes-and-stations": {
+        "layer": "Template",
+        "platform": "Mobile",
+        "audiences": [
+          "Product Designers",
+          "PMs",
+          "Developers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "purpose": "Driver searches nearby stations, compares useful station information, and starts navigation with graceful location fallback.",
+        "maturityTarget": "measured",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Tone",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Iconography",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Breakpoints",
+          "Maps"
+        ],
+        "patternDependencies": [
+          "Routes and Nearby Stations Mobile",
+          "Station Detail and Route Guidance"
+        ],
+        "tokenDependencies": [
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.accessibility.*",
+          "sys.momentum.*",
+          "sys.maps.*"
+        ],
+        "densityContext": [
+          "Mobile",
+          "Tablet",
+          "Reduced motion"
+        ],
+        "modules": [
+          "Map with station pins",
+          "Fallback station list",
+          "Station services panel",
+          "Route handoff"
+        ],
+        "dataSources": [
+          "station services",
+          "distance",
+          "fuel types",
+          "route ETA"
+        ],
+        "permissions": [
+          "location",
+          "external navigation handoff"
+        ],
+        "states": [
+          "loaded",
+          "loading",
+          "empty",
+          "error",
+          "permission",
+          "offline"
+        ],
+        "surfaces": [
+          "Mobile",
+          "Tablet",
+          "Reduced motion"
+        ],
+        "telemetry": [
+          "station selected",
+          "route handoff started",
+          "fallback list opened"
+        ],
+        "qualityGates": [
+          "Map and list remain equivalent paths.",
+          "Location denial shows fallback list and manual station search.",
+          "Route handoff preserves station context and recovery copy."
+        ],
+        "agentInstructions": [
+          "This template is the station-discovery workspace: map, list, station detail, and route handoff must stay equivalent, especially when location or network context fails.",
+          "The screen system keeps map and list as parallel paths, with station detail and navigation handoff as explicit decisions.",
+          "Navigation follows travel intent: discover, compare, inspect, and route."
+        ],
+        "rejectIf": [
+          "Template invents behavior outside its approved pattern dependencies.",
+          "Template modules omit data, permission, state, or recovery ownership.",
+          "Template bypasses Design System foundations, primitives, density, or semantic tokens."
+        ]
+      }
+    }
+  }
+}

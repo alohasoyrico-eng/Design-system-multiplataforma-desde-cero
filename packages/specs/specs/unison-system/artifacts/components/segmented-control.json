@@ -1,0 +1,362 @@
+{
+  "artifacts": {
+    "components": {
+      "segmented-control": {
+        "id": "segmented-control",
+        "name": "Segmented Control",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Switch one mutually exclusive local mode inside the current surface without navigating, filtering a dashboard, or coordinating a process.",
+        "anatomy": [
+          {
+            "part": "Container",
+            "rule": "Groups related exclusive options and owns the shared border.",
+            "tokens": [
+              "sys.frame.*",
+              "comp.segmented-control.*"
+            ]
+          },
+          {
+            "part": "Segment",
+            "rule": "One selectable mode with visible label.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Selected indicator",
+            "rule": "Shows the active mode through Flow action-primary, outline contrast, low radius, and aria-selected.",
+            "tokens": [
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "Optional icon",
+            "rule": "Supports recognition without replacing text.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "Focus ring",
+            "rule": "Marks keyboard focus on the active segment.",
+            "tokens": [
+              "sys.accessibility.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "outlined",
+            "description": "Low-radius outlined mode switch for local exclusive choices, visually distinct from Tabs."
+          },
+          {
+            "id": "toolbar",
+            "description": "Tool-adjacent switch for dense work areas."
+          },
+          {
+            "id": "compact",
+            "description": "Space-saving treatment for narrow panels."
+          },
+          {
+            "id": "icon-only",
+            "description": "Icon-only mode switch with accessible labels for compact local choices."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "selected",
+          "warning",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > warning > selected > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Flow action-primary for selected/current segment; ZIP informs shape, outline treatment, and motion.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.energy.*"
+            ],
+            "behavior": "The component communicates action and priority without raw colors.",
+            "example": "Segmented Control",
+            "test": "Verify selected/current segment uses Flow action-primary and nonselected segments use neutral text/surface.",
+            "rejectIf": "Selected/current uses raw color or non-Flow color."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use concise labels and short contextual copy.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Text explains the local decision without pattern instructions.",
+            "example": "Segmented Control",
+            "test": "voice audit",
+            "rejectIf": "Ambiguous or hidden labels."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use stable geometry, spacing, and target size.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Layout remains predictable across densities.",
+            "example": "Segmented Control",
+            "test": "frame audit",
+            "rejectIf": "Targets collapse or overlap."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use elevation only when the component floats above a surface.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Layering clarifies context without persistent workspace behavior.",
+            "example": "Segmented Control",
+            "test": "depth audit",
+            "rejectIf": "Depth creates a new process."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Design System motion for state and layer transitions.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "Changes feel responsive and respect reduced motion.",
+            "example": "Segmented Control",
+            "test": "momentum audit",
+            "rejectIf": "Raw easing or distracting motion."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use explicit state precedence from the contract.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.state.*"
+            ],
+            "behavior": "Conflicting states resolve predictably.",
+            "example": "disabled > warning > selected > focus > hover > default",
+            "test": "state audit",
+            "rejectIf": "State precedence is undefined."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use warning or critical tone only with visible reason.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Risk is explained through copy and state.",
+            "example": "Segmented Control",
+            "test": "tone audit",
+            "rejectIf": "Tone is decorative only."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Escalate orchestration beyond one local control to patterns.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.growth.*"
+            ],
+            "behavior": "The component remains atomic.",
+            "example": "Segmented Control",
+            "test": "growth audit",
+            "rejectIf": "Component absorbs pattern behavior."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use symbols as support for visible labels or accessible names.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Icons accelerate recognition without replacing meaning.",
+            "example": "tune",
+            "test": "symbol audit",
+            "rejectIf": "Icon-only ambiguity."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Design System icon sizing and optical alignment.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Symbols align with text and target size.",
+            "example": "tune",
+            "test": "iconography audit",
+            "rejectIf": "Custom mismatched icons."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Expose label, state, focus, keyboard, and dismissal or selection behavior.",
+            "tokens": [
+              "comp.segmented-control.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Assistive technology can operate the component.",
+            "example": "Segmented Control",
+            "test": "accessibility audit",
+            "rejectIf": "Pointer-only behavior."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.segmented-control.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Accessible group label."
+          },
+          {
+            "name": "items",
+            "type": "Array<{ key?: string; value?: string; label: string; icon?: string }>",
+            "required": true,
+            "notes": "Visible segments with stable keys, optional values, and optional supporting icons."
+          },
+          {
+            "name": "selectedKey",
+            "type": "string",
+            "required": false,
+            "notes": "Currently selected item key or value."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(key: string) => void",
+            "required": false,
+            "notes": "Called when local selection changes."
+          },
+          {
+            "name": "variant",
+            "type": "\"outlined\" | \"toolbar\" | \"compact\" | \"icon-only\"",
+            "required": false,
+            "notes": "Presentation variant for the local segmented surface."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": false,
+            "notes": "Density-owned scale for segment target sizing."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Fleet operations",
+            "example": "Segmented Control"
+          },
+          {
+            "context": "Driver mobile",
+            "example": "Segmented Control"
+          },
+          {
+            "context": "Admin console",
+            "example": "Segmented Control"
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for one local mutually exclusive choice.",
+            "Keep labels visible even when icons are present.",
+            "Keep the selected item announced with aria-selected."
+          ],
+          "dont": [
+            "Do not use for page navigation.",
+            "Do not combine unrelated controls inside the group.",
+            "Do not use it as a dashboard filter bar."
+          ],
+          "info": [
+            "Check keyboard arrow movement.",
+            "Check mobile wrapping and label fit.",
+            "Check selected contrast in every density."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "touch-safe local control"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "contextual work surface"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin surface"
+          }
+        ],
+        "tests": [
+          "Visible labels",
+          "aria-selected state",
+          "Keyboard movement",
+          "Focus ring",
+          "Mobile wrapping",
+          "Disabled segment",
+          "Selected/current segment uses Flow action-primary",
+          "Outlined, toolbar, compact, and icon-only variants have package-backed geometry"
+        ],
+        "agentInstructions": [
+          "Use Segmented Control for view mode, chart mode, local layout density, or map/list switch.",
+          "Keep each segment as a single option with visible text.",
+          "Use warning only when the current mode has a policy or availability caveat."
+        ],
+        "rejectIf": [
+          "It changes routes or pages.",
+          "It coordinates multiple filters.",
+          "Segments rely on icons only.",
+          "Selected state is color-only.",
+          "Selected/current uses non-Flow color.",
+          "Toolbar or compact is only documented but not implemented in package styles."
+        ],
+        "semanticDecisions": [
+          {
+            "id": "selected-current-color",
+            "state": "selected/current",
+            "decision": "Use sys.energy action-primary for selected/current segment.",
+            "zipInfluence": "Low-radius outline, compact geometry, icon support, and indicator motion."
+          }
+        ]
+      }
+    }
+  }
+}

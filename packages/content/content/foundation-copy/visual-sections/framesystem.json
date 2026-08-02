@@ -1,0 +1,52 @@
+{
+  "visualSections": {
+    "frameSystem": {
+      "title": "Responsive And Density",
+      "description": "Frame resolves layout decisions before components render. Pages declare density and viewport tier; components inherit spacing, control heights, radii, and grid behavior.",
+      "densityTitle": "Density",
+      "densityMeta": "surface-level contract",
+      "gridTitle": "Grid",
+      "gridMeta": "responsive tiers",
+      "densities": [
+        [
+          "Compact",
+          "dense operations",
+          "16px control padding",
+          "48px section gap"
+        ],
+        [
+          "Default",
+          "standard product rhythm",
+          "20px control padding",
+          "64px section gap"
+        ],
+        [
+          "Comfortable",
+          "review or touch-heavy flows",
+          "24px control padding",
+          "80px section gap"
+        ]
+      ],
+      "grids": [
+        [
+          "Mobile",
+          "1 column",
+          "16px margin",
+          "0px gutter"
+        ],
+        [
+          "Tablet",
+          "6 columns",
+          "24px margin",
+          "24px gutter"
+        ],
+        [
+          "Desktop",
+          "12 columns",
+          "48px margin",
+          "1440px max"
+        ]
+      ]
+    }
+  }
+}

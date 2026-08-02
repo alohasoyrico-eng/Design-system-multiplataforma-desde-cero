@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "0.1.0",
+  "standard": "system-pattern-backlog",
+  "rule": "Component != Pattern != Template. Components remain reusable surfaces; patterns own reusable process orchestration, policy, state, recovery, routing, data loading, and multi-component behavior; templates compose screens, IA, domain modules, and end-to-end product journeys from patterns.",
+  "classificationRules": {
+    "component": [
+      "A bounded reusable unit with local props, local states, and package-owned behavior.",
+      "It must not own process policy, data fetching, routing, or multi-step recovery.",
+      "If behavior needs cross-component orchestration, keep the component bounded and move orchestration to a pattern."
+    ],
+    "pattern": [
+      "A reusable behavior contract that coordinates multiple components, policy, state transitions, recovery, accessibility, and responsive behavior.",
+      "It may be domain-specific when the behavior is reusable across templates or product areas, such as authentication, onboarding, bulk actions, administration, or permissions.",
+      "It is still a pattern when it governs a system rather than a final product screen, even if one template is the first consumer.",
+      "It must expose slots, dependencies, states, motion, MIEL, tests, and rejection rules."
+    ],
+    "template": [
+      "A final product composition: one or more screens, IA, navigation, modules, domain data, and end-to-end task coverage.",
+      "It consumes patterns and components but does not redefine their contracts.",
+      "Domain dashboard pages or product modules belong to templates unless they introduce reusable interaction behavior beyond the screen composition."
+    ],
+    "classificationTests": [
+      "If removing brand/domain data leaves a reusable interaction contract, classify as pattern.",
+      "If the artifact mostly arranges multiple patterns into a product screen or suite, classify as template.",
+      "If it can be shipped as one package factory with local props and no orchestration policy, classify as component.",
+      "If it is a domain system with state machine, policy, recovery, and reusable slots, classify as pattern even when it appears inside a template."
+    ],
+    "knownPatternExamples": [
+      "authentication-login-biometrics-and-otp",
+      "driver-onboarding-mobile",
+      "fleet-manager-onboarding-desktop",
+      "roles-and-permissions",
+      "driver-and-vehicle-administration",
+      "virtual-data-table",
+      "advanced-filters"
+    ],
+    "knownTemplateModuleExamples": [
+      "fleet-dashboard-overview",
+      "fuel-dashboard",
+      "maintenance-dashboard",
+      "electromobility-dashboard",
+      "toll-dashboard",
+      "fleet-dashboard",
+      "finance-dashboard",
+      "mobile-card-overview",
+      "mobile-recent-movements",
+      "mobile-card-detail-and-quick-actions",
+      "mobile-movement-detail",
+      "routes-and-nearby-stations-mobile",
+      "station-detail-and-route-guidance"
+    ]
+  },
+  "status": {
+    "componentsImplemented": 50,
+    "componentBacklogOpen": 0,
+    "patternRiskItems": 9,
+    "readyForPatternAudit": true
+  },
+  "queues": {
+    "p0": [
+      "confirmation-dialog",
+      "authentication-login-biometrics-and-otp",
+      "virtual-data-table",
+      "roles-and-permissions"
+    ],
+    "p1": [
+      "bottom-sheet",
+      "action-sheet",
+      "fullscreen-sheet",
+      "drawer-adapter",
+      "command-palette",
+      "driver-onboarding-mobile"
+    ],
+    "p2": [
+      "drag-sortable-list",
+      "station-detail-and-route-guidance",
+      "routes-and-nearby-stations-mobile"
+    ],
+    "needsDecision": [
+      "motion-orchestration-foundation",
+      "animation-storytelling-pattern"
+    ]
+  },
+  "componentRiskMap": {
+    "dialog": {
+      "componentBoundary": "Modal surface semantics, label, description, actions, open and closed state.",
+      "patternWork": "Confirmation policy, irreversible action handling, financial or permission risk copy, and recovery system.",
+      "existingPatternDestinations": [
+        "confirmation-dialog"
+      ],
+      "priority": "p0",
+      "nextAction": "Audit Confirmation Dialog docs against Dialog factory and add risk tiers, recovery, disabled action, and audit-copy requirements."
+    },
+    "menu": {
+      "componentBoundary": "Compact contextual action list anchored to one trigger.",
+      "patternWork": "Command routing, permissions, shortcuts, destructive action hierarchy, and high-risk action alternatives.",
+      "existingPatternDestinations": [
+        "command-palette",
+        "toolbar",
+        "action-sheet"
+      ],
+      "priority": "p1",
+      "nextAction": "Define where menu behavior is command palette, toolbar overflow, or mobile action sheet instead of adding routing to Menu."
+    },
+    "drawer": {
+      "componentBoundary": "Side drawer surface with trigger, header, body, footer, and dialog semantics.",
+      "patternWork": "Edit lifecycle, validation, submit, dirty state, close recovery, support handoff, and responsive drawer adaptation.",
+      "existingPatternDestinations": [
+        "drawer-adapter",
+        "form-section",
+        "driver-and-vehicle-administration"
+      ],
+      "priority": "p1",
+      "nextAction": "Audit Drawer Adapter and admin flows for edit lifecycle and close recovery."
+    },
+    "table": {
+      "componentBoundary": "Semantic table structure, columns, rows, local sort indicators, and selected row state.",
+      "patternWork": "Remote data, virtualization, filtering, pagination, expansion, export, bulk actions, keyboard navigation, and row processs.",
+      "existingPatternDestinations": [
+        "virtual-data-table",
+        "toolbar",
+        "advanced-filters",
+        "column-configurator",
+        "fleet-dashboard"
+      ],
+      "priority": "p0",
+      "nextAction": "Use Virtual Data Table as the primary replacement for Data Table behavior before dashboard tables are expanded."
+    },
+    "bottom-sheet": {
+      "componentBoundary": "No public component boundary. Bottom Sheet is classified as a mobile pattern; any package factory is implementation support only.",
+      "patternWork": "Mobile context preservation, action hierarchy, dismissal, focus restoration, drag/gesture behavior, safe-area layout, and desktop escalation.",
+      "existingPatternDestinations": [
+        "bottom-sheet",
+        "action-sheet",
+        "fullscreen-sheet",
+        "station-detail-and-route-guidance",
+        "routes-and-nearby-stations-mobile"
+      ],
+      "priority": "p1",
+      "nextAction": "Move public docs to the Bottom Sheet pattern and keep Action Sheet / Fullscreen Sheet as more specific patterns built on the same mobile-sheet behavior."
+    },
+    "biometric-prompt": {
+      "componentBoundary": "Local biometric prompt with icon, copy, primary action, fallback text, and explicit state.",
+      "patternWork": "Authentication recovery, fallback routing, OTP handoff, passcode reset, lockout, risk escalation, and support recovery.",
+      "existingPatternDestinations": [
+        "authentication-login-biometrics-and-otp",
+        "driver-onboarding-mobile"
+      ],
+      "priority": "p0",
+      "nextAction": "Audit auth pattern to prove biometric prompt, Code input, error panel, and recovery states compose correctly."
+    },
+    "tree-view": {
+      "componentBoundary": "Bounded tree semantics for one local hierarchy surface. Sidebar may inform visual hierarchy, but app navigation chrome remains the Sidebar pattern.",
+      "patternWork": "Permission editors, drag and drop, dependencies, multi-pane hierarchy processs, templates, review paths, and nested table rows.",
+      "existingPatternDestinations": [
+        "sidebar",
+        "data-table",
+        "roles-and-permissions",
+        "drag-sortable-list",
+        "transfer-list"
+      ],
+      "priority": "p0",
+      "nextAction": "Keep Tree View visually aligned with Sidebar hierarchy cues while routing permission editors, drag/drop, and TableTree/Data Table behavior to patterns."
+    },
+    "motion-boundary": {
+      "componentBoundary": "One bounded region with explicit local motion state and reduced-motion signal.",
+      "patternWork": "Page choreography, route transitions, animation storytelling, sequencing, and cross-surface state.",
+      "existingPatternDestinations": [
+        "drag-sortable-list"
+      ],
+      "priority": "needsDecision",
+      "nextAction": "Decide whether broader motion orchestration belongs to a foundation reference or a dedicated pattern before adding new docs."
+    },
+    "animated-moment": {
+      "componentBoundary": "One bounded animation moment with label, state, and reduced-motion fallback.",
+      "patternWork": "Onboarding, education, campaign, multi-step animation sequences, celebration timing, and completion storytelling.",
+      "existingPatternDestinations": [
+        "driver-onboarding-mobile",
+        "authentication-login-biometrics-and-otp"
+      ],
+      "priority": "needsDecision",
+      "nextAction": "Decide whether animation storytelling should be documented as a pattern or governed by Illustration/Motion foundations."
+    }
+  },
+  "nextBatch": [
+    {
+      "id": "confirmation-dialog",
+      "reason": "P0 risk from Dialog and Quick Action. High-risk actions need confirmation, copy, recovery, and tests before admin/mobile patterns expand."
+    },
+    {
+      "id": "authentication-login-biometrics-and-otp",
+      "reason": "P0 risk from Biometric Prompt, Code Input, Phone Input, Error Panel, and Animated Moment."
+    },
+    {
+      "id": "virtual-data-table",
+      "reason": "P0 risk from Table and dashboard/admin patterns. Prevents Data Table behavior from leaking back into component layer."
+    },
+    {
+      "id": "roles-and-permissions",
+      "reason": "P0 risk from Tree View, permission processs, audit events, and admin safety."
+    }
+  ]
+}

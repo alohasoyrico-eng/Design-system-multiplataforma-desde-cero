@@ -1,0 +1,129 @@
+{
+  "artifacts": {
+    "foundations": {
+      "accessibility": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Accessibility",
+        "purpose": "Ensure every artifact preserves access through semantics, keyboard, focus, touch, contrast, reduced motion, language, localization, recovery, and fallback behavior.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "name",
+            "token": "a11y.name",
+            "use": "Every interactive control has visible or programmatic accessible name."
+          },
+          {
+            "id": "role",
+            "token": "a11y.role",
+            "use": "Native or ARIA role matches behavior."
+          },
+          {
+            "id": "state",
+            "token": "a11y.state",
+            "use": "Expanded, selected, busy, disabled, invalid, current announced correctly."
+          },
+          {
+            "id": "focus",
+            "token": "sys.a11y.focus.*",
+            "use": "Visible focus, order, trap, restore, skip route."
+          },
+          {
+            "id": "touch",
+            "token": "sys.a11y.touch.target.min",
+            "use": "Mobile and tablet controls meet target size."
+          },
+          {
+            "id": "contrast",
+            "token": "a11y.contrast.*",
+            "use": "Text, controls, status, charts, maps remain readable."
+          },
+          {
+            "id": "recovery",
+            "token": "a11y.recovery",
+            "use": "Errors explain cause, next step, support path, and escalation."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Authentication",
+            "example": "Code inputs group labels, paste behavior, error announcement, resend timer, and fallback."
+          },
+          {
+            "context": "Routes map",
+            "example": "Permission denied state provides fallback station list and route action alternatives."
+          },
+          {
+            "context": "Dashboard charts",
+            "example": "Every chart has title, description, text summary, legend, and keyboard-reachable data."
+          },
+          {
+            "context": "Configuration",
+            "example": "Permission matrix supports keyboard navigation, dependency warnings, and audit copy."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.a11y.*",
+          "sys.a11y.*",
+          "sys.state.*",
+          "sys.energy.*"
+        ],
+        "primitiveDependencies": [
+          "Focus",
+          "Disabled",
+          "Loading",
+          "Charts",
+          "Maps",
+          "Typography"
+        ],
+        "componentDependencies": [
+          "Button",
+          "Select",
+          "Code Input",
+          "Dialog",
+          "Table",
+          "Chart Panel",
+          "Station Detail and Route Guidance pattern",
+          "Checkbox",
+          "Switch"
+        ],
+        "agentInstructions": [
+          "Start with native semantics before ARIA.",
+          "Define keyboard behavior and focus restoration for every interactive artifact.",
+          "Reduced motion must preserve information.",
+          "Charts and maps require non-visual alternatives."
+        ],
+        "rejectIf": [
+          "Accessibility appears only as a final checklist.",
+          "Keyboard path is missing or trapped.",
+          "Chart/map has no text or list alternative.",
+          "Error lacks recovery, support, or escalation path."
+        ],
+        "patternDependencies": [
+          "Virtual Data Table",
+          "Permission Matrix"
+        ]
+      }
+    }
+  }
+}

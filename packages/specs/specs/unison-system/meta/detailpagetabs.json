@@ -1,0 +1,29 @@
+{
+  "detailPageTabs": {
+    "foundation": [
+      "Overview",
+      "Design",
+      "Build"
+    ],
+    "primitive": [
+      "Overview",
+      "Design",
+      "Build"
+    ],
+    "component": [
+      "Overview",
+      "Design",
+      "Build"
+    ],
+    "pattern": [
+      "Overview",
+      "Design",
+      "Build"
+    ],
+    "template": [
+      "Overview",
+      "Design",
+      "Build"
+    ]
+  }
+}

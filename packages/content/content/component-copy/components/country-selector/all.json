@@ -1,0 +1,144 @@
+{
+  "components": {
+    "country-selector": {
+      "operational-example": {
+        "copy": "Use Country Selector when a user must choose one country or calling-code context before another component uses that value.",
+        "scenario": {
+          "icon": "flag",
+          "title": "Country and calling code",
+          "meta": "SelectCountry reference translated through Flow",
+          "items": [
+            { "label": "Mexico", "value": "MX", "state": "default" },
+            { "label": "Cuba", "value": "CU", "state": "open" },
+            { "label": "United States", "value": "US", "state": "focus" }
+          ],
+          "rationaleTitle": "Why Country Selector",
+          "rationale": [
+            "It owns country, flag, calling code, listbox, selected state, and keyboard selection.",
+            "Phone Input consumes it instead of duplicating country selector behavior.",
+            "The flag supports recognition; country label and calling code remain the source of meaning."
+          ]
+        }
+      },
+      "anatomy": {
+        "items": [
+          { "part": "Trigger", "rule": "Shows selected flag, calling code, and chevron.", "tokens": ["comp.select.*", "sys.frame.*"] },
+          { "part": "Flag", "rule": "Provides decorative recognition only; text remains required.", "tokens": ["sys.iconography.*", "sys.symbol.*"] },
+          { "part": "Option layer", "rule": "Lists country label and calling code with selected state.", "tokens": ["comp.select.*", "sys.depth.*"] },
+          { "part": "Inline mode", "rule": "Allows composition inside Phone Input without changing ownership.", "tokens": ["sys.growth.*", "sys.state.*"] }
+        ]
+      },
+      "accessibility": {
+        "statePrecedence": "disabled, error, open, focus, default",
+        "items": [
+          "Expose combobox/listbox semantics with aria-expanded and aria-controls.",
+          "Keep country label and calling code available as text.",
+          "Do not use the flag as the only accessible signal.",
+          "Return focus to the trigger after selection."
+        ]
+      },
+      "variants": {
+        "copy": "Country Selector has a default standalone treatment and an inline treatment for composition inside another field.",
+        "demos": [
+          { "label": "Default", "value": "MX", "variant": "default" },
+          { "label": "Inline", "value": "CU", "variant": "inline", "inline": true },
+          { "label": "Error", "value": "US", "variant": "default", "state": "error" },
+          { "label": "Disabled", "value": "ES", "variant": "default", "state": "disabled" }
+        ]
+      },
+      "states": {
+        "copy": "Country Selector states cover default, open, focus, error, and disabled selection behavior.",
+        "demos": [
+          { "label": "Default", "value": "MX", "state": "default" },
+          { "label": "Open", "value": "CU", "state": "open" },
+          { "label": "Focus", "value": "US", "state": "focus" },
+          { "label": "Error", "value": "AR", "state": "error" },
+          { "label": "Disabled", "value": "ES", "state": "disabled" }
+        ]
+      },
+      "variant-state-behavior": {
+        "copy": "Variant defines whether the selector is standalone or inline; state still resolves through the same trigger and option layer.",
+        "states": ["default", "open", "focus", "error", "disabled"],
+        "rows": [
+          { "label": "Default", "demo": { "variant": "default", "value": "MX" } },
+          { "label": "Inline", "demo": { "variant": "inline", "inline": true, "value": "CU" } },
+          { "label": "Support", "demo": { "variant": "default", "value": "US" } }
+        ]
+      },
+      "full-width": {
+        "copy": "Country Selector normally keeps intrinsic width; parent fields may stretch it only as part of a larger form composition.",
+        "items": [
+          { "label": "Standalone", "layout": "button-stack", "demo": { "value": "MX" } },
+          { "label": "Inline field", "layout": "button-stack", "demo": { "value": "CU", "inline": true } },
+          { "label": "Support form", "layout": "button-stack", "demo": { "value": "US" } }
+        ]
+      },
+      "responsive-layout-patterns": {
+        "copy": "Use comfortable density on touch surfaces and keep the option layer wide enough for country names and calling codes.",
+        "examples": [
+          { "label": "Touch standalone", "layout": "button-stack", "density": "lg", "demos": [{ "value": "MX" }] },
+          { "label": "Phone inline", "layout": "button-stack", "density": "lg", "demos": [{ "value": "MX", "inline": true }] },
+          { "label": "Desktop", "layout": "simple-demo-row", "density": "sm", "demos": [{ "value": "MX" }, { "value": "US" }] }
+        ]
+      },
+      "viewport-organization": {
+        "copy": "Country selection stays a local selector. Phone verification, onboarding, and payment flows decide where it appears.",
+        "items": [
+          { "title": "Phone", "icon": "smartphone", "rule": "Use inline when paired with a telephone field.", "layout": "inline selector", "density": "lg", "demo": { "value": "MX", "inline": true } },
+          { "title": "Tablet", "icon": "tablet_mac", "rule": "Keep enough width for label and calling code.", "layout": "form control", "density": "md", "demo": { "value": "CU" } },
+          { "title": "Desktop", "icon": "desktop_windows", "rule": "Use compact density inside configuration or support forms.", "layout": "compact selector", "density": "sm", "demo": { "value": "US" } }
+        ]
+      },
+      "playground": {
+        "copy": "Use the playground to verify country value, inline composition, density, and state.",
+        "controls": [
+          { "name": "value", "label": "Country", "type": "select", "value": "MX", "options": ["MX", "US", "CU", "AR", "ES"] },
+          { "name": "state", "label": "State", "type": "select", "value": "default", "options": ["default", "open", "focus", "error", "disabled"] },
+          { "name": "density", "label": "Density", "type": "select", "value": "md", "options": ["sm", "md", "lg"] },
+          { "name": "inline", "label": "Inline", "type": "checkbox", "value": false }
+        ],
+        "preview": { "value": "MX", "state": "default" },
+        "snippet": "<CountrySelector value=\"MX\" />"
+      },
+      "api-foundations": {
+        "copy": "Country Selector API exposes one selected country and country option data. Flow owns trigger, listbox, state, density, flag primitive, and accessibility wiring.",
+        "props": [
+          { "name": "id", "type": "string", "required": "No", "notes": "Stable id used to connect trigger and listbox." },
+          { "name": "label", "type": "string", "required": "No", "notes": "Accessible selector label." },
+          { "name": "value", "type": "string", "required": "No", "notes": "Selected country code." },
+          { "name": "country", "type": "string", "required": "No", "notes": "Alias for the selected country code when composed by another field." },
+          { "name": "countries", "type": "CountryOption[]", "required": "No", "notes": "Country options with label, callingCode, and nationalLength." },
+          { "name": "disabled", "type": "boolean", "required": "No", "notes": "Prevents selection and removes trigger from tab order." },
+          { "name": "invalid", "type": "boolean", "required": "No", "notes": "Applies the error state when validation is owned by the consuming field." },
+          { "name": "density", "type": "sm | md | lg", "required": "No", "notes": "Maps selector spacing and target sizing to the density context." },
+          { "name": "inline", "type": "boolean", "required": "No", "notes": "Uses compact composition treatment." },
+          { "name": "searchable", "type": "boolean", "required": "No", "notes": "Shows a local country/code search field inside the option layer." },
+          { "name": "searchPlaceholder", "type": "string", "required": "No", "notes": "Placeholder for the local search field." },
+          { "name": "ariaLabel", "type": "string", "required": "No", "notes": "Overrides the trigger accessible name when composed in another component." },
+          { "name": "listboxLabel", "type": "string", "required": "No", "notes": "Overrides the option layer accessible label." },
+          { "name": "className", "type": "string", "required": "No", "notes": "Adds a consumer class for layout hooks without changing component anatomy." },
+          { "name": "hydrate", "type": "boolean", "required": "No", "notes": "Allows a parent component to hydrate once after composing the selector." },
+          { "name": "onValueChange", "type": "(countryCode, country) => void", "required": "No", "notes": "Emits selected country metadata." }
+        ]
+      },
+      "guidelines": {
+        "groups": [
+          { "title": "Use", "items": ["Use for country/calling-code selection.", "Compose it inside Phone Input.", "Keep labels and codes visible."] },
+          { "title": "Avoid", "items": ["Do not hide country name behind only a flag.", "Do not duplicate country selector logic inside phone fields.", "Do not use for generic region filters."] },
+          { "title": "Review", "items": ["Check country list ownership.", "Verify keyboard selection.", "Confirm inline usage does not obscure the phone value."] }
+        ]
+      },
+      "tests-rejection-rules": {
+        "mustTest": ["Combobox/listbox wiring", "Keyboard selection", "Flag plus text", "Inline composition", "Disabled and error states"],
+        "rejectIf": ["Flag is the only country signal.", "Phone Input duplicates selector logic.", "Calling code is not text.", "Keyboard cannot select an option."]
+      },
+      "miel": {
+        "copy": "MIEL treats Country Selector as a reusable country/calling-code selector. Agents may compose it into Phone Input but must not fold its ownership back into Phone Input.",
+        "canDecide": ["Use Country Selector for country and calling-code selection.", "Use inline mode inside Phone Input.", "Keep country label and calling code visible."],
+        "mustAsk": ["The country source must include compliance or market restrictions.", "The selector needs search beyond the default country list.", "Region, language, or currency behavior is being mixed into country selection."],
+        "rejectIf": ["The selector is represented only by flags.", "Phone Input owns duplicated selector markup.", "The component becomes a generic region filter."],
+        "handoff": "I am using Country Selector as the reusable country and calling-code selector. Please confirm the country source, supported markets, and whether inline composition is required."
+      }
+    }
+  }
+}

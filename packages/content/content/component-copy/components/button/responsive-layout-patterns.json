@@ -1,0 +1,92 @@
+{
+  "components": {
+    "button": {
+      "responsive-layout-patterns": {
+        "copy": "Show how actions compose in real surfaces: toolbars, step flows, and danger zones.",
+        "examples": [
+          {
+            "label": "Fleet table toolbar",
+            "layout": "action-layout three",
+            "buttons": [
+              {
+                "label": "Add vehicle",
+                "variant": "primary full",
+                "intent": "",
+                "size": "md",
+                "icon": "add",
+                "state": "",
+                "density": ""
+              },
+              {
+                "label": "Export CSV",
+                "variant": "outlined full",
+                "intent": "",
+                "size": "md",
+                "icon": "download",
+                "state": "",
+                "density": ""
+              },
+              {
+                "label": "Settings",
+                "variant": "ghost full",
+                "intent": "",
+                "size": "md",
+                "icon": "settings",
+                "state": "",
+                "density": ""
+              }
+            ]
+          },
+          {
+            "label": "Onboarding step",
+            "layout": "action-layout split",
+            "buttons": [
+              {
+                "label": "Save and continue",
+                "variant": "primary full",
+                "intent": "",
+                "size": "md",
+                "icon": "arrow_forward",
+                "state": "",
+                "density": ""
+              },
+              {
+                "label": "Back",
+                "variant": "outlined full",
+                "intent": "",
+                "size": "md",
+                "icon": "",
+                "state": "",
+                "density": ""
+              }
+            ]
+          },
+          {
+            "label": "Danger zone",
+            "layout": "action-layout two",
+            "buttons": [
+              {
+                "label": "Block card",
+                "variant": "primary full",
+                "intent": "danger",
+                "size": "md",
+                "icon": "block",
+                "state": "",
+                "density": ""
+              },
+              {
+                "label": "Reset limits",
+                "variant": "primary full",
+                "intent": "warning",
+                "size": "md",
+                "icon": "warning",
+                "state": "",
+                "density": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

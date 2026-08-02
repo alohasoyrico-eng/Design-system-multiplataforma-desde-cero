@@ -1,0 +1,44 @@
+{
+  "components": {
+    "card": {
+      "responsive-layout-patterns": {
+        "copy": "Mobile cards prioritize one scan value and next action. Desktop cards can support comparison and scan grids.",
+        "examples": [
+          {
+            "label": "Driver mobile",
+            "density": "lg",
+            "layout": "single",
+            "demo": {
+              "title": "Card ready",
+              "value": "$8,412.50",
+              "detail": "Start route or open wallet",
+              "icon": "credit_card",
+              "state": "interactive"
+            }
+          },
+          {
+            "label": "Fleet desktop",
+            "density": "sm",
+            "layout": "mini-grid",
+            "demos": [
+              {
+                "title": "Active",
+                "value": "248",
+                "detail": "vehicles",
+                "icon": "local_shipping",
+                "state": "default"
+              },
+              {
+                "title": "Risk",
+                "value": "18",
+                "detail": "exceptions",
+                "icon": "warning",
+                "state": "error"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

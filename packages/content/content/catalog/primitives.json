@@ -1,0 +1,292 @@
+{
+  "primitives": [
+    {
+      "type": "primitive",
+      "id": "color",
+      "title": "Color",
+      "summary": "Semantic color roles for brand, fuel, maintenance, toll, EV, finance, risk, status, and map layers.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "color.role",
+        "color.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "typography",
+      "title": "Typography",
+      "summary": "Edenred Black for display, titles, and numerals; Ubuntu for body, subtitles, captions, UI labels, tables, and code.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "typography.role",
+        "typography.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "spacing",
+      "title": "Spacing",
+      "summary": "Relationship spacing for mobile cards, dashboard grids, detail panes, data tables, and map overlays.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "spacing.role",
+        "spacing.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "radius",
+      "title": "Radius",
+      "summary": "Shape roles for cards, quick actions, sheets, filters, map pins, table rows, and permission panels.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "radius.role",
+        "radius.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "elevation",
+      "title": "Elevation",
+      "summary": "Depth tokens for mobile bottom sheets, desktop drawers, menus, alerts, map panels, and modals.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "elevation.role",
+        "elevation.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "iconography",
+      "title": "Iconography",
+      "summary": "Material Symbols mapped to action, navigation, status, vehicle, fuel, route, payment, and permission roles.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "iconography.role",
+        "iconography.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "motion-curves",
+      "title": "Motion Curves",
+      "summary": "Motion presets for reveal, confirm, reorder, loading, route transition, drawer, and page change.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "motion.curves.role",
+        "motion.curves.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "duration",
+      "title": "Duration",
+      "summary": "Timing roles for micro, local, page, route, dashboard refresh, and high-risk confirmation moments.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "duration.role",
+        "duration.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "breakpoints",
+      "title": "Breakpoints",
+      "summary": "Content-driven breakpoints for driver mobile, compact desktop, fleet operations, and wallboard-like views.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "breakpoints.role",
+        "breakpoints.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "density",
+      "title": "Density",
+      "summary": "Context-owned scale that coordinates spacing, type, icon size, control rhythm, focus, loading, disabled, and breakpoints.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "density.role",
+        "density.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "focus",
+      "title": "Focus",
+      "summary": "Visible focus rings, roving navigation, focus restoration, skip routes, map traps, and modal escape.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "focus.role",
+        "focus.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "loading",
+      "title": "Loading",
+      "summary": "Skeletons, stale data, sync pending, optimistic updates, determinate route progress, and dashboard refresh.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "loading.role",
+        "loading.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "disabled",
+      "title": "Disabled",
+      "summary": "Unavailable, permission-blocked, data-blocked, offline-blocked, risk-blocked, and future-available semantics.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "disabled.role",
+        "disabled.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "charts",
+      "title": "Charts",
+      "summary": "ECharts-ready data roles, series colors, threshold bands, legends, tooltips, empty states, and descriptions.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "charts.role",
+        "charts.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "maps",
+      "title": "Maps",
+      "summary": "Map layers, station pins, route lines, geolocation states, permission states, clusters, and route alternatives.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "maps.role",
+        "maps.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "message",
+      "title": "Message",
+      "summary": "Tone-to-UI messaging roles for intent, severity, anatomy, recovery, accessibility, and localization.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "message.role",
+        "message.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "measurement",
+      "title": "Measurement",
+      "summary": "Growth-to-product learning contract for telemetry, analytics views, success metrics, friction, recovery, and ethics.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "measurement.role",
+        "measurement.state"
+      ]
+    },
+    {
+      "type": "primitive",
+      "id": "research",
+      "title": "Research",
+      "summary": "Evidence, hypotheses, confidence, risk, learning signals, and decision links for product decisions.",
+      "platform": "System",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "tokens": [
+        "research.role",
+        "research.state"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "components": {
+    "input": {
+      "playground": {
+        "copy": "Use the playground to verify capture role, label, value, helper text, state, density, mono values, and qualifiers before moving the field into a form or filter.",
+        "controls": [
+          { "name": "variant", "label": "Variant", "type": "select", "value": "text", "options": ["text", "email", "password", "number", "currency", "unit", "search"] },
+          { "name": "label", "label": "Label", "type": "text", "value": "Driver ID" },
+          { "name": "value", "label": "Value", "type": "text", "value": "MX-2048" },
+          { "name": "state", "label": "State", "type": "select", "value": "filled", "options": ["default", "focus", "filled", "loading", "error", "disabled"] },
+          { "name": "density", "label": "Density", "type": "select", "value": "md", "options": ["sm", "md", "lg"] }
+        ],
+        "preview": { "field": "Driver ID", "value": "MX-2048", "placeholder": "Enter driver ID", "helper": "Active driver record", "density": "md", "state": "filled", "icon": "badge" },
+        "snippet": "<Input label=\"Driver ID\" value=\"MX-2048\" helperText=\"Active driver record\" />"
+      }
+    }
+  }
+}

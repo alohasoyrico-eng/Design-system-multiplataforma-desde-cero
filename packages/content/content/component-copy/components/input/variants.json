@@ -1,0 +1,88 @@
+{
+  "components": {
+    "input": {
+      "variants": {
+        "copy": "Variants describe the capture role. State still owns default, filled, loading, error, focus, and disabled behavior.",
+        "demos": [
+          {
+            "label": "Text",
+            "field": "Driver ID",
+            "value": "MX-2048",
+            "placeholder": "Enter driver ID",
+            "helper": "Use ID or name",
+            "density": "md",
+            "state": "filled",
+            "variant": "text",
+            "icon": "badge"
+          },
+          {
+            "label": "Email",
+            "field": "Fleet admin email",
+            "value": "ops@fleet.mx",
+            "placeholder": "name@company.com",
+            "helper": "Used for approval alerts",
+            "density": "md",
+            "state": "filled",
+            "variant": "email",
+            "icon": "mail",
+            "type": "email",
+            "autocomplete": "email"
+          },
+          {
+            "label": "Password",
+            "field": "Password",
+            "value": "Miel2026!",
+            "placeholder": "Enter password",
+            "helper": "Use reveal only to verify entry",
+            "density": "md",
+            "state": "filled",
+            "variant": "password",
+            "icon": "lock",
+            "revealable": true,
+            "autocomplete": "current-password"
+          },
+          {
+            "label": "Currency",
+            "field": "Monthly limit",
+            "value": "2400.00",
+            "placeholder": "0.00",
+            "helper": "Controlled by policy",
+            "density": "md",
+            "state": "filled",
+            "variant": "currency",
+            "suffix": "MXN",
+            "inputMode": "decimal",
+            "align": "end",
+            "mono": true
+          },
+          {
+            "label": "Unit",
+            "field": "Load capacity",
+            "value": "18",
+            "placeholder": "0",
+            "helper": "Operational threshold",
+            "density": "md",
+            "state": "filled",
+            "variant": "unit",
+            "suffix": "t",
+            "inputMode": "decimal",
+            "align": "end",
+            "mono": true
+          },
+          {
+            "label": "Search",
+            "field": "Search driver",
+            "value": "Ana",
+            "placeholder": "Name, plate, or card",
+            "helper": "Filters the current list",
+            "density": "md",
+            "state": "filled",
+            "variant": "search",
+            "icon": "search",
+            "type": "search"
+          }
+        ]
+      }
+    }
+  }
+}

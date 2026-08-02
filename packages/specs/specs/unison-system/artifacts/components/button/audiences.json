@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ]
+      }
+    }
+  }
+}

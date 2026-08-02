@@ -1,0 +1,165 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Energy to define hierarchy, action color, semantic risk, disabled identity, loading identity, borders, and surface contrast. Primary uses sys.energy.action.primary, secondary uses white background with neutral 900 text/border, and outlined uses white background with neutral 200 outline.",
+            "tokens": [
+              "--comp-button-bg-*",
+              "--comp-button-text-*",
+              "--comp-button-border-*",
+              "sys.energy.*",
+              "ref.energy.*",
+              "--comp-button-bg-primary",
+              "--comp-button-border-secondary",
+              "--comp-button-border-outline",
+              "--sys-energy-action-primary",
+              "--ref-energy-neutral-200"
+            ],
+            "behavior": "Primary is action-primary blue filled. Secondary and outlined both keep a white background; secondary uses neutral 900 border/text, outlined uses neutral 200 border with primary text.",
+            "example": "Block card uses danger intent; export movements uses secondary or outlined; start route uses primary.",
+            "test": "Verify primary uses action-primary blue while secondary and outlined keep white backgrounds and distinct neutral outlines.",
+            "rejectIf": "Primary does not use action-primary, secondary/outlined use filled blue, secondary and outlined backgrounds differ, or outlined border is not neutral 200."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice to make labels short, verb-first, readable, and role-consistent across densities.",
+            "tokens": [
+              "--comp-button-voice-*",
+              "sys.voice.*",
+              "ref.voice.family.sans"
+            ],
+            "behavior": "Button labels use Ubuntu body/control typography; long labels wrap safely without breaking the control.",
+            "example": "Use “Block card”, “Save driver”, “Start route”, not “OK” or “Continue” when consequence is unclear.",
+            "test": "Verify label legibility, wrapping, and font mapping across sizes and responsive contexts.",
+            "rejectIf": "Generic copy, missing consequence, Edenred display font used for body/control text, or clipped label."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame to control button dimensions, padding, gap, radius, touch target, action rows, and responsive composition.",
+            "tokens": [
+              "--comp-button-height",
+              "--comp-button-padding-x",
+              "--comp-button-gap",
+              "--comp-button-radius",
+              "sys.frame.*"
+            ],
+            "behavior": "Buttons align to containers, support natural or full width, and keep stable layout in rows, sheets, toolbars, and matrices.",
+            "example": "Mobile confirmation stacks full-width actions; fleet toolbar keeps natural grouped actions.",
+            "test": "Verify no overlap, no horizontal overflow, stable button dimensions, and minimum touch target.",
+            "rejectIf": "Hardcoded layout spacing, cramped action rows, horizontal scroll caused by controls, or unstable dimensions."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth only to clarify interaction and stacking, not to decorate the component.",
+            "tokens": [
+              "--comp-button-depth-*",
+              "sys.depth.*",
+              "ref.depth.*"
+            ],
+            "behavior": "Hover and pressed states use restrained elevation/inset feedback; overlays and toolbars can override z-index through a component token.",
+            "example": "Toolbar ghost actions stay flat; primary dashboard actions can show hover elevation; pressed state uses inset feedback.",
+            "test": "Verify rest, hover, pressed, toolbar, and overlay stacking behavior.",
+            "rejectIf": "Arbitrary shadows, z-index literals, or elevation that changes hierarchy without interaction."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum to communicate feedback timing, pressed movement, loading activity, and reduced-motion equivalents.",
+            "tokens": [
+              "--comp-button-momentum-*",
+              "sys.momentum.*",
+              "duration.*",
+              "motion.curve.*"
+            ],
+            "behavior": "Transitions are explicit properties; pressed movement is tokenized; loading animation stops under reduced motion while state remains clear.",
+            "example": "Save driver shows loading; Start route uses responsive feedback; reduced motion removes spin and movement.",
+            "test": "Verify hover, pressed, loading, and prefers-reduced-motion behavior.",
+            "rejectIf": "transition: all, hardcoded ms/bezier, motion-only meaning, or no reduced-motion path."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use State to resolve the component before visual styling and assistive semantics.",
+            "tokens": [
+              "data-state",
+              "disabled",
+              "aria-disabled",
+              "aria-busy",
+              "sys.state.*"
+            ],
+            "behavior": "State precedence is disabled > loading > pressed > focus > hover > default.",
+            "example": "Block card goes loading while service responds; permission-blocked action is disabled with reason nearby.",
+            "test": "Verify every documented state and state precedence across variants and intents.",
+            "rejectIf": "State exists only as visual mock, loading equals disabled, or disabled lacks reason."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone to match action language and risk language to the product consequence.",
+            "tokens": [
+              "--comp-button-tone-*",
+              "sys.tone.*"
+            ],
+            "behavior": "Default uses neutral direct action; warning uses caution without panic; danger uses repair/consequence language.",
+            "example": "Danger action says “Block card” with consequence copy; warning action says “Reset limits” with risk explanation.",
+            "test": "Verify labels and adjacent copy follow tone rules for default, warning, danger, and recovery.",
+            "rejectIf": "Jokes, vague labels, blame language, or destructive actions without clear consequence."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth as adoption and telemetry metadata, not visible decoration.",
+            "tokens": [
+              "data-growth-stage",
+              "data-analytics-event",
+              "sys.growth.*"
+            ],
+            "behavior": "Button emits/declares analytics event and maturity stage while visual UI remains governed by hierarchy, risk, and state.",
+            "example": "button.block-card tracks operational action; button.export-movements tracks dashboard utility usage.",
+            "test": "Verify event naming exists for product-changing actions and growth metadata does not alter appearance.",
+            "rejectIf": "Growth stage appears as decorative UI, missing analytics for critical action, or event name is generic."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol to render Material Symbols by semantic name with accessible fallback policy.",
+            "tokens": [
+              "--comp-button-symbol-*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Leading icons use Material Symbols and inherit semantic color from variant/intent; label remains the accessible name.",
+            "example": "block for Block card, route for Start route, download for Export report.",
+            "test": "Verify icon name renders, icon is aria-hidden, and label remains available.",
+            "rejectIf": "Emoji, text glyph, arbitrary SVG, icon-only Button, or missing accessible label."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography to map icon role, density-owned scale, color, and accessible labeling to the button contract.",
+            "tokens": [
+              "--comp-button-icon-size",
+              "iconography.*",
+              "sys.symbol.size.*"
+            ],
+            "behavior": "Icon scale follows Density; icons inherit the label color so danger/warning contrast cannot diverge from text.",
+            "example": "density.sm uses compact icon rhythm; density.md uses normal control icon rhythm; density.lg dashboard and distance contexts use larger icon scale.",
+            "test": "Verify icon scale per Density context and no icon-only Button usage.",
+            "rejectIf": "Icon size hardcoded, icon replaces text, icon role conflicts with action, or icon color does not match label color."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility to guarantee name, role, state, keyboard, focus, contrast, touch target, forced colors, and reduced motion.",
+            "tokens": [
+              "--comp-button-a11y-*",
+              "sys.a11y.*",
+              "focus.*",
+              "disabled.*",
+              "loading.*"
+            ],
+            "behavior": "Native button defaults to type button; focus ring is visible; aria-busy marks loading; disabled blocks activation; forced-colors and reduced-motion have fallbacks.",
+            "example": "Keyboard user can activate Save driver with Enter/Space and see focus before loading starts.",
+            "test": "Verify role/name, keyboard activation, focus-visible, forced-colors, reduced motion, touch target, loading, and disabled behavior.",
+            "rejectIf": "No visible label, no focus state, inaccessible loading, color-only meaning, or pointer-only behavior."
+          }
+        }
+      }
+    }
+  }
+}

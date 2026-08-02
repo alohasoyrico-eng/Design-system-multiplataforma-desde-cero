@@ -1,0 +1,53 @@
+{
+  "components": {
+    "toast": {
+      "anatomy": {
+        "items": [
+          {
+            "part": "Container",
+            "rule": "Owns live region, surface, severity tone, elevation, spacing, and placement.",
+            "tokens": [
+              "comp.toast.*",
+              "sys.energy.*",
+              "sys.depth.*",
+              "sys.frame.*"
+            ]
+          },
+          {
+            "part": "Icon",
+            "rule": "Communicates severity or event type without replacing text.",
+            "tokens": [
+              "sys.symbol.*",
+              "sys.iconography.*",
+              "sys.tone.*"
+            ]
+          },
+          {
+            "part": "Message",
+            "rule": "Names the event in one concise sentence.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.tone.*"
+            ]
+          },
+          {
+            "part": "Description",
+            "rule": "Adds optional recovery or consequence copy.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Action and dismiss",
+            "rule": "Use Flow Button for the optional action and Flow Icon Button for dismiss; expose them only when behavior exists.",
+            "tokens": [
+              "sys.accessibility.*",
+              "sys.state.*",
+              "sys.momentum.*"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

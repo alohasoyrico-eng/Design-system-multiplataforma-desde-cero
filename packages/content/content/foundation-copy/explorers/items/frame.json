@@ -1,0 +1,30 @@
+{
+  "explorers": {
+    "items": {
+      "Frame": {
+        "type": "frame",
+        "initial": "md",
+        "ariaLabel": "Density examples",
+        "choices": [
+          [
+            "sm",
+            "SM"
+          ],
+          [
+            "md",
+            "MD"
+          ],
+          [
+            "lg",
+            "LG"
+          ]
+        ],
+        "columns": [
+          "Mobile card",
+          "Tablet inspector",
+          "Desktop dashboard"
+        ]
+      }
+    }
+  }
+}

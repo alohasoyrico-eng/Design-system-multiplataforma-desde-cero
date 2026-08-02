@@ -1,0 +1,23 @@
+{
+  "dependencyRules": {
+    "title": "Dependency Rules",
+    "items": [
+      {
+        "titleTemplate": "{{title}} before primitives",
+        "copy": "Primitives consume this foundation through semantic roles."
+      },
+      {
+        "title": "Primitives before components",
+        "copy": "Components cannot reach for raw visual or behavioral values."
+      },
+      {
+        "title": "Components before patterns",
+        "copy": "Patterns compose documented component contracts only."
+      },
+      {
+        "title": "Patterns before templates",
+        "copy": "Templates express product behavior through approved patterns."
+      }
+    ]
+  }
+}

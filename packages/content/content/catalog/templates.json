@@ -1,0 +1,161 @@
+{
+  "templates": [
+    {
+      "type": "template",
+      "id": "driver-mobile-app",
+      "title": "Driver Mobile App",
+      "platform": "Mobile",
+      "summary": "The complete mobile product for drivers: onboarding, auth, cards, movements, routes, nearby stations, and support.",
+      "audiences": [
+        "Product Designers",
+        "PMs",
+        "Developers",
+        "Researchers",
+        "Service Designers"
+      ],
+      "patternsUsed": [
+        "Driver Onboarding Mobile",
+        "Mobile Card Overview",
+        "Routes and Nearby Stations Mobile"
+      ],
+      "tokens": [
+        "typography.edenred-title",
+        "typography.ubuntu-body",
+        "density.md",
+        "chart.semantic"
+      ]
+    },
+    {
+      "type": "template",
+      "id": "fleet-manager-desktop",
+      "title": "Fleet Manager Desktop",
+      "platform": "Desktop",
+      "summary": "The desktop operating console for managers: overview, fuel, maintenance, EV, toll, fleet, finance, and configuration.",
+      "audiences": [
+        "Product Designers",
+        "PMs",
+        "Developers",
+        "Researchers",
+        "Service Designers"
+      ],
+      "patternsUsed": [
+        "Topbar",
+        "Sidebar",
+        "Fleet Dashboard Overview",
+        "Fuel Dashboard"
+      ],
+      "tokens": [
+        "typography.edenred-title",
+        "typography.ubuntu-body",
+        "density.md",
+        "chart.semantic"
+      ]
+    },
+    {
+      "type": "template",
+      "id": "driver-card-wallet",
+      "title": "Driver Card Wallet",
+      "platform": "Mobile",
+      "summary": "Focused card and movement experience with quick actions, detail, receipts, disputes, limits, and blocked states.",
+      "audiences": [
+        "Product Designers",
+        "PMs",
+        "Developers",
+        "Researchers",
+        "Service Designers"
+      ],
+      "patternsUsed": [
+        "Mobile Card Overview",
+        "Mobile Card Detail and Quick Actions",
+        "Mobile Movement Detail"
+      ],
+      "tokens": [
+        "typography.edenred-title",
+        "typography.ubuntu-body",
+        "density.md",
+        "chart.semantic"
+      ]
+    },
+    {
+      "type": "template",
+      "id": "routes-and-stations",
+      "title": "Routes and Stations",
+      "platform": "Mobile",
+      "summary": "Map-first station discovery, station details, route guidance, geolocation permissions, and travel-state recovery.",
+      "audiences": [
+        "Product Designers",
+        "PMs",
+        "Developers",
+        "Researchers",
+        "Service Designers"
+      ],
+      "patternsUsed": [
+        "Routes and Nearby Stations Mobile",
+        "Station Detail and Route Guidance"
+      ],
+      "tokens": [
+        "typography.edenred-title",
+        "typography.ubuntu-body",
+        "density.md",
+        "chart.semantic"
+      ]
+    },
+    {
+      "type": "template",
+      "id": "fleet-dashboard-suite",
+      "title": "Fleet Dashboard Suite",
+      "platform": "Desktop",
+      "summary": "Seven operational dashboards: overview, combustible, mantenimiento, electromovilidad, peaje, flotilla, and finanzas.",
+      "audiences": [
+        "Product Designers",
+        "PMs",
+        "Developers",
+        "Researchers",
+        "Service Designers"
+      ],
+      "patternsUsed": [
+        "Topbar",
+        "Sidebar",
+        "Fleet Dashboard Overview",
+        "Fuel Dashboard",
+        "Maintenance Dashboard",
+        "Electromobility Dashboard",
+        "Toll Dashboard",
+        "Fleet Dashboard",
+        "Finance Dashboard"
+      ],
+      "tokens": [
+        "typography.edenred-title",
+        "typography.ubuntu-body",
+        "density.md",
+        "chart.semantic"
+      ]
+    },
+    {
+      "type": "template",
+      "id": "configuration-console",
+      "title": "Configuration Console",
+      "platform": "Desktop",
+      "summary": "Administrative area for roles, permissions, alta/baja de conductores, alta/baja de vehiculos, audit, and recovery.",
+      "audiences": [
+        "Product Designers",
+        "PMs",
+        "Developers",
+        "Researchers",
+        "Service Designers"
+      ],
+      "patternsUsed": [
+        "Topbar",
+        "Sidebar",
+        "Driver and Vehicle Administration",
+        "Authentication, Login, Biometrics and OTP"
+      ],
+      "tokens": [
+        "typography.edenred-title",
+        "typography.ubuntu-body",
+        "density.md",
+        "chart.semantic"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "purposeFallback": {
+    "columns": [
+      "{{title}} sits between foundations and components.",
+      "It consumes semantic tokens and exposes a narrow API.",
+      "It prevents hardcoded values, detached semantics, and inconsistent implementation.",
+      "It must be portable across React, Flutter, documentation, and agent specs."
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "artifacts": {
+    "foundations": {
+      "voice": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Voice",
+        "purpose": "Define typographic hierarchy and product language so content, numerals, and decisions are scannable, actionable, respectful, and consistent across mobile and desktop.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "display",
+            "token": "sys.voice.display.*",
+            "use": "Major page or template identity with Edenred Black."
+          },
+          {
+            "id": "heading",
+            "token": "sys.voice.heading.*",
+            "use": "Section titles and product hierarchy with Edenred Black."
+          },
+          {
+            "id": "numeral",
+            "token": "sys.voice.numeral.*",
+            "use": "KPIs, metrics, balances, counts, dashboard values, and prominent operational numbers with Edenred Black."
+          },
+          {
+            "id": "label",
+            "token": "sys.voice.label.*",
+            "use": "Controls, table headers, KPI labels, form labels with Ubuntu."
+          },
+          {
+            "id": "paragraph",
+            "token": "sys.voice.paragraph.*",
+            "use": "Body copy, guidance, explanations with Ubuntu."
+          },
+          {
+            "id": "caption",
+            "token": "sys.voice.caption",
+            "use": "Metadata, timestamps, helper text, secondary annotations."
+          },
+          {
+            "id": "code",
+            "token": "sys.voice.code.*",
+            "use": "Token names, API examples, agent-readable snippets."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver onboarding",
+            "example": "Display introduces the step; paragraph explains permission value; repair copy explains blocked recovery."
+          },
+          {
+            "context": "OTP and biometrics",
+            "example": "Labels remain terse; urgent copy explains risk without blaming the user."
+          },
+          {
+            "context": "Dashboard",
+            "example": "KPI labels, deltas, legends, and summaries use distinct roles so fleet managers can scan quickly."
+          },
+          {
+            "context": "Configuration",
+            "example": "Permission warnings explain dependency and consequence before destructive action."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.voice.*",
+          "sys.voice.*",
+          "sys.tone.*",
+          "comp.*.voice aliases"
+        ],
+        "primitiveDependencies": [
+          "Typography",
+          "Focus",
+          "Loading",
+          "Disabled"
+        ],
+        "componentDependencies": [
+          "Input",
+          "Button",
+          "Select",
+          "Inline Validation",
+          "Dialog",
+          "Table",
+          "Chart Panel"
+        ],
+        "agentInstructions": [
+          "Use Edenred Black only for display, heading, and numeral roles; use Ubuntu for all other product and UI text.",
+          "Write labels as objects or actions, not explanations.",
+          "Write repair copy with cause, next action, and ownership.",
+          "Keep agent and human spec language aligned."
+        ],
+        "rejectIf": [
+          "Typography uses size or weight without semantic role.",
+          "Display text appears inside compact controls or dense tables.",
+          "Error copy states failure without recovery.",
+          "Agent specs omit content, localization, or accessibility consequences."
+        ],
+        "patternDependencies": [
+          "Virtual Data Table"
+        ]
+      }
+    }
+  }
+}

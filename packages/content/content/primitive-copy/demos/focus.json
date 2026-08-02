@@ -1,0 +1,34 @@
+{
+  "demos": {
+    "Focus": {
+      "type": "focus",
+      "initial": "visible",
+      "ariaLabel": "Focus examples",
+      "choices": [
+        [
+          "visible",
+          "visible"
+        ],
+        [
+          "restore",
+          "restore"
+        ],
+        [
+          "trap",
+          "trap"
+        ],
+        [
+          "skip",
+          "skip"
+        ]
+      ],
+      "action": "Route to station",
+      "states": {
+        "visible": "Visible focus ring uses system focus tokens.",
+        "restore": "Focus returns to the trigger after a sheet, dialog, or menu closes.",
+        "trap": "Focus stays inside modal surfaces until the user exits.",
+        "skip": "Skip paths let users bypass repeated navigation and map traps."
+      }
+    }
+  }
+}

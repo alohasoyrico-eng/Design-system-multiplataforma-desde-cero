@@ -1,0 +1,72 @@
+{
+  "visualSections": {
+    "energyPalette": {
+      "title": "Energy Palette",
+      "description": "Energy uses a strict 10-step scale per family. No helper colors, no one-off tints, and no extra brand accents live inside the foundation palette.",
+      "summary": [
+        {
+          "value": "90",
+          "label": "ref.energy tokens"
+        },
+        {
+          "value": "10",
+          "label": "tokens per family"
+        },
+        {
+          "value": "9",
+          "label": "families"
+        }
+      ],
+      "families": [
+        {
+          "label": "Neutral",
+          "family": "neutral"
+        },
+        {
+          "label": "Blue",
+          "family": "blue"
+        },
+        {
+          "label": "Red",
+          "family": "red"
+        },
+        {
+          "label": "Green",
+          "family": "green"
+        },
+        {
+          "label": "Orange",
+          "family": "orange"
+        },
+        {
+          "label": "Purple",
+          "family": "purple"
+        },
+        {
+          "label": "Teal",
+          "family": "teal"
+        },
+        {
+          "label": "Yellow",
+          "family": "yellow"
+        },
+        {
+          "label": "Pink",
+          "family": "pink"
+        }
+      ],
+      "steps": [
+        "50",
+        "100",
+        "200",
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900"
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "demos": {
+    "Iconography": {
+      "type": "icon",
+      "initial": "md",
+      "ariaLabel": "Icon size examples",
+      "choices": [
+        [
+          "sm",
+          "sm"
+        ],
+        [
+          "md",
+          "md"
+        ],
+        [
+          "lg",
+          "lg"
+        ]
+      ],
+      "icons": [
+        "star",
+        "route",
+        "credit_card",
+        "local_gas_station",
+        "admin_panel_settings"
+      ]
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "version": "2026-07-13",
+  "status": "package-behavior-remediated-candidates-active",
+  "rules": [
+    "Component is a bounded reusable unit.",
+    "Pattern owns process orchestration, policy, data loading, multi-component layout, and route behavior.",
+    "Design System foundations and primitives remain authoritative.",
+    "The reference zip informs look and feel only; it does not rename Design System tokens, fonts, or contracts.",
+    "Docs interaction scripts are a serialized-demo harness only; package factories and smoke tests own reusable component behavior.",
+    "Alert Strip is not a component or component variant; persistent alert aggregation belongs to Notification Panel or dashboard patterns composed from Toast, Error Panel, Badge, and action components.",
+    "Bottom Sheet is a 100% mobile pattern, not a component; keep any package factory as implementation support only until pattern docs fully own the public contract.",
+    "Radio Group is a cross-platform pattern, not a component: Radio Button remains the component; shared question, roving/arrow orchestration, shared name, validation, analytics, and layout belong to pattern composition.",
+    "Sort Control is a cross-platform pattern/affordance, not a component: Select, Button, Menu, Table, and List remain the components; sort key, direction, persistence, refresh, and result feedback belong to pattern composition.",
+    "Chart Legend Item is a cross-platform chart pattern/affordance, not a component: Chart Panel remains the component; series visibility, value sync, chart/table coupling, and legend semantics belong to chart pattern composition.",
+    "Dashboard Filter Bar is a desktop pattern, not a component: Select, Date Picker, Segmented Control, Chip, Button, and Popover remain the components; query state, dependencies, saved views, refresh, and dashboard feedback belong to pattern composition.",
+    "Data Table is not a component: Table remains the component; toolbar, filtering, column management, saved views, remote loading, pagination orchestration, and bulk actions belong to the Virtual Data Table desktop pattern.",
+    "Permission Matrix is a desktop pattern, not a component: Table, Checkbox, Switch, Tooltip, Audit Event, Badge, and Button remain the components; role dependency logic, approval gates, audit note policy, and bulk permission editing belong to pattern composition.",
+    "Driver Management Table is not a component: Table, Avatar, Badge, Quick Action, Pagination, and Empty State remain the components; invite, suspend, edit, audit, permissions, and remote data operations belong to driver/fleet administration patterns.",
+    "Vehicle Management Table is not a component: Table, Badge, Quick Action, Pagination, Empty State, and Card Summary remain the components; assignment, maintenance metadata, document state, fleet grouping, and operational lifecycle belong to vehicle/fleet administration patterns.",
+    "Avatar Group is a cross-platform pattern, not a component: Avatar remains the component; stacking, overflow count, permission-aware disclosure, member lists, and privacy handling belong to pattern composition.",
+    "Movement Detail is a mobile pattern, not a component: Movement Row, Card Summary, Quick Action, Breadcrumbs, Error Panel, and Toast remain the components; receipt evidence, support, dispute, export, and recovery flow belong to Mobile Movement Detail.",
+    "Station Detail Panel is a mobile station pattern surface, not a component: Station Pin, Route Summary, Card, List, and Quick Action remain the components; service availability, pricing, map adjacency, route choice, and reliability orchestration belong to station detail and route patterns."
+  ],
+  "accepted": [
+    "button",
+    "select",
+    "combobox",
+    "country-selector",
+    "card",
+    "input",
+    "checkbox",
+    "switch",
+    "radio-button",
+    "text-area",
+    "icon-button",
+    "badge",
+    "tag",
+    "inline-validation",
+    "progress-indicator",
+    "spinner",
+    "skeleton",
+    "empty-state",
+    "avatar",
+    "stepper",
+    "list",
+    "kpi-tile",
+    "chart-panel",
+    "station-pin",
+    "route-summary",
+    "floating-action-button",
+    "card-summary",
+    "movement-row",
+    "quick-action",
+    "breadcrumbs",
+    "audit-event",
+    "error-panel",
+    "motion-boundary",
+    "animated-moment"
+  ],
+  "contractPending": [
+    "chip",
+    "tabs",
+    "tooltip",
+    "toast",
+    "dialog",
+    "menu",
+    "drawer",
+    "accordion",
+    "table",
+    "slider",
+    "code-input",
+    "phone-input",
+    "card-number-input",
+    "card-expiry-input",
+    "card-security-code-input",
+    "date-picker",
+    "date-range-picker",
+    "segmented-control",
+    "popover",
+    "biometric-prompt",
+    "pagination",
+    "tree-view"
+  ],
+  "behaviorWatchlist": [
+    "chip",
+    "tabs",
+    "tooltip",
+    "toast",
+    "dialog",
+    "menu",
+    "drawer",
+    "accordion",
+    "table",
+    "slider",
+    "code-input",
+    "phone-input",
+    "card-number-input",
+    "card-expiry-input",
+    "card-security-code-input",
+    "date-picker",
+    "date-range-picker",
+    "segmented-control",
+    "popover",
+    "biometric-prompt",
+    "pagination",
+    "tree-view"
+  ],
+  "scopeDecisionPending": [],
+  "candidateScopeDecisionPending": [],
+  "scopeDecisionNotes": {},
+  "candidateSubstitutionPlan": {},
+  "renameRequired": [],
+  "nextRemediationQueue": [
+    {
+      "id": "quarantine-legacy-doc-fallbacks",
+      "priority": "complete",
+      "summary": "Legacy branches in apps/docs/gold-simple-component-docs.js were removed; simpleDemo now delegates only to package-backed adapters and validation fails if package-backed roots reintroduce legacy demo classes."
+    },
+    {
+      "id": "interaction-validation",
+      "priority": "complete",
+      "summary": "Add interaction-level validation for overlays, menu, tabs, tooltip, toast, popover, OTP, date picker, pagination, tree view, slider, and segmented control."
+    },
+    {
+      "id": "package-behavior-contracts",
+      "priority": "complete",
+      "summary": "Define controlled props, callbacks, focus rules, keyboard behavior, and dismissal/restore behavior for contract-pending components."
+    },
+    {
+      "id": "component-module-split",
+      "priority": "complete",
+      "summary": "Split @design-system/components into focused component modules so ownership, tests, and visual QA are easier to review. Public index now re-exports modules instead of owning inline component factories."
+    },
+    {
+      "id": "contract-pending-coverage",
+      "priority": "complete",
+      "summary": "Cross-check contract-pending components against behavior contracts, package-backed registry coverage, and interaction or smoke evidence. Chip, Tabs, Accordion, Segmented Control, Tooltip, Toast, Menu, Popover, Dialog, Drawer, Table, Slider, Pagination, Code Input, Phone Input, Date Picker, and Tree View now include package-owned behavior smoke evidence for local selection/disclosure/overlay callbacks, keyboard movement, active indicator sync, Escape handling, outside or scrim dismiss, action callbacks, focus trap, focus restoration, sort requests, row selection, value output, dragging state, page changes, digit normalization, paste/backspace focus movement, phone formatting, single-date selection, tree selection, and tree expansion where applicable. Contract-pending docs-only behavior is now empty; Pattern-owned processs remain explicitly excluded."
+    },
+    {
+      "id": "serialized-docs-harness",
+      "priority": "complete",
+      "summary": "Confirmed docs adapters serialize package component DOM with data-component-source=\"package\". Because serialized HTML cannot retain factory event listeners, apps/docs interaction scripts remain as a documentation-only harness for previews. Reusable behavior remains package-owned and validated through package smoke coverage; docs scripts must not become a second source of component contract truth."
+    },
+    {
+      "id": "visual-qa",
+      "priority": "in-progress",
+      "summary": "Representative browser QA now catches layout and a11y quality, not only route health. Repaired demo columns/depth for simple scenarios; target-size issues for Table sort, Code Input, Pagination, Breadcrumbs, Route Summary actions, Tabs, Chip, Tooltip, Toast, Date Picker, Segmented Control, Radio Button, and Slider; overflow issues in Stepper, Menu, Toast, Popover, and Biometric Prompt mobile action layout; docs/package coupling in Chip removal; ornamental gradient/depth plus undersized typography in Avatar, Floating Action Button, Chart Panel, Motion Boundary, and Animated Moment; 11px caption leakage in Stepper, List, Station Pin, Route Summary, Code Input, Phone Input, Date Picker, Card Summary, Movement Row, and Quick Action demos; legacy `*-demo` class coupling on package-backed component roots; stale package-specific docs CSS overrides replaced with the generic `docs-package-demo` layout hook; semantic audits now read package factories/adapters instead of legacy HTML fallback strings; package-backed Skeleton now has visible root width, surface, shimmer bones, and an audit guard in the package stylesheet; package CSS now has internal aliases for focus, motion, depth, control size, radius, and typography, plus audit guards that prevent focus states from using shadow rings or disabling outline, prevent raw cubic-bezier motion curves outside the package alias block, prevent raw pill radius or 44px control sizing in component rules, and prevent raw rem/px font sizes in package component rules; the latest live-docs desktop/mobile browser sweep across all 50 package-backed routes found no component-level overflow, sub-11px text, non-Design System text font family leakage, undersized interactive targets, missing accessible names, or missing package-backed roots; qualitative QA repaired Drawer docs serialization/density, Tooltip bubble readability and page-overflow containment, Date Picker invisible focus order, Table mobile compression, Tree View duplicate focus semantics, docs header selector leakage into package internals, compact mobile composition for Audit Event, Error Panel, Route Summary, Card Summary, and Chart Panel, and native Select/Text Area browser font-size leakage. Catalog classification now has 0 candidate scope-decision routes outside the package-backed component catalog. Checkbox Group, Radio Group, Dashboard Filter Bar, Data Table, Permission Matrix, Driver Management Table, Sort Control, Chart Legend Item, Alert Strip, Bottom Sheet, Vehicle Management Table, Avatar Group, Movement Detail, and Station Detail Panel have explicit pattern or non-component boundary decisions with substitute component coverage recorded. Continue qualitative visual review across the package-backed components for semantic state depth, motion feel, and reference-informed look and feel. Visible API docs are now aligned with package factory props across package-backed component docs, with validation guards that fail future drift and an explicit Avatar public density alias over the internal size parameter."
+    },
+    {
+      "id": "motion-scope-decisions",
+      "priority": "complete",
+      "summary": "Motion Boundary is accepted as a bounded component wrapper for one local region with explicit reduced-motion behavior. Lottie-specific naming was removed; Animated Moment is accepted as a generic bounded animated cue component with no package-owned animation-player runtime dependency. Page choreography, route transitions, storytelling, onboarding, education, campaigns, and multi-step animation sequences remain Pattern/Foundation territory."
+    },
+    {
+      "id": "api-prop-alignment",
+      "priority": "complete",
+      "summary": "Visible component API props in specs and component copy now match package factory props across package-backed components. The audit guard allows only the intentional Avatar public density alias over the internal size implementation parameter."
+    }
+  ],
+  "visualWatchlist": [
+    "tree-view"
+  ],
+  "componentPatternBoundaryRules": [
+    "Checkbox Group is a cross-platform pattern, not a component: Checkbox remains the component; group labeling, select-all, mixed state, shared validation, and cross-option orchestration belong to pattern composition."
+  ]
+}

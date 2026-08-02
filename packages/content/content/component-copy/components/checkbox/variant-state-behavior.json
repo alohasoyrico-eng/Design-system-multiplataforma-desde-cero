@@ -1,0 +1,15 @@
+{
+  "components": {
+    "checkbox": {
+      "variant-state-behavior": {
+        "copy": "Variant and state combine without changing precedence: disabled wins first, then error, focus, mixed, checked, and unchecked.",
+        "states": ["unchecked", "checked", "indeterminate", "focus", "error", "disabled"],
+        "rows": [
+          { "label": "Default", "choice": { "label": "Fuel card", "description": "", "variant": "default" } },
+          { "label": "Descriptive", "choice": { "label": "Driver alerts", "description": "Notify before balance changes.", "variant": "descriptive" } },
+          { "label": "Select all", "choice": { "label": "Visible drivers", "description": "3 of 12 selected.", "variant": "select-all" } }
+        ]
+      }
+    }
+  }
+}

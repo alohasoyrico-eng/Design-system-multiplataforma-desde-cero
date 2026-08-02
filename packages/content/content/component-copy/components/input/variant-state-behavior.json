@@ -1,0 +1,15 @@
+{
+  "components": {
+    "input": {
+      "variant-state-behavior": {
+        "copy": "Variant gives the field role; state controls behavior. State precedence wins when role and condition compete.",
+        "rows": [
+          { "label": "Default", "field": "Driver ID", "value": "", "placeholder": "Enter driver ID", "variant": "default", "icon": "badge" },
+          { "label": "Filled", "field": "Driver ID", "value": "MX-2048", "placeholder": "Enter driver ID", "variant": "filled", "icon": "badge" },
+          { "label": "Affordance", "field": "Card number", "value": "•••• 4821", "placeholder": "Enter card number", "variant": "with-affordance", "icon": "credit_card" }
+        ],
+        "states": ["default", "focus", "filled", "loading", "error", "disabled"]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "components": {
+    "select": {
+      "miel": {
+        "copy": "MIEL treats Select as a closed-choice contract: the agent can configure options, value, and state, while the human owns source quality, permissions, and fallback behavior.",
+        "canDecide": [
+          "Use Select when the user must choose one value from a finite known list.",
+          "Configure label, selected value, helper text, loading, error, disabled, and open behavior.",
+          "Use option-layer behavior only when the existing pattern covers grouping, search, or mobile presentation."
+        ],
+        "mustAsk": [
+          "The option source, freshness, permission scope, or empty state is unknown.",
+          "The user needs free text, multi-select, filtering logic, or remote search beyond the existing pattern.",
+          "Changing the selected value affects money, compliance, access, analytics, or saved preferences."
+        ],
+        "rejectIf": [
+          "Options are not stable enough to expose as label-value pairs.",
+          "The component is being used as a search box or free-form input.",
+          "Loading, disabled, or error is only visual and lacks helper copy.",
+          "The agent creates multi-select behavior before a pattern exists."
+        ],
+        "handoff": "I am using Select because the choice is closed and the value must stay visible. I need confirmation on option source, permissions, empty state, and mobile behavior."
+      }
+    }
+  }
+}

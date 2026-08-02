@@ -1,0 +1,10 @@
+{
+  "architecture": [
+    "Foundation",
+    "Primitive",
+    "Component",
+    "Pattern",
+    "Template",
+    "Product"
+  ]
+}

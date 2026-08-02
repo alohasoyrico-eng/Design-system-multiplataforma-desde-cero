@@ -1,0 +1,107 @@
+{
+  "artifacts": {
+    "foundations": {
+      "growth": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Growth",
+        "purpose": "Track maturity, adoption, telemetry, deprecation, and learning signals so artifacts evolve deliberately instead of becoming undocumented leftovers.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "seed",
+            "token": "sys.growth.stage.seed",
+            "use": "New concept, early pattern, or experiment."
+          },
+          {
+            "id": "stable",
+            "token": "sys.growth.stage.stable",
+            "use": "Shared artifact with documented examples and adoption."
+          },
+          {
+            "id": "measured",
+            "token": "sys.growth.stage.measured",
+            "use": "Artifact with telemetry, quality signals, and known outcomes."
+          },
+          {
+            "id": "deprecated",
+            "token": "sys.growth.stage.deprecated",
+            "use": "Artifact replaced or unsafe for new work."
+          },
+          {
+            "id": "event",
+            "token": "data-analytics-event",
+            "use": "Behavioral audit for critical actions and adoption."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Button",
+            "example": "Actions expose data-growth-stage and analytics event metadata."
+          },
+          {
+            "context": "Dashboard module",
+            "example": "New KPI starts seed, becomes measured after adoption and threshold validation."
+          },
+          {
+            "context": "Template",
+            "example": "Fleet dashboard suite tracks whether patterns reduce support or improve task completion."
+          },
+          {
+            "context": "Migration",
+            "example": "Deprecated card action is visible in docs with replacement path and cutoff rule."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.growth.*",
+          "sys.growth.*",
+          "data-analytics-*"
+        ],
+        "primitiveDependencies": [
+          "Loading",
+          "Disabled",
+          "Charts"
+        ],
+        "componentDependencies": [
+          "Button",
+          "Toast",
+          "KPI Tile",
+          "Chart Panel",
+          "Audit Event"
+        ],
+        "agentInstructions": [
+          "Declare maturity and measurement expectation for new shared artifacts.",
+          "Never treat inventory as completion.",
+          "Add deprecation guidance when replacing an artifact.",
+          "Tie telemetry to product decision, not vanity metrics."
+        ],
+        "rejectIf": [
+          "Artifact has no maturity stage.",
+          "Telemetry has no decision purpose.",
+          "Deprecated behavior lacks replacement.",
+          "Docs claim done without examples, states, and validation."
+        ]
+      }
+    }
+  }
+}

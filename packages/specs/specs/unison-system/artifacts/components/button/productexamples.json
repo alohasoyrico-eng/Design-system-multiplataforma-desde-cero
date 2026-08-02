@@ -1,0 +1,26 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "productExamples": [
+          {
+            "context": "Card detail",
+            "example": "Block card uses danger intent, loading state, audit event, and recovery copy."
+          },
+          {
+            "context": "Driver management",
+            "example": "Save driver uses primary intent and disables duplicate submission while saving."
+          },
+          {
+            "context": "Routes",
+            "example": "Start route uses an icon and clear label; unavailable route explains the disabled reason nearby."
+          },
+          {
+            "context": "Fleet dashboard",
+            "example": "Export movements uses outlined or secondary hierarchy in toolbar context."
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "patterns": [
+    {
+      "type": "pattern",
+      "id": "driver-and-vehicle-administration",
+      "title": "Driver and Vehicle Administration",
+      "platform": "Desktop",
+      "summary": "Support alta, baja, editing, assignment, suspension, recovery, and audit for drivers and vehicles.",
+      "audiences": [
+        "Service Designers",
+        "Developers",
+        "Content"
+      ],
+      "componentsUsed": [
+        "Table",
+        "Avatar",
+        "Badge",
+        "Quick Action",
+        "Pagination",
+        "Empty State",
+        "Card Summary",
+        "Audit Event"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    }
+  ]
+}

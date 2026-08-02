@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+const { checkPrototypePackages, countInventory } = require("./audit-platform.js");
+const { checkFoundationContracts } = require("./audit-foundation-contracts.js");
+const { checkPrimitiveContracts } = require("./audit-primitive-contracts.js");
+const { checkGoldComponentTokens } = require("./audit-gold-components.js");
+const { checkGoldPageParity } = require("./audit-gold-page-parity.js");
+const { checkGoldDemoQuality } = require("./audit-gold-demo-quality.js");
+const { checkDemoLayoutContracts } = require("./audit-demo-layout-contracts.js");
+const { checkImplementationStatus } = require("./audit-component-implementation-status.js");
+const { checkComponentApiPropAlignment } = require("./audit-component-api-prop-alignment.js");
+const { checkComponentContractAlignment } = require("./audit-component-contract-alignment.js");
+const { checkComponentRemediationCoverage } = require("./audit-component-remediation-coverage.js");
+const { checkComponentRegistry } = require("./audit-component-registry.js");
+const { checkComponent1to1QualityMatrix } = require("./audit-component-1to1-quality-matrix.js");
+const { checkBatchZipParity } = require("./audit-batch-zip-parity.js");
+const { checkPriorityComponentMotionRoles } = require("./audit-component-motion-role-coverage.js");
+const { checkMotionContracts } = require("./audit-motion-contracts.js");
+const { checkAccessibilityContracts } = require("./audit-accessibility-contracts.js");
+const { checkLayoutContracts } = require("./audit-layout-contracts.js");
+const { checkStateContracts } = require("./audit-state-contracts.js");
+const { checkEnergyContracts } = require("./audit-energy-contracts.js");
+const { checkVoiceContracts } = require("./audit-voice-contracts.js");
+const { checkDensityContracts } = require("./audit-density-contracts.js");
+const { checkTableContracts } = require("./audit-table-contracts.js");
+const { checkTemplateComposition } = require("./audit-template-composition.js");
+const { finishAudit } = require("./audit-result.js");
+
+checkPrototypePackages();
+countInventory();
+checkFoundationContracts();
+checkPrimitiveContracts();
+checkGoldComponentTokens();
+checkGoldPageParity();
+checkGoldDemoQuality();
+checkDemoLayoutContracts();
+checkImplementationStatus();
+checkComponentApiPropAlignment();
+checkComponentContractAlignment();
+checkComponentRemediationCoverage();
+checkComponentRegistry();
+checkComponent1to1QualityMatrix();
+checkBatchZipParity();
+checkPriorityComponentMotionRoles();
+checkMotionContracts();
+checkAccessibilityContracts();
+checkLayoutContracts();
+checkStateContracts();
+checkEnergyContracts();
+checkVoiceContracts();
+checkDensityContracts();
+checkTableContracts();
+checkTemplateComposition();
+
+finishAudit();

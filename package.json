@@ -1,0 +1,35 @@
+{
+  "name": "flow",
+  "version": "0.3.0-platform-mvp",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git"
+  },
+  "imports": {
+    "#design-system/components": "./packages/components/src/index.js",
+    "#design-system/components-css": "./packages/components/styles/components.css",
+    "#design-system/content/catalog": "./packages/content/content/catalog.json",
+    "#design-system/content/component-docs": "./packages/content/content/component-docs.json",
+    "#design-system/content/component-copy": "./packages/content/content/component-copy.json",
+    "#design-system/content/pattern-copy": "./packages/content/content/pattern-copy.json",
+    "#design-system/content/component-implementation-status": "./packages/content/content/component-implementation-status.json",
+    "#design-system/content/foundation-copy": "./packages/content/content/foundation-copy.json",
+    "#design-system/content/primitive-copy": "./packages/content/content/primitive-copy.json",
+    "#design-system/content/reference-copy": "./packages/content/content/reference-copy.json",
+    "#design-system/content/template-blueprints": "./packages/content/content/template-blueprints.json",
+    "#design-system/content/home": "./packages/content/content/home.json",
+    "#design-system/content/i18n-ui": "./packages/content/content/i18n/ui.json",
+    "#design-system/specs/system": "./packages/specs/specs/unison.system.json",
+    "#design-system/tokens-css": "./packages/tokens/styles/tokens.css"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "audit:system": "node packages/audit/scripts/audit-system-scope.js",
+    "test": "node packages/components/test/smoke.test.mjs",
+    "validate:system": "npm run audit:system && npm test"
+  }
+}

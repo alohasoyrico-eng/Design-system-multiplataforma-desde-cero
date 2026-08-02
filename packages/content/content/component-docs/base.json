@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "0.1.0",
+  "standard": "gold-component-documentation",
+  "defaultLocale": "en",
+  "tabs": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "sections": [
+        "operational-example",
+        "anatomy",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "design",
+      "label": "Design",
+      "sections": [
+        "variants",
+        "states",
+        "variant-state-behavior",
+        "full-width",
+        "responsive-layout-patterns",
+        "viewport-organization"
+      ]
+    },
+    {
+      "id": "build",
+      "label": "Build",
+      "sections": [
+        "playground",
+        "guidelines",
+        "api-foundations",
+        "tests-rejection-rules"
+      ]
+    },
+    {
+      "id": "miel",
+      "label": "MIEL",
+      "sections": [
+        "miel"
+      ]
+    }
+  ]
+}

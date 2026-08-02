@@ -1,0 +1,102 @@
+{
+  "artifacts": {
+    "patterns": {
+      "select-option-layer": {
+        "layer": "Pattern",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "purpose": "Coordinate grouped options, empty states, unavailable options, stale data, permission reasons, keyboard movement, and responsive popover-to-sheet behavior for Select-based choice flows.",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Focus",
+          "Loading",
+          "Disabled"
+        ],
+        "componentDependencies": [
+          "Select",
+          "Button",
+          "Inline Validation",
+          "Empty State"
+        ],
+        "tokenDependencies": [
+          "comp.select.*",
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.depth.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "entryConditions": [
+          "Options are grouped, remote, stale, unavailable, searchable, permissioned, or too long for a simple base Select demo.",
+          "Mobile requires a sheet or full-screen selector instead of a small popover.",
+          "Unavailable options need visible reasons instead of disappearing."
+        ],
+        "decisionTree": [
+          "Use base Select for short, stable option lists.",
+          "Use Select Option Layer when grouping, freshness, disabled reasons, or mobile sheet behavior becomes part of the decision.",
+          "Escalate to Multi Select or Search when users must choose many values or query remote results."
+        ],
+        "failureModes": [
+          "Options appear without stable labels or values.",
+          "Unavailable options disappear without explanation.",
+          "Loading, empty, stale, error, or permission states are visual only.",
+          "Focus does not return to the trigger after selection or dismissal."
+        ],
+        "successMetrics": [
+          "Selection completes without support contact.",
+          "Users understand unavailable options and recovery paths.",
+          "Keyboard and screen reader users can identify active, selected, grouped, and disabled options."
+        ],
+        "states": [
+          "closed",
+          "open",
+          "loading",
+          "empty",
+          "error",
+          "permission-blocked",
+          "stale",
+          "disabled"
+        ],
+        "densityContext": [
+          "smartphones + phablets",
+          "tablets + laptops",
+          "desktops + TV"
+        ],
+        "agentInstructions": [
+          "Keep Select as the base component and move grouped option sequencing into this pattern.",
+          "Document option source, stale/loading/error states, disabled reasons, focus return, and mobile sheet behavior.",
+          "Ask before adding search, multi-select, product process, or analytics behavior beyond option selection."
+        ],
+        "rejectIf": [
+          "Grouped option behavior is hidden inside the base Select component.",
+          "Unavailable options lack a visible reason.",
+          "Mobile keeps a cramped desktop popover for long or grouped options.",
+          "Raw colors, spacing, radius, shadows, or motion bypass Design System tokens."
+        ]
+      }
+    }
+  }
+}

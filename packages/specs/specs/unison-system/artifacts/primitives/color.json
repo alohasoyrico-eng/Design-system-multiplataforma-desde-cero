@@ -1,0 +1,136 @@
+{
+  "artifacts": {
+    "primitives": {
+      "color": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Color",
+        "purpose": "Turn Energy foundation roles into implementation-ready semantic color primitives for action, status, feedback, surface, border, chart, and map usage.",
+        "governingFoundations": [
+          "Energy",
+          "State",
+          "Tone",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.energy.*",
+          "sys.state.*",
+          "sys.tone.*",
+          "sys.a11y.*"
+        ],
+        "roles": [
+          {
+            "id": "action",
+            "token": "color.action",
+            "use": "Primary and secondary product actions."
+          },
+          {
+            "id": "status",
+            "token": "color.status.*",
+            "use": "Success, warning, error, pending, stale, and disabled states."
+          },
+          {
+            "id": "surface",
+            "token": "color.surface.*",
+            "use": "Page, card, panel, sheet, table, map overlay."
+          },
+          {
+            "id": "border",
+            "token": "color.border.*",
+            "use": "Controls, separators, selected rows, focus-adjacent structures."
+          },
+          {
+            "id": "text",
+            "token": "color.text.*",
+            "use": "Primary, secondary, tertiary, inverse, status copy."
+          },
+          {
+            "id": "data",
+            "token": "color.data.*",
+            "use": "Charts, maps, route lines, threshold bands with accessible alternatives."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Button states",
+            "example": "Primary, danger, warning, disabled, and loading states consume Energy through Color."
+          },
+          {
+            "context": "Dashboard charts",
+            "example": "Threshold and status series use color plus text summary and shape/position."
+          },
+          {
+            "context": "Routes map",
+            "example": "Pins, selected station, route line, and fallback list map to semantic roles."
+          },
+          {
+            "context": "Inline validation",
+            "example": "Error color never appears without repair copy and state semantics."
+          }
+        ],
+        "api": {
+          "props": [
+            "role",
+            "tone",
+            "state",
+            "surface",
+            "contrastMode"
+          ],
+          "outputs": [
+            "cssCustomProperties",
+            "semanticAliases",
+            "accessibleTextPairing"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.energy.*",
+          "sys.energy.*",
+          "color.*",
+          "comp.*.energy aliases"
+        ],
+        "states": [
+          "default",
+          "hover",
+          "pressed",
+          "focus",
+          "selected",
+          "loading",
+          "disabled",
+          "success",
+          "warning",
+          "error"
+        ],
+        "agentInstructions": [
+          "Start from Energy role, then choose Color primitive role.",
+          "Never introduce a one-off tint in component CSS.",
+          "For charts and maps, pair color with accessible labels or non-color encoding."
+        ],
+        "rejectIf": [
+          "A component uses hex directly.",
+          "Color is chosen by taste instead of semantic role.",
+          "Status color appears without state or copy.",
+          "Charts/maps rely only on color."
+        ]
+      }
+    }
+  }
+}

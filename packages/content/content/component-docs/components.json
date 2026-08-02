@@ -1,0 +1,8 @@
+{
+  "$systemShards": [
+    "components/components-01.json",
+    "components/components-02.json",
+    "components/components-03.json",
+    "components/components-04.json"
+  ]
+}

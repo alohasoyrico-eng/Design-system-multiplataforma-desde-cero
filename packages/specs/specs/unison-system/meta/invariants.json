@@ -1,0 +1,10 @@
+{
+  "invariants": [
+    "Nothing skips layers.",
+    "Every public token is semantic.",
+    "Every artifact has human guidance and machine-readable specification.",
+    "Motion communicates cause, continuity, priority, feedback, or status.",
+    "Accessibility is a governing foundation for every layer.",
+    "Generic industry templates are excluded unless they serve the fleet product domain."
+  ]
+}

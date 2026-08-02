@@ -1,0 +1,12 @@
+{
+  "operatingModel": {
+    "sourceOfTruth": "packages/specs/specs/unison.system.json",
+    "renderedSurface": "app.js documentation routes fed by packages/content/content/component-docs.json and packages/content/content/component-copy.json",
+    "stableHumanDocs": [
+      "docs/architecture.md",
+      "docs/token-strategy.md"
+    ],
+    "rule": "Machine-readable product rules, gates, inventories, artifact contracts, reference decisions, and maturity state live in specs or the auditor. Human-facing copy, examples, fixtures, and MIEL prompts live in packages/content/content/component-copy.json and must be audited against packages/specs/specs/unison.system.json before scaling.",
+    "contentSurface": "packages/content/content/component-copy.json"
+  }
+}

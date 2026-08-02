@@ -1,0 +1,51 @@
+{
+  "explorers": {
+    "items": {
+      "Tone": {
+        "type": "tone",
+        "initial": "neutral",
+        "ariaLabel": "Tone examples",
+        "choices": [
+          [
+            "neutral",
+            "Neutral"
+          ],
+          [
+            "assistive",
+            "Assistive"
+          ],
+          [
+            "urgent",
+            "Urgent"
+          ],
+          [
+            "repair",
+            "Repair"
+          ]
+        ],
+        "states": {
+          "neutral": [
+            "Neutral",
+            "Card ready to use",
+            "Your card can be used at enabled stations and merchants."
+          ],
+          "assistive": [
+            "Assistive",
+            "Location helps find better stations",
+            "Enable location to sort nearby stations by distance and route time."
+          ],
+          "urgent": [
+            "Urgent",
+            "Card blocked for security",
+            "Fuel purchases are paused until the fleet manager reviews this card."
+          ],
+          "repair": [
+            "Repair",
+            "We could not load stations",
+            "Check your connection or search by city while location recovers."
+          ]
+        }
+      }
+    }
+  }
+}

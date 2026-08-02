@@ -1,0 +1,373 @@
+{
+  "artifacts": {
+    "components": {
+      "card-number-input": {
+        "id": "card-number-input",
+        "name": "Card Number Input",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Capture one grouped card number with numeric keyboard, cc-number autocomplete, local Luhn validation, helper/error copy, and Design System field states.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The reference onboarding system captures card number with Field + Input, mono value, credit-card icon, grouping, and a validate action. Design System promotes the number field because Luhn validation and sensitive recovery rules exceed generic Input.",
+        "anatomy": [
+          {
+            "part": "label",
+            "rule": "Names the card number field and remains visible.",
+            "tokens": [
+              "comp.input.*",
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "input surface",
+            "rule": "Uses Input rhythm, density, focus, and state model.",
+            "tokens": [
+              "comp.input.*",
+              "sys.frame.*",
+              "sys.energy.*"
+            ]
+          },
+          {
+            "part": "card icon",
+            "rule": "Signals card capture without replacing label or helper.",
+            "tokens": [
+              "sys.iconography.*",
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "grouped value",
+            "rule": "Formats digits into readable groups while preserving raw digits for callbacks.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.accessibility.*"
+            ]
+          },
+          {
+            "part": "validation message",
+            "rule": "Uses Luhn only for local structure and never claims backend approval.",
+            "tokens": [
+              "sys.state.*",
+              "sys.tone.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "default",
+            "use": "One card number field."
+          }
+        ],
+        "states": [
+          "default",
+          "filled",
+          "valid",
+          "loading",
+          "error",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > loading > error > valid > filled > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use semantic field surface, error, valid, and disabled color.",
+            "tokens": [
+              "comp.input.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Card number state is visible and contrast-safe.",
+            "example": "Invalid Luhn state.",
+            "test": "Contrast and state audit.",
+            "rejectIf": "Raw color or color-only validity."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use direct helper and recovery copy without implying approval.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Users know whether to correct local structure.",
+            "example": "Check the card number.",
+            "test": "Copy audit.",
+            "rejectIf": "Copy says the card is approved."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Reuse Input geometry, density, and full-width behavior.",
+            "tokens": [
+              "comp.input.*",
+              "sys.frame.*"
+            ],
+            "behavior": "The grouped value remains correctable.",
+            "example": "Onboarding card field.",
+            "test": "Responsive audit.",
+            "rejectIf": "Field overflows or forks spacing."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Design System focus and loading motion only.",
+            "tokens": [
+              "sys.momentum.*"
+            ],
+            "behavior": "Feedback does not block typing.",
+            "example": "Checking number loading state.",
+            "test": "Reduced motion.",
+            "rejectIf": "Motion hides validation."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Disabled and loading resolve before local validation.",
+            "tokens": [
+              "sys.state.*"
+            ],
+            "behavior": "Card number state is unambiguous.",
+            "example": "Loading backend check after valid local number.",
+            "test": "Precedence.",
+            "rejectIf": "Invalid and valid are both shown."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use label, describedby, aria-invalid, inputmode numeric, autocomplete cc-number, and paste-friendly formatting.",
+            "tokens": [
+              "sys.accessibility.*"
+            ],
+            "behavior": "The field is operable with keyboard, paste, and assistive tech.",
+            "example": "cc-number autofill.",
+            "test": "A11y audit.",
+            "rejectIf": "No label or missing invalid state."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Keep card number as a field-level surface; enrollment depth belongs to patterns.",
+            "tokens": [
+              "sys.depth.*"
+            ],
+            "behavior": "The component does not open nested payment or ownership flows.",
+            "example": "Driver onboarding card field.",
+            "test": "Layer audit.",
+            "rejectIf": "Owns enrollment system."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use direct recovery tone for local validation and avoid approval language.",
+            "tokens": [
+              "sys.tone.*"
+            ],
+            "behavior": "The user knows whether to correct the number.",
+            "example": "Check the card number.",
+            "test": "Tone review.",
+            "rejectIf": "Implies card approval."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Escalate expiry, security code, tokenization, and ownership to sibling components or patterns.",
+            "tokens": [
+              "sys.growth.*"
+            ],
+            "behavior": "Card Number remains one capture component.",
+            "example": "Future card enrollment pattern.",
+            "test": "Layer classification.",
+            "rejectIf": "Owns full card form."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use the card symbol as an affordance beside visible label and helper text.",
+            "tokens": [
+              "sys.symbol.*"
+            ],
+            "behavior": "Icon reinforces card capture without replacing text.",
+            "example": "credit_card leading icon.",
+            "test": "Visible label and helper.",
+            "rejectIf": "Icon-only purpose."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Design System icon sizing and alignment inside the field control.",
+            "tokens": [
+              "sys.iconography.*"
+            ],
+            "behavior": "Card icon aligns with Input rhythm across density.",
+            "example": "Leading card icon.",
+            "test": "Icon alignment audit.",
+            "rejectIf": "Custom icon sizing."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Density",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Message"
+        ],
+        "tokenDependencies": [
+          "comp.input.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Visible card number label."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": false,
+            "notes": "Formatted or raw card number value."
+          },
+          {
+            "name": "helper",
+            "type": "string",
+            "required": false,
+            "notes": "Short guidance or consequence copy."
+          },
+          {
+            "name": "error",
+            "type": "string",
+            "required": false,
+            "notes": "Visible recovery message; overrides local Luhn message."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables the field."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "notes": "Shows a check in progress without claiming approval."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "required": false,
+            "notes": "Marks the field required."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": false,
+            "notes": "Maps to Input density."
+          },
+          {
+            "name": "state",
+            "type": "\"default\" | \"filled\" | \"valid\" | \"loading\" | \"error\" | \"disabled\"",
+            "required": false,
+            "notes": "Controlled state."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "notes": "Native input name."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": false,
+            "notes": "Example card number format."
+          },
+          {
+            "name": "validationMessage",
+            "type": "string",
+            "required": false,
+            "notes": "Local Luhn recovery copy."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(digits: string, meta: CardNumberMeta) => void",
+            "required": false,
+            "notes": "Emits raw digits and local validation metadata."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver onboarding",
+            "example": "Capture card number before creating a passcode."
+          },
+          {
+            "context": "Wallet add card",
+            "example": "Collect card number before expiry and security code."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for one card number.",
+            "Keep grouping automatic.",
+            "Use Luhn only as local structure validation."
+          ],
+          "dont": [
+            "Do not own CVC, expiry, tokenization, ownership, or submit system.",
+            "Do not claim backend approval."
+          ],
+          "info": [
+            "Full card enrollment becomes a pattern after Card Number, Expiry, and Security Code components exist."
+          ]
+        },
+        "tests": [
+          "Grouping on input and paste",
+          "Luhn valid and invalid states",
+          "aria-invalid and helper association",
+          "autocomplete cc-number",
+          "numeric input mode",
+          "Disabled and loading states",
+          "Responsive width"
+        ],
+        "rejectIf": [
+          "Owns backend validation, tokenization, card ownership, or submission",
+          "Luhn invalid state is color-only",
+          "Value is not grouped or cannot be corrected",
+          "Autocomplete and numeric input mode are missing"
+        ],
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "large field with grouped number and close helper text"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "standard onboarding or wallet form field"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin or support form row"
+          }
+        ],
+        "agentInstructions": [
+          "Use Card Number Input for one grouped card number.",
+          "Ask before adding expiry, CVC, tokenization, backend validation, or card ownership.",
+          "Keep autocomplete cc-number, numeric input mode, helper/error association, and Luhn recovery visible."
+        ]
+      }
+    }
+  }
+}

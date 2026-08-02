@@ -1,0 +1,111 @@
+{
+  "artifacts": {
+    "primitives": {
+      "radius": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Radius",
+        "purpose": "Turn Frame shape roles into implementation-ready primitives for controls, cards, sheets, pills, map pins, table rows, and permission panels.",
+        "governingFoundations": [
+          "Frame",
+          "Depth",
+          "State"
+        ],
+        "foundationInputs": [
+          "sys.frame.*",
+          "sys.depth.*",
+          "sys.state.*"
+        ],
+        "roles": [
+          {
+            "id": "control",
+            "token": "radius.control",
+            "use": "Buttons, fields, selects, chips, compact actions."
+          },
+          {
+            "id": "container",
+            "token": "radius.container",
+            "use": "Cards, panels, popovers, dashboard modules."
+          },
+          {
+            "id": "surface",
+            "token": "radius.surface",
+            "use": "Sheets, dialogs, large product surfaces."
+          },
+          {
+            "id": "pill",
+            "token": "radius.full",
+            "use": "Badges, filter chips, status tags."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Mobile quick actions",
+            "example": "Control radius stays stable across enabled, pressed, and disabled states."
+          },
+          {
+            "context": "Station detail sheet",
+            "example": "Sheet radius communicates layered surface while map remains behind it."
+          },
+          {
+            "context": "Dashboard filters",
+            "example": "Filter chips use pill radius, not generic card radius."
+          }
+        ],
+        "api": {
+          "props": [
+            "role",
+            "density",
+            "surface",
+            "state"
+          ],
+          "outputs": [
+            "cssCustomProperties",
+            "shapeRole",
+            "focusSafeOutline"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.frame.radius.*",
+          "sys.frame.radius.*",
+          "radius.*"
+        ],
+        "states": [
+          "default",
+          "focus",
+          "selected",
+          "disabled"
+        ],
+        "agentInstructions": [
+          "Choose radius by surface role, not visual taste.",
+          "Do not invent one-off curves for a component.",
+          "Keep focus ring and hit target compatible with shape."
+        ],
+        "rejectIf": [
+          "Raw border-radius appears outside tokens.",
+          "Shape suggests interactivity when the element is static.",
+          "Pill shape is used for large content panels."
+        ]
+      }
+    }
+  }
+}

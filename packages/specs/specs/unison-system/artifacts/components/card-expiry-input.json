@@ -1,0 +1,379 @@
+{
+  "artifacts": {
+    "components": {
+      "card-expiry-input": {
+        "id": "card-expiry-input",
+        "name": "Card Expiry Input",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Capture one MM/YY card expiry with numeric keyboard, cc-exp autocomplete, local month and expired-date validation, helper/error copy, and Design System field states.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The reference ZIP shows PaymentCard expiry display values such as 12/28 and 03/27 but no editable expiry field. Design System promotes a bounded expiry field so card enrollment can use the same Input rhythm without inventing a pattern too early.",
+        "anatomy": [
+          {
+            "part": "label",
+            "rule": "Names the expiry field and remains visible.",
+            "tokens": [
+              "comp.input.*",
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "input surface",
+            "rule": "Uses Input rhythm, density, focus, and state model.",
+            "tokens": [
+              "comp.input.*",
+              "sys.frame.*",
+              "sys.energy.*"
+            ]
+          },
+          {
+            "part": "calendar icon",
+            "rule": "Signals date capture without replacing label or helper.",
+            "tokens": [
+              "sys.iconography.*",
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "formatted value",
+            "rule": "Formats digits as MM/YY while preserving raw digits for callbacks.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.accessibility.*"
+            ]
+          },
+          {
+            "part": "validation message",
+            "rule": "Uses month and expired-date checks only for local recovery.",
+            "tokens": [
+              "sys.state.*",
+              "sys.tone.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "default",
+            "use": "One MM/YY expiry field."
+          }
+        ],
+        "states": [
+          "default",
+          "filled",
+          "valid",
+          "loading",
+          "error",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > loading > error > valid > filled > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use semantic field surface, error, valid, and disabled color.",
+            "tokens": [
+              "comp.input.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Expiry state is visible and contrast-safe.",
+            "example": "Invalid month or expired date state.",
+            "test": "Contrast and state audit.",
+            "rejectIf": "Raw color or color-only validity."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use direct helper and recovery copy without implying approval.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Users know whether to correct local structure.",
+            "example": "Check the expiry date.",
+            "test": "Copy audit.",
+            "rejectIf": "Copy says the card is approved."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Reuse Input geometry, density, and full-width behavior.",
+            "tokens": [
+              "comp.input.*",
+              "sys.frame.*"
+            ],
+            "behavior": "The grouped value remains correctable.",
+            "example": "Onboarding expiry field.",
+            "test": "Responsive audit.",
+            "rejectIf": "Field overflows or forks spacing."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Design System focus and loading motion only.",
+            "tokens": [
+              "sys.momentum.*"
+            ],
+            "behavior": "Feedback does not block typing.",
+            "example": "Checking expiry loading state.",
+            "test": "Reduced motion.",
+            "rejectIf": "Motion hides validation."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Disabled and loading resolve before local validation.",
+            "tokens": [
+              "sys.state.*"
+            ],
+            "behavior": "Expiry state is unambiguous.",
+            "example": "Loading backend check after valid local expiry.",
+            "test": "Precedence.",
+            "rejectIf": "Invalid and valid are both shown."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use label, describedby, aria-invalid, inputmode numeric, autocomplete cc-exp, and paste-friendly formatting.",
+            "tokens": [
+              "sys.accessibility.*"
+            ],
+            "behavior": "The field is operable with keyboard, paste, and assistive tech.",
+            "example": "cc-exp autofill.",
+            "test": "A11y audit.",
+            "rejectIf": "No label or missing invalid state."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Keep card expiry as a field-level surface; enrollment depth belongs to patterns.",
+            "tokens": [
+              "sys.depth.*"
+            ],
+            "behavior": "The component does not open nested payment or ownership flows.",
+            "example": "Driver onboarding card field.",
+            "test": "Layer audit.",
+            "rejectIf": "Owns enrollment system."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use direct recovery tone for local validation and avoid approval language.",
+            "tokens": [
+              "sys.tone.*"
+            ],
+            "behavior": "The user knows whether to correct the expiry.",
+            "example": "Check the expiry date.",
+            "test": "Tone review.",
+            "rejectIf": "Implies card approval."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Escalate card number, security code, tokenization, and ownership to sibling components or patterns.",
+            "tokens": [
+              "sys.growth.*"
+            ],
+            "behavior": "Card Expiry remains one capture component.",
+            "example": "Future card enrollment pattern.",
+            "test": "Layer classification.",
+            "rejectIf": "Owns full card form."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use the calendar symbol as an affordance beside visible label and helper text.",
+            "tokens": [
+              "sys.symbol.*"
+            ],
+            "behavior": "Icon reinforces expiry capture without replacing text.",
+            "example": "calendar_month leading icon.",
+            "test": "Visible label and helper.",
+            "rejectIf": "Icon-only purpose."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Design System icon sizing and alignment inside the field control.",
+            "tokens": [
+              "sys.iconography.*"
+            ],
+            "behavior": "Calendar icon aligns with Input rhythm across density.",
+            "example": "Leading calendar icon.",
+            "test": "Icon alignment audit.",
+            "rejectIf": "Custom icon sizing."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Density",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Message"
+        ],
+        "tokenDependencies": [
+          "comp.input.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Visible expiry label."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": false,
+            "notes": "Formatted or raw expiry value."
+          },
+          {
+            "name": "helper",
+            "type": "string",
+            "required": false,
+            "notes": "Short guidance or consequence copy."
+          },
+          {
+            "name": "error",
+            "type": "string",
+            "required": false,
+            "notes": "Visible recovery message; overrides local expiry message."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables the field."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "notes": "Shows a check in progress without claiming approval."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "required": false,
+            "notes": "Marks value required."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": false,
+            "notes": "Maps to Input density."
+          },
+          {
+            "name": "state",
+            "type": "\"default\" | \"filled\" | \"valid\" | \"loading\" | \"error\" | \"disabled\"",
+            "required": false,
+            "notes": "Semantic preview or controlled state."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "notes": "Native input name."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": false,
+            "notes": "Example expiry format."
+          },
+          {
+            "name": "validationMessage",
+            "type": "string",
+            "required": false,
+            "notes": "Local invalid-month recovery copy."
+          },
+          {
+            "name": "expiredMessage",
+            "type": "string",
+            "required": false,
+            "notes": "Local expired-date recovery copy."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(value: string, meta: CardExpiryMeta) => void",
+            "required": false,
+            "notes": "Called with formatted value, raw digits, month, year, validity, and expired flag."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver onboarding",
+            "example": "Capture expiry after card number."
+          },
+          {
+            "context": "Wallet add card",
+            "example": "Collect expiry before security code."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for one card expiry date.",
+            "Keep MM/YY formatting automatic.",
+            "Use local validation only for month and expiration."
+          ],
+          "dont": [
+            "Do not own card number, CVC, tokenization, ownership, or submit system.",
+            "Do not claim backend approval."
+          ],
+          "info": [
+            "Full card enrollment becomes a pattern after Card Number, Expiry, and Security Code components exist."
+          ]
+        },
+        "tests": [
+          "MM/YY formatting on input and paste",
+          "Valid, invalid month, expired, incomplete, and empty states",
+          "aria-invalid and helper association",
+          "autocomplete cc-exp",
+          "numeric keyboard hint",
+          "Disabled and loading states",
+          "Responsive width"
+        ],
+        "rejectIf": [
+          "The component owns backend validation, tokenization, card ownership, or submission.",
+          "Expired or invalid state is color-only.",
+          "The value is not formatted or cannot be corrected.",
+          "Autocomplete and numeric input mode are missing."
+        ],
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "large field with grouped number and close helper text"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "standard onboarding or wallet form field"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin or support form row"
+          }
+        ],
+        "agentInstructions": [
+          "Use Card Expiry Input for one MM/YY expiry.",
+          "Ask before adding card number, CVC, tokenization, backend validation, or card ownership.",
+          "Keep autocomplete cc-exp, numeric input mode, helper/error association, and expiry recovery visible."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "demos": {
+    "Research": {
+      "type": "statGrid",
+      "className": "research-demo",
+      "rows": [
+        [
+          "Question",
+          "Does the manager understand the consequence?"
+        ],
+        [
+          "Hypothesis",
+          "Recovery copy increases confidence to confirm."
+        ],
+        [
+          "Evidence",
+          "Usability test + support tickets + telemetry."
+        ],
+        [
+          "Decision",
+          "Button danger + confirmation message pattern."
+        ]
+      ]
+    }
+  }
+}

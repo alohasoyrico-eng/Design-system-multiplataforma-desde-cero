@@ -1,0 +1,6 @@
+{
+  "$systemShards": [
+    "component-docs/base.json",
+    "component-docs/components.json"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": "2026-07-13",
+  "scope": "Behavior contracts for components accepted with contract pending after the one-by-one pass.",
+  "rules": [
+    "Package-owned behavior belongs to the reusable Package component contract.",
+    "Docs-only behavior may demonstrate a pending package contract but must be labeled by this file.",
+    "Pattern-owned behavior must not be absorbed into the component."
+  ]
+}

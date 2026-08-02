@@ -1,0 +1,48 @@
+{
+  "components": {
+    "button": {
+      "variant-state-behavior": {
+        "copy": "Disabled and loading keep hierarchy and risk visible. They cannot collapse into a generic opacity treatment.",
+        "rows": [
+          {
+            "label": "Primary",
+            "variant": "primary",
+            "intent": ""
+          },
+          {
+            "label": "Secondary",
+            "variant": "secondary",
+            "intent": ""
+          },
+          {
+            "label": "Outlined",
+            "variant": "outlined",
+            "intent": ""
+          },
+          {
+            "label": "Ghost",
+            "variant": "ghost",
+            "intent": ""
+          },
+          {
+            "label": "Danger",
+            "variant": "primary",
+            "intent": "danger"
+          },
+          {
+            "label": "Warning",
+            "variant": "primary",
+            "intent": "warning"
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "pressed",
+          "disabled",
+          "loading"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "components": {
+    "toast": {
+      "playground": {
+        "copy": "Use the playground to verify severity, message length, optional description, action, dismiss behavior, and live-region role before using Toast in a system.",
+        "controls": [
+          {
+            "name": "label",
+            "label": "Message",
+            "type": "text",
+            "value": "Card limit updated."
+          },
+          {
+            "name": "description",
+            "label": "Description",
+            "type": "text",
+            "value": "Changes are live for assigned drivers."
+          },
+          {
+            "name": "tone",
+            "label": "Tone",
+            "type": "select",
+            "value": "success",
+            "options": [
+              "neutral",
+              "info",
+              "success",
+              "warning",
+              "danger"
+            ]
+          },
+          {
+            "name": "variant",
+            "label": "Variant",
+            "type": "select",
+            "value": "status",
+            "options": [
+              "status",
+              "progress",
+              "warning",
+              "recovery",
+              "undo"
+            ]
+          },
+          {
+            "name": "state",
+            "label": "State",
+            "type": "select",
+            "value": "visible",
+            "options": [
+              "default",
+              "visible",
+              "action",
+              "stacked",
+              "exiting"
+            ]
+          },
+          {
+            "name": "dismissible",
+            "label": "Dismissible",
+            "type": "checkbox",
+            "value": true
+          }
+        ],
+        "preview": {
+          "label": "Card limit updated.",
+          "description": "Changes are live for assigned drivers.",
+          "tone": "success",
+          "variant": "status",
+          "state": "visible",
+          "icon": "check_circle",
+          "dismissible": true
+        },
+        "snippet": "<Toast tone=\"success\" dismissible>Card limit updated.</Toast>"
+      }
+    }
+  }
+}

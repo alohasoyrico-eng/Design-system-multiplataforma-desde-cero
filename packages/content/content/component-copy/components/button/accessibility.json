@@ -1,0 +1,16 @@
+{
+  "components": {
+    "button": {
+      "accessibility": {
+        "statePrecedence": "disabled, loading, pressed, focus, hover, default",
+        "items": [
+          "Native button role and keyboard activation.",
+          "Visible label is required and remains the accessible name.",
+          "Focus-visible ring must be clear in normal and forced-colors modes.",
+          "Loading uses aria-busy and blocks duplicate activation.",
+          "Disabled state must explain unavailability in the surrounding UI."
+        ]
+      }
+    }
+  }
+}

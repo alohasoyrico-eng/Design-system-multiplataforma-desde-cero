@@ -1,0 +1,22 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "intents": [
+          {
+            "id": "default",
+            "use": "Ordinary action."
+          },
+          {
+            "id": "danger",
+            "use": "Destructive or irreversible action."
+          },
+          {
+            "id": "warning",
+            "use": "Risky but non-destructive action."
+          }
+        ]
+      }
+    }
+  }
+}

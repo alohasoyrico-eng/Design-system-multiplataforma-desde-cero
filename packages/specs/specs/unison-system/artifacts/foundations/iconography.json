@@ -1,0 +1,116 @@
+{
+  "artifacts": {
+    "foundations": {
+      "iconography": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Iconography",
+        "purpose": "Govern functional glyphs through Material Symbols, semantic roles, size, color, accessible names, and fallback behavior.",
+        "referenceDecision": "Adopt + adapt",
+        "roles": [
+          {
+            "id": "action",
+            "token": "sys.symbol.color.action",
+            "use": "Buttons, quick actions, menus, toolbar commands."
+          },
+          {
+            "id": "navigation",
+            "token": "icon.category.navigation",
+            "use": "Topbar, breadcrumbs, tabs, drawers, route movement."
+          },
+          {
+            "id": "status",
+            "token": "sys.symbol.color.status",
+            "use": "Success, warning, error, pending, disabled state glyphs."
+          },
+          {
+            "id": "object",
+            "token": "icon.category.object",
+            "use": "Vehicle, card, driver, station, route, payment."
+          },
+          {
+            "id": "size",
+            "token": "sys.symbol.size.*",
+            "use": "12, 16, 20, 24, 32px governed glyph sizes."
+          },
+          {
+            "id": "accessibility",
+            "token": "aria-label / aria-hidden",
+            "use": "Meaningful icons are named; decorative icons are hidden."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Quick actions",
+            "example": "Material Symbols identify actions, but labels remain visible."
+          },
+          {
+            "context": "Icon button",
+            "example": "Icon-only controls require aria-label and touch target."
+          },
+          {
+            "context": "Dashboard",
+            "example": "Status icons pair with text and color-safe encoding."
+          },
+          {
+            "context": "Map",
+            "example": "Station and route icons never replace fallback list labels."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.symbol.*",
+          "sys.symbol.*",
+          "material-symbols-rounded"
+        ],
+        "primitiveDependencies": [
+          "Iconography",
+          "Focus",
+          "Color",
+          "Disabled"
+        ],
+        "componentDependencies": [
+          "Icon Button",
+          "Button",
+          "Menu",
+          "Tooltip",
+          "Station Pin"
+        ],
+        "agentInstructions": [
+          "Use Material Symbols names through the icon helper.",
+          "Never render huge text labels as icon replacements.",
+          "Icon-only actions need accessible names.",
+          "Decorative icons must be aria-hidden."
+        ],
+        "rejectIf": [
+          "Emoji is used as iconography.",
+          "Icon-only action lacks accessible name.",
+          "Material Symbols text appears unstyled as large labels.",
+          "Icon color is hardcoded outside semantic tokens."
+        ],
+        "patternDependencies": [
+          "Chart Legend Item"
+        ]
+      }
+    }
+  }
+}

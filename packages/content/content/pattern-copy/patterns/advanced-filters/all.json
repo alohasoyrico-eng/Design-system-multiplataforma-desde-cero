@@ -1,0 +1,147 @@
+{
+  "patterns": {
+    "advanced-filters": {
+      "purpose": "Compose dashboard, audit, and table filters with saved views, active chips, reset behavior, validation, and responsive overflow.",
+      "useWhen": [
+        "Users need more than one filter dimension for dashboards or data tables.",
+        "Active filters need to remain visible and removable.",
+        "Filters affect charts, tables, exports, or saved views."
+      ],
+      "doNotUseWithoutReview": [
+        "A single field or Select is enough.",
+        "Filter source, default values, or reset behavior is unclear.",
+        "Filters change regulated reports without review or audit."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines filter bar density, chip wrapping, drawer fallback, and panel spacing."
+        ],
+        [
+          "Voice",
+          "Owns filter labels, empty copy, reset copy, saved-view names, and validation."
+        ],
+        [
+          "Energy",
+          "Controls active filter emphasis, disabled state, and validation tone."
+        ],
+        [
+          "State",
+          "Default, dirty, applied, loading, disabled, empty, invalid, and saved states are explicit."
+        ],
+        [
+          "Depth",
+          "Overflow panels and mobile drawers use Design System overlay depth."
+        ],
+        [
+          "Accessibility",
+          "Filter labels, active count, removal, reset, and validation are keyboard accessible."
+        ]
+      ],
+      "slots": [
+        [
+          "controls",
+          "Select | DatePicker | Input",
+          "yes",
+          "Filter inputs for entity, status, date, or keyword."
+        ],
+        [
+          "activeFilters",
+          "Chip[] | Badge",
+          "yes",
+          "Visible active filters with count and removal."
+        ],
+        [
+          "actions",
+          "Button[]",
+          "yes",
+          "Apply, reset, save view, or export actions."
+        ],
+        [
+          "overflow",
+          "Menu | Drawer",
+          "conditional",
+          "Controls that do not fit in the primary bar."
+        ],
+        [
+          "feedback",
+          "InlineValidation | Toast",
+          "conditional",
+          "Invalid range, saved view, or applied state feedback."
+        ]
+      ],
+      "componentsUsed": [
+        "Select",
+        "Date Picker",
+        "Input",
+        "Chip",
+        "Badge",
+        "Button",
+        "Menu",
+        "Drawer",
+        "Inline Validation",
+        "Toast"
+      ],
+      "variants": [
+        [
+          "Dashboard filter bar",
+          "Required",
+          "Dense controls plus active filter chips."
+        ],
+        [
+          "Saved view",
+          "Candidate",
+          "Save/apply named filter sets after explicit action."
+        ],
+        [
+          "Mobile drawer",
+          "Required state",
+          "Overflow filters move to Drawer on constrained viewports."
+        ]
+      ],
+      "motion": [
+        [
+          "Apply filters",
+          "Results update after explicit action or declared immediate behavior."
+        ],
+        [
+          "Chip removal",
+          "Removal updates count without shifting the whole toolbar."
+        ],
+        [
+          "Overflow reveal",
+          "Menu/Drawer uses Design System overlay motion and reduced-motion fallback."
+        ]
+      ],
+      "accessibility": [
+        "Every filter has a programmatic label.",
+        "Active filter count is text-backed.",
+        "Remove/reset controls are keyboard reachable.",
+        "Invalid filter combinations are explained in text."
+      ],
+      "tests": [
+        "Apply updates active chips and count.",
+        "Reset clears controls and chips.",
+        "Invalid range shows Inline Validation.",
+        "Small viewport keeps filters reachable through overflow or drawer."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Advanced Filters when multiple dimensions affect dashboard or table data.",
+          "Use active chips to show applied state.",
+          "Move overflow into Menu or Drawer based on viewport."
+        ],
+        "mustAsk": [
+          "Default filters, saved-view ownership, analytics, export behavior, or audit policy is unclear.",
+          "Filters affect financial, compliance, or regulated reporting."
+        ],
+        "rejectIf": [
+          "Active filters are invisible.",
+          "Reset behavior is missing.",
+          "Controls are hardcoded instead of Design System inputs."
+        ],
+        "handoff": "Confirm filter dimensions, defaults, apply mode, saved views, reset rules, export impact, and responsive overflow."
+      }
+    }
+  }
+}

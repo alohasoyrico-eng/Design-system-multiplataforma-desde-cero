@@ -1,0 +1,67 @@
+{
+  "components": {
+    "select": {
+      "states": {
+        "copy": "Select states must be visible in both control and helper text, especially when options are loading, invalid, unavailable, or permission-blocked.",
+        "demos": [
+          {
+            "label": "Default",
+            "field": "Fleet",
+            "value": "All fleets",
+            "helper": "Showing all active vehicles",
+            "density": "md",
+            "state": ""
+          },
+          {
+            "label": "Open",
+            "field": "Fleet",
+            "value": "North Region Fleet",
+            "helper": "3 options visible",
+            "density": "md",
+            "state": "open"
+          },
+          {
+            "label": "Focus",
+            "field": "Fleet",
+            "value": "North Region Fleet",
+            "helper": "Keyboard focus visible",
+            "density": "md",
+            "state": "focus"
+          },
+          {
+            "label": "Filled",
+            "field": "Fleet",
+            "value": "North Region Fleet",
+            "helper": "Value selected and ready to submit",
+            "density": "md",
+            "state": "filled"
+          },
+          {
+            "label": "Loading",
+            "field": "Fleet",
+            "value": "Loading fleets...",
+            "helper": "Fetching latest options",
+            "density": "md",
+            "state": "loading"
+          },
+          {
+            "label": "Error",
+            "field": "Fleet",
+            "value": "Could not load fleets",
+            "helper": "Retry or clear filter",
+            "density": "md",
+            "state": "error"
+          },
+          {
+            "label": "Disabled",
+            "field": "Fleet",
+            "value": "No permission",
+            "helper": "Ask an admin for fleet access",
+            "density": "md",
+            "state": "disabled"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "components": {
+    "select": {
+      "operational-example": {
+        "copy": "Select helps people narrow operational data without losing context. Show label, value, helper copy, source freshness, and recovery path.",
+        "scenario": {
+          "type": "filter-console",
+          "console": {
+            "icon": "filter_alt",
+            "title": "Fuel dashboard filters",
+            "meta": "Data updated 2 minutes ago",
+            "fields": [
+              {
+                "field": "Fleet",
+                "value": "North Region Fleet",
+                "helper": "28 vehicles",
+                "icon": "local_taxi",
+                "density": "md",
+                "state": "filled"
+              },
+              {
+                "field": "Fuel type",
+                "value": "Diesel",
+                "helper": "Applies to KPI, chart, and table",
+                "density": "md",
+                "state": ""
+              },
+              {
+                "field": "Cost center",
+                "value": "Operations MX",
+                "helper": "Permission scoped",
+                "density": "md",
+                "state": ""
+              }
+            ]
+          },
+          "rationaleTitle": "Why this is a Select case",
+          "rationale": [
+            "Options come from remote operational data and can be stale, loading, or permission-filtered.",
+            "Changing value updates dashboard filters, URL state, analytics, and table queries.",
+            "Keyboard and screen reader users need label, active option, selected value, and listbox state."
+          ]
+        }
+      }
+    }
+  }
+}

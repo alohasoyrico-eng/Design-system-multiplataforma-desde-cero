@@ -1,0 +1,135 @@
+{
+  "components": {
+    "date-range-picker": {
+      "variants": {
+        "copy": "Date Range Picker owns the bounded calendar-range field. ZIP combo-range is documented as a composition with another input control, not as a separate component or pattern.",
+        "demos": [
+          {
+            "label": "Calendar range with presets",
+            "variant": "calendar-range",
+            "presets": true,
+            "value": {
+              "from": "2026-07-01",
+              "to": "2026-07-15"
+            }
+          },
+          {
+            "label": "Calendar range only",
+            "variant": "calendar-range",
+            "presets": false,
+            "value": {
+              "from": "2026-07-01",
+              "to": "2026-07-15"
+            }
+          },
+          {
+            "label": "Open range selection",
+            "variant": "calendar-range",
+            "value": {
+              "from": "2026-07-10"
+            }
+          },
+          {
+            "label": "Header combo composition",
+            "variant": "calendar-range",
+            "helper": "Compose next to Combobox or Select; data refresh belongs to a pattern.",
+            "disabled": true,
+            "value": {
+              "from": "2026-07-01",
+              "to": "2026-07-09"
+            }
+          }
+        ]
+      },
+      "states": {
+        "copy": "Date Range Picker states communicate focus, selected, warning, error, and disabled behavior for the local range only.",
+        "demos": [
+          {
+            "label": "Default",
+            "state": "default"
+          },
+          {
+            "label": "Hover",
+            "state": "hover"
+          },
+          {
+            "label": "Focus",
+            "state": "focus"
+          },
+          {
+            "label": "Selected",
+            "state": "selected"
+          },
+          {
+            "label": "Warning",
+            "state": "warning",
+            "helper": "Range includes a policy boundary."
+          },
+          {
+            "label": "Error",
+            "state": "error",
+            "helper": "End date must be after start date."
+          },
+          {
+            "label": "Disabled",
+            "state": "disabled"
+          }
+        ]
+      },
+      "variant-state-behavior": {
+        "copy": "Variant defines range capture and preset availability; state defines validation and availability. Reporting behavior remains outside the component.",
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "selected",
+          "warning",
+          "error",
+          "disabled"
+        ],
+        "rows": [
+          {
+            "label": "Default",
+            "demo": {
+              "variant": "calendar-range",
+              "value": {}
+            }
+          },
+          {
+            "label": "Selected",
+            "demo": {
+              "variant": "calendar-range",
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-15"
+              },
+              "state": "selected"
+            }
+          },
+          {
+            "label": "Warning",
+            "demo": {
+              "variant": "calendar-range",
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-31"
+              },
+              "state": "warning"
+            }
+          },
+          {
+            "label": "Error",
+            "demo": {
+              "variant": "calendar-range",
+              "value": {
+                "from": "2026-07-18",
+                "to": "2026-07-01"
+              },
+              "state": "error"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "artifacts": {
+    "primitives": {
+      "research": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Researchers",
+          "Product Designers",
+          "PMs",
+          "Content Designers",
+          "Service Designers",
+          "Developers"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "states",
+          "agentInstructions",
+          "rejectIf",
+          "evidence"
+        ],
+        "maturityTarget": 3,
+        "name": "Research",
+        "purpose": "Turn research practice into implementation-ready primitives for questions, hypotheses, audience context, evidence, confidence, risk, decision links, and learning signals.",
+        "governingFoundations": [
+          "Growth",
+          "Tone",
+          "Accessibility",
+          "Voice"
+        ],
+        "foundationInputs": [
+          "sys.growth.*",
+          "sys.tone.*",
+          "sys.accessibility.*",
+          "sys.voice.*"
+        ],
+        "roles": [
+          {
+            "id": "question",
+            "token": "research.question",
+            "use": "What the team needs to learn before or after shipping."
+          },
+          {
+            "id": "hypothesis",
+            "token": "research.hypothesis",
+            "use": "Expected behavior or outcome to validate."
+          },
+          {
+            "id": "context",
+            "token": "research.context.*",
+            "use": "Audience, device, environment, task pressure, and operational risk."
+          },
+          {
+            "id": "evidence",
+            "token": "research.evidence.*",
+            "use": "Interview, usability test, telemetry, support, shadowing, survey, or field data."
+          },
+          {
+            "id": "confidence",
+            "token": "research.confidence.*",
+            "use": "Low, medium, high confidence with stated risk."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Block card",
+            "example": "Tests whether fleet managers understand consequence and recovery before confirming."
+          },
+          {
+            "context": "Nearby stations",
+            "example": "Validates whether drivers can recover when geolocation is denied."
+          },
+          {
+            "context": "Dashboard overview",
+            "example": "Connects KPI hierarchy to investigation speed and support escalation reduction."
+          }
+        ],
+        "api": {
+          "props": [
+            "question",
+            "hypothesis",
+            "audience",
+            "context",
+            "evidenceType",
+            "confidence",
+            "risk",
+            "decisionLink",
+            "learningSignal",
+            "followUp"
+          ],
+          "outputs": [
+            "researchBrief",
+            "decisionEvidence",
+            "learningSignal",
+            "riskNote",
+            "followUpPlan"
+          ]
+        },
+        "tokenDependencies": [
+          "sys.growth.*",
+          "research.*"
+        ],
+        "states": [
+          "assumption",
+          "questioned",
+          "tested",
+          "validated",
+          "invalidated",
+          "needs-follow-up"
+        ],
+        "agentInstructions": [
+          "Attach research question and confidence to important design decisions.",
+          "Connect evidence to components, patterns, or templates instead of storing findings in isolation.",
+          "Use measurement signals to decide follow-up after ship."
+        ],
+        "rejectIf": [
+          "Decision claims research support without evidence type.",
+          "Finding is not linked to a product decision.",
+          "Confidence is missing for high-risk flows.",
+          "Research output cannot be read by designers, PMs, developers, and agents."
+        ]
+      }
+    }
+  }
+}

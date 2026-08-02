@@ -1,0 +1,72 @@
+{
+  "artifacts": {
+    "components": {
+      "text-area": {
+        "id": "text-area",
+        "name": "Text Area",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": ["Design", "Engineering", "Product", "Agents"],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Use Text Area for longer free-form operational text that needs a visible label, helper or recovery copy, optional character count, and multiline editing.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The ZIP reference gives the visual benchmark: full-width multiline surface, 12 by 16 padding, vertical resize, optional bottom-right counter, and fast focus/error transitions. Design System owns tokens, density, state, and accessibility semantics.",
+        "anatomy": [
+          { "part": "Field label", "rule": "Names the long-form value and remains visible.", "tokens": ["comp.text-area.label.*", "sys.voice.*"] },
+          { "part": "Textarea surface", "rule": "Owns rows, resize, value, placeholder, focus, disabled, and error styles.", "tokens": ["comp.text-area.surface.*", "sys.energy.*", "sys.frame.*", "sys.state.*"] },
+          { "part": "Support text", "rule": "Explains purpose, format, privacy, or recovery.", "tokens": ["comp.text-area.support.*", "sys.voice.*", "sys.accessibility.*"] },
+          { "part": "Character counter", "rule": "Shows progress toward maxLength without replacing validation.", "tokens": ["comp.text-area.counter.*", "sys.voice.*", "sys.energy.status.*"] }
+        ],
+        "variants": [
+          { "id": "default", "description": "Multiline text with helper text." },
+          { "id": "filled", "description": "Value is present and editable." },
+          { "id": "with-counter", "description": "Shows maxLength progress." },
+          { "id": "error", "description": "Value needs correction before continuing." }
+        ],
+        "states": ["default", "focus", "filled", "loading", "error", "disabled"],
+        "statePrecedence": "disabled > loading > error > focus > filled > default",
+        "foundations": {
+          "Energy": { "status": "covered", "decision": "Use Energy for surface, border, counter, error, and disabled color.", "tokens": ["comp.text-area.*", "sys.energy.*"], "behavior": "Energy keeps long text readable while state remains visible.", "example": "Driver notes preserve neutral surface and clear error identity.", "test": "Verify contrast for value, helper, counter, error, and disabled.", "rejectIf": "Raw color replaces state tokens." },
+          "Voice": { "status": "covered", "decision": "Use Voice for label, placeholder, value, helper, counter, and recovery.", "tokens": ["comp.text-area.*", "sys.voice.*"], "behavior": "Voice keeps long-form guidance readable.", "example": "Notes explain visibility to the driver.", "test": "Verify label, helper, counter, and error text render.", "rejectIf": "Placeholder is the only label." },
+          "Frame": { "status": "covered", "decision": "Use Frame for full width, rows, padding, resize, and container fit.", "tokens": ["comp.text-area.*", "sys.frame.*"], "behavior": "Frame prevents clipping in narrow containers.", "example": "Support notes stack on mobile and fit desktop forms.", "test": "Verify no overflow while resizing.", "rejectIf": "Width or height is fixed outside density rules." },
+          "Depth": { "status": "covered", "decision": "Use Depth only on surrounding surfaces.", "tokens": ["comp.text-area.*", "sys.depth.*"], "behavior": "Depth does not replace text area state.", "example": "A form panel may have depth while the field stays flat.", "test": "Verify focus and error do not rely on shadow.", "rejectIf": "Shadow is decorative state feedback." },
+          "Momentum": { "status": "covered", "decision": "Use Momentum touch/enter for focus, error, loading, and counter feedback.", "tokens": ["comp.text-area.*", "sys.momentum.*"], "behavior": "Motion confirms state without delaying typing.", "example": "Counter and border update quickly.", "test": "Verify reduced-motion and typing performance.", "rejectIf": "Motion blocks input or uses raw curves." },
+          "State": { "status": "covered", "decision": "Use State to resolve disabled, loading, error, focus, filled, and default.", "tokens": ["comp.text-area.*", "sys.state.*"], "behavior": "State controls visual precedence and interaction.", "example": "Disabled blocks editing; error beats focus.", "test": "Verify precedence across all states.", "rejectIf": "State is visual only or contradictory." },
+          "Tone": { "status": "covered", "decision": "Use Tone for clear guidance and recovery copy.", "tokens": ["comp.text-area.*", "sys.tone.*"], "behavior": "Tone explains what the long text is for.", "example": "Use 'Visible to the driver' instead of vague notes.", "test": "Verify recovery copy tells what to fix.", "rejectIf": "Copy hides privacy, risk, or audience." },
+          "Growth": { "status": "covered", "decision": "Use Growth for reusable multiline input across notes, comments, and explanations.", "tokens": ["comp.text-area.*", "sys.growth.*"], "behavior": "Growth keeps API stable as rich text patterns appear later.", "example": "Driver notes and dispute comments share one contract.", "test": "Verify props remain portable.", "rejectIf": "A product forks one-off multiline behavior." },
+          "Symbol": { "status": "covered", "decision": "Use Symbol only for optional adjacent affordances outside the text surface.", "tokens": ["comp.text-area.*", "sys.symbol.*"], "behavior": "Symbol never replaces label, helper, or counter.", "example": "An error icon can support recovery copy.", "test": "Verify icons do not hide text.", "rejectIf": "Icon-only textarea meaning." },
+          "Iconography": { "status": "covered", "decision": "Use Iconography for status affordances outside the typed value.", "tokens": ["comp.text-area.*", "sys.iconography.*"], "behavior": "Icons inherit state and stay secondary.", "example": "Error icon appears near helper text.", "test": "Verify icon state and accessibility.", "rejectIf": "Icons bypass tokens." },
+          "Accessibility": { "status": "covered", "decision": "Use Accessibility for visible label, multiline semantics, describedby, maxLength, error, disabled, and focus.", "tokens": ["comp.text-area.*", "sys.accessibility.*"], "behavior": "Accessibility makes long-form input machine-readable.", "example": "Counter and error are associated with the textarea.", "test": "Verify label, describedby, aria-invalid, maxLength, disabled, and focus.", "rejectIf": "The field cannot be understood without sight." }
+        },
+        "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Motion Curves", "Duration", "Density", "Focus", "Disabled", "Message"],
+        "tokenDependencies": ["comp.text-area.*", "sys.energy.*", "sys.voice.*", "sys.frame.*", "sys.state.*", "sys.momentum.*", "sys.accessibility.*"],
+        "props": [
+          { "name": "label", "type": "string", "required": true, "notes": "Visible label." },
+          { "name": "value", "type": "string", "required": true, "notes": "Controlled multiline value." },
+          { "name": "placeholder", "type": "string", "required": false, "notes": "Hint, never the only label." },
+          { "name": "helperText", "type": "string", "required": false, "notes": "Guidance or recovery copy." },
+          { "name": "rows", "type": "number", "required": false, "notes": "Visible row count before resize." },
+          { "name": "maxLength", "type": "number", "required": false, "notes": "Enables visible character counter." },
+          { "name": "error", "type": "string", "required": false, "notes": "Validation message." },
+          { "name": "disabled", "type": "boolean", "required": false, "notes": "Blocks editing." },
+          { "name": "onChange", "type": "(value: string) => void", "required": true, "notes": "Reports the controlled value." }
+        ],
+        "productExamples": [
+          { "context": "Driver trip", "example": "Add delivery notes visible to the driver." },
+          { "context": "Support", "example": "Capture dispute explanation before review." },
+          { "context": "Configuration", "example": "Explain policy exception reason." }
+        ],
+        "guidelines": { "do": ["Use for long free-form text.", "Keep label and helper visible.", "Use maxLength when length affects downstream work."], "dont": ["Do not use for short identifiers.", "Do not replace validation with counter only.", "Do not introduce rich text behavior in the base component."], "info": ["Rich text, mentions, templates, and comment threads become patterns later."] },
+        "contextDensityStrategy": [
+          { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "full-width multiline fields" },
+          { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "form groups and support panels" },
+          { "context": "desktops + TV", "density": "lg", "scaleSource": "Density", "layout": "large inspector fields and remote-entry surfaces" }
+        ],
+        "tests": ["Renders visible label, value, helper, placeholder, rows, maxLength, and counter.", "Supports focus, typing, resize, disabled, loading, and validation.", "Associates helper, counter, and error text through describedby.", "Preserves value across loading and error.", "Adapts full-width and responsive layouts without overflow."],
+        "agentInstructions": ["Use Text Area for longer free-form text.", "Ask before adding rich text, mentions, templates, or comment-thread behavior.", "Use Input for short values."],
+        "rejectIf": ["Label is missing or only placeholder exists.", "Counter replaces validation.", "Rich text behavior is added to the base component.", "Raw color, spacing, radius, or motion bypasses tokens."]
+      }
+    }
+  }
+}

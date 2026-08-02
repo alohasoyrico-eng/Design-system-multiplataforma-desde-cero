@@ -1,0 +1,108 @@
+{
+  "components": {
+    "button": {
+      "playground": {
+        "copy": "Inspect the Button contract through preview, DOM attributes, and warnings in one place.",
+        "controls": [
+          {
+            "label": "Label",
+            "name": "label",
+            "type": "text",
+            "value": "Save driver"
+          },
+          {
+            "label": "Variant",
+            "name": "variant",
+            "type": "select",
+            "value": "primary",
+            "options": [
+              "primary",
+              "secondary",
+              "tertiary",
+              "outlined",
+              "ghost"
+            ]
+          },
+          {
+            "label": "Intent",
+            "name": "intent",
+            "type": "select",
+            "value": "default",
+            "options": [
+              "default",
+              "danger",
+              "warning"
+            ]
+          },
+          {
+            "label": "State",
+            "name": "state",
+            "type": "select",
+            "value": "default",
+            "options": [
+              "default",
+              "hover",
+              "focus",
+              "pressed",
+              "disabled",
+              "loading"
+            ]
+          },
+          {
+            "label": "Icon",
+            "name": "icon",
+            "type": "select",
+            "value": "save",
+            "options": [
+              "none",
+              "save",
+              "block",
+              "route",
+              "download",
+              "warning",
+              "check_circle"
+            ]
+          },
+          {
+            "label": "Full width",
+            "name": "fullWidth",
+            "type": "checkbox",
+            "value": false
+          }
+        ],
+        "preview": {
+          "label": "Save driver",
+          "variant": "primary",
+          "intent": "",
+          "size": "",
+          "icon": "save",
+          "state": "",
+          "density": "md"
+        },
+        "snippet": "<Button variant=\"primary\" icon=\"save\">Save driver</Button>",
+        "warnings": [
+          {
+            "when": "intent:danger",
+            "message": "Danger needs consequence copy and recovery path near the button."
+          },
+          {
+            "when": "intent:warning",
+            "message": "Warning is for risky but non-destructive actions."
+          },
+          {
+            "when": "state:loading",
+            "message": "Loading must preserve the action identity and block duplicate activation."
+          },
+          {
+            "when": "state:disabled",
+            "message": "Disabled needs an adjacent reason, not only muted styling."
+          },
+          {
+            "when": "label:ok",
+            "message": "Use a verb-first label that names the outcome."
+          }
+        ]
+      }
+    }
+  }
+}

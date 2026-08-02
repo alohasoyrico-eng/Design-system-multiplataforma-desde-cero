@@ -1,0 +1,19 @@
+{
+  "components": {
+    "checkbox": {
+      "operational-example": {
+        "copy": "Use Checkbox when someone needs to turn one independent choice on or off, or show that a group is partially selected.",
+        "scenario": {
+          "type": "selection-list",
+          "items": [
+            { "label": "Enable fuel card", "description": "Allow purchases for assigned stations.", "checked": true, "state": "checked", "density": "md" },
+            { "label": "Send driver alerts", "description": "Notify the driver before balance changes.", "checked": false, "state": "focus", "density": "md" },
+            { "label": "Select all visible drivers", "description": "3 of 12 drivers selected.", "checked": false, "indeterminate": true, "state": "indeterminate", "density": "md" }
+          ],
+          "rationaleTitle": "Why Checkbox",
+          "rationale": ["Each row is an independent boolean choice.", "Indeterminate communicates partial selection without pretending the value is final.", "Labels and support text keep operational consequences visible."]
+        }
+      }
+    }
+  }
+}

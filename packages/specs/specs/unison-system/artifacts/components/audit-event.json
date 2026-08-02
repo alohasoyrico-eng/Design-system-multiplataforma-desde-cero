@@ -1,0 +1,391 @@
+{
+  "artifacts": {
+    "components": {
+      "audit-event": {
+        "id": "audit-event",
+        "name": "Audit Event",
+        "layer": "Component",
+        "platform": "Desktop",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Represent one traceable event with actor/action label, description, metadata, timestamp, and visible status without becoming a timeline, audit table, approval process, or investigation workflow.",
+        "anatomy": [
+          {
+            "part": "Event marker",
+            "rule": "Identifies the event type without replacing text.",
+            "tokens": [
+              "sys.symbol.*",
+              "sys.iconography.*",
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "Event text",
+            "rule": "Names actor/action/result in compact readable hierarchy.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Metadata",
+            "rule": "Shows actor, source, or audit context as supporting information.",
+            "tokens": [
+              "sys.growth.*",
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Timestamp",
+            "rule": "Shows time as visible mono metadata when required.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Status badge",
+            "rule": "Shows status with text and semantic tone, never color alone.",
+            "tokens": [
+              "sys.state.*",
+              "sys.energy.*"
+            ]
+          },
+          {
+            "part": "Surface",
+            "rule": "Provides local row framing without owning list sequencing.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.frame.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "standard",
+            "description": "Single atomic audit event."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "verified",
+          "warning",
+          "critical",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > critical > warning > verified > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Energy so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Energy audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Voice audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Frame audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Depth audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Momentum audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use State so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.state.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "State audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Tone audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.growth.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Growth audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Symbol audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Iconography audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility so Audit Event remains a bounded component.",
+            "tokens": [
+              "comp.audit-event.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Audit Event exposes local state without absorbing patterns.",
+            "example": "Audit Event",
+            "test": "Accessibility audit",
+            "rejectIf": "Timelines, audit tables, approval flows, and investigation processs belong to patterns."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.audit-event.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Event label describing actor/action/result."
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": false,
+            "notes": "Short supporting event detail."
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "required": false,
+            "notes": "Actor, source, or audit context."
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": false,
+            "notes": "Visible status label."
+          },
+          {
+            "name": "icon",
+            "type": "IconName",
+            "required": false,
+            "notes": "Decorative event marker icon."
+          },
+          {
+            "name": "tone",
+            "type": "neutral | info | success | warning | danger | action",
+            "required": false,
+            "notes": "Semantic tone for marker and status badge."
+          },
+          {
+            "name": "state",
+            "type": "default | hover | focus | verified | warning | critical | disabled",
+            "required": false,
+            "notes": "Local visual state for docs and previews."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": false,
+            "notes": "Density-driven spacing, marker, and type scale."
+          },
+          {
+            "name": "timestamp",
+            "type": "string",
+            "required": false,
+            "notes": "Visible time string for the event."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Admin console",
+            "example": "Audit Event"
+          },
+          {
+            "context": "Fleet operations",
+            "example": "Audit Event"
+          },
+          {
+            "context": "Configuration review",
+            "example": "Audit Event"
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use Audit Event for its bounded job.",
+            "Keep visible label and state.",
+            "Use Design System tokens."
+          ],
+          "dont": [
+            "Timelines, audit tables, approval flows, and investigation processs belong to patterns.",
+            "Do not create multi-step system inside it.",
+            "Do not rely on color or motion only."
+          ],
+          "info": [
+            "Escalate to patterns when orchestration appears."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "documentation preview only; do not use Audit Event as a mobile history pattern"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "standard desktop panel record"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin side panel or audit-adjacent record"
+          }
+        ],
+        "tests": [
+          "Visible label",
+          "State precedence",
+          "Keyboard focus",
+          "Responsive layout",
+          "Pattern boundary"
+        ],
+        "agentInstructions": [
+          "Use Audit Event only for one atomic event.",
+          "Use tone and state for local status; do not invent business variants.",
+          "Escalate ordered histories, connectors, filters, approvals, and investigations to patterns."
+        ],
+        "rejectIf": [
+          "The component becomes a timeline, audit table, approval flow, or investigation workflow.",
+          "A business-specific variant is added.",
+          "Status is color-only.",
+          "Docs render a non-package audit event instance."
+        ],
+        "intents": [
+          {
+            "id": "neutral",
+            "description": "Logged or archived event."
+          },
+          {
+            "id": "info",
+            "description": "Informational event."
+          },
+          {
+            "id": "success",
+            "description": "Verified event."
+          },
+          {
+            "id": "warning",
+            "description": "Needs review."
+          },
+          {
+            "id": "danger",
+            "description": "Critical or rejected event."
+          },
+          {
+            "id": "action",
+            "description": "Action-related event."
+          }
+        ]
+      }
+    }
+  }
+}

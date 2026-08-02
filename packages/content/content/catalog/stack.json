@@ -1,0 +1,100 @@
+{
+  "stack": [
+    {
+      "type": "stack",
+      "id": "motion",
+      "title": "Motion",
+      "category": "Microinteractions",
+      "summary": "Primary engine for product UI transitions: tabs, sheets, drawers, quick actions, reordering, loading, and page changes.",
+      "rule": "Use for behavior that explains structure or state. Respect reduced motion through tokenized alternatives.",
+      "tokens": [
+        "motion.dev",
+        "motion.enter",
+        "motion.confirm"
+      ],
+      "platform": "System"
+    },
+    {
+      "type": "stack",
+      "id": "dotanimated",
+      "title": "dotLottie",
+      "category": "Illustrative animation",
+      "summary": "Animation format and player for onboarding, success, empty states, OTP, biometric, and route moments.",
+      "rule": "Use sparingly for teaching or emotional clarity. Never make task completion depend on the animation.",
+      "tokens": [
+        "@animatedfiles/dotanimated-web",
+        "animated.success",
+        "animated.route"
+      ],
+      "platform": "System"
+    },
+    {
+      "type": "stack",
+      "id": "gsap",
+      "title": "GSAP",
+      "category": "Editorial motion optional",
+      "summary": "Reserved for immersive documentation demos, scroll choreography, complex SVG studies, and premium storytelling.",
+      "rule": "Optional, not part of the default product runtime. Requires explicit performance and accessibility review.",
+      "tokens": [
+        "gsap.core",
+        "ScrollTrigger optional"
+      ],
+      "platform": "System"
+    },
+    {
+      "type": "stack",
+      "id": "material-symbols",
+      "title": "Material Symbols",
+      "category": "Iconography",
+      "summary": "Base icon library for actions, navigation, status, vehicles, fuel, stations, maps, cards, and permissions.",
+      "rule": "Use as raw material, not as Material Design. Every icon gets a semantic role and accessible name policy.",
+      "tokens": [
+        "symbols.rounded",
+        "symbol.action",
+        "symbol.status"
+      ],
+      "platform": "System"
+    },
+    {
+      "type": "stack",
+      "id": "apache-echarts",
+      "title": "Apache ECharts",
+      "category": "Charts",
+      "summary": "Dashboard visualization engine for KPI drilldowns, fuel, maintenance, EV, toll, fleet, and finance analytics.",
+      "rule": "Charts must include titles, descriptions, keyboard reachable summaries, color-safe palettes, and empty states.",
+      "tokens": [
+        "echarts.line",
+        "echarts.bar",
+        "echarts.map"
+      ],
+      "platform": "System"
+    },
+    {
+      "type": "stack",
+      "id": "maplibre-gl-or-mapbox",
+      "title": "MapLibre GL or Mapbox",
+      "category": "Maps",
+      "summary": "Map engine for nearby stations, clusters, route preview, distance, ETA, and layer control.",
+      "rule": "Choose MapLibre when open licensing matters; choose Mapbox when managed services and routing APIs are required.",
+      "tokens": [
+        "map.station",
+        "map.route",
+        "map.cluster"
+      ],
+      "platform": "System"
+    },
+    {
+      "type": "stack",
+      "id": "edenred-ubuntu",
+      "title": "Edenred + Ubuntu",
+      "category": "Typography",
+      "summary": "Edenred Black handles display, titles, and numerals. Ubuntu handles body, UI, captions, subtitles, tables, and code.",
+      "rule": "Self-host fonts when productized. Never replace titles with generic SaaS typography.",
+      "tokens": [
+        "font.display.edenred",
+        "font.body.ubuntu"
+      ],
+      "platform": "System"
+    }
+  ]
+}

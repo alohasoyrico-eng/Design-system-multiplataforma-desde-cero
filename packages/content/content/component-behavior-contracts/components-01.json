@@ -1,0 +1,209 @@
+{
+  "components": {
+    "chip": {
+      "model": "controlled",
+      "packageOwned": [
+        "selected rendering",
+        "disabled rendering",
+        "removable affordance",
+        "accessible pressed state when interactive"
+      ],
+      "callbacks": [
+        "onRemove",
+        "onSelectedChange"
+      ],
+      "focusRules": [
+        "Removable chip exposes one predictable focus target until a remove action is explicitly supported."
+      ],
+      "keyboardRules": [
+        "Enter or Space may toggle only when the chip is interactive."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "filter query composition",
+        "bulk filter management"
+      ]
+    },
+    "tabs": {
+      "model": "controlled-or-uncontrolled",
+      "packageOwned": [
+        "selected tab state",
+        "roving tabindex",
+        "indicator position",
+        "disabled tab exclusion"
+      ],
+      "callbacks": [
+        "onValueChange"
+      ],
+      "focusRules": [
+        "Active tab has tabindex 0; inactive tabs have tabindex -1."
+      ],
+      "keyboardRules": [
+        "ArrowLeft",
+        "ArrowRight",
+        "Home",
+        "End"
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "route switching",
+        "data loading per tab"
+      ]
+    },
+    "tooltip": {
+      "model": "uncontrolled-shell",
+      "packageOwned": [
+        "hover open",
+        "focus open",
+        "blur close",
+        "Escape close",
+        "aria-describedby management"
+      ],
+      "callbacks": [
+        "onOpenChange"
+      ],
+      "focusRules": [
+        "Focus remains on trigger; tooltip content is not tabbable."
+      ],
+      "keyboardRules": [
+        "Escape closes when open."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "teaching flows",
+        "multi-step help"
+      ]
+    },
+    "toast": {
+      "model": "controlled-lifecycle",
+      "packageOwned": [
+        "role and aria-live mapping",
+        "dismiss action",
+        "action button event",
+        "tone rendering"
+      ],
+      "callbacks": [
+        "onDismiss",
+        "onAction"
+      ],
+      "focusRules": [
+        "Toast does not steal focus when it appears."
+      ],
+      "keyboardRules": [
+        "Dismiss and action controls use native button behavior."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "notification queue",
+        "retry orchestration"
+      ]
+    },
+    "dialog": {
+      "model": "controlled-or-uncontrolled-shell",
+      "packageOwned": [
+        "open state",
+        "dismiss controls",
+        "Escape close",
+        "focus trap",
+        "focus restoration",
+        "aria-modal wiring"
+      ],
+      "callbacks": [
+        "onOpenChange",
+        "onAction"
+      ],
+      "focusRules": [
+        "Initial focus moves inside the dialog; closing restores focus to trigger."
+      ],
+      "keyboardRules": [
+        "Escape closes unless the consuming pattern prevents dismissal."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "confirmation policy",
+        "irreversible action recovery"
+      ]
+    },
+    "menu": {
+      "model": "uncontrolled-or-controlled-shell",
+      "packageOwned": [
+        "trigger toggle",
+        "outside close",
+        "Escape close",
+        "menuitem keyboard navigation",
+        "command callback"
+      ],
+      "callbacks": [
+        "onOpenChange",
+        "onSelect"
+      ],
+      "focusRules": [
+        "Opening moves focus to first enabled item; closing restores focus to trigger."
+      ],
+      "keyboardRules": [
+        "ArrowUp",
+        "ArrowDown",
+        "Home",
+        "End",
+        "Enter",
+        "Space",
+        "Escape"
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "permission checks",
+        "high-risk confirmation"
+      ]
+    },
+    "drawer": {
+      "model": "controlled-or-uncontrolled-shell",
+      "packageOwned": [
+        "open state",
+        "dismiss controls",
+        "Escape close",
+        "focus trap",
+        "focus restoration",
+        "side placement"
+      ],
+      "callbacks": [
+        "onOpenChange",
+        "onAction"
+      ],
+      "focusRules": [
+        "Focus moves into the drawer while open and returns to trigger on close."
+      ],
+      "keyboardRules": [
+        "Escape closes when dismissible."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "form submission",
+        "edit lifecycle",
+        "validation process"
+      ]
+    },
+    "accordion": {
+      "model": "controlled-or-uncontrolled",
+      "packageOwned": [
+        "expanded state",
+        "single vs multiple mode",
+        "aria-expanded",
+        "panel hidden state"
+      ],
+      "callbacks": [
+        "onExpandedChange"
+      ],
+      "focusRules": [
+        "Focus stays on the trigger that toggles the section."
+      ],
+      "keyboardRules": [
+        "Enter",
+        "Space"
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "multi-step task progression"
+      ]
+    }
+  }
+}

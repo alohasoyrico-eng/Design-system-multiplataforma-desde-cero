@@ -1,0 +1,304 @@
+{
+  "components": [
+    {
+      "type": "component",
+      "id": "phone-input",
+      "title": "Phone Input",
+      "group": "Inputs",
+      "summary": "Localized phone entry with country code, validation, masking, OTP handoff, and recovery states.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "country-selector",
+      "title": "Country Selector",
+      "group": "Selection",
+      "summary": "Country and calling-code selector with flag support, listbox semantics, keyboard selection, and inline composition for Phone Input.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "date-picker",
+      "title": "Date Picker",
+      "group": "Inputs",
+      "summary": "Calendar-based date entry with locale, shortcuts, disabled dates, keyboard navigation, and validation.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "date-range-picker",
+      "title": "Date Range Picker",
+      "group": "Inputs",
+      "summary": "Range selection for reporting, reconciliation, dashboard comparison, and movement history windows.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "quick-action",
+      "title": "Quick Action",
+      "group": "Mobile",
+      "summary": "Shortcut action with icon, label, state, permission, and confirmation behavior.",
+      "platform": "Mobile",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "card-summary",
+      "title": "Card Summary",
+      "group": "Mobile",
+      "summary": "Single payment-card snapshot with masked number, expiry, holder metadata, visible status, and optional limit metrics.",
+      "platform": "Mobile",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "movement-row",
+      "title": "Movement Row",
+      "group": "Commerce",
+      "summary": "One transaction or movement record with category icon, merchant/context, signed amount, and visible status.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "station-pin",
+      "title": "Station Pin",
+      "group": "Maps",
+      "summary": "Map marker with availability, fuel, EV, brand, distance, route, and cluster behavior.",
+      "platform": "Mobile",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "route-summary",
+      "title": "Route Summary",
+      "group": "Maps",
+      "summary": "Route distance, ETA, toll/fuel relevance, alternate paths, and safety copy.",
+      "platform": "Mobile",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "breadcrumbs",
+      "title": "Breadcrumbs",
+      "group": "Navigation",
+      "summary": "Hierarchical wayfinding for desktop consoles, configuration detail, and deep dashboard drill-in.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "tabs",
+      "title": "Tabs",
+      "group": "Navigation",
+      "summary": "Segmented content navigation with responsive collapse, keyboard behavior, and persistent state.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "pagination",
+      "title": "Pagination",
+      "group": "Navigation",
+      "summary": "Page navigation for long tables, audit events, movement history, and exportable results.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "stepper",
+      "title": "Stepper",
+      "group": "Navigation",
+      "summary": "Multi-step progress for onboarding, setup, role creation, and vehicle registration.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "kpi-tile",
+      "title": "KPI Tile",
+      "group": "Dashboards",
+      "summary": "Fleet metric with current value, delta, threshold, sparkline, owner, and drill-in.",
+      "platform": "Desktop",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "chart-panel",
+      "title": "Chart Panel",
+      "group": "Dashboards",
+      "summary": "Single visualization panel with title, context, summary value, caption, state, and accessible chart semantics.",
+      "platform": "Desktop",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "artifacts": {
+    "primitives": {
+      "maps": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Maps",
+        "purpose": "Turn map product rules into implementation-ready primitives for geolocation, permission, station pins, clusters, route lines, selected states, fallback lists, and errors.",
+        "governingFoundations": [
+          "Energy",
+          "Accessibility",
+          "Depth",
+          "State"
+        ],
+        "foundationInputs": [
+          "sys.energy.*",
+          "sys.accessibility.*",
+          "sys.depth.*",
+          "sys.state.*"
+        ],
+        "roles": [
+          {
+            "id": "permission",
+            "token": "map.permission.*",
+            "use": "Granted, denied, prompt, unavailable states."
+          },
+          {
+            "id": "stationPin",
+            "token": "map.pin.station",
+            "use": "Station marker with status and selection."
+          },
+          {
+            "id": "routeLine",
+            "token": "map.route.line",
+            "use": "Route preview and alternatives."
+          },
+          {
+            "id": "cluster",
+            "token": "map.cluster",
+            "use": "Dense station groups."
+          },
+          {
+            "id": "fallbackList",
+            "token": "map.fallback.list",
+            "use": "Non-map access to same station/route information."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Nearby stations",
+            "example": "Map pins mirror fallback list labels, distance, status, and route action."
+          },
+          {
+            "context": "Permission denied",
+            "example": "Denied location shows manual search and station list fallback."
+          },
+          {
+            "context": "Route guidance",
+            "example": "Selected route has line, ETA, station detail, and accessible summary."
+          }
+        ],
+        "api": {
+          "props": [
+            "permission",
+            "center",
+            "pins",
+            "selectedStation",
+            "route",
+            "fallbackList"
+          ],
+          "outputs": [
+            "mapLayerModel",
+            "stationListModel",
+            "routeSummary",
+            "permissionState"
+          ]
+        },
+        "tokenDependencies": [
+          "map.*",
+          "sys.energy.*",
+          "sys.depth.*",
+          "sys.a11y.*"
+        ],
+        "states": [
+          "nearby",
+          "selected",
+          "route",
+          "denied",
+          "offline",
+          "error"
+        ],
+        "agentInstructions": [
+          "Always provide a fallback list.",
+          "Permission denied is a first-class state.",
+          "Map detail panels need focus and escape behavior."
+        ],
+        "rejectIf": [
+          "Map has no fallback list.",
+          "Permission denied blocks task completion.",
+          "Pin meaning exists only visually.",
+          "Route summary lacks text equivalent."
+        ]
+      }
+    }
+  }
+}

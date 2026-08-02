@@ -1,0 +1,162 @@
+{
+  "patterns": {
+    "fleet-manager-onboarding-desktop": {
+      "purpose": "Coordinate desktop setup for a fleet manager: workspace profile, fleet import, permissions, review, and first dashboard readiness.",
+      "useWhen": [
+        "A manager must configure several operational prerequisites before using a workspace.",
+        "Setup includes imported data, roles, policy review, and recovery states.",
+        "The system is reusable across desktop onboarding surfaces, not a final product template."
+      ],
+      "doNotUseWithoutReview": [
+        "A single settings form is enough.",
+        "Role policy, import validation, or ownership rules are unclear.",
+        "The request describes a full dashboard screen or product IA template."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Desktop layout separates setup controls, preview, and review without nested cards."
+        ],
+        [
+          "State",
+          "Draft, importing, validating, reviewing, complete, empty, and error are explicit."
+        ],
+        [
+          "Voice",
+          "Setup copy names operational consequences plainly."
+        ],
+        [
+          "Depth",
+          "Permission details can open in overlays without losing setup state."
+        ],
+        [
+          "Accessibility",
+          "Tables, checkboxes, and stepper state are keyboard readable."
+        ],
+        [
+          "Energy",
+          "Design System semantic tones communicate progress, warning, and success."
+        ]
+      ],
+      "slots": [
+        [
+          "progress",
+          "Stepper",
+          "yes",
+          "Setup stage and completion."
+        ],
+        [
+          "profile",
+          "Input | Select",
+          "yes",
+          "Workspace and fleet basics."
+        ],
+        [
+          "dataPreview",
+          "Table | Empty State",
+          "yes",
+          "Imported or sample fleet records."
+        ],
+        [
+          "metrics",
+          "KPI Tile[]",
+          "conditional",
+          "Setup readiness summary."
+        ],
+        [
+          "permissions",
+          "Checkbox | Badge",
+          "conditional",
+          "Invite and role configuration."
+        ],
+        [
+          "feedback",
+          "Toast | Inline Validation",
+          "yes",
+          "Save, import, and review feedback."
+        ]
+      ],
+      "componentsUsed": [
+        "Stepper",
+        "Input",
+        "Select",
+        "Table",
+        "KPI Tile",
+        "Checkbox",
+        "Badge",
+        "Button",
+        "Inline Validation",
+        "Toast",
+        "Empty State"
+      ],
+      "variants": [
+        [
+          "Workspace setup",
+          "Required",
+          "Profile and operating region."
+        ],
+        [
+          "Fleet import",
+          "Required",
+          "Data preview and validation."
+        ],
+        [
+          "Role invitation",
+          "Required",
+          "Permissions and collaborator setup."
+        ],
+        [
+          "Ready dashboard",
+          "Candidate",
+          "Completion summary before template handoff."
+        ]
+      ],
+      "motion": [
+        [
+          "Stage change",
+          "Stepper and panel update after user action."
+        ],
+        [
+          "Import feedback",
+          "Toast confirms non-blocking save/import events."
+        ],
+        [
+          "Validation reveal",
+          "Inline Validation appears only after failed action."
+        ],
+        [
+          "Reduced motion",
+          "Panel changes stay immediate and readable."
+        ]
+      ],
+      "accessibility": [
+        "Stepper current stage is visible.",
+        "Table preview is labeled and has readable columns.",
+        "Permission choices use real checkbox controls.",
+        "Save/import feedback does not steal focus."
+      ],
+      "tests": [
+        "Continue advances setup after user action.",
+        "Import preview remains responsive.",
+        "Permission checkbox state is real.",
+        "Desktop and narrow layouts avoid overflow."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use this pattern for reusable desktop onboarding setup before templates.",
+          "Compose Design System fields, select, table, KPI, checkbox, badge, button, and toast.",
+          "Keep import and permission rules explicit."
+        ],
+        "mustAsk": [
+          "Role model, import source, data validation, region policy, or completion criteria is unclear."
+        ],
+        "rejectIf": [
+          "It becomes a full dashboard template.",
+          "Tables, buttons, or fields are custom hardcoded substitutes.",
+          "Permissions are shown without real controls."
+        ],
+        "handoff": "Confirm workspace fields, import source, role policy, validation rules, owner, completion criteria, and template handoff."
+      }
+    }
+  }
+}

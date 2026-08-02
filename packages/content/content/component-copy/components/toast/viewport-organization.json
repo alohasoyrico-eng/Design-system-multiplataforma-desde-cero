@@ -1,0 +1,60 @@
+{
+  "components": {
+    "toast": {
+      "viewport-organization": {
+        "copy": "Place Toast where it can be noticed without stealing the task. If feedback must stay near a field or row, use inline validation or an alert strip instead.",
+        "items": [
+          {
+            "title": "Phone",
+            "icon": "smartphone",
+            "rule": "Use bottom placement above nav and keep one toast visible at a time.",
+            "layout": "bottom safe-area",
+            "density": "lg",
+            "demo": {
+              "label": "Offline mode.",
+              "description": "Changes are saved locally.",
+              "tone": "warning",
+              "variant": "warning",
+              "state": "visible",
+              "icon": "wifi_off",
+              "dismissible": true
+            }
+          },
+          {
+            "title": "Tablet",
+            "icon": "tablet_mac",
+            "rule": "Use corner placement only when it does not cover sheets or primary actions.",
+            "layout": "corner stack",
+            "density": "md",
+            "demo": {
+              "label": "Route updated.",
+              "description": "Drivers see the new stop order.",
+              "tone": "success",
+              "variant": "status",
+              "state": "visible",
+              "icon": "route",
+              "dismissible": true
+            }
+          },
+          {
+            "title": "Desktop",
+            "icon": "desktop_windows",
+            "rule": "Use top-right or bottom-right stack for non-blocking dashboard feedback.",
+            "layout": "desktop stack",
+            "density": "sm",
+            "demo": {
+              "label": "Export failed.",
+              "description": "Try again from the report menu.",
+              "tone": "danger",
+              "variant": "recovery",
+              "state": "action",
+              "icon": "error",
+              "actionLabel": "Retry",
+              "dismissible": true
+            }
+          }
+        ]
+      }
+    }
+  }
+}

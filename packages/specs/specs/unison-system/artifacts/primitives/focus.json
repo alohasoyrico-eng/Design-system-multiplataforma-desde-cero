@@ -1,0 +1,119 @@
+{
+  "artifacts": {
+    "primitives": {
+      "focus": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Focus",
+        "purpose": "Turn Accessibility and State focus rules into implementation-ready focus rings, order, restore, trap, skip, and roving behavior.",
+        "governingFoundations": [
+          "Accessibility",
+          "State",
+          "Frame"
+        ],
+        "foundationInputs": [
+          "sys.accessibility.*",
+          "sys.state.*",
+          "sys.frame.*"
+        ],
+        "roles": [
+          {
+            "id": "visible",
+            "token": "focus.visible",
+            "use": "Keyboard-visible focus ring."
+          },
+          {
+            "id": "restore",
+            "token": "focus.restore",
+            "use": "Return focus after dialogs, sheets, menus."
+          },
+          {
+            "id": "trap",
+            "token": "focus.trap",
+            "use": "Modal and blocking surfaces."
+          },
+          {
+            "id": "roving",
+            "token": "focus.roving",
+            "use": "Menus, tabs, grids, table-like controls."
+          },
+          {
+            "id": "skip",
+            "token": "focus.skip",
+            "use": "Skip navigation and map/list fallback."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Dialog",
+            "example": "Focus enters dialog, traps, escapes, and restores to trigger."
+          },
+          {
+            "context": "Tabs",
+            "example": "Roving focus moves tabs without losing selected state."
+          },
+          {
+            "context": "Map",
+            "example": "Map trap has escape and fallback list."
+          }
+        ],
+        "api": {
+          "props": [
+            "mode",
+            "restoreTo",
+            "trap",
+            "roving",
+            "skipTarget"
+          ],
+          "outputs": [
+            "focusRing",
+            "keyboardMap",
+            "restorePolicy"
+          ]
+        },
+        "tokenDependencies": [
+          "sys.a11y.focus.*",
+          "sys.state.focus.*",
+          "focus.*"
+        ],
+        "states": [
+          "visible",
+          "focused",
+          "trapped",
+          "restored",
+          "skipped"
+        ],
+        "agentInstructions": [
+          "Define keyboard map before styling.",
+          "Never suppress focus because hover/selected exists.",
+          "Restore focus after temporary surfaces close."
+        ],
+        "rejectIf": [
+          "Focus invisible.",
+          "Focus trapped without escape.",
+          "Dialog closes without restoring focus.",
+          "Map has no keyboard fallback."
+        ]
+      }
+    }
+  }
+}

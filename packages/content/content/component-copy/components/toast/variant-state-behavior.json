@@ -1,0 +1,53 @@
+{
+  "components": {
+    "toast": {
+      "variant-state-behavior": {
+        "copy": "Variant defines the feedback job; state defines lifecycle and available controls. Toast does not block the process or replace inline validation.",
+        "states": [
+          "visible",
+          "action",
+          "stacked",
+          "exiting",
+          "default"
+        ],
+        "rows": [
+          {
+            "label": "Status",
+            "demo": {
+              "label": "Saved changes.",
+              "description": "Fleet settings are updated.",
+              "tone": "success",
+              "variant": "status",
+              "icon": "check_circle",
+              "dismissible": true
+            }
+          },
+          {
+            "label": "Recovery",
+            "demo": {
+              "label": "Sync failed.",
+              "description": "Last saved data is still available.",
+              "tone": "danger",
+              "variant": "recovery",
+              "icon": "error",
+              "actionLabel": "Retry",
+              "dismissible": true
+            }
+          },
+          {
+            "label": "Undo",
+            "demo": {
+              "label": "Driver removed.",
+              "description": "This can be undone for a short time.",
+              "tone": "neutral",
+              "variant": "undo",
+              "icon": "undo",
+              "actionLabel": "Undo",
+              "dismissible": true
+            }
+          }
+        ]
+      }
+    }
+  }
+}

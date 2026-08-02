@@ -1,0 +1,28 @@
+{
+  "demos": {
+    "Density": {
+      "type": "stack",
+      "initial": "md",
+      "ariaLabel": "Density examples",
+      "choices": [
+        [
+          "sm",
+          "SM"
+        ],
+        [
+          "md",
+          "MD"
+        ],
+        [
+          "lg",
+          "LG"
+        ]
+      ],
+      "items": [
+        "Dashboard row",
+        "Mobile action",
+        "Inspector panel"
+      ]
+    }
+  }
+}

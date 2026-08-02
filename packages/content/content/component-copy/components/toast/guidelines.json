@@ -1,0 +1,34 @@
+{
+  "components": {
+    "toast": {
+      "guidelines": {
+        "groups": [
+          {
+            "title": "Use",
+            "items": [
+              "Confirm non-blocking outcomes after actions or system events.",
+              "Use one short message and optional supporting description.",
+              "Provide one optional action only when it directly recovers or undoes the event."
+            ]
+          },
+          {
+            "title": "Avoid",
+            "items": [
+              "Do not use Toast for blocking decisions, long instructions, field errors, or persistent alerts.",
+              "Do not stack many messages without grouping or queue rules.",
+              "Do not show fake dismiss or action controls in demos."
+            ]
+          },
+          {
+            "title": "Review",
+            "items": [
+              "Confirm live-region role and severity.",
+              "Check placement against navigation and primary actions.",
+              "Verify timer, dismiss, and action behavior."
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

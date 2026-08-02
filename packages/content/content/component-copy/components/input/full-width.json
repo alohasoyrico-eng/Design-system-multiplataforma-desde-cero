@@ -1,0 +1,22 @@
+{
+  "components": {
+    "input": {
+      "full-width": {
+        "copy": "Full-width Input is for mobile forms, sheets, and constrained containers. Desktop layouts should inherit width from their grid or form group.",
+        "items": [
+          { "label": "Natural width", "layout": "stack-natural", "demo": { "field": "Driver ID", "value": "MX-2048", "placeholder": "Enter driver ID", "helper": "Active driver record", "density": "md", "state": "filled", "icon": "badge" } },
+          { "label": "Mobile form", "layout": "stack", "demo": { "field": "Plate", "value": "", "placeholder": "ABC-123", "helper": "Use registered vehicle plate", "density": "lg", "state": "focus", "icon": "directions_car" } },
+          {
+            "label": "Responsive containers",
+            "layout": "container",
+            "demos": [
+              { "span": 12, "field": "Search", "value": "", "placeholder": "Driver, vehicle, or station", "helper": "Search active records", "density": "md", "state": "default", "icon": "search" },
+              { "span": 8, "field": "Station code", "value": "POL-18", "placeholder": "Station code", "helper": "Checked 14:32", "density": "md", "state": "filled", "icon": "local_gas_station" },
+              { "span": 4, "field": "Limit", "value": "$840", "placeholder": "$0.00", "helper": "Daily cap", "density": "md", "state": "filled", "icon": "payments" }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "explorers": {
+    "fallback": {
+      "type": "operational",
+      "alertFallback": "Operational signal",
+      "action": "Primary recovery"
+    }
+  }
+}

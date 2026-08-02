@@ -1,0 +1,380 @@
+{
+  "artifacts": {
+    "components": {
+      "phone-input": {
+        "id": "phone-input",
+        "name": "Phone Input",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Capture one localized phone number with country selector, calling code, formatting, validation, and OTP handoff affordance.",
+        "anatomy": [
+          {
+            "part": "Label",
+            "rule": "Names the phone field and purpose.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Country selector",
+            "rule": "Shows the active flag, country name, and dialing code without owning large country search patterns.",
+            "tokens": [
+              "comp.phone-input.*"
+            ]
+          },
+          {
+            "part": "Number field",
+            "rule": "Captures digits with readable grouping.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Status icon",
+            "rule": "Confirms validity or handoff state with text-backed meaning.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "Helper line",
+            "rule": "Explains OTP, support, or recovery use.",
+            "tokens": [
+              "sys.tone.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "country-code",
+            "description": "Standard localized phone field."
+          },
+          {
+            "id": "compact",
+            "description": "Dense form or drawer treatment."
+          },
+          {
+            "id": "otp-handoff",
+            "description": "Phone field prepared to send a verification code."
+          },
+          {
+            "id": "readonly",
+            "description": "Verified number shown without editing."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "valid",
+          "warning",
+          "error",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > error > warning > valid > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use semantic focus, valid, warning, and error color.",
+            "tokens": [
+              "comp.phone-input.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Phone validity remains readable.",
+            "example": "Verified phone.",
+            "test": "Contrast audit.",
+            "rejectIf": "Raw colors."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use helper copy for OTP and support consequences.",
+            "tokens": [
+              "sys.voice.*"
+            ],
+            "behavior": "Users know why phone is needed.",
+            "example": "Used for OTP.",
+            "test": "Copy audit.",
+            "rejectIf": "Vague label."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Reuse Input control rhythm and add only the compact country selector slot.",
+            "tokens": [
+              "comp.input.*",
+              "comp.phone-input.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Country selector and number never crowd each other.",
+            "example": "MX +52 field.",
+            "test": "Layout audit.",
+            "rejectIf": "Overflow."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use field-level surface only.",
+            "tokens": [
+              "sys.depth.*"
+            ],
+            "behavior": "Phone input does not become verification system.",
+            "example": "Invite form.",
+            "test": "Layer audit.",
+            "rejectIf": "Nested system."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Design System focus transitions and reduced motion.",
+            "tokens": [
+              "sys.momentum.*"
+            ],
+            "behavior": "Field feedback is responsive.",
+            "example": "Focus ring.",
+            "test": "Motion audit.",
+            "rejectIf": "Raw easing."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Disabled and error resolve before valid.",
+            "tokens": [
+              "sys.state.*"
+            ],
+            "behavior": "Validation state is clear.",
+            "example": "Invalid number.",
+            "test": "Precedence.",
+            "rejectIf": "Conflicting state."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use helper tone for warning and recovery.",
+            "tokens": [
+              "sys.tone.*"
+            ],
+            "behavior": "Warnings have copy.",
+            "example": "Cannot receive SMS.",
+            "test": "Tone review.",
+            "rejectIf": "Color-only warning."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Escalate country search and verification flows to patterns.",
+            "tokens": [
+              "sys.growth.*"
+            ],
+            "behavior": "Phone remains one field.",
+            "example": "Phone input pattern.",
+            "test": "Layer classification.",
+            "rejectIf": "Owns OTP journey."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use symbols for validity and device context.",
+            "tokens": [
+              "sys.symbol.*"
+            ],
+            "behavior": "Icon reinforces text.",
+            "example": "Check icon.",
+            "test": "Visible helper.",
+            "rejectIf": "Icon-only validity."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Design System symbol sizing in status slot.",
+            "tokens": [
+              "sys.iconography.*"
+            ],
+            "behavior": "Status aligns with field.",
+            "example": "Phone icon.",
+            "test": "Mobile legibility.",
+            "rejectIf": "Tiny icon."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Expose label, value, country selector, calling code, invalid, and helper association.",
+            "tokens": [
+              "sys.accessibility.*"
+            ],
+            "behavior": "Screen reader users can identify country and phone field correctly.",
+            "example": "aria-describedby helper.",
+            "test": "A11y audit.",
+            "rejectIf": "Country is flag-only or prefix is not announced."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.input.*",
+          "comp.phone-input.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Visible phone label."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": false,
+            "notes": "Current phone digits or pasted international number."
+          },
+          {
+            "name": "prefix",
+            "type": "string",
+            "required": false,
+            "notes": "Legacy dialing prefix fallback when country is not provided."
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "required": false,
+            "notes": "ISO country code used by the compact selector and flag primitive."
+          },
+          {
+            "name": "countries",
+            "type": "Array<{ country: string, label: string, callingCode: string, nationalLength: number }>",
+            "required": false,
+            "notes": "Allowed country options for the selector."
+          },
+          {
+            "name": "variant",
+            "type": "\"country-code\" | \"compact\" | \"otp-handoff\" | \"readonly\"",
+            "required": false,
+            "description": "Controls the local phone capture treatment without owning OTP delivery or recovery flow."
+          },
+          {
+            "name": "helper",
+            "type": "string",
+            "required": false,
+            "notes": "Short helper text."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables the input."
+          },
+          {
+            "name": "state",
+            "type": "\"default\" | \"hover\" | \"focus\" | \"valid\" | \"warning\" | \"error\" | \"disabled\"",
+            "required": false,
+            "notes": "Semantic validation or interaction state."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": false,
+            "notes": "Maps to the shared Input control density."
+          },
+          {
+            "name": "error",
+            "type": "string",
+            "required": false,
+            "notes": "Error helper text; sets aria-invalid and error state."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(digits: string, meta: PhoneMeta) => void",
+            "required": false,
+            "notes": "Called with national digits and country/calling-code metadata."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver invite",
+            "example": "Phone for SMS invite."
+          },
+          {
+            "context": "OTP",
+            "example": "Phone before verification."
+          },
+          {
+            "context": "Support",
+            "example": "Recovery phone."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for one phone number.",
+            "Keep country code visible.",
+            "Explain OTP or recovery consequence."
+          ],
+          "dont": [
+            "Do not own country search patterns.",
+            "Do not send OTP without explicit action.",
+            "Do not rely on icon-only validity."
+          ],
+          "info": [
+            "Phone verification belongs in patterns."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "large field with visible prefix"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "standard form field"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin form row"
+          }
+        ],
+        "tests": [
+          "Label association",
+          "Country selector and calling code visibility",
+          "Validation state",
+          "Error helper",
+          "Disabled state",
+          "Responsive width"
+        ],
+        "agentInstructions": [
+          "Use Phone Input for one localized number.",
+          "Ask before designing OTP delivery system.",
+          "Keep country selector, calling code, and helper copy visible."
+        ],
+        "rejectIf": [
+          "Owns verification journey",
+          "No visible label",
+          "Country signal is flag-only",
+          "Validity is icon-only"
+        ],
+        "componentDependencies": [
+          "input"
+        ]
+      }
+    }
+  }
+}

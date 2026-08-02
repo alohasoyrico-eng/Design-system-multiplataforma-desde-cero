@@ -1,0 +1,129 @@
+{
+  "artifacts": {
+    "primitives": {
+      "iconography": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Iconography",
+        "purpose": "Turn the Iconography foundation and Material Symbols library into implementation-ready icon names, sizes, colors, labels, and fallback behavior.",
+        "governingFoundations": [
+          "Iconography",
+          "Symbol",
+          "Accessibility",
+          "Energy"
+        ],
+        "foundationInputs": [
+          "sys.iconography.*",
+          "sys.symbol.*",
+          "sys.accessibility.*",
+          "sys.energy.*"
+        ],
+        "roles": [
+          {
+            "id": "action",
+            "token": "icon.action",
+            "use": "Action buttons, quick actions, toolbars."
+          },
+          {
+            "id": "navigation",
+            "token": "icon.navigation",
+            "use": "Topbar, drawers, breadcrumbs, tabs."
+          },
+          {
+            "id": "status",
+            "token": "icon.status",
+            "use": "Success, warning, error, pending."
+          },
+          {
+            "id": "object",
+            "token": "icon.object",
+            "use": "Vehicle, card, route, station, driver."
+          },
+          {
+            "id": "decorative",
+            "token": "icon.decorative",
+            "use": "Hidden support glyphs with aria-hidden."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Quick action grid",
+            "example": "Icon supports a visible label and permission state."
+          },
+          {
+            "context": "Map station pin",
+            "example": "Station glyph pairs with text in fallback list."
+          },
+          {
+            "context": "Icon button",
+            "example": "Icon-only control exposes accessible name and target size."
+          }
+        ],
+        "api": {
+          "props": [
+            "name",
+            "role",
+            "size",
+            "tone",
+            "fill",
+            "label",
+            "decorative"
+          ],
+          "outputs": [
+            "materialSymbolName",
+            "ariaPolicy",
+            "fillPolicy",
+            "cssCustomProperties"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.symbol.*",
+          "sys.symbol.*",
+          "icon.*",
+          "Material Symbols Rounded"
+        ],
+        "states": [
+          "default",
+          "active",
+          "filled",
+          "disabled",
+          "status",
+          "missing"
+        ],
+        "agentInstructions": [
+          "Use Material Symbols via semantic helper.",
+          "Use fill only for selected, active, success, or high-confidence status roles.",
+          "Do not use emoji as icons.",
+          "Name icon-only actions.",
+          "Hide decorative icons from assistive tech."
+        ],
+        "rejectIf": [
+          "Emoji or text label stands in for icon.",
+          "Icon-only action lacks label.",
+          "Icon color is hardcoded.",
+          "Filled icon state is used as decoration without semantic state.",
+          "Missing icon renders as giant text."
+        ]
+      }
+    }
+  }
+}

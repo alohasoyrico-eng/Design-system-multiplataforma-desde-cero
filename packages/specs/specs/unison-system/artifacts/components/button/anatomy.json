@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "anatomy": [
+          {
+            "part": "button element",
+            "rule": "Native button with type button by default.",
+            "tokens": [
+              "comp.button.*",
+              "sys.a11y.*"
+            ]
+          },
+          {
+            "part": "state layer",
+            "rule": "Resolves default, hover, focus, pressed, disabled, and loading before visual styling.",
+            "tokens": [
+              "sys.state.*",
+              "sys.momentum.*"
+            ]
+          },
+          {
+            "part": "label",
+            "rule": "Visible verb-first text remains the accessible name.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "leading icon",
+            "rule": "Optional Material Symbol supports recognition and never replaces the label.",
+            "tokens": [
+              "sys.symbol.*",
+              "iconography.*"
+            ]
+          },
+          {
+            "part": "loading indicator",
+            "rule": "Uses aria-busy and preserves action identity while work is pending.",
+            "tokens": [
+              "loading.*",
+              "duration.*"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

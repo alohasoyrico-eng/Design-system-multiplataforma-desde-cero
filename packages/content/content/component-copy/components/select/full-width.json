@@ -1,0 +1,63 @@
+{
+  "components": {
+    "select": {
+      "full-width": {
+        "copy": "Full-width Select is for constrained filters and form rows. Dense desktop toolbars can use aligned natural width.",
+        "items": [
+          {
+            "label": "Natural width",
+            "layout": "stack-natural",
+            "demo": {
+              "field": "Fleet",
+              "value": "North Region Fleet",
+              "helper": "28 vehicles",
+              "density": "md",
+              "state": ""
+            }
+          },
+          {
+            "label": "Form row",
+            "layout": "stack",
+            "demo": {
+              "field": "Vehicle",
+              "value": "MX-4821",
+              "helper": "Assigned vehicle",
+              "density": "md",
+              "state": ""
+            }
+          },
+          {
+            "label": "Responsive containers",
+            "layout": "container",
+            "demos": [
+              {
+                "span": 12,
+                "field": "Period",
+                "value": "Last 30 days",
+                "helper": "URL persisted",
+                "density": "md",
+                "state": ""
+              },
+              {
+                "span": 8,
+                "field": "Fuel",
+                "value": "Diesel",
+                "helper": "Local filter",
+                "density": "md",
+                "state": ""
+              },
+              {
+                "span": 4,
+                "field": "Cost center",
+                "value": "Operations MX",
+                "helper": "Permission scoped",
+                "density": "md",
+                "state": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "artifacts": {
+    "components": {
+      "stepper": {
+        "id": "stepper",
+        "name": "Stepper",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Show progress through a short ordered sequence with a known current step, without owning wizard routing, validation, recovery, or submission.",
+        "anatomy": [
+          {
+            "part": "Ordered list",
+            "rule": "Represents sequence.",
+            "tokens": [
+              "comp.stepper.*",
+              "sys.accessibility.*"
+            ]
+          },
+          {
+            "part": "Step marker",
+            "rule": "Shows number, active/current action-primary treatment, or completed success check.",
+            "tokens": [
+              "sys.symbol.*",
+              "sys.iconography.*",
+              "sys.state.*",
+              "sys.depth.*"
+            ]
+          },
+          {
+            "part": "Connector",
+            "rule": "Shows relationship and completed progress with success state color.",
+            "tokens": [
+              "sys.frame.*",
+              "sys.energy.*"
+            ]
+          },
+          {
+            "part": "Label",
+            "rule": "Names each step.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Momentum cue",
+            "rule": "Uses bounded enter motion for active marker and completed check.",
+            "tokens": [
+              "sys.momentum.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "horizontal",
+            "description": "Horizontal sequence for roomy wizard headers."
+          },
+          {
+            "id": "vertical",
+            "description": "Vertical sequence for constrained width or longer labels."
+          }
+        ],
+        "states": [
+          "pending",
+          "active",
+          "complete"
+        ],
+        "statePrecedence": "active > complete > pending",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Flow action color for current progress and Flow success color for completed progress; ZIP informs treatment, depth, and motion.",
+            "tokens": [
+              "comp.stepper.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Current and complete are legible as different states without changing foundations.",
+            "example": "Vehicle setup.",
+            "test": "Verify active/current marker uses Flow action-primary and completed marker/connector use Flow success.",
+            "rejectIf": "Raw colors or non-Flow active/current color."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use short step labels.",
+            "tokens": [
+              "sys.voice.*"
+            ],
+            "behavior": "Sequence scans quickly.",
+            "example": "Vehicle, Driver, Confirm.",
+            "test": "Verify label wrap.",
+            "rejectIf": "Sentence labels."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use stable marker, connector, and label spacing.",
+            "tokens": [
+              "sys.frame.*"
+            ],
+            "behavior": "Stepper fits horizontal and vertical layouts.",
+            "example": "Wizard header.",
+            "test": "Verify mobile and desktop layout.",
+            "rejectIf": "Connectors overlap."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Flow-governed action depth and glow only to anchor the current step.",
+            "tokens": [
+              "sys.depth.*"
+            ],
+            "behavior": "Current step has perceptible depth without changing foundations.",
+            "example": "Active step.",
+            "test": "Verify active marker gradient, glow, and action depth.",
+            "rejectIf": "Every step glows."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use bounded enter motion for checks and active marker.",
+            "tokens": [
+              "sys.momentum.*"
+            ],
+            "behavior": "Completion and current-step changes feel connected.",
+            "example": "Check enters and active marker settles.",
+            "test": "Verify reduced motion and enter easing.",
+            "rejectIf": "Raw motion or no current-step motion."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Derive pending, active, and complete from current index.",
+            "tokens": [
+              "sys.state.*"
+            ],
+            "behavior": "Progress cannot contradict the current index.",
+            "example": "Driver step is active.",
+            "test": "Verify state derivation.",
+            "rejectIf": "Blocked or error is treated as closed Stepper state."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Do not add tone states until a pattern owns process recovery.",
+            "tokens": [
+              "sys.tone.*"
+            ],
+            "behavior": "Risk remains meaningful.",
+            "example": "Recovery belongs to wizard pattern.",
+            "test": "Verify no decorative error tone.",
+            "rejectIf": "Tone is used as a decorative variant."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Escalate long flows to routes, patterns, or templates.",
+            "tokens": [
+              "sys.growth.*"
+            ],
+            "behavior": "Stepper stays short.",
+            "example": "Onboarding.",
+            "test": "Verify step count and pattern boundary.",
+            "rejectIf": "Long process crammed into one component."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use numbers and checks with labels.",
+            "tokens": [
+              "sys.symbol.*"
+            ],
+            "behavior": "Markers support text.",
+            "example": "Check complete.",
+            "test": "Verify labels.",
+            "rejectIf": "Symbol-only steps."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Design System icon font for completed check.",
+            "tokens": [
+              "sys.iconography.*"
+            ],
+            "behavior": "Completion is readable.",
+            "example": "Check marker.",
+            "test": "Verify marker size.",
+            "rejectIf": "Icon breaks marker."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use ordered list and aria-current step.",
+            "tokens": [
+              "sys.accessibility.*"
+            ],
+            "behavior": "Screen readers know current step.",
+            "example": "Current driver step.",
+            "test": "Verify aria-current.",
+            "rejectIf": "No sequence semantics."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.stepper.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "steps",
+            "type": "StepperStep[]",
+            "required": true,
+            "notes": "Ordered step labels and optional descriptions."
+          },
+          {
+            "name": "current",
+            "type": "number",
+            "required": true,
+            "notes": "Current zero-based step index."
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "required": false,
+            "notes": "Accessible stepper label."
+          },
+          {
+            "name": "orientation",
+            "type": "horizontal | vertical",
+            "required": false,
+            "notes": "Layout orientation."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": false,
+            "notes": "Flow density scale."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Vehicle onboarding",
+            "example": "Vehicle, driver, confirm."
+          },
+          {
+            "context": "Document review",
+            "example": "Upload, validate, approve."
+          },
+          {
+            "context": "Policy setup",
+            "example": "Rules, limits, review."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for short ordered sequences.",
+            "Mark current step.",
+            "Keep labels short."
+          ],
+          "dont": [
+            "Do not use for parallel views.",
+            "Do not use for long navigation.",
+            "Do not make future steps clickable without pattern rules."
+          ],
+          "info": [
+            "Use Tabs for parallel content.",
+            "Use patterns for routing, validation, blockers, errors, and recovery."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "vertical sequence"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "wizard header"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "compact setup system"
+          }
+        ],
+        "tests": [
+          "Ordered list",
+          "aria-current",
+          "Horizontal and vertical orientation",
+          "Density scale",
+          "Active/current marker uses Flow action-primary and completed progress uses Flow success",
+          "Completed check",
+          "Connector state",
+          "Bounded enter motion",
+          "Mobile wrap"
+        ],
+        "agentInstructions": [
+          "Use Stepper for short ordered flows.",
+          "Ask before future-step navigation.",
+          "Use patterns for route-owned, validation-owned, or recovery-owned flows."
+        ],
+        "rejectIf": [
+          "Parallel system",
+          "No current step",
+          "Too many steps",
+          "Blocked, error, review, optional, routing, or recovery are hidden inside Stepper",
+          "Raw visual values"
+        ],
+        "semanticDecisions": [
+          {
+            "id": "active-current-color",
+            "state": "active/current",
+            "decision": "Use sys.energy action-primary for current progress; complete uses sys.energy success.",
+            "zipInfluence": "Marker shape, connector rhythm, depth, halo, and enter motion."
+          }
+        ]
+      }
+    }
+  }
+}

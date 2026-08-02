@@ -1,0 +1,81 @@
+{
+  "artifacts": {
+    "components": {
+      "date-range-picker": {
+        "id": "date-range-picker",
+        "name": "Date Range Picker",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": ["Design", "Engineering", "Product", "Agents"],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Capture one bounded start/end date range with visible label, readable range value, local presets, calendar surface, and keyboard selection.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The ZIP includes DateRangePicker as a bounded control. Flow keeps reporting sync, comparison windows, URL persistence, and dashboard refresh outside the component.",
+        "anatomy": [
+          { "part": "Label", "rule": "Names the range purpose.", "tokens": ["sys.voice.*"] },
+          { "part": "Range field", "rule": "Shows selected start and end dates.", "tokens": ["comp.date-picker.*"] },
+          { "part": "Preset row", "rule": "Offers local rolling range shortcuts.", "tokens": ["sys.frame.*", "sys.state.*"] },
+          { "part": "Calendar surface", "rule": "Shows month navigation and day targets.", "tokens": ["sys.frame.*", "sys.depth.*"] },
+          { "part": "Range state", "rule": "Distinguishes start, in-range, and end dates.", "tokens": ["sys.state.*", "sys.energy.*"] }
+        ],
+        "variants": [
+          { "id": "calendar-range", "description": "One bounded start/end date field with local presets." }
+        ],
+        "states": ["default", "hover", "focus", "selected", "warning", "error", "disabled"],
+        "statePrecedence": "disabled > error > warning > selected > focus > hover > default",
+        "foundations": {
+          "Energy": { "status": "covered", "decision": "Use semantic focus, selected range, warning, and error color.", "tokens": ["comp.date-picker.*", "sys.energy.*"], "behavior": "Range state remains legible.", "example": "Selected reporting range.", "test": "Contrast audit.", "rejectIf": "Raw colors." },
+          "Voice": { "status": "covered", "decision": "Use concise range purpose and preset labels.", "tokens": ["sys.voice.*"], "behavior": "Users know what the range affects.", "example": "Reporting range.", "test": "Copy audit.", "rejectIf": "Ambiguous label." },
+          "Frame": { "status": "covered", "decision": "Use Date Picker field and calendar geometry.", "tokens": ["sys.frame.*", "comp.date-picker.*"], "behavior": "Calendar and presets stay tappable.", "example": "Month grid with presets.", "test": "Layout audit.", "rejectIf": "Tiny days." },
+          "Depth": { "status": "covered", "decision": "Use anchored date panel depth only.", "tokens": ["sys.depth.*"], "behavior": "Panel appears above field content.", "example": "Open range panel.", "test": "Layer audit.", "rejectIf": "Panel sits behind toolbar." },
+          "Momentum": { "status": "covered", "decision": "Use shared entrance, focus, and press motion.", "tokens": ["sys.momentum.*"], "behavior": "Panel and controls move with Flow rhythm.", "example": "Open range picker.", "test": "Motion audit.", "rejectIf": "Raw easing." },
+          "State": { "status": "covered", "decision": "Resolve disabled and error before range selection.", "tokens": ["sys.state.*"], "behavior": "Range validity is clear.", "example": "Invalid range.", "test": "State audit.", "rejectIf": "Conflicting state." },
+          "Tone": { "status": "covered", "decision": "Use warning when a range crosses policy boundaries.", "tokens": ["sys.tone.*"], "behavior": "Range risk has copy.", "example": "Policy boundary.", "test": "Tone review.", "rejectIf": "Color-only warning." },
+          "Growth": { "status": "covered", "decision": "Escalate reporting sync, comparison, and saved views to patterns.", "tokens": ["sys.growth.*"], "behavior": "Range Picker stays a field.", "example": "Dashboard filter pattern composes it.", "test": "Layer classification.", "rejectIf": "Owns data refresh." },
+          "Symbol": { "status": "covered", "decision": "Use date-range symbol only as affordance.", "tokens": ["sys.symbol.*"], "behavior": "Label and text value remain primary.", "example": "date_range icon.", "test": "Visible label.", "rejectIf": "Icon-only range." },
+          "Iconography": { "status": "covered", "decision": "Use shared icon sizing.", "tokens": ["sys.iconography.*"], "behavior": "Icon aligns with the field.", "example": "Date range icon.", "test": "Icon alignment.", "rejectIf": "Tiny icon." },
+          "Accessibility": { "status": "covered", "decision": "Expose label, selected range, dialog state, grid days, keyboard selection, and errors.", "tokens": ["sys.accessibility.*"], "behavior": "Range selection works without pointer.", "example": "Keyboard date grid.", "test": "A11y audit.", "rejectIf": "Pointer-only range." }
+        },
+        "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Elevation", "Iconography", "Motion Curves", "Duration", "Breakpoints", "Focus", "Disabled"],
+        "tokenDependencies": ["comp.date-picker.*", "sys.energy.*", "sys.frame.*", "sys.voice.*", "sys.state.*", "sys.momentum.*", "sys.accessibility.*"],
+        "props": [
+          { "name": "label", "type": "string", "required": true },
+          { "name": "value", "type": "{ from?: string; to?: string }", "required": false },
+          { "name": "from", "type": "string", "required": false },
+          { "name": "to", "type": "string", "required": false },
+          { "name": "placeholder", "type": "string", "required": false },
+          { "name": "helper", "type": "string", "required": false },
+          { "name": "error", "type": "string", "required": false },
+          { "name": "density", "type": "\"sm\" | \"md\" | \"lg\"", "required": false },
+          { "name": "state", "type": "\"default\" | \"hover\" | \"focus\" | \"selected\" | \"warning\" | \"error\" | \"disabled\"", "required": false },
+          { "name": "invalid", "type": "boolean", "required": false },
+          { "name": "disabled", "type": "boolean", "required": false },
+          { "name": "presets", "type": "boolean", "required": false },
+          { "name": "presetItems", "type": "Array<{ label: string; days: number }>", "required": false },
+          { "name": "onValueChange", "type": "(range) => void", "required": false },
+          { "name": "onOpenChange", "type": "(open: boolean) => void", "required": false }
+        ],
+        "componentDependencies": ["date-picker"],
+        "productExamples": [
+          { "context": "Dashboard", "example": "Reporting date window." },
+          { "context": "Audit", "example": "Event history range." },
+          { "context": "Export", "example": "Download range." }
+        ],
+        "guidelines": {
+          "do": ["Use for one bounded start/end date range.", "Keep range visible as text.", "Use presets as local shortcuts."],
+          "dont": ["Do not own dashboard refresh.", "Do not add comparison windows as variants.", "Do not hide range state in color only."],
+          "info": ["Dashboard filters and reporting sync are pattern responsibilities."]
+        },
+        "contextDensityStrategy": [
+          { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "large field and day targets" },
+          { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "filter panel field" },
+          { "context": "desktops + TV", "density": "md", "scaleSource": "Density", "layout": "dashboard toolbar field" }
+        ],
+        "tests": ["Label association", "Range text", "Start/end/middle states", "Preset selection", "Keyboard navigation", "Error state"],
+        "agentInstructions": ["Use Date Range Picker for local start/end selection.", "Ask before adding reporting sync, comparison, URL persistence, or data refresh.", "Keep Date Picker single-date."],
+        "rejectIf": ["The component owns reporting filters.", "The range is color-only.", "Calendar selection is pointer-only.", "Presets trigger data refresh directly."]
+      }
+    }
+  }
+}

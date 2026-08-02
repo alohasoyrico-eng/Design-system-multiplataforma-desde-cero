@@ -1,0 +1,16 @@
+{
+  "components": {
+    "toast": {
+      "accessibility": {
+        "statePrecedence": "exiting, action, visible, stacked, default",
+        "items": [
+          "Use role status for neutral, info, and success feedback.",
+          "Use role alert only for urgent warning or danger messages that need immediate attention.",
+          "Do not move focus to a toast unless the user triggered an explicit action inside it.",
+          "Keep dismiss and action controls keyboard reachable when present.",
+          "Do not use Toast for blocking decisions; use Dialog for required confirmation."
+        ]
+      }
+    }
+  }
+}

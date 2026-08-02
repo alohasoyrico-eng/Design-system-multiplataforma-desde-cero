@@ -1,0 +1,121 @@
+{
+  "artifacts": {
+    "primitives": {
+      "loading": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Loading",
+        "purpose": "Turn State and Momentum loading roles into implementation-ready skeleton, stale, sync, progress, busy, and optimistic patterns.",
+        "governingFoundations": [
+          "State",
+          "Momentum",
+          "Tone",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.tone.*",
+          "sys.accessibility.*"
+        ],
+        "roles": [
+          {
+            "id": "skeleton",
+            "token": "loading.skeleton",
+            "use": "Unknown content shape during fetch."
+          },
+          {
+            "id": "stale",
+            "token": "loading.stale",
+            "use": "Showing old data while refreshing."
+          },
+          {
+            "id": "sync",
+            "token": "loading.sync",
+            "use": "Background updates and pending changes."
+          },
+          {
+            "id": "progress",
+            "token": "loading.progress",
+            "use": "Known-duration import/upload/setup."
+          },
+          {
+            "id": "busy",
+            "token": "aria-busy",
+            "use": "Assistive announcement of pending state."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Button",
+            "example": "Loading blocks duplicate submit and preserves label/status."
+          },
+          {
+            "context": "Dashboard",
+            "example": "Stale data shows freshness and refresh path."
+          },
+          {
+            "context": "File upload",
+            "example": "Progress exposes value and retry/remove recovery."
+          }
+        ],
+        "api": {
+          "props": [
+            "type",
+            "label",
+            "progress",
+            "staleAt",
+            "retry"
+          ],
+          "outputs": [
+            "ariaBusy",
+            "visualPlaceholder",
+            "recoveryAction"
+          ]
+        },
+        "tokenDependencies": [
+          "sys.state.loading.*",
+          "sys.momentum.*",
+          "loading.*"
+        ],
+        "states": [
+          "loading",
+          "stale",
+          "syncing",
+          "optimistic",
+          "error"
+        ],
+        "agentInstructions": [
+          "Keep task information outside animation.",
+          "Announce busy state.",
+          "Offer retry/recovery when loading fails."
+        ],
+        "rejectIf": [
+          "Spinner with no label.",
+          "Loading allows duplicate action.",
+          "Stale data looks fresh.",
+          "Animation carries required information."
+        ]
+      }
+    }
+  }
+}

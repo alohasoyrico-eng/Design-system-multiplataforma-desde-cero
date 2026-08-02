@@ -1,0 +1,29 @@
+{
+  "specSection": {
+    "title": "Specification",
+    "description": "This is the working contract a designer, developer, PM, content designer, researcher, service designer, or agent should use before applying the foundation.",
+    "labels": {
+      "layer": "Layer",
+      "reference": "Reference",
+      "maturity": "Maturity",
+      "roles": "Roles",
+      "examples": "Examples",
+      "rejectIf": "Reject if",
+      "consumers": "Consumers",
+      "output": "Output"
+    },
+    "contractCopy": {
+      "reference": "Reference decisions are classified before implementation.",
+      "maturity": "The contract is not done until examples and rendered behavior prove it."
+    },
+    "fallback": {
+      "layerValue": "L1 foundation",
+      "layerCopyTemplate": "{{title}} defines a rule that comes before implementation.",
+      "consumersValue": "primitives + components",
+      "consumersCopy": "Downstream UI consumes the rule through semantic aliases.",
+      "outputValue": "documented behavior",
+      "outputCopy": "Design, content, code, research, and agents share the same contract.",
+      "codeTemplate": "{{id}}.foundation\ninput: product context + user need + system state\noutput: sys.{{id}}.* semantic decisions\nconsumer: primitives, components, patterns, templates, agents"
+    }
+  }
+}

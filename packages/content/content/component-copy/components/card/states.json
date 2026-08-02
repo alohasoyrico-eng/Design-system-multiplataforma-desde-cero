@@ -1,0 +1,85 @@
+{
+  "components": {
+    "card": {
+      "states": {
+        "copy": "Card state changes surface, text, icon, and recovery path together. Disabled and error states cannot rely on muted styling alone.",
+        "demos": [
+          {
+            "label": "Rest",
+            "title": "Vehicle MX-4821",
+            "value": "Available",
+            "detail": "Assigned to Ana Gomez",
+            "icon": "directions_car",
+            "state": "default"
+          },
+          {
+            "label": "Interactive",
+            "title": "Vehicle MX-4821",
+            "value": "Open detail",
+            "detail": "Whole surface has keyboard activation",
+            "icon": "touch_app",
+            "state": "interactive",
+            "variant": "default",
+            "interactive": true
+          },
+          {
+            "label": "Hover",
+            "title": "Vehicle MX-4821",
+            "value": "Open detail",
+            "detail": "Lift shows click affordance",
+            "icon": "directions_car",
+            "state": "hover"
+          },
+          {
+            "label": "Focus",
+            "title": "Vehicle MX-4821",
+            "value": "Keyboard focus",
+            "detail": "Visible ring protects navigation",
+            "icon": "center_focus_strong",
+            "state": "focus"
+          },
+          {
+            "label": "Selected",
+            "title": "Vehicle MX-4821",
+            "value": "Selected",
+            "detail": "Chosen vehicle remains visible",
+            "icon": "check_circle",
+            "state": "selected"
+          },
+          {
+            "label": "Loading",
+            "title": "Fleet spend",
+            "value": "Loading",
+            "detail": "Skeleton preserves layout",
+            "icon": "progress_activity",
+            "state": "loading"
+          },
+          {
+            "label": "Error",
+            "title": "Station data",
+            "value": "Unavailable",
+            "detail": "Retry or use fallback list",
+            "icon": "error",
+            "state": "error"
+          },
+          {
+            "label": "Disabled",
+            "title": "Finance report",
+            "value": "No permission",
+            "detail": "Ask admin for access",
+            "icon": "block",
+            "state": "disabled"
+          },
+          {
+            "label": "Muted",
+            "title": "Archived report",
+            "value": "Low priority",
+            "detail": "Available but de-emphasized",
+            "icon": "inventory_2",
+            "state": "muted"
+          }
+        ]
+      }
+    }
+  }
+}

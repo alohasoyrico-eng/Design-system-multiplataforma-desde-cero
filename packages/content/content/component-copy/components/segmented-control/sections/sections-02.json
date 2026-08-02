@@ -1,0 +1,94 @@
+{
+  "components": {
+    "segmented-control": {
+      "variants": {
+        "copy": "Segmented Control variants define the local selection surface. Outlined is the default low-radius control; toolbar is denser for tool-adjacent surfaces; compact reduces width/target scale; icon-only is reserved for compact local choices with accessible labels. Cross-page navigation and dashboard filter bars remain patterns.",
+        "demos": [
+          {
+            "label": "Outlined",
+            "variant": "outlined",
+            "state": "default"
+          },
+          {
+            "label": "Toolbar",
+            "variant": "toolbar"
+          },
+          {
+            "label": "Compact",
+            "variant": "compact"
+          },
+          {
+            "label": "Icon Only",
+            "variant": "icon-only"
+          }
+        ]
+      },
+      "states": {
+        "copy": "Segmented Control states clarify selected, focus, warning, and disabled behavior for one exclusive group. Selected/current uses Flow action-primary with outline and indicator motion.",
+        "demos": [
+          {
+            "label": "Default",
+            "state": "default",
+            "variant": "outlined"
+          },
+          {
+            "label": "Hover",
+            "state": "hover",
+            "variant": "outlined"
+          },
+          {
+            "label": "Focus",
+            "state": "focus",
+            "variant": "outlined"
+          },
+          {
+            "label": "Selected",
+            "state": "selected",
+            "variant": "outlined"
+          },
+          {
+            "label": "Warning",
+            "state": "warning",
+            "variant": "outlined"
+          },
+          {
+            "label": "Disabled",
+            "state": "disabled",
+            "variant": "outlined"
+          }
+        ]
+      },
+      "variant-state-behavior": {
+        "copy": "Variant defines the shell; state defines a segment condition without changing the component into tabs or filters.",
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "selected",
+          "warning",
+          "disabled"
+        ],
+        "rows": [
+          {
+            "label": "Outlined",
+            "demo": {
+              "variant": "outlined"
+            }
+          },
+          {
+            "label": "Toolbar",
+            "demo": {
+              "variant": "toolbar"
+            }
+          },
+          {
+            "label": "Icon Only",
+            "demo": {
+              "variant": "icon-only"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

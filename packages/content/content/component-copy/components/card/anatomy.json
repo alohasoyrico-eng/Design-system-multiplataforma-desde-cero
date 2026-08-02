@@ -1,0 +1,57 @@
+{
+  "components": {
+    "card": {
+      "anatomy": {
+        "items": [
+          {
+            "part": "surface",
+            "rule": "Owns border, radius, shadow, padding, and surface role.",
+            "tokens": [
+              "comp.card.*",
+              "sys.energy.*",
+              "sys.depth.*"
+            ]
+          },
+          {
+            "part": "icon slot",
+            "rule": "Optional semantic Material Symbol supports recognition without replacing text.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "title",
+            "rule": "Short object or decision label remains available to assistive tech.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "value",
+            "rule": "Optional prominent datum or status wraps safely.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.frame.*"
+            ]
+          },
+          {
+            "part": "description",
+            "rule": "Explains scan value, state, or next action.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "state layer",
+            "rule": "Hover, focus, selected, loading, error, disabled, and muted resolve before styling.",
+            "tokens": [
+              "sys.state.*",
+              "sys.momentum.*",
+              "sys.accessibility.*"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

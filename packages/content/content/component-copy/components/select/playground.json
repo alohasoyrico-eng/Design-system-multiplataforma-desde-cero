@@ -1,0 +1,63 @@
+{
+  "components": {
+    "select": {
+      "playground": {
+        "copy": "Inspect how label, value, helper text, and state resolve into the Select contract.",
+        "controls": [
+          {
+            "label": "Label",
+            "name": "label",
+            "type": "text",
+            "value": "Fleet"
+          },
+          {
+            "label": "Value",
+            "name": "value",
+            "type": "text",
+            "value": "North Region Fleet"
+          },
+          {
+            "label": "Helper",
+            "name": "helper",
+            "type": "text",
+            "value": "28 vehicles"
+          },
+          {
+            "label": "State",
+            "name": "state",
+            "type": "select",
+            "value": "open",
+            "options": [
+              "default",
+              "filled",
+              "open",
+              "focus",
+              "loading",
+              "error",
+              "disabled"
+            ]
+          },
+          {
+            "label": "Density",
+            "name": "density",
+            "type": "select",
+            "value": "md",
+            "options": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        ],
+        "preview": {
+          "field": "Fleet",
+          "value": "North Region Fleet",
+          "helper": "28 vehicles",
+          "density": "md",
+          "state": "open"
+        },
+        "snippet": "<Select label=\"Fleet\" value=\"north-region\" />"
+      }
+    }
+  }
+}

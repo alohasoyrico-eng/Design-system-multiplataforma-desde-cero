@@ -1,0 +1,147 @@
+{
+  "patterns": {
+    "chart-wrapper": {
+      "purpose": "Standardize chart title, summary value, legend, tooltip copy, empty states, export, and accessible data summary around a chart component.",
+      "useWhen": [
+        "Dashboard charts need consistent heading, metadata, and state handling.",
+        "Users need to compare trends without losing source or filter context.",
+        "A chart requires accessible summary and non-visual fallback."
+      ],
+      "doNotUseWithoutReview": [
+        "The chart type, source, or comparison period is unclear.",
+        "The chart needs exploratory analytics beyond dashboard summary.",
+        "Legend interaction changes regulated or financial interpretation."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines chart container height, header density, legend placement, and responsive stacking."
+        ],
+        [
+          "Voice",
+          "Owns chart title, summary, caption, tooltip labels, and empty copy."
+        ],
+        [
+          "Energy",
+          "Controls series emphasis, selected state, and semantic status without overriding Design System color tokens."
+        ],
+        [
+          "State",
+          "Loaded, loading, empty, filtered-empty, error, and stale states are explicit."
+        ],
+        [
+          "Depth",
+          "Tooltips and export menus float above the chart without turning the chart into a nested card."
+        ],
+        [
+          "Accessibility",
+          "Charts expose text summary, table fallback, and keyboard reachable controls."
+        ]
+      ],
+      "slots": [
+        [
+          "chart",
+          "ChartPanel",
+          "yes",
+          "Primary visual chart with title, value, caption, and data points."
+        ],
+        [
+          "summary",
+          "KpiTile | Badge",
+          "conditional",
+          "Optional metric summary or threshold metadata."
+        ],
+        [
+          "controls",
+          "Button | Menu",
+          "conditional",
+          "Export, compare, or series visibility controls."
+        ],
+        [
+          "state",
+          "Skeleton | EmptyState | ErrorPanel",
+          "yes",
+          "Represents loading, empty, and error conditions."
+        ],
+        [
+          "dataSummary",
+          "Table | List",
+          "yes",
+          "Accessible non-visual summary of chart values."
+        ]
+      ],
+      "componentsUsed": [
+        "Chart Panel",
+        "KPI Tile",
+        "Badge",
+        "Button",
+        "Menu",
+        "Skeleton",
+        "Empty State",
+        "Error Panel",
+        "Table",
+        "List"
+      ],
+      "variants": [
+        [
+          "Trend chart",
+          "Required",
+          "Header, chart, caption, and summary data align in a dashboard module."
+        ],
+        [
+          "Empty after filter",
+          "Required state",
+          "Empty State explains the filter and recovery."
+        ],
+        [
+          "Exportable",
+          "Candidate",
+          "Export uses Button/Menu and preserves filter context."
+        ]
+      ],
+      "motion": [
+        [
+          "Data refresh",
+          "Bars or values update without jumpy layout or decorative animation."
+        ],
+        [
+          "Tooltip/menu reveal",
+          "Uses Design System overlay motion and reduced-motion fallback."
+        ],
+        [
+          "State swap",
+          "Loading, empty, and chart content preserve module dimensions."
+        ]
+      ],
+      "accessibility": [
+        "Chart has an accessible title and summary.",
+        "Data is available as text through List or Table.",
+        "Controls are keyboard reachable.",
+        "Color is not the only way to distinguish series or state."
+      ],
+      "tests": [
+        "Chart header, controls, and plot do not overlap.",
+        "Empty and loading states preserve layout.",
+        "Data summary is present for screen readers.",
+        "Export or menu action uses Design System controls."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Chart Wrapper for dashboard trend or comparison modules.",
+          "Use Chart Panel for compact visual summaries.",
+          "Show Empty State when filters remove all data."
+        ],
+        "mustAsk": [
+          "Data source, chart type, comparison period, legend behavior, or export policy is unclear.",
+          "The chart represents financial or compliance reporting."
+        ],
+        "rejectIf": [
+          "No accessible summary exists.",
+          "The chart changes Design System colors directly.",
+          "Loading or empty state causes layout shift."
+        ],
+        "handoff": "Confirm chart source, comparison period, summary metric, export rules, accessible data summary, and empty/error behavior."
+      }
+    }
+  }
+}

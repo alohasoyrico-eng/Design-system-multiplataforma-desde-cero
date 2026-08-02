@@ -1,0 +1,45 @@
+{
+  "demos": {
+    "Disabled": {
+      "type": "disabled",
+      "initial": "permission",
+      "ariaLabel": "Disabled examples",
+      "choices": [
+        [
+          "permission",
+          "permission"
+        ],
+        [
+          "offline",
+          "offline"
+        ],
+        [
+          "risk",
+          "risk"
+        ],
+        [
+          "future",
+          "future"
+        ]
+      ],
+      "states": {
+        "permission": [
+          "Blocked by permission",
+          "Disabled states must explain why the action is unavailable."
+        ],
+        "offline": [
+          "Unavailable offline",
+          "Offer a retry or offline-safe path when data is missing."
+        ],
+        "risk": [
+          "Blocked by risk",
+          "High-risk actions need review, reason, and support path."
+        ],
+        "future": [
+          "Available soon",
+          "Future availability should not look broken or actionable."
+        ]
+      }
+    }
+  }
+}

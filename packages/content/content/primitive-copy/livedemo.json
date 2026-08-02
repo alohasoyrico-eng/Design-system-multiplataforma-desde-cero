@@ -1,0 +1,5 @@
+{
+  "liveDemo": {
+    "description": "A primitive demo shows the primitive doing one job. It is intentionally smaller than a component demo and stricter than a visual example."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "components": {
+    "select": {
+      "guidelines": {
+        "groups": [
+          {
+            "title": "Do",
+            "items": [
+              "Keep label, value, helper text, and source visible.",
+              "Use sheets for long mobile option lists.",
+              "Show disabled reasons inside unavailable options."
+            ]
+          },
+          {
+            "title": "Do not",
+            "items": [
+              "Use Select for free-form input.",
+              "Hide loading or permission states.",
+              "Expose raw option data without labels."
+            ]
+          },
+          {
+            "title": "Notes",
+            "items": [
+              "Searchable and multi-select behavior should become patterns when they sequence more than one decision."
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

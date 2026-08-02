@@ -1,0 +1,16 @@
+{
+  "components": {
+    "input": {
+      "accessibility": {
+        "statePrecedence": "disabled, loading, error, focus, filled, default",
+        "items": [
+          "Visible label is required; placeholder cannot be the only name.",
+          "Helper and error text are associated with the input.",
+          "Error uses aria-invalid and gives a fix, not only a color.",
+          "Disabled and loading states are announced and block misleading edits.",
+          "Keyboard focus remains visible and follows document order."
+        ]
+      }
+    }
+  }
+}

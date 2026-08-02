@@ -1,0 +1,284 @@
+{
+  "components": [
+    {
+      "type": "component",
+      "id": "menu",
+      "title": "Menu",
+      "group": "Overlay",
+      "summary": "Action menu with keyboard navigation, grouping, separators, disabled states, and destructive affordances.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "popover",
+      "title": "Popover",
+      "group": "Overlay",
+      "summary": "Anchored contextual panel for filters, metric explanation, station metadata, and lightweight forms.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "drawer",
+      "title": "Drawer",
+      "group": "Overlay",
+      "summary": "Contextual side panel for filters, details, edits, and review without leaving the current task.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "accordion",
+      "title": "Accordion",
+      "group": "Layout",
+      "summary": "Progressive disclosure region for dense settings, FAQs, audit details, and grouped form sections.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "card",
+      "title": "Card",
+      "group": "Display",
+      "summary": "Tokenized surface for grouping, selecting, and elevating product content without nesting decorative panels.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "table",
+      "title": "Table",
+      "group": "Display",
+      "summary": "Structured comparison surface for records with sortable columns, selected rows, density, and expandable detail.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "list",
+      "title": "List",
+      "group": "Display",
+      "summary": "Structured list for notifications, movements, audit events, route options, and support cases.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "chip",
+      "title": "Chip",
+      "group": "Display",
+      "summary": "Compact filter or input token with selected, removable, and disabled states.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "tag",
+      "title": "Tag",
+      "group": "Display",
+      "summary": "Small semantic label for status, type, category, risk, and operational metadata.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "badge",
+      "title": "Badge",
+      "group": "Display",
+      "summary": "Count or status marker for notifications, exceptions, approvals, and pending work.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "avatar",
+      "title": "Avatar",
+      "group": "Display",
+      "summary": "Person or entity identifier with initials, image, status, fallback, and accessible name.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "tree-view",
+      "title": "Tree View",
+      "group": "Display",
+      "summary": "Hierarchical local navigation or selection tree for bounded sets of nodes.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "animated-moment",
+      "title": "Animated Moment",
+      "group": "Motion",
+      "summary": "Illustrative animation container for onboarding, success, OTP, biometric, route, and empty-state moments.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "motion-boundary",
+      "title": "Motion Boundary",
+      "group": "Motion",
+      "summary": "Reusable transition wrapper for tabs, sheets, drawers, list reorder, filter update, and page changes.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    }
+  ]
+}

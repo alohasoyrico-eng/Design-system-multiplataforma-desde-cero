@@ -1,0 +1,160 @@
+{
+  "explorers": {
+    "items": {
+      "Momentum": {
+        "type": "motion",
+        "initial": "duration",
+        "ariaLabel": "Motion examples",
+        "choices": [
+          [
+            "duration",
+            "Duration"
+          ],
+          [
+            "easing",
+            "Easing"
+          ],
+          [
+            "stagger",
+            "Stagger"
+          ],
+          [
+            "tokens",
+            "Tokens"
+          ],
+          [
+            "reduced",
+            "Reduced"
+          ]
+        ],
+        "states": {
+          "duration": [
+            "Duration Scale",
+            "Touch feedback uses the 160ms spring rhythm; base and slow durations handle reveal and larger transitions."
+          ],
+          "easing": [
+            "Easing Curves",
+            "Touch uses spring, enter uses ease-out, exit uses the lifecycle close curve, move uses in-out, and linear is reserved for continuous loading."
+          ],
+          "stagger": [
+            "Stagger Choreography",
+            "Items appear in a controlled cascade instead of arriving all at once. Dense lists use faster stagger than featured content."
+          ],
+          "tokens": [
+            "Motion Token Reference",
+            "Documented sys tokens are what components consume; ref tokens remain the raw scale behind the system."
+          ],
+          "reduced": [
+            "Reduced Motion",
+            "Meaning survives without large movement by using focus placement, opacity, and instant state changes."
+          ]
+        },
+        "durationListAria": "Duration comparison",
+        "durationList": [
+          [
+            "instant",
+            "0ms",
+            "Immediate state changes"
+          ],
+          [
+            "touch",
+            "160ms",
+            "Hover, press, focus, toggle"
+          ],
+          [
+            "base",
+            "240ms",
+            "Expand, reveal, local transition"
+          ],
+          [
+            "slow",
+            "400ms",
+            "Sheets, dropdowns, reveals"
+          ],
+          [
+            "slower",
+            "500ms",
+            "Onboarding and dashboard choreography"
+          ]
+        ],
+        "easingListAria": "Easing comparison",
+        "easingList": [
+          [
+            "touch",
+            "cubic-bezier(0.34, 1.56, 0.64, 1)"
+          ],
+          [
+            "enter",
+            "cubic-bezier(0.22, 1, 0.36, 1)"
+          ],
+          [
+            "move",
+            "cubic-bezier(0.65, 0, 0.35, 1)"
+          ],
+          [
+            "linear",
+            "cubic-bezier(0, 0, 1, 1)"
+          ]
+        ],
+        "staggerAria": "Stagger comparison",
+        "staggerItems": [
+          "Design tokens",
+          "Components",
+          "Patterns",
+          "Templates"
+        ],
+        "staggerList": [
+          [
+            "fast",
+            "30ms"
+          ],
+          [
+            "normal",
+            "50ms"
+          ],
+          [
+            "slow",
+            "80ms"
+          ]
+        ],
+        "tokenReferenceAria": "Motion token reference",
+        "tokenReference": [
+          [
+            "--sys-momentum-duration-touch",
+            "160ms"
+          ],
+          [
+            "--sys-momentum-duration-default",
+            "240ms"
+          ],
+          [
+            "--sys-momentum-duration-slow",
+            "400ms"
+          ],
+          [
+            "--sys-momentum-transition-touch",
+            "duration.touch + curve.touch"
+          ],
+          [
+            "--sys-momentum-scale-hover",
+            "1.04"
+          ],
+          [
+            "--sys-momentum-scale-press",
+            "0.96"
+          ],
+          [
+            "--ref-momentum-stagger-normal",
+            "50ms"
+          ],
+          [
+            "--ref-momentum-duration-cycle",
+            "1400ms"
+          ]
+        ],
+        "reducedTitle": "Reduced motion keeps meaning.",
+        "reducedCopy": "Large translations become opacity, focus placement, and instant state changes while the same information remains available."
+      }
+    }
+  }
+}

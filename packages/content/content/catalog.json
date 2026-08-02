@@ -1,0 +1,19 @@
+{
+  "$systemShards": [
+    "catalog/foundations.json",
+    "catalog/primitives.json",
+    "catalog/components-01.json",
+    "catalog/components-02.json",
+    "catalog/components-03.json",
+    "catalog/components-04.json",
+    "catalog/patterns-01.json",
+    "catalog/patterns-02.json",
+    "catalog/patterns-03.json",
+    "catalog/patterns-04.json",
+    "catalog/patterns-05.json",
+    "catalog/templates.json",
+    "catalog/stack.json",
+    "catalog/collectionMeta.json",
+    "catalog/collectionIcons.json"
+  ]
+}

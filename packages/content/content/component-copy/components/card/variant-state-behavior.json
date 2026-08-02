@@ -1,0 +1,34 @@
+{
+  "components": {
+    "card": {
+      "variant-state-behavior": {
+        "copy": "Variant controls surface treatment. State controls behavior, feedback, and accessibility without becoming a new surface variant.",
+        "rows": [
+          {
+            "label": "Default surface",
+            "variant": "default"
+          },
+          {
+            "label": "Interactive state",
+            "variant": "default",
+            "state": "interactive",
+            "interactive": true
+          },
+          {
+            "label": "Selected state",
+            "variant": "default",
+            "state": "selected",
+            "selected": true
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "loading",
+          "disabled"
+        ]
+      }
+    }
+  }
+}

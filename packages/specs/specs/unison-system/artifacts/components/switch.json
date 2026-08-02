@@ -1,0 +1,70 @@
+{
+  "artifacts": {
+    "components": {
+      "switch": {
+        "id": "switch",
+        "name": "Switch",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": ["Design", "Engineering", "Product", "Agents"],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Use Switch for an immediate on/off setting where the changed state persists and the label explains the active outcome.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The ZIP reference defines the visual benchmark: 48 by 28 track, expanding thumb on press, clear on/off color, and spring feedback. Design System owns color, type, density, state, motion, and accessibility semantics.",
+        "anatomy": [
+          { "part": "Setting label", "rule": "Names the setting as the active outcome.", "tokens": ["comp.switch.label.*", "sys.voice.*", "sys.energy.text.*"] },
+          { "part": "Track", "rule": "Shows off, on, focus, error, and disabled status without changing size.", "tokens": ["comp.switch.track.*", "sys.energy.*", "sys.state.*"] },
+          { "part": "Thumb", "rule": "Moves and stretches during press to communicate direct manipulation.", "tokens": ["comp.switch.thumb.*", "sys.momentum.*", "sys.frame.*"] },
+          { "part": "Support text", "rule": "Explains consequence or policy only when the label is not enough.", "tokens": ["comp.switch.support.*", "sys.voice.*", "sys.accessibility.*"] }
+        ],
+        "variants": [
+          { "id": "default", "description": "Single persistent setting." },
+          { "id": "descriptive", "description": "Setting with support text." },
+          { "id": "compact", "description": "Dense row for settings lists." },
+          { "id": "critical", "description": "High-impact setting that needs human review before use." }
+        ],
+        "states": ["off", "on", "focus", "pressed", "error", "disabled"],
+        "statePrecedence": "disabled > error > pressed > focus > on > off",
+        "foundations": {
+          "Energy": { "status": "covered", "decision": "Use Energy for on/off track, disabled, and error color.", "tokens": ["comp.switch.*", "sys.energy.*"], "behavior": "Energy makes state visible before reading the label.", "example": "Driver alerts use accent when on and neutral when off.", "test": "Verify contrast for on, off, error, and disabled.", "rejectIf": "State depends only on thumb position or raw color." },
+          "Voice": { "status": "covered", "decision": "Use Voice for labels and support text.", "tokens": ["comp.switch.*", "sys.voice.*"], "behavior": "Voice explains the setting outcome.", "example": "Use 'Send driver alerts' instead of vague on/off copy.", "test": "Verify labels describe active meaning.", "rejectIf": "The label is hidden or ambiguous." },
+          "Frame": { "status": "covered", "decision": "Use Frame for track, thumb, radius, row spacing, and density.", "tokens": ["comp.switch.*", "sys.frame.*"], "behavior": "Frame keeps the control stable across states.", "example": "Settings rows align in mobile and desktop lists.", "test": "Verify no track or thumb clipping across densities.", "rejectIf": "Track size changes by state." },
+          "Depth": { "status": "covered", "decision": "Use Depth only for thumb separation.", "tokens": ["comp.switch.*", "sys.depth.*"], "behavior": "Depth separates thumb from track without decorative elevation.", "example": "Thumb shadow stays subtle on both on and off states.", "test": "Verify shadow does not replace state.", "rejectIf": "Depth is used as the only state signal." },
+          "Momentum": { "status": "covered", "decision": "Use Momentum touch for thumb movement and press stretch.", "tokens": ["comp.switch.*", "sys.momentum.*"], "behavior": "Momentum communicates direct manipulation.", "example": "Thumb moves with spring and stretches while pressed.", "test": "Verify touch motion and reduced-motion behavior.", "rejectIf": "Motion uses raw duration or curve." },
+          "State": { "status": "covered", "decision": "Use State for disabled, error, pressed, focus, on, and off precedence.", "tokens": ["comp.switch.*", "sys.state.*"], "behavior": "State controls interaction and visuals.", "example": "Disabled blocks toggling even when on.", "test": "Verify precedence and keyboard operation.", "rejectIf": "State is visual only or contradictory." },
+          "Tone": { "status": "covered", "decision": "Use Tone for direct operational labels.", "tokens": ["comp.switch.*", "sys.tone.*"], "behavior": "Tone avoids vague settings language.", "example": "Label describes what turns on.", "test": "Verify copy is outcome-based.", "rejectIf": "Copy hides risk or policy meaning." },
+          "Growth": { "status": "covered", "decision": "Use Growth for reusable persistent settings across products.", "tokens": ["comp.switch.*", "sys.growth.*"], "behavior": "Growth keeps API stable across settings surfaces.", "example": "The same switch works in driver app and fleet console.", "test": "Verify the contract supports settings lists and cards.", "rejectIf": "A product forks one-off switch behavior." },
+          "Symbol": { "status": "covered", "decision": "Use Symbol only when an adjacent icon clarifies the setting.", "tokens": ["comp.switch.*", "sys.symbol.*"], "behavior": "Symbol does not replace label or state.", "example": "A notification icon can support alert settings.", "test": "Verify icons have text labels nearby.", "rejectIf": "The switch is icon-only." },
+          "Iconography": { "status": "covered", "decision": "Use Iconography for optional leading affordances outside the track.", "tokens": ["comp.switch.*", "sys.iconography.*"], "behavior": "Iconography supports context without entering the track.", "example": "Bell icon appears before alert setting label.", "test": "Verify no decorative icon replaces state.", "rejectIf": "Track state uses arbitrary icons." },
+          "Accessibility": { "status": "covered", "decision": "Use Accessibility for role switch, visible label, keyboard toggle, focus, and state announcement.", "tokens": ["comp.switch.*", "sys.accessibility.*"], "behavior": "Accessibility exposes on/off state to assistive tech.", "example": "Switch announces checked state and toggles with Space.", "test": "Verify role, label, aria-checked, focus, disabled, and error association.", "rejectIf": "It is implemented as visual-only checkbox without switch semantics." }
+        },
+        "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Elevation", "Iconography", "Motion Curves", "Duration", "Density", "Focus", "Disabled", "Message"],
+        "tokenDependencies": ["comp.switch.*", "sys.energy.*", "sys.voice.*", "sys.frame.*", "sys.depth.*", "sys.state.*", "sys.momentum.*", "sys.accessibility.*"],
+        "props": [
+          { "name": "label", "type": "string", "required": true, "notes": "Visible setting text." },
+          { "name": "checked", "type": "boolean", "required": true, "notes": "On/off value." },
+          { "name": "description", "type": "string", "required": false, "notes": "Support text under the label." },
+          { "name": "error", "type": "string", "required": false, "notes": "Validation or policy message." },
+          { "name": "disabled", "type": "boolean", "required": false, "notes": "Blocks interaction." },
+          { "name": "required", "type": "boolean", "required": false, "notes": "Marks a required setting." },
+          { "name": "onChange", "type": "(checked: boolean) => void", "required": true, "notes": "Reports the next on/off value." }
+        ],
+        "productExamples": [
+          { "context": "Driver app", "example": "Turn route and balance alerts on or off." },
+          { "context": "Fleet console", "example": "Enable wallet policy settings that persist after save." },
+          { "context": "Configuration", "example": "Toggle automatic approvals or notifications." }
+        ],
+        "guidelines": { "do": ["Use for persistent on/off settings.", "Keep the active outcome in the label.", "Show immediate feedback when value changes."], "dont": ["Do not use for multi-select choices.", "Do not require Save if the setting is not immediate.", "Do not use when the user must choose one option from many."], "info": ["Use Checkbox when the action is selection or consent; use Switch when the product state turns on or off."] },
+        "contextDensityStrategy": [
+          { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "full-width settings rows with clear touch space" },
+          { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "settings lists and inspector panels" },
+          { "context": "desktops + TV", "density": "lg", "scaleSource": "Density", "layout": "readable configuration rows and remote-focus surfaces" }
+        ],
+        "tests": ["Renders visible label and role switch.", "Supports Space toggle and focus.", "Announces on/off state.", "Blocks disabled interaction.", "Shows error support text.", "Adapts density without clipping."],
+        "agentInstructions": ["Use Switch only for persistent on/off settings.", "Ask before using Switch for money, permissions, compliance, or automatic approvals.", "Use Checkbox for selection and Radio/Select for choice sets."],
+        "rejectIf": ["It has no visible label.", "The value does not persist or has no immediate effect.", "It replaces Checkbox in multi-select lists.", "Motion or color bypasses Design System tokens."]
+      }
+    }
+  }
+}

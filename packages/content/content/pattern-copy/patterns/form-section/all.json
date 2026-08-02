@@ -1,0 +1,135 @@
+{
+  "patterns": {
+    "form-section": {
+      "purpose": "Structure related form fields into a titled, validated, saveable group without turning every field group into a full process.",
+      "useWhen": [
+        "A form needs a clear section boundary with helper copy.",
+        "Fields share validation, disabled state, or save behavior.",
+        "Users need to understand which data belongs together before submitting."
+      ],
+      "doNotUseWithoutReview": [
+        "The section is only decorative spacing.",
+        "The grouped fields do not share purpose or validation.",
+        "The section hides a multi-step process or complex permissions."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines section spacing, field rhythm, action placement, and responsive stacking."
+        ],
+        [
+          "Voice",
+          "Owns section title, helper copy, validation text, and save labels."
+        ],
+        [
+          "Energy",
+          "Controls focus, dirty, invalid, disabled, and action states."
+        ],
+        [
+          "State",
+          "Default, dirty, valid, invalid, disabled, saving, and saved states are explicit."
+        ],
+        [
+          "Accessibility",
+          "Requires labelled fields, associated validation, keyboard submission, and status feedback."
+        ]
+      ],
+      "slots": [
+        [
+          "header",
+          "Card | Text",
+          "yes",
+          "Names the section and explains purpose."
+        ],
+        [
+          "fields",
+          "Input | TextArea[]",
+          "yes",
+          "Related form controls."
+        ],
+        [
+          "validation",
+          "InlineValidation",
+          "conditional",
+          "Explains blocked or invalid state."
+        ],
+        [
+          "actions",
+          "Button[]",
+          "conditional",
+          "Save, reset, or secondary actions."
+        ],
+        [
+          "feedback",
+          "Toast",
+          "conditional",
+          "Confirms save or draft state."
+        ]
+      ],
+      "componentsUsed": [
+        "Card",
+        "Input",
+        "Text Area",
+        "Inline Validation",
+        "Button",
+        "Toast"
+      ],
+      "variants": [
+        [
+          "Editable section",
+          "Current candidate",
+          "Grouped fields with explicit save behavior."
+        ],
+        [
+          "Invalid section",
+          "Required state",
+          "Inline validation appears after user action."
+        ],
+        [
+          "Saved section",
+          "Candidate",
+          "Toast or status confirms persistence."
+        ]
+      ],
+      "motion": [
+        [
+          "Validation reveal",
+          "Validation appears inline without shifting focus away from the field."
+        ],
+        [
+          "Save feedback",
+          "Save confirmation is transient and non-blocking."
+        ]
+      ],
+      "accessibility": [
+        "Every field has a label.",
+        "Validation text is not color-only.",
+        "Save action is reachable by keyboard.",
+        "Saved state is announced as feedback.",
+        "Disabled fields explain why when needed."
+      ],
+      "tests": [
+        "Empty required field shows Inline Validation after save.",
+        "Editing field marks the section dirty.",
+        "Save reports success when required fields are present.",
+        "Responsive viewport stacks fields without overlap."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Form Section for related fields with shared purpose.",
+          "Use Inline Validation for section-level blocking errors.",
+          "Use Toast for save confirmation."
+        ],
+        "mustAsk": [
+          "Required fields, persistence, ownership, or validation timing is unclear."
+        ],
+        "rejectIf": [
+          "The grouping is decorative only.",
+          "Fields are unrelated.",
+          "Validation has no text recovery."
+        ],
+        "handoff": "Confirm section purpose, required fields, validation timing, save behavior, and success feedback."
+      }
+    }
+  }
+}

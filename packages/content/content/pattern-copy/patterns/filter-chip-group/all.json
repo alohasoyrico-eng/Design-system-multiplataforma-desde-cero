@@ -1,0 +1,133 @@
+{
+  "patterns": {
+    "filter-chip-group": {
+      "purpose": "Expose active filters as removable chips with reset, count, overflow, keyboard behavior, and empty recovery.",
+      "useWhen": [
+        "Users need to review and remove active filters quickly.",
+        "Filters are applied outside the current viewport or from multiple controls.",
+        "A query needs clear count, reset, and empty state feedback."
+      ],
+      "doNotUseWithoutReview": [
+        "There are no active filters to review.",
+        "Removing filters has unclear persistence or side effects.",
+        "The chips become the only way to discover available filters."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines chip wrapping, overflow, reset placement, and compact behavior."
+        ],
+        [
+          "Voice",
+          "Owns filter labels, count copy, reset label, and empty copy."
+        ],
+        [
+          "Energy",
+          "Controls selected, removable, disabled, and focus states."
+        ],
+        [
+          "State",
+          "Empty, active, overflow, dirty, applied, and cleared states are explicit."
+        ],
+        [
+          "Accessibility",
+          "Requires removable button semantics and count feedback."
+        ]
+      ],
+      "slots": [
+        [
+          "chips",
+          "Chip[]",
+          "yes",
+          "Active filter values."
+        ],
+        [
+          "count",
+          "Badge",
+          "conditional",
+          "Total active filters."
+        ],
+        [
+          "reset",
+          "Button",
+          "conditional",
+          "Clears all filters."
+        ],
+        [
+          "emptyState",
+          "EmptyState",
+          "conditional",
+          "Shown when no filters are active."
+        ],
+        [
+          "feedback",
+          "Toast",
+          "conditional",
+          "Reports cleared or applied filters."
+        ]
+      ],
+      "componentsUsed": [
+        "Chip",
+        "Badge",
+        "Button",
+        "Empty State",
+        "Toast"
+      ],
+      "variants": [
+        [
+          "Active filters",
+          "Current candidate",
+          "Removable chips with count and clear action."
+        ],
+        [
+          "Empty filters",
+          "Required state",
+          "Empty state appears after clearing."
+        ],
+        [
+          "Overflow filters",
+          "Candidate",
+          "Excess filters collapse or wrap with clear count."
+        ]
+      ],
+      "motion": [
+        [
+          "Remove chip",
+          "Chip disappears without moving keyboard focus unpredictably."
+        ],
+        [
+          "Clear all",
+          "Empty state replaces chips after user action."
+        ]
+      ],
+      "accessibility": [
+        "Removable chips include filter names.",
+        "Count is text-backed.",
+        "Clear all is keyboard reachable.",
+        "Empty state is announced when all filters are cleared."
+      ],
+      "tests": [
+        "Removing one chip updates count.",
+        "Clear all hides chips and shows Empty State.",
+        "Toast reports reset feedback.",
+        "Keyboard users can remove filters."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Filter Chip Group for active filters already applied.",
+          "Use Badge for active count.",
+          "Show Empty State when all filters are removed."
+        ],
+        "mustAsk": [
+          "Filter persistence, query side effects, or reset behavior is unclear."
+        ],
+        "rejectIf": [
+          "Chips are static labels with no removal behavior.",
+          "Count is color-only.",
+          "Clearing filters has no feedback."
+        ],
+        "handoff": "Confirm filter source, removal behavior, reset policy, count copy, and empty state."
+      }
+    }
+  }
+}

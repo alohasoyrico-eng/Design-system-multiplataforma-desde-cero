@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "tests": [
+          "Renders native button with visible accessible name.",
+          "Defaults type to button.",
+          "Covers variant, intent, density inheritance, fullWidth, icon, disabled, and loading attributes.",
+          "Activates with pointer, Enter, and Space.",
+          "Disabled and loading block duplicate activation.",
+          "Focus visible works in normal and forced-colors modes.",
+          "Reduced motion removes loading spin and movement while preserving state information.",
+          "No raw values leak into component implementation.",
+          "Danger and warning preserve contrast across default, hover, pressed, disabled, and loading states.",
+          "Every foundation in artifacts.components.button.foundations has status covered plus decision, tokens, behavior, example, test, and rejectIf.",
+          "Context density strategy maps smartphones/phablets, tablets/laptops, and desktops/TV to density, layout, and rules.",
+          "Button exposes no public size prop; scale is inherited from Density.",
+          "Button supports sm, md, and lg density contexts without adding public size overrides.",
+          "Button icons inherit current label color across default, danger, warning, disabled, and loading states.",
+          "Secondary and outlined have distinct background, border, and surface adaptation behavior.",
+          "Primary Button uses sys.energy.action.primary.",
+          "Secondary Button uses white background and neutral 900 outline/text.",
+          "Outlined Button uses white background and neutral 200 outline."
+        ]
+      }
+    }
+  }
+}

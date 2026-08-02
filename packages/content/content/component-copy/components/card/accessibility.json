@@ -1,0 +1,16 @@
+{
+  "components": {
+    "card": {
+      "accessibility": {
+        "statePrecedence": "disabled, loading, error, selected, focus, hover, muted, interactive, default",
+        "items": [
+          "Surface has a clear name from title and supporting text.",
+          "Interactive cards expose keyboard focus and activation.",
+          "Selected, loading, error, and disabled states are not color-only.",
+          "Nested actions keep their own accessible names and focus order.",
+          "Long localized content wraps without hiding recovery text."
+        ]
+      }
+    }
+  }
+}

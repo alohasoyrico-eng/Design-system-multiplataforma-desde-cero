@@ -1,0 +1,29 @@
+{
+  "components": {
+    "select": {
+      "variants": {
+        "copy": "Select variants cover one closed-choice value. Base Select has the default trigger and an inline trigger for composition inside another field surface. Filled, open, loading, error, and disabled are states, not variants.",
+        "demos": [
+          {
+            "label": "Default",
+            "field": "Fleet",
+            "value": "All fleets",
+            "helper": "Showing all active vehicles",
+            "density": "md",
+            "state": "default",
+            "variant": "default"
+          },
+          {
+            "label": "Inline",
+            "field": "Country code",
+            "value": "Mexico +52",
+            "helper": "Embedded inside Phone Input",
+            "density": "md",
+            "state": "filled",
+            "variant": "inline"
+          }
+        ]
+      }
+    }
+  }
+}

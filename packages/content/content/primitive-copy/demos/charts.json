@@ -1,0 +1,33 @@
+{
+  "demos": {
+    "Charts": {
+      "type": "chart",
+      "initial": "bar",
+      "ariaLabel": "Chart examples",
+      "choices": [
+        [
+          "bar",
+          "bar"
+        ],
+        [
+          "line",
+          "line"
+        ],
+        [
+          "threshold",
+          "threshold"
+        ],
+        [
+          "empty",
+          "empty"
+        ]
+      ],
+      "states": {
+        "bar": "Fuel spend by week with accessible summary.",
+        "line": "Trend over time with threshold and tooltip rules.",
+        "threshold": "Threshold band explains risk before color alone does.",
+        "empty": "Empty chart state keeps title, reason, and next action."
+      }
+    }
+  }
+}

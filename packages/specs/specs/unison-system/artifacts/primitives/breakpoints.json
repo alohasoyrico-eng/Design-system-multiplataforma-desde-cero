@@ -1,0 +1,109 @@
+{
+  "artifacts": {
+    "primitives": {
+      "breakpoints": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Breakpoints",
+        "purpose": "Turn Frame responsive roles into implementation-ready content-driven breakpoints for mobile, tablet, laptop, and desktop.",
+        "governingFoundations": [
+          "Frame",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.frame.*",
+          "sys.accessibility.*"
+        ],
+        "roles": [
+          {
+            "id": "mobile",
+            "token": "breakpoint.mobile",
+            "use": "Driver app, sheets, stacked actions."
+          },
+          {
+            "id": "tablet",
+            "token": "breakpoint.tablet",
+            "use": "Inspector layouts and split review."
+          },
+          {
+            "id": "laptop",
+            "token": "breakpoint.laptop",
+            "use": "Fleet manager default workstation."
+          },
+          {
+            "id": "desktop",
+            "token": "breakpoint.desktop",
+            "use": "Wide dashboards and dense tables."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Navigation",
+            "example": "Hamburger appears only where top navigation lacks room."
+          },
+          {
+            "context": "Dashboard",
+            "example": "KPI grid adapts from stacked to multi-column."
+          },
+          {
+            "context": "Templates",
+            "example": "Mobile route system and desktop fleet dashboard use different IA."
+          }
+        ],
+        "api": {
+          "props": [
+            "breakpoint",
+            "columns",
+            "density",
+            "navigationMode"
+          ],
+          "outputs": [
+            "mediaQuery",
+            "layoutMode",
+            "navigationPolicy"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.frame.breakpoint.*",
+          "sys.frame.grid.*",
+          "breakpoint.*"
+        ],
+        "states": [
+          "mobile",
+          "tablet",
+          "laptop",
+          "desktop"
+        ],
+        "agentInstructions": [
+          "Use content needs before device names.",
+          "Check navigation and tab behavior at each tier.",
+          "Do not compress desktop pages into mobile cards."
+        ],
+        "rejectIf": [
+          "Unintended horizontal scroll.",
+          "Hamburger appears on wide layouts unnecessarily.",
+          "Same template reused across incompatible contexts."
+        ]
+      }
+    }
+  }
+}

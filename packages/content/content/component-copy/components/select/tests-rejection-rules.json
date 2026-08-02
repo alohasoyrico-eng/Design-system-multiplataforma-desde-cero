@@ -1,0 +1,21 @@
+{
+  "components": {
+    "select": {
+      "tests-rejection-rules": {
+        "mustTest": [
+          "Renders label, selected value, helper text, and combobox/listbox semantics.",
+          "Opens by click, Enter, Space, and ArrowDown.",
+          "Restores focus after selection, cancel, Escape, or outside click.",
+          "Announces loading, empty, error, disabled, and permission-blocked states.",
+          "Mobile fallback preserves selected value."
+        ],
+        "rejectIf": [
+          "Label or helper text is missing.",
+          "Options do not have stable value and label.",
+          "Disabled or loading state is only visual.",
+          "Raw color, spacing, radius, or motion bypasses tokens."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "artifacts": {
+    "foundations": {
+      "state": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "State",
+        "purpose": "Define interaction states, precedence, state composition, disabled behavior, loading behavior, validation, and assistive technology mapping.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "default",
+            "token": "state.default",
+            "use": "Available, stable, unselected baseline."
+          },
+          {
+            "id": "hover",
+            "token": "sys.state.hover.overlay",
+            "use": "Pointer affordance without changing semantic value."
+          },
+          {
+            "id": "focus",
+            "token": "sys.state.focus.ring",
+            "use": "Keyboard and assistive navigation location."
+          },
+          {
+            "id": "pressed",
+            "token": "sys.state.pressed.overlay",
+            "use": "Momentary activation feedback."
+          },
+          {
+            "id": "selected",
+            "token": "sys.state.selected.overlay",
+            "use": "Chosen filter, tab, option, or row."
+          },
+          {
+            "id": "loading",
+            "token": "sys.state.loading.*",
+            "use": "Pending operation; duplicate activation blocked."
+          },
+          {
+            "id": "disabled",
+            "token": "sys.state.disabled.opacity",
+            "use": "Unavailable because permission, data, offline, risk, or future availability blocks action."
+          },
+          {
+            "id": "error",
+            "token": "sys.energy.status.error",
+            "use": "Recoverable or blocking failure with repair path."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Select",
+            "example": "Open, focused, selected, loading, disabled, and error states remain distinct."
+          },
+          {
+            "context": "Card actions",
+            "example": "Disabled action explains permission or risk reason instead of only lowering opacity."
+          },
+          {
+            "context": "Data table",
+            "example": "Selected row, focused row, and error row can coexist without conflicting meaning."
+          },
+          {
+            "context": "Authentication",
+            "example": "OTP loading blocks duplicate submit while preserving escape and retry."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.state.*",
+          "sys.state.*",
+          "sys.energy.*",
+          "sys.a11y.*",
+          "comp.*.state aliases"
+        ],
+        "primitiveDependencies": [
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Color"
+        ],
+        "componentDependencies": [
+          "Button",
+          "Select",
+          "Input",
+          "Tabs",
+          "Table",
+          "Dialog",
+          "Inline Validation"
+        ],
+        "agentInstructions": [
+          "Resolve state precedence before styling.",
+          "Disabled must include reason when risk, permission, data, or offline blocks the user.",
+          "Focus must stay visible even when selected or error state is active.",
+          "Loading blocks duplicate activation."
+        ],
+        "rejectIf": [
+          "Disabled is only opacity without reason.",
+          "Focus is suppressed by hover, selected, or error.",
+          "Loading can submit duplicate actions.",
+          "Error state lacks recovery or accessible announcement."
+        ],
+        "patternDependencies": [
+          "Virtual Data Table"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "components": {
+    "segmented-control": {
+      "operational-example": {
+        "copy": "Use Segmented Control to switch one local, mutually exclusive mode while keeping the user in the same task context.",
+        "scenario": {
+          "icon": "tune",
+          "title": "Segmented Control",
+          "meta": "Flow primary selected, outline treatment",
+          "items": [
+            {
+              "label": "Fuel mode",
+              "variant": "outlined",
+              "selectedKey": "fuel",
+              "items": [
+                {
+                  "value": "all",
+                  "label": "All"
+                },
+                {
+                  "value": "fuel",
+                  "label": "Fuel",
+                  "icon": "local_gas_station"
+                },
+                {
+                  "value": "ev",
+                  "label": "EV",
+                  "icon": "bolt"
+                }
+              ]
+            },
+            {
+              "label": "Toolbar",
+              "variant": "toolbar",
+              "selectedKey": "list",
+              "items": [
+                {
+                  "key": "map",
+                  "label": "Map"
+                },
+                {
+                  "key": "list",
+                  "label": "List"
+                },
+                {
+                  "key": "alerts",
+                  "label": "Alerts"
+                }
+              ]
+            },
+            {
+              "label": "Icon only",
+              "variant": "icon-only",
+              "selectedKey": "map",
+              "items": [
+                {
+                  "key": "map",
+                  "label": "Map",
+                  "icon": "map"
+                },
+                {
+                  "key": "list",
+                  "label": "List",
+                  "icon": "view_list"
+                },
+                {
+                  "key": "alerts",
+                  "label": "Alerts",
+                  "icon": "notifications"
+                }
+              ]
+            }
+          ],
+          "rationaleTitle": "Why Segmented Control",
+          "rationale": [
+            "Flow defines selected/current as action-primary and keeps the control local to one mutually exclusive mode.",
+            "The ZIP/reference direction informs the more squared outline, compact geometry, indicator motion, and icon support.",
+            "The visual distinction from Tabs comes from outline, low radius, shared border, and local mode semantics."
+          ],
+          "semanticDecision": {
+            "title": "Color decision applied",
+            "rows": [
+              {
+                "label": "Selected/current",
+                "value": "Uses Flow action-primary."
+              },
+              {
+                "label": "Visual distinction",
+                "value": "Low-radius outlined control, not pill tabs."
+              },
+              {
+                "label": "ZIP influence",
+                "value": "Shape, outline emphasis, compact geometry, icon support, and indicator motion only."
+              }
+            ]
+          }
+        }
+      },
+      "anatomy": {
+        "items": [
+          {
+            "part": "Container",
+            "rule": "Groups related exclusive options and owns the shared border.",
+            "tokens": [
+              "sys.frame.*",
+              "comp.segmented-control.*"
+            ]
+          },
+          {
+            "part": "Segment",
+            "rule": "One selectable mode with visible label.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Selected indicator",
+            "rule": "Shows the active mode through Flow action-primary, outline contrast, low radius, and aria-selected.",
+            "tokens": [
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "Optional icon",
+            "rule": "Supports recognition without replacing text.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "Focus ring",
+            "rule": "Marks keyboard focus on the active segment.",
+            "tokens": [
+              "sys.accessibility.*"
+            ]
+          }
+        ]
+      },
+      "accessibility": {
+        "statePrecedence": "disabled, warning, selected, focus, hover, default",
+        "items": [
+          "Provide a visible accessible label for the control.",
+          "Expose current state and relationship through ARIA where applicable.",
+          "Support keyboard focus and expected dismissal or selection keys.",
+          "Do not rely on color alone for selected, warning, loading, or disabled state.",
+          "Escalate to a pattern when orchestration exceeds one component."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Density",
+          "Focus",
+          "Loading",
+          "Disabled"
+        ]
+      }
+    }
+  }
+}

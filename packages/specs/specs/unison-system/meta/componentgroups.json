@@ -1,0 +1,80 @@
+{
+  "componentGroups": {
+    "Core": [
+      "Button",
+      "Icon Button",
+      "Input",
+      "Code Input",
+      "Biometric Prompt",
+      "Floating Action Button"
+    ],
+    "Selection": [
+      "Segmented Control",
+      "Checkbox",
+      "Radio Button",
+      "Switch",
+      "Select",
+      "Slider"
+    ],
+    "Inputs": [
+      "Text Area",
+      "Phone Input",
+      "Date Picker",
+      "Date Range Picker"
+    ],
+    "Mobile": [
+      "Quick Action",
+      "Card Summary",
+      "Movement Row"
+    ],
+    "Maps": [
+      "Station Pin",
+      "Route Summary"
+    ],
+    "Navigation": [
+      "Breadcrumbs",
+      "Tabs",
+      "Pagination",
+      "Stepper"
+    ],
+    "Dashboards": [
+      "KPI Tile",
+      "Chart Panel"
+    ],
+    "Configuration": [
+      "Audit Event"
+    ],
+    "Feedback": [
+      "Toast",
+      "Empty State",
+      "Error Panel",
+      "Skeleton",
+      "Progress Bar",
+      "Circular Progress",
+      "Inline Validation"
+    ],
+    "Overlay": [
+      "Tooltip",
+      "Dialog",
+      "Menu",
+      "Popover"
+    ],
+    "Layout": [
+      "Accordion"
+    ],
+    "Display": [
+      "Card",
+      "List",
+      "Chip",
+      "Tag",
+      "Badge",
+      "Avatar",
+      "Tree View"
+    ],
+    "Data": [],
+    "Motion": [
+      "Animated Moment",
+      "Motion Boundary"
+    ]
+  }
+}

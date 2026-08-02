@@ -1,0 +1,95 @@
+{
+  "components": {
+    "button": {
+      "full-width": {
+        "copy": "Full-width buttons are for constrained mobile surfaces, confirmation sheets, and stacked action areas. Desktop tables and dashboards should prefer natural width or aligned action rows.",
+        "items": [
+          {
+            "label": "Natural width",
+            "layout": "stack-natural",
+            "buttons": [
+              {
+                "label": "Confirm",
+                "variant": "primary",
+                "intent": "",
+                "size": "md",
+                "icon": "check",
+                "state": "",
+                "density": ""
+              },
+              {
+                "label": "Download",
+                "variant": "outlined",
+                "intent": "",
+                "size": "md",
+                "icon": "download",
+                "state": "",
+                "density": ""
+              }
+            ]
+          },
+          {
+            "label": "Mobile sheet",
+            "layout": "stack",
+            "buttons": [
+              {
+                "label": "Block card",
+                "variant": "primary full",
+                "intent": "danger",
+                "size": "md",
+                "icon": "block",
+                "state": "",
+                "density": ""
+              },
+              {
+                "label": "Keep card active",
+                "variant": "outlined full",
+                "intent": "",
+                "size": "md",
+                "icon": "",
+                "state": "",
+                "density": ""
+              }
+            ]
+          },
+          {
+            "label": "Responsive containers",
+            "layout": "container",
+            "buttons": [
+              {
+                "span": 12,
+                "label": "Save and continue",
+                "variant": "primary full",
+                "intent": "",
+                "size": "md",
+                "icon": "save",
+                "state": "",
+                "density": ""
+              },
+              {
+                "span": 8,
+                "label": "Export movements",
+                "variant": "secondary full",
+                "intent": "",
+                "size": "md",
+                "icon": "download",
+                "state": "",
+                "density": ""
+              },
+              {
+                "span": 4,
+                "label": "Copy",
+                "variant": "tertiary full",
+                "intent": "",
+                "size": "md",
+                "icon": "content_copy",
+                "state": "",
+                "density": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

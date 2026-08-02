@@ -1,0 +1,359 @@
+{
+  "artifacts": {
+    "components": {
+      "pagination": {
+        "id": "pagination",
+        "name": "Pagination",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Move through discrete pages of one bounded result set with numbered controls and ellipsis collapse, without owning filtering, sorting, table state, or infinite loading patterns.",
+        "anatomy": [
+          {
+            "part": "Surface",
+            "rule": "Owns the visible Pagination container.",
+            "tokens": [
+              "comp.pagination.*"
+            ]
+          },
+          {
+            "part": "Label",
+            "rule": "Provides visible meaning.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "State",
+            "rule": "Shows local component status. Selected/current page uses Flow action-primary.",
+            "tokens": [
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "Metadata",
+            "rule": "Keeps context short.",
+            "tokens": [
+              "sys.growth.*"
+            ]
+          },
+          {
+            "part": "Cue",
+            "rule": "Uses symbol, icon, or motion support.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "numbered",
+            "description": "Numbered page switcher with ellipsis collapse and selected/current page using Flow action-primary plus ZIP-informed depth and bounded motion."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "selected",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > selected > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Flow action-primary for selected/current page; ZIP informs treatment, depth, and motion.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Verify selected/current page uses Flow action-primary.",
+            "rejectIf": "Selected/current page uses raw color or non-Flow active/current color."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Voice audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Frame audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Depth audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Momentum audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use State so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.state.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "State audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Tone audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.growth.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Growth audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Symbol audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Iconography audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility so Pagination remains a bounded component.",
+            "tokens": [
+              "comp.pagination.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Pagination exposes local state without absorbing patterns.",
+            "example": "Pagination",
+            "test": "Accessibility audit",
+            "rejectIf": "Data table, search result, sorting, and infinite loading behavior belong to patterns."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.pagination.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "page",
+            "type": "number",
+            "required": true,
+            "notes": "Current page."
+          },
+          {
+            "name": "pageCount",
+            "type": "number",
+            "required": true,
+            "notes": "Total page count."
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "required": false,
+            "notes": "Accessible pagination label."
+          },
+          {
+            "name": "variant",
+            "type": "numbered",
+            "required": false,
+            "notes": "Accepted for API alignment; Pagination renders the numbered variant."
+          },
+          {
+            "name": "state",
+            "type": "default | hover | focus | selected | disabled",
+            "required": false,
+            "notes": "Local visual state."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": false,
+            "notes": "Density scale for the numbered controls."
+          },
+          {
+            "name": "fullWidth",
+            "type": "boolean",
+            "required": false,
+            "notes": "Allows the pagination row to fill its parent width."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables pagination controls."
+          },
+          {
+            "name": "onPageChange",
+            "type": "(page: number) => void",
+            "required": false,
+            "notes": "Called when a local page request changes."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver mobile",
+            "example": "Pagination"
+          },
+          {
+            "context": "Fleet operations",
+            "example": "Pagination"
+          },
+          {
+            "context": "Admin console",
+            "example": "Pagination"
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use Pagination for its bounded job.",
+            "Keep visible label and state.",
+            "Use Design System tokens."
+          ],
+          "dont": [
+            "Filtering, sorting, table ownership, search results, and infinite loading behavior belong to patterns.",
+            "Do not mix numbered pagination and infinite loading in the component.",
+            "Do not rely on color or motion only."
+          ],
+          "info": [
+            "Escalate to patterns when orchestration appears."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "touch-safe component"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "context surface"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin surface"
+          }
+        ],
+        "tests": [
+          "Visible label",
+          "State precedence",
+          "Keyboard focus",
+          "Responsive layout",
+          "Pattern boundary",
+          "Selected/current page uses Flow action-primary with ZIP-informed depth and momentum"
+        ],
+        "agentInstructions": [
+          "Use Pagination only for local component behavior.",
+          "Data table, search result, sorting, and infinite loading behavior belong to patterns.",
+          "Ask when orchestration is required."
+        ],
+        "rejectIf": [
+          "Filtering, sorting, table ownership, search results, and infinite loading behavior belong to patterns.",
+          "State is color-only.",
+          "Component owns a process."
+        ],
+        "semanticDecisions": [
+          {
+            "id": "selected-current-color",
+            "state": "selected/current",
+            "decision": "Use sys.energy action-primary for selected/current page.",
+            "zipInfluence": "Numbered structure, mono numerals, chevrons, depth, and selected-page momentum."
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "components": {
+    "button": {
+      "miel": {
+        "copy": "MIEL turns Button into a delegable action decision: the agent can assemble hierarchy, state, and affordance, while the human owns consequence, risk, and recovery.",
+        "canDecide": [
+          "Choose Button when the user is triggering one immediate action.",
+          "Select variant, intent, icon, loading, disabled, and full-width behavior from the existing contract.",
+          "Write verb-first labels when the action outcome is already clear."
+        ],
+        "mustAsk": [
+          "The consequence, recovery path, analytics event, or permission rule is unknown.",
+          "The action is destructive, financial, irreversible, or changes access.",
+          "The request needs a new system, confirmation pattern, service behavior, variant, or token."
+        ],
+        "rejectIf": [
+          "The label is vague, noun-only, or hides the result.",
+          "Disabled or loading state appears without reason or recovery.",
+          "Danger or warning is used as decoration instead of semantic risk.",
+          "The agent invents a new variant, token, or motion rule."
+        ],
+        "handoff": "I am using Button because this is one immediate action. I need confirmation on consequence, recovery copy, and whether the action requires audit or permission handling."
+      }
+    }
+  }
+}

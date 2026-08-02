@@ -1,0 +1,35 @@
+{
+  "demos": {
+    "Message": {
+      "type": "message",
+      "cards": [
+        {
+          "eyebrow": "Danger · Blocking",
+          "title": "Block card ending 1842?",
+          "copy": "This stops fuel purchases immediately. You can unblock the card after reviewing the latest movement.",
+          "actions": [
+            [
+              "Block card",
+              "primary",
+              "danger",
+              "sm",
+              "block"
+            ],
+            [
+              "Keep active",
+              "outlined",
+              "",
+              "sm",
+              ""
+            ]
+          ]
+        },
+        {
+          "eyebrow": "Recovery",
+          "title": "What changed?",
+          "copy": "Message defines the consequence, next action, accessible announcement, and localization guardrail before UI format."
+        }
+      ]
+    }
+  }
+}

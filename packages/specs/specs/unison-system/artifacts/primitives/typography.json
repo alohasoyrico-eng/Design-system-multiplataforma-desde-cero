@@ -1,0 +1,140 @@
+{
+  "artifacts": {
+    "primitives": {
+      "typography": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Typography",
+        "purpose": "Turn Voice foundation roles into implementation-ready text primitives for display, headings, numerals, labels, body, captions, overline, and code.",
+        "governingFoundations": [
+          "Voice",
+          "Tone",
+          "Frame",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.voice.*",
+          "sys.tone.*",
+          "sys.frame.*",
+          "sys.a11y.*"
+        ],
+        "roles": [
+          {
+            "id": "display",
+            "token": "typography.display.*",
+            "use": "Template/page identity and major product moments with Edenred Black."
+          },
+          {
+            "id": "heading",
+            "token": "typography.heading.*",
+            "use": "Section and panel hierarchy with Edenred Black."
+          },
+          {
+            "id": "numeral",
+            "token": "typography.numeral.*",
+            "use": "KPIs, metrics, balances, counts, dashboard values, and prominent operational numbers with Edenred Black."
+          },
+          {
+            "id": "label",
+            "token": "typography.label.*",
+            "use": "Controls, KPI labels, table headers, filters with Ubuntu."
+          },
+          {
+            "id": "paragraph",
+            "token": "typography.paragraph.*",
+            "use": "Guidance, descriptions, empty/error copy with Ubuntu."
+          },
+          {
+            "id": "caption",
+            "token": "typography.caption",
+            "use": "Metadata, helper text, timestamps, legal/support notes."
+          },
+          {
+            "id": "code",
+            "token": "typography.code.*",
+            "use": "Token names, specs, API snippets, agent contracts."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver onboarding",
+            "example": "Display names the step; paragraph explains value; label names controls."
+          },
+          {
+            "context": "Card detail",
+            "example": "Balance, actions, status, and movement metadata use distinct text roles."
+          },
+          {
+            "context": "Fleet dashboard",
+            "example": "KPI value, label, delta, chart title, legend, summary, and table text are separable."
+          },
+          {
+            "context": "Configuration",
+            "example": "Permission dependencies and destructive consequences use readable repair/urgent hierarchy."
+          }
+        ],
+        "api": {
+          "props": [
+            "role",
+            "size",
+            "tone",
+            "truncate",
+            "as"
+          ],
+          "outputs": [
+            "semanticElement",
+            "cssCustomProperties",
+            "accessibleText"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.voice.*",
+          "sys.voice.*",
+          "typography.*",
+          "comp.*.voice aliases"
+        ],
+        "states": [
+          "default",
+          "secondary",
+          "disabled",
+          "error",
+          "warning",
+          "success",
+          "inverse",
+          "truncated"
+        ],
+        "agentInstructions": [
+          "Use Edenred Black only for display, heading, and numeral roles.",
+          "Use Ubuntu for body, UI, caption, subtitle, and code roles.",
+          "Do not choose font size directly in components.",
+          "Match text role to content purpose and surface density."
+        ],
+        "rejectIf": [
+          "Raw font-size, line-height, family, or weight appears in component CSS.",
+          "Hero-scale text is used inside compact controls or dense panels.",
+          "Error/repair copy lacks next action.",
+          "Code/spec text is styled as body copy without distinction."
+        ]
+      }
+    }
+  }
+}

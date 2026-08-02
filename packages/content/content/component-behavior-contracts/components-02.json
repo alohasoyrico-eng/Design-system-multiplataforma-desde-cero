@@ -1,0 +1,187 @@
+{
+  "components": {
+    "table": {
+      "model": "controlled-data-display",
+      "packageOwned": [
+        "semantic table rendering",
+        "aria-sort",
+        "sort request callback",
+        "selected row rendering"
+      ],
+      "callbacks": [
+        "onSortChange",
+        "onRowSelect"
+      ],
+      "focusRules": [
+        "Interactive cells use native controls; row selection must not hide cell semantics."
+      ],
+      "keyboardRules": [
+        "Sortable header buttons use native button keyboard behavior."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "remote data loading",
+        "filtering",
+        "pagination",
+        "bulk actions",
+        "expanded detail processs"
+      ]
+    },
+    "slider": {
+      "model": "controlled-native-input",
+      "packageOwned": [
+        "native range input",
+        "value output wiring",
+        "dragging state",
+        "percent style variable"
+      ],
+      "callbacks": [
+        "onValueChange"
+      ],
+      "focusRules": [
+        "Native range input receives focus."
+      ],
+      "keyboardRules": [
+        "Native range keyboard behavior is preserved."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "map radius search execution",
+        "remote result refresh"
+      ]
+    },
+    "code-input": {
+      "model": "controlled-input-with-visual-slots",
+      "packageOwned": [
+        "single logical input",
+        "digit normalization",
+        "one-time-code autofill",
+        "filled slot presentation",
+        "active slot caret",
+        "invalid motion"
+      ],
+      "callbacks": [
+        "onValueChange",
+        "onComplete"
+      ],
+      "focusRules": [
+        "Native input receives focus; visual slots mirror active and filled states."
+      ],
+      "keyboardRules": [
+        "Native text input editing",
+        "Numeric entry",
+        "Paste"
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "resend code",
+        "verification request",
+        "identity recovery"
+      ]
+    },
+    "phone-input": {
+      "model": "controlled-input-with-country-selector",
+      "packageOwned": [
+        "country selector",
+        "country flag primitive",
+        "calling code display",
+        "international prefix detection",
+        "digit normalization",
+        "display formatter",
+        "disabled state"
+      ],
+      "callbacks": [
+        "onValueChange"
+      ],
+      "focusRules": [
+        "Country selector receives its own focus; native tel input receives number focus."
+      ],
+      "keyboardRules": [
+        "Inline Select listbox behavior",
+        "Native tel input keyboard behavior is preserved."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "large country search",
+        "OTP handoff",
+        "phone verification recovery"
+      ]
+    },
+    "date-picker": {
+      "model": "controlled-or-uncontrolled-input",
+      "packageOwned": [
+        "single date selection",
+        "trigger open state",
+        "calendar day selection",
+        "min/max disabled days",
+        "Escape close"
+      ],
+      "callbacks": [
+        "onValueChange",
+        "onOpenChange"
+      ],
+      "focusRules": [
+        "Trigger opens the calendar; closing returns focus to trigger."
+      ],
+      "keyboardRules": [
+        "Escape closes; future package work should add grid navigation."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "date range",
+        "preset reporting windows",
+        "scheduling process"
+      ]
+    },
+    "segmented-control": {
+      "model": "controlled-or-uncontrolled",
+      "packageOwned": [
+        "selected key",
+        "roving tabindex",
+        "aria-selected",
+        "disabled item exclusion"
+      ],
+      "callbacks": [
+        "onValueChange"
+      ],
+      "focusRules": [
+        "Selected item has tabindex 0; inactive items have tabindex -1."
+      ],
+      "keyboardRules": [
+        "ArrowLeft",
+        "ArrowRight",
+        "Home",
+        "End"
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "data reload per segment",
+        "reporting mode processs"
+      ]
+    },
+    "popover": {
+      "model": "controlled-or-uncontrolled-shell",
+      "packageOwned": [
+        "trigger toggle",
+        "Escape close",
+        "outside close",
+        "focus restoration",
+        "aria-controls wiring"
+      ],
+      "callbacks": [
+        "onOpenChange"
+      ],
+      "focusRules": [
+        "Closing restores focus to trigger."
+      ],
+      "keyboardRules": [
+        "Escape closes when open."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "multi-step decisions",
+        "forms inside popover"
+      ]
+    }
+  }
+}

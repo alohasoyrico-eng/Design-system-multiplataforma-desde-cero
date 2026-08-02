@@ -1,0 +1,17 @@
+{
+  "components": {
+    "checkbox": {
+      "states": {
+        "copy": "States must make the value, mixed condition, focus, validation, and disabled behavior visible without changing the label.",
+        "demos": [
+          { "label": "Unchecked", "description": "Choice is available and off.", "checked": false, "state": "unchecked", "density": "md" },
+          { "label": "Checked", "description": "Choice is active.", "checked": true, "state": "checked", "density": "md" },
+          { "label": "Indeterminate", "description": "Some nested choices are active.", "checked": false, "indeterminate": true, "state": "indeterminate", "density": "md" },
+          { "label": "Focus", "description": "Keyboard focus is visible.", "checked": false, "state": "focus", "density": "md" },
+          { "label": "Error", "description": "Required before continuing.", "checked": false, "state": "error", "density": "md" },
+          { "label": "Disabled", "description": "Managed by fleet policy.", "checked": true, "state": "disabled", "density": "md" }
+        ]
+      }
+    }
+  }
+}

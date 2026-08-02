@@ -1,0 +1,18 @@
+{
+  "components": {
+    "checkbox": {
+      "playground": {
+        "copy": "Use the playground to confirm label length, support text, density, checked value, and mixed state before using Checkbox in a system.",
+        "controls": [
+          { "name": "label", "label": "Label", "type": "text", "value": "Enable fuel card" },
+          { "name": "checked", "label": "Checked", "type": "checkbox", "value": true },
+          { "name": "indeterminate", "label": "Indeterminate", "type": "checkbox", "value": false },
+          { "name": "state", "label": "State", "type": "select", "value": "checked", "options": ["unchecked", "checked", "indeterminate", "focus", "error", "disabled"] },
+          { "name": "density", "label": "Density", "type": "select", "value": "md", "options": ["sm", "md", "lg"] }
+        ],
+        "preview": { "label": "Enable fuel card", "description": "Allow purchases for assigned stations.", "checked": true, "state": "checked", "density": "md" },
+        "snippet": "<Checkbox label=\"Enable fuel card\" checked onChange={setEnabled} />"
+      }
+    }
+  }
+}

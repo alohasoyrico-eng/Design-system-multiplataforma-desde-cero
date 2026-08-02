@@ -1,0 +1,26 @@
+{
+  "components": {
+    "input": {
+      "responsive-layout-patterns": {
+        "copy": "Mobile fields stack with full labels and helper text. Wider layouts can group fields, but should not hide recovery or force crowded columns.",
+        "examples": [
+          {
+            "label": "Driver mobile",
+            "density": "lg",
+            "layout": "single",
+            "demo": { "field": "Plate", "value": "", "placeholder": "ABC-123", "helper": "Use registered vehicle plate", "density": "lg", "state": "focus", "icon": "directions_car" }
+          },
+          {
+            "label": "Fleet desktop",
+            "density": "sm",
+            "layout": "mini-grid",
+            "demos": [
+              { "field": "Driver ID", "value": "MX-2048", "placeholder": "Enter driver ID", "helper": "Active", "density": "sm", "state": "filled", "icon": "badge" },
+              { "field": "Station code", "value": "POL-18", "placeholder": "Station code", "helper": "Checked", "density": "sm", "state": "filled", "icon": "local_gas_station" }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

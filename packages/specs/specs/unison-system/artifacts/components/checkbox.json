@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "components": {
+      "checkbox": {
+      "id": "checkbox",
+      "name": "Checkbox",
+      "layer": "Component",
+      "platform": "Cross-platform",
+      "audiences": ["Design", "Engineering", "Product", "Agents"],
+      "maturityTarget": 3,
+      "status": "gold-standard",
+      "purpose": "Use Checkbox for one independent boolean choice, item selection, or partial aggregate selection where the label must stay visible with checked, unchecked, indeterminate, focus, error, and disabled states.",
+      "referenceDecision": "Adapt",
+      "referenceRationale": "The ZIP reference gives the visual benchmark: compact square control, clear selected accent, indeterminate support, and spring-like feedback. Design System keeps ownership of color, type, density, state, icon, motion, and accessibility rules.",
+      "anatomy": [
+        { "part": "Choice label", "rule": "Names the choice in plain language and remains visible in every state.", "tokens": ["comp.checkbox.label.*", "sys.voice.*", "sys.energy.text.*"] },
+        { "part": "Control box", "rule": "Owns size, radius, border, fill, and focus treatment.", "tokens": ["comp.checkbox.box.*", "sys.frame.*", "sys.state.*"] },
+        { "part": "Indicator icon", "rule": "Shows check or mixed state only when selected or indeterminate.", "tokens": ["comp.checkbox.indicator.*", "sys.iconography.*", "sys.symbol.*"] },
+        { "part": "Support text", "rule": "Adds optional description, validation, or policy reason without replacing the label.", "tokens": ["comp.checkbox.support.*", "sys.voice.*", "sys.energy.status.*"] }
+      ],
+      "variants": [
+        { "id": "default", "description": "Single choice with label only." },
+        { "id": "descriptive", "description": "Choice with support text for policy or consequence." },
+        { "id": "select-all", "description": "Aggregate choice that can become indeterminate." },
+        { "id": "compact", "description": "Dense row for tables, filters, and settings lists." }
+      ],
+      "states": ["unchecked", "checked", "indeterminate", "focus", "error", "disabled"],
+      "statePrecedence": "disabled > error > focus > indeterminate > checked > unchecked",
+      "foundations": {
+        "Energy": { "status": "covered", "decision": "Use Energy for box fill, border, status, and disabled contrast.", "tokens": ["comp.checkbox.*", "sys.energy.*"], "behavior": "Energy makes selected, mixed, error, and disabled states visible.", "example": "Fuel card permission rows show selected accent and clear disabled contrast.", "test": "Verify contrast for unchecked, checked, mixed, error, and disabled.", "rejectIf": "Color is raw or selection depends on color alone." },
+        "Voice": { "status": "covered", "decision": "Use Voice for label and support text.", "tokens": ["comp.checkbox.*", "sys.voice.*"], "behavior": "Voice keeps the choice readable at each density.", "example": "Driver alert choices explain the operational result.", "test": "Verify label and support text wrap without clipping.", "rejectIf": "The label is hidden or replaced by an icon." },
+        "Frame": { "status": "covered", "decision": "Use Frame for box size, radius, row spacing, and layout fit.", "tokens": ["comp.checkbox.*", "sys.frame.*"], "behavior": "Frame keeps the control fixed while text uses remaining space.", "example": "Permission rows stack on phone and align in desktop tables.", "test": "Verify no overflow in narrow and wide containers.", "rejectIf": "The box resizes across states." },
+        "Depth": { "status": "covered", "decision": "Use Depth only for surrounding surfaces, not for checkbox state.", "tokens": ["comp.checkbox.*", "sys.depth.*"], "behavior": "Depth does not replace focus or selection.", "example": "A permission panel can have surface depth while the checkbox stays flat.", "test": "Verify selection is clear without shadow.", "rejectIf": "Shadow is decorative state feedback." },
+        "Momentum": { "status": "covered", "decision": "Use Momentum for hover, focus, and indicator transitions.", "tokens": ["comp.checkbox.*", "sys.momentum.*"], "behavior": "Motion confirms state change without delaying the toggle.", "example": "The check indicator appears quickly after selection.", "test": "Verify reduced-motion and quick state feedback.", "rejectIf": "Motion hides value or blocks interaction." },
+        "State": { "status": "covered", "decision": "Use State for disabled, error, focus, indeterminate, checked, and unchecked precedence.", "tokens": ["comp.checkbox.*", "sys.state.*"], "behavior": "State precedence decides visuals and interaction.", "example": "Disabled beats checked; error beats focus.", "test": "Verify precedence across all documented states.", "rejectIf": "State is visual only or contradictory." },
+        "Tone": { "status": "covered", "decision": "Use Tone for direct, outcome-based labels.", "tokens": ["comp.checkbox.*", "sys.tone.*"], "behavior": "Tone explains what checking does.", "example": "Use 'Enable fuel card' instead of vague consent text.", "test": "Verify labels describe outcomes and support text explains risk.", "rejectIf": "Copy is ambiguous or legal meaning is guessed." },
+        "Growth": { "status": "covered", "decision": "Use Growth for reusable selection behavior across settings, filters, and tables.", "tokens": ["comp.checkbox.*", "sys.growth.*"], "behavior": "Growth keeps API and states portable as groups scale.", "example": "The same contract supports single permission rows and select-all rows.", "test": "Verify single and aggregate selection share one state model.", "rejectIf": "A product forks checkbox behavior for one screen." },
+        "Symbol": { "status": "covered", "decision": "Use Symbol for check and remove meaning only.", "tokens": ["comp.checkbox.*", "sys.symbol.*"], "behavior": "Symbols communicate selected and mixed states.", "example": "Remove symbol means partial selection, not delete.", "test": "Verify symbols match checked and mixed semantics.", "rejectIf": "A decorative icon is placed inside the box." },
+        "Iconography": { "status": "covered", "decision": "Use Iconography for indicator size, weight, fill, and color inheritance.", "tokens": ["comp.checkbox.*", "sys.iconography.*"], "behavior": "Icons inherit component state and remain legible.", "example": "Check and remove icons use the same size across densities.", "test": "Verify icon size and fill are tokenized.", "rejectIf": "Icons bypass tokens or change meaning." },
+        "Accessibility": { "status": "covered", "decision": "Use Accessibility for labels, keyboard, mixed state, focus, errors, and disabled behavior.", "tokens": ["comp.checkbox.*", "sys.accessibility.*"], "behavior": "Accessibility makes the boolean value machine-readable.", "example": "Select-all rows expose mixed state when some children are selected.", "test": "Verify label, Space toggle, aria-checked mixed, focus, and error association.", "rejectIf": "The component cannot be operated or understood without sight." }
+      },
+      "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Iconography", "Motion Curves", "Duration", "Density", "Focus", "Disabled", "Message"],
+      "tokenDependencies": ["comp.checkbox.*", "sys.energy.*", "sys.voice.*", "sys.frame.*", "sys.state.*", "sys.momentum.*", "sys.symbol.*", "sys.iconography.*", "sys.accessibility.*"],
+      "props": [
+        { "name": "label", "type": "string", "required": true, "notes": "Visible choice text." },
+        { "name": "checked", "type": "boolean", "required": true, "notes": "Selected value for controlled usage." },
+        { "name": "indeterminate", "type": "boolean", "required": false, "notes": "Mixed state for partial selection." },
+        { "name": "description", "type": "string", "required": false, "notes": "Support text under the label." },
+        { "name": "error", "type": "string", "required": false, "notes": "Validation or policy message." },
+        { "name": "disabled", "type": "boolean", "required": false, "notes": "Blocks interaction and explains through support text when possible." },
+        { "name": "required", "type": "boolean", "required": false, "notes": "Marks a required consent or setting." },
+        { "name": "onChange", "type": "(checked: boolean) => void", "required": true, "notes": "Reports the next boolean value." }
+      ],
+      "productExamples": [
+        { "context": "Driver wallet", "example": "Enable fuel-card permissions for a driver." },
+        { "context": "Fleet table", "example": "Select one driver row or show partial select-all state." },
+        { "context": "Configuration", "example": "Toggle notification, policy, and permission settings." }
+      ],
+      "guidelines": { "do": ["Use for independent boolean choices.", "Keep a visible label.", "Use indeterminate only for partial aggregate selection."], "dont": ["Do not use for mutually exclusive choices.", "Do not hide consent or policy meaning.", "Do not style mixed as checked."], "info": ["Checkbox Group becomes a pattern when choices need grouping, select-all orchestration, or validation across rows."] },
+      "contextDensityStrategy": [
+        { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "full-width rows with clear touch space" },
+        { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "stacked settings and compact table rows" },
+        { "context": "desktops + TV", "density": "lg", "scaleSource": "Density", "layout": "readable permission lists and remote-focus surfaces" }
+      ],
+      "tests": ["Label association", "Keyboard toggle", "Mixed state announcement", "Focus visibility", "Disabled non-interaction", "Error message association", "Density adaptation"],
+      "agentInstructions": ["Use Checkbox only for boolean or partial boolean choices.", "Ask before creating consent, compliance, or money-affecting choices.", "Do not use Checkbox when one option must be chosen from a set; use Radio or Select."],
+      "rejectIf": ["It has no visible label.", "Indeterminate is styled as checked without mixed semantics.", "Disabled removes contrast below accessibility thresholds.", "A group of mutually exclusive choices is built with checkboxes."]
+      }
+    }
+  }
+}

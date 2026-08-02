@@ -1,0 +1,154 @@
+{
+  "artifacts": {
+    "foundations": {
+      "energy": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Energy",
+        "purpose": "Assign semantic meaning to color and visual intensity so users can identify action, status, risk, feedback, and surface hierarchy without guessing.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "action",
+            "token": "sys.energy.action.primary",
+            "use": "Primary route, card, configuration, recovery actions, selected controls, focus-adjacent emphasis, navigation, and links."
+          },
+          {
+            "id": "success",
+            "token": "sys.energy.status.success",
+            "use": "Completed route handoff, successful card unblock, saved permissions."
+          },
+          {
+            "id": "warning",
+            "token": "sys.energy.status.warning",
+            "use": "Station availability risk, limit warning, stale dashboard data."
+          },
+          {
+            "id": "warningForeground",
+            "token": "sys.energy.status.warning.foreground",
+            "use": "Warning text, icon, border, and progress color on light surfaces."
+          },
+          {
+            "id": "error",
+            "token": "sys.energy.status.error",
+            "use": "Blocked route, declined movement, permission failure, destructive confirmation."
+          },
+          {
+            "id": "surface",
+            "token": "sys.energy.surface.*",
+            "use": "Page, card, panel, sheet, table, and map surfaces."
+          },
+          {
+            "id": "border",
+            "token": "sys.energy.border.*",
+            "use": "Separators, controls, tables, selected and focused surfaces."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Mobile routes",
+            "example": "Primary route action uses action energy; unavailable route uses error energy with recovery copy."
+          },
+          {
+            "context": "Driver card detail",
+            "example": "Block card uses error energy; quick actions and selected controls use action energy unless risk changes."
+          },
+          {
+            "context": "Fleet dashboard",
+            "example": "Warnings mark thresholds; success confirms resolved exceptions; surfaces stay calm for scanability."
+          },
+          {
+            "context": "Configuration",
+            "example": "Permission destructive actions use error energy and preserve audit context."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.energy.*",
+          "sys.energy.*",
+          "sys.state.*",
+          "sys.tone.*",
+          "comp.*.energy aliases"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Focus",
+          "Disabled",
+          "Charts",
+          "Maps"
+        ],
+        "componentDependencies": [
+          "Button",
+          "Select",
+          "KPI Tile",
+          "Table",
+          "Station Pin",
+          "Inline Validation"
+        ],
+        "filledStatusContrast": [
+          {
+            "id": "warning",
+            "ramp": "yellow-400 / yellow-500 / yellow-600",
+            "foreground": "neutral-900",
+            "wcag": "AA 4.5:1 for Button text"
+          },
+          {
+            "id": "danger",
+            "ramp": "red-500 / red-600 / red-700",
+            "foreground": "text-on-action",
+            "wcag": "AA 4.5:1 for Button text"
+          },
+          {
+            "id": "success",
+            "ramp": "green-500 / green-600 / green-700",
+            "foreground": "text-on-action",
+            "wcag": "AA 4.5:1 for filled status text"
+          },
+          {
+            "id": "action",
+            "ramp": "blue-500 / blue-600 / blue-700",
+            "foreground": "text-on-action",
+            "wcag": "AA 4.5:1 for filled action text"
+          }
+        ],
+        "agentInstructions": [
+          "Never choose color by appearance alone; map it to action, status, feedback, risk, or surface.",
+          "For filled interactive status, choose ramp and foreground together: warning uses yellow 400/500/600 with neutral 900; danger uses red 500/600/700 with text-on-action; success uses green 500/600/700 with text-on-action; action uses blue 500/600/700 with text-on-action. For warning text, icons, borders, and progress fills on light surfaces, use the warning foreground role instead of the filled yellow role.",
+          "Preserve status identity in loading and disabled states when risk intent matters.",
+          "Do not introduce new color families outside ref.energy.* without updating this contract."
+        ],
+        "rejectIf": [
+          "Color is used decoratively without semantic role.",
+          "Filled status changes foreground color across default, hover, or pressed states without a documented contrast reason.",
+          "A chart or map relies only on color without accessible text/shape encoding.",
+          "A component defines hardcoded hex values outside Energy tokens."
+        ],
+        "patternDependencies": [
+          "Notification Panel",
+          "Fleet Dashboard Overview",
+          "Maintenance Dashboard",
+          "Virtual Data Table"
+        ]
+      }
+    }
+  }
+}

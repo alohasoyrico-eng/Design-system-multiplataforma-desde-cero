@@ -1,0 +1,141 @@
+# Topbar
+
+Generated portable agent contract for Design System.
+
+The JSON content remains the editable source of truth. Regenerate this file with `npm run build:pattern-contracts` after changing pattern copy.
+
+Source content:
+
+- `packages/content/content/pattern-copy/patterns/topbar/all.json`
+
+## Purpose
+
+Keep product or documentation identity, navigation entry, search, utility actions, notification status, and account access stable while the page content changes.
+
+## Use When
+
+- A shell needs persistent access to brand, search, navigation entry, and global utilities.
+- Navigation, search, notifications, and account actions must stay available across detail pages.
+- The layout can declare slot priority for full, compact, and mobile viewports.
+
+## Do Not Use Without Review
+
+- Search results, history, recents, permissions, or command execution are required; escalate to Global Search or Command Palette.
+- Notification content, read/unread state, or routing is required; escalate to Notification Center.
+- Account actions affect permissions, session, billing, or workspace switching policy.
+- A new logo hierarchy, co-branding model, or unaudited brand slot is requested.
+- Mobile hides search, navigation, account, or critical utilities.
+
+## Foundations
+
+| Foundation | Contract |
+| --- | --- |
+| Frame | Defines height, slot priority, responsive wrap, safe target size, and search/navigation allocation. |
+| Voice | Owns brand labels, placeholder copy, accessible names, account labels, and search result labels. |
+| Energy | Controls surface, active collection, search focus, notification count, hover, and focus states. |
+| Depth | Separates sticky shell, search results, and account menu without turning the topbar into a card. |
+| Momentum | Controls search focus reveal, menu panel entry, action feedback, and reduced-motion fallback. |
+| State | Selected navigation, unread notification, open account menu, search focus, pressed, disabled, and hover states are explicit. |
+| Tone | Topbar remains neutral; notification tone changes only when count or status requires it. |
+| Growth | Collection counts and unread counts are metadata, not primary navigation labels. |
+| Symbol | Action symbols support labels and slots; they never replace accessible names. |
+| Iconography | Utility icons use system sizing and optical alignment; brand slot can swap logo safely. |
+| Accessibility | Landmarks, role search, aria-current, aria-haspopup, aria-expanded, focus ring, Escape, and reduced motion are required. |
+
+## Slot Contract
+
+| Slot | Type | Required | Notes |
+| --- | --- | --- | --- |
+| leading | TopbarLeadingSlot | yes | Menu trigger, product switcher, or sidebar drawer entry. |
+| brand | BrandSlot | yes | Logo, wordmark, mark, co-brand, or partner mark with accessible home label. |
+| sections | TopbarSection[] | conditional | Parent/child navigation before search for product shells. |
+| search | SearchSlot | conditional | Consumes Search and Autocomplete behavior through the shared search slot. |
+| actions | TopbarAction[] | optional | Icon Button/Menu actions such as language, contrast, grid, help, or notifications. |
+| notifications | NotificationPanelSlot | optional | Consumes Notification Panel for count, list, empty state, and feedback behavior. |
+| account | AvatarMenuSlot | optional | Consumes Avatar Menu for profile, settings, workspace, and sign out. |
+| responsiveMode | full \| compact \| mobile | yes | Defines which slots stay visible, compress, or move to sidebar/drawer. |
+
+## Components And Primitives Used
+
+- Icon Button
+- Input
+- Badge
+- Avatar
+- Menu
+- Drawer
+
+## Variants
+
+| Variant | Status | Rule |
+| --- | --- | --- |
+| Docs shell | Current | Brand, search, language, grid, contrast, and sidebar drawer entry. |
+| Compact menu | Current | The menu button appears for the responsive sidebar drawer. |
+| Sections + account | Current | Parent/child sections before search plus Notification Panel and Avatar Menu slots. |
+| Brand slot | Candidate | Logo swaps and co-branding need product rules before becoming a documented variant. |
+
+## Motion Contract
+
+| Behavior | Rule |
+| --- | --- |
+| Search focus | Uses system transition for focus treatment and result reveal; reduced motion removes decorative movement. |
+| Account menu | Opens only after user interaction, with focus-visible state and Escape behavior. |
+| Drawer trigger | Controls the Sidebar drawer on small viewports and updates expanded state. |
+
+## Accessibility
+
+- Use a header landmark with an accessible label.
+- Keep search inside role=search and preserve a visible or visually hidden label.
+- Every icon-only action has an accessible name.
+- Account trigger exposes menu intent and opens only after interaction.
+- Notification count is text-backed through Badge, not color-only.
+- Compact/mobile mode preserves navigation, search, and account access.
+
+## Implementation Checklist
+
+- Declare `leading`: Menu trigger, product switcher, or sidebar drawer entry.
+- Declare `brand`: Logo, wordmark, mark, co-brand, or partner mark with accessible home label.
+- Declare `responsiveMode`: Defines which slots stay visible, compress, or move to sidebar/drawer.
+- Full, compact, and mobile viewport slot priority.
+- Keyboard focus order across menu, brand, sections, search, actions, and account.
+- Notification Panel and Avatar Menu open after interaction and can close without trapping focus.
+- Notification Badge remains readable in light and dark modes.
+- No hardcoded colors, spacing, type, or custom button shapes outside Design System tokens/components.
+
+## Tests And Rejection Rules
+
+Must test:
+
+- Full, compact, and mobile viewport slot priority.
+- Keyboard focus order across menu, brand, sections, search, actions, and account.
+- Notification Panel and Avatar Menu open after interaction and can close without trapping focus.
+- Notification Badge remains readable in light and dark modes.
+- No hardcoded colors, spacing, type, or custom button shapes outside Design System tokens/components.
+
+Reject if:
+
+- Search, notifications, or account menu are visual-only.
+- Mobile hides critical access.
+- The pattern creates custom controls instead of consuming Package components or shell classes.
+
+## MIEL
+
+Agents can decide:
+
+- Slot order when product rules are already declared.
+- Whether notifications or account slots are visible when their data is explicit.
+- Responsive mode among full, compact, and mobile.
+
+Agents must ask:
+
+- Logo, co-brand, search behavior, notification policy, account actions, or workspace policy changes.
+- A slot needs behavior that belongs to Global Search, Command Palette, Notification Center, or a session pattern.
+
+Agents must reject:
+
+- Search, notifications, or account menu are visual-only.
+- Mobile hides critical access.
+- The pattern creates custom controls instead of consuming Package components or shell classes.
+
+Handoff language:
+
+> Confirm slot priority, brand rules, search boundary, notification policy, account actions, and mobile fallback.

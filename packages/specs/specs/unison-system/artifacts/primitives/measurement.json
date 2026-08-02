@@ -1,0 +1,128 @@
+{
+  "artifacts": {
+    "primitives": {
+      "measurement": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "PMs",
+          "Product Designers",
+          "Developers",
+          "Researchers",
+          "Service Designers"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "states",
+          "agentInstructions",
+          "rejectIf",
+          "ethics"
+        ],
+        "maturityTarget": 3,
+        "name": "Measurement",
+        "purpose": "Turn Growth foundation roles into implementation-ready measurement primitives for telemetry, analytics views, success metrics, friction, recovery, quality signals, and ethical guardrails.",
+        "governingFoundations": [
+          "Growth",
+          "State",
+          "Accessibility",
+          "Tone"
+        ],
+        "foundationInputs": [
+          "sys.growth.*",
+          "sys.state.*",
+          "sys.accessibility.*",
+          "sys.tone.*"
+        ],
+        "roles": [
+          {
+            "id": "event",
+            "token": "measurement.event.*",
+            "use": "Actor, trigger, surface, object, result, and timestamp contract."
+          },
+          {
+            "id": "metric",
+            "token": "measurement.metric.*",
+            "use": "Success, friction, recovery, quality, and support-avoidance signals."
+          },
+          {
+            "id": "analytics",
+            "token": "measurement.analytics.*",
+            "use": "Funnels, cohorts, trends, dashboards, and segment views derived from events."
+          },
+          {
+            "id": "hypothesis",
+            "token": "measurement.hypothesis.*",
+            "use": "Learning claim the metric confirms or rejects."
+          },
+          {
+            "id": "guardrail",
+            "token": "measurement.guardrail.*",
+            "use": "Ethics and anti-vanity constraints."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Button danger action",
+            "example": "button.block-card.clicked records actor, object, result, confirmation path, cancellation, and recovery."
+          },
+          {
+            "context": "Fleet dashboard",
+            "example": "Analytics view shows exception resolution, not only chart impressions."
+          },
+          {
+            "context": "Driver onboarding",
+            "example": "Success metric combines activation, permission recovery, and support contact reduction."
+          }
+        ],
+        "api": {
+          "props": [
+            "eventName",
+            "actor",
+            "surface",
+            "object",
+            "trigger",
+            "result",
+            "metric",
+            "hypothesis",
+            "analyticsView",
+            "guardrail"
+          ],
+          "outputs": [
+            "eventContract",
+            "metricDefinition",
+            "analyticsView",
+            "researchSignal",
+            "privacyGuardrail"
+          ]
+        },
+        "tokenDependencies": [
+          "sys.growth.*",
+          "measurement.*"
+        ],
+        "states": [
+          "planned",
+          "instrumented",
+          "validated",
+          "stale",
+          "deprecated",
+          "blocked"
+        ],
+        "agentInstructions": [
+          "Define the product question before naming an event.",
+          "Treat analytics as interpretation of measurement, not a separate visual layer.",
+          "Reject vanity metrics as primary success criteria."
+        ],
+        "rejectIf": [
+          "Event name exists without actor, object, trigger, and result.",
+          "Click count is treated as success without product outcome.",
+          "Analytics dashboard has no decision or action owner.",
+          "Measurement encourages dark patterns or manipulative growth."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "artifacts": {
+    "foundations": {
+      "depth": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Depth",
+        "purpose": "Define spatial hierarchy through surfaces, elevation, overlays, z-index, blur, and focus layering so users understand what is persistent, contextual, temporary, or blocking.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "canvas",
+            "token": "sys.depth.elevation.0",
+            "use": "Base app surface and dashboard canvas."
+          },
+          {
+            "id": "raised",
+            "token": "sys.depth.elevation.1",
+            "use": "Cards, KPI tiles, station preview panels, table containers."
+          },
+          {
+            "id": "floating",
+            "token": "sys.depth.elevation.2",
+            "use": "Menus, popovers, quick action clusters, map controls."
+          },
+          {
+            "id": "overlay",
+            "token": "sys.depth.overlay",
+            "use": "Sheets, modals, blocking review flows, permission gates."
+          },
+          {
+            "id": "dialog",
+            "token": "sys.depth.z.dialog",
+            "use": "Risk, destructive action, financial or role-change confirmations."
+          },
+          {
+            "id": "toast",
+            "token": "sys.depth.z.toast",
+            "use": "Transient confirmations and recovery messages."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Mobile station detail",
+            "example": "Bottom sheet sits above map controls but below blocking permission dialogs."
+          },
+          {
+            "context": "Dashboard drill-down",
+            "example": "Drawer elevation separates contextual detail from persistent dashboard filters."
+          },
+          {
+            "context": "Configuration",
+            "example": "Role-change dialog blocks background actions and restores focus on close."
+          },
+          {
+            "context": "Navigation",
+            "example": "Topbar remains sticky without competing visually with active work surfaces."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.depth.*",
+          "sys.depth.*",
+          "sys.frame.*",
+          "comp.*.depth aliases"
+        ],
+        "primitiveDependencies": [
+          "Elevation",
+          "Focus",
+          "Breakpoints"
+        ],
+        "componentDependencies": [
+          "Dialog",
+          "Menu",
+          "Popover",
+          "Toast",
+          "Card Summary",
+          "Table"
+        ],
+        "agentInstructions": [
+          "Choose depth by interaction priority, not by decoration.",
+          "Preserve focus order and escape behavior for every overlay.",
+          "Do not use arbitrary z-index values.",
+          "Use backdrop only when the background task must be paused."
+        ],
+        "rejectIf": [
+          "Overlay lacks escape or focus restoration.",
+          "z-index is hardcoded outside Depth tokens.",
+          "A container is added only for decoration and reduces useful workspace.",
+          "Background content remains interactive behind blocking dialogs."
+        ],
+        "patternDependencies": [
+          "Bottom Sheet",
+          "Virtual Data Table"
+        ]
+      }
+    }
+  }
+}

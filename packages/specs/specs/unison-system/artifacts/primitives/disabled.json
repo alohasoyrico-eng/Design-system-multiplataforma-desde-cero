@@ -1,0 +1,121 @@
+{
+  "artifacts": {
+    "primitives": {
+      "disabled": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Disabled",
+        "purpose": "Turn State, Tone, and Accessibility disabled rules into unavailable, permission-blocked, offline-blocked, data-blocked, risk-blocked, and future-available semantics.",
+        "governingFoundations": [
+          "State",
+          "Tone",
+          "Accessibility",
+          "Energy"
+        ],
+        "foundationInputs": [
+          "sys.state.*",
+          "sys.tone.*",
+          "sys.accessibility.*",
+          "sys.energy.*"
+        ],
+        "roles": [
+          {
+            "id": "unavailable",
+            "token": "disabled.unavailable",
+            "use": "Temporarily not actionable."
+          },
+          {
+            "id": "permission",
+            "token": "disabled.permission",
+            "use": "Role or scope blocks action."
+          },
+          {
+            "id": "offline",
+            "token": "disabled.offline",
+            "use": "Network/data dependency unavailable."
+          },
+          {
+            "id": "risk",
+            "token": "disabled.risk",
+            "use": "High-risk action needs review or prerequisite."
+          },
+          {
+            "id": "future",
+            "token": "disabled.future",
+            "use": "Not yet available but intentionally visible."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Quick action",
+            "example": "Blocked card action explains permission or card state."
+          },
+          {
+            "context": "Routes",
+            "example": "Offline route action offers saved station list if available."
+          },
+          {
+            "context": "Configuration",
+            "example": "Permission edit blocked by dependency and audit owner."
+          }
+        ],
+        "api": {
+          "props": [
+            "reason",
+            "recoverable",
+            "owner",
+            "availableAt",
+            "fallback"
+          ],
+          "outputs": [
+            "disabledState",
+            "explanation",
+            "recoveryPath"
+          ]
+        },
+        "tokenDependencies": [
+          "sys.state.disabled.*",
+          "sys.tone.*",
+          "disabled.*"
+        ],
+        "states": [
+          "disabled",
+          "permissionBlocked",
+          "offlineBlocked",
+          "riskBlocked",
+          "futureAvailable"
+        ],
+        "agentInstructions": [
+          "Always explain why a disabled action is unavailable.",
+          "Provide owner or recovery when possible.",
+          "Do not rely on opacity alone."
+        ],
+        "rejectIf": [
+          "Disabled has no reason.",
+          "Blocked action lacks fallback.",
+          "Disabled state hides critical dependency.",
+          "Opacity is the only cue."
+        ]
+      }
+    }
+  }
+}

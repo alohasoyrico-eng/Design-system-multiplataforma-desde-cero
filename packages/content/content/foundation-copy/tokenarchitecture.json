@@ -1,0 +1,7 @@
+{
+  "tokenArchitecture": {
+    "title": "Architecture",
+    "description": "The foundation follows the same ref -> sys -> comp chain as the reference project, adapted to Design System naming.",
+    "codeTemplate": "{{titleLower}}.foundation\n  ref.{{id}}.*       raw scale or rule values\n  sys.{{id}}.*       semantic system roles\n  comp.{{id}}.*      component aliases\n  pattern.{{id}}.*   interaction decisions\n  template.{{id}}.*  product behavior"
+  }
+}

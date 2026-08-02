@@ -1,0 +1,28 @@
+{
+  "demos": {
+    "Radius": {
+      "type": "radius",
+      "initial": "control",
+      "ariaLabel": "Radius examples",
+      "choices": [
+        [
+          "control",
+          "control"
+        ],
+        [
+          "card",
+          "card"
+        ],
+        [
+          "sheet",
+          "sheet"
+        ],
+        [
+          "pill",
+          "pill"
+        ]
+      ],
+      "targetLabel": "Radius target"
+    }
+  }
+}

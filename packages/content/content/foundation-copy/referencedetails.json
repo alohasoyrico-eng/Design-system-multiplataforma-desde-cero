@@ -1,0 +1,213 @@
+{
+  "referenceDetails": {
+    "Energy": {
+      "primaryTitle": "Overview",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "When color appears in Design System, it always carries meaning. This discipline allows users to interpret the interface quickly and confidently.",
+        "Energy translates Design System's design principles into visual meaning through color.",
+        "Color in Design System is never decorative — it communicates intent, hierarchy, and feedback.",
+        "Energy ensures users can immediately recognize: primary actions, system feedback, critical states, and surface hierarchy.",
+        "By doing so, Energy makes Design System predictable and visually learnable."
+      ],
+      "secondarySections": []
+    },
+    "Voice": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Voice defines the complete typographic and communication system: families, weights, scale, line heights, numerals, labels, guidance, repair copy, and confirmations.",
+        "Display, heading, and numeral roles use Edenred Black. Body, subtitles, captions, UI labels, tables, and code use Ubuntu.",
+        "Voice gives teams a stable hierarchy so product copy can be scanned before it is read."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Architecture",
+          "description": "The Voice layer follows the same ref -> sys -> comp chain as the reference system.",
+          "code": "FONT FAMILIES\nbrand -> Edenred Black, Ubuntu fallback: Display + Heading + Numeral\nsans  -> Ubuntu, system fallback: Label + Paragraph\nmono  -> Ubuntu Mono fallback: Code + Token names\n\nCOMPOSITE ROLES\nDisplay xl/l/m/s\nHeading xl/l/m/s\nNumeral xl/l/m/s\nLabel xl/l/m/s\nParagraph xl/l/m/s\nCaption\nOverline\nCode\n\nRULE\nNo raw font-family, font-size, line-height, or weight in components."
+        }
+      ]
+    },
+    "Frame": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Frame governs all spatial relationships: spacing, sizing, grid, breakpoints, density modes, and page rhythm.",
+        "Every gap, padding, margin, panel, and grouping decision derives from a shared scale.",
+        "Density is declared at the layout or page level. Components inherit density; they do not invent one-off spacing."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Spacing Scale Design",
+          "description": "The scale is tuned for practical use, not strict mathematics.",
+          "code": "BASE UNIT\n4px\n\nSPACE SCALE\n0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 64, 80, 96, 128\n\nGRID\nmobile  -> 1 column, 16px margin\ntablet  -> 6 columns, 24px gutter\ndesktop -> 12 columns, 24px gutter, 48px margin\n\nDENSITY\ncompact      -> tighter gaps, smaller type step\ndefault      -> standard operating rhythm\ncomfortable  -> larger touch and reading rhythm"
+        }
+      ]
+    },
+    "Depth": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Depth defines the spatial metaphor of the interface: how surfaces stack, how elevation communicates hierarchy, and how overlays create focus.",
+        "Depth governs shadows, z-index, surface tinting, backdrop treatment, and temporary layers.",
+        "The model keeps maps, sheets, drawers, menus, dashboard cards, and critical messages from competing for the same plane."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Elevation Model",
+          "description": "Design System uses numeric levels with semantic aliases for product surfaces.",
+          "code": "ELEVATION SCALE\nLevel 0 -> Canvas: no shadow\nLevel 1 -> Raised: cards, list items\nLevel 2 -> Floating: menus, popovers\nLevel 3 -> Overlay: sheets, dialogs, focused panels\nLevel 4 -> Critical: toast, high-priority interruption\n\nSHADOW COLOR\nLight: branded navy shadow\nDark: black shadow with boosted opacity\n\nZ-INDEX RANGES\n0      base content\n100    dropdowns and popovers\n200    sticky headers and toolbars\n1000   overlays and modal backdrops\n1100   toasts and critical notices"
+        }
+      ]
+    },
+    "Momentum": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Momentum governs all animation and transition in the system. It ensures motion is intentional, consistent, and respectful of user preferences.",
+        "Every moving element uses Momentum tokens. Components do not use raw durations or easing values.",
+        "Motion explains cause, continuity, status, and transition. It never exists only to make the interface feel lively."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Motion Categories",
+          "description": "These categories mirror the reference Momentum documentation.",
+          "code": "MICRO-INTERACTIONS\n0-100ms: hover, press, focus, toggle feedback\n\nTRANSITIONS\n150-350ms: tabs, sheets, dropdowns, route panel changes\n\nCHOREOGRAPHY\n300-500ms: dashboard loading, staggered cards, onboarding sequences\n\nCONTINUOUS\ncycle duration: spinners, progress, shimmer, sync\n\nREDUCED MOTION\nreplace translation and scale with opacity, focus placement, and instant state changes"
+        }
+      ]
+    },
+    "State": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "State defines the formal interaction model for all Design System artifacts: which states exist, how they appear, and how conflicts resolve.",
+        "State delegates color to Energy and depth to Depth. Its job is the structural pattern: overlay, ring, border, opacity, message, announcement, or suppression.",
+        "State also defines what assistive technologies should receive when a component changes condition."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "State Composition",
+          "description": "States can coexist. Precedence prevents incoherent UI.",
+          "code": "COMPOSITION\nselected + hover   -> selected base + hover overlay\nselected + focus   -> selected base + focus ring\nerror + focus      -> error border + focus ring\nloading + hover    -> loading wins; hover suppressed\ndisabled + error   -> disabled wins; error visual suppressed\n\nREQUIRED STATES\ndefault, hover, pressed, focus, selected, loading, disabled, error, success"
+        }
+      ]
+    },
+    "Tone": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Tone defines the structural framework for how the product communicates through text.",
+        "It governs error messages, empty states, confirmations, labels, warnings, and instructional copy.",
+        "Tone does not write every sentence. It defines the pattern that makes content actionable, respectful, progressive, and consistent."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Communication Principles",
+          "description": "The reference model treats communication as structure, not flavor.",
+          "code": "PRINCIPLES\n1. Actionable over informational\n2. Blame the system, not the user\n3. Progressive disclosure\n4. Consistent tense\n5. No jargon\n\nCONFIRMATIONS\npast tense: Changes saved, Route started\n\nACTIONS\npresent imperative: Save changes, Start route\n\nWARNINGS\nconditional future: This will block card use"
+        }
+      ]
+    },
+    "Growth": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Growth defines product learning signals and the maturity model for system evolution.",
+        "It helps teams understand adoption, migration, deprecation, and whether a pattern is ready to become a shared contract.",
+        "Growth events must be structured, non-PII, and attached to product context."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Event Schema",
+          "description": "Events are named and structured so teams can learn without scattering tracking code.",
+          "code": "EVENT SHAPE\nevent: system.component.interaction\ncomponent: Button\nvariant: primary\ncontext: routes.stationDetail\naction: click\nproperties: semantic, non-PII details\n\nEVENT TYPES\nimpression\ninteraction\ncompletion\nabandonment\nerror"
+        }
+      ]
+    },
+    "Symbol": {
+      "primaryTitle": "System Vision",
+      "primaryDescription": "Symbol is not about producing illustrations. It is about designing a visual architecture.",
+      "primaryParagraphs": [
+        "Symbol defines a modular visual system capable of generating characters, scenarios, environments, motion-ready assets, and narrative micro-scenes governed by Design System tokens.",
+        "The system is modular: body, posture, accessory, environment, object, and scale compose scenes from finite parts.",
+        "The system is token-driven: palette, stroke, proportions, spacing, and theme variants derive from the same foundations as product UI."
+      ],
+      "secondarySections": [
+        {
+          "type": "cards",
+          "title": "Philosophical DNA",
+          "description": "Structural inspiration, not stylistic imitation.",
+          "cards": [
+            {
+              "label": "Reduction",
+              "title": "Earn complexity",
+              "copy": "Default to fewer elements. Let a dominant shape carry the message."
+            },
+            {
+              "label": "Narrative",
+              "title": "Minimum story",
+              "copy": "A small visual mismatch or object can create curiosity without noise."
+            },
+            {
+              "label": "Environment",
+              "title": "Scene as character",
+              "copy": "Spatial relationships explain what is happening before detail does."
+            },
+            {
+              "label": "Motion-ready",
+              "title": "Implied timing",
+              "copy": "Static compositions should suggest the moment before or after action."
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "title": "Modular Architecture",
+          "description": "Compose infinite scenes from finite primitives.",
+          "code": "CHARACTER PRIMITIVES\nBody, posture, accessory, scale\n\nENVIRONMENT PRIMITIVES\nGround plane, architecture, context objects, atmosphere\n\nCOMPOSITION RULES\nBackground layer -> light planes and atmosphere\nMid-ground layer -> architecture and context objects\nForeground layer -> character and accessory\nGround plane -> baseline and optional steps\n\nRULE\nEnvironment provides context without competing for attention."
+        }
+      ]
+    },
+    "Iconography": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Iconography defines the icon system: grid, stroke, optical adjustments, semantic categories, naming, color, and the consumption API.",
+        "Icons are functional glyphs, not artwork. They aid recognition, navigation, action identification, and state comprehension.",
+        "Design System uses Material Symbols as raw material, but Design System owns the semantic mapping and accessibility policy."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Icon Grid & Rules",
+          "description": "The reference model treats icons as constrained functional glyphs.",
+          "code": "GRID\nBase: 24 x 24px\nLive area: 20 x 20px\nStroke: 1.5px\nCorner radius: 1px terminals, 2px enclosed shapes\n\nSIZING\nxs 12px\nsm 16px\nmd 20px\nlg 24px\nxl 32px\n\nSEMANTIC CATEGORIES\nNavigation, Action, Status, Object, Toggle, Finance, Currency, Chart\n\nEVERY ICON MUST\nhave one meaning\nhave category assignment\nhave accessible labeling rules"
+        }
+      ]
+    },
+    "Accessibility": {
+      "primaryTitle": "Purpose",
+      "primaryDescription": "",
+      "primaryParagraphs": [
+        "Accessibility preserves access through keyboard, touch, screen reader, contrast, motion, language, and recovery.",
+        "It is product-specific in Design System because drivers and fleet managers often work under constrained, mobile, operational, or high-risk conditions.",
+        "Accessibility is not a final checklist; it is a foundation that changes component, pattern, and template behavior."
+      ],
+      "secondarySections": [
+        {
+          "type": "code",
+          "title": "Access Contract",
+          "description": "Every artifact must keep a usable path when a modality or permission is unavailable.",
+          "code": "REQUIRED PATHS\nkeyboard path\ntouch path\nscreen reader name and state\ncontrast-safe role\nreduced-motion equivalent\npermission denied recovery\noffline or stale-data recovery\n\nRULE\nIf one modality fails, the task must still have a documented route."
+        }
+      ]
+    }
+  }
+}

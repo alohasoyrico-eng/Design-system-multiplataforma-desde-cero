@@ -1,0 +1,37 @@
+{
+  "foundations": {
+    "Energy": {
+      "subtitle": "Color, semantic roles and product intensity"
+    },
+    "Voice": {
+      "subtitle": "Language, typography and communication structure"
+    },
+    "Frame": {
+      "subtitle": "Layout, density and rhythm"
+    },
+    "Depth": {
+      "subtitle": "Surfaces, overlays and spatial hierarchy"
+    },
+    "Momentum": {
+      "subtitle": "Motion system and continuity"
+    },
+    "State": {
+      "subtitle": "Interaction states and precedence"
+    },
+    "Tone": {
+      "subtitle": "Emotional temperature and service behavior"
+    },
+    "Growth": {
+      "subtitle": "Evolution, maturity and adoption signals"
+    },
+    "Symbol": {
+      "subtitle": "Iconography, illustration and visual communication"
+    },
+    "Iconography": {
+      "subtitle": "Functional glyphs, grid rules and accessible icon usage"
+    },
+    "Accessibility": {
+      "subtitle": "Access, recovery and inclusive interaction"
+    }
+  }
+}

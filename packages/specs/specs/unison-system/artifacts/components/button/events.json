@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "events": [
+          {
+            "name": "onAction",
+            "payload": [
+              "id",
+              "variant",
+              "intent",
+              "density",
+              "state",
+              "analyticsEvent"
+            ]
+          },
+          {
+            "name": "analyticsEvent",
+            "payload": [
+              "component",
+              "action",
+              "surface",
+              "growthStage"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

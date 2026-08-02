@@ -1,0 +1,355 @@
+{
+  "artifacts": {
+    "components": {
+      "tree-view": {
+        "id": "tree-view",
+        "name": "Tree View",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Display one hierarchical set of nodes with expansion, selection, and keyboard semantics without owning file management, permissions, or admin processs.",
+        "anatomy": [
+          {
+            "part": "Surface",
+            "rule": "Owns the visible Tree View container.",
+            "tokens": [
+              "comp.tree-view.*"
+            ]
+          },
+          {
+            "part": "Label",
+            "rule": "Provides visible meaning.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "State affordance",
+            "rule": "Separates selected node state from expanded disclosure state.",
+            "tokens": [
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "Metadata",
+            "rule": "Keeps context short.",
+            "tokens": [
+              "sys.growth.*"
+            ]
+          },
+          {
+            "part": "Cue",
+            "rule": "Uses symbol, icon, or motion support.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "standard",
+            "description": "Standard hierarchical tree treatment."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "expanded",
+          "selected",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > selected > expanded > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Flow action as a non-color-only inset/background for selected nodes and action text for expanded disclosure.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Verify selected node includes aria-selected plus action inset/background; expanded uses aria-expanded.",
+            "rejectIf": "Selected state is color-only or checkbox tree styling is presented as closed component behavior."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Voice audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Frame audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Depth audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Momentum audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use aria-selected for selected node state and aria-expanded for disclosure; do not conflate either with route current.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.state.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Verify selected and expanded states can change independently.",
+            "rejectIf": "Selection, expansion, and route current are treated as the same state."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Tone audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.growth.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Growth audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Symbol audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Iconography audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility so Tree View remains a bounded component.",
+            "tokens": [
+              "comp.tree-view.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Tree View exposes local state without absorbing patterns.",
+            "example": "Tree View",
+            "test": "Accessibility audit",
+            "rejectIf": "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.tree-view.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Accessible tree label."
+          },
+          {
+            "name": "nodes",
+            "type": "TreeNode[]",
+            "required": true,
+            "notes": "Hierarchical node data."
+          },
+          {
+            "name": "state",
+            "type": "TreeViewState",
+            "required": false,
+            "notes": "Tree display state: default, hover, focus, expanded, selected, or disabled."
+          },
+          {
+            "name": "onSelect",
+            "type": "(key: string) => void",
+            "required": false,
+            "notes": "Called when a node is selected."
+          },
+          {
+            "name": "onExpandedChange",
+            "type": "(expandedKeys: string[]) => void",
+            "required": false,
+            "notes": "Called when node expansion changes."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": false,
+            "notes": "Tree row density: sm, md, or lg."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver mobile",
+            "example": "Tree View"
+          },
+          {
+            "context": "Fleet operations",
+            "example": "Tree View"
+          },
+          {
+            "context": "Admin console",
+            "example": "Tree View"
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use Tree View for its bounded job.",
+            "Keep visible label and state.",
+            "Use Design System tokens."
+          ],
+          "dont": [
+            "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns.",
+            "Do not create multi-step system inside it.",
+            "Do not rely on color or motion only."
+          ],
+          "info": [
+            "Escalate to patterns when orchestration appears."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "touch-safe component"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "context surface"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin surface"
+          }
+        ],
+        "tests": [
+          "Visible label",
+          "role tree/treeitem semantics",
+          "aria-selected selection state",
+          "aria-expanded disclosure state",
+          "Selection and expansion remain distinct",
+          "Keyboard focus",
+          "Responsive layout",
+          "Pattern boundary"
+        ],
+        "agentInstructions": [
+          "Use Tree View only for local component behavior.",
+          "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns.",
+          "Ask when orchestration is required."
+        ],
+        "rejectIf": [
+          "Checkbox tree is presented as a closed component variant without Flow scope decision.",
+          "Tree-based editors, permission configuration, drag and drop, and bulk operations belong to patterns.",
+          "State is color-only.",
+          "Component owns a process."
+        ],
+        "semanticDecisions": [
+          {
+            "id": "selected-vs-expanded",
+            "state": "selected/expanded",
+            "decision": "Keep selection and disclosure separate: selected uses aria-selected plus Flow action inset/background; expanded uses aria-expanded and disclosure icon/text.",
+            "reason": "Tree View is a bounded hierarchy component, not route current or a permission editor.",
+            "test": "Verify aria-selected and aria-expanded can change independently.",
+            "rejectIf": "Selection, expansion, and route current are conflated."
+          },
+          {
+            "id": "checkbox-tree-boundary",
+            "state": "variant scope",
+            "decision": "Checkbox tree is not a closed Tree View variant until Flow scopes it explicitly.",
+            "reason": "Checkbox hierarchies usually imply permissions, bulk selection, or editor rules, which are patterns.",
+            "test": "Verify Tree View docs do not show checkbox variant as complete component behavior.",
+            "rejectIf": "Checkbox tree is documented as a package-backed variant without implementation and scope decision."
+          }
+        ]
+      }
+    }
+  }
+}

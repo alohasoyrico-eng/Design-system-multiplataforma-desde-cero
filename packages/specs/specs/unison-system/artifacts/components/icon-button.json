@@ -1,0 +1,77 @@
+{
+  "artifacts": {
+    "components": {
+      "icon-button": {
+        "id": "icon-button",
+        "name": "Icon Button",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": ["Design", "Engineering", "Product", "Agents"],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Use Icon Button for compact icon-only topbar utilities such as language, grid, and contrast. The component owns circular hit area, accessible name, optional selected/toggle state, focus, disabled, and press feedback.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The ZIP reference gives the visual benchmark: circular icon-only control, 36/44/52px density scale, selected glyph fill, tonal surface, badge dot, hover/press scale, and spring motion. Design System keeps ownership of tokens, foundations, state precedence, accessibility, and documentation rules.",
+        "anatomy": [
+          { "part": "Accessible name", "rule": "Provides the action name because the visible UI is icon-only.", "tokens": ["comp.icon-button.a11y.*", "sys.accessibility.*", "sys.tone.*"] },
+          { "part": "Circular surface", "rule": "Owns fixed square hit area, circle radius, background, border, focus, and density.", "tokens": ["comp.icon-button.surface.*", "sys.frame.*", "sys.energy.*", "sys.state.*"] },
+          { "part": "Symbol", "rule": "Uses one Design System icon and inherits currentColor from the button state.", "tokens": ["comp.icon-button.icon.*", "sys.symbol.*", "sys.iconography.*"] },
+          { "part": "Selected fill", "rule": "Shows a pressed/toggle state through aria-pressed, accent color, and filled glyph.", "tokens": ["comp.icon-button.selected.*", "sys.energy.*", "sys.state.*"] },
+          { "part": "Badge", "rule": "Adds a small live indicator without replacing the accessible name.", "tokens": ["comp.icon-button.badge.*", "sys.energy.status.*", "sys.momentum.*"] }
+        ],
+        "variants": [
+          { "id": "ghost", "description": "Transparent surface for low-emphasis toolbar actions." },
+          { "id": "tonal", "description": "Subtle surface and border for persistent utilities or selected state." },
+          { "id": "primary", "description": "High-emphasis icon action with primary surface." },
+          { "id": "accent", "description": "Expressive action where accent color is product-approved." }
+        ],
+        "intents": [
+          { "id": "default", "description": "Standard utility action." },
+          { "id": "danger", "description": "Destructive icon action that still needs accessible confirmation." },
+          { "id": "warning", "description": "Risky icon action that needs review or caution context." }
+        ],
+        "states": ["default", "hover", "pressed", "selected", "badged", "focus", "disabled"],
+        "statePrecedence": "disabled > focus > pressed > selected > hover > badged > default",
+        "foundations": {
+          "Energy": { "status": "covered", "decision": "Use Energy for surface, icon color, selected accent, badge, and disabled state.", "tokens": ["comp.icon-button.*", "sys.energy.*"], "behavior": "Energy keeps compact actions visible without labels.", "example": "Grid and contrast controls show selected state in the topbar.", "test": "Verify icon, surface, badge, selected, and disabled contrast.", "rejectIf": "Raw color or color-only state replaces tokens." },
+          "Voice": { "status": "covered", "decision": "Use Voice indirectly through accessible name and tooltip text.", "tokens": ["comp.icon-button.*", "sys.voice.*"], "behavior": "Voice keeps icon-only actions understandable.", "example": "Use 'Show grid' instead of 'Grid'.", "test": "Verify every icon button has a clear accessible name.", "rejectIf": "The icon is the only name." },
+          "Frame": { "status": "covered", "decision": "Use Frame for circular size, hit area, border, radius, badge position, and density.", "tokens": ["comp.icon-button.*", "sys.frame.*"], "behavior": "Frame prevents compact toolbars from shrinking below touch targets.", "example": "Topbar utilities keep a fixed circular control.", "test": "Verify 3 density contexts without layout shift.", "rejectIf": "Icon size or badge changes the hit area." },
+          "Depth": { "status": "covered", "decision": "Use Depth only for tonal/raised context when the variant requires a surface.", "tokens": ["comp.icon-button.*", "sys.depth.*"], "behavior": "Depth separates utility action from page background without inventing state.", "example": "Tonal icon button sits on documentation chrome.", "test": "Verify shadow never replaces selected or focus.", "rejectIf": "Depth is used as the only interaction state." },
+          "Momentum": { "status": "covered", "decision": "Use Momentum for hover scale, press scale, selected glyph fill, and badge pulse.", "tokens": ["comp.icon-button.*", "sys.momentum.*"], "behavior": "Motion confirms the tap quickly without delaying action.", "example": "Pressed state scales down and selected state fills the glyph.", "test": "Verify reduced-motion and touch feedback.", "rejectIf": "Motion hides state or uses raw curves." },
+          "State": { "status": "covered", "decision": "Use State for disabled, focus, pressed, selected, hover, badged, and default precedence.", "tokens": ["comp.icon-button.*", "sys.state.*"], "behavior": "State makes toggle buttons machine-readable through aria-pressed.", "example": "Contrast toggle exposes selected state.", "test": "Verify aria-pressed, focus, disabled, and click behavior.", "rejectIf": "Selected state is decorative only." },
+          "Tone": { "status": "covered", "decision": "Use Tone for concise accessible labels and tooltip language.", "tokens": ["comp.icon-button.*", "sys.tone.*"], "behavior": "Tone clarifies the action behind the symbol.", "example": "Use 'Switch language' for the language button.", "test": "Verify labels say the action, not the icon name.", "rejectIf": "Copy is ambiguous or icon jargon." },
+          "Growth": { "status": "covered", "decision": "Use Growth for reusable toolbar utilities across docs, prototypes, and product shells.", "tokens": ["comp.icon-button.*", "sys.growth.*"], "behavior": "Growth keeps compact controls portable as toolbars multiply.", "example": "Language, grid, and contrast controls share one contract while search remains an input.", "test": "Verify the same API works across products.", "rejectIf": "Each toolbar forks a one-off utility control." },
+          "Symbol": { "status": "covered", "decision": "Use Symbol for the glyph contract and filled selected mode.", "tokens": ["comp.icon-button.*", "sys.symbol.*"], "behavior": "Symbol keeps icon choice and fill state systematic.", "example": "Selected favorite fills the symbol.", "test": "Verify icon names map to approved symbols.", "rejectIf": "Custom glyphs bypass the icon system." },
+          "Iconography": { "status": "covered", "decision": "Use Iconography for size, optical alignment, and currentColor inheritance.", "tokens": ["comp.icon-button.*", "sys.iconography.*"], "behavior": "Iconography keeps the symbol readable in mobile topbars.", "example": "Mobile tab icons use the same minimum symbol scale.", "test": "Verify icon legibility at sm, md, and lg.", "rejectIf": "Icons are too small to read or use negative spacing." },
+          "Accessibility": { "status": "covered", "decision": "Use Accessibility for aria-label, aria-pressed, focus, disabled, badge announcement, and touch target.", "tokens": ["comp.icon-button.*", "sys.accessibility.*"], "behavior": "Accessibility makes icon-only UI understandable for humans and agents.", "example": "A selected contrast button announces pressed state.", "test": "Verify name, role, pressed state, focus, disabled, and target size.", "rejectIf": "The control has no accessible name or hidden state." }
+        },
+        "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Elevation", "Iconography", "Motion Curves", "Duration", "Density", "Focus", "Loading", "Disabled"],
+        "tokenDependencies": ["comp.icon-button.*", "sys.energy.*", "sys.frame.*", "sys.state.*", "sys.symbol.*", "sys.momentum.*", "sys.accessibility.*"],
+        "props": [
+          { "name": "icon", "type": "string", "required": true, "notes": "Approved Design System/Material Symbols glyph name." },
+          { "name": "ariaLabel", "type": "string", "required": true, "notes": "Accessible action name because there is no visible text." },
+          { "name": "variant", "type": "'ghost' | 'tonal' | 'primary' | 'accent'", "required": false, "notes": "Visual emphasis." },
+          { "name": "density", "type": "'sm' | 'md' | 'lg'", "required": false, "notes": "Design System Density context for the fixed circular hit area." },
+          { "name": "selected", "type": "boolean", "required": false, "notes": "Pressed/toggle state exposed with aria-pressed." },
+          { "name": "badge", "type": "boolean", "required": false, "notes": "Small status indicator." },
+          { "name": "disabled", "type": "boolean", "required": false, "notes": "Blocks action and lowers emphasis." },
+          { "name": "onClick", "type": "() => void", "required": true, "notes": "Runs the action when enabled." }
+        ],
+        "productExamples": [
+          { "context": "Docs topbar", "example": "Language, grid, and contrast utilities." },
+          { "context": "Responsive docs chrome", "example": "Grid and contrast expose selected state when active." },
+          { "context": "Mobile shell", "example": "Language remains a compact action while search stays an input." }
+        ],
+        "guidelines": { "do": ["Use for one compact icon-only action.", "Always provide an accessible name.", "Use selected only when the button behaves like a toggle."], "dont": ["Do not use for text actions.", "Do not hide destructive meaning behind an unlabeled icon.", "Do not use selected for momentary actions."], "info": ["Switch remains the component for persistent on/off settings. SegmentedControl belongs later as a compound navigation/control pattern."] },
+        "contextDensityStrategy": [
+          { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "minimum visible utilities with touch-size circular controls" },
+          { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "toolbar clusters with selected state and badge support" },
+          { "context": "desktops + TV", "density": "lg", "scaleSource": "Density", "layout": "remote-focus or pointer utility bars with large hit areas" }
+        ],
+        "tests": ["Accessible name", "aria-pressed for selected", "Focus ring", "Disabled non-interaction", "Badge visibility", "Density adaptation", "Icon currentColor inheritance"],
+        "agentInstructions": ["Use Icon Button for compact icon-only utilities with an accessible name.", "Use selected only when the utility is a toggle button with aria-pressed.", "Do not treat search input, menu navigation, or multi-option controls as Icon Button examples."],
+        "rejectIf": ["It has no ariaLabel.", "Selected state is not exposed as aria-pressed.", "A Switch setting is implemented as Icon Button.", "A multi-option SegmentedControl is treated as one Icon Button.", "Icon, badge, or state changes resize the hit area."]
+      }
+    }
+  }
+}

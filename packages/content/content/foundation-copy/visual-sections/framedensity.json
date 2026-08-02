@@ -1,0 +1,81 @@
+{
+  "visualSections": {
+    "frameDensity": {
+      "title": "Density Remapping",
+      "description": "Density is declared at the page or surface level. Controls, cards, gaps, and grid specifications respond together through sys.frame tokens.",
+      "headers": [
+        "Token",
+        "SM",
+        "MD",
+        "LG"
+      ],
+      "rows": [
+        [
+          "sys.frame.height.control.sm",
+          "40px",
+          "48px",
+          "58px"
+        ],
+        [
+          "sys.frame.height.control.md",
+          "50px",
+          "60px",
+          "72px"
+        ],
+        [
+          "sys.frame.padding.control",
+          "16px",
+          "20px",
+          "24px"
+        ],
+        [
+          "sys.frame.padding.container",
+          "20px",
+          "24px",
+          "28px"
+        ],
+        [
+          "sys.frame.gap.component",
+          "16px",
+          "20px",
+          "24px"
+        ],
+        [
+          "sys.frame.gap.section",
+          "48px",
+          "64px",
+          "80px"
+        ],
+        [
+          "sys.frame.grid.lg.gutter",
+          "24px",
+          "32px",
+          "40px"
+        ],
+        [
+          "sys.frame.grid.lg.margin",
+          "40px",
+          "48px",
+          "64px"
+        ]
+      ],
+      "cards": [
+        {
+          "density": "sm",
+          "label": "dense operations"
+        },
+        {
+          "density": "md",
+          "label": "standard rhythm"
+        },
+        {
+          "density": "lg",
+          "label": "touch-heavy review"
+        }
+      ],
+      "demoAction": "Assign vehicle",
+      "demoTitle": "Fleet card",
+      "demoCopy": "Padding, gap, radius, and control height shift as one system."
+    }
+  }
+}

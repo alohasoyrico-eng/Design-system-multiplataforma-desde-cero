@@ -1,0 +1,110 @@
+{
+  "components": {
+    "button": {
+      "viewport-organization": {
+        "copy": "Organize actions around the user's context. Do not shrink a desktop action row and call it responsive.",
+        "items": [
+          {
+            "title": "Smartphones + phablets",
+            "icon": "smartphone",
+            "density": "lg",
+            "rule": "Prioritize task completion, thumb reach, stacked actions, full-width buttons, and explicit loading or disabled reasons.",
+            "layout": "One column · primary action below content · secondary action beneath or as text/ghost.",
+            "surface": "phone",
+            "titleText": "Block card?",
+            "detail": "Fuel purchases stop immediately for Ana Gomez.",
+            "buttons": [
+              {
+                "label": "Block card",
+                "variant": "primary full",
+                "intent": "danger",
+                "size": "md",
+                "icon": "block",
+                "state": "",
+                "density": "lg"
+              },
+              {
+                "label": "Keep active",
+                "variant": "outlined full",
+                "intent": "",
+                "size": "md",
+                "icon": "",
+                "state": "",
+                "density": "lg"
+              }
+            ]
+          },
+          {
+            "title": "Tablets + laptops",
+            "icon": "tablet_mac",
+            "density": "md",
+            "rule": "Use grouped action rows, preserve scanning, and keep primary/secondary relationship visible without forcing every action full-width.",
+            "layout": "Two to three columns · action rows aligned to the task group · compact state matrix remains readable.",
+            "surface": "laptop",
+            "titleText": "Driver profile",
+            "detail": "Vehicle MX-4821",
+            "buttons": [
+              {
+                "label": "Save driver",
+                "variant": "primary",
+                "intent": "",
+                "size": "md",
+                "icon": "save",
+                "state": "",
+                "density": "md"
+              },
+              {
+                "label": "Deactivate",
+                "variant": "outlined",
+                "intent": "",
+                "size": "md",
+                "icon": "block",
+                "state": "",
+                "density": "md"
+              },
+              {
+                "label": "More",
+                "variant": "ghost",
+                "intent": "",
+                "size": "md",
+                "icon": "more_horiz",
+                "state": "",
+                "density": "md"
+              }
+            ]
+          },
+          {
+            "title": "Desktops + TV",
+            "icon": "desktop_windows",
+            "density": "lg",
+            "rule": "Optimize for distance, dashboards, command surfaces, and clear hierarchy; avoid tiny controls and dense action clusters.",
+            "layout": "Wide scan · persistent toolbars · larger touch/click targets when viewed at distance.",
+            "surface": "tv",
+            "titleText": "Fleet overview",
+            "detail": "7 vehicles need attention",
+            "buttons": [
+              {
+                "label": "Open exceptions",
+                "variant": "primary",
+                "intent": "",
+                "size": "lg",
+                "icon": "dashboard",
+                "state": "",
+                "density": "lg"
+              },
+              {
+                "label": "Export report",
+                "variant": "secondary",
+                "intent": "",
+                "size": "lg",
+                "icon": "download",
+                "state": "",
+                "density": "lg"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

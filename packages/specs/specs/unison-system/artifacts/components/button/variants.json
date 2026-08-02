@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "variants": [
+          {
+            "id": "primary",
+            "use": "Highest emphasis action; usually one per surface."
+          },
+          {
+            "id": "secondary",
+            "use": "Secondary action with visible structure."
+          },
+          {
+            "id": "tertiary",
+            "use": "Lower-emphasis action inside dense processs."
+          },
+          {
+            "id": "outlined",
+            "use": "Alternative or cancel action when structure matters."
+          },
+          {
+            "id": "ghost",
+            "use": "Toolbar, navigation, or low-chrome action."
+          }
+        ]
+      }
+    }
+  }
+}

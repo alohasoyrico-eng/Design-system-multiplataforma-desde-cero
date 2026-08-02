@@ -1,0 +1,204 @@
+{
+  "components": [
+    {
+      "type": "component",
+      "id": "audit-event",
+      "title": "Audit Event",
+      "group": "Configuration",
+      "summary": "Traceable change record for permissions, users, vehicles, cards, and financial limits.",
+      "platform": "Desktop",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "toast",
+      "title": "Toast",
+      "group": "Feedback",
+      "summary": "Non-blocking confirmation, sync, error, offline, and undo messaging.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "empty-state",
+      "title": "Empty State",
+      "group": "Feedback",
+      "summary": "Actionable absence states for cards, movements, stations, dashboards, users, and vehicles.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "error-panel",
+      "title": "Error Panel",
+      "group": "Feedback",
+      "summary": "Recoverable and blocking error treatment with ownership, retry, support, and escalation.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "skeleton",
+      "title": "Skeleton",
+      "group": "Feedback",
+      "summary": "Loading placeholder for cards, tables, charts, map panels, and slow dashboard modules.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "progress-indicator",
+      "title": "Progress Indicator",
+      "group": "Feedback",
+      "summary": "Linear determinate and indeterminate progress for uploads, imports, sync, refresh, and setup completion.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "spinner",
+      "title": "Spinner",
+      "group": "Feedback",
+      "summary": "Compact circular indeterminate loading indicator for buttons, fields, selects, and inline status.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "inline-validation",
+      "title": "Inline Validation",
+      "group": "Feedback",
+      "summary": "Field-level validation message with severity, ownership, recovery copy, and accessible association.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "tooltip",
+      "title": "Tooltip",
+      "group": "Overlay",
+      "summary": "Short contextual explanation for icons, metrics, disabled actions, and unfamiliar operational terms.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "component",
+      "id": "dialog",
+      "title": "Dialog",
+      "group": "Overlay",
+      "summary": "Modal decision surface for confirmation, risk disclosure, editing, and destructive actions.",
+      "platform": "Cross-platform",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "tokens": [
+        "color.semantic",
+        "spacing.relationship",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "components": {
+    "select": {
+      "anatomy": {
+        "items": [
+          {
+            "part": "field wrapper",
+            "rule": "Owns label, helper, validation, and disabled/loading relationship.",
+            "tokens": [
+              "comp.select.*",
+              "sys.frame.*"
+            ]
+          },
+          {
+            "part": "trigger",
+            "rule": "Native button-like control that exposes value and opens the option layer.",
+            "tokens": [
+              "sys.energy.*",
+              "sys.state.*",
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "value",
+            "rule": "Visible selected option remains the accessible value summary.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "option layer",
+            "rule": "Popover or sheet presents options, groups, disabled reasons, and active option.",
+            "tokens": [
+              "sys.depth.*",
+              "sys.momentum.*"
+            ]
+          },
+          {
+            "part": "helper text",
+            "rule": "Explains source, freshness, validation, or recovery.",
+            "tokens": [
+              "sys.voice.*",
+              "sys.accessibility.*"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

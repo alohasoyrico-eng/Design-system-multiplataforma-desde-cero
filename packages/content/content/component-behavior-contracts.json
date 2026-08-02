@@ -1,0 +1,8 @@
+{
+  "$systemShards": [
+    "component-behavior-contracts/base.json",
+    "component-behavior-contracts/components-01.json",
+    "component-behavior-contracts/components-02.json",
+    "component-behavior-contracts/components-03.json"
+  ]
+}

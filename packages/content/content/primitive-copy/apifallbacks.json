@@ -1,0 +1,9 @@
+{
+  "apiFallbacks": {
+    "Typography": "<Text\n  role?: \"display\" | \"heading\" | \"label\" | \"paragraph\" | \"caption\" | \"overline\" | \"code\"\n  size?: \"sm\" | \"md\" | \"lg\"\n  color?: \"primary\" | \"secondary\" | \"danger\" | \"success\" | \"warning\" | \"inverse\"\n  truncate?: boolean | number\n  as?: ElementType\n/>",
+    "Spacing": "<Stack | Inline | Grid\n  gap?: \"component\" | \"subsection\" | \"section\" | \"page\"\n  align?: \"start\" | \"center\" | \"end\" | \"stretch\"\n  padding?: \"none\" | \"control\" | \"container\" | \"surface\"\n/>",
+    "Iconography": "<Icon\n  name: MaterialSymbolName\n  tone?: \"default\" | \"secondary\" | \"action\" | \"success\" | \"warning\" | \"danger\"\n  label?: string\n/>",
+    "Density": "<SurfaceDensity\n  density: \"sm\" | \"md\" | \"lg\"\n  context: \"dense-operations\" | \"standard-product\" | \"touch-or-distance\"\n  viewport: \"phone\" | \"phablet\" | \"tablet\" | \"laptop\" | \"desktop\" | \"tv\"\n/>\n\ncoordinates:\n  - spacing\n  - typography\n  - iconography\n  - focus\n  - loading\n  - disabled\n  - breakpoints\n\nrejectIf:\n  - component exposes public size\n  - component invents local compact mode\n  - density changes spacing only",
+    "fallbackTemplate": "<{{componentName}}\n  token?: string\n  role?: string\n  density?: \"sm\" | \"md\" | \"lg\"\n  state?: \"default\" | \"active\" | \"disabled\" | \"loading\" | \"error\"\n/>"
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "artifacts": {
+    "components": {
+      "breadcrumbs": {
+        "id": "breadcrumbs",
+        "name": "Breadcrumbs",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Show the current location path inside one hierarchy without owning route architecture, side navigation, or page history.",
+        "anatomy": [
+          {
+            "part": "Surface",
+            "rule": "Owns the visible Breadcrumbs container.",
+            "tokens": [
+              "comp.breadcrumbs.*"
+            ]
+          },
+          {
+            "part": "Label",
+            "rule": "Provides visible meaning.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "State affordance",
+            "rule": "Shows current location with aria-current and text emphasis, not action-primary selected styling.",
+            "tokens": [
+              "sys.state.*"
+            ]
+          },
+          {
+            "part": "Metadata",
+            "rule": "Keeps context short.",
+            "tokens": [
+              "sys.growth.*"
+            ]
+          },
+          {
+            "part": "Cue",
+            "rule": "Uses symbol, icon, or motion support.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "standard",
+            "description": "Full breadcrumb trail."
+          },
+          {
+            "id": "compact",
+            "description": "Lower-density breadcrumb trail."
+          },
+          {
+            "id": "overflow",
+            "description": "Middle items collapsed into an ellipsis."
+          },
+          {
+            "id": "mobile",
+            "description": "Previous item plus current page treatment."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "collapsed",
+          "current",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > current > collapsed > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Energy so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Energy audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Voice audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Frame audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Depth audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Momentum audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use State so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.state.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "State audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Tone audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.growth.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Growth audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Symbol audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Iconography audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility so Breadcrumbs remains a bounded component.",
+            "tokens": [
+              "comp.breadcrumbs.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Breadcrumbs exposes local state without absorbing patterns.",
+            "example": "Breadcrumbs",
+            "test": "Accessibility audit",
+            "rejectIf": "Navigation architecture, route guards, and IA decisions belong to navigation patterns."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.breadcrumbs.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "items",
+            "type": "BreadcrumbItem[]",
+            "required": true,
+            "notes": "Ordered navigation items."
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "required": false,
+            "notes": "Accessible breadcrumb navigation label."
+          },
+          {
+            "name": "maxItems",
+            "type": "number",
+            "required": false,
+            "notes": "Maximum visible items before overflow collapse."
+          },
+          {
+            "name": "separator",
+            "type": "string",
+            "required": false,
+            "notes": "Decorative separator icon or text."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": false,
+            "notes": "Density scale."
+          },
+          {
+            "name": "variant",
+            "type": "standard | compact | overflow | mobile",
+            "required": false,
+            "notes": "Local breadcrumb presentation variant."
+          },
+          {
+            "name": "state",
+            "type": "default | hover | focus | collapsed | current | disabled",
+            "required": false,
+            "notes": "Local visual state."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables navigable ancestors."
+          },
+          {
+            "name": "fullWidth",
+            "type": "boolean",
+            "required": false,
+            "notes": "Allows the trail to fill its parent width."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver mobile",
+            "example": "Breadcrumbs"
+          },
+          {
+            "context": "Fleet operations",
+            "example": "Breadcrumbs"
+          },
+          {
+            "context": "Admin console",
+            "example": "Breadcrumbs"
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use Breadcrumbs for its bounded job.",
+            "Keep visible label and state.",
+            "Use Design System tokens."
+          ],
+          "dont": [
+            "Navigation architecture, route guards, and IA decisions belong to navigation patterns.",
+            "Do not create multi-step system inside it.",
+            "Do not rely on color or motion only."
+          ],
+          "info": [
+            "Escalate to patterns when orchestration appears."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "touch-safe component"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "context surface"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin surface"
+          }
+        ],
+        "tests": [
+          "Visible label",
+          "State precedence",
+          "Keyboard focus",
+          "Responsive layout",
+          "Pattern boundary"
+        ],
+        "agentInstructions": [
+          "Use Breadcrumbs only for local component behavior.",
+          "Navigation architecture, route guards, and IA decisions belong to navigation patterns.",
+          "Ask when orchestration is required."
+        ],
+        "rejectIf": [
+          "Navigation architecture, route guards, and IA decisions belong to navigation patterns.",
+          "State is color-only.",
+          "Component owns a process.",
+          "Required label or fallback is missing."
+        ],
+        "semanticDecisions": [
+          {
+            "id": "current-location-not-selected",
+            "state": "current page",
+            "decision": "Use Flow text emphasis for aria-current page; action-primary is only for actionable ancestor hover/focus.",
+            "reason": "Breadcrumbs current is location, not an interactive selected control.",
+            "test": "Verify aria-current page text is not action-primary and is rendered as non-link text.",
+            "rejectIf": "Current breadcrumb is styled as selected/action primary."
+          }
+        ]
+      }
+    }
+  }
+}

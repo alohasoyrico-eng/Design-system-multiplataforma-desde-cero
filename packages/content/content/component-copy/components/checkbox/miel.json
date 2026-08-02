@@ -1,0 +1,13 @@
+{
+  "components": {
+    "checkbox": {
+      "miel": {
+        "copy": "MIEL treats Checkbox as an explicit boolean or partial-selection contract: the agent can configure value and state, while the human owns meaning, consent, policy, and consequence.",
+        "canDecide": ["Use Checkbox for one independent yes/no choice or a select-all aggregate.", "Set checked, unchecked, indeterminate, focus, error, and disabled when product logic is explicit.", "Place rows in settings, filters, tables, or permission groups when grouping already exists."],
+        "mustAsk": ["The choice affects consent, money, permissions, identity, compliance, or legal wording.", "The difference between unchecked and indeterminate is not defined.", "The row belongs to a mutually exclusive set that may require Radio instead."],
+        "rejectIf": ["The checkbox has no visible label.", "Mixed state is decorative or not backed by child selections.", "The control replaces Radio for mutually exclusive choices.", "Disabled state hides why the choice cannot change."],
+        "handoff": "I am using Checkbox because this is an independent boolean choice or partial group selection. I need confirmation on the checked outcome, policy wording, and indeterminate logic."
+      }
+    }
+  }
+}

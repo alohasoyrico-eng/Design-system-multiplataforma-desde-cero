@@ -1,0 +1,107 @@
+{
+  "artifacts": {
+    "templates": {
+      "driver-card-wallet": {
+        "layer": "Template",
+        "platform": "Mobile",
+        "audiences": [
+          "Product Designers",
+          "PMs",
+          "Developers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "purpose": "Driver needs fast control over a payment card while understanding risk, limits, support, and movement history.",
+        "maturityTarget": "measured",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Tone",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Iconography",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Breakpoints"
+        ],
+        "patternDependencies": [
+          "Mobile Card Overview",
+          "Mobile Card Detail and Quick Actions",
+          "Mobile Movement Detail"
+        ],
+        "tokenDependencies": [
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.accessibility.*",
+          "sys.momentum.*"
+        ],
+        "densityContext": [
+          "Mobile",
+          "Tablet",
+          "Reduced motion"
+        ],
+        "modules": [
+          "Card status block",
+          "Quick actions",
+          "Movement receipt detail",
+          "Dispute entry point"
+        ],
+        "dataSources": [
+          "card status",
+          "movement detail",
+          "merchant",
+          "authorization code"
+        ],
+        "permissions": [
+          "card ownership",
+          "support access"
+        ],
+        "states": [
+          "loaded",
+          "loading",
+          "empty",
+          "error",
+          "permission",
+          "offline"
+        ],
+        "surfaces": [
+          "Mobile",
+          "Tablet",
+          "Reduced motion"
+        ],
+        "telemetry": [
+          "quick action started",
+          "movement detail opened",
+          "dispute entry opened"
+        ],
+        "qualityGates": [
+          "Card status and limits remain visible before quick actions.",
+          "Movement detail includes merchant, amount, authorization, and support route.",
+          "Blocked or risky states explain the next safe action."
+        ],
+        "agentInstructions": [
+          "This template is the card-control workspace: it must keep status, limits, movements, quick actions, and dispute recovery in one accountable system.",
+          "The screen system separates card state, actions, movement evidence, and support entry so each module can fail or recover without hiding the card context.",
+          "Navigation follows the wallet mental model: card first, movements second, limits third, help always available."
+        ],
+        "rejectIf": [
+          "Template invents behavior outside its approved pattern dependencies.",
+          "Template modules omit data, permission, state, or recovery ownership.",
+          "Template bypasses Design System foundations, primitives, density, or semantic tokens."
+        ]
+      }
+    }
+  }
+}

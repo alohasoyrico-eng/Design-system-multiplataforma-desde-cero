@@ -1,0 +1,111 @@
+{
+  "artifacts": {
+    "foundations": {
+      "symbol": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Symbol",
+        "purpose": "Define visual metaphors, domain symbols, illustration rules, and semantic image language without confusing them with functional iconography.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "action",
+            "token": "sys.symbol.color.action",
+            "use": "Symbolic emphasis around product action moments."
+          },
+          {
+            "id": "status",
+            "token": "sys.symbol.color.status",
+            "use": "Successful or resolved operational scenes."
+          },
+          {
+            "id": "warning",
+            "token": "sys.symbol.color.warning",
+            "use": "Cautionary scenes, not functional warnings alone."
+          },
+          {
+            "id": "danger",
+            "token": "sys.symbol.color.danger",
+            "use": "Blocking or destructive states with content support."
+          },
+          {
+            "id": "domain",
+            "token": "symbol.domain.*",
+            "use": "Vehicles, cards, stations, routes, fleets, permissions."
+          },
+          {
+            "id": "illustration",
+            "token": "animated.* / symbol.*",
+            "use": "Onboarding, empty, success, and teaching moments."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver onboarding",
+            "example": "Illustration teaches card use but required steps remain in text and controls."
+          },
+          {
+            "context": "Routes",
+            "example": "Station and route metaphors support map comprehension without replacing labels."
+          },
+          {
+            "context": "Empty states",
+            "example": "Symbol explains context while call to action carries task."
+          },
+          {
+            "context": "Permission states",
+            "example": "Permission metaphor supports repair copy and fallback path."
+          }
+        ],
+        "tokenDependencies": [
+          "sys.symbol.*",
+          "sys.energy.*",
+          "animated.*"
+        ],
+        "primitiveDependencies": [
+          "Iconography",
+          "Color",
+          "Motion Curves"
+        ],
+        "componentDependencies": [
+          "Animated Moment",
+          "Empty State",
+          "Biometric Prompt",
+          "Station Detail and Route Guidance pattern"
+        ],
+        "agentInstructions": [
+          "Use symbols for teaching and context, not required task instructions.",
+          "Do not replace functional icons or labels with illustration.",
+          "Every symbol must map to product domain and tone.",
+          "Provide fallback when animation or imagery is unavailable."
+        ],
+        "rejectIf": [
+          "Symbol carries required information alone.",
+          "Illustration is generic stock-like decoration.",
+          "Symbol conflicts with functional icon semantics.",
+          "No fallback exists for animation/image failure."
+        ]
+      }
+    }
+  }
+}

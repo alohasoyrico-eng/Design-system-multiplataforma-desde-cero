@@ -1,0 +1,374 @@
+{
+  "artifacts": {
+    "components": {
+      "movement-row": {
+        "id": "movement-row",
+        "name": "Movement Row",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Represent one transaction or movement in a list with merchant, context, amount, and status without owning receipt detail, support, dispute, or export flows.",
+        "anatomy": [
+          {
+            "part": "Row surface",
+            "rule": "One tappable or readable movement record.",
+            "tokens": [
+              "sys.frame.*",
+              "comp.movement-row.*"
+            ]
+          },
+          {
+            "part": "Icon",
+            "rule": "Communicates movement category.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "Primary text",
+            "rule": "Merchant or movement title.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Metadata",
+            "rule": "Date, station, vehicle, or card context.",
+            "tokens": [
+              "sys.growth.*"
+            ]
+          },
+          {
+            "part": "Amount and status",
+            "rule": "Shows value and approval state with text.",
+            "tokens": [
+              "sys.state.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "standard",
+            "description": "Movement row with category icon, merchant/context, amount, and status."
+          },
+          {
+            "id": "refund",
+            "description": "Positive or incoming movement row."
+          },
+          {
+            "id": "declined",
+            "description": "Rejected movement row with visible error status."
+          },
+          {
+            "id": "compact",
+            "description": "Dense row for sheets and narrow lists."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "pending",
+          "error",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > error > pending > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use semantic surface, action, status, and border color.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Operational status remains legible without raw colors.",
+            "example": "Movement Row",
+            "test": "energy audit",
+            "rejectIf": "Raw colors or weak contrast."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use concise labels, status, and metadata.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Users can scan the item without entering a pattern.",
+            "example": "Movement Row",
+            "test": "voice audit",
+            "rejectIf": "Ambiguous labels."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use stable mobile-first geometry and target size.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Layout remains predictable across densities.",
+            "example": "Movement Row",
+            "test": "frame audit",
+            "rejectIf": "Content overlaps or targets shrink."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use elevation only to separate the component from its surface.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Depth clarifies hierarchy without creating workspace behavior.",
+            "example": "Movement Row",
+            "test": "depth audit",
+            "rejectIf": "Depth implies a modal or process."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Design System transitions for hover, focus, loading, and pressed states.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "State changes feel responsive and respect reduced motion.",
+            "example": "Movement Row",
+            "test": "momentum audit",
+            "rejectIf": "Raw easing or distracting motion."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use explicit state precedence from the contract.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.state.*"
+            ],
+            "behavior": "Status conflicts resolve predictably.",
+            "example": "disabled > error > pending > focus > hover > default",
+            "test": "state audit",
+            "rejectIf": "State precedence is undefined."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use warning or danger only with visible reason.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Risk is communicated through copy and state.",
+            "example": "Movement Row",
+            "test": "tone audit",
+            "rejectIf": "Tone is decorative only."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Escalate grouping, actions, detail, or orchestration to patterns.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.growth.*"
+            ],
+            "behavior": "The component remains atomic.",
+            "example": "Movement Row",
+            "test": "growth audit",
+            "rejectIf": "Component absorbs pattern behavior."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use symbols as support for visible labels or accessible names.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Icons aid recognition without replacing meaning.",
+            "example": "receipt_long",
+            "test": "symbol audit",
+            "rejectIf": "Icon-only ambiguity."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Design System icon sizing and optical alignment.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Symbols align with text and target size.",
+            "example": "receipt_long",
+            "test": "iconography audit",
+            "rejectIf": "Custom mismatched icons."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Expose label, status, focus, keyboard behavior, and non-color state.",
+            "tokens": [
+              "comp.movement-row.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Assistive technology can operate or understand the component.",
+            "example": "Movement Row",
+            "test": "accessibility audit",
+            "rejectIf": "Pointer-only or color-only behavior."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.movement-row.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Merchant or movement title."
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "required": false,
+            "notes": "Date, category, station, vehicle, or card context."
+          },
+          {
+            "name": "amount",
+            "type": "string",
+            "required": false,
+            "notes": "Display-safe signed amount."
+          },
+          {
+            "name": "status",
+            "type": "MovementStatus",
+            "required": false,
+            "notes": "Visible processing or approval status."
+          },
+          {
+            "name": "category",
+            "type": "fuel | charge | toll | food | transfer | income",
+            "required": false,
+            "notes": "Category icon and semantic support tone."
+          },
+          {
+            "name": "variant",
+            "type": "standard | refund | declined | compact",
+            "required": false,
+            "notes": "Movement emphasis."
+          },
+          {
+            "name": "state",
+            "type": "default | hover | focus | pending | error | disabled",
+            "required": false,
+            "notes": "Row state."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": false,
+            "notes": "Inherited Flow density."
+          },
+          {
+            "name": "fullWidth",
+            "type": "boolean",
+            "required": false,
+            "notes": "Fill list container."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables row interaction."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver mobile",
+            "example": "Movement Row"
+          },
+          {
+            "context": "Fleet operations",
+            "example": "Movement Row"
+          },
+          {
+            "context": "Admin console",
+            "example": "Movement Row"
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for one movement record.",
+            "Keep amount and status visible.",
+            "Use metadata for source and context."
+          ],
+          "dont": [
+            "Do not include receipt detail inside the row.",
+            "Do not make rows depend on color-only status.",
+            "Do not group timelines inside the component."
+          ],
+          "info": [
+            "Check long merchant names.",
+            "Check amount alignment and tabular numerals.",
+            "Check pending and declined states."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "mobile-first readable target"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "contextual panel or list"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin surface"
+          }
+        ],
+        "tests": [
+          "Long label wrapping",
+          "Amount visibility",
+          "Status text visible",
+          "Keyboard focus",
+          "Pending state",
+          "Mobile stacked layout"
+        ],
+        "agentInstructions": [
+          "Use Movement Row for card activity, fuel purchases, refunds, declined movements, and pending transactions.",
+          "Keep the row to one record with one amount and one visible status.",
+          "Use compact variant in dense mobile sheets when amount remains visible."
+        ],
+        "rejectIf": [
+          "Row contains receipt detail process.",
+          "Support, dispute, or export actions live inside the component.",
+          "Amount or status disappears on mobile.",
+          "Status is color-only."
+        ]
+      }
+    }
+  }
+}

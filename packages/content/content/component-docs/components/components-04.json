@@ -1,0 +1,31 @@
+{
+  "components": {
+    "card-security-code-input": {
+      "renderer": "card-security-code-input",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "country-selector": {
+      "renderer": "country-selector",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "date-range-picker": {
+      "renderer": "date-range-picker",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    }
+  }
+}

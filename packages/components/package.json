@@ -1,0 +1,15 @@
+{
+  "name": "@design-system/components",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./contracts": "./src/contracts.js",
+    "./styles.css": "./styles/components.css"
+  },
+  "dependencies": {
+    "@design-system/tokens": "workspace:*",
+    "echarts": "^6.1.0"
+  }
+}

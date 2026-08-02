@@ -1,0 +1,13 @@
+{
+  "components": {
+    "input": {
+      "miel": {
+        "copy": "MIEL treats Input as a short free-form value contract: the agent can place and configure the field, while the human owns meaning, validation policy, and operational risk.",
+        "canDecide": ["Use Input when the value cannot be selected from a finite list.", "Configure label, placeholder, helper, value, density, icon, suffix, and visible state.", "Place the field in a form, filter, stack, or row when grouping is already clear."],
+        "mustAsk": ["Validation, mask, formatter, required rule, or error copy is unknown.", "The value affects money, permissions, identity, compliance, or audit.", "The experience needs suggestions, autocomplete, scanner input, or a multi-field pattern."],
+        "rejectIf": ["Placeholder is the only label.", "Error, disabled, or loading state removes the value or explanation.", "The field is used for closed-choice data that should be Select.", "The agent invents a formatter, mask, or validation rule."],
+        "handoff": "I am using Input because the value is short and free-form. I need confirmation on validation, risk level, and the recovery copy for invalid input."
+      }
+    }
+  }
+}

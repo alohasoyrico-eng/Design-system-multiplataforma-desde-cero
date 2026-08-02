@@ -1,0 +1,196 @@
+{
+  "foundations": [
+    {
+      "type": "foundation",
+      "id": "energy",
+      "title": "Energy",
+      "summary": "Color and semantic roles: action, status, feedback, criticality, and surface hierarchy.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "Research"
+      ],
+      "tokens": [
+        "energy.action",
+        "energy.status",
+        "energy.surface"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "voice",
+      "title": "Voice",
+      "summary": "Typography and communication: Edenred Black titles and numerals, Ubuntu text, labels, guidance, repair, and confirmation.",
+      "platform": "System",
+      "audiences": [
+        "Content",
+        "Research",
+        "Service"
+      ],
+      "tokens": [
+        "voice.display",
+        "voice.paragraph",
+        "voice.repair"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "frame",
+      "title": "Frame",
+      "summary": "Layout, density, spacing, grid, rhythm, and responsive structure.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "PM"
+      ],
+      "tokens": [
+        "frame.space",
+        "frame.grid",
+        "frame.density"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "depth",
+      "title": "Depth",
+      "summary": "Surfaces, elevation, overlays, z-index, blur, and spatial hierarchy.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "Engineering"
+      ],
+      "tokens": [
+        "depth.elevation",
+        "depth.overlay",
+        "depth.z-index"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "momentum",
+      "title": "Momentum",
+      "summary": "Motion system: duration, easing, stagger, continuous motion, and reduced-motion behavior.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "Engineering"
+      ],
+      "tokens": [
+        "momentum.duration",
+        "momentum.easing",
+        "momentum.stagger"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "state",
+      "title": "State",
+      "summary": "Interaction states, state precedence, composition, disabled behavior, and assistive technology mapping.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "Engineering",
+        "Research"
+      ],
+      "tokens": [
+        "state.hover",
+        "state.focus",
+        "state.disabled"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "tone",
+      "title": "Tone",
+      "summary": "Language and communication principles for neutral, assistive, urgent, and repair moments.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "Content",
+        "PM"
+      ],
+      "tokens": [
+        "tone.neutral",
+        "tone.assistive",
+        "tone.urgent"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "growth",
+      "title": "Growth",
+      "summary": "Product learning signals, maturity, adoption, events, and evolution paths.",
+      "platform": "System",
+      "audiences": [
+        "PM",
+        "Engineering"
+      ],
+      "tokens": [
+        "growth.seed",
+        "growth.stable",
+        "growth.deprecated"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "symbol",
+      "title": "Symbol",
+      "summary": "Visual communication system: illustrations, domain symbols, 2D/isometric assets, and product metaphors.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "Content"
+      ],
+      "tokens": [
+        "symbol.action",
+        "symbol.status",
+        "symbol.domain"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "iconography",
+      "title": "Iconography",
+      "summary": "Functional glyph system: Material Symbols, sizing, categories, naming, and accessible icon rules.",
+      "platform": "System",
+      "audiences": [
+        "Design",
+        "Engineering",
+        "Content"
+      ],
+      "tokens": [
+        "icon.size",
+        "icon.category",
+        "icon.accessibility"
+      ],
+      "related": []
+    },
+    {
+      "type": "foundation",
+      "id": "accessibility",
+      "title": "Accessibility",
+      "summary": "How every artifact preserves access through keyboard, touch, contrast, motion, language, and recovery.",
+      "platform": "System",
+      "audiences": [
+        "Engineering",
+        "Research",
+        "Service"
+      ],
+      "tokens": [
+        "a11y.focus",
+        "a11y.name",
+        "a11y.recovery"
+      ],
+      "related": []
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "patterns": {
+    "multi-select": {
+      "purpose": "Select multiple fleets, vehicles, regions, tags, permissions, or owners with clear count, removal, bulk behavior, validation, and recovery.",
+      "useWhen": [
+        "Users need to choose more than one item from a known set.",
+        "Selection count, removable chips, or apply/cancel behavior matters.",
+        "Choices affect filtering, permissions, notifications, or ownership."
+      ],
+      "doNotUseWithoutReview": [
+        "Only one value can be selected.",
+        "The selection set is too large without search or grouping.",
+        "Apply behavior, persistence, or max count is unclear."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines list density, chip wrapping, apply bar, and responsive stacking."
+        ],
+        [
+          "Voice",
+          "Owns labels, count copy, max selection copy, and empty recovery."
+        ],
+        [
+          "Energy",
+          "Controls selected, disabled, warning, and focus states."
+        ],
+        [
+          "State",
+          "Empty, partial, all selected, over limit, disabled, dirty, and applied states are explicit."
+        ],
+        [
+          "Momentum",
+          "Selection updates are stable and avoid layout jumps."
+        ],
+        [
+          "Accessibility",
+          "Requires checkbox semantics, count text, keyboard access, and removable selection names."
+        ]
+      ],
+      "slots": [
+        [
+          "trigger",
+          "Select | Button",
+          "conditional",
+          "Opens selection surface when not inline."
+        ],
+        [
+          "options",
+          "Checkbox[] | CheckboxGroup",
+          "yes",
+          "Selectable items with labels and optional descriptions."
+        ],
+        [
+          "selectedItems",
+          "Chip[]",
+          "conditional",
+          "Shows removable selected values."
+        ],
+        [
+          "apply",
+          "Button",
+          "conditional",
+          "Commits dirty selection when explicit apply is required."
+        ],
+        [
+          "validation",
+          "InlineValidation",
+          "conditional",
+          "Explains required, max, or unavailable selection."
+        ]
+      ],
+      "componentsUsed": [
+        "Checkbox",
+        "Chip",
+        "Badge",
+        "Button",
+        "Inline Validation",
+        "Empty State"
+      ],
+      "variants": [
+        [
+          "Inline filters",
+          "Current candidate",
+          "Checkbox list with selected chips and apply action."
+        ],
+        [
+          "Max selection",
+          "Required state",
+          "Validation appears when the max count is exceeded."
+        ],
+        [
+          "Empty selection",
+          "Required state",
+          "Empty State or helper copy explains recovery."
+        ]
+      ],
+      "motion": [
+        [
+          "Selection update",
+          "Count and chips update without moving focus."
+        ],
+        [
+          "Apply feedback",
+          "Commit reports selected count."
+        ],
+        [
+          "Validation reveal",
+          "Max selection warning appears inline without overlay."
+        ]
+      ],
+      "accessibility": [
+        "Every option has checkbox semantics.",
+        "Selected count is text-backed.",
+        "Remove controls include selected item names.",
+        "Validation is associated with the group.",
+        "Keyboard users can select, remove, and apply."
+      ],
+      "tests": [
+        "Selecting options updates count and chips.",
+        "Removing a chip unchecks the option.",
+        "Apply reports selected count.",
+        "Max selection shows Inline Validation.",
+        "Clearing all selections shows empty recovery."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Multi Select when users need more than one value.",
+          "Use chips when selected values need review or removal.",
+          "Use explicit apply when selection affects a costly query."
+        ],
+        "mustAsk": [
+          "Max count, persistence, permission scope, or apply behavior is unclear."
+        ],
+        "rejectIf": [
+          "Only one value can be selected.",
+          "Selected items cannot be reviewed or removed.",
+          "Count and validation are missing."
+        ],
+        "handoff": "Confirm selection source, max count, apply behavior, persistence, empty state, and validation."
+      }
+    }
+  }
+}

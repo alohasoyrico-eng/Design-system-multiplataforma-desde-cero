@@ -1,0 +1,166 @@
+{
+  "components": {
+    "date-range-picker": {
+      "api-foundations": {
+        "copy": "Date Range Picker API exposes label, from/to values, presets, density, state, invalid, disabled, and local change events while Flow owns range geometry, focus, depth, and accessibility.",
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": "Yes",
+            "notes": "Visible range label."
+          },
+          {
+            "name": "value",
+            "type": "{ from?: string; to?: string }",
+            "required": "No",
+            "notes": "Selected ISO range value."
+          },
+          {
+            "name": "from",
+            "type": "string",
+            "required": "No",
+            "notes": "Start date shortcut when not passing value."
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "required": "No",
+            "notes": "End date shortcut when not passing value."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": "No",
+            "notes": "Fallback copy when no range is selected."
+          },
+          {
+            "name": "helper",
+            "type": "string",
+            "required": "No",
+            "notes": "Helper text below the field."
+          },
+          {
+            "name": "error",
+            "type": "string",
+            "required": "No",
+            "notes": "Validation message and error state."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": "No",
+            "notes": "Maps field and day target rhythm to Density."
+          },
+          {
+            "name": "state",
+            "type": "\"default\" | \"hover\" | \"focus\" | \"selected\" | \"warning\" | \"error\" | \"disabled\"",
+            "required": "No",
+            "notes": "Documents visual and validation state."
+          },
+          {
+            "name": "presets",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Shows local quick presets; false keeps the bounded calendar field without shortcut buttons."
+          },
+          {
+            "name": "presetItems",
+            "type": "Array<{ label: string; days: number }>",
+            "required": "No",
+            "notes": "Local rolling-day preset options."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(range) => void",
+            "required": "No",
+            "notes": "Called when local range changes."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Prevents opening and selection."
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Forces invalid visual state when validation is owned externally."
+          },
+          {
+            "name": "onOpenChange",
+            "type": "(open) => void",
+            "required": "No",
+            "notes": "Called when the local calendar panel opens or closes."
+          }
+        ]
+      },
+      "guidelines": {
+        "groups": [
+          {
+            "title": "Use",
+            "items": [
+              "Use for one bounded start/end date range.",
+              "Keep the selected range visible as text.",
+            "Use presets only as local shortcuts.",
+            "Compose beside Combobox or Select for ZIP-style combo-range headers."
+            ]
+          },
+          {
+            "title": "Avoid",
+            "items": [
+              "Do not make it own dashboard refresh.",
+              "Do not document combo-range as a second Date Range Picker component.",
+              "Do not add comparison windows as variants.",
+              "Do not hide start/end meaning in color only."
+            ]
+          },
+          {
+            "title": "Review",
+            "items": [
+              "Check keyboard selection.",
+              "Check range edge and middle states.",
+              "Check preset labels and date math."
+            ]
+          }
+        ]
+      },
+      "tests-rejection-rules": {
+        "mustTest": [
+          "Label association",
+          "Range text",
+          "Start/end/middle states",
+          "Preset selection",
+          "Keyboard navigation",
+          "Error state"
+        ],
+        "rejectIf": [
+          "The component owns reporting filters.",
+          "The range is color-only.",
+          "Calendar selection is pointer-only.",
+          "Presets trigger data refresh directly."
+        ]
+      },
+      "miel": {
+        "copy": "MIEL treats Date Range Picker as one bounded range field. Agents may place it when the product needs start/end dates, but humans confirm reporting sync, comparison rules, and data refresh pattern behavior.",
+        "canDecide": [
+          "Use Date Range Picker for reporting windows and export ranges.",
+          "Use local presets for rolling windows.",
+          "Keep range selection separate from dashboard refresh."
+        ],
+        "mustAsk": [
+          "The range triggers data loading, URL changes, or saved views.",
+          "Comparison windows or fiscal calendars are required.",
+          "Disabled date rules or locale are unclear."
+        ],
+        "rejectIf": [
+          "Date Range Picker becomes a dashboard filter pattern.",
+          "The selected range is not text-backed.",
+          "Preset buttons refresh data directly."
+        ],
+        "handoff": "I am using Date Range Picker for one bounded start/end range. Please confirm locale, preset list, disabled range rules, and the pattern that owns data refresh."
+      }
+    }
+  }
+}

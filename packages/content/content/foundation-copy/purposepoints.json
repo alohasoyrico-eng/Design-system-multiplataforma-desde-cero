@@ -1,0 +1,76 @@
+{
+  "purposePoints": {
+    "fallback": {
+      "ledeTemplate": "{{title}} defines a system-level rule that must be visible in design, code, content, accessibility, and agent output.",
+      "columns": [
+        "{{title}} clarifies what the system should emphasize or prevent.",
+        "The rule is semantic before it is visual.",
+        "The same foundation must work in mobile driver flows and desktop fleet operations.",
+        "Agents should be able to read the rule and produce consistent UI decisions."
+      ]
+    },
+    "Energy": {
+      "lede": "When visual intensity appears in Design System, it always carries meaning. Energy lets drivers and fleet managers understand what is actionable, successful, risky, broken, or simply structural.",
+      "columns": [
+        "Energy translates product priority into color, emphasis, rhythm, and status.",
+        "Energy is never decoration. It communicates intent, hierarchy, and feedback.",
+        "Energy keeps dashboards calm while making operational exceptions unmistakable.",
+        "Energy makes the product learnable because the same signal means the same thing everywhere."
+      ]
+    },
+    "Voice": {
+      "lede": "Voice defines how Design System writes, labels, explains, repairs, confirms, and escalates. It combines Edenred Black display/title/numeral typography with Ubuntu body/UI text.",
+      "columns": [
+        "Labels name the object precisely before describing the action.",
+        "Guidance appears before risk, not after the user fails.",
+        "Repair copy explains what happened and what can be done next.",
+        "Confirmation copy records consequence, owner, and next state."
+      ]
+    },
+    "Frame": {
+      "lede": "Frame governs all spatial relationships: page rhythm, panels, density, grid, responsive behavior, and what belongs together.",
+      "columns": [
+        "Every gap, padding, and grouping decision comes from a shared spatial scale.",
+        "Frame separates primary work from supporting context.",
+        "Density is declared at the surface level and inherited by components.",
+        "Frame prevents ad-hoc layout fixes from becoming design language."
+      ]
+    },
+    "Depth": {
+      "lede": "Depth defines the spatial metaphor of the interface: how surfaces stack, how overlays focus attention, and how elevation communicates hierarchy.",
+      "columns": [
+        "Depth separates canvas, raised content, floating controls, overlays, and critical feedback.",
+        "Elevation uses tokenized shadows and z-index ranges instead of arbitrary stacking.",
+        "Maps, sheets, menus, and dashboards use the same spatial grammar.",
+        "Depth tells users what is persistent, temporary, contextual, or blocking."
+      ]
+    },
+    "Momentum": {
+      "lede": "Momentum governs animation and transition so movement explains cause, continuity, status, and system activity without becoming decoration.",
+      "columns": [
+        "Durations map to micro-interactions, transitions, choreography, and continuous feedback.",
+        "Easing distinguishes elements entering, exiting, moving continuously, or changing state.",
+        "Stagger organizes dense content like dashboards and route alternatives.",
+        "Reduced motion preserves meaning when translation, scale, or continuous animation is minimized."
+      ]
+    },
+    "State": {
+      "lede": "State defines which interaction states exist, how they combine, and which state wins when several conditions happen at once.",
+      "columns": [
+        "Hover, focus, pressed, selected, loading, disabled, error, and success are formal states.",
+        "Disabled and loading suppress conflicting affordances before components render.",
+        "Focus and error can coexist because one explains navigation and the other explains validation.",
+        "State maps visual behavior to assistive technology semantics."
+      ]
+    },
+    "Iconography": {
+      "lede": "Iconography defines functional glyph rules: grid, size, category, naming, color, and accessible labeling.",
+      "columns": [
+        "Icons are functional glyphs, not decorative art.",
+        "Material Symbols are consumed through semantic categories and tokenized size/color roles.",
+        "Icon-only actions require accessible names and predictable hit targets.",
+        "Missing icons should fail visibly during documentation and implementation."
+      ]
+    }
+  }
+}

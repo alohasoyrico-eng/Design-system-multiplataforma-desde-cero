@@ -1,0 +1,109 @@
+{
+  "artifacts": {
+    "foundations": {
+      "tone": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Tone",
+        "purpose": "Govern product language temperature so neutral, assistive, urgent, repair, and confirmation messages are respectful, useful, and operationally clear.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "neutral",
+            "token": "sys.tone.neutral.*",
+            "use": "Default labels, metadata, dashboard explanations."
+          },
+          {
+            "id": "assistive",
+            "token": "sys.tone.assistive.*",
+            "use": "Guidance before action or setup."
+          },
+          {
+            "id": "urgent",
+            "token": "sys.tone.urgent.*",
+            "use": "Warnings, thresholds, time-sensitive operational risk."
+          },
+          {
+            "id": "repair",
+            "token": "sys.tone.repair.*",
+            "use": "Error recovery, permission failures, declined actions."
+          },
+          {
+            "id": "confirm",
+            "token": "sys.tone.confirm.*",
+            "use": "Successful save, route handoff, card state change."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver onboarding",
+            "example": "Assistive copy explains why location improves nearby stations before asking permission."
+          },
+          {
+            "context": "OTP failure",
+            "example": "Repair copy tells what happened, what to try, and when to request a new code."
+          },
+          {
+            "context": "Dashboard threshold",
+            "example": "Urgent copy names risk without dramatizing normal variance."
+          },
+          {
+            "context": "Roles and permissions",
+            "example": "Destructive copy states consequence, affected users, and audit record."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.tone.*",
+          "sys.tone.*",
+          "sys.voice.*",
+          "sys.energy.*"
+        ],
+        "primitiveDependencies": [
+          "Typography",
+          "Color",
+          "Disabled"
+        ],
+        "componentDependencies": [
+          "Inline Validation",
+          "Toast",
+          "Dialog",
+          "Empty State",
+          "Error Panel",
+          "Tooltip"
+        ],
+        "agentInstructions": [
+          "Write copy with consequence and next action.",
+          "Use repair tone for failures; do not blame the user.",
+          "Use urgent tone only for operational risk or time-sensitive decisions.",
+          "Confirmation must mention the resulting state when relevant."
+        ],
+        "rejectIf": [
+          "Copy is decorative or vague.",
+          "Error copy lacks recovery.",
+          "Urgent tone is used for normal information.",
+          "Confirmation omits consequence for risky actions."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "artifacts": {
+    "primitives": {
+      "charts": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Charts",
+        "purpose": "Turn Energy, Accessibility, and data roles into implementation-ready ECharts primitives for series, thresholds, legends, summaries, tooltips, empty states, and drilldown.",
+        "governingFoundations": [
+          "Energy",
+          "Accessibility",
+          "Voice",
+          "State"
+        ],
+        "foundationInputs": [
+          "sys.energy.*",
+          "sys.accessibility.*",
+          "sys.voice.*",
+          "sys.state.*"
+        ],
+        "roles": [
+          {
+            "id": "series",
+            "token": "chart.series.*",
+            "use": "Data series color/shape/label mapping."
+          },
+          {
+            "id": "threshold",
+            "token": "chart.threshold.*",
+            "use": "Risk bands and operational limits."
+          },
+          {
+            "id": "legend",
+            "token": "chart.legend.*",
+            "use": "Toggleable, keyboard-reachable series control."
+          },
+          {
+            "id": "summary",
+            "token": "chart.summary",
+            "use": "Text explanation of chart meaning."
+          },
+          {
+            "id": "empty",
+            "token": "chart.empty",
+            "use": "No data with reason and next action."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Fuel dashboard",
+            "example": "Spend trend includes threshold, accessible summary, tooltip, and table fallback."
+          },
+          {
+            "context": "EV dashboard",
+            "example": "Charging availability uses color-safe encoding and legend labels."
+          },
+          {
+            "context": "Finance dashboard",
+            "example": "Anomaly chart explains risk and drilldown path."
+          }
+        ],
+        "api": {
+          "props": [
+            "type",
+            "series",
+            "thresholds",
+            "summary",
+            "emptyState",
+            "drilldown"
+          ],
+          "outputs": [
+            "echartsOption",
+            "textSummary",
+            "legendModel",
+            "tableFallback"
+          ]
+        },
+        "tokenDependencies": [
+          "chart.*",
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.a11y.*"
+        ],
+        "states": [
+          "loading",
+          "empty",
+          "error",
+          "stale",
+          "interactive",
+          "selected"
+        ],
+        "agentInstructions": [
+          "Every chart needs a text summary.",
+          "Use ECharts option model through primitive rules.",
+          "Do not encode meaning by color alone."
+        ],
+        "rejectIf": [
+          "Chart lacks text summary.",
+          "Color is sole encoding.",
+          "Empty state lacks reason/next action.",
+          "Tooltip is pointer-only."
+        ]
+      }
+    }
+  }
+}

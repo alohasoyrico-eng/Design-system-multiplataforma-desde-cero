@@ -1,0 +1,124 @@
+{
+  "artifacts": {
+    "primitives": {
+      "duration": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Duration",
+        "purpose": "Turn Momentum timing roles into implementation-ready durations for instant, touch, base, slow, loading, and reduced-motion feedback.",
+        "governingFoundations": [
+          "Momentum",
+          "State",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.momentum.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "roles": [
+          {
+            "id": "instant",
+            "token": "duration.instant",
+            "use": "Critical state and reduced motion."
+          },
+          {
+            "id": "touch",
+            "token": "duration.touch",
+            "use": "Hover, press, focus, toggle, and direct manipulation feedback."
+          },
+          {
+            "id": "base",
+            "token": "duration.base",
+            "use": "Expansion, reveal, tabs, filters, and local panel changes."
+          },
+          {
+            "id": "fast",
+            "token": "duration.fast",
+            "use": "Alias for touch during migration; do not choose it as a separate timing style."
+          },
+          {
+            "id": "slow",
+            "token": "duration.slow",
+            "use": "Sheets, drawers, route transitions."
+          },
+          {
+            "id": "cycle",
+            "token": "duration.cycle",
+            "use": "Continuous loading cycles."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Button",
+            "example": "Press feedback uses fast timing."
+          },
+          {
+            "context": "Route sheet",
+            "example": "Sheet movement uses slow timing, reduced motion uses instant."
+          },
+          {
+            "context": "Dashboard",
+            "example": "Filter update uses default timing."
+          }
+        ],
+        "api": {
+          "props": [
+            "duration",
+            "purpose",
+            "state",
+            "reducedMotion"
+          ],
+          "outputs": [
+            "durationToken",
+            "cssCustomProperties",
+            "timeoutGuidance"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.momentum.duration.*",
+          "sys.momentum.duration.*",
+          "duration.*"
+        ],
+        "states": [
+          "instant",
+          "touch",
+          "base",
+          "fast",
+          "slow",
+          "cycle",
+          "reduced"
+        ],
+        "agentInstructions": [
+          "Choose duration by product event scale.",
+          "Keep reduced motion equivalent meaningful.",
+          "Do not delay critical feedback."
+        ],
+        "rejectIf": [
+          "Hardcoded ms values.",
+          "Long animation blocks task completion.",
+          "Reduced motion still animates translation/scale."
+        ]
+      }
+    }
+  }
+}

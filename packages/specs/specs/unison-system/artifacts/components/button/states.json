@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "pressed",
+          "disabled",
+          "loading"
+        ],
+        "statePrecedence": "disabled > loading > pressed > focus > hover > default"
+      }
+    }
+  }
+}

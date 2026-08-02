@@ -1,0 +1,96 @@
+{
+  "specMatrix": {
+    "contractRows": {
+      "governingFoundations": {
+        "aspect": "Governing foundations",
+        "notes": "Primitive decisions are downstream from these foundations."
+      },
+      "foundationInputs": {
+        "aspect": "Foundation inputs",
+        "notes": "Inputs come from system roles, not raw values."
+      },
+      "roles": {
+        "aspect": "Roles",
+        "notes": "Roles are stable across components, patterns, templates, and agents."
+      },
+      "states": {
+        "aspect": "States",
+        "notes": "State coverage must stay visible in examples and implementation."
+      },
+      "apiOutputs": {
+        "aspect": "API outputs",
+        "notes": "The primitive returns semantic implementation hooks."
+      }
+    },
+    "shared": [
+      {
+        "aspect": "Foundation input",
+        "contractTemplate": "{{firstToken}}",
+        "notes": "Consumes semantic tokens, never raw values."
+      },
+      {
+        "aspect": "States",
+        "contract": "default / active / disabled / error",
+        "notes": "State semantics come from system foundations."
+      },
+      {
+        "aspect": "Platforms",
+        "contract": "React / Flutter / docs / agents",
+        "notes": "Same naming and behavior across implementation targets."
+      }
+    ],
+    "byPrimitive": {
+      "Typography": [
+        {
+          "aspect": "Families",
+          "contract": "Edenred Black + Ubuntu",
+          "notes": "Display, titles, and numerals use Edenred Black; body, captions, subtitles, and code use Ubuntu."
+        },
+        {
+          "aspect": "Roles",
+          "contract": "display / heading / numeral / label / paragraph / caption / code",
+          "notes": "Roles map to semantic HTML and product copy hierarchy."
+        },
+        {
+          "aspect": "Scale",
+          "contract": "10px to 62px",
+          "notes": "Uses the reference Voice scale with responsive hierarchy."
+        }
+      ],
+      "Spacing": [
+        {
+          "aspect": "Base unit",
+          "contract": "4px",
+          "notes": "All gaps, padding, margins, and grouping derive from the reference Frame scale."
+        },
+        {
+          "aspect": "Density",
+          "contract": "sm / md / lg",
+          "notes": "Density adjusts the token mapping, not one-off component CSS."
+        },
+        {
+          "aspect": "Scope",
+          "contract": "page / section / panel / component / inline",
+          "notes": "Spacing expresses information architecture."
+        }
+      ],
+      "Iconography": [
+        {
+          "aspect": "Library",
+          "contract": "Material Symbols Rounded",
+          "notes": "No emoji or arbitrary text labels as icon replacements."
+        },
+        {
+          "aspect": "Sizes",
+          "contract": "12 / 16 / 20 / 24 / 32px",
+          "notes": "Size follows ref.icon.size."
+        },
+        {
+          "aspect": "Semantics",
+          "contract": "action / status / domain / navigation",
+          "notes": "Every icon has a job and an accessible label rule."
+        }
+      ]
+    }
+  }
+}

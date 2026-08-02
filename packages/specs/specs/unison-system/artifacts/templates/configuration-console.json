@@ -1,0 +1,109 @@
+{
+  "artifacts": {
+    "templates": {
+      "configuration-console": {
+        "layer": "Template",
+        "platform": "Desktop",
+        "audiences": [
+          "Product Designers",
+          "PMs",
+          "Developers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "purpose": "Admin manages roles, permissions, drivers, and vehicles with dependency warnings and auditability.",
+        "maturityTarget": "measured",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Tone",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Iconography",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Breakpoints",
+          "Charts"
+        ],
+        "patternDependencies": [
+          "Roles and Permissions",
+          "Driver and Vehicle Administration",
+          "Authentication, Login, Biometrics and OTP"
+        ],
+        "tokenDependencies": [
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.accessibility.*",
+          "sys.momentum.*",
+          "sys.charts.*"
+        ],
+        "densityContext": [
+          "Laptop",
+          "Desktop"
+        ],
+        "modules": [
+          "Permission matrix",
+          "Driver lifecycle table",
+          "Vehicle lifecycle table",
+          "Audit trail"
+        ],
+        "dataSources": [
+          "roles",
+          "permissions",
+          "drivers",
+          "vehicles",
+          "audit events"
+        ],
+        "permissions": [
+          "admin",
+          "approver",
+          "audit viewer"
+        ],
+        "states": [
+          "loaded",
+          "loading",
+          "empty",
+          "error",
+          "permission",
+          "offline"
+        ],
+        "surfaces": [
+          "Laptop",
+          "Desktop"
+        ],
+        "telemetry": [
+          "role changed",
+          "driver lifecycle action submitted",
+          "audit event opened"
+        ],
+        "qualityGates": [
+          "Permission changes expose dependency warnings before save.",
+          "Driver and vehicle lifecycle actions produce audit evidence.",
+          "Approver and audit viewer roles see distinct capabilities."
+        ],
+        "agentInstructions": [
+          "This template is the administrative control surface: permission changes, driver records, vehicle records, and audit evidence must stay connected.",
+          "The screen system separates permissions, lifecycle tables, and audit history while preserving approval and dependency context.",
+          "Navigation follows admin responsibility: roles, drivers, vehicles, and audit."
+        ],
+        "rejectIf": [
+          "Template invents behavior outside its approved pattern dependencies.",
+          "Template modules omit data, permission, state, or recovery ownership.",
+          "Template bypasses Design System foundations, primitives, density, or semantic tokens."
+        ]
+      }
+    }
+  }
+}

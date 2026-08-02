@@ -1,0 +1,44 @@
+{
+  "maturity": {
+    "levels": [
+      {
+        "level": 1,
+        "name": "Inventory only"
+      },
+      {
+        "level": 2,
+        "name": "Standard documentation"
+      },
+      {
+        "level": 3,
+        "name": "Gold-standard documentation"
+      },
+      {
+        "level": 4,
+        "name": "Product validated"
+      }
+    ],
+    "current": {
+      "foundations": {
+        "level": 2,
+        "status": "All foundations now have machine-readable contracts; rendered examples still need promotion to product-validated depth."
+      },
+      "primitives": {
+        "level": 2,
+        "status": "All primitives now have machine-readable contracts; rendered examples still need product-validated depth."
+      },
+      "components": {
+        "level": 2,
+        "status": "Button is closest to level 3; Select has partial token and interaction promotion."
+      },
+      "patterns": {
+        "level": 2,
+        "status": "Shared standard exists; product-specific evidence pending."
+      },
+      "templates": {
+        "level": 1,
+        "status": "Inventory exists; realistic differentiated product templates pending."
+      }
+    }
+  }
+}

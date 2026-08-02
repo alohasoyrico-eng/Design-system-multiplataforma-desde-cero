@@ -1,0 +1,56 @@
+{
+  "components": {
+    "toast": {
+      "responsive-layout-patterns": {
+        "copy": "Responsive Toast keeps placement predictable: bottom on phones, corner on desktop, and never covering persistent navigation, primary actions, or required form feedback.",
+        "examples": [
+          {
+            "label": "Phone bottom feedback",
+            "layout": "simple-demo-row",
+            "density": "lg",
+            "demos": [
+              {
+                "label": "Card frozen.",
+                "description": "The driver sees the updated status.",
+                "tone": "success",
+                "variant": "status",
+                "state": "visible",
+                "icon": "credit_card",
+                "dismissible": true,
+                "density": "lg"
+              }
+            ]
+          },
+          {
+            "label": "Desktop corner stack",
+            "layout": "simple-demo-row",
+            "density": "sm",
+            "demos": [
+              {
+                "label": "Export failed.",
+                "description": "Try again from the report menu.",
+                "tone": "danger",
+                "variant": "recovery",
+                "state": "action",
+                "icon": "error",
+                "actionLabel": "Retry",
+                "dismissible": true,
+                "density": "sm"
+              },
+              {
+                "label": "Filters saved.",
+                "description": "This view is available to your team.",
+                "tone": "success",
+                "variant": "status",
+                "state": "visible",
+                "icon": "bookmark_added",
+                "dismissible": true,
+                "density": "sm"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

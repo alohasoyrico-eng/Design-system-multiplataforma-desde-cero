@@ -1,0 +1,124 @@
+{
+  "artifacts": {
+    "primitives": {
+      "density": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Density",
+        "purpose": "Declare surface-level scale and coordinate spacing, typography, iconography, focus, loading, disabled, and breakpoint behavior before components render.",
+        "governingFoundations": [
+          "Frame",
+          "Accessibility",
+          "Voice"
+        ],
+        "foundationInputs": [
+          "sys.frame.*",
+          "sys.accessibility.*",
+          "sys.voice.*"
+        ],
+        "coordinatesPrimitives": [
+          "Spacing",
+          "Typography",
+          "Iconography",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Breakpoints"
+        ],
+        "roles": [
+          {
+            "id": "sm",
+            "token": "density.sm",
+            "use": "Dense operations and data tables with efficient rhythm, readable type, clear grouping, and protected targets."
+          },
+          {
+            "id": "md",
+            "token": "density.md",
+            "use": "Standard product rhythm."
+          },
+          {
+            "id": "lg",
+            "token": "density.lg",
+            "use": "Touch-heavy mobile, high-focus review, TV-like dashboards, and distance-friendly reading."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Data table",
+            "example": "SM density increases information per viewport while preserving readable labels, focus, and target minimums."
+          },
+          {
+            "context": "Mobile driver",
+            "example": "LG density protects touch targets."
+          },
+          {
+            "context": "Dashboard overview",
+            "example": "LG density increases spacing, type rhythm, and hierarchy for touch, review, and distance contexts."
+          }
+        ],
+        "api": {
+          "props": [
+            "density",
+            "context",
+            "viewport",
+            "surface"
+          ],
+          "outputs": [
+            "spacingRemap",
+            "typeRemap",
+            "iconRemap",
+            "controlHeightRemap",
+            "focusRemap",
+            "loadingRemap",
+            "disabledRemap",
+            "breakpointDecision"
+          ]
+        },
+        "tokenDependencies": [
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.a11y.*",
+          "density.sm/md/lg"
+        ],
+        "states": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "agentInstructions": [
+          "Declare density at page or surface level.",
+          "Do not shrink below touch/accessibility constraints.",
+          "Change rhythm and grouping before sacrificing readability.",
+          "Let components inherit density.",
+          "Do not expose public component size controls when Density owns scale."
+        ],
+        "rejectIf": [
+          "Component invents local density.",
+          "Component exposes public size as an independent scale decision.",
+          "Compact mode breaks focus or touch target.",
+          "SM density reduces type below readable system roles.",
+          "Density changes only spacing but not type, icon, focus, loading, disabled, breakpoint, and control rhythm."
+        ]
+      }
+    }
+  }
+}

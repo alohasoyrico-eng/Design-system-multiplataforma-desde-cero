@@ -1,0 +1,204 @@
+{
+  "specFallbacks": {
+    "Energy": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Defines semantic meaning before any primitive or component consumes color."
+        },
+        {
+          "label": "Primary axis",
+          "value": "action / status / surface",
+          "copy": "Every color choice must map to one of these roles."
+        },
+        {
+          "label": "Forbidden",
+          "value": "decorative color",
+          "copy": "No status or action color appears without product meaning."
+        }
+      ],
+      "code": "energy.foundation\nroles: action | success | warning | error | surface | inverse\ninput: product intent + interaction state\noutput: sys.energy.* semantic roles\nconsumer: Color primitive, Button, Alert, Card, Dashboard, Map"
+    },
+    "Frame": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Owns spacing, density, rhythm, grid, breakpoints, and grouping."
+        },
+        {
+          "label": "Base unit",
+          "value": "4px",
+          "copy": "All page, section, panel, component, and inline spacing resolves to the scale."
+        },
+        {
+          "label": "Density",
+          "value": "surface-level",
+          "copy": "SM/MD/LG is declared by context and inherited."
+        }
+      ],
+      "code": "frame.foundation\nspace: 0 | 4 | 8 | 12 | 16 | 20 | 24 | 32 | 40 | 48 | 64 | 80\nradius: control | container | surface | full\ndensity: sm | md | lg\ngrid: mobile 1col | tablet 6col | desktop 12col"
+    },
+    "Momentum": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Defines when motion communicates feedback, continuity, choreography, or system activity."
+        },
+        {
+          "label": "Durations",
+          "value": "0 / 100 / 200 / 350 / 500ms",
+          "copy": "The scale mirrors the reference Momentum foundation."
+        },
+        {
+          "label": "Accessibility",
+          "value": "reduced motion",
+          "copy": "Meaning survives when movement is minimized."
+        }
+      ],
+      "code": "momentum.foundation\nduration: instant | fast | normal | slow | slower | cycle\neasing: standard | enter | exit | linear\nstagger: fast 30ms | normal 50ms | slow 80ms\nconsumer: Route sheet, quick actions, loading, dashboard reveal, onboarding"
+    },
+    "Depth": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Owns elevation, overlays, blur, and layer order before any surface renders."
+        },
+        {
+          "label": "Levels",
+          "value": "0-4",
+          "copy": "Canvas, raised, floating, overlay, and critical feedback never share arbitrary shadows."
+        },
+        {
+          "label": "Stacking",
+          "value": "z-index ranges",
+          "copy": "Dropdowns, sticky chrome, overlays, dialogs, and toasts use named depth roles."
+        }
+      ],
+      "code": "depth.foundation\nelevation: 0 | 1 | 2 | 3 | 4\noverlay: light | dark\nz: dropdown | sticky | overlay | dialog | toast\nconsumer: Surface, Card, Menu, Dialog, Sheet, Toast, Command"
+    },
+    "State": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Defines interaction states and how conflicts resolve before visual styling."
+        },
+        {
+          "label": "Required",
+          "value": "hover / focus / pressed",
+          "copy": "Interactive artifacts must expose navigable and pointer state."
+        },
+        {
+          "label": "Precedence",
+          "value": "disabled > loading > error",
+          "copy": "Conflicting states resolve predictably instead of layering random styles."
+        }
+      ],
+      "code": "state.foundation\nstates: default | hover | pressed | focus | selected | loading | disabled | error | success\nvisuals: overlay | focus-ring | opacity | busy-animation | border\nconsumer: Button, Select, Inputs, Cards, Menus, Templates"
+    },
+    "Tone": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Governs message structure for labels, guidance, warnings, repair, and confirmation."
+        },
+        {
+          "label": "Principle",
+          "value": "actionable",
+          "copy": "Messages explain what happened, consequence, and next useful action."
+        },
+        {
+          "label": "Scope",
+          "value": "content + UI",
+          "copy": "Tone changes labels, helper text, alerts, empty states, and support paths."
+        }
+      ],
+      "code": "tone.foundation\nroles: neutral | assistive | urgent | repair | confirm\nstructure: object + condition + consequence + next action\nconsumer: EmptyState, InlineValidation, Toast, Dialog, Template copy"
+    },
+    "Growth": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Defines maturity, adoption signals, deprecation, and product learning."
+        },
+        {
+          "label": "Stages",
+          "value": "seed -> stable -> measured -> deprecated",
+          "copy": "Artifacts move through visible maturity states."
+        },
+        {
+          "label": "Privacy",
+          "value": "non-PII",
+          "copy": "Events are structured and semantic without exposing personal data."
+        }
+      ],
+      "code": "growth.foundation\nstages: seed | stable | measured | deprecated\nevents: impression | interaction | completion | abandonment | error\nconsumer: Components, Patterns, Templates, Release notes, Analytics"
+    },
+    "Symbol": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Defines visual language, icon sizing, modular illustrations, and product symbols."
+        },
+        {
+          "label": "Icon source",
+          "value": "Material Symbols",
+          "copy": "The library is raw material; Design System owns semantic mapping and access rules."
+        },
+        {
+          "label": "Assets",
+          "value": "token-driven",
+          "copy": "Symbols inherit color, spacing, stroke, state, and reduced-motion policy."
+        }
+      ],
+      "code": "symbol.foundation\nsizes: sm | md | lg\nroles: action | status | domain | navigation | object\nconsumer: Icon, IconButton, EmptyState, Onboarding, Templates"
+    },
+    "Iconography": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Defines functional glyph rules and semantic icon categories."
+        },
+        {
+          "label": "Grid",
+          "value": "24px",
+          "copy": "Icons align to a predictable grid, live area, stroke, and optical size."
+        },
+        {
+          "label": "Access",
+          "value": "name policy",
+          "copy": "Icon-only actions require accessible labels and touch-safe targets."
+        }
+      ],
+      "code": "iconography.foundation\ngrid: 24px\nlive-area: 20px\nstroke: 1.5px\nconsumer: Material Symbols wrapper, IconButton, navigation, status glyphs"
+    },
+    "Accessibility": {
+      "cards": [
+        {
+          "label": "Layer",
+          "value": "L1 foundation",
+          "copy": "Defines access guarantees across keyboard, touch, screen reader, contrast, and motion."
+        },
+        {
+          "label": "Minimum",
+          "value": "44px target",
+          "copy": "Touch actions meet operational mobile constraints."
+        },
+        {
+          "label": "Recovery",
+          "value": "alternate path",
+          "copy": "Denied permission, offline, and reduced-motion states still complete the task."
+        }
+      ],
+      "code": "accessibility.foundation\npaths: keyboard | touch | screen-reader | contrast | reduced-motion | recovery\nrules: name + role + state + focus + escape + fallback\nconsumer: every component, pattern, template, and agent output"
+    }
+  }
+}

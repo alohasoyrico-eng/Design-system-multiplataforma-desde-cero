@@ -1,0 +1,51 @@
+{
+  "explorers": {
+    "items": {
+      "Accessibility": {
+        "type": "accessibility",
+        "initial": "keyboard",
+        "ariaLabel": "Accessibility checks",
+        "choices": [
+          [
+            "keyboard",
+            "Keyboard"
+          ],
+          [
+            "contrast",
+            "Contrast"
+          ],
+          [
+            "motion",
+            "Motion"
+          ],
+          [
+            "recovery",
+            "Recovery"
+          ]
+        ],
+        "states": {
+          "keyboard": [
+            "Keyboard path visible",
+            "Every route action, sheet, and map fallback can be reached without pointer input.",
+            "Show focus path"
+          ],
+          "contrast": [
+            "Contrast passes",
+            "Text, icons, map pins, and status colors keep usable contrast in light and quiet modes.",
+            "Check contrast"
+          ],
+          "motion": [
+            "Reduced motion supported",
+            "Route, sheet, and confirmation transitions have non-positional alternatives.",
+            "Reduce motion"
+          ],
+          "recovery": [
+            "Recovery is available",
+            "Denied permissions, offline data, and failed map loading always provide another path.",
+            "Open fallback"
+          ]
+        }
+      }
+    }
+  }
+}

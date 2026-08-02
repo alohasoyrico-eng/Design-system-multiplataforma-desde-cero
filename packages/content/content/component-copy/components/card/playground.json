@@ -1,0 +1,67 @@
+{
+  "components": {
+    "card": {
+      "playground": {
+        "copy": "Inspect how role, state, title, value, and description resolve into the Card contract.",
+        "controls": [
+          {
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "value": "Wallet balance"
+          },
+          {
+            "label": "Value",
+            "name": "value",
+            "type": "text",
+            "value": "$8,412.50"
+          },
+          {
+            "label": "Description",
+            "name": "description",
+            "type": "text",
+            "value": "Card active · last movement 14:32"
+          },
+          {
+            "label": "Role",
+            "name": "role",
+            "type": "select",
+            "value": "interactive",
+            "options": [
+              "surface",
+              "interactive",
+              "selectable",
+              "summary"
+            ]
+          },
+          {
+            "label": "State",
+            "name": "state",
+            "type": "select",
+            "value": "interactive",
+            "options": [
+              "default",
+              "interactive",
+              "hover",
+              "focus",
+              "selected",
+              "loading",
+              "error",
+              "disabled",
+              "muted"
+            ]
+          }
+        ],
+        "preview": {
+          "title": "Wallet balance",
+          "value": "$8,412.50",
+          "detail": "Card active · last movement 14:32",
+          "icon": "account_balance_wallet",
+          "state": "interactive",
+          "density": "md"
+        },
+        "snippet": "<Card role=\"interactive\" title=\"Wallet balance\" />"
+      }
+    }
+  }
+}

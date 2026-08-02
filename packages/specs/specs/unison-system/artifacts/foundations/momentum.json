@@ -1,0 +1,118 @@
+{
+  "artifacts": {
+    "foundations": {
+      "momentum": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Momentum",
+        "purpose": "Govern motion and transition so movement communicates cause, continuity, feedback, priority, and status without becoming required comprehension.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "instant",
+            "token": "sys.momentum.duration.critical",
+            "use": "Risk and accessibility fallback changes that must not delay comprehension."
+          },
+          {
+            "id": "fast",
+            "token": "sys.momentum.duration.fast",
+            "use": "Hover, press, focus, button feedback, small control transitions."
+          },
+          {
+            "id": "default",
+            "token": "sys.momentum.duration.default",
+            "use": "Tabs, filters, small panels, selected state updates."
+          },
+          {
+            "id": "slow",
+            "token": "sys.momentum.duration.slow",
+            "use": "Sheets, route transitions, onboarding moments."
+          },
+          {
+            "id": "continuous",
+            "token": "sys.state.loading.spin",
+            "use": "Loading indicators with reduced-motion alternative."
+          },
+          {
+            "id": "reduced",
+            "token": "prefers-reduced-motion",
+            "use": "Replace translation/scale with opacity, focus placement, and instant state."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Button loading",
+            "example": "Spinner communicates work, but label and aria-busy carry the required information."
+          },
+          {
+            "context": "Routes",
+            "example": "Map-to-station transition preserves spatial continuity; fallback list uses instant state update."
+          },
+          {
+            "context": "Bottom sheet",
+            "example": "Sheet reveal explains change of context and restores focus after dismissal."
+          },
+          {
+            "context": "Dashboard filters",
+            "example": "Chart refresh uses subtle state transition, not decorative movement."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.momentum.*",
+          "sys.momentum.*",
+          "sys.state.*",
+          "comp.*.momentum aliases"
+        ],
+        "primitiveDependencies": [
+          "Motion Curves",
+          "Duration",
+          "Loading",
+          "Disabled"
+        ],
+        "componentDependencies": [
+          "Button",
+          "Tabs",
+          "Skeleton",
+          "Progress Bar",
+          "Motion Boundary",
+          "Animated Moment"
+        ],
+        "agentInstructions": [
+          "State the semantic reason for motion before choosing a preset.",
+          "Always define reduced-motion behavior.",
+          "Do not put required instructions only in animation.",
+          "Use dotLottie only for illustrative or teaching moments."
+        ],
+        "rejectIf": [
+          "Motion is decorative only.",
+          "Reduced-motion behavior is missing.",
+          "Animation is required to understand the task.",
+          "Timing is hardcoded outside Momentum tokens."
+        ],
+        "patternDependencies": [
+          "Bottom Sheet"
+        ]
+      }
+    }
+  }
+}

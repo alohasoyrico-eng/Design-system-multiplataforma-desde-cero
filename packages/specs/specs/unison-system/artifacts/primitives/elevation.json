@@ -1,0 +1,118 @@
+{
+  "artifacts": {
+    "primitives": {
+      "elevation": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Elevation",
+        "purpose": "Turn Depth foundation roles into implementation-ready elevation, overlay, and stacking primitives.",
+        "governingFoundations": [
+          "Depth",
+          "Frame",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.depth.*",
+          "sys.frame.*",
+          "sys.accessibility.*"
+        ],
+        "roles": [
+          {
+            "id": "level0",
+            "token": "elevation.0",
+            "use": "Canvas and sunken areas."
+          },
+          {
+            "id": "level1",
+            "token": "elevation.1",
+            "use": "Cards and low raised surfaces."
+          },
+          {
+            "id": "level2",
+            "token": "elevation.2",
+            "use": "Floating controls and contextual panels."
+          },
+          {
+            "id": "level3",
+            "token": "elevation.3",
+            "use": "Overlays, sheets, dialogs."
+          },
+          {
+            "id": "level4",
+            "token": "elevation.4",
+            "use": "Critical blocking feedback."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Bottom sheet",
+            "example": "Sheet elevation separates station detail from the map."
+          },
+          {
+            "context": "Menu",
+            "example": "Menu floats above toolbar but below modal confirmation."
+          },
+          {
+            "context": "Toast",
+            "example": "Toast has high stacking but does not trap focus."
+          }
+        ],
+        "api": {
+          "props": [
+            "level",
+            "overlay",
+            "zRole",
+            "modal"
+          ],
+          "outputs": [
+            "boxShadow",
+            "zIndex",
+            "overlayToken",
+            "focusPolicy"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.depth.*",
+          "sys.depth.*",
+          "elevation.*"
+        ],
+        "states": [
+          "rest",
+          "hover",
+          "floating",
+          "overlay",
+          "modal"
+        ],
+        "agentInstructions": [
+          "Use named levels, never arbitrary shadows.",
+          "Pair overlay with focus and escape behavior.",
+          "Choose stacking order from Depth roles."
+        ],
+        "rejectIf": [
+          "Hardcoded z-index or shadow.",
+          "Modal lacks focus trap or escape.",
+          "Elevation used as decoration only."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "primitiveFamilies": [
+    "Color",
+    "Typography",
+    "Spacing",
+    "Radius",
+    "Elevation",
+    "Iconography",
+    "Motion Curves",
+    "Duration",
+    "Breakpoints",
+    "Density",
+    "Focus",
+    "Loading",
+    "Disabled",
+    "Charts",
+    "Maps",
+    "Message",
+    "Measurement",
+    "Research"
+  ]
+}

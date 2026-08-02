@@ -1,0 +1,9 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "maturityTarget": 3
+      }
+    }
+  }
+}

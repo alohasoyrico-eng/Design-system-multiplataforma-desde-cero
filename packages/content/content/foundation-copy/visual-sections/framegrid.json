@@ -1,0 +1,34 @@
+{
+  "visualSections": {
+    "frameGrid": {
+      "title": "Responsive Grid",
+      "description": "The zip does not document grid as an abstract token table. It shows how the product grid changes by tier and where margins/gutters come from.",
+      "tiers": [
+        [
+          "Desktop",
+          "12 columns",
+          "48px margin",
+          "32px sys gutter",
+          12,
+          "lg"
+        ],
+        [
+          "Tablet",
+          "6 columns",
+          "24px margin",
+          "24px gutter",
+          6,
+          "md"
+        ],
+        [
+          "Mobile",
+          "1 column",
+          "16px margin",
+          "0px gutter",
+          1,
+          "sm"
+        ]
+      ]
+    }
+  }
+}

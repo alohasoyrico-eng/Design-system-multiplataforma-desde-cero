@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System Driver Mobile Prototype</title>
+    <link rel="stylesheet" href="../../packages/components/styles/components.css" />
+    <style>
+      body {
+        background: var(--system-color-surface-raised);
+        color: var(--system-color-text);
+        font-family: var(--system-font-body);
+        margin: 0;
+        padding: var(--system-space-lg);
+      }
+
+      main {
+        display: grid;
+        gap: var(--system-space-md);
+        margin: 0 auto;
+        max-width: 420px;
+      }
+
+      .movement-list {
+        display: grid;
+        gap: var(--system-space-sm);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section id="wallet"></section>
+      <section class="movement-list" id="movements"></section>
+    </main>
+    <script type="module">
+      import { createButton, createCard } from "../../packages/components/src/index.js";
+
+      const response = await fetch("../../packages/content/content/fixtures/prototyping.json");
+      const fixtures = await response.json();
+      const wallet = document.querySelector("#wallet");
+      const movements = document.querySelector("#movements");
+      const card = fixtures.driverCard;
+
+      wallet.append(
+        createCard({
+          title: `${card.driver} · ${card.vehicle}`,
+          value: card.balance,
+          detail: card.lastMovement,
+          status: card.status,
+          actions: [
+            { label: card.nextAction },
+            { label: "Support", variant: "secondary" },
+          ],
+        }),
+      );
+
+      for (const movement of fixtures.movements) {
+        movements.append(
+          createCard({
+            title: movement.merchant,
+            value: movement.amount,
+            detail: "Recent movement",
+            status: movement.status,
+          }),
+        );
+      }
+
+      movements.append(createButton({ label: "View all movements", variant: "secondary" }));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,330 @@
+{
+  "patterns": [
+    {
+      "type": "pattern",
+      "id": "kpi-card",
+      "title": "KPI Card",
+      "platform": "Desktop",
+      "summary": "Summarize metric value, change, threshold, ownership, and drill-in in a consistent dashboard card.",
+      "audiences": [
+        "PMs",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "KPI Tile",
+        "Tooltip",
+        "Chart Panel"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "avatar-group",
+      "title": "Avatar Group",
+      "platform": "Cross-platform",
+      "summary": "Represent groups of people or teams through Avatar composition, overflow count, permission-aware disclosure, and accessible member detail.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Service Designers"
+      ],
+      "componentsUsed": [
+        "Avatar",
+        "Badge",
+        "Button",
+        "Popover",
+        "Tooltip",
+        "List",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "confirmation-dialog",
+      "title": "Confirmation Dialog",
+      "platform": "Cross-platform",
+      "summary": "Confirm destructive, financial, or permission-sensitive actions with risk copy and recovery.",
+      "audiences": [
+        "Content Designers",
+        "Developers",
+        "Service Designers"
+      ],
+      "componentsUsed": [
+        "Dialog",
+        "Button",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "command-palette",
+      "title": "Command Palette",
+      "platform": "Desktop",
+      "summary": "Give expert users keyboard access to navigation, actions, recent entities, and support tasks.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Input",
+        "Menu",
+        "Breadcrumbs"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "bottom-sheet",
+      "title": "Bottom Sheet",
+      "platform": "Mobile",
+      "summary": "Preserve mobile screen context while revealing contextual detail, actions, filters, or confirmation with focus, dismissal, and motion rules.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "componentsUsed": [
+        "Button",
+        "Icon Button",
+        "List",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "action-sheet",
+      "title": "Action Sheet",
+      "platform": "Mobile",
+      "summary": "Present contextual mobile actions with hierarchy, destructive treatment, cancel, and gesture recovery.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "componentsUsed": [
+        "Button",
+        "Menu"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "fullscreen-sheet",
+      "title": "Fullscreen Sheet",
+      "platform": "Mobile",
+      "summary": "Handle complex mobile tasks such as station detail, card settings, and support forms without losing route back.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Service Designers"
+      ],
+      "componentsUsed": [
+        "Stepper",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "form-section",
+      "title": "Form Section",
+      "platform": "Cross-platform",
+      "summary": "Structure forms into titled groups with helper copy, validation, disabled states, and save behavior.",
+      "audiences": [
+        "Product Designers",
+        "Content Designers",
+        "Developers"
+      ],
+      "componentsUsed": [
+        "Input",
+        "Text Area",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "toolbar",
+      "title": "Toolbar",
+      "platform": "Desktop",
+      "summary": "Group page or table actions with search, filters, bulk actions, export, and responsive overflow.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "PMs"
+      ],
+      "componentsUsed": [
+        "Button",
+        "Menu",
+        "Select",
+        "Date Picker"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "swipe-actions",
+      "title": "Swipe Actions",
+      "platform": "Mobile",
+      "summary": "Reveal secondary list actions on movement, card, route, or notification rows while preserving explicit alternatives.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Movement Row",
+        "Quick Action",
+        "Toast"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "quick-actions-grid",
+      "title": "Quick Actions Grid",
+      "platform": "Mobile",
+      "summary": "Arrange frequent driver actions with icon, label, permission, confirmation, and disabled explanations.",
+      "audiences": [
+        "Product Designers",
+        "Researchers",
+        "Developers"
+      ],
+      "componentsUsed": [
+        "Quick Action",
+        "Tooltip",
+        "Dialog"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "drawer-adapter",
+      "title": "Drawer Adapter",
+      "platform": "Cross-platform",
+      "summary": "Adapt side navigation and inspectors into mobile drawers with focus management and close recovery.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Menu",
+        "Dialog",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "virtual-data-table",
+      "title": "Virtual Data Table",
+      "platform": "Desktop",
+      "summary": "Handle large operational datasets with virtualization, sticky headers, keyboard navigation, and summaries.",
+      "audiences": [
+        "Developers",
+        "PMs",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Table",
+        "Skeleton",
+        "Pagination"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "transfer-list",
+      "title": "Transfer List",
+      "platform": "Desktop",
+      "summary": "Move users, vehicles, roles, or permissions between available and selected sets with search and review.",
+      "audiences": [
+        "Service Designers",
+        "Developers",
+        "Product Designers"
+      ],
+      "componentsUsed": [
+        "Table",
+        "Checkbox",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "visualSections": {
+    "energyFilledStatus": {
+      "title": "Filled Status Contrast",
+      "description": "Filled status surfaces choose the color ramp and foreground together. Do not cross from dark foreground to light foreground inside one interaction sequence.",
+      "labels": {
+        "default": "Default",
+        "hover": "Hover",
+        "pressed": "Pressed",
+        "ramp": "Ramp",
+        "foreground": "Foreground",
+        "use": "Use"
+      },
+      "rows": [
+        {
+          "tone": "warning",
+          "title": "Warning",
+          "scale": "Yellow 400 -> 500 -> 600",
+          "foreground": "Neutral 900",
+          "use": "Risky but non-destructive action or threshold."
+        },
+        {
+          "tone": "danger",
+          "title": "Danger",
+          "scale": "Red 500 -> 600 -> 700",
+          "foreground": "Text on action",
+          "use": "Destructive, blocking, or irreversible action."
+        },
+        {
+          "tone": "success",
+          "title": "Success",
+          "scale": "Green 500 -> 600 -> 700",
+          "foreground": "Text on action",
+          "use": "Completed or confirmed positive action."
+        },
+        {
+          "tone": "action",
+          "title": "Action",
+          "scale": "Blue 500 -> 600 -> 700",
+          "foreground": "Text on action",
+          "use": "Action-colored filled controls when neutral primary is not the right semantic."
+        }
+      ]
+    }
+  }
+}

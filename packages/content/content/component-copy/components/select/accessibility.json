@@ -1,0 +1,16 @@
+{
+  "components": {
+    "select": {
+      "accessibility": {
+        "statePrecedence": "disabled, loading, error, open, focus, filled, default",
+        "items": [
+          "Visible label remains the accessible name.",
+          "Trigger exposes combobox state and selected value.",
+          "Options support keyboard navigation, active option, and selected option.",
+          "Loading, empty, error, and disabled states are announced with recovery copy.",
+          "Desktop option layers preserve focus return and selected value."
+        ]
+      }
+    }
+  }
+}

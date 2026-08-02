@@ -1,0 +1,65 @@
+{
+  "components": {
+    "select": {
+      "responsive-layout-patterns": {
+        "copy": "Use popovers when the list is short. Use a sheet or full-screen selector when options are long, grouped, searchable, or need recovery copy.",
+        "examples": [
+          {
+            "label": "Desktop filter bar",
+            "layout": "action-layout three",
+            "demos": [
+              {
+                "field": "Fleet",
+                "value": "North Region",
+                "helper": "Global filter",
+                "density": "sm",
+                "state": ""
+              },
+              {
+                "field": "Fuel",
+                "value": "Diesel",
+                "helper": "Local filter",
+                "density": "sm",
+                "state": ""
+              },
+              {
+                "field": "Period",
+                "value": "Last 30 days",
+                "helper": "URL persisted",
+                "density": "sm",
+                "state": ""
+              }
+            ]
+          },
+          {
+            "label": "Density scale",
+            "layout": "density-scale",
+            "demos": [
+              {
+                "field": "Compact",
+                "value": "Dense toolbar",
+                "helper": "sm · 36px trigger",
+                "density": "sm",
+                "state": ""
+              },
+              {
+                "field": "Default",
+                "value": "Form row",
+                "helper": "md · 44px trigger",
+                "density": "md",
+                "state": ""
+              },
+              {
+                "field": "Touch",
+                "value": "Touch target",
+                "helper": "lg · 52px trigger",
+                "density": "lg",
+                "state": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

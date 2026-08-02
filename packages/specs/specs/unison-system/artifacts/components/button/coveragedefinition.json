@@ -1,0 +1,19 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "coverageDefinition": {
+          "coveredRequires": [
+            "decision",
+            "tokens",
+            "behavior",
+            "example",
+            "test",
+            "rejectIf"
+          ],
+          "rule": "A foundation is covered only when it changes Button behavior or documentation in a testable way. Token mention alone is not coverage."
+        }
+      }
+    }
+  }
+}

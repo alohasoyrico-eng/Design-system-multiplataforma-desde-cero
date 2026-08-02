@@ -1,0 +1,160 @@
+{
+  "patterns": {
+    "multi-step-form": {
+      "purpose": "Guide users through a multi-step task with step ownership, validation timing, persistence, review, submission, and recovery.",
+      "useWhen": [
+        "A task has three or more meaningful groups or dependent decisions.",
+        "Users must complete steps in a sequence and review before final submission.",
+        "The product needs abandonment, save-and-resume, analytics, or step-level validation."
+      ],
+      "doNotUseWithoutReview": [
+        "The task fits in one clear form section.",
+        "There are more than five steps without a strong product reason.",
+        "Validation, persistence, review, back behavior, or submission ownership is unclear.",
+        "The pattern uses Stepper as decoration while hiding actual form state."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines step layout, form width, footer actions, and responsive stacking."
+        ],
+        [
+          "Voice",
+          "Owns step titles, helper text, validation copy, summary labels, and final confirmation copy."
+        ],
+        [
+          "Energy",
+          "Controls current step, completed step, error step, primary action, and summary emphasis."
+        ],
+        [
+          "Momentum",
+          "Step changes use system motion and reduced-motion alternatives."
+        ],
+        [
+          "State",
+          "Current, completed, invalid, blocked, saving, submitting, success, and abandoned states are explicit."
+        ],
+        [
+          "Accessibility",
+          "Uses aria-current=step, role alert for errors, focus management, and keyboard-safe navigation."
+        ]
+      ],
+      "slots": [
+        [
+          "steps",
+          "StepDefinition[]",
+          "yes",
+          "Ordered steps with id, title, required fields, and validation owner."
+        ],
+        [
+          "progress",
+          "Stepper | ProgressIndicator",
+          "yes",
+          "Visible progress and current step."
+        ],
+        [
+          "body",
+          "FormSection",
+          "yes",
+          "Current step content using Design System fields and validation."
+        ],
+        [
+          "actions",
+          "Back | Continue | Save | Submit",
+          "yes",
+          "Action set changes by step state."
+        ],
+        [
+          "review",
+          "SummaryStep",
+          "conditional",
+          "Required before final submission when data has operational consequence."
+        ],
+        [
+          "persistence",
+          "DraftState",
+          "conditional",
+          "Required when abandonment/resume is allowed."
+        ],
+        [
+          "feedback",
+          "InlineValidation | Toast | ErrorPanel",
+          "yes",
+          "Step errors, save result, submit result, and recovery."
+        ]
+      ],
+      "componentsUsed": [
+        "Stepper",
+        "Button",
+        "Input",
+        "Select",
+        "Inline Validation",
+        "Card",
+        "Toast"
+      ],
+      "variants": [
+        [
+          "Linear wizard",
+          "Current candidate",
+          "Back/continue with step validation and final review."
+        ],
+        [
+          "Save and resume",
+          "Candidate",
+          "Draft state survives exit and returns to pending step."
+        ],
+        [
+          "Mobile compact",
+          "Candidate",
+          "Stepper compresses while keeping current step and actions visible."
+        ]
+      ],
+      "motion": [
+        [
+          "Step transition",
+          "Moves content after validation; reduced motion swaps instantly."
+        ],
+        [
+          "Error reveal",
+          "Error summary and field messages appear without disorienting the user."
+        ],
+        [
+          "Submit progress",
+          "Submission enters loading state and prevents duplicate submit."
+        ]
+      ],
+      "accessibility": [
+        "Current step is programmatically exposed.",
+        "Validation errors move focus to the first actionable error or summary.",
+        "Back does not lose entered data.",
+        "Final submit is distinct from continue.",
+        "A review step names the entities and consequences being submitted."
+      ],
+      "tests": [
+        "Continue validates only the current step.",
+        "Back preserves data.",
+        "Review step displays all submitted values and consequences.",
+        "Submit prevents duplicate activation and reports success/error.",
+        "Mobile layout keeps current step, primary action, and errors visible.",
+        "Abandonment/resume behavior is explicit when required."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Multi Step Form when steps and validation owners are explicit.",
+          "Choose linear or save-and-resume behavior when product policy is known.",
+          "Require a review step for consequential submission."
+        ],
+        "mustAsk": [
+          "Step order, validation timing, persistence, review, analytics, or submit ownership is unclear.",
+          "The system affects money, compliance, access, identity, or operational records."
+        ],
+        "rejectIf": [
+          "Stepper is only decorative.",
+          "Back loses data.",
+          "Submission happens before user review when consequences are meaningful."
+        ],
+        "handoff": "Confirm step list, validation timing, persistence, review content, submit behavior, analytics, and recovery."
+      }
+    }
+  }
+}

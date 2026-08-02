@@ -1,0 +1,166 @@
+{
+  "components": {
+    "button": {
+      "renderer": "button",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "select": {
+      "renderer": "select",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "combobox": {
+      "renderer": "combobox",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "card": {
+      "renderer": "card",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "input": {
+      "renderer": "input",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "checkbox": {
+      "renderer": "checkbox",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "switch": {
+      "renderer": "switch",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "radio-button": {
+      "renderer": "radio-button",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "text-area": {
+      "renderer": "text-area",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "icon-button": {
+      "renderer": "icon-button",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "badge": {
+      "renderer": "badge",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "chip": {
+      "renderer": "chip",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "tag": {
+      "renderer": "tag",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "tabs": {
+      "renderer": "tabs",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "tooltip": {
+      "renderer": "tooltip",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "toast": {
+      "renderer": "toast",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "inline-validation": {
+      "renderer": "inline-validation",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "progress-indicator": {
+      "renderer": "progress-indicator",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    }
+  }
+}

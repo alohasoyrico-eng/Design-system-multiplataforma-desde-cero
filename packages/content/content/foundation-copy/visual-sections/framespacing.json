@@ -1,0 +1,94 @@
+{
+  "visualSections": {
+    "frameSpacing": {
+      "title": "Spacing Scale Design",
+      "description": "Frame uses a 4px base with deliberate jumps for page rhythm. The important part is the use case attached to each step, not the number by itself.",
+      "rows": [
+        [
+          "micro",
+          "2px",
+          "--ref-frame-space-micro",
+          "Icon gap, hairline relationship",
+          "2"
+        ],
+        [
+          "1",
+          "4px",
+          "--ref-frame-space-1",
+          "Tight inline spacing",
+          "4"
+        ],
+        [
+          "2",
+          "8px",
+          "--ref-frame-space-2",
+          "Small inset, compact field rhythm",
+          "8"
+        ],
+        [
+          "3",
+          "12px",
+          "--ref-frame-space-3",
+          "Field gap, table cell padding",
+          "12"
+        ],
+        [
+          "4",
+          "16px",
+          "--ref-frame-space-4",
+          "Card inner padding, mobile margin",
+          "16"
+        ],
+        [
+          "5",
+          "20px",
+          "--ref-frame-space-5",
+          "Default control padding",
+          "20"
+        ],
+        [
+          "6",
+          "24px",
+          "--ref-frame-space-6",
+          "Grid gutter, card padding",
+          "24"
+        ],
+        [
+          "8",
+          "32px",
+          "--ref-frame-space-8",
+          "Desktop gutter, section margin",
+          "32"
+        ],
+        [
+          "12",
+          "48px",
+          "--ref-frame-space-12",
+          "Default desktop margin",
+          "48"
+        ],
+        [
+          "16",
+          "64px",
+          "--ref-frame-space-16",
+          "Section gap",
+          "64"
+        ],
+        [
+          "20",
+          "80px",
+          "--ref-frame-space-20",
+          "Page gap",
+          "80"
+        ],
+        [
+          "24",
+          "96px",
+          "--ref-frame-space-24",
+          "Comfortable page gap",
+          "96"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "components": {
+    "checkbox": {
+      "responsive-layout-patterns": {
+        "copy": "Responsive layout changes the row stack, not the boolean meaning or state priority.",
+        "examples": [
+          { "label": "Narrow stack", "layout": "button-stack", "density": "lg", "demos": [
+            { "label": "Enable alerts", "description": "Full-width row.", "checked": true, "state": "checked" },
+            { "label": "Share location", "description": "Separate row for touch.", "checked": false, "state": "unchecked" }
+          ] },
+          { "label": "Wide permissions", "layout": "container-demo", "density": "md", "demos": [
+            { "label": "View", "description": "Read-only.", "checked": true, "state": "checked" },
+            { "label": "Edit", "description": "Write access.", "checked": false, "state": "focus" }
+          ] }
+        ]
+      }
+    }
+  }
+}

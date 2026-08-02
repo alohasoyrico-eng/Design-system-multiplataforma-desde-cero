@@ -1,0 +1,54 @@
+{
+  "components": {
+    "toast": {
+      "full-width": {
+        "copy": "Toast uses a full-width feedback region while each toast keeps a readable max width. The region controls edge alignment; the toast itself does not become a page-width banner.",
+        "items": [
+          {
+            "label": "End-aligned region",
+            "layout": "full-width region",
+            "align": "end",
+            "demo": {
+              "label": "Report ready.",
+              "description": "Download started.",
+              "tone": "success",
+              "variant": "status",
+              "state": "visible",
+              "icon": "download_done",
+              "dismissible": true
+            }
+          },
+          {
+            "label": "Start-aligned region",
+            "layout": "full-width region",
+            "align": "start",
+            "demo": {
+              "label": "Driver removed.",
+              "description": "Undo is available briefly.",
+              "tone": "neutral",
+              "variant": "undo",
+              "state": "action",
+              "icon": "undo",
+              "actionLabel": "Undo",
+              "dismissible": true
+            }
+          },
+          {
+            "label": "Centered safe region",
+            "layout": "full-width region",
+            "align": "center",
+            "demo": {
+              "label": "Three updates pending.",
+              "description": "Sync resumes when connection returns.",
+              "tone": "warning",
+              "variant": "warning",
+              "state": "stacked",
+              "icon": "sync_problem",
+              "dismissible": true
+            }
+          }
+        ]
+      }
+    }
+  }
+}

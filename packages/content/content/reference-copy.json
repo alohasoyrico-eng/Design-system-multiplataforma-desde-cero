@@ -1,0 +1,345 @@
+{
+  "teamNotes": {
+    "Product Designers": "Use this to decide behavior, hierarchy, states, density, motion, and responsive composition.",
+    "Developers": "Use this to identify state models, token dependencies, accessibility contracts, events, and test cases.",
+    "PMs": "Use this to connect user goals, business rules, rollout risk, permissions, metrics, and operational ownership.",
+    "Content Designers": "Use this to define labels, helper text, errors, empty states, success copy, and localization boundaries.",
+    "Researchers": "Use this to track assumptions, usability risks, evidence, task success, and questions for validation.",
+    "Service Designers": "Use this to map backstage ownership, support paths, escalation, recovery, and handoffs.",
+    "Design": "Use this to define composition, hierarchy, affordance, state, and motion.",
+    "Engineering": "Use this to define architecture, events, tests, data contracts, and accessibility behavior.",
+    "Content": "Use this to define labels, error recovery, tone, and localization.",
+    "Research": "Use this to define assumptions and validation questions.",
+    "Service": "Use this to define support ownership and operational recovery.",
+    "Finance": "Use this to understand spend, reconciliation, limits, exceptions, and audit evidence.",
+    "fallback": "Use this to understand the artifact through your discipline and hand off cleanly to the next team."
+  },
+  "rules": [
+    "{{title}} must be resolved before components are selected.",
+    "The rule must be visible in human copy and in agent-readable specs.",
+    "Accessibility, content, motion, and engineering implications are part of the same decision."
+  ],
+  "decisionTree": [
+    "What user state or product risk activates {{title}}?",
+    "Which semantic primitive expresses that decision?",
+    "Which component or pattern consumes it?",
+    "What should fail if the decision is missing?"
+  ],
+  "tokenModel": {
+    "copy": "Public API is semantic. Raw hex, pixel, bezier, duration, and implementation values stay private behind platform adapters."
+  },
+  "agentFallback": {
+    "must": [
+      "Trace Foundation -> Primitive -> Component -> Pattern -> Template before implementation",
+      "Use semantic tokens only",
+      "Define success, loading, empty, error, disabled, permission, offline, and recovery states",
+      "Preserve accessibility under keyboard, touch, screen reader, high contrast, and reduced motion",
+      "Keep human documentation and machine specification synchronized"
+    ],
+    "rejectIf": [
+      "raw values become public API",
+      "motion is decorative",
+      "icons lack accessible policy",
+      "chart lacks text summary",
+      "map system lacks permission and fallback states"
+    ]
+  },
+  "foundation": {
+    "overviewCopy": "{{title}} is not a styling preference. It is a decision layer that shapes component behavior, pattern rules, template structure, and agent output before UI is assembled.",
+    "roleGridCopy": "Like the reference foundation template, each foundation needs visible role groups. These groups make the rule teachable, reusable, and testable.",
+    "architectureCopy": "{{title}} follows the same inheritance chain across design, code, and agents.",
+    "architectureSteps": [
+      "Foundation rule",
+      "Semantic primitive",
+      "Component contract",
+      "Pattern decision",
+      "Template behavior"
+    ],
+    "visualExplanationCopy": "The visual is schematic but specific: it shows how {{title}} changes hierarchy, rhythm, recovery, or state instead of decorating a card.",
+    "contractRows": [
+      ["decision", "What product condition activates the foundation.", "yes", "Using visual style without product rationale."],
+      ["tokens", "{{tokens}}", "yes", "Raw values leaking into components."],
+      ["roles", "{{roles}}", "yes", "Ambiguous naming between teams."],
+      ["validation", "Accessibility, content, motion, and engineering gates.", "yes", "Agent output that looks plausible but violates system rules."]
+    ],
+    "roles": {
+      "Tone": [["Neutral", "Calm base state for ordinary work.", "chat_bubble"], ["Assistive", "Supportive help before risk appears.", "tooltip"], ["Urgent", "Clear escalation without panic.", "notification_important"], ["Repair", "Recovery copy after failure.", "error"]],
+      "Voice": [["Label", "Names the thing precisely.", "title"], ["Guidance", "Explains the next safe action.", "chat_bubble"], ["Repair", "Helps recover from error.", "error"], ["Confirm", "Confirms consequence and audit.", "check_circle"]],
+      "Frame": [["Canvas", "Page-level composition.", "select_window"], ["Section", "Major semantic grouping.", "view_quilt"], ["Panel", "Contained work surface.", "dialogs"], ["Inspector", "Contextual detail or control.", "popover"]],
+      "Energy": [["Action", "Interactive elements - buttons, links, controls.", "bolt"], ["Success", "Positive outcomes - confirmations, completed states.", "check_circle"], ["Warning", "Caution states - limits, degraded conditions.", "warning"], ["Error", "Failures - validation errors, blocked actions.", "error"], ["Surface", "Backgrounds - content layering, visual depth.", "check_box_outline_blank"]],
+      "Depth": [["Canvas", "Base plane.", "layers"], ["Raised", "Cards and persistent regions.", "select_window"], ["Overlay", "Temporary focused surfaces.", "bottom_panel_open"], ["Critical", "Highest priority feedback.", "notification_important"]],
+      "Momentum": [["Duration", "Timing scale for interaction.", "timer"], ["Easing", "Acceleration profile.", "moving"], ["Stagger", "Choreographed content reveal.", "transition_slide"], ["Reduced", "No-motion equivalent.", "accessibility_new"]],
+      "State": [["Hover", "Pointer preview.", "ads_click"], ["Focus", "Keyboard position.", "center_focus_strong"], ["Disabled", "Unavailable with reason.", "block"], ["Error", "Recoverable problem.", "error"]],
+      "Iconography": [["Navigation", "Wayfinding glyphs.", "arrow_forward"], ["Action", "Commands and tools.", "edit"], ["Status", "Feedback and risk.", "warning"], ["Domain", "Fleet, card, fuel, route.", "local_gas_station"]],
+      "fallback": [["Rule", "Decision before UI.", "{{icon}}"], ["Token", "Semantic expression.", "token"], ["Component", "Consuming contract.", "widgets"], ["Validation", "Quality gate.", "check_circle"]]
+    }
+  },
+  "primitive": {
+    "overviewCopy": "Primitives are implementation-facing contracts. They prevent teams and agents from reaching for raw CSS, raw values, or one-off component behavior.",
+    "demoCopy": "This mirrors the reference primitive template: show the primitive doing one job with clear labels, semantic roles, and token names.",
+    "responsibilities": [
+      "Render {{title}} through semantic roles instead of raw implementation values.",
+      "Expose a small API that maps to foundations and token aliases.",
+      "Work across density, responsive breakpoints, keyboard, touch, screen reader, high contrast, and reduced motion when relevant.",
+      "Provide a clear prevents statement so teams know what not to do."
+    ],
+    "tokenChainCopy": "Design System's reference model uses ref -> sys -> comp. We keep that idea while preserving our naming conventions.",
+    "tokenChainSteps": [
+      "ref value",
+      "system role",
+      "component alias",
+      "pattern usage"
+    ],
+    "apiRows": [
+      ["role", "{{id}}.role", "yes", "Semantic role consumed by components and agents."],
+      ["state", "default | active | disabled | loading | error", "conditional", "Only expose states that the primitive owns."],
+      ["density", "sm | md | lg", "yes", "Maps to Frame and Energy behavior."],
+      ["tokens", "SemanticToken[]", "yes", "No raw values in public API."]
+    ],
+    "usageRules": [
+      "Use {{title}} when the product needs a stable concept shared by design, engineering, and agents.",
+      "Do not expose raw implementation values as public API.",
+      "Every example must include success, empty, loading, error, disabled, permission, and offline behavior when relevant."
+    ],
+    "anatomy": [
+      "Container: owns layout, density, focus boundary, and responsive behavior.",
+      "Content: labels, values, helper text, icons, and metadata.",
+      "Controls: primary action, secondary action, overflow, and escape.",
+      "State layer: loading, invalid, disabled, permission-blocked, offline, optimistic, and error."
+    ],
+    "states": [
+      "Default, hover, active, focus, selected, expanded, collapsed.",
+      "Loading, stale, syncing, optimistic, empty, invalid, error.",
+      "Disabled, permission-blocked, offline-blocked, risk-blocked.",
+      "Reduced motion, high contrast, keyboard-only, and touch-only."
+    ],
+    "accessibility": [
+      "{{title}} must define name, role, state, focus order, and escape behavior.",
+      "No meaning may depend only on color, position, pointer hover, speed, or memory.",
+      "Motion must respect reduced motion while preserving the information carried by movement.",
+      "Touch targets, keyboard routes, screen reader copy, contrast, and recovery paths are required."
+    ]
+  },
+  "density": {
+    "coordinatorCopy": "Density is not a component size switch. It is the surface-level scale contract that coordinates related primitives before components render.",
+    "dependencies": [
+      ["Spacing", "Gaps, panel padding, page rhythm, inline spacing.", "space_bar"],
+      ["Typography", "Text role scale and label rhythm for the active context.", "title"],
+      ["Iconography", "Icon size and optical balance with labels and targets.", "interests"],
+      ["Focus", "Ring offset and minimum visible focus area across densities.", "center_focus_strong"],
+      ["Loading", "Spinner, skeleton, and progress rhythm at the active density.", "progress_activity"],
+      ["Disabled", "Readable unavailable state and reason density.", "block"],
+      ["Breakpoints", "Viewport thresholds that choose the surface density.", "responsive_layout"]
+    ],
+    "decisionCopy": "Density responds to viewport and product context. Components inherit it; they do not expose independent public size controls.",
+    "decisionRows": [
+      ["sm", "Dense operations", "Fleet manager tables, filters, comparison views, repeated desktop actions.", "Efficient rhythm with readable type, clear grouping, and protected targets."],
+      ["md", "Standard product rhythm", "Forms, documentation, configuration, most desktop and laptop processs.", "Balanced scanning, comfortable labels, normal rhythm."],
+      ["lg", "Touch or distance", "Driver mobile, phablets, high-focus review, TV/wallboard-like dashboards.", "More generous spacing, stronger hierarchy, larger controls, and distance-friendly reading."]
+    ]
+  },
+  "stateLabels": {
+    "default": "Default state",
+    "selected": "Selected value",
+    "focus": "Focus visible",
+    "disabled": "Unavailable with reason",
+    "error": "Recoverable error",
+    "loading": "Loading data",
+    "empty": "No data yet",
+    "permission": "Permission blocked",
+    "open": "Open layer",
+    "current": "Current location",
+    "responsive": "Responsive fallback",
+    "fallbackTemplate": "{{state}} state"
+  },
+  "research": {
+    "fallbackQuestions": [
+      "Can users explain what {{title}} lets them do without facilitator help?",
+      "Where does trust increase or collapse?",
+      "Which terms are misunderstood by drivers, fleet managers, admins, or finance users?",
+      "What failure mode creates the highest support burden?"
+    ]
+  },
+  "pattern": {
+    "fallbackPurpose": "Patterns are no longer just journeys. Each pattern declares entry conditions, system decisions, failure modes, components, metrics, and research questions.",
+    "fallbackDecisions": [
+      ["Entry", "What condition brings the user into {{title}}?"],
+      ["Eligibility", "What data, permission, device, location, or role gates the system?"],
+      ["Primary action", "What is the safest next action and what evidence supports it?"],
+      ["Recovery", "What happens when data is missing, stale, denied, offline, or risky?"]
+    ],
+    "fallbackFailureModes": [
+      "{{title}} must define loading, empty, error, permission denied, offline, and stale-data behavior.",
+      "Every blocking state needs owner, recovery copy, and support or retry path.",
+      "Mobile patterns must include touch and reduced-motion alternatives.",
+      "Desktop patterns must include keyboard, density, table, filter, export, and audit behavior when relevant."
+    ],
+    "fallbackContractRows": [
+      ["entryCondition", "User/System condition", "yes", "Defines when the pattern starts."],
+      ["decisionTree", "Branch[]", "yes", "Documents system and user choices."],
+      ["componentsUsed", "ComponentRef[]", "yes", "{{componentsUsed}}"],
+      ["failureModes", "State[]", "yes", "Loading, empty, error, denied, offline, stale."],
+      ["successMetric", "Metric[]", "yes", "Defines PM/research validation."]
+    ]
+  },
+  "engineering": {
+    "fallbackItems": [
+      "Expose semantic props, events, and states. Do not expose raw token values.",
+      "Use Edenred Black only for display/title/numeral roles and Ubuntu for the rest.",
+      "Use Material Symbols through the Symbol foundation, not as arbitrary glyphs.",
+      "Use Motion for UI transitions, dotLottie for illustrative animation, and ECharts for dashboard charts.",
+      "Define tests for keyboard, screen reader naming, reduced motion, loading, error, offline, permission, and localization."
+    ]
+  },
+  "spec": {
+    "qualityGates": [
+      "No raw values outside reference tokens.",
+      "Demo, states, responsive behavior, accessibility, and agent spec must stay in sync.",
+      "Examples must include a real user job, not a decorative placeholder."
+    ],
+    "componentProps": [
+      ["state", "default | loading | error | disabled | permission-blocked", "yes", "State must change copy and accessibility."],
+      ["density", "sm | md | lg", "yes", "Maps to semantic density tokens."],
+      ["icon", "Material role", "conditional", "Rendered with fallback if icon font is unavailable."],
+      ["onAction", "event", "conditional", "Primary action or recovery path."]
+    ],
+    "patternProps": [
+      ["density", "sm | md | lg", "yes", "Chosen by context before selecting components."],
+      ["entry", "JourneyStep", "yes", "How the user arrives."],
+      ["decisionTree", "Branch[]", "yes", "What the system chooses and why."],
+      ["successMetric", "Metric[]", "yes", "How PM/research validate it."],
+      ["fallback", "RecoveryPath[]", "yes", "Denied, error, offline, and support paths."]
+    ],
+    "defaultProps": [
+      ["tokens", "SemanticToken[]", "yes", "Public API uses semantic roles only."],
+      ["rules", "Rule[]", "yes", "Human and agent-readable."],
+      ["examples", "Example[]", "yes", "Must show real product consequence."],
+      ["validation", "QualityGate[]", "yes", "Blocks incomplete artifacts."]
+    ]
+  },
+  "guidelines": {
+    "do": [
+      "Show concrete user context and operational consequence.",
+      "Document responsive behavior for laptop, tablet, and mobile.",
+      "Connect the artifact to tokens, patterns, and quality gates."
+    ],
+    "doNot": [
+      "Use decorative examples that do not teach behavior.",
+      "Depend on icon fonts without a visible fallback.",
+      "Reuse one template structure when the product job is different."
+    ]
+  },
+  "demoMatrix": {
+    "copy": "Every component should expose state, density, and platform combinations. Scale belongs to Density, not public component size.",
+    "states": ["Default", "Loading", "Error", "Disabled", "Permission"],
+    "platforms": ["Mobile", "Tablet", "Laptop", "Desktop", "Reduced motion"]
+  },
+  "mielGeneric": {
+    "brief": [
+      "Improve {{title}} using the current Design System layer contract.",
+      "Include the product context, states, accessibility, reusable output, and tests.",
+      "Ask before changing foundations, primitives, patterns, or template behavior."
+    ],
+    "canDecide": [
+      "Choose examples that make the product job concrete.",
+      "Fill missing state, accessibility, and recovery details from the component contract.",
+      "Suggest wording or reusable documentation improvements that reduce future work."
+    ],
+    "mustAsk": [
+      "Changing foundations, primitives, tokens, or visual language rules.",
+      "Creating new patterns, product flows, permissions, analytics, or service behavior.",
+      "Copying behavior from the ZIP instead of translating it through Design System."
+    ],
+    "preserve": [
+      "The current tab structure and section names.",
+      "Design System foundations and primitives as source of truth.",
+      "Accessibility, state coverage, responsive behavior, and tests.",
+      "Reusable output that strengthens the next component, not only this page."
+    ]
+  },
+  "examples": {
+    "titleTemplates": {
+      "foundation": "{{title}} applied to an operational moment",
+      "primitive": "{{title}} tokens in a product decision",
+      "component": "{{title}} in a shipped system",
+      "pattern": "{{title}} end-to-end",
+      "template": "{{title}} product snapshot",
+      "fallback": "{{title}} example"
+    },
+    "copy": {
+      "foundation": "The example shows how the foundation changes product behavior, copy, hierarchy, and recovery, not only visual decoration.",
+      "primitive": "The example shows the public semantic token contract and how it appears in a driver or fleet manager interface.",
+      "component": "The example shows a realistic state with labels, data, actions, and failure or accessibility implications.",
+      "pattern": "The example shows the user journey, key screens, decisions, and recovery paths for the pattern.",
+      "template": "The example shows the template as a complete product surface with navigation, primary work area, and operational state.",
+      "fallback": "A concrete example tied to product work."
+    },
+    "foundationCases": {
+      "Tone": ["Card declined at station", "Direct, calm, no jokes. Explain what is safe and what to do next.", "Try another payment method or call fleet support."],
+      "Voice": ["OTP expired", "Short repair copy with a clear resend action.", "Your code expired. Request a new one."],
+      "Frame": ["Fleet overview", "Place urgent exceptions above trend exploration.", "7 vehicles need attention before spend analysis."],
+      "Energy": ["Live dashboard refresh", "Quiet base state; only urgent anomalies pulse once.", "New fuel anomaly detected."],
+      "Motion": ["Station detail sheet", "Sheet rises from selected station pin to preserve spatial continuity.", "Reduced motion uses instant reveal plus focus move."],
+      "Accessibility": ["Map fallback", "Nearby stations must also exist as a list with distance and route action.", "Location denied never blocks station search."],
+      "fallback": ["Operational decision", "{{title}} changes what the interface emphasizes, says, or prevents.", "The rule is visible to humans and agents."]
+    },
+    "componentCases": {
+      "Chart Panel": ["Fuel spend by week", "$48.2k", "12% above plan", "View anomaly"],
+      "Button": ["Confirm card block", "Block card", "Requires confirmation", "Cancel"],
+      "Station Detail Panel": ["Shell Centro", "1.2 km", "Diesel, Magna, EV", "Route"],
+      "Permission Matrix": ["Operations Admin", "Drivers: edit - Vehicles: edit - Finance: read", "2 dependent permissions", "Review"],
+      "Code Input": ["Enter security code", "Code sent to +52 .... 1842", "00:42 remaining", "Resend"],
+      "fallback": ["{{title}}", "{{platform}}", "Ready, loading, error, disabled and permission states.", "Primary action"]
+    },
+    "componentChecklist": [
+      "Includes success, loading, empty, error, disabled and permission-blocked states.",
+      "Uses Material Symbol {{icon}} with accessible naming.",
+      "Defines keyboard, touch, reduced-motion and screen reader behavior."
+    ],
+    "patternSteps": {
+      "routes": ["Ask location", "Show station list + map", "Open station detail", "Start route"],
+      "dashboard": ["Scan exceptions", "Filter fleet", "Drill into metric", "Assign follow-up"],
+      "fallback": ["Start", "Verify", "Act", "Recover"]
+    },
+    "journeyCopy": {
+      "Entry": "The user arrives with a concrete job: {{summary}}",
+      "Orient": "The interface explains current state, available actions, constraints, and risks.",
+      "Act": "The user performs the primary action with clear affordances and safe defaults.",
+      "Confirm": "The system confirms outcome, next step, and any operational consequence.",
+      "Recover": "Errors, denied permissions, offline states, and support paths remain explicit."
+    }
+  },
+  "metrics": {
+    "fallback": [
+      "Task completion without support contact.",
+      "Recovery rate after error, denied permission, timeout, or offline state.",
+      "Time to first useful action.",
+      "Confidence score from research sessions.",
+      "Operational reduction in escalations, manual corrections, or repeated work."
+    ]
+  },
+  "accessibility": {
+    "statePrecedenceFallback": "State precedence must be explicit and stable."
+  },
+  "testingEvidence": {
+    "Rendering": "role/name/type/data-*",
+    "Props": "attribute/event matrix",
+    "States": "state matrix",
+    "Interaction": "pointer/keyboard/touch",
+    "Accessibility": "axe/manual SR/contrast",
+    "Responsive": "viewport + density matrix",
+    "Token compliance": "token audit",
+    "Product contract": "event/audit payload",
+    "fallback": "documented check"
+  },
+  "primitiveSurface": {
+    "typographySample": "Edenred Black title + Ubuntu body",
+    "defaultSample": "Driver app state"
+  },
+  "stackPage": {
+    "kicker": "Implementation stack",
+    "title": "Libraries are governed primitives.",
+    "copy": "The stack is intentionally small: Motion for UI behavior, dotLottie for illustrative states, Material Symbols for iconography, ECharts for dashboards, maps for station discovery, and Edenred plus Ubuntu for typography.",
+    "ruleLabel": "Rule"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "components": {
+    "checkbox": {
+      "anatomy": {
+        "items": [
+          { "part": "Choice label", "rule": "Write the choice as the outcome of checking the box.", "tokens": ["comp.checkbox.label.*", "sys.voice.*", "sys.energy.text.*"] },
+          { "part": "Control box", "rule": "Keep the square stable across checked, unchecked, focus, error, and disabled states.", "tokens": ["comp.checkbox.box.*", "sys.frame.*", "sys.state.*", "sys.momentum.*", "sys.accessibility.*"] },
+          { "part": "Indicator icon", "rule": "Use check for selected and remove for mixed; never use decorative icons inside the box.", "tokens": ["comp.checkbox.indicator.*", "sys.iconography.*", "sys.symbol.*"] },
+          { "part": "Support text", "rule": "Explain consequence, policy, or recovery only when the label is not enough.", "tokens": ["comp.checkbox.support.*", "sys.voice.*", "sys.energy.status.*"] }
+        ]
+      }
+    }
+  }
+}

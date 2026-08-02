@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System Prototypes</title>
+    <link rel="stylesheet" href="../../packages/components/styles/components.css" />
+    <style>
+      body {
+        background: var(--system-color-surface-raised);
+        color: var(--system-color-text);
+        font-family: var(--system-font-body);
+        margin: 0;
+        padding: var(--system-space-xl);
+      }
+
+      main {
+        display: grid;
+        gap: var(--system-space-lg);
+        max-width: 880px;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      .prototype-grid {
+        display: grid;
+        gap: var(--system-space-lg);
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .prototype-link {
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Design System prototypes</h1>
+        <p>Small runnable surfaces that consume Design System packages directly.</p>
+      </header>
+      <section class="prototype-grid" id="prototypeIndex"></section>
+    </main>
+    <script type="module">
+      import { createCard } from "../../packages/components/src/index.js";
+
+      const prototypes = [
+        {
+          href: "./basic.html",
+          title: "Basic kit",
+          value: "Button · Select · Card",
+          detail: "Smallest package-consumer example.",
+          status: "Starter",
+        },
+        {
+          href: "./fleet-dashboard.html",
+          title: "Fleet dashboard",
+          value: "Manager view",
+          detail: "Fleet spend, risk, and regional scope from shared fixtures.",
+          status: "Desktop",
+        },
+        {
+          href: "./driver-mobile.html",
+          title: "Driver mobile",
+          value: "Wallet view",
+          detail: "Driver card and recent movements from shared fixtures.",
+          status: "Mobile",
+        },
+      ];
+
+      const root = document.querySelector("#prototypeIndex");
+      for (const prototype of prototypes) {
+        const link = document.createElement("a");
+        link.className = "prototype-link";
+        link.href = prototype.href;
+        link.append(createCard(prototype));
+        root.append(link);
+      }
+    </script>
+  </body>
+</html>

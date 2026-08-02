@@ -1,0 +1,13 @@
+{
+  "components": {
+    "checkbox": {
+      "guidelines": {
+        "groups": [
+          { "title": "Use", "items": ["Use for independent boolean choices.", "Use indeterminate only for partial aggregate selection.", "Keep the label as the checked outcome."] },
+          { "title": "Avoid", "items": ["Do not use for mutually exclusive choices.", "Do not hide the label behind an icon.", "Do not make error color the only signal."] },
+          { "title": "Review", "items": ["Confirm legal or consent copy with the human owner.", "Check keyboard and mixed-state behavior.", "Test label wrapping at narrow widths."] }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "input": {
+      "states": {
+        "copy": "States communicate editability, progress, validation, and value condition. The field keeps its label and helper visible in every state.",
+        "demos": [
+          { "label": "Default", "field": "Wallet alias", "value": "", "placeholder": "Name this wallet", "helper": "Visible to managers", "density": "md", "state": "default", "icon": "account_balance_wallet" },
+          { "label": "Focus", "field": "Plate", "value": "", "placeholder": "ABC-123", "helper": "Use registered plate", "density": "md", "state": "focus", "icon": "directions_car", "suffix": "plate", "mono": true },
+          { "label": "Filled", "field": "Driver ID", "value": "MX-2048", "placeholder": "Enter driver ID", "helper": "Active driver record", "density": "md", "state": "filled", "icon": "badge" },
+          { "label": "Loading", "field": "Station code", "value": "POL-18", "placeholder": "Station code", "helper": "Checking station", "density": "md", "state": "loading", "icon": "progress_activity" },
+          { "label": "Error", "field": "Plate", "value": "ABC", "placeholder": "ABC-123", "helper": "Use format ABC-123", "density": "md", "state": "error", "icon": "error", "suffix": "plate", "mono": true },
+          { "label": "Disabled", "field": "Fleet", "value": "North Region", "placeholder": "Fleet", "helper": "Managed by policy", "density": "md", "state": "disabled", "icon": "lock" }
+        ]
+      }
+    }
+  }
+}

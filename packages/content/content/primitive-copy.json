@@ -1,0 +1,31 @@
+{
+  "$systemShards": [
+    "primitive-copy/schemaversion.json",
+    "primitive-copy/purposefallback.json",
+    "primitive-copy/livedemo.json",
+    "primitive-copy/specmatrix.json",
+    "primitive-copy/responsibilities.json",
+    "primitive-copy/apifallbacks.json",
+    "primitive-copy/prevents.json",
+    "primitive-copy/tokenreference.json",
+    "primitive-copy/demos/typography.json",
+    "primitive-copy/demos/spacing.json",
+    "primitive-copy/demos/iconography.json",
+    "primitive-copy/demos/color.json",
+    "primitive-copy/demos/radius.json",
+    "primitive-copy/demos/elevation.json",
+    "primitive-copy/demos/motion-curves.json",
+    "primitive-copy/demos/duration.json",
+    "primitive-copy/demos/breakpoints.json",
+    "primitive-copy/demos/density.json",
+    "primitive-copy/demos/focus.json",
+    "primitive-copy/demos/loading.json",
+    "primitive-copy/demos/disabled.json",
+    "primitive-copy/demos/charts.json",
+    "primitive-copy/demos/maps.json",
+    "primitive-copy/demos/message.json",
+    "primitive-copy/demos/measurement.json",
+    "primitive-copy/demos/research.json",
+    "primitive-copy/demos/fallback.json"
+  ]
+}

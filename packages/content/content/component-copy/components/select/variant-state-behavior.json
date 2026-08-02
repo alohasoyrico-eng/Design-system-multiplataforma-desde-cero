@@ -1,0 +1,35 @@
+{
+  "components": {
+    "select": {
+      "variant-state-behavior": {
+        "copy": "Every state must preserve the label, selected value, helper text, and recovery path.",
+        "rows": [
+          {
+            "label": "Required",
+            "field": "Fleet",
+            "value": "North Region Fleet"
+          },
+          {
+            "label": "Optional",
+            "field": "Fuel type",
+            "value": "Diesel"
+          },
+          {
+            "label": "Permissioned",
+            "field": "Cost center",
+            "value": "Operations MX"
+          }
+        ],
+        "states": [
+          "default",
+          "open",
+          "focus",
+          "filled",
+          "loading",
+          "error",
+          "disabled"
+        ]
+      }
+    }
+  }
+}

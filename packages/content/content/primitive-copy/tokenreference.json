@@ -1,0 +1,18 @@
+{
+  "tokenReference": {
+    "cards": [
+      {
+        "title": "Foundation link",
+        "copyTemplate": "{{title}} consumes {{firstToken}} and related semantic roles."
+      },
+      {
+        "title": "React adapter",
+        "copyTemplate": "Expose {{title}} as a typed component or CSS utility with token-backed props."
+      },
+      {
+        "title": "Flutter adapter",
+        "copyTemplate": "Expose {{title}} as a widget contract with the same semantic roles."
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "demos": {
+    "Maps": {
+      "type": "map",
+      "initial": "nearby",
+      "ariaLabel": "Map examples",
+      "choices": [
+        [
+          "nearby",
+          "nearby"
+        ],
+        [
+          "selected",
+          "selected"
+        ],
+        [
+          "route",
+          "route"
+        ],
+        [
+          "denied",
+          "denied"
+        ]
+      ],
+      "states": {
+        "nearby": "Nearby stations",
+        "selected": "Selected station",
+        "route": "Route preview",
+        "denied": "Location denied fallback"
+      }
+    }
+  }
+}

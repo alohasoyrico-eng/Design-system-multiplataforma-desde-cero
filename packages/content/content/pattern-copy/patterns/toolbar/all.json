@@ -1,0 +1,134 @@
+{
+  "patterns": {
+    "toolbar": {
+      "purpose": "Group page or table actions with search, filters, export, overflow, selection count, and responsive priority.",
+      "useWhen": [
+        "A dense operational page needs repeated actions near the content they affect.",
+        "Search, filters, export, or overflow actions need shared context.",
+        "Action priority must remain clear across desktop and compact widths."
+      ],
+      "doNotUseWithoutReview": [
+        "Actions belong to different scopes or owners.",
+        "The toolbar duplicates global navigation or topbar actions.",
+        "Overflow hides destructive or required actions without policy."
+      ],
+      "foundations": [
+        [
+          "Frame",
+          "Defines toolbar density, alignment, wrapping, and responsive overflow."
+        ],
+        [
+          "Voice",
+          "Owns action labels, count copy, overflow labels, and empty action copy."
+        ],
+        [
+          "Energy",
+          "Controls primary, secondary, disabled, selected, and danger action hierarchy."
+        ],
+        [
+          "State",
+          "Default, filtered, selected, loading, disabled, and overflow states are explicit."
+        ],
+        [
+          "Accessibility",
+          "Requires labelled controls, keyboard order, and non-color-only status."
+        ]
+      ],
+      "slots": [
+        [
+          "search",
+          "Input",
+          "conditional",
+          "Scopes content search."
+        ],
+        [
+          "actions",
+          "Button[]",
+          "yes",
+          "Visible primary and secondary commands."
+        ],
+        [
+          "overflow",
+          "Menu",
+          "conditional",
+          "Less frequent actions."
+        ],
+        [
+          "status",
+          "Badge | Chip",
+          "conditional",
+          "Selection or filter count."
+        ],
+        [
+          "feedback",
+          "Toast",
+          "conditional",
+          "Reports action result."
+        ]
+      ],
+      "componentsUsed": [
+        "Input",
+        "Button",
+        "Menu",
+        "Badge",
+        "Chip",
+        "Toast"
+      ],
+      "variants": [
+        [
+          "Table toolbar",
+          "Current candidate",
+          "Search plus export and overflow actions."
+        ],
+        [
+          "Filtered state",
+          "Required state",
+          "Active filter count remains visible."
+        ],
+        [
+          "Compact overflow",
+          "Candidate",
+          "Secondary commands move to menu."
+        ]
+      ],
+      "motion": [
+        [
+          "Action feedback",
+          "Commands report state without moving the toolbar."
+        ],
+        [
+          "Overflow reveal",
+          "Menu opens after user action and closes with selection or Escape."
+        ]
+      ],
+      "accessibility": [
+        "Toolbar controls have labels.",
+        "Selection or filter count is text-backed.",
+        "Overflow commands remain keyboard reachable.",
+        "Disabled actions explain unavailable state when needed."
+      ],
+      "tests": [
+        "Search field keeps focus while filtering.",
+        "Export action shows feedback.",
+        "Overflow menu is present for secondary actions.",
+        "Filter count updates visibly and programmatically."
+      ],
+      "miel": {
+        "canDecide": [
+          "Use Toolbar for page-local or table-local actions.",
+          "Move lower-priority actions to Menu at compact widths.",
+          "Expose active filters or selected count with Badge or Chip."
+        ],
+        "mustAsk": [
+          "Action scope, destructive policy, overflow priority, or disabled reason is unclear."
+        ],
+        "rejectIf": [
+          "Actions belong to different scopes.",
+          "Required actions are hidden in overflow.",
+          "Count state is visual only."
+        ],
+        "handoff": "Confirm action scope, priority, overflow behavior, filter/selection count, and feedback."
+      }
+    }
+  }
+}

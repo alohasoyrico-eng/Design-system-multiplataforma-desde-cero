@@ -1,0 +1,172 @@
+{
+  "components": {
+    "date-range-picker": {
+      "full-width": {
+        "copy": "Date Range Picker can fill desktop filter panels and form rows while the selected range remains readable.",
+        "items": [
+          {
+            "label": "Report filter",
+            "layout": "button-stack",
+            "demo": {
+              "fullWidth": true,
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-15"
+              }
+            }
+          },
+          {
+            "label": "Audit window",
+            "layout": "button-stack",
+            "demo": {
+              "fullWidth": true,
+              "value": {
+                "from": "2026-07-10"
+              }
+            }
+          },
+          {
+            "label": "Export range",
+            "layout": "button-stack",
+            "demo": {
+              "fullWidth": true,
+              "state": "warning",
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-31"
+              }
+            }
+          }
+        ]
+      },
+      "responsive-layout-patterns": {
+        "copy": "Use larger density on touch targets and keep reporting behavior in patterns that compose the component.",
+        "examples": [
+          {
+            "label": "Phone",
+            "layout": "button-stack",
+            "density": "lg",
+            "demos": [
+              {
+                "value": {
+                  "from": "2026-07-01",
+                  "to": "2026-07-15"
+                },
+                "fullWidth": true
+              }
+            ]
+          },
+          {
+            "label": "Desktop",
+            "layout": "button-stack",
+            "density": "md",
+            "demos": [
+              {
+                "value": {
+                  "from": "2026-07-01",
+                  "to": "2026-07-15"
+                },
+                "fullWidth": true
+              }
+            ]
+          }
+        ]
+      },
+      "viewport-organization": {
+        "copy": "Date Range Picker stays a range field. Dashboard filters decide how the range changes data, URL state, or saved views.",
+        "items": [
+          {
+            "title": "Phone",
+            "icon": "smartphone",
+            "rule": "Use larger day targets and keep start/end text visible.",
+            "layout": "single range field",
+            "density": "lg",
+            "demo": {
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-15"
+              }
+            }
+          },
+          {
+            "title": "Tablet",
+            "icon": "tablet_mac",
+            "rule": "Keep presets close to the range field.",
+            "layout": "filter panel",
+            "density": "md",
+            "demo": {
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-15"
+              }
+            }
+          },
+          {
+            "title": "Desktop",
+            "icon": "desktop_windows",
+            "rule": "Use standard density in dashboard toolbars.",
+            "layout": "toolbar range field",
+            "density": "md",
+            "demo": {
+              "value": {
+                "from": "2026-07-01",
+                "to": "2026-07-15"
+              }
+            }
+          }
+        ]
+      },
+      "playground": {
+        "copy": "Use the playground to verify from, to, presets, state, and density before composing a dashboard filter pattern.",
+        "controls": [
+          {
+            "name": "from",
+            "label": "From",
+            "type": "text",
+            "value": "2026-07-01"
+          },
+          {
+            "name": "to",
+            "label": "To",
+            "type": "text",
+            "value": "2026-07-15"
+          },
+          {
+            "name": "state",
+            "label": "State",
+            "type": "select",
+            "value": "default",
+            "options": [
+              "default",
+              "focus",
+              "selected",
+              "warning",
+              "error",
+              "disabled"
+            ]
+          },
+          {
+            "name": "density",
+            "label": "Density",
+            "type": "select",
+            "value": "md",
+            "options": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        ],
+        "preview": {
+          "label": "Reporting range",
+          "value": {
+            "from": "2026-07-01",
+            "to": "2026-07-15"
+          },
+          "state": "default"
+        },
+        "snippet": "<DateRangePicker label=\"Reporting range\" value={{ from: \"2026-07-01\", to: \"2026-07-15\" }} />"
+      }
+    }
+  }
+}

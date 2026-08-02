@@ -1,0 +1,144 @@
+{
+  "components": {
+    "combobox": {
+      "operational-example": {
+        "copy": "Use Combobox when people need to type, narrow, and choose one known operational value without leaving the field context.",
+        "scenario": {
+          "icon": "manage_search",
+          "title": "Vehicle lookup",
+          "meta": "Editable select input from the ZIP reference",
+          "items": [
+            { "label": "Vehicle", "value": "MX-4821 - Ana Gomez", "helper": "Search by plate, driver, or fleet", "icon": "search", "state": "filled" },
+            { "label": "Open search", "value": "Luis", "helper": "Filtered options visible", "icon": "search", "state": "open" },
+            { "label": "No match", "value": "ZZZ", "helper": "No matching options", "icon": "search", "state": "empty" }
+          ],
+          "rationaleTitle": "Why Combobox",
+          "rationale": [
+            "It covers the SelectCombo and Combobox references without expanding base Select.",
+            "It owns one editable field, filtered options, active option, empty state, clear action, and keyboard selection.",
+            "Global search, command palettes, async query policy, and multi-select remain patterns or separate components."
+          ]
+        }
+      },
+      "anatomy": {
+        "items": [
+          { "part": "Field shell", "rule": "Owns visible label, helper, density, validation, and disabled state.", "tokens": ["comp.input.*", "sys.voice.*", "sys.frame.*"] },
+          { "part": "Editable input", "rule": "Accepts typed filtering while preserving the selected option as text.", "tokens": ["comp.input.*", "sys.accessibility.*"] },
+          { "part": "Leading icon", "rule": "Signals search or entity type without replacing label text.", "tokens": ["sys.iconography.*", "sys.symbol.*"] },
+          { "part": "Clear action", "rule": "Clears local selection/value as a field action.", "tokens": ["comp.input.*", "sys.state.*"] },
+          { "part": "Option layer", "rule": "Shows filtered known options, metadata, selected state, and empty feedback.", "tokens": ["comp.select.*", "sys.depth.*", "sys.momentum.*"] }
+        ]
+      },
+      "accessibility": {
+        "statePrecedence": "disabled, error, open, focus, empty, filled, default",
+        "items": [
+          "Use a visible label associated with the editable combobox input.",
+          "Expose aria-autocomplete=list, aria-expanded, aria-controls, and aria-activedescendant.",
+          "Keep option text and metadata available as text, not icon-only.",
+          "Show visible empty-state copy when filtering has no matches.",
+          "Return focus to the input after selecting or clearing."
+        ]
+      },
+      "variants": {
+        "copy": "Combobox has one base variant for editable single selection. Entity-specific filtering changes option content, not component anatomy.",
+        "demos": [
+          { "label": "Vehicle lookup", "field": "Vehicle", "value": "MX-4821 - Ana Gomez", "helper": "Search by plate or driver", "icon": "search", "variant": "default" },
+          { "label": "Driver lookup", "field": "Driver", "value": "Ana Gomez", "helper": "Known drivers only", "icon": "person_search", "variant": "default" },
+          { "label": "Fleet lookup", "field": "Fleet", "value": "North Region Fleet", "helper": "Filters the current workspace", "icon": "manage_search", "variant": "default" },
+          { "label": "Owner lookup", "field": "Case owner", "value": "Operations MX", "helper": "Known support owners", "icon": "support_agent", "variant": "default" }
+        ]
+      },
+      "states": {
+        "copy": "Combobox states communicate typed filtering, open options, selected value, empty results, error, and disabled behavior.",
+        "demos": [
+          { "label": "Default", "value": "", "state": "default" },
+          { "label": "Filled", "value": "MX-4821 - Ana Gomez", "state": "filled" },
+          { "label": "Focus", "value": "MX", "state": "focus", "helper": "Ready to filter known options" },
+          { "label": "Open", "value": "Luis", "state": "open", "helper": "Filtered options visible" },
+          { "label": "Empty", "value": "ZZZ", "state": "empty", "helper": "No matching options" },
+          { "label": "Error", "value": "External partner", "state": "error", "helper": "Choose a known record." },
+          { "label": "Disabled", "value": "North Region Fleet", "state": "disabled" }
+        ]
+      },
+      "variant-state-behavior": {
+        "copy": "Variant stays stable; state controls open, empty, error, selected, and disabled behavior.",
+        "states": ["default", "filled", "focus", "open", "empty", "error", "disabled"],
+        "rows": [
+          { "label": "Vehicle", "demo": { "field": "Vehicle", "icon": "search" } },
+          { "label": "Driver", "demo": { "field": "Driver", "icon": "person_search" } },
+          { "label": "Owner", "demo": { "field": "Case owner", "icon": "support_agent" } }
+        ]
+      },
+      "full-width": {
+        "copy": "Combobox may fill form columns, filters, and drawers while the option layer follows the field width.",
+        "items": [
+          { "label": "Form field", "layout": "button-stack", "demo": { "field": "Vehicle", "value": "MX-4821 - Ana Gomez", "fullWidth": true } },
+          { "label": "Filter row", "layout": "button-stack", "demo": { "field": "Driver", "value": "Ana Gomez", "fullWidth": true } },
+          { "label": "Support lookup", "layout": "button-stack", "demo": { "field": "Case owner", "value": "Operations MX", "fullWidth": true } }
+        ]
+      },
+      "responsive-layout-patterns": {
+        "copy": "Use roomy density for touch contexts and keep typed value, clear action, and option layer legible before placing Combobox inside a larger filter pattern.",
+        "examples": [
+          { "label": "Phone field", "layout": "button-stack", "density": "lg", "demos": [{ "field": "Vehicle", "value": "MX-4821 - Ana Gomez", "fullWidth": true }] },
+          { "label": "Desktop filter", "layout": "simple-demo-row", "density": "sm", "demos": [{ "field": "Driver", "value": "Ana Gomez" }, { "field": "Fleet", "value": "North Region Fleet" }] }
+        ]
+      },
+      "viewport-organization": {
+        "copy": "Combobox remains one editable selection field. Viewport rules decide density and option layer width; query orchestration belongs to patterns.",
+        "items": [
+          { "title": "Phone", "icon": "smartphone", "rule": "Use large density and avoid dense multi-column option content.", "layout": "single field", "density": "lg", "demo": { "field": "Vehicle", "value": "MX-4821 - Ana Gomez" } },
+          { "title": "Tablet", "icon": "tablet_mac", "rule": "Keep helper copy close to the field and listbox.", "layout": "form column", "density": "md", "demo": { "field": "Driver", "value": "Ana Gomez" } },
+          { "title": "Desktop", "icon": "desktop_windows", "rule": "Use compact density in filter rows only when typed value remains readable.", "layout": "filter row", "density": "sm", "demo": { "field": "Fleet", "value": "North Region Fleet" } }
+        ]
+      },
+      "playground": {
+        "copy": "Use the playground to verify label, value, placeholder, options, empty copy, density, and state.",
+        "controls": [
+          { "name": "label", "label": "Label", "type": "text", "value": "Vehicle" },
+          { "name": "value", "label": "Value", "type": "text", "value": "MX-4821 - Ana Gomez" },
+          { "name": "placeholder", "label": "Placeholder", "type": "text", "value": "Search or select" },
+          { "name": "state", "label": "State", "type": "select", "value": "filled", "options": ["default", "filled", "focus", "open", "empty", "error", "disabled"] },
+          { "name": "density", "label": "Density", "type": "select", "value": "md", "options": ["sm", "md", "lg"] }
+        ],
+        "preview": { "label": "Vehicle", "value": "MX-4821 - Ana Gomez", "state": "filled" },
+        "snippet": "<Combobox label=\"Vehicle\" value=\"mx-4821\" options={vehicles} />"
+      },
+      "api-foundations": {
+        "copy": "Combobox API exposes one editable selection field. Design System owns field shell, option layer, state, accessibility, density, and motion; product code owns option data and search policy beyond local filtering.",
+        "props": [
+          { "name": "label", "type": "string", "required": "Yes", "notes": "Visible field label." },
+          { "name": "value", "type": "string", "required": "No", "notes": "Selected value or current input value." },
+          { "name": "name", "type": "string", "required": "No", "notes": "Native field name for form submission." },
+          { "name": "options", "type": "Array<{ label: string, value?: string, meta?: string, disabled?: boolean }>", "required": "Yes", "notes": "Known options filtered locally." },
+          { "name": "helper", "type": "string", "required": "No", "notes": "Short guidance or recovery copy." },
+          { "name": "icon", "type": "string", "required": "No", "notes": "Leading Material Symbol." },
+          { "name": "placeholder", "type": "string", "required": "No", "notes": "Prompt shown before typing." },
+          { "name": "emptyText", "type": "string", "required": "No", "notes": "Visible no-results copy." },
+          { "name": "disabled", "type": "boolean", "required": "No", "notes": "Disables the editable field." },
+          { "name": "density", "type": "\"sm\" | \"md\" | \"lg\"", "required": "No", "notes": "Maps to field density." },
+          { "name": "state", "type": "\"default\" | \"open\" | \"focus\" | \"filled\" | \"empty\" | \"error\" | \"disabled\"", "required": "No", "notes": "Semantic demo or controlled state." },
+          { "name": "onValueChange", "type": "(value, meta) => void", "required": "No", "notes": "Called for typed input, selected option, and clear action." }
+        ]
+      },
+      "guidelines": {
+        "groups": [
+          { "title": "Use", "items": ["Use for one known value when typing helps narrow options.", "Keep option labels stable and human-readable.", "Show empty results copy instead of a blank layer."] },
+          { "title": "Avoid", "items": ["Do not use for global search or command palettes.", "Do not use for multiple selection.", "Do not hide async data loading or permission policy inside the component."] },
+          { "title": "Review", "items": ["Confirm local vs remote filtering.", "Check keyboard navigation and focus return.", "Escalate to a pattern when filtering affects query state, saved views, or multiple fields."] }
+        ]
+      },
+      "tests-rejection-rules": {
+        "mustTest": ["Label association", "aria-autocomplete and listbox wiring", "Typing filters options", "Keyboard selection", "Clear action", "Empty results", "Disabled and error states", "Responsive option layer"],
+        "rejectIf": ["Combobox owns global search or command execution.", "Options are visual-only.", "Empty results are silent.", "It allows multiple selected values.", "Raw color, spacing, motion, or typography values are used."]
+      },
+      "miel": {
+        "copy": "MIEL treats Combobox as one editable selection field: agents can use it when the choices are known and local filtering is enough, while humans confirm data source, empty state, and escalation to patterns.",
+        "canDecide": ["Use Combobox for one known entity list with typed narrowing.", "Use Select instead when typing is unnecessary.", "Keep option metadata short and text-backed."],
+        "mustAsk": ["Options load remotely, affect URL/query state, or trigger side effects.", "The user can select multiple values.", "The search behaves like global navigation, commands, or support lookup across systems."],
+        "rejectIf": ["Combobox becomes a command palette, global search, or multi-select.", "The option layer lacks visible empty-state copy.", "Selected value and active option are not machine-readable."],
+        "handoff": "I am using Combobox for one editable known-value selection. Please confirm option source, filtering policy, empty copy, keyboard behavior, and whether this should escalate to a pattern."
+      }
+    }
+  }
+}

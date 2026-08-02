@@ -1,0 +1,122 @@
+{
+  "artifacts": {
+    "foundations": {
+      "frame": {
+        "layer": "Foundation",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Product Managers",
+          "Content Designers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "overview",
+          "roles",
+          "productExamples",
+          "tokens",
+          "rules",
+          "dependencies",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Frame",
+        "purpose": "Govern spacing, grid, density, sizing, and responsive rhythm so product surfaces feel organized and never rely on one-off layout fixes.",
+        "referenceDecision": "Adapt",
+        "roles": [
+          {
+            "id": "space",
+            "token": "ref.frame.space.*",
+            "use": "Inline gaps, component gaps, section rhythm, page rhythm."
+          },
+          {
+            "id": "grid",
+            "token": "sys.frame.grid.*",
+            "use": "Mobile, tablet, laptop, desktop content structure."
+          },
+          {
+            "id": "density",
+            "token": "sys.frame.density.*",
+            "use": "Compact operations, default product rhythm, comfortable review/touch flows."
+          },
+          {
+            "id": "radius",
+            "token": "sys.frame.radius.*",
+            "use": "Controls, cards, sheets, pills, panels."
+          },
+          {
+            "id": "size",
+            "token": "sys.frame.height.*",
+            "use": "Control heights, touch targets, dashboard modules, panels."
+          },
+          {
+            "id": "border",
+            "token": "sys.frame.border.*",
+            "use": "Controls, tables, selected surfaces, dividers."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Mobile card overview",
+            "example": "Card stack, quick actions, and movement rows use mobile margins and comfortable touch rhythm."
+          },
+          {
+            "context": "Routes and stations",
+            "example": "Map overlays and station detail panels use stable inset, sheet, and fallback list spacing."
+          },
+          {
+            "context": "Fleet dashboards",
+            "example": "12-column desktop grid aligns KPI tiles, charts, filter bar, and drill-down table."
+          },
+          {
+            "context": "Settings",
+            "example": "Roles, permissions, drivers, and vehicles use dense table rhythm without losing focus target and hierarchy."
+          }
+        ],
+        "tokenDependencies": [
+          "ref.frame.*",
+          "sys.frame.*",
+          "sys.depth.*",
+          "comp.*.frame aliases"
+        ],
+        "primitiveDependencies": [
+          "Spacing",
+          "Radius",
+          "Breakpoints",
+          "Density",
+          "Focus"
+        ],
+        "componentDependencies": [
+          "Button",
+          "Select",
+          "Card Summary",
+          "Table",
+          "Checkbox",
+          "Switch"
+        ],
+        "agentInstructions": [
+          "Use Frame tokens for spacing, sizing, grid, border, and radius before changing CSS.",
+          "Declare density at the surface or page level; components should inherit it.",
+          "Avoid horizontal scroll in navigation and tab bars unless the component explicitly owns overflow behavior.",
+          "Check mobile, tablet, laptop, and desktop rhythm before calling a layout done."
+        ],
+        "rejectIf": [
+          "Raw spacing, radius, border, or control size values are introduced outside tokens.",
+          "Content is wrapped in a container that reduces useful space without a hierarchy reason.",
+          "Navigation or tabs create unintended horizontal scrolling.",
+          "A component solves spacing locally instead of consuming Frame."
+        ],
+        "patternDependencies": [
+          "Bottom Sheet",
+          "Dashboard Filter Bar",
+          "Virtual Data Table",
+          "Permission Matrix"
+        ]
+      }
+    }
+  }
+}

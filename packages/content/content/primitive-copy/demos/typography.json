@@ -1,0 +1,72 @@
+{
+  "demos": {
+    "Typography": {
+      "type": "typography",
+      "initial": "display",
+      "ariaLabel": "Typography role examples",
+      "choices": [
+        [
+          "display",
+          "Display"
+        ],
+        [
+          "heading",
+          "Heading"
+        ],
+        [
+          "label",
+          "Label"
+        ],
+        [
+          "paragraph",
+          "Paragraph"
+        ],
+        [
+          "code",
+          "Code"
+        ]
+      ],
+      "samples": {
+        "display": [
+          "Display SM · Edenred Black",
+          "voice.display.sm"
+        ],
+        "heading": [
+          "Heading MD · Edenred Black",
+          "voice.heading.md"
+        ],
+        "label": [
+          "Label MD · Ubuntu",
+          "voice.label.md"
+        ],
+        "paragraph": [
+          "Paragraph MD · Ubuntu body",
+          "voice.paragraph.md"
+        ],
+        "code": [
+          "code role · token reference",
+          "voice.code"
+        ]
+      },
+      "staticSamples": [
+        [
+          "voice-heading",
+          "Heading MD · Edenred Black"
+        ],
+        [
+          "voice-label",
+          "Label MD · Ubuntu"
+        ],
+        [
+          "voice-body",
+          "Paragraph MD · Ubuntu body text for product content."
+        ],
+        [
+          "caption",
+          "Caption · secondary color"
+        ]
+      ],
+      "code": "code role · Ubuntu Mono fallback"
+    }
+  }
+}

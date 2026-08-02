@@ -1,0 +1,77 @@
+{
+  "components": {
+    "toast": {
+      "api-foundations": {
+        "copy": "Toast API exposes message, description, tone, variant, lifecycle state, optional action, dismiss behavior, and live-region priority while Design System foundations own severity language, elevation, motion, timing, and accessibility.",
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": "Yes",
+            "notes": "Toast title."
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": "No",
+            "notes": "Toast body copy."
+          },
+          {
+            "name": "tone",
+            "type": "ToastTone",
+            "required": "No",
+            "notes": "Semantic announcement tone."
+          },
+          {
+            "name": "variant",
+            "type": "ToastVariant",
+            "required": "No",
+            "notes": "Feedback job: status, progress, warning, recovery, or undo."
+          },
+          {
+            "name": "state",
+            "type": "ToastState",
+            "required": "No",
+            "notes": "Lifecycle state: default, visible, action, stacked, or exiting."
+          },
+          {
+            "name": "density",
+            "type": "Density",
+            "required": "No",
+            "notes": "Density-aware toast scale: sm, md, or lg."
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "required": "No",
+            "notes": "Optional Material Symbol override; defaults from tone."
+          },
+          {
+            "name": "actionLabel",
+            "type": "string",
+            "required": "No",
+            "notes": "Optional action label."
+          },
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "required": "No",
+            "notes": "Shows dismiss control."
+          },
+          {
+            "name": "onAction",
+            "type": "() => void",
+            "required": "No",
+            "notes": "Called when the toast action is selected."
+          },
+          {
+            "name": "onDismiss",
+            "type": "() => void",
+            "required": "No",
+            "notes": "Called when the toast is dismissed."
+          }
+        ]
+      }
+    }
+  }
+}

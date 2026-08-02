@@ -1,0 +1,24 @@
+{
+  "collectionMeta": {
+    "foundations": {
+      "singular": "Foundation",
+      "intro": "System-level rules from the reference model plus product-specific access guidance."
+    },
+    "primitives": {
+      "singular": "Primitive",
+      "intro": "Semantic raw material for implementation without exposing raw values."
+    },
+    "components": {
+      "singular": "Component",
+      "intro": "Production contracts with behavior, states, accessibility, tokens, and agent rules."
+    },
+    "patterns": {
+      "singular": "Pattern",
+      "intro": "User-goal playbooks for the driver mobile and fleet manager desktop products."
+    },
+    "templates": {
+      "singular": "Template",
+      "intro": "Complete product models for cards, routes, dashboards, configuration, and mobile driver work."
+    }
+  }
+}

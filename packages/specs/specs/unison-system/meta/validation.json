@@ -1,0 +1,13 @@
+{
+  "validation": [
+    "Artifact must declare layer and platform.",
+    "Artifact must identify audiences served.",
+    "Components must include anatomy, states, accessibility, engineering, and agent spec.",
+    "Patterns must include journey, screens, metrics, research, engineering, and agent spec.",
+    "Templates must include context, IA, flows, data, permissions, implementation, and agent spec.",
+    "Charts must include accessible text summaries.",
+    "Maps must include permission-denied and fallback-list behavior.",
+    "Lottie cannot be required for task comprehension.",
+    "Material Symbols cannot replace accessible labels for rare or risky actions."
+  ]
+}

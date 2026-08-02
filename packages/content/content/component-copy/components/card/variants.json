@@ -1,0 +1,47 @@
+{
+  "components": {
+    "card": {
+      "variants": {
+        "copy": "Card variants map the ZIP reference to Flow without turning every reference wrapper into a base variant. Default, elevated, minimal, and ghost are surface variants; interactive is behavior, compact/media are compositions, and stats maps to KPI Tile.",
+        "demos": [
+          {
+            "label": "Default",
+            "title": "Fleet health",
+            "value": "93%",
+            "detail": "Stable reading surface",
+            "icon": "monitoring",
+            "state": "default",
+            "variant": "default"
+          },
+          {
+            "label": "Minimal",
+            "title": "Policy note",
+            "value": "Visible",
+            "detail": "Transparent surface for low-density support",
+            "icon": "article",
+            "state": "default",
+            "variant": "minimal"
+          },
+          {
+            "label": "Elevated",
+            "title": "Approval queue",
+            "value": "12",
+            "detail": "Raised surface for stronger hierarchy",
+            "icon": "approval",
+            "state": "default",
+            "variant": "elevated"
+          },
+          {
+            "label": "Ghost",
+            "title": "Route context",
+            "value": "Preview",
+            "detail": "Subtle surface over contextual layouts",
+            "icon": "route",
+            "state": "default",
+            "variant": "ghost"
+          }
+        ]
+      }
+    }
+  }
+}

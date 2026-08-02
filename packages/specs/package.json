@@ -1,0 +1,9 @@
+{
+  "name": "@design-system/specs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./system": "./specs/unison.system.json"
+  }
+}

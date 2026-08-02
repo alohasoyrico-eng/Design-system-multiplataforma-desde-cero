@@ -1,0 +1,14 @@
+{
+  "components": {
+    "checkbox": {
+      "viewport-organization": {
+        "copy": "Organize Checkbox rows by available reading space: stack on narrow screens, align with tables on wide screens, and avoid dense clusters on touch surfaces.",
+        "items": [
+          { "title": "Phone", "icon": "smartphone", "rule": "Use full-width rows with large density.", "density": "lg", "demo": { "label": "Route alerts", "description": "Easy to tap.", "checked": true, "state": "checked" } },
+          { "title": "Tablet", "icon": "tablet_mac", "rule": "Stack short groups before moving into two-column layouts.", "density": "md", "demo": { "label": "Driver alerts", "description": "Settings row.", "checked": false, "state": "focus" } },
+          { "title": "Desktop", "icon": "desktop_windows", "rule": "Align with table rows or permission columns, keeping labels readable.", "density": "sm", "demo": { "label": "MX-2048", "description": "Selectable table row.", "checked": false, "state": "unchecked" } }
+        ]
+      }
+    }
+  }
+}

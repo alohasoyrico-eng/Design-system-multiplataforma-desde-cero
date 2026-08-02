@@ -1,0 +1,10 @@
+{
+  "collectionIcons": {
+    "foundations": "foundation",
+    "primitives": "token",
+    "components": "widgets",
+    "patterns": "conversion_path",
+    "templates": "dashboard_customize",
+    "stack": "deployed_code"
+  }
+}

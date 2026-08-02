@@ -1,0 +1,17 @@
+{
+  "components": {
+    "checkbox": {
+      "full-width": {
+        "copy": "Checkbox rows may fill the available width, but the control box keeps its fixed size and the label owns the remaining space.",
+        "items": [
+          { "label": "Phone setting", "layout": "stack", "demo": { "label": "Send route updates", "description": "Best for touch targets.", "checked": true, "state": "checked", "density": "lg" } },
+          { "label": "Table row", "layout": "natural", "demo": { "label": "MX-2048", "description": "Selectable driver row.", "checked": false, "state": "unchecked", "density": "sm" } },
+          { "label": "Permission group", "layout": "container", "demos": [
+            { "span": "6", "label": "View wallet", "description": "Read-only access.", "checked": true, "state": "checked", "density": "md" },
+            { "span": "6", "label": "Edit wallet", "description": "Requires manager approval.", "checked": false, "state": "focus", "density": "md" }
+          ] }
+        ]
+      }
+    }
+  }
+}

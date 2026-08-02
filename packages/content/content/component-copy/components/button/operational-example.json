@@ -1,0 +1,66 @@
+{
+  "components": {
+    "button": {
+      "operational-example": {
+        "copy": "Show the decision the button makes possible: action, consequence, loading path, and recovery context.",
+        "scenario": {
+          "type": "button-decision",
+          "rationaleTitle": "Why Button",
+          "rationale": [
+            "The main decision is explicit in the confirmation group.",
+            "Danger intent is used because the action blocks card usage.",
+            "Loading prevents duplicate activation while the service responds."
+          ],
+          "sheet": {
+            "icon": "credit_card",
+            "title": "Block card ending 1842",
+            "meta": "Driver: Ana Gomez · Vehicle MX-4821",
+            "body": "This stops fuel purchases immediately. The fleet manager can unblock the card after reviewing the latest movement.",
+            "actions": [
+              {
+                "label": "Block card",
+                "variant": "primary",
+                "intent": "danger",
+                "size": "sm",
+                "icon": "block",
+                "state": "",
+                "density": ""
+              },
+              {
+                "label": "Keep active",
+                "variant": "outlined",
+                "intent": "",
+                "size": "sm",
+                "icon": "",
+                "state": "",
+                "density": ""
+              }
+            ]
+          },
+          "decisions": [
+            {
+              "key": "variant",
+              "value": "primary",
+              "note": "This is the main decision in the confirmation group."
+            },
+            {
+              "key": "intent",
+              "value": "danger",
+              "note": "The action blocks card usage and has operational consequence."
+            },
+            {
+              "key": "state",
+              "value": "loading",
+              "note": "The action must block duplicate activation while the card service responds."
+            },
+            {
+              "key": "event",
+              "value": "button.block-card",
+              "note": "The action needs audit and product telemetry."
+            }
+          ]
+        }
+      }
+    }
+  }
+}

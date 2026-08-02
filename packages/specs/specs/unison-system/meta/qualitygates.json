@@ -1,0 +1,23 @@
+{
+  "qualityGates": {
+    "blocking": [
+      "No inherited prefixes such as eds-* or system-*.",
+      "No inline style attributes.",
+      "No hex colors outside token declarations.",
+      "No raw px values outside token declarations.",
+      "No emoji-like glyphs as iconography.",
+      "Foundation and primitive inventory must match the machine-readable spec.",
+      "Foundation and primitive detail section functions must exist in the rendered app.",
+      "CSS must be balanced.",
+      "Gold components must expose component tokens."
+    ],
+    "maturityWarnings": [
+      "Foundations need reference-level product examples.",
+      "Primitives need explicit implementation demos.",
+      "Components need states, accessibility, responsive behavior, API, and tests.",
+      "Patterns need entry conditions, decision trees, failure modes, metrics, and components used.",
+      "Templates need realistic data, permissions, loading, empty, error, offline, recovery, and telemetry states."
+    ],
+    "definitionOfDone": "An artifact is done only at maturity level 3 or 4."
+  }
+}

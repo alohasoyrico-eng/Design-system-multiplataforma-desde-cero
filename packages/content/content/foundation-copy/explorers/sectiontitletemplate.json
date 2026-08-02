@@ -1,0 +1,5 @@
+{
+  "explorers": {
+    "sectionTitleTemplate": "{{title}} Explorer"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "demos": {
+    "Loading": {
+      "type": "loading",
+      "initial": "skeleton",
+      "ariaLabel": "Loading examples",
+      "choices": [
+        [
+          "skeleton",
+          "skeleton"
+        ],
+        [
+          "stale",
+          "stale"
+        ],
+        [
+          "sync",
+          "sync"
+        ],
+        [
+          "progress",
+          "progress"
+        ]
+      ],
+      "states": {
+        "skeleton": "Skeleton loading",
+        "stale": "Showing stale data",
+        "sync": "Sync pending",
+        "progress": "Determinate progress"
+      }
+    }
+  }
+}

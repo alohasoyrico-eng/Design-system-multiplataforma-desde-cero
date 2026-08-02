@@ -1,0 +1,333 @@
+{
+  "artifacts": {
+    "components": {
+      "tabs": {
+        "id": "tabs",
+        "name": "Tabs",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Switch between sibling content sections within one context.",
+        "anatomy": [
+          {
+            "part": "Tablist",
+            "rule": "Owns grouping and keyboard model.",
+            "tokens": [
+              "comp.tabs.*",
+              "sys.accessibility.*"
+            ]
+          },
+          {
+            "part": "Tab",
+            "rule": "Names one sibling section.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Indicator",
+            "rule": "Shows selected state with Flow action-primary and inertial indicator travel.",
+            "tokens": [
+              "sys.energy.*",
+              "sys.frame.*"
+            ]
+          },
+          {
+            "part": "Panel association",
+            "rule": "Connects tab to visible content.",
+            "tokens": [
+              "sys.accessibility.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "default",
+            "description": "Pill-style selected surface with spring-like indicator motion."
+          },
+          {
+            "id": "underline",
+            "description": "Dense detail treatment with accent underline indicator."
+          }
+        ],
+        "intents": [
+          {
+            "id": "default",
+            "description": "Standard sibling navigation."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "selected",
+          "focus",
+          "overflow",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > focus > selected > hover > overflow > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Flow action-primary for selected/current tab while preserving readable text and indicator contrast.",
+            "tokens": [
+              "comp.tabs.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Selected tab is unmistakable.",
+            "example": "Wallet overview selected.",
+            "test": "Verify selected/current tab uses Flow action-primary and active state is not color-only.",
+            "rejectIf": "Selected/current tab uses raw color or non-Flow color."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice for concise labels.",
+            "tokens": [
+              "sys.voice.*"
+            ],
+            "behavior": "Labels remain readable in narrow viewports.",
+            "example": "Overview, Movements, Settings.",
+            "test": "Verify label length.",
+            "rejectIf": "Truncated label loses meaning."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame for spacing, radius, indicator, and hit area.",
+            "tokens": [
+              "comp.tabs.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Tabs align as one control group.",
+            "example": "Contained tabs.",
+            "test": "Verify layout at breakpoints.",
+            "rejectIf": "Tabs overlap."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth through parent surfaces only.",
+            "tokens": [
+              "sys.depth.*"
+            ],
+            "behavior": "Tabs do not require shadows.",
+            "example": "Tabs on card detail.",
+            "test": "Verify no decorative elevation.",
+            "rejectIf": "Shadow is selected state."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum for inertial selected-indicator travel and width change that preserves spatial continuity.",
+            "tokens": [
+              "sys.momentum.*"
+            ],
+            "behavior": "The selected indicator slides and resizes between tabs instead of swapping state flatly; this is the benchmark for selection motion.",
+            "example": "Default Tabs indicator travels from Overview to Movements.",
+            "test": "Verify reduced motion.",
+            "rejectIf": "Motion delays navigation."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use State for disabled, focus, selected, hover, overflow, and default.",
+            "tokens": [
+              "sys.state.*"
+            ],
+            "behavior": "Only one tab is active.",
+            "example": "Selected dashboard tab.",
+            "test": "Verify aria-selected.",
+            "rejectIf": "Multiple selected tabs."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone for section names.",
+            "tokens": [
+              "sys.tone.*"
+            ],
+            "behavior": "Tab names match content.",
+            "example": "Movements.",
+            "test": "Verify IA language.",
+            "rejectIf": "Vague tab labels."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth so tab navigation scales into templates and patterns.",
+            "tokens": [
+              "sys.growth.*"
+            ],
+            "behavior": "Tabs remain a base navigation component.",
+            "example": "Wallet detail templates.",
+            "test": "Verify pattern escalation.",
+            "rejectIf": "Process hidden inside Tabs."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol only for optional tab icons.",
+            "tokens": [
+              "sys.symbol.*"
+            ],
+            "behavior": "Icons support labels.",
+            "example": "Dashboard icon with label.",
+            "test": "Verify icon is optional.",
+            "rejectIf": "Icon replaces label."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography for optional icons and badge alignment.",
+            "tokens": [
+              "sys.iconography.*"
+            ],
+            "behavior": "Icon and badge do not crowd labels.",
+            "example": "Tab with Badge count.",
+            "test": "Verify alignment.",
+            "rejectIf": "Badge replaces label."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility for tablist, tab, tabpanel, keyboard navigation, and selected state.",
+            "tokens": [
+              "sys.accessibility.*"
+            ],
+            "behavior": "Tabs are keyboard-operable.",
+            "example": "Arrow keys move focus.",
+            "test": "Verify roles and keyboard.",
+            "rejectIf": "Selected is visual only."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Density",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.tabs.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "productExamples": [
+          {
+            "context": "Wallet detail",
+            "example": "Overview, Movements, Settings."
+          },
+          {
+            "context": "Dashboard",
+            "example": "Fuel, EV, Finance."
+          },
+          {
+            "context": "Audit",
+            "example": "Events, Rules, Users."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for sibling sections.",
+            "Expose one selected tab.",
+            "Support keyboard navigation."
+          ],
+          "dont": [
+            "Do not use for unrelated routes.",
+            "Do not hide processs.",
+            "Do not replace labels with badges."
+          ],
+          "info": [
+            "Complex section systems may become patterns."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "scrollable short labels"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "contained or default tabs"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "underline dashboard tabs"
+          }
+        ],
+        "agentInstructions": [
+          "Use Tabs only for sibling sections inside one context.",
+          "Ask when sections change global navigation or process.",
+          "Ensure active tab is machine-readable."
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Accessible tablist label."
+          },
+          {
+            "name": "items",
+            "type": "Array<{ key?: string; value?: string; label: string; icon?: string; count?: number; badge?: BadgeProps; disabled?: boolean }>",
+            "required": true,
+            "notes": "List of sibling sections with optional icon and badge metadata."
+          },
+          {
+            "name": "selectedKey",
+            "type": "string",
+            "required": false,
+            "notes": "Active tab key."
+          },
+          {
+            "name": "onValueChange",
+            "type": "(key: string) => void",
+            "required": false,
+            "notes": "Called when local tab selection changes."
+          },
+          {
+            "name": "variant",
+            "type": "\"default\" | \"underline\"",
+            "required": false,
+            "notes": "Visual treatment for sibling section navigation."
+          }
+        ],
+        "tests": [
+          "Tablist name",
+          "Selected tab",
+          "Keyboard navigation",
+          "Panel association",
+          "Overflow",
+          "Selected/current tab uses Flow action-primary",
+          "Indicator travels and resizes with inertial easing"
+        ],
+        "rejectIf": [
+          "Unrelated navigation",
+          "Visual-only selected",
+          "Missing keyboard behavior",
+          "Selected/current uses non-Flow color.",
+          "Tabs component demos render through docs-only tabs-demo instead of package Tabs."
+        ],
+        "semanticDecisions": [
+          {
+            "id": "selected-current-color",
+            "state": "selected/current",
+            "decision": "Use sys.energy action-primary for selected/current tab.",
+            "treatment": "Retain pill/underline indicator travel, width change, and inertial easing."
+          }
+        ]
+      }
+    }
+  }
+}

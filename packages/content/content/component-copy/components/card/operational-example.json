@@ -1,0 +1,41 @@
+{
+  "components": {
+    "card": {
+      "operational-example": {
+        "copy": "Show what the card helps someone scan or decide: object, value, state, and next available action.",
+        "scenario": {
+          "type": "card-grid",
+          "rationaleTitle": "Why Card",
+          "rationale": [
+            "Each surface frames one object or decision for quick scanning.",
+            "Title, value, detail, icon, and state stay visible together.",
+            "The parent layout decides grid behavior; Card owns the surface contract."
+          ],
+          "cards": [
+            {
+              "title": "Wallet balance",
+              "value": "$8,412.50",
+              "detail": "Card active · last movement 14:32",
+              "icon": "account_balance_wallet",
+              "state": "interactive"
+            },
+            {
+              "title": "Station detail",
+              "value": "Pemex Polanco",
+              "detail": "1.8 km · open 24 h · route ready",
+              "icon": "local_gas_station",
+              "state": "selected"
+            },
+            {
+              "title": "Fleet health",
+              "value": "93%",
+              "detail": "18 exceptions need review",
+              "icon": "monitoring",
+              "state": "default"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

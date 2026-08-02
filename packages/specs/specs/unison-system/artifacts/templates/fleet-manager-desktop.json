@@ -1,0 +1,110 @@
+{
+  "artifacts": {
+    "templates": {
+      "fleet-manager-desktop": {
+        "layer": "Template",
+        "platform": "Desktop",
+        "audiences": [
+          "Product Designers",
+          "PMs",
+          "Developers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "purpose": "Fleet manager scans operational health, isolates exceptions, and assigns follow-up without leaving the dashboard.",
+        "maturityTarget": "measured",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Tone",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Iconography",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Breakpoints",
+          "Charts"
+        ],
+        "patternDependencies": [
+          "Fleet Dashboard Overview",
+          "Fuel Dashboard",
+          "Roles and Permissions"
+        ],
+        "tokenDependencies": [
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.accessibility.*",
+          "sys.momentum.*",
+          "sys.charts.*"
+        ],
+        "densityContext": [
+          "Laptop",
+          "Desktop",
+          "TV"
+        ],
+        "modules": [
+          "Executive KPI band",
+          "Exception inbox",
+          "Fleet activity timeline",
+          "Cost center filter set"
+        ],
+        "dataSources": [
+          "vehicle health",
+          "driver status",
+          "alerts",
+          "spend"
+        ],
+        "permissions": [
+          "fleet scope",
+          "cost center",
+          "admin role"
+        ],
+        "states": [
+          "loaded",
+          "loading",
+          "empty",
+          "error",
+          "permission",
+          "offline"
+        ],
+        "surfaces": [
+          "Laptop",
+          "Desktop",
+          "TV"
+        ],
+        "telemetry": [
+          "dashboard filtered",
+          "exception opened",
+          "follow-up assigned"
+        ],
+        "qualityGates": [
+          "Filters persist across dashboard modules.",
+          "Exceptions keep owner, severity, and recovery route.",
+          "Permission scope changes visible data and actions."
+        ],
+        "agentInstructions": [
+          "This template is the manager operating console: it must preserve context while moving from health scan to exception triage to accountable follow-up.",
+          "The screen system is built around overview, exception handling, activity history, and scope controls so managers can move without losing operational context.",
+          "Navigation follows fleet-management responsibility: overview first, then operational domains, then configuration."
+        ],
+        "rejectIf": [
+          "Template invents behavior outside its approved pattern dependencies.",
+          "Template modules omit data, permission, state, or recovery ownership.",
+          "Template bypasses Design System foundations, primitives, density, or semantic tokens."
+        ]
+      }
+    }
+  }
+}

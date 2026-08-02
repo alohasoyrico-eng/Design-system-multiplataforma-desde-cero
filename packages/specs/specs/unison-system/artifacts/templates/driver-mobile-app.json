@@ -1,0 +1,108 @@
+{
+  "artifacts": {
+    "templates": {
+      "driver-mobile-app": {
+        "layer": "Template",
+        "platform": "Mobile",
+        "audiences": [
+          "Product Designers",
+          "PMs",
+          "Developers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "purpose": "Driver opens the app at a station and needs to know if the card is ready, where to fuel, and what to do if something fails.",
+        "maturityTarget": "measured",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Tone",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Iconography",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Breakpoints"
+        ],
+        "patternDependencies": [
+          "Driver Onboarding Mobile",
+          "Mobile Card Overview",
+          "Routes and Nearby Stations Mobile"
+        ],
+        "tokenDependencies": [
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.accessibility.*",
+          "sys.momentum.*"
+        ],
+        "densityContext": [
+          "Mobile",
+          "Tablet",
+          "Reduced motion"
+        ],
+        "modules": [
+          "Card hero with limits",
+          "Recent movement feed",
+          "Nearby station shortcut",
+          "Support and dispute path"
+        ],
+        "dataSources": [
+          "card status",
+          "limits",
+          "movements",
+          "station distance"
+        ],
+        "permissions": [
+          "biometric login",
+          "location",
+          "push notifications"
+        ],
+        "states": [
+          "loaded",
+          "loading",
+          "empty",
+          "error",
+          "permission",
+          "offline"
+        ],
+        "surfaces": [
+          "Mobile",
+          "Tablet",
+          "Reduced motion"
+        ],
+        "telemetry": [
+          "card readiness viewed",
+          "nearby station opened",
+          "support path started"
+        ],
+        "qualityGates": [
+          "Card readiness, route access, and support recovery are visible on first load.",
+          "Location denial keeps route and station discovery usable.",
+          "Biometric fallback preserves trust copy and recovery."
+        ],
+        "agentInstructions": [
+          "This template is the driver entry point: it must connect authentication, card readiness, nearby stations, recent activity, and support without making the driver hunt across separate screens.",
+          "The screen system prioritizes first-use readiness, then repeated driver actions, then recovery. Modules should behave like one mobile product surface rather than disconnected shortcuts.",
+          "Navigation follows the driver's daily jobs: start, control card, find fuel, and recover through support."
+        ],
+        "rejectIf": [
+          "Template invents behavior outside its approved pattern dependencies.",
+          "Template modules omit data, permission, state, or recovery ownership.",
+          "Template bypasses Design System foundations, primitives, density, or semantic tokens."
+        ]
+      }
+    }
+  }
+}

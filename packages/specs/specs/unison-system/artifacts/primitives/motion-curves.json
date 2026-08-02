@@ -1,0 +1,122 @@
+{
+  "artifacts": {
+    "primitives": {
+      "motion-curves": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "tokens",
+          "states",
+          "agentInstructions",
+          "rejectIf"
+        ],
+        "maturityTarget": 3,
+        "name": "Motion Curves",
+        "purpose": "Turn Momentum easing roles into implementation-ready curves for touch feedback, enter and exit lifecycle motion, move/morph transitions, and linear loading.",
+        "governingFoundations": [
+          "Momentum",
+          "State",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.momentum.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "roles": [
+          {
+            "id": "touch",
+            "token": "motion.curve.touch",
+            "use": "Controls people touch: hover, press, focus, toggle, and quick feedback."
+          },
+          {
+            "id": "enter",
+            "token": "motion.curve.enter",
+            "use": "Sheets, drawers, menus entering."
+          },
+          {
+            "id": "exit",
+            "token": "motion.curve.exit",
+            "use": "Sheets, drawers, menus, dialogs, and temporary surfaces leaving."
+          },
+          {
+            "id": "move",
+            "token": "motion.curve.move",
+            "use": "Movement, morphing, and layout continuity."
+          },
+          {
+            "id": "standard",
+            "token": "motion.curve.standard",
+            "use": "Alias for touch during migration; do not choose it as a separate style."
+          },
+          {
+            "id": "linear",
+            "token": "motion.curve.linear",
+            "use": "Continuous loading or progress movement."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Bottom sheet",
+            "example": "Enter curve reveals station detail with spatial continuity."
+          },
+          {
+            "context": "Dashboard refresh",
+            "example": "Touch curve confirms filter chips, toggles, and quick actions with spring feedback."
+          },
+          {
+            "context": "Loading",
+            "example": "Linear curve applies to continuous spinner only."
+          }
+        ],
+        "api": {
+          "props": [
+            "curve",
+            "purpose",
+            "reducedMotion"
+          ],
+          "outputs": [
+            "easingToken",
+            "reducedMotionFallback"
+          ]
+        },
+        "tokenDependencies": [
+          "ref.momentum.easing.*",
+          "sys.momentum.easing.*",
+          "motion.curve.*"
+        ],
+        "states": [
+          "touch",
+          "enter",
+          "exit",
+          "move",
+          "standard",
+          "continuous",
+          "reduced"
+        ],
+        "agentInstructions": [
+          "Choose curve by semantic motion purpose.",
+          "Define reduced-motion fallback.",
+          "Avoid custom cubic-bezier values."
+        ],
+        "rejectIf": [
+          "Custom easing outside tokens.",
+          "Curve used decoratively.",
+          "Reduced-motion equivalent missing."
+        ]
+      }
+    }
+  }
+}

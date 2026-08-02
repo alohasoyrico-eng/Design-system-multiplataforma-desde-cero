@@ -1,0 +1,54 @@
+{
+  "agentContract": {
+    "sourceOfTruth": "packages/specs/specs/unison.system.json",
+    "humanReadableSurface": "app.js rendered documentation routes fed by packages/content/content/component-copy.json",
+    "temporaryPlanningDocs": [],
+    "syncRule": "Machine-readable contracts in packages/specs/specs/unison.system.json govern technical validity. Visible documentation and fixtures in packages/content/content/component-copy.json may explain and demonstrate those contracts, but cannot introduce states, props, variants, foundations, or rejection rules that contradict the spec. packages/audit/scripts/audit-system.js must verify the crossing before content is considered trustworthy.",
+    "artifactRequirements": {
+      "all": [
+        "layer",
+        "platform",
+        "audiences",
+        "governingFoundations",
+        "primitiveDependencies",
+        "states",
+        "accessibility",
+        "responsiveBehavior",
+        "tokenDependencies",
+        "agentInstructions"
+      ],
+      "component": [
+        "anatomy",
+        "variants",
+        "sizes",
+        "events",
+        "testingChecklist"
+      ],
+      "pattern": [
+        "entryConditions",
+        "decisionTree",
+        "failureModes",
+        "successMetrics",
+        "componentsUsed"
+      ],
+      "template": [
+        "productContext",
+        "informationArchitecture",
+        "flows",
+        "dataPermissions",
+        "telemetry",
+        "recovery"
+      ]
+    },
+    "rejectIf": [
+      "The artifact exposes raw token values as public API.",
+      "The artifact skips foundations or primitive dependencies.",
+      "The artifact uses emoji or text placeholders instead of governed iconography.",
+      "The artifact requires animation to understand a task.",
+      "The artifact lacks accessibility behavior for name, role, state, focus, keyboard, contrast, reduced motion, or recovery.",
+      "The artifact creates a chart without an accessible text summary.",
+      "The artifact creates a map without permission-denied and fallback-list behavior."
+    ],
+    "contentSurface": "packages/content/content/component-copy.json"
+  }
+}

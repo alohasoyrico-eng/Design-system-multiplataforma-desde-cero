@@ -1,0 +1,212 @@
+{
+  "components": {
+    "biometric-prompt": {
+      "model": "controlled-shell",
+      "packageOwned": [
+        "state rendering",
+        "primary action event",
+        "fallback action event",
+        "disabled state"
+      ],
+      "callbacks": [
+        "onAuthenticate",
+        "onFallback"
+      ],
+      "focusRules": [
+        "Primary and fallback actions use Design System Button focus behavior."
+      ],
+      "keyboardRules": [
+        "Actions use native button keyboard behavior."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "platform authentication lifecycle",
+        "passcode recovery",
+        "risk escalation"
+      ]
+    },
+    "pagination": {
+      "model": "controlled-or-uncontrolled",
+      "packageOwned": [
+        "current page rendering",
+        "prev/next disabled state",
+        "page change callback"
+      ],
+      "callbacks": [
+        "onPageChange"
+      ],
+      "focusRules": [
+        "Page buttons use native button focus behavior."
+      ],
+      "keyboardRules": [
+        "Native button keyboard behavior is preserved."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "remote data paging",
+        "URL sync",
+        "filter coupling"
+      ]
+    },
+    "tree-view": {
+      "model": "controlled-or-uncontrolled",
+      "packageOwned": [
+        "selection state",
+        "expanded state",
+        "roving focus",
+        "nested visibility",
+        "treeitem ARIA"
+      ],
+      "callbacks": [
+        "onSelect",
+        "onExpandedChange"
+      ],
+      "focusRules": [
+        "Only the active tree item is tabbable."
+      ],
+      "keyboardRules": [
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+        "Home",
+        "End"
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "permission matrix editing",
+        "drag and drop",
+        "multi-pane explorer processs"
+      ]
+    },
+    "card-number-input": {
+      "model": "controlled-input-with-local-validation",
+      "packageOwned": [
+        "digit normalization",
+        "four-digit grouping",
+        "Luhn structure validation",
+        "validity dataset state",
+        "aria-invalid recovery",
+        "cc-number autocomplete",
+        "numeric keyboard hint",
+        "disabled and loading states"
+      ],
+      "callbacks": [
+        "onValueChange"
+      ],
+      "focusRules": [
+        "Native card number input receives focus; Design System field control owns the visible focus treatment."
+      ],
+      "keyboardRules": [
+        "Native text input behavior is preserved for typing, paste, correction, and autofill."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "card expiry",
+        "card security code",
+        "backend validation",
+        "tokenization",
+        "card ownership",
+        "payment or enrollment submission"
+      ]
+    },
+    "card-expiry-input": {
+      "model": "controlled-input-with-local-validation",
+      "packageOwned": [
+        "digit normalization",
+        "MM/YY formatting",
+        "month range validation",
+        "expired-date validation",
+        "validity dataset state",
+        "aria-invalid recovery",
+        "cc-exp autocomplete",
+        "numeric keyboard hint",
+        "disabled and loading states"
+      ],
+      "callbacks": [
+        "onValueChange"
+      ],
+      "focusRules": [
+        "Native expiry input receives focus; Design System field control owns the visible focus treatment."
+      ],
+      "keyboardRules": [
+        "Native text input behavior is preserved for typing, paste, correction, and autofill."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "card number",
+        "card security code",
+        "backend validation",
+        "tokenization",
+        "card ownership",
+        "payment or enrollment submission"
+      ]
+    },
+    "card-security-code-input": {
+      "model": "controlled-input-with-local-validation",
+      "packageOwned": [
+        "digit normalization",
+        "3 or 4 digit length validation",
+        "validity dataset state",
+        "aria-invalid recovery",
+        "cc-csc autocomplete",
+        "numeric keyboard hint",
+        "optional reveal field action",
+        "disabled and loading states"
+      ],
+      "callbacks": [
+        "onValueChange"
+      ],
+      "focusRules": [
+        "Native security code input receives focus; the reveal action is an adjacent field action with its own accessible name."
+      ],
+      "keyboardRules": [
+        "Native text input behavior is preserved for typing, paste, correction, and autofill."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "card number",
+        "card expiry",
+        "backend validation",
+        "tokenization",
+        "card ownership",
+        "payment or enrollment submission"
+      ]
+    },
+    "date-range-picker": {
+      "model": "controlled-or-uncontrolled-range-input",
+      "packageOwned": [
+        "start and end date value rendering",
+        "trigger open state",
+        "calendar day selection",
+        "range start, middle, and end visual states",
+        "local preset selection",
+        "hidden native date values",
+        "Escape close",
+        "keyboard day navigation"
+      ],
+      "callbacks": [
+        "onValueChange",
+        "onOpenChange"
+      ],
+      "focusRules": [
+        "Trigger opens the calendar; closing returns focus to trigger.",
+        "Calendar day buttons are keyboard reachable when the panel is open."
+      ],
+      "keyboardRules": [
+        "Enter or Space selects a date.",
+        "Arrow keys move between day targets.",
+        "Escape closes the panel."
+      ],
+      "docsOnlyUntilPackaged": [],
+      "patternOwned": [
+        "dashboard filtering",
+        "URL persistence",
+        "saved views",
+        "comparison ranges",
+        "remote data refresh",
+        "fiscal calendar business rules"
+      ]
+    }
+  }
+}

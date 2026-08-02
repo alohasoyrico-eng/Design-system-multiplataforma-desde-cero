@@ -1,0 +1,130 @@
+{
+  "artifacts": {
+    "primitives": {
+      "message": {
+        "layer": "Primitive",
+        "platform": "System",
+        "audiences": [
+          "Product Designers",
+          "Content Designers",
+          "Developers",
+          "Researchers",
+          "Service Designers"
+        ],
+        "requiredSections": [
+          "purpose",
+          "foundationInputs",
+          "roles",
+          "productExamples",
+          "api",
+          "states",
+          "agentInstructions",
+          "rejectIf",
+          "accessibility"
+        ],
+        "maturityTarget": 3,
+        "name": "Message",
+        "purpose": "Turn Tone foundation roles into implementation-ready messaging primitives for intent, severity, anatomy, recovery, accessibility, localization, and UI mapping.",
+        "governingFoundations": [
+          "Tone",
+          "Voice",
+          "State",
+          "Accessibility"
+        ],
+        "foundationInputs": [
+          "sys.tone.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "roles": [
+          {
+            "id": "intent",
+            "token": "message.intent.*",
+            "use": "Info, success, warning, danger, neutral, and assistive message purpose."
+          },
+          {
+            "id": "severity",
+            "token": "message.severity.*",
+            "use": "Low, medium, high, and blocking operational consequence."
+          },
+          {
+            "id": "anatomy",
+            "token": "message.anatomy.*",
+            "use": "Title, body, consequence, action, recovery, and support path."
+          },
+          {
+            "id": "announcement",
+            "token": "message.a11y.*",
+            "use": "Live region, alert, focus, and status behavior."
+          },
+          {
+            "id": "localization",
+            "token": "message.locale.*",
+            "use": "Length, clarity, ambiguity, and translation guardrails."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Block card confirmation",
+            "example": "Danger message states consequence, recovery path, and primary/secondary actions before confirmation."
+          },
+          {
+            "context": "OTP error",
+            "example": "Message distinguishes invalid code from expired code and offers resend or alternate path."
+          },
+          {
+            "context": "Station route unavailable",
+            "example": "Message explains location permission or route provider failure with fallback list."
+          }
+        ],
+        "api": {
+          "props": [
+            "intent",
+            "severity",
+            "title",
+            "body",
+            "action",
+            "recovery",
+            "announceAs",
+            "locale"
+          ],
+          "outputs": [
+            "messageRole",
+            "copyParts",
+            "a11yBehavior",
+            "uiMapping",
+            "recoveryPath"
+          ]
+        },
+        "tokenDependencies": [
+          "sys.tone.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "states": [
+          "neutral",
+          "assistive",
+          "success",
+          "warning",
+          "danger",
+          "blocking",
+          "recoverable",
+          "localized"
+        ],
+        "agentInstructions": [
+          "Choose message intent before UI component.",
+          "Always include consequence and recovery for danger or blocking states.",
+          "Map accessibility behavior before rendering toast, alert, inline error, banner, dialog, or empty state."
+        ],
+        "rejectIf": [
+          "Copy describes what happened but not what to do next.",
+          "Danger message has no consequence or recovery path.",
+          "Message uses humor, metaphor, or vague language in operational contexts.",
+          "Agent renders feedback without accessible announcement behavior."
+        ]
+      }
+    }
+  }
+}

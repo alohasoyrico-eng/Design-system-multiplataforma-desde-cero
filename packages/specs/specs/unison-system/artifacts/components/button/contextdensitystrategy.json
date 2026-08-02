@@ -1,0 +1,43 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "one column, full-width primary actions when actions sit below content",
+            "rules": [
+              "Prioritize thumb reach.",
+              "Stack primary and secondary actions.",
+              "Expose disabled/loading reasons close to the button."
+            ]
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "grouped action rows and two-to-three-column documentation examples",
+            "rules": [
+              "Preserve scanning.",
+              "Keep primary and secondary actions in the same decision group.",
+              "Avoid full-width actions unless the container is constrained."
+            ]
+          },
+          {
+            "context": "desktops + TV",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "wide scan, persistent toolbars, fewer larger actions for distance viewing",
+            "rules": [
+              "Avoid tiny targets in distance contexts.",
+              "Reduce action count.",
+              "Use clear hierarchy and larger labels for TV."
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

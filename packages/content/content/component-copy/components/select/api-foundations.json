@@ -1,0 +1,77 @@
+{
+  "components": {
+    "select": {
+      "api-foundations": {
+        "copy": "Select composes field, trigger, option surface, validation, loading, and events for one closed-choice value. Select input, country search, and multiple selection must be documented as their own system items instead of expanding this API silently.",
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": "yes",
+            "notes": "Visible label and accessible name source."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": "controlled",
+            "notes": "Current selected value."
+          },
+          {
+            "name": "options",
+            "type": "Option[]",
+            "required": "yes",
+            "notes": "Each option includes value, label, optional description, disabled reason, and metadata."
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "required": "no",
+            "notes": "Optional leading Material Symbol for the selected domain, matching the reference dropdown treatment."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": "no",
+            "notes": "Must explain what kind of entity is expected."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": "no",
+            "notes": "Shows progress and blocks misleading stale options."
+          },
+          {
+            "name": "error",
+            "type": "string",
+            "required": "conditional",
+            "notes": "Visible recovery copy; associate with field."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean | reason",
+            "required": "no",
+            "notes": "Disabled states need explanation, especially permission-blocked."
+          },
+          {
+            "name": "density",
+            "type": "\"sm\" | \"md\" | \"lg\"",
+            "required": "no",
+            "notes": "Maps the trigger and option rhythm to Design System Density."
+          },
+          {
+            "name": "state",
+            "type": "\"default\" | \"open\" | \"focus\" | \"filled\" | \"loading\" | \"error\" | \"disabled\"",
+            "required": "no",
+            "notes": "Documents visual and interaction state without changing the single-select contract."
+          },
+          {
+            "name": "onChange",
+            "type": "(value, option) => void",
+            "required": "yes",
+            "notes": "Emits semantic value, selected option, source, and analytics metadata."
+          }
+        ]
+      }
+    }
+  }
+}

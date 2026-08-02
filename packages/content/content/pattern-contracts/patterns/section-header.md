@@ -1,0 +1,123 @@
+# Section Header
+
+Generated portable agent contract for Design System.
+
+The JSON content remains the editable source of truth. Regenerate this file with `npm run build:pattern-contracts` after changing pattern copy.
+
+Source content:
+
+- `packages/content/content/pattern-copy/patterns/section-header/all.json`
+
+## Purpose
+
+Introduce dense product sections with title, supporting context, status, actions, overflow, and responsive priority rules.
+
+## Use When
+
+- A dashboard, table, form, or settings area needs a consistent section entry point.
+- Actions, status, and description need clear priority.
+- The section header coordinates local navigation or process state.
+
+## Do Not Use Without Review
+
+- A simple heading is enough.
+- Actions are unrelated to the section.
+- The header becomes a toolbar, alert, or navigation pattern.
+
+## Foundations
+
+| Foundation | Contract |
+| --- | --- |
+| Frame | Defines heading/action layout, wrap behavior, density, and spacing from content. |
+| Voice | Owns title, description, status copy, and action labels. |
+| Energy | Controls status, focus, action priority, and disabled treatment. |
+| State | Default, loading, dirty, disabled, error, empty, and action-overflow states are explicit. |
+| Depth | Overflow menus layer above the section without turning the header into a card. |
+| Accessibility | Heading level, action grouping, status text, and overflow names are required. |
+
+## Slot Contract
+
+| Slot | Type | Required | Notes |
+| --- | --- | --- | --- |
+| title | Heading | yes | Section title with correct heading level. |
+| description | Text | conditional | Short supporting context. |
+| status | Badge \| Tag | conditional | State or metadata attached to the section. |
+| actions | Button[] | conditional | Primary and secondary section actions. |
+| overflow | Menu | conditional | Lower-priority actions on constrained viewports. |
+
+## Components And Primitives Used
+
+- Badge
+- Tag
+- Button
+- Menu
+- Skeleton
+
+## Variants
+
+| Variant | Status | Rule |
+| --- | --- | --- |
+| Dashboard section | Required | Title, status, and action align above a data module. |
+| Form section | Candidate | Dirty or saved status appears near the title. |
+| Responsive overflow | Required state | Secondary actions move to overflow when space is constrained. |
+
+## Motion Contract
+
+| Behavior | Rule |
+| --- | --- |
+| Status update | Status text changes without shifting layout. |
+| Overflow reveal | Menu uses Design System overlay motion and reduced-motion fallback. |
+| Loading | Skeleton preserves header height. |
+
+## Accessibility
+
+- Heading level fits page structure.
+- Status is text-backed.
+- Actions have clear labels.
+- Overflow menu is keyboard reachable.
+
+## Implementation Checklist
+
+- Declare `title`: Section title with correct heading level.
+- Header wraps without overlapping actions.
+- Status remains visible.
+- Primary action is keyboard reachable.
+- Overflow works on narrow viewports.
+
+## Tests And Rejection Rules
+
+Must test:
+
+- Header wraps without overlapping actions.
+- Status remains visible.
+- Primary action is keyboard reachable.
+- Overflow works on narrow viewports.
+
+Reject if:
+
+- A plain heading is enough.
+- Actions are unrelated to the section.
+- The header replaces Toolbar, Alert, or Navigation behavior.
+
+## MIEL
+
+Agents can decide:
+
+- Use Section Header when a section needs title plus local status/actions.
+- Keep actions scoped to the section.
+- Use Button and Menu instead of custom action surfaces.
+
+Agents must ask:
+
+- Heading hierarchy, action ownership, status source, or overflow priority is unclear.
+- Section actions affect financial, compliance, legal, or identity state.
+
+Agents must reject:
+
+- A plain heading is enough.
+- Actions are unrelated to the section.
+- The header replaces Toolbar, Alert, or Navigation behavior.
+
+Handoff language:
+
+> Confirm heading level, section scope, status source, action priority, overflow behavior, and responsive layout.

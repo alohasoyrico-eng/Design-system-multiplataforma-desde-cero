@@ -1,0 +1,34 @@
+{
+  "responsibilities": {
+    "Typography": [
+      "Renders text with Voice tokens: family, size, weight, line height, and role.",
+      "Enforces Edenred Black for display/titles/numerals and Ubuntu for body/UI text.",
+      "Maps roles to semantic HTML and product copy hierarchy.",
+      "Handles captions, labels, body, display, numerals, and code without raw CSS."
+    ],
+    "Spacing": [
+      "Lays out children with Frame token gaps.",
+      "Supports semantic gaps for component, subsection, section, and page rhythm.",
+      "Responds to density without per-component hacks.",
+      "Prevents arbitrary margins between child elements."
+    ],
+    "Iconography": [
+      "Renders Material Symbols through the Symbol foundation.",
+      "Enforces semantic icon names and accessible-name rules.",
+      "Keeps icon size and color tokenized.",
+      "Shows missing icon states during development."
+    ],
+    "Density": [
+      "Declares sm, md, or lg at the page or surface level.",
+      "Coordinates Spacing, Typography, Iconography, Focus, Loading, Disabled, and Breakpoints.",
+      "Gives components their scale defaults before variant, intent, and state are applied.",
+      "Prevents public component size overrides and local compact or comfortable hacks."
+    ],
+    "fallback": [
+      "Render {{title}} through semantic foundation roles.",
+      "Expose a small API that maps to foundations and token aliases.",
+      "Work across density, responsive, keyboard, touch, screen reader, contrast, and reduced-motion requirements when relevant.",
+      "Prevent raw visual values or duplicated implementation decisions."
+    ]
+  }
+}

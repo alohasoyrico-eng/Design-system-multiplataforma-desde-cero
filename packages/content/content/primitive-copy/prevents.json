@@ -1,0 +1,10 @@
+{
+  "prevents": {
+    "Typography": "Raw font-size, font-weight, font-family, or text rendered without semantic hierarchy.",
+    "Spacing": "Arbitrary margin/padding on child elements and hardcoded flex/grid gaps.",
+    "Iconography": "Emoji fallbacks, arbitrary glyphs, inline SVGs without semantic role, and unlabeled icon-only actions.",
+    "Color": "Raw hex values, decorative color choices, and status color used without meaning.",
+    "Density": "Public component size props, local compact/comfortable flags, and density that changes spacing without type, icon, focus, loading, disabled, and breakpoint behavior.",
+    "fallbackTemplate": "Hardcoded {{titleLower}} values and one-off implementation behavior."
+  }
+}

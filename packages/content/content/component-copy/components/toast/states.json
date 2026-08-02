@@ -1,0 +1,65 @@
+{
+  "components": {
+    "toast": {
+      "states": {
+        "copy": "Toast states are event driven: default is not mounted, visible announces the event, action exposes a short recovery, stacked groups multiple messages, and exiting removes the toast with motion.",
+        "demos": [
+          {
+            "label": "Saved changes.",
+            "description": "Fleet settings are updated.",
+            "tone": "success",
+            "variant": "status",
+            "state": "visible",
+            "icon": "check_circle",
+            "dismissible": true
+          },
+          {
+            "label": "Retry available.",
+            "description": "The last sync can be attempted again.",
+            "tone": "danger",
+            "variant": "recovery",
+            "state": "action",
+            "icon": "error",
+            "actionLabel": "Retry",
+            "dismissible": true
+          },
+          {
+            "label": "Queued updates.",
+            "description": "Three changes will sync when online.",
+            "tone": "info",
+            "variant": "progress",
+            "state": "stacked",
+            "icon": "sync",
+            "dismissible": true
+          },
+          {
+            "label": "Closing message.",
+            "description": "The toast is leaving the screen.",
+            "tone": "neutral",
+            "variant": "status",
+            "state": "exiting",
+            "icon": "close",
+            "dismissible": true
+          },
+          {
+            "label": "Offline mode.",
+            "description": "Actions are saved locally for now.",
+            "tone": "warning",
+            "variant": "warning",
+            "state": "visible",
+            "icon": "wifi_off",
+            "dismissible": true
+          },
+          {
+            "label": "No toast mounted.",
+            "description": "Default state keeps the feedback layer empty.",
+            "tone": "neutral",
+            "variant": "status",
+            "state": "default",
+            "icon": "notifications"
+          }
+        ]
+      }
+    }
+  }
+}

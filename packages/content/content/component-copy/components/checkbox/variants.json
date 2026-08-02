@@ -1,0 +1,15 @@
+{
+  "components": {
+    "checkbox": {
+      "variants": {
+        "copy": "Variants describe the row structure around the same boolean control. They do not change selection semantics.",
+        "demos": [
+          { "label": "Enable fuel card", "description": "", "checked": false, "state": "unchecked", "variant": "default", "density": "md" },
+          { "label": "Descriptive", "description": "Show balance alerts before a charge is approved.", "checked": true, "state": "checked", "variant": "descriptive", "density": "md" },
+          { "label": "Select all", "description": "3 of 12 drivers selected.", "checked": false, "indeterminate": true, "state": "indeterminate", "variant": "select-all", "density": "md" },
+          { "label": "Compact", "description": "Table row selection", "checked": true, "state": "checked", "variant": "compact", "density": "sm" }
+        ]
+      }
+    }
+  }
+}

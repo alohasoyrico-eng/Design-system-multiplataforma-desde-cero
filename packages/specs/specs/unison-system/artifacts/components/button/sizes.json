@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "sizes": [
+          "sm",
+          "md",
+          "lg"
+        ]
+      }
+    }
+  }
+}

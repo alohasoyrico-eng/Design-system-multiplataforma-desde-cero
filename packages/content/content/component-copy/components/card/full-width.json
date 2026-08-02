@@ -1,0 +1,63 @@
+{
+  "components": {
+    "card": {
+      "full-width": {
+        "copy": "Full-width Card is for mobile stacks, detail sheets, and constrained containers. Desktop dashboards should use grid width from the parent layout.",
+        "items": [
+          {
+            "label": "Natural width",
+            "layout": "stack-natural",
+            "demo": {
+              "title": "Station detail",
+              "value": "Pemex Polanco",
+              "detail": "1.8 km · route ready",
+              "icon": "local_gas_station",
+              "state": "interactive"
+            }
+          },
+          {
+            "label": "Mobile sheet",
+            "layout": "stack",
+            "demo": {
+              "title": "Card ready",
+              "value": "$8,412.50",
+              "detail": "Start route or open wallet",
+              "icon": "credit_card",
+              "state": "interactive"
+            }
+          },
+          {
+            "label": "Responsive containers",
+            "layout": "container",
+            "demos": [
+              {
+                "span": 12,
+                "title": "Fleet health",
+                "value": "93%",
+                "detail": "18 exceptions need review",
+                "icon": "monitoring",
+                "state": "default"
+              },
+              {
+                "span": 8,
+                "title": "Risk",
+                "value": "18",
+                "detail": "exceptions",
+                "icon": "warning",
+                "state": "error"
+              },
+              {
+                "span": 4,
+                "title": "Active",
+                "value": "248",
+                "detail": "vehicles",
+                "icon": "local_shipping",
+                "state": "default"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

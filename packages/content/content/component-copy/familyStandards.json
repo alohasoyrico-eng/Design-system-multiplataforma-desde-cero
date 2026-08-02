@@ -1,0 +1,272 @@
+{
+  "familyStandards": {
+    "profiles": {
+      "Core": [
+        "Action and entry controls",
+        "Driver or manager completes a primary task safely.",
+        [
+          "default",
+          "hover",
+          "focus",
+          "pressed",
+          "disabled",
+          "loading"
+        ]
+      ],
+      "Selection": [
+        "Choice controls",
+        "User chooses one or many valid operational values.",
+        [
+          "default",
+          "selected",
+          "focus",
+          "disabled",
+          "error",
+          "loading"
+        ]
+      ],
+      "Inputs": [
+        "Data entry",
+        "User enters operational data with validation and recovery.",
+        [
+          "empty",
+          "filled",
+          "focus",
+          "error",
+          "disabled",
+          "loading"
+        ]
+      ],
+      "Mobile": [
+        "Mobile task surfaces",
+        "Driver acts inside constrained touch-first screens.",
+        [
+          "resting",
+          "expanded",
+          "dragging",
+          "loading",
+          "error",
+          "permission"
+        ]
+      ],
+      "Maps": [
+        "Map and route surfaces",
+        "Driver finds stations, compares details, and starts route handoff.",
+        [
+          "nearby",
+          "selected",
+          "clustered",
+          "loading",
+          "denied",
+          "offline"
+        ]
+      ],
+      "Navigation": [
+        "Wayfinding controls",
+        "User moves through hierarchy, steps, pages, and sections.",
+        [
+          "default",
+          "current",
+          "focus",
+          "overflow",
+          "disabled",
+          "responsive"
+        ]
+      ],
+      "Dashboards": [
+        "Analytical components",
+        "Fleet manager scans, filters, drills in, and exports evidence.",
+        [
+          "loaded",
+          "loading",
+          "empty",
+          "filtered",
+          "threshold",
+          "error"
+        ]
+      ],
+      "Configuration": [
+        "Administrative controls",
+        "Admin changes users, roles, vehicles, or permissions with audit.",
+        [
+          "view",
+          "edit",
+          "pending",
+          "error",
+          "disabled",
+          "audit"
+        ]
+      ],
+      "Feedback": [
+        "System feedback",
+        "System reports status, recovery, progress, or absence.",
+        [
+          "info",
+          "success",
+          "warning",
+          "error",
+          "loading",
+          "empty"
+        ]
+      ],
+      "Overlay": [
+        "Layered surfaces",
+        "User gets contextual choices without losing origin or focus.",
+        [
+          "closed",
+          "open",
+          "focus",
+          "escape",
+          "nested",
+          "mobile"
+        ]
+      ],
+      "Layout": [
+        "Structural containers",
+        "Content is grouped, revealed, or resized with Frame rules.",
+        [
+          "collapsed",
+          "expanded",
+          "focus",
+          "disabled",
+          "responsive",
+          "nested"
+        ]
+      ],
+      "Display": [
+        "Information display",
+        "Product data is scanned, compared, labeled, or grouped.",
+        [
+          "default",
+          "selected",
+          "interactive",
+          "empty",
+          "loading",
+          "overflow"
+        ]
+      ],
+      "Data": [
+        "Data operations",
+        "User sorts, compares, toggles, and explains data.",
+        [
+          "default",
+          "active",
+          "hidden",
+          "sorted",
+          "loading",
+          "empty"
+        ]
+      ],
+      "Motion": [
+        "Motion wrappers",
+        "State change communicates cause without becoming decorative.",
+        [
+          "enter",
+          "exit",
+          "reorder",
+          "reduced",
+          "loading",
+          "complete"
+        ]
+      ]
+    },
+    "fallbackProfile": [
+      "Component contract",
+      "User completes a real product job.",
+      [
+        "default",
+        "focus",
+        "loading",
+        "error",
+        "disabled",
+        "permission"
+      ]
+    ],
+    "scenarioCopy": {
+      "Selection": "Fleet manager scopes a dashboard filter and expects option state, stale data, and permissions to be explicit.",
+      "Inputs": "Admin enters operational data and needs validation, helper text, save behavior, and recovery.",
+      "Feedback": "System reports progress, error, or absence while preserving the user's next action.",
+      "Overlay": "User opens contextual actions and must be able to escape, select, or recover focus.",
+      "Dashboards": "Fleet manager scans a metric, understands threshold, and drills into evidence.",
+      "Mobile": "Driver acts quickly on a constrained screen with touch-safe controls and clear failure states.",
+      "fallback": "The component appears inside a real fleet or driver process with state, recovery, and accessibility requirements."
+    },
+    "standardCopy": "This page uses the group standard for {{family}}. It is not yet a hand-authored gold page like Button, but it now includes real scenario, demos, states, responsive behavior, API, tests, and quality gates.",
+    "mustProve": [
+      "State is visible and announced.",
+      "Recovery is documented before implementation.",
+      "Responsive behavior is explicit for mobile, tablet, laptop, and desktop."
+    ],
+    "demoCopy": "The demo is generated from the {{group}} standard, so every component in this family gets a real state surface instead of a placeholder card.",
+    "stateMatrixCopy": "Document the states users must recognize and the recovery path for blocked or failed states.",
+    "responsiveBehavior": [
+      "{{title}} must define mobile, tablet, laptop, and desktop behavior.",
+      "Compact view cannot hide required labels or recovery actions.",
+      "Overflow moves into Menu, Bottom Sheet, Dialog, or Pagination depending on group.",
+      "Touch, keyboard, and screen reader behavior must remain equivalent."
+    ],
+    "apiRows": [
+      [
+        "value",
+        "semantic value",
+        "conditional",
+        "Required for input, selection, data, and navigation components."
+      ],
+      [
+        "state",
+        "default | loading | error | disabled | permission",
+        "yes",
+        "State changes copy, ARIA, and visual treatment."
+      ],
+      [
+        "density",
+        "sm | md | lg",
+        "yes",
+        "Maps to Frame spacing and Voice scale."
+      ],
+      [
+        "onChange / onAction",
+        "event",
+        "conditional",
+        "Emits semantic payload, not DOM implementation detail."
+      ],
+      [
+        "ariaLabel / label",
+        "string",
+        "yes",
+        "Accessible name is never optional for interactive controls."
+      ]
+    ],
+    "testRows": [
+      [
+        "Rendering",
+        "{{title}} renders the correct role, accessible name, visible label, and required state attributes."
+      ],
+      [
+        "Props",
+        "{{title}} exposes required props as observable DOM state, not private implementation detail."
+      ],
+      [
+        "States",
+        "{{title}} covers {{states}} with visible, assistive, and recoverable behavior."
+      ],
+      [
+        "Interaction",
+        "Pointer, keyboard, touch, escape, focus restoration, and duplicate-action blocking match the component family pattern."
+      ],
+      [
+        "Accessibility",
+        "Reduced motion, high contrast, screen reader naming, focus visibility, target size, and long localized text do not break layout."
+      ],
+      [
+        "Responsive",
+        "Mobile, tablet, laptop, and desktop behavior is explicit; compact density cannot hide labels or recovery actions."
+      ],
+      [
+        "Token compliance",
+        "No raw color, spacing, typography, radius, elevation, icon, or motion values outside foundation-backed component tokens."
+      ]
+    ],
+    "testingModelCopy": "The testing model is shared by every component. {{title}} is the applied example, not a one-off exception."
+  }
+}

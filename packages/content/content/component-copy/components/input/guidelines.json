@@ -1,0 +1,13 @@
+{
+  "components": {
+    "input": {
+      "guidelines": {
+        "groups": [
+          { "title": "Do", "items": ["Keep the label visible.", "Use helper text for expected format.", "Preserve value during validation.", "Use Field Action only for actions that operate on the current field value."] },
+          { "title": "Do not", "items": ["Do not use placeholder as the only label.", "Do not clear input on error.", "Do not hide disabled or loading reason.", "Do not place an autonomous Icon Button inside the field surface."] },
+          { "title": "Escalate", "items": ["Use Select for bounded options.", "Use a pattern for suggestions, masks, or multi-field flows.", "Ask before adding product-specific parsing or a new Field Action behavior."] }
+        ]
+      }
+    }
+  }
+}

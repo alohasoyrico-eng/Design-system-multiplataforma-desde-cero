@@ -1,0 +1,75 @@
+{
+  "explorers": {
+    "items": {
+      "Energy": {
+        "type": "energy",
+        "initial": "action",
+        "ariaLabel": "Energy role examples",
+        "choices": [
+          [
+            "action",
+            "Action"
+          ],
+          [
+            "success",
+            "Success"
+          ],
+          [
+            "warning",
+            "Warning"
+          ],
+          [
+            "error",
+            "Error"
+          ],
+          [
+            "surface",
+            "Surface"
+          ]
+        ],
+        "states": {
+          "action": [
+            "Action",
+            "Primary route action is available and should be visually discoverable without overwhelming the map.",
+            "Start route",
+            "energy.action",
+            "Open route",
+            "bolt"
+          ],
+          "success": [
+            "Success",
+            "The driver completed the route handoff and the system can confirm without adding noise.",
+            "Route opened",
+            "energy.success",
+            "Done",
+            "check_circle"
+          ],
+          "warning": [
+            "Warning",
+            "Fuel price or station availability may affect the decision, but the user can still continue.",
+            "Check station hours",
+            "energy.warning",
+            "Review",
+            "warning"
+          ],
+          "error": [
+            "Error",
+            "The route cannot start because location permission is blocked or data failed.",
+            "Route unavailable",
+            "energy.error",
+            "Fix issue",
+            "error"
+          ],
+          "surface": [
+            "Surface",
+            "The panel recedes so content can be scanned while keeping hierarchy clear.",
+            "Station detail",
+            "energy.surface",
+            "View details",
+            "layers"
+          ]
+        }
+      }
+    }
+  }
+}

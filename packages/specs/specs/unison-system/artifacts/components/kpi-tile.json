@@ -1,0 +1,396 @@
+{
+  "artifacts": {
+    "components": {
+      "kpi-tile": {
+        "id": "kpi-tile",
+        "name": "KPI Tile",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Show one compact operational metric with label, value, optional delta, trend, threshold tone, sparkline hint, and optional drill-in affordance.",
+        "anatomy": [
+          {
+            "part": "Label",
+            "rule": "Names metric.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Value",
+            "rule": "Prominent numeral.",
+            "tokens": [
+              "sys.voice.numeral.*"
+            ]
+          },
+          {
+            "part": "Delta",
+            "rule": "Comparison or threshold.",
+            "tokens": [
+              "sys.tone.*"
+            ]
+          },
+          {
+            "part": "Surface",
+            "rule": "Dashboard grid unit.",
+            "tokens": [
+              "comp.kpi-tile.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "standard",
+            "description": "Metric label and value."
+          },
+          {
+            "id": "delta",
+            "description": "Metric with local comparison text and trend icon."
+          },
+          {
+            "id": "threshold",
+            "description": "Metric with semantic threshold tone."
+          },
+          {
+            "id": "sparkline",
+            "description": "Metric with a non-essential trend hint."
+          },
+          {
+            "id": "drill-in",
+            "description": "Metric with link or button semantics for local navigation."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "focus",
+          "selected",
+          "loading",
+          "risk",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > loading > risk > selected > focus > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Energy for semantic tones and contrast.",
+            "tokens": [
+              "comp.kpi-tile.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Metric status is readable.",
+            "example": "Cards at risk.",
+            "test": "Contrast.",
+            "rejectIf": "Raw colors."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use numeral and label roles.",
+            "tokens": [
+              "sys.voice.*"
+            ],
+            "behavior": "Value hierarchy is clear.",
+            "example": "$84.2k.",
+            "test": "Readable value.",
+            "rejectIf": "Raw type."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use dashboard grid spacing.",
+            "tokens": [
+              "sys.frame.*"
+            ],
+            "behavior": "Tiles fit grid.",
+            "example": "Dashboard metric row.",
+            "test": "Responsive columns.",
+            "rejectIf": "Miniaturized tiles."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use surface elevation for drill-in only.",
+            "tokens": [
+              "sys.depth.*"
+            ],
+            "behavior": "Tile is clickable when needed.",
+            "example": "Hover tile.",
+            "test": "Elevation.",
+            "rejectIf": "Decorative depth."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use tokenized hover motion.",
+            "tokens": [
+              "sys.momentum.*"
+            ],
+            "behavior": "Drill-in feedback is subtle.",
+            "example": "Hover lift.",
+            "test": "Reduced motion.",
+            "rejectIf": "Raw motion."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Risk and loading resolve before selection.",
+            "tokens": [
+              "sys.state.*"
+            ],
+            "behavior": "Metric state is consistent.",
+            "example": "Loading metric.",
+            "test": "Precedence.",
+            "rejectIf": "Contradictory state."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Tone maps to threshold meaning.",
+            "tokens": [
+              "sys.tone.*"
+            ],
+            "behavior": "Risk is meaningful.",
+            "example": "Cards at risk.",
+            "test": "Threshold copy.",
+            "rejectIf": "Decorative tone."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Escalate metric groups to Chart Panel or dashboard pattern.",
+            "tokens": [
+              "sys.growth.*"
+            ],
+            "behavior": "Tile stays one metric.",
+            "example": "Dashboard suite.",
+            "test": "Metric count.",
+            "rejectIf": "Multiple metrics."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use optional icon as metric support.",
+            "tokens": [
+              "sys.symbol.*"
+            ],
+            "behavior": "Icon supports label.",
+            "example": "Fuel icon.",
+            "test": "Visible label.",
+            "rejectIf": "Icon-only metric."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use standard icon size and alignment.",
+            "tokens": [
+              "sys.iconography.*"
+            ],
+            "behavior": "Icon does not shift layout.",
+            "example": "Header icon.",
+            "test": "Alignment.",
+            "rejectIf": "Oversized icon."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Expose label, value, and delta in text.",
+            "tokens": [
+              "sys.accessibility.*"
+            ],
+            "behavior": "Metric is understandable without visuals.",
+            "example": "Screen-reader metric.",
+            "test": "Text order.",
+            "rejectIf": "Sparkline-only trend."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.kpi-tile.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "KPI label."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "required": true,
+            "notes": "Primary KPI value."
+          },
+          {
+            "name": "delta",
+            "type": "string",
+            "required": false,
+            "notes": "Short change indicator."
+          },
+          {
+            "name": "trend",
+            "type": "up | down | flat",
+            "required": false,
+            "notes": "Trend icon state for delta text."
+          },
+          {
+            "name": "tone",
+            "type": "neutral | info | success | warning | danger",
+            "required": false,
+            "notes": "Semantic threshold tone."
+          },
+          {
+            "name": "icon",
+            "type": "IconName",
+            "required": false,
+            "notes": "Decorative KPI icon."
+          },
+          {
+            "name": "variant",
+            "type": "standard | delta | threshold | sparkline | drill-in",
+            "required": false,
+            "notes": "Local KPI anatomy variant."
+          },
+          {
+            "name": "state",
+            "type": "default | hover | focus | selected | loading | risk | disabled",
+            "required": false,
+            "notes": "Local interaction or feedback state."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": false,
+            "notes": "Density scale."
+          },
+          {
+            "name": "values",
+            "type": "number[]",
+            "required": false,
+            "notes": "Decorative sparkline values."
+          },
+          {
+            "name": "href",
+            "type": "string",
+            "required": false,
+            "notes": "Link destination for drill-in."
+          },
+          {
+            "name": "selected",
+            "type": "boolean",
+            "required": false,
+            "notes": "Selected local state."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables interaction."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "notes": "Shows loading placeholder."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "required": false,
+            "notes": "Accessible name override for interactive tiles."
+          },
+          {
+            "name": "onSelect",
+            "type": "(metric: KpiTileMeta) => void",
+            "required": false,
+            "notes": "Local selection callback for button-style drill-in."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Fleet overview",
+            "example": "Fuel spend."
+          },
+          {
+            "context": "Risk dashboard",
+            "example": "Cards at risk."
+          },
+          {
+            "context": "Finance",
+            "example": "Resolved cases."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use one metric.",
+            "Keep value readable.",
+            "Use threshold tone deliberately."
+          ],
+          "dont": [
+            "Do not pack multiple metrics.",
+            "Do not use color-only risk.",
+            "Do not force columns."
+          ],
+          "info": [
+            "Use Chart Panel for deeper trends."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "stacked tiles"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "two-column dashboard"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dashboard grid"
+          }
+        ],
+        "tests": [
+          "Label/value text",
+          "Threshold tone",
+          "Responsive grid",
+          "Hover focus",
+          "Disabled",
+          "No raw values"
+        ],
+        "agentInstructions": [
+          "Use KPI Tile for one metric.",
+          "Ask for formula, threshold, owner, and drill-in.",
+          "Escalate trend analysis to Chart Panel."
+        ],
+        "rejectIf": [
+          "No label",
+          "Color-only risk",
+          "Multiple metrics",
+          "Formula ownership hidden inside component",
+          "Dashboard grouping implemented inside KPI Tile"
+        ]
+      }
+    }
+  }
+}

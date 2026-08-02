@@ -1,0 +1,8 @@
+{
+  "$systemShards": [
+    "sections/sections-01.json",
+    "sections/sections-02.json",
+    "sections/sections-03.json",
+    "sections/sections-04.json"
+  ]
+}

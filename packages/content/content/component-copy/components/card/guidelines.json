@@ -1,0 +1,32 @@
+{
+  "components": {
+    "card": {
+      "guidelines": {
+        "groups": [
+          {
+            "title": "Do",
+            "items": [
+              "Use Card for one scannable object or decision surface.",
+              "Keep title, value, description, and state legible.",
+              "Let parent layout define grid and width."
+            ]
+          },
+          {
+            "title": "Do not",
+            "items": [
+              "Nest decorative cards inside cards.",
+              "Move product flows into the base component.",
+              "Use raw shadows, radii, color, or spacing."
+            ]
+          },
+          {
+            "title": "Notes",
+            "items": [
+              "Card-led processs such as KPI Card or Mobile Card Overview remain patterns."
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

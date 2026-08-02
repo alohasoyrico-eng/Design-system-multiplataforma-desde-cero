@@ -1,0 +1,368 @@
+{
+  "artifacts": {
+    "components": {
+      "motion-boundary": {
+        "id": "motion-boundary",
+        "name": "Motion Boundary",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Wrap one region with explicit enter, exit, active, and reduced-motion behavior without choreographing the whole page.",
+        "anatomy": [
+          {
+            "part": "Surface",
+            "rule": "Owns the visible Motion Boundary container.",
+            "tokens": [
+              "comp.motion-boundary.*"
+            ]
+          },
+          {
+            "part": "Label",
+            "rule": "Provides visible meaning.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "State affordance",
+            "rule": "Shows idle, entering, active, exiting, reduced-motion, and disabled with separate enter, move, and exit timing.",
+            "tokens": [
+              "sys.state.*",
+              "sys.momentum.*"
+            ]
+          },
+          {
+            "part": "Metadata",
+            "rule": "Keeps context short.",
+            "tokens": [
+              "sys.growth.*"
+            ]
+          },
+          {
+            "part": "Cue",
+            "rule": "Uses a bounded cue to reveal local transition state without becoming page choreography.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "fade",
+            "description": "Fade treatment."
+          },
+          {
+            "id": "slide",
+            "description": "Slide treatment."
+          },
+          {
+            "id": "collapse",
+            "description": "Collapse treatment."
+          },
+          {
+            "id": "route",
+            "description": "Route treatment."
+          }
+        ],
+        "states": [
+          "idle",
+          "entering",
+          "active",
+          "exiting",
+          "reduced-motion",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > reduced-motion > exiting > entering > active > idle",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Energy so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Energy audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.voice.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Voice audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Frame audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.depth.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Depth audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Flow enter timing for entering, move timing for active transitions, and exit timing for exiting.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.momentum.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Verify entering and exiting states use separate Flow timing tokens.",
+            "rejectIf": "Entering and exiting use the same undocumented timing or route choreography is hidden in the component."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Expose idle, entering, active, exiting, reduced-motion, and disabled as bounded local states.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.state.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Verify state precedence and reduced-motion handling.",
+            "rejectIf": "State is motion-only or controls multiple page regions."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.tone.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Tone audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.growth.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Growth audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.symbol.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Symbol audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.iconography.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Iconography audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility so Motion Boundary remains a bounded component.",
+            "tokens": [
+              "comp.motion-boundary.*",
+              "sys.accessibility.*"
+            ],
+            "behavior": "Motion Boundary exposes local state without absorbing patterns.",
+            "example": "Motion Boundary",
+            "test": "Accessibility audit",
+            "rejectIf": "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Breakpoints",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.motion-boundary.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Boundary label."
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": false,
+            "notes": "Short description for the bounded region."
+          },
+          {
+            "name": "variant",
+            "type": "MotionBoundaryVariant",
+            "required": false,
+            "notes": "Transition treatment."
+          },
+          {
+            "name": "state",
+            "type": "MotionBoundaryState",
+            "required": false,
+            "notes": "Motion state."
+          },
+          {
+            "name": "icon",
+            "type": "IconName",
+            "required": false,
+            "notes": "Decorative transition icon."
+          },
+          {
+            "name": "reducedMotion",
+            "type": "boolean",
+            "required": false,
+            "notes": "Reduced-motion mode."
+          }
+        ],
+        "productExamples": [
+          {
+            "context": "Driver mobile",
+            "example": "Motion Boundary"
+          },
+          {
+            "context": "Fleet operations",
+            "example": "Motion Boundary"
+          },
+          {
+            "context": "Admin console",
+            "example": "Motion Boundary"
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use Motion Boundary for its bounded job.",
+            "Keep visible label and state.",
+            "Use Design System tokens."
+          ],
+          "dont": [
+            "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations.",
+            "Do not create multi-step system inside it.",
+            "Do not rely on color or motion only."
+          ],
+          "info": [
+            "Escalate to patterns when orchestration appears."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "touch-safe component"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "context surface"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense admin surface"
+          }
+        ],
+        "tests": [
+          "Visible label",
+          "State precedence",
+          "Entering uses Flow enter timing",
+          "Exiting uses Flow exit timing",
+          "Active uses Flow move timing",
+          "Reduced motion hides motion cue",
+          "Responsive layout",
+          "Pattern boundary"
+        ],
+        "agentInstructions": [
+          "Use Motion Boundary only for local component behavior.",
+          "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations.",
+          "Ask when orchestration is required."
+        ],
+        "rejectIf": [
+          "Page choreography, route transition systems, and animation storytelling belong to patterns or foundations.",
+          "Entering and exiting use the same undocumented timing.",
+          "State is color-only or motion-only.",
+          "Component owns multi-region sequencing."
+        ],
+        "semanticDecisions": [
+          {
+            "id": "enter-exit-timing",
+            "state": "entering/exiting",
+            "decision": "Entering uses Flow enter timing; exiting uses Flow exit timing; active uses Flow move timing.",
+            "reason": "Motion Boundary must make start/end behavior explicit without owning page choreography.",
+            "test": "Verify computed cue transition changes between entering and exiting states.",
+            "rejectIf": "Entering and exiting share undocumented timing or hardcoded motion."
+          },
+          {
+            "id": "bounded-motion-scope",
+            "state": "scope",
+            "decision": "Motion Boundary wraps one bounded region only; choreography escalates to patterns/foundations.",
+            "reason": "Multi-region timing is product orchestration, not a component concern.",
+            "test": "Verify demos do not coordinate multiple regions.",
+            "rejectIf": "Route/page choreography is hidden inside Motion Boundary."
+          }
+        ]
+      }
+    }
+  }
+}

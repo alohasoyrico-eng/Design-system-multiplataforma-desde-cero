@@ -1,0 +1,38 @@
+{
+  "demos": {
+    "Color": {
+      "type": "swatch",
+      "initial": "action",
+      "ariaLabel": "Color role examples",
+      "choices": [
+        [
+          "action",
+          "Action"
+        ],
+        [
+          "success",
+          "Success"
+        ],
+        [
+          "warning",
+          "Warning"
+        ],
+        [
+          "danger",
+          "Danger"
+        ],
+        [
+          "surface",
+          "Surface"
+        ]
+      ],
+      "roles": [
+        "Action",
+        "Success",
+        "Warning",
+        "Danger",
+        "Surface"
+      ]
+    }
+  }
+}

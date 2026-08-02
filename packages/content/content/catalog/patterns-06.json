@@ -1,0 +1,203 @@
+{
+  "patterns": [
+    {
+      "type": "pattern",
+      "id": "pull-to-refresh",
+      "title": "Pull to Refresh",
+      "platform": "Mobile",
+      "summary": "Refresh cards, movements, stations, and routes with progress, stale data copy, and reduced-motion alternatives.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Progress Bar",
+        "Skeleton",
+        "Toast"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "filter-chip-group",
+      "title": "Filter Chip Group",
+      "platform": "Cross-platform",
+      "summary": "Expose active filters as removable chips with reset, count, overflow, and keyboard behavior.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "PMs"
+      ],
+      "componentsUsed": [
+        "Select",
+        "Date Picker",
+        "Button",
+        "Checkbox"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "timeline",
+      "title": "Timeline",
+      "platform": "Cross-platform",
+      "summary": "Show ordered audit, route, support, and maintenance events with status, owner, time, and next action.",
+      "audiences": [
+        "Service Designers",
+        "Content Designers",
+        "Developers"
+      ],
+      "componentsUsed": [
+        "Audit Event",
+        "Skeleton",
+        "Empty State"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "section-header",
+      "title": "Section Header",
+      "platform": "Cross-platform",
+      "summary": "Introduce dense sections with title, description, status, actions, and responsive action overflow.",
+      "audiences": [
+        "Product Designers",
+        "Content Designers",
+        "Developers"
+      ],
+      "componentsUsed": [
+        "Button",
+        "Menu",
+        "Tooltip"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "sort-control",
+      "title": "Sort Control",
+      "platform": "Cross-platform",
+      "summary": "Coordinate sort key, direction, persistence, result refresh, and table/list feedback by composing Select, Button, Menu, Table, or List instead of creating a standalone component.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Select",
+        "Button",
+        "Menu",
+        "Table",
+        "List"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "chart-legend-item",
+      "title": "Chart Legend Item",
+      "platform": "Cross-platform",
+      "summary": "Coordinate chart series labels, visibility toggles, values, color meaning, and chart/table synchronization as part of Chart Panel or chart wrapper composition.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Chart Panel",
+        "Checkbox",
+        "Icon Button",
+        "Tooltip"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "symbol.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "dashboard-filter-bar",
+      "title": "Dashboard Filter Bar",
+      "platform": "Desktop",
+      "summary": "Coordinate dashboard filters, saved views, query persistence, dependent controls, refresh behavior, and result feedback by composing Flow input and action components.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Select",
+        "Date Picker",
+        "Segmented Control",
+        "Chip",
+        "Button",
+        "Popover"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "permission-matrix",
+      "title": "Permission Matrix",
+      "platform": "Desktop",
+      "summary": "Coordinate role permissions, dependency rules, bulk edits, approval gates, audit notes, and recovery using Table plus atomic selection/status components.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Table",
+        "Checkbox",
+        "Switch",
+        "Tooltip",
+        "Audit Event",
+        "Badge",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "state.semantic",
+        "a11y.focus"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "0.1.0",
+  "fleets": [
+    {
+      "id": "north",
+      "label": "North region",
+      "vehicles": 184,
+      "weeklySpend": "$42,800",
+      "risk": "Review",
+      "trend": "8% above weekly threshold"
+    },
+    {
+      "id": "central",
+      "label": "Central region",
+      "vehicles": 226,
+      "weeklySpend": "$39,140",
+      "risk": "Stable",
+      "trend": "3% below weekly threshold"
+    },
+    {
+      "id": "south",
+      "label": "South region",
+      "vehicles": 97,
+      "weeklySpend": "$18,950",
+      "risk": "Watch",
+      "trend": "Maintenance exceptions increasing"
+    }
+  ],
+  "driverCard": {
+    "driver": "Alex Rivera",
+    "vehicle": "Unit MX-1842",
+    "balance": "$3,240",
+    "status": "Active",
+    "lastMovement": "Fuel purchase approved at Station 407",
+    "nextAction": "Find nearby station"
+  },
+  "movements": [
+    {
+      "merchant": "Station 407",
+      "amount": "$86.20",
+      "status": "Approved"
+    },
+    {
+      "merchant": "Station 118",
+      "amount": "$72.10",
+      "status": "Pending"
+    },
+    {
+      "merchant": "Toll Plaza Norte",
+      "amount": "$14.40",
+      "status": "Approved"
+    }
+  ]
+}

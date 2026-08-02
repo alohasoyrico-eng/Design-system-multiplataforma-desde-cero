@@ -1,0 +1,26 @@
+{
+  "components": {
+    "card": {
+      "miel": {
+        "copy": "MIEL treats Card as a scannable surface contract: the agent can configure content, state, and role, while the human decides hierarchy, action meaning, and when the surface becomes a pattern.",
+        "canDecide": [
+          "Use Card when information needs a bounded surface for scanning, comparison, or selection.",
+          "Choose default, interactive, selected, muted, loading, error, or disabled state from the documented role.",
+          "Arrange title, value, detail, and icon without adding nested cards or local visual rules."
+        ],
+        "mustAsk": [
+          "The whole surface triggers navigation, opens a process, or changes data.",
+          "The card includes forms, menus, charts, grouped actions, or repeated decisions.",
+          "The content hierarchy, risk, or empty/error recovery cannot be inferred."
+        ],
+        "rejectIf": [
+          "Card is used as a decorative wrapper for unrelated UI.",
+          "Cards are nested to create layout instead of using Frame and layout rules.",
+          "A process is hidden inside the base component instead of moving to a pattern.",
+          "State relies only on color or has no recovery path."
+        ],
+        "handoff": "I am using Card because the user needs to scan an object, value, and state. I need confirmation on whether the surface is purely informational or should escalate to a pattern."
+      }
+    }
+  }
+}

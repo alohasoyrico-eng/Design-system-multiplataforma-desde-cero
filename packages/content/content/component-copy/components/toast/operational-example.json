@@ -1,0 +1,52 @@
+{
+  "components": {
+    "toast": {
+      "operational-example": {
+        "copy": "Use Toast for short, non-blocking feedback after a user or system event: saved changes, sync status, export progress, undo, offline recovery, or a recoverable error.",
+        "scenario": {
+          "icon": "notifications",
+          "title": "Fleet console feedback",
+          "meta": "Feedback after actions and system events",
+          "items": [
+            {
+              "label": "Unidad asignada a Ana Sosa.",
+              "tone": "success",
+              "variant": "status",
+              "state": "visible",
+              "icon": "check_circle",
+              "dismissible": true,
+              "density": "md"
+            },
+            {
+              "label": "Export is being prepared.",
+              "description": "You can keep working while the file is generated.",
+              "tone": "info",
+              "variant": "progress",
+              "state": "visible",
+              "icon": "download",
+              "dismissible": true,
+              "density": "sm"
+            },
+            {
+              "label": "Vehicle sync failed.",
+              "description": "Last saved data is still available.",
+              "tone": "danger",
+              "variant": "recovery",
+              "state": "action",
+              "icon": "error",
+              "actionLabel": "Retry",
+              "dismissible": true,
+              "density": "md"
+            }
+          ],
+          "rationaleTitle": "Why Toast",
+          "rationale": [
+            "Toast confirms or explains a recent event without blocking the task.",
+            "The ZIP reference confirms an inverse surface, compact rounded frame, severity icon, optional single action, and dismiss control; Flow governs color, typography, density, elevation, and live-region semantics.",
+            "The base message should work as one concise line; supporting description is optional and only explains consequence or recovery."
+          ]
+        }
+      }
+    }
+  }
+}

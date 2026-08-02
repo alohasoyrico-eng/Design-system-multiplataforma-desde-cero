@@ -1,0 +1,33 @@
+{
+  "demos": {
+    "Breakpoints": {
+      "type": "breakpoint",
+      "initial": "mobile",
+      "ariaLabel": "Breakpoint examples",
+      "choices": [
+        [
+          "mobile",
+          "mobile"
+        ],
+        [
+          "tablet",
+          "tablet"
+        ],
+        [
+          "laptop",
+          "laptop"
+        ],
+        [
+          "desktop",
+          "desktop"
+        ]
+      ],
+      "labels": {
+        "mobile": "Mobile",
+        "tablet": "Tablet",
+        "laptop": "Laptop",
+        "desktop": "Desktop"
+      }
+    }
+  }
+}

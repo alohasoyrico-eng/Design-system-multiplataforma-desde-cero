@@ -1,0 +1,26 @@
+{
+  "demos": {
+    "Measurement": {
+      "type": "statGrid",
+      "className": "measurement-demo",
+      "rows": [
+        [
+          "event",
+          "button.block-card.clicked"
+        ],
+        [
+          "success",
+          "card blocked without support contact"
+        ],
+        [
+          "friction",
+          "cancel after reading consequence"
+        ],
+        [
+          "analytics",
+          "confirmation funnel by fleet role"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "props": [
+          {
+            "name": "children",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "Visible label and accessible name."
+          },
+          {
+            "name": "variant",
+            "type": "primary | secondary | tertiary | outlined | ghost",
+            "required": false,
+            "default": "primary",
+            "description": "Visual hierarchy."
+          },
+          {
+            "name": "intent",
+            "type": "default | danger | warning",
+            "required": false,
+            "default": "default",
+            "description": "Semantic risk modifier."
+          },
+          {
+            "name": "density",
+            "type": "sm | md | lg",
+            "required": true,
+            "default": "inherited",
+            "description": "Inherited from the page or surface context. Density owns Button scale."
+          },
+          {
+            "name": "state",
+            "type": "default | hover | focus | pressed | disabled | loading",
+            "required": false,
+            "default": "default",
+            "description": "Documented or programmatic state."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Sets aria-busy and blocks duplicate activation."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Blocks activation and preserves hierarchy through disabled colors."
+          },
+          {
+            "name": "fullWidth",
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Stretches to container width for mobile sheets and constrained layouts."
+          },
+          {
+            "name": "leadingIcon",
+            "type": "Material Symbol name",
+            "required": false,
+            "default": null,
+            "description": "Optional icon before the label."
+          },
+          {
+            "name": "type",
+            "type": "button | submit | reset",
+            "required": false,
+            "default": "button",
+            "description": "Native button type."
+          },
+          {
+            "name": "analyticsEvent",
+            "type": "button.{action}",
+            "required": false,
+            "default": null,
+            "description": "Telemetry event for product and growth analysis."
+          }
+        ]
+      }
+    }
+  }
+}

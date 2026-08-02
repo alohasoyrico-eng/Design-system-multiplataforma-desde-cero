@@ -1,0 +1,291 @@
+{
+  "version": "2026-07-13",
+  "statusDefinitions": {
+    "package-component": "Reusable Design System implementation exists in @design-system/components or an equivalent component package.",
+    "interactive-fixture": "Documentation demo has local interaction behavior, but is not yet a reusable Design System implementation.",
+    "fixture-only": "Documentation demo is primarily static visual markup.",
+    "pattern-candidate": "Boundary is unresolved or likely belongs to patterns once replacement dependencies are proven."
+  },
+  "components": {
+    "button": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components."
+    },
+    "select": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one closed-choice value; Combobox covers editable select input separately."
+    },
+    "combobox": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one editable single-select field with local option filtering; global search, async query orchestration, and multi-select remain pattern or separate component work."
+    },
+    "card": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components."
+    },
+    "input": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components."
+    },
+    "checkbox": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components; group orchestration remains outside the component."
+    },
+    "switch": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for persistent on/off setting semantics."
+    },
+    "radio-button": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components; Radio Group behavior remains pattern/component-candidate work."
+    },
+    "text-area": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for native multiline input."
+    },
+    "icon-button": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components."
+    },
+    "badge": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for compact status/count metadata."
+    },
+    "chip": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for static, selected, and removable chip affordances."
+    },
+    "tag": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for compact metadata and optional action semantics."
+    },
+    "tabs": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for bounded tablist semantics; routed navigation remains a pattern concern."
+    },
+    "tooltip": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for short non-interactive contextual help."
+    },
+    "toast": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for non-blocking status/alert feedback with one optional action."
+    },
+    "inline-validation": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one field with validation copy; form submission remains a pattern concern."
+    },
+    "progress-indicator": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for determinate and indeterminate progressbar semantics."
+    },
+    "spinner": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for compact circular indeterminate loading states."
+    },
+    "skeleton": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for loading structure with status semantics."
+    },
+    "dialog": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for modal surface semantics; confirmation policy, irreversible action handling, and recovery flows remain pattern work."
+    },
+    "menu": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for compact contextual menu semantics; command routing, permission checks, and high-risk actions remain pattern work."
+    },
+    "drawer": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for side drawer surface semantics; edit lifecycle, validation, submit, and support handoff remain pattern work."
+    },
+    "accordion": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for bounded disclosure sections; multi-step processs remain patterns."
+    },
+    "empty-state": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for bounded empty-condition copy and one local action."
+    },
+    "table": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for semantic comparable records; remote data, filtering, pagination, expansion, and row processs remain pattern work."
+    },
+    "avatar": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for identity fallback, image, size, and presence signal."
+    },
+    "slider": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for native range selection."
+    },
+    "stepper": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for local linear progress; wizard orchestration remains a pattern concern."
+    },
+    "list": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for bounded list rows; row orchestration remains a pattern concern."
+    },
+    "kpi-tile": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one compact metric; dashboard composition remains a pattern concern."
+    },
+    "chart-panel": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one compact read-only chart summary; legends, filters, and series controls remain pattern work."
+    },
+    "station-pin": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one map marker; clustering, routing, and viewport behavior remain pattern work."
+    },
+    "route-summary": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one route option summary; comparison and navigation flows remain pattern work."
+    },
+    "code-input": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for visible one-time-code slots; verification, resend, and recovery remain auth pattern work."
+    },
+    "phone-input": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for native tel input with country prefix; verification handoff remains pattern work."
+    },
+    "card-number-input": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one grouped card number with local Luhn validation; expiry, CVC, tokenization, ownership, and submission remain future component or pattern work."
+    },
+    "date-picker": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for native single-date input; date range and scheduling processs remain pattern work."
+    },
+    "segmented-control": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for local mutually exclusive mode switching."
+    },
+    "popover": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for short contextual dialog content; multi-step decisions remain pattern work."
+    },
+    "floating-action-button": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for local primary action affordance."
+    },
+    "card-summary": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one card identity/status summary; card lifecycle actions remain pattern work."
+    },
+    "movement-row": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one movement row; receipts, disputes, and support flows remain pattern work."
+    },
+    "quick-action": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one compact local action; confirmation and high-risk action flows remain pattern work."
+    },
+    "biometric-prompt": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for a local biometric prompt; authentication recovery, fallback routing, and risk escalation remain pattern work."
+    },
+    "breadcrumbs": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for hierarchical navigation breadcrumbs."
+    },
+    "pagination": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for bounded numbered pagination navigation."
+    },
+    "audit-event": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one audit event; timeline/filtering remains a pattern concern."
+    },
+    "error-panel": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for bounded warning/error recovery surface."
+    },
+    "tree-view": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for bounded tree semantics; permission editors, drag/drop, and multi-pane hierarchy processs remain pattern work."
+    },
+    "motion-boundary": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for one bounded motion region; page choreography, route transitions, and animation storytelling remain foundation or pattern work."
+    },
+    "animated-moment": {
+      "status": "package-component",
+      "patternRisk": true,
+      "notes": "Factory and contract exist in @design-system/components for one bounded animation moment; onboarding, education, campaign, and multi-step animation sequences remain pattern work."
+    },
+    "card-expiry-input": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one MM/YY card expiry with local month and expired-date validation; card number, CVC, tokenization, ownership, and submission remain future component or pattern work."
+    },
+    "card-security-code-input": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one card security code with local length validation and optional reveal; card number, expiry, tokenization, ownership, and submission remain future component or pattern work."
+    },
+    "country-selector": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for reusable country and calling-code selection; Phone Input consumes this component instead of owning country selector behavior."
+    },
+    "date-range-picker": {
+      "status": "package-component",
+      "patternRisk": false,
+      "notes": "Factory and contract exist in @design-system/components for one bounded start/end date range; reporting sync, comparisons, URL persistence, and data refresh remain pattern concerns."
+    }
+  }
+}

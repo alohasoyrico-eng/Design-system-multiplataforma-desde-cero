@@ -1,0 +1,146 @@
+{
+  "components": {
+    "card": {
+      "reference-compositions": {
+        "copy": "Each item below is rendered from a Flow package component. The reference name shows what appears in the ZIP; the Flow decision explains whether it is a base variant, behavior, composition, or delegated component.",
+        "items": [
+          {
+            "label": "Stats / KPI",
+            "reference": "CardStats",
+            "component": "card",
+            "demos": [
+              {
+                "title": "Ingresos del mes",
+                "value": "2,450",
+                "unit": "$",
+                "status": "+12.5%",
+                "trend": "up",
+                "composition": "stats"
+              },
+              {
+                "title": "Viajes",
+                "value": "184",
+                "status": "−3.2%",
+                "trend": "down",
+                "composition": "stats"
+              },
+              {
+                "title": "Unidades activas",
+                "value": "12",
+                "status": "0%",
+                "trend": "neutral",
+                "composition": "stats"
+              }
+            ],
+            "flowDecision": "Use Card composition stats for the ZIP CardStats reference; keep KPI Tile for dashboard metric ownership, thresholds, sparkline, and drill-in."
+          },
+          {
+            "label": "Interactive",
+            "reference": "CardInteractive",
+            "component": "card",
+            "demo": {
+              "title": "JMX-214-B",
+              "value": "Nissan Versa",
+              "detail": "Ana Sosa",
+              "icon": "directions_car",
+              "state": "interactive",
+              "interactive": true,
+              "actions": [
+                {
+                  "ariaLabel": "Edit vehicle",
+                  "icon": "edit",
+                  "iconOnly": true,
+                  "variant": "ghost"
+                },
+                {
+                  "ariaLabel": "Delete vehicle",
+                  "icon": "delete",
+                  "iconOnly": true,
+                  "variant": "ghost"
+                }
+              ]
+            },
+            "flowDecision": "Use Card with interactive behavior and state, not a separate variant value."
+          },
+          {
+            "label": "Compact",
+            "reference": "CardCompact",
+            "component": "card",
+            "demos": [
+              {
+                "title": "Tarjeta ****4102",
+                "status": "Activa",
+                "icon": "credit_card",
+                "composition": "compact",
+                "density": "sm",
+                "interactive": true
+              },
+              {
+                "title": "Tarjeta ****8830",
+                "status": "Pausada",
+                "icon": "credit_card",
+                "composition": "compact",
+                "density": "sm",
+                "interactive": true
+              },
+              {
+                "title": "Tarjeta ****2214",
+                "icon": "credit_card",
+                "composition": "compact",
+                "density": "sm",
+                "interactive": true
+              }
+            ],
+            "flowDecision": "Use density and parent layout first; promote only if compact card rows need a reusable contract."
+          },
+          {
+            "label": "Media",
+            "reference": "CardMedia",
+            "component": "card",
+            "demo": {
+              "title": "Programa de conductores",
+              "detail": "Beneficios, seguros y combustible con la tarjeta Flow.",
+              "composition": "media",
+              "media": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=60",
+              "mediaAlt": "Vehicle driving on a road"
+            },
+            "flowDecision": "Use Card composition media while Flow defines image ratio, crop, loading, alt, and media accessibility rules."
+          },
+          {
+            "label": "Elevated",
+            "reference": "CardElevated",
+            "component": "card",
+            "demo": {
+              "title": "Recomendado",
+              "detail": "Activa el débito automático y evita cortes de servicio.",
+              "variant": "elevated"
+            },
+            "flowDecision": "Covered by Card variant elevated."
+          },
+          {
+            "label": "Minimal",
+            "reference": "CardMinimal",
+            "component": "card",
+            "demo": {
+              "title": "Sin comisiones",
+              "detail": "Las recargas entre cuentas Flow no tienen costo.",
+              "icon": "info",
+              "variant": "minimal"
+            },
+            "flowDecision": "Covered by Card variant minimal."
+          },
+          {
+            "label": "Ghost",
+            "reference": "CardGhost",
+            "component": "card",
+            "demo": {
+              "title": "Card · Ghost sobre fondo oscuro (overlays y mapas).",
+              "variant": "ghost"
+            },
+            "flowDecision": "Covered by Card variant ghost."
+          }
+        ]
+      }
+    }
+  }
+}

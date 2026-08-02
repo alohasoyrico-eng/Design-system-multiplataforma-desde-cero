@@ -1,0 +1,63 @@
+{
+  "explorers": {
+    "items": {
+      "Symbol": {
+        "type": "symbol",
+        "initial": "action",
+        "ariaLabel": "Symbol role examples",
+        "choices": [
+          [
+            "action",
+            "Action"
+          ],
+          [
+            "status",
+            "Status"
+          ],
+          [
+            "domain",
+            "Domain"
+          ],
+          [
+            "navigation",
+            "Navigation"
+          ]
+        ],
+        "sets": {
+          "action": [
+            "route",
+            "search",
+            "filter_alt",
+            "download",
+            "save",
+            "edit"
+          ],
+          "status": [
+            "check_circle",
+            "warning",
+            "error",
+            "progress_activity",
+            "block",
+            "notification_important"
+          ],
+          "domain": [
+            "local_gas_station",
+            "directions_car",
+            "credit_card",
+            "near_me",
+            "request_quote",
+            "admin_panel_settings"
+          ],
+          "navigation": [
+            "home",
+            "menu_open",
+            "account_tree",
+            "view_quilt",
+            "timeline",
+            "dashboard"
+          ]
+        }
+      }
+    }
+  }
+}

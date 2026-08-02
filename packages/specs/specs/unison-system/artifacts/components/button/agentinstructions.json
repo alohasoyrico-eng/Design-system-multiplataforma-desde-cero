@@ -1,0 +1,15 @@
+{
+  "artifacts": {
+    "components": {
+      "button": {
+        "agentInstructions": [
+          "Generate Button only for labeled actions, never for icon-only controls.",
+          "Choose variant for hierarchy and intent for risk; do not merge those decisions.",
+          "Include loading, disabled, focus, keyboard, and analytics behavior when the action changes money, cards, roles, vehicles, routes, or configuration.",
+          "Use Material Symbol names only through leadingIcon.",
+          "Reject raw styling and unsupported variants."
+        ]
+      }
+    }
+  }
+}

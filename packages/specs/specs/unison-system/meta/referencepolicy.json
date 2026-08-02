@@ -1,0 +1,57 @@
+{
+  "referencePolicy": {
+    "rule": "The reference project is a benchmark, not a paste source. Reference parity is not the goal; product correctness is the goal.",
+    "decisions": [
+      {
+        "area": "Foundation and primitive detail pages",
+        "decision": "Adapt",
+        "rationale": "Use the depth and page model, but adapt examples to fleet, driver, card, route, station, dashboard, authentication, and configuration work."
+      },
+      {
+        "area": "Generic copied content",
+        "decision": "Reject",
+        "rationale": "Literal copying imports assumptions and hides product gaps."
+      },
+      {
+        "area": "Vendor-prefixed naming",
+        "decision": "Reject",
+        "rationale": "Components must use this system naming: button, select, card, etc."
+      },
+      {
+        "area": "Material Symbols",
+        "decision": "Adopt",
+        "rationale": "The requested icon system is Material Symbols, governed by Symbol and Iconography."
+      },
+      {
+        "area": "Button-level component depth",
+        "decision": "Adapt",
+        "rationale": "The documentation depth is useful, but the contract must cover all foundations and this product risk, permission, telemetry, and accessibility rules."
+      },
+      {
+        "area": "Foundation visual examples",
+        "decision": "Adapt",
+        "rationale": "Reference-style examples are useful only when they become explicit product examples, not generic cards."
+      },
+      {
+        "area": "Template similarity across domains",
+        "decision": "Reject",
+        "rationale": "Templates must prove different product contexts, not repeat a card layout with changed labels."
+      },
+      {
+        "area": "Canvas visual benchmark from external ZIP",
+        "decision": "Adapt",
+        "rationale": "Use the ZIP as a visual and product-behavior benchmark for richness, rhythm, microinteraction, states, and concrete mobility examples. Do not import its raw color, typography, spacing, radius, shadow, props, inline styles, or platform assumptions unless they are translated through Design System foundations, primitives, semantic tokens, contracts, and audit gates."
+      },
+      {
+        "area": "External ZIP tokens and component APIs",
+        "decision": "Reject",
+        "rationale": "The ZIP may inform composition and quality targets, but Design System keeps its own foundations and primitives. Component scale remains owned by Density, typography by Voice, color by Energy, motion by Momentum, maps by Maps, charts by Charts, and accessibility by Accessibility."
+      },
+      {
+        "area": "Card benchmark migration notes",
+        "decision": "Adapt",
+        "rationale": "Card may adapt the ZIP surface rhythm, hover lift, selected state, and product-specific content density only through Design System tokens, Edenred/Ubuntu typography, Density-owned scale, semantic state, Accessibility, and the no-nested-decorative-card rule. Reject inline styles, raw radii, raw shadows, public size props, and card-within-card composition."
+      }
+    ]
+  }
+}

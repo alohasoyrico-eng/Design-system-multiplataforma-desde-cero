@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "kicker": "Fleet and driver product language",
+    "title": "A design system that can ship a fleet product.",
+    "lede": "Design System now works as a documentation product: foundations, primitives, components, patterns, templates, stack decisions, and agent-readable specifications connected through real product flows.",
+    "actions": [
+      {
+        "label": "Open patterns",
+        "href": "#/patterns",
+        "icon": "route",
+        "variant": "primary"
+      },
+      {
+        "label": "View templates",
+        "href": "#/templates",
+        "icon": "dashboard",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "coverage": {
+    "kicker": "Coverage",
+    "title": "Coverage is broad. Depth is uneven.",
+    "copy": "This is the current working map: some layers are structurally updated, while components, patterns, and templates still need richer product examples and interactions.",
+    "items": [
+      { "collection": "foundations", "label": "Foundations", "reference": "Layer template live", "status": "Updated" },
+      { "collection": "primitives", "label": "Primitives", "reference": "Layer template live", "status": "Updated" },
+      { "collection": "components", "label": "Components", "reference": "Button gold, Select interactive, group standard for the rest", "status": "In progress" },
+      { "collection": "patterns", "label": "Patterns", "reference": "Pattern playbook applied, examples still need richer flows", "status": "In progress" },
+      { "collection": "templates", "label": "Templates", "reference": "Domain templates exist, screen systems need sharper differentiation", "status": "Critical" }
+    ]
+  },
+  "documentationStatus": {
+    "kicker": "Documentation status",
+    "title": "Batch the work, then promote the winners to gold.",
+    "copy": "We should not move one page at a time forever. The fast path is fixing shared templates first, then promoting high-impact artifacts into hand-authored examples.",
+    "items": [
+      { "layer": "Foundations", "status": "Complete at template level", "detail": "Role groups, architecture, visual explanation, contract, spec, agent prompt." },
+      { "layer": "Primitives", "status": "Complete at template level", "detail": "Overview, live-style demo, responsibilities, token chain, API, spec, agent prompt." },
+      { "layer": "Components", "status": "Batch standard applied", "detail": "Button is gold. Select now has interactive examples. Remaining components inherit family standards and need richer live demos by group." },
+      { "layer": "Patterns", "status": "Batch standard applied", "detail": "Decision trees, failure modes, journeys, metrics, research, contracts. Needs more product-specific screens per pattern family." },
+      { "layer": "Templates", "status": "Not good enough yet", "detail": "They exist as domain templates, but need stronger screen systems, dashboard layouts, mobile route/card flows, and configuration flows." }
+    ]
+  },
+  "visualMigration": {
+    "kicker": "Visual migration",
+    "title": "Use the ZIP as a benchmark, not a new source of truth.",
+    "copy": "The next phase is to match the ZIP's product polish through Design System's existing foundations, primitives, contracts, and audit gates.",
+    "items": [
+      { "status": "Keep", "label": "Migration rule", "detail": "Design System foundations and primitives stay in charge: Energy, Voice, Frame, Depth, Momentum, State, Density, Charts, Maps, and Accessibility." },
+      { "status": "Adapt", "label": "Migration rule", "detail": "Use the ZIP as a benchmark for polish, mobility examples, product screens, state richness, and interaction rhythm." },
+      { "status": "Reject", "label": "Migration rule", "detail": "Do not import raw color, typography, public size props, inline styles, hand-written charts, or direct map assumptions." },
+      { "status": "First slice", "label": "Start small", "detail": "Button and Select prove the benchmark quality first, then Card, Icon Button, Badge, Chip, Field, and Input." }
+    ]
+  },
+  "architecture": {
+    "kicker": "Architecture",
+    "title": "Nothing skips a layer.",
+    "copy": "Every route, dashboard, card action, and permission system traces through the same inheritance model.",
+    "layers": [
+      { "name": "Foundation", "copy": "Decision rules and product philosophy." },
+      { "name": "Primitive", "copy": "Semantic raw material and tokens." },
+      { "name": "Component", "copy": "Reusable behavior contracts." },
+      { "name": "Pattern", "copy": "User-goal playbooks." },
+      { "name": "Template", "copy": "Complete product models." },
+      { "name": "Product", "copy": "Shipped experience with telemetry." }
+    ]
+  },
+  "fastPaths": {
+    "kicker": "Fast paths",
+    "title": "Start where the work is.",
+    "items": [
+      { "title": "Driver Mobile App", "collection": "templates", "icon": "smartphone" },
+      { "title": "Routes and Nearby Stations Mobile", "collection": "patterns", "icon": "map" },
+      { "title": "Fleet Dashboard Suite", "collection": "templates", "icon": "monitoring" },
+      { "title": "Authentication, Login, Biometrics and OTP", "collection": "patterns", "icon": "passkey" },
+      { "title": "Typography", "collection": "primitives", "icon": "title" },
+      { "title": "Apache ECharts", "collection": "stack", "icon": "bar_chart" }
+    ]
+  }
+}

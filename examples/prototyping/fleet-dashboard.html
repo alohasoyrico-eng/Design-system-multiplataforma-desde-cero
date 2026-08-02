@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System Fleet Dashboard Prototype</title>
+    <link rel="stylesheet" href="../../packages/components/styles/components.css" />
+    <style>
+      body {
+        background: var(--system-color-surface-raised);
+        color: var(--system-color-text);
+        font-family: var(--system-font-body);
+        margin: 0;
+        padding: var(--system-space-xl);
+      }
+
+      main {
+        display: grid;
+        gap: var(--system-space-lg);
+        max-width: 960px;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        gap: var(--system-space-lg);
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="scope"></div>
+      <section class="dashboard-grid" id="fleetCards"></section>
+    </main>
+    <script type="module">
+      import { createButton, createCard, createSelect } from "../../packages/components/src/index.js";
+
+      const response = await fetch("../../packages/content/content/fixtures/prototyping.json");
+      const fixtures = await response.json();
+      const scope = document.querySelector("#scope");
+      const fleetCards = document.querySelector("#fleetCards");
+
+      scope.append(
+        createSelect({
+          label: "Fleet scope",
+          helper: "Prototype data from packages/content.",
+          options: fixtures.fleets.map((fleet) => ({ label: fleet.label, value: fleet.id })),
+          value: "north",
+        }),
+      );
+
+      for (const fleet of fixtures.fleets) {
+        fleetCards.append(
+          createCard({
+            title: fleet.label,
+            value: fleet.weeklySpend,
+            detail: `${fleet.vehicles} vehicles. ${fleet.trend}.`,
+            status: fleet.risk,
+            actions: [
+              { label: "Review" },
+              { label: "Export", variant: "secondary" },
+            ],
+          }),
+        );
+      }
+
+      fleetCards.append(createButton({ label: "Create report", variant: "secondary" }));
+    </script>
+  </body>
+</html>

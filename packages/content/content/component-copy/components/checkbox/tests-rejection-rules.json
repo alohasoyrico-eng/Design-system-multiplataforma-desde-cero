@@ -1,0 +1,10 @@
+{
+  "components": {
+    "checkbox": {
+      "tests-rejection-rules": {
+        "mustTest": ["Label association", "Keyboard Space toggles value", "Indeterminate announces mixed state", "Focus is visible", "Disabled cannot toggle", "Error message is associated"],
+        "rejectIf": ["The checkbox has no visible label.", "Mixed state is only visual.", "The box changes size across states.", "The row becomes a radio group replacement.", "Disabled copy removes the reason for lockout."]
+      }
+    }
+  }
+}

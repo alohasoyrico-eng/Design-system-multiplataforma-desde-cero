@@ -1,0 +1,109 @@
+{
+  "artifacts": {
+    "patterns": {
+      "search": {
+        "layer": "Pattern",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Product Designers",
+          "Developers",
+          "Content Designers",
+          "Researchers",
+          "Agents"
+        ],
+        "purpose": "Coordinate entity lookup across a known result source with scope, result count feedback, recovery, and intentional selection behavior.",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Elevation",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Focus",
+          "Loading",
+          "Disabled"
+        ],
+        "componentDependencies": [
+          "Input",
+          "Select",
+          "List",
+          "Empty State",
+          "Inline Validation",
+          "Button"
+        ],
+        "tokenDependencies": [
+          "comp.input.*",
+          "comp.select.*",
+          "comp.list.*",
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.depth.*",
+          "sys.momentum.*",
+          "sys.accessibility.*"
+        ],
+        "entryConditions": [
+          "Users need direct lookup across drivers, vehicles, cards, stations, movements, settings, or another known entity set.",
+          "Results need scope, count feedback, empty recovery, or explicit selection behavior.",
+          "Search remains visible in a page, toolbar, shell, or work surface."
+        ],
+        "decisionTree": [
+          "Use Input alone when the value is submitted with a larger form and does not return visible results.",
+          "Use Search when query, scope, result count, empty recovery, or result selection is part of the interaction.",
+          "Use Autocomplete when suggestions appear while typing and selection completes the field.",
+          "Use Command Palette when the query executes commands or cross-route actions."
+        ],
+        "failureModes": [
+          "The field looks searchable but does not filter, route, or return results.",
+          "Scope changes erase the query without confirmation.",
+          "No-result recovery is missing or only communicated by color.",
+          "Result count is not announced or visible.",
+          "Search owns predictive suggestions that belong to Autocomplete."
+        ],
+        "successMetrics": [
+          "Users can find known entities without changing context.",
+          "Users understand scope, result count, and no-result recovery.",
+          "Keyboard and screen reader users can move from query to results and select intentionally."
+        ],
+        "states": [
+          "idle",
+          "typing",
+          "results",
+          "empty",
+          "invalid",
+          "loading",
+          "disabled",
+          "selected"
+        ],
+        "densityContext": [
+          "smartphones + phablets",
+          "tablets + laptops",
+          "desktops + TV"
+        ],
+        "agentInstructions": [
+          "Compose Search from package Input, optional Select scope, List or Button results, Empty State, and Inline Validation.",
+          "Keep Autocomplete suggestions, command execution, analytics ownership, and remote ranking out of Search unless a higher pattern owns them.",
+          "Ask before search crosses tenants, permissions, regulated data, financial data, or identity-sensitive records."
+        ],
+        "rejectIf": [
+          "The search field is decorative.",
+          "Results are hardcoded visual cards instead of package components.",
+          "No-result, invalid, loading, or selected states are missing.",
+          "Raw colors, spacing, radius, shadows, or motion bypass Design System tokens."
+        ]
+      }
+    }
+  }
+}

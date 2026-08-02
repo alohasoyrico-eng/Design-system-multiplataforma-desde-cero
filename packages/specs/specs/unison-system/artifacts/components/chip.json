@@ -1,0 +1,378 @@
+{
+  "artifacts": {
+    "components": {
+      "chip": {
+        "id": "chip",
+        "name": "Chip",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": [
+          "Design",
+          "Engineering",
+          "Product",
+          "Agents"
+        ],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Represent compact filters, input tokens, suggestions, and assistive attributes.",
+        "anatomy": [
+          {
+            "part": "Container",
+            "rule": "Owns pill surface, border, focus, and density.",
+            "tokens": [
+              "comp.chip.*",
+              "sys.frame.*"
+            ]
+          },
+          {
+            "part": "Label",
+            "rule": "Names the filter or token.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "Icon",
+            "rule": "Optional symbol supports recognition.",
+            "tokens": [
+              "sys.symbol.*"
+            ]
+          },
+          {
+            "part": "Remove affordance",
+            "rule": "Optional close action removes a token.",
+            "tokens": [
+              "sys.accessibility.*"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "id": "filter",
+            "description": "Applied or available filter."
+          },
+          {
+            "id": "input",
+            "description": "Tokenized input value."
+          },
+          {
+            "id": "suggestion",
+            "description": "Suggested value."
+          },
+          {
+            "id": "assist",
+            "description": "Compact assistive attribute or helper."
+          }
+        ],
+        "intents": [
+          {
+            "id": "default",
+            "description": "Standard chip."
+          },
+          {
+            "id": "danger",
+            "description": "Risk filter."
+          },
+          {
+            "id": "warning",
+            "description": "Caution filter."
+          }
+        ],
+        "states": [
+          "default",
+          "hover",
+          "pressed",
+          "selected",
+          "focus",
+          "disabled"
+        ],
+        "statePrecedence": "disabled > focus > pressed > selected > hover > default",
+        "foundations": {
+          "Energy": {
+            "status": "covered",
+            "decision": "Use Energy for selected, border, disabled, and risk-adjacent filters.",
+            "tokens": [
+              "comp.chip.*",
+              "sys.energy.*"
+            ],
+            "behavior": "Chip selection is visible without hiding label.",
+            "example": "Cards at risk selected filter.",
+            "test": "Verify selected contrast.",
+            "rejectIf": "Raw color replaces tokens."
+          },
+          "Voice": {
+            "status": "covered",
+            "decision": "Use Voice for short filter labels.",
+            "tokens": [
+              "sys.voice.*"
+            ],
+            "behavior": "Labels remain readable in dense rows.",
+            "example": "North region.",
+            "test": "Verify wrapping.",
+            "rejectIf": "Ambiguous label."
+          },
+          "Frame": {
+            "status": "covered",
+            "decision": "Use Frame for pill shape, height, spacing, and hit target.",
+            "tokens": [
+              "comp.chip.*",
+              "sys.frame.*"
+            ],
+            "behavior": "Chip stays compact and tappable.",
+            "example": "Filter row wraps chips.",
+            "test": "Verify density.",
+            "rejectIf": "Chip stretches or shrinks unpredictably."
+          },
+          "Depth": {
+            "status": "covered",
+            "decision": "Use Depth through parent surfaces only.",
+            "tokens": [
+              "sys.depth.*"
+            ],
+            "behavior": "Chip does not need elevation.",
+            "example": "Chip sits on filter bar.",
+            "test": "Verify no local shadow.",
+            "rejectIf": "Shadow indicates state."
+          },
+          "Momentum": {
+            "status": "covered",
+            "decision": "Use Momentum for press feedback and removal response.",
+            "tokens": [
+              "sys.momentum.*"
+            ],
+            "behavior": "Interaction confirms toggle or removal.",
+            "example": "Selected chip toggles.",
+            "test": "Verify reduced motion.",
+            "rejectIf": "Motion changes meaning."
+          },
+          "State": {
+            "status": "covered",
+            "decision": "Use State for disabled, focus, pressed, selected, hover, and default.",
+            "tokens": [
+              "sys.state.*"
+            ],
+            "behavior": "State communicates filter lifecycle.",
+            "example": "Selected filter exposes pressed state.",
+            "test": "Verify aria-pressed.",
+            "rejectIf": "Selected is visual only."
+          },
+          "Tone": {
+            "status": "covered",
+            "decision": "Use Tone for concise labels and remove language.",
+            "tokens": [
+              "sys.tone.*"
+            ],
+            "behavior": "Chip copy says the criterion.",
+            "example": "EV fleet.",
+            "test": "Verify label clarity.",
+            "rejectIf": "Label is jargon."
+          },
+          "Growth": {
+            "status": "covered",
+            "decision": "Use Growth so filters, tokens, and suggestions reuse one component.",
+            "tokens": [
+              "sys.growth.*"
+            ],
+            "behavior": "Chip scales into filter bar patterns.",
+            "example": "Dashboard filters.",
+            "test": "Verify reusable API.",
+            "rejectIf": "Each filter group forks chip."
+          },
+          "Symbol": {
+            "status": "covered",
+            "decision": "Use Symbol for optional leading and remove icons.",
+            "tokens": [
+              "sys.symbol.*"
+            ],
+            "behavior": "Icons support text.",
+            "example": "Location icon before region.",
+            "test": "Verify approved icons.",
+            "rejectIf": "Icon replaces label."
+          },
+          "Iconography": {
+            "status": "covered",
+            "decision": "Use Iconography for icon size and alignment.",
+            "tokens": [
+              "sys.iconography.*"
+            ],
+            "behavior": "Icons fit pill height.",
+            "example": "Close icon aligns with label.",
+            "test": "Verify optical alignment.",
+            "rejectIf": "Icon changes chip size."
+          },
+          "Accessibility": {
+            "status": "covered",
+            "decision": "Use Accessibility for button semantics, aria-pressed, remove action, and focus.",
+            "tokens": [
+              "sys.accessibility.*"
+            ],
+            "behavior": "Interactive chips are operable by keyboard.",
+            "example": "Selected filter is announced.",
+            "test": "Verify keyboard and name.",
+            "rejectIf": "Remove action is unnamed."
+          }
+        },
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Radius",
+          "Iconography",
+          "Motion Curves",
+          "Duration",
+          "Density",
+          "Focus",
+          "Disabled"
+        ],
+        "tokenDependencies": [
+          "comp.chip.*",
+          "sys.energy.*",
+          "sys.frame.*",
+          "sys.voice.*",
+          "sys.state.*",
+          "sys.accessibility.*"
+        ],
+        "productExamples": [
+          {
+            "context": "Filter bar",
+            "example": "Applied dashboard filters."
+          },
+          {
+            "context": "Search",
+            "example": "Tokenized driver ID."
+          },
+          {
+            "context": "Suggestions",
+            "example": "Suggested fleet segment."
+          }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for compact filters and tokens.",
+            "Keep labels visible.",
+            "Expose selected state."
+          ],
+          "dont": [
+            "Do not use for primary actions.",
+            "Do not hide complex filters.",
+            "Do not use selected decoratively."
+          ],
+          "info": [
+            "Complex chip groups escalate to patterns."
+          ]
+        },
+        "contextDensityStrategy": [
+          {
+            "context": "smartphones + phablets",
+            "density": "lg",
+            "scaleSource": "Density",
+            "layout": "wrapping high-value chips"
+          },
+          {
+            "context": "tablets + laptops",
+            "density": "md",
+            "scaleSource": "Density",
+            "layout": "filter rows with removable chips"
+          },
+          {
+            "context": "desktops + TV",
+            "density": "sm",
+            "scaleSource": "Density",
+            "layout": "dense dashboard and table filters"
+          }
+        ],
+        "agentInstructions": [
+          "Use Chip for compact filters, tokens, and suggestions.",
+          "Use selected only when it changes filter state.",
+          "Ask when grouping, source, or remove behavior is unclear."
+        ],
+        "props": [
+          {
+            "name": "label",
+            "type": "string",
+            "required": true,
+            "notes": "Chip label."
+          },
+          {
+            "name": "interactive",
+            "type": "boolean",
+            "required": false,
+            "notes": "Forces button semantics when Chip previews an interactive state."
+          },
+          {
+            "name": "state",
+            "type": "ChipState",
+            "required": false,
+            "notes": "Interaction state: default, hover, pressed, selected, focus, or disabled."
+          },
+          {
+            "name": "tone",
+            "type": "ChipTone",
+            "required": false,
+            "notes": "Optional semantic treatment for warning or danger filters."
+          },
+          {
+            "name": "variant",
+            "type": "ChipVariant",
+            "required": false,
+            "notes": "Purpose variant: filter, input, suggestion, or assist."
+          },
+          {
+            "name": "selected",
+            "type": "boolean",
+            "required": false,
+            "notes": "Marks the chip as selected."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "notes": "Disables chip interaction."
+          },
+          {
+            "name": "removable",
+            "type": "boolean",
+            "required": false,
+            "notes": "Shows remove affordance and enables remove behavior."
+          },
+          {
+            "name": "icon",
+            "type": "IconName",
+            "required": false,
+            "notes": "Decorative leading icon."
+          },
+          {
+            "name": "onRemoveLabel",
+            "type": "string",
+            "required": false,
+            "notes": "Accessible remove label."
+          },
+          {
+            "name": "onRemove",
+            "type": "(label: string) => void",
+            "required": false,
+            "notes": "Called when a removable chip is removed."
+          },
+          {
+            "name": "onSelectedChange",
+            "type": "(selected: boolean) => void",
+            "required": false,
+            "notes": "Called when local selection changes."
+          }
+        ],
+        "tests": [
+          "Visible label",
+          "Selected state",
+          "Remove behavior",
+          "Focus ring",
+          "Wrapping"
+        ],
+        "rejectIf": [
+          "Primary action replacement",
+          "Color-only selected",
+          "Unnamed remove action"
+        ]
+      }
+    }
+  }
+}

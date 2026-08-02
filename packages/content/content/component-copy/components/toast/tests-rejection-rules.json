@@ -1,0 +1,24 @@
+{
+  "components": {
+    "toast": {
+      "tests-rejection-rules": {
+        "mustTest": [
+          "Status and alert roles match severity",
+          "Dismiss button removes the toast",
+          "Optional action is keyboard reachable",
+          "Exiting motion respects reduced motion",
+          "Stacking does not cover primary actions",
+          "Copy remains short and non-blocking",
+          "Density changes padding and width without changing the feedback job"
+        ],
+        "rejectIf": [
+          "Toast asks for a required decision.",
+          "Toast replaces inline validation or field-level recovery.",
+          "Toast contains more than one action.",
+          "Dismiss or action controls do not work.",
+          "Toast uses raw color, shadow, spacing, or duration values."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "components": {
+    "input": {
+      "operational-example": {
+        "copy": "Use Input when someone must enter or edit a short free-form value with visible guidance, validation, and recovery.",
+        "scenario": {
+          "type": "field-group",
+          "fields": [
+            { "label": "Driver ID", "value": "MX-2048", "placeholder": "Enter driver ID", "helper": "Matches active driver record", "density": "md", "state": "filled", "icon": "badge" },
+            { "label": "Plate", "value": "", "placeholder": "ABC-123", "helper": "Use the registered vehicle plate", "density": "md", "state": "focus", "icon": "directions_car" },
+            { "label": "Wallet alias", "value": "North route card", "placeholder": "Name this wallet", "helper": "Visible to fleet managers", "density": "md", "state": "default", "icon": "account_balance_wallet" }
+          ],
+          "rationaleTitle": "Why Input",
+          "rationale": ["Accepts values that cannot be pre-enumerated.", "Keeps label and helper visible while typing.", "Makes validation and recovery explicit."]
+        }
+      }
+    }
+  }
+}

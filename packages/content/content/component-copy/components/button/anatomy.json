@@ -1,0 +1,37 @@
+{
+  "components": {
+    "button": {
+      "anatomy": {
+        "items": [
+          {
+            "part": "button element",
+            "rule": "Native button with default type button.",
+            "tokens": [
+              "comp.button.*",
+              "sys.energy.*",
+              "sys.frame.*",
+              "sys.momentum.*",
+              "sys.a11y.*",
+              "sys.symbol.*",
+              "sys.growth.*"
+            ]
+          },
+          {
+            "part": "label",
+            "rule": "Visible label remains the accessible name.",
+            "tokens": [
+              "sys.voice.*"
+            ]
+          },
+          {
+            "part": "state layer",
+            "rule": "State resolves before visual styling.",
+            "tokens": [
+              "sys.state.*"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

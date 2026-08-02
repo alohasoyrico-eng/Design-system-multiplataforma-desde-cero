@@ -1,0 +1,349 @@
+{
+  "patterns": [
+    {
+      "type": "pattern",
+      "id": "topbar",
+      "title": "Topbar",
+      "platform": "Cross-platform",
+      "summary": "Keep Design System identity, navigation entry, search, collection or product sections, account, alerts, viewport controls, language, and responsive menu behavior available across the shell.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "PMs"
+      ],
+      "componentsUsed": [
+        "Icon Button",
+        "Input",
+        "Menu",
+        "Badge",
+        "Avatar",
+        "Drawer"
+      ],
+      "patternDependencies": [
+        "Search",
+        "Autocomplete",
+        "Notification Panel",
+        "Avatar Menu",
+        "Sidebar"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "frame.sidebar",
+        "voice.navigation",
+        "motion.reveal",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "sidebar",
+      "title": "Sidebar",
+      "platform": "Desktop + Responsive",
+      "summary": "Organize Design System documentation collections, artifact groups, counts, active location, and responsive drawer behavior for the docs shell.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Accordion",
+        "Badge",
+        "Icon Button",
+        "Breadcrumbs",
+        "Tooltip"
+      ],
+      "tokens": [
+        "frame.sidebar",
+        "frame.canvas",
+        "voice.navigation",
+        "motion.reveal",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "search",
+      "title": "Search",
+      "platform": "Cross-platform",
+      "summary": "Let users find drivers, vehicles, stations, cards, movements, and settings with scoped results and recovery.",
+      "audiences": [
+        "Product Designers",
+        "Researchers",
+        "Developers"
+      ],
+      "componentsUsed": [
+        "Input",
+        "Select",
+        "List",
+        "Empty State",
+        "Inline Validation",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "autocomplete",
+      "title": "Autocomplete",
+      "platform": "Cross-platform",
+      "summary": "Suggest valid entities while preserving typing control, keyboard selection, loading, and no-result states.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "componentsUsed": [
+        "Input",
+        "Skeleton",
+        "Empty State"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "avatar-menu",
+      "title": "Avatar Menu",
+      "platform": "Cross-platform",
+      "summary": "Attach account, settings, and session actions to a user avatar without creating a second account trigger model.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "componentsUsed": [
+        "Menu",
+        "Avatar"
+      ],
+      "patternDependencies": [
+        "Menu"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.navigation",
+        "motion.reveal",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "select-option-layer",
+      "title": "Select Option Layer",
+      "platform": "Cross-platform",
+      "summary": "Coordinate grouped options, empty states, unavailable options, stale data, permission reasons, keyboard movement, and responsive popover-to-sheet behavior for Select-based choice flows.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "componentsUsed": [
+        "Select",
+        "Button",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "checkbox-group",
+      "title": "Checkbox Group",
+      "platform": "Cross-platform",
+      "summary": "Coordinate related Checkbox options with group labeling, select-all, mixed state, shared validation, and cross-option selection rules.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Checkbox",
+        "Inline Validation",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "radio-group",
+      "title": "Radio Group",
+      "platform": "Cross-platform",
+      "summary": "Coordinate one exclusive decision with a visible question, Radio Button options, shared name, keyboard movement, validation, and option-set layout rules.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Radio Button",
+        "Inline Validation",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.semantic",
+        "a11y.focus"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "multi-select",
+      "title": "Multi Select",
+      "platform": "Cross-platform",
+      "summary": "Select multiple fleets, vehicles, regions, tags, or permissions with clear count, removal, and bulk behavior.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Select",
+        "Checkbox",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "date-picker",
+      "title": "Date Picker",
+      "platform": "Cross-platform",
+      "summary": "Choose operational dates with locale, keyboard, disabled days, shortcuts, validation, and audit-friendly formatting.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "componentsUsed": [
+        "Input",
+        "Popover",
+        "Button"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "phone-input",
+      "title": "Phone Input",
+      "platform": "Cross-platform",
+      "summary": "Capture phone numbers for driver invites, OTP, support, and contact updates with country-aware validation.",
+      "audiences": [
+        "Content Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Phone Input",
+        "Inline Validation",
+        "Code Input"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "file-upload",
+      "title": "File Upload",
+      "platform": "Cross-platform",
+      "summary": "Upload documents, invoices, vehicle files, or evidence with progress, validation, retry, and removal.",
+      "audiences": [
+        "Service Designers",
+        "Developers",
+        "Content Designers"
+      ],
+      "componentsUsed": [
+        "Button",
+        "Progress Bar",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "notification-panel",
+      "title": "Notification Panel",
+      "platform": "Desktop",
+      "summary": "Collect operational alerts, approvals, sync issues, and risk notices in a prioritized review surface.",
+      "audiences": [
+        "PMs",
+        "Service Designers",
+        "Developers"
+      ],
+      "componentsUsed": [
+        "Error Panel",
+        "Toast",
+        "Badge",
+        "Table"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "snackbar-provider",
+      "title": "Snackbar Provider",
+      "platform": "Cross-platform",
+      "summary": "Coordinate transient confirmations, undo, sync, and error messages without interrupting the task.",
+      "audiences": [
+        "Developers",
+        "Content Designers",
+        "Product Designers"
+      ],
+      "componentsUsed": [
+        "Toast",
+        "Button",
+        "Inline Validation"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    }
+  ]
+}

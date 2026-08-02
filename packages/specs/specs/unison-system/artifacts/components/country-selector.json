@@ -1,0 +1,80 @@
+{
+  "artifacts": {
+    "components": {
+      "country-selector": {
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": ["Product Designers", "Developers", "Product Managers", "Content Designers", "Researchers", "Agents"],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Let users choose one country and calling-code context with visible flag support, text label, code, option layer, keyboard selection, and inline composition for Phone Input.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The ZIP includes SelectCountry. Flow keeps the country/calling-code selector as its own component and lets Phone Input consume it.",
+        "anatomy": [
+          { "part": "trigger", "rule": "Shows selected flag, calling code, and chevron.", "tokens": ["comp.select.*", "sys.frame.*"] },
+          { "part": "flag", "rule": "Decorative country recognition; text remains required.", "tokens": ["sys.iconography.*", "sys.symbol.*"] },
+          { "part": "option layer", "rule": "Lists country label and calling code with selected state.", "tokens": ["comp.select.*", "sys.depth.*"] },
+          { "part": "inline mode", "rule": "Composes inside Phone Input without transferring ownership.", "tokens": ["sys.growth.*", "sys.state.*"] }
+        ],
+        "variants": [
+          { "id": "default", "description": "Standalone country selector." },
+          { "id": "inline", "description": "Compact selector composed inside another field." }
+        ],
+        "states": ["default", "open", "focus", "error", "disabled"],
+        "statePrecedence": "disabled > error > open > focus > default",
+        "foundations": {
+          "Energy": { "status": "covered", "decision": "Use semantic selected, focus, error, disabled, and option colors.", "tokens": ["comp.select.*", "sys.energy.*"], "behavior": "Country state is visible without raw colors.", "example": "Selected Mexico.", "test": "Contrast audit.", "rejectIf": "Flag-only state." },
+          "Voice": { "status": "covered", "decision": "Use country label, calling code, and option text.", "tokens": ["sys.voice.*"], "behavior": "Country meaning is text-backed.", "example": "Mexico +52.", "test": "Copy and a11y audit.", "rejectIf": "Flag is the only label." },
+          "Frame": { "status": "covered", "decision": "Use Select trigger and option layer rhythm.", "tokens": ["sys.frame.*", "comp.select.*"], "behavior": "Inline mode fits Phone Input without clipping.", "example": "Phone Input prefix slot.", "test": "Layout audit.", "rejectIf": "Prefix overlaps input value." },
+          "Depth": { "status": "covered", "decision": "Use option-layer depth only when open.", "tokens": ["sys.depth.*"], "behavior": "Listbox appears above field content.", "example": "Open countries.", "test": "Layer audit.", "rejectIf": "Listbox sits behind input." },
+          "Momentum": { "status": "covered", "decision": "Use Select chevron and option-layer motion.", "tokens": ["sys.momentum.*"], "behavior": "Chevron and listbox follow shared motion.", "example": "Open selector.", "test": "Motion audit.", "rejectIf": "Raw duration or curve." },
+          "State": { "status": "covered", "decision": "Resolve disabled, error, open, focus, and default states.", "tokens": ["sys.state.*"], "behavior": "Selected state stays machine-readable.", "example": "Cuba selected.", "test": "State audit.", "rejectIf": "State only in visual styling." },
+          "Tone": { "status": "covered", "decision": "Use neutral country labels; error tone comes from parent validation.", "tokens": ["sys.tone.*"], "behavior": "Country selection does not introduce false urgency.", "example": "Invalid country support.", "test": "Tone review.", "rejectIf": "Unsupported market is hidden." },
+          "Growth": { "status": "covered", "decision": "Compose into Phone Input and other flows without duplicating implementation.", "tokens": ["sys.growth.*"], "behavior": "Country logic scales from one owner.", "example": "Phone Input consumes Country Selector.", "test": "Composition audit.", "rejectIf": "Phone Input recreates options." },
+          "Symbol": { "status": "covered", "decision": "Treat flags and chevron as symbols that support text.", "tokens": ["sys.symbol.*"], "behavior": "Symbols never replace labels.", "example": "MX flag plus +52.", "test": "Symbol audit.", "rejectIf": "Flag-only selector." },
+          "Iconography": { "status": "covered", "decision": "Use flag primitive and shared chevron sizing.", "tokens": ["sys.iconography.*"], "behavior": "Flag is round and aligned.", "example": "Circular Mexico flag.", "test": "Icon sizing audit.", "rejectIf": "Square image artifact." },
+          "Accessibility": { "status": "covered", "decision": "Expose combobox/listbox semantics and keyboard selection.", "tokens": ["sys.accessibility.*"], "behavior": "Keyboard users can open, move, select, and recover focus.", "example": "Enter selects country.", "test": "A11y smoke.", "rejectIf": "Missing label or listbox semantics." }
+        },
+        "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Elevation", "Iconography", "Motion Curves", "Duration", "Density", "Focus", "Disabled"],
+        "tokenDependencies": ["comp.select.*", "sys.energy.*", "sys.voice.*", "sys.frame.*", "sys.depth.*", "sys.momentum.*", "sys.state.*", "sys.accessibility.*"],
+        "props": [
+          { "name": "id", "type": "string", "required": false, "notes": "Stable id used to connect trigger and listbox." },
+          { "name": "label", "type": "string", "required": false, "notes": "Accessible selector label." },
+          { "name": "value", "type": "string", "required": false, "notes": "Selected country code." },
+          { "name": "country", "type": "string", "required": false, "notes": "Alias for selected country code when composed by another field." },
+          { "name": "countries", "type": "CountryOption[]", "required": false, "notes": "Country list." },
+          { "name": "disabled", "type": "boolean", "required": false, "notes": "Prevents selection and removes trigger from tab order." },
+          { "name": "invalid", "type": "boolean", "required": false, "notes": "Applies error state when validation is owned by the consumer." },
+          { "name": "density", "type": "sm | md | lg", "required": false, "notes": "Maps selector sizing to density context." },
+          { "name": "inline", "type": "boolean", "required": false, "notes": "Compact composition mode." },
+          { "name": "searchable", "type": "boolean", "required": false, "notes": "Shows a local search field inside the option layer." },
+          { "name": "searchPlaceholder", "type": "string", "required": false, "notes": "Placeholder for the local country/code search field." },
+          { "name": "ariaLabel", "type": "string", "required": false, "notes": "Overrides trigger accessible name in composed contexts." },
+          { "name": "listboxLabel", "type": "string", "required": false, "notes": "Overrides option layer accessible label." },
+          { "name": "className", "type": "string", "required": false, "notes": "Adds a consumer layout hook without changing anatomy." },
+          { "name": "hydrate", "type": "boolean", "required": false, "notes": "Lets a parent component hydrate after composition." },
+          { "name": "onValueChange", "type": "(countryCode, country) => void", "required": false, "notes": "Selection callback." }
+        ],
+        "componentDependencies": ["select"],
+        "productExamples": [
+          { "context": "Phone Input", "example": "Country Selector provides flag and calling code before the tel input." },
+          { "context": "Support profile", "example": "Choose country context before a recovery contact." },
+          { "context": "Market settings", "example": "Select supported operating country without mixing language or currency." }
+        ],
+        "guidelines": {
+          "do": ["Use for country/calling-code selection.", "Compose inline inside Phone Input.", "Keep country label and calling code visible."],
+          "dont": ["Do not use flag alone.", "Do not duplicate logic inside Phone Input.", "Do not use for generic region filters."],
+          "info": ["Searchable long country lists may later extend this component, but ownership stays here."]
+        },
+        "contextDensityStrategy": [
+          { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "inline with phone input or full-width selector" },
+          { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "form control with readable option labels" },
+          { "context": "desktops + TV", "density": "sm", "scaleSource": "Density", "layout": "compact support or configuration field" }
+        ],
+        "tests": ["Combobox/listbox semantics", "Keyboard selection", "Flag plus text", "Inline composition", "Disabled/error states"],
+        "agentInstructions": ["Use Country Selector for country/calling-code selection.", "Compose it into Phone Input instead of duplicating markup.", "Ask before adding language, currency, compliance, or generic region filtering."],
+        "rejectIf": ["Flag-only meaning", "Phone Input duplicates selector options", "Calling code is not visible text", "Keyboard cannot select country"]
+      }
+    }
+  }
+}

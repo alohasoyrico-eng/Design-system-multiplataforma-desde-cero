@@ -1,0 +1,16 @@
+{
+  "components": {
+    "input": {
+      "anatomy": {
+        "items": [
+          { "part": "Input wrapper", "rule": "Groups label, input, helper, and state so the field moves as one component.", "tokens": ["comp.input.*", "sys.frame.*"] },
+          { "part": "Label", "rule": "Names the value and remains visible before, during, and after input.", "tokens": ["sys.voice.*"] },
+          { "part": "Input surface", "rule": "Holds value, placeholder, focus, disabled, loading, and error styles.", "tokens": ["sys.energy.*", "sys.state.*", "sys.momentum.*"] },
+          { "part": "Helper text", "rule": "Explains format, source, validation, or recovery.", "tokens": ["sys.voice.*", "sys.accessibility.*"] },
+          { "part": "Affordance", "rule": "Optional leading icon or non-interactive qualifier supports the value without replacing copy.", "tokens": ["sys.iconography.*", "sys.symbol.*"] },
+          { "part": "Field action", "rule": "Optional reveal or clear action uses the internal Field Action primitive: icon-only, no default container, field-owned density, visible focus, and accessible state.", "tokens": ["sys.accessibility.*", "sys.iconography.*", "sys.momentum.*", "sys.state.*"] }
+        ]
+      }
+    }
+  }
+}

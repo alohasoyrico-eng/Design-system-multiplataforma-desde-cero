@@ -1,0 +1,110 @@
+{
+  "visualSections": {
+    "frameTokens": {
+      "title": "Frame Tokens",
+      "description": "Frame follows the zip as a spatial foundation: spacing, radius, control heights, content widths, borders, documentation measures, breakpoints, and responsive grid.",
+      "summary": [
+        {
+          "value": "75",
+          "label": "ref.frame tokens"
+        },
+        {
+          "value": "48",
+          "label": "sys.frame tokens"
+        },
+        {
+          "value": "9",
+          "label": "token groups"
+        }
+      ],
+      "groups": [
+        [
+          "Space",
+          "19",
+          "0-160px plus micro",
+          [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "12",
+            "16",
+            "20",
+            "24",
+            "32",
+            "40"
+          ]
+        ],
+        [
+          "Radius",
+          "14",
+          "0-full",
+          [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "6",
+            "8",
+            "10",
+            "12",
+            "full"
+          ]
+        ],
+        [
+          "Height",
+          "9",
+          "control heights and density remaps",
+          [
+            "control-sm",
+            "control-md",
+            "control-lg",
+            "density-sm",
+            "density-md",
+            "density-lg"
+          ]
+        ],
+        [
+          "Content",
+          "4",
+          "width constraints",
+          [
+            "dialog",
+            "narrow",
+            "prose",
+            "max"
+          ]
+        ],
+        [
+          "Grid",
+          "10",
+          "responsive columns",
+          [
+            "sm columns",
+            "sm margin",
+            "md columns",
+            "md gutter",
+            "lg columns",
+            "lg max"
+          ]
+        ],
+        [
+          "Support",
+          "16",
+          "borders, docs, sidebar, breakpoints",
+          [
+            "border",
+            "doc",
+            "sidebar",
+            "breakpoint"
+          ]
+        ]
+      ]
+    }
+  }
+}

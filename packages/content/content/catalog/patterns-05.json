@@ -1,0 +1,110 @@
+{
+  "patterns": [
+    {
+      "type": "pattern",
+      "id": "multi-step-form",
+      "title": "Multi Step Form",
+      "platform": "Cross-platform",
+      "summary": "Guide users through sequenced form tasks with step validation, persistence, review, submission, and recovery.",
+      "audiences": [
+        "Product Designers",
+        "Content Designers",
+        "Developers",
+        "Researchers"
+      ],
+      "componentsUsed": [
+        "Stepper",
+        "Button",
+        "Input",
+        "Inline Validation",
+        "Toast"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "bulk-actions",
+      "title": "Bulk Actions",
+      "platform": "Cross-platform",
+      "summary": "Coordinate multi-record selection, contextual actions, confirmation, progress, undo, and audit feedback.",
+      "audiences": [
+        "Product Designers",
+        "Developers",
+        "PMs",
+        "Service Designers"
+      ],
+      "componentsUsed": [
+        "Table",
+        "Checkbox",
+        "Button",
+        "Dialog",
+        "Toast",
+        "Badge"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "settings",
+      "title": "Settings",
+      "platform": "Cross-platform",
+      "summary": "Organize durable preferences, grouped controls, immediate or explicit save behavior, and danger-zone actions.",
+      "audiences": [
+        "Product Designers",
+        "Content Designers",
+        "Developers",
+        "Service Designers"
+      ],
+      "componentsUsed": [
+        "Switch",
+        "Select",
+        "Button",
+        "Toast",
+        "Dialog"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    },
+    {
+      "type": "pattern",
+      "id": "help-center",
+      "title": "Help Center",
+      "platform": "Cross-platform",
+      "summary": "Provide searchable support content with categories, article detail, tags, empty states, and escalation paths.",
+      "audiences": [
+        "Content Designers",
+        "Product Designers",
+        "Developers",
+        "Service Designers"
+      ],
+      "componentsUsed": [
+        "Input",
+        "Accordion",
+        "Tag",
+        "Empty State",
+        "Button",
+        "Drawer"
+      ],
+      "tokens": [
+        "frame.canvas",
+        "voice.guidance",
+        "motion.reveal",
+        "a11y.recovery"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "demos": {
+    "Elevation": {
+      "type": "elevation",
+      "initial": "1",
+      "ariaLabel": "Elevation examples",
+      "choices": [
+        [
+          "0",
+          "Level 0"
+        ],
+        [
+          "1",
+          "Level 1"
+        ],
+        [
+          "2",
+          "Level 2"
+        ],
+        [
+          "3",
+          "Level 3"
+        ],
+        [
+          "4",
+          "Level 4"
+        ]
+      ],
+      "labels": {
+        "0": "Canvas",
+        "1": "Raised card",
+        "2": "Floating menu",
+        "3": "Overlay sheet",
+        "4": "Critical toast"
+      },
+      "title": "Surface primitive",
+      "copy": "Elevation changes hierarchy without changing content."
+    }
+  }
+}

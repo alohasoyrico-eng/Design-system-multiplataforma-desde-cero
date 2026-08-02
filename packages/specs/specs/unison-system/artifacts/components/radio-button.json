@@ -1,0 +1,71 @@
+{
+  "artifacts": {
+    "components": {
+      "radio-button": {
+        "id": "radio-button",
+        "name": "Radio Button",
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": ["Design", "Engineering", "Product", "Agents"],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Use Radio Button for one option inside a mutually exclusive choice set. The individual control owns selected, unselected, focus, error, and disabled states; grouping rules belong to patterns.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The ZIP reference gives the visual benchmark: 22px circular control, 11px selected dot, 1.5px border, spring dot entry, hover scale, and focus ring. Design System keeps ownership of color, type, density, state, motion, and accessibility rules.",
+        "anatomy": [
+          { "part": "Option label", "rule": "Names the single option and remains visible in every state.", "tokens": ["comp.radio-button.label.*", "sys.voice.*", "sys.energy.text.*"] },
+          { "part": "Control circle", "rule": "Owns fixed size, round shape, border, fill, and focus treatment.", "tokens": ["comp.radio-button.control.*", "sys.frame.*", "sys.state.*"] },
+          { "part": "Selection dot", "rule": "Appears only when the option is selected.", "tokens": ["comp.radio-button.dot.*", "sys.energy.*", "sys.momentum.*"] },
+          { "part": "Support text", "rule": "Adds optional description, validation, or policy reason without replacing the label.", "tokens": ["comp.radio-button.support.*", "sys.voice.*", "sys.accessibility.*"] }
+        ],
+        "variants": [
+          { "id": "default", "description": "Label-only option." },
+          { "id": "descriptive", "description": "Option with support text for consequence or scope." },
+          { "id": "compact", "description": "Dense option row for compact decision lists." },
+          { "id": "critical", "description": "High-impact option that needs explicit support copy." }
+        ],
+        "states": ["unselected", "selected", "focus", "error", "disabled"],
+        "statePrecedence": "disabled > error > focus > selected > unselected",
+        "foundations": {
+          "Energy": { "status": "covered", "decision": "Use Energy for control border, selected dot, disabled, and error color.", "tokens": ["comp.radio-button.*", "sys.energy.*"], "behavior": "Energy makes selected and unavailable options visible.", "example": "Route preference options show the selected accent dot.", "test": "Verify contrast for selected, unselected, error, and disabled.", "rejectIf": "Selection depends on color alone or raw values." },
+          "Voice": { "status": "covered", "decision": "Use Voice for labels and support text.", "tokens": ["comp.radio-button.*", "sys.voice.*"], "behavior": "Voice keeps each option readable and comparable.", "example": "Use 'Fastest route' with support text instead of vague mode labels.", "test": "Verify label and support text wrap without clipping.", "rejectIf": "The option is icon-only or ambiguous." },
+          "Frame": { "status": "covered", "decision": "Use Frame for circle size, row spacing, radius, and density.", "tokens": ["comp.radio-button.*", "sys.frame.*"], "behavior": "Frame keeps the circle fixed while text uses remaining space.", "example": "Plan choices align across phone and desktop containers.", "test": "Verify the circle does not resize across states.", "rejectIf": "State changes control dimensions." },
+          "Depth": { "status": "covered", "decision": "Use Depth only on surrounding surfaces, not as radio state.", "tokens": ["comp.radio-button.*", "sys.depth.*"], "behavior": "Depth does not replace selected or focus state.", "example": "A settings panel can have surface depth while the radio stays flat.", "test": "Verify selection is clear without shadow.", "rejectIf": "Shadow is used as the selected state." },
+          "Momentum": { "status": "covered", "decision": "Use Momentum for hover scale and selected dot entry.", "tokens": ["comp.radio-button.*", "sys.momentum.*"], "behavior": "Motion confirms selection quickly without delaying the choice.", "example": "The selected dot scales in with spring feedback.", "test": "Verify reduced-motion and quick feedback.", "rejectIf": "Motion hides state or uses raw curves." },
+          "State": { "status": "covered", "decision": "Use State for disabled, error, focus, selected, and unselected precedence.", "tokens": ["comp.radio-button.*", "sys.state.*"], "behavior": "State controls interaction and visuals.", "example": "Disabled beats selected; error beats focus.", "test": "Verify precedence across all states.", "rejectIf": "State is visual only or contradictory." },
+          "Tone": { "status": "covered", "decision": "Use Tone for direct option labels.", "tokens": ["comp.radio-button.*", "sys.tone.*"], "behavior": "Tone makes each exclusive option easy to compare.", "example": "Use 'Manual review' instead of vague risk language.", "test": "Verify copy describes the choice outcome.", "rejectIf": "Copy hides risk or policy meaning." },
+          "Growth": { "status": "covered", "decision": "Use Growth for reusable single-choice behavior across products.", "tokens": ["comp.radio-button.*", "sys.growth.*"], "behavior": "Growth keeps the atomic option portable while groups evolve into patterns.", "example": "The same control works in onboarding, settings, and configuration.", "test": "Verify the control is usable without group-specific logic.", "rejectIf": "A product forks one-off radio behavior." },
+          "Symbol": { "status": "covered", "decision": "Use Symbol only for adjacent contextual icons, not inside the radio circle.", "tokens": ["comp.radio-button.*", "sys.symbol.*"], "behavior": "Symbol supports context without replacing label or dot.", "example": "A route icon may sit next to a preference label.", "test": "Verify icons do not replace selection.", "rejectIf": "Decorative icons enter the control circle." },
+          "Iconography": { "status": "covered", "decision": "Use Iconography only outside the control when context needs it.", "tokens": ["comp.radio-button.*", "sys.iconography.*"], "behavior": "Iconography remains supportive and optional.", "example": "Plan icons may support labels in product cards.", "test": "Verify label remains sufficient without icon.", "rejectIf": "The radio becomes icon-only." },
+          "Accessibility": { "status": "covered", "decision": "Use Accessibility for visible label, native radio input, focus, disabled, error, and selected announcement.", "tokens": ["comp.radio-button.*", "sys.accessibility.*"], "behavior": "Accessibility makes the selected value machine-readable.", "example": "Radio announces checked state and changes with keyboard inside a group.", "test": "Verify label, checked state, focus, disabled, and error association.", "rejectIf": "The component cannot be operated or understood without sight." }
+        },
+        "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Iconography", "Motion Curves", "Duration", "Density", "Focus", "Disabled", "Message"],
+        "tokenDependencies": ["comp.radio-button.*", "sys.energy.*", "sys.voice.*", "sys.frame.*", "sys.state.*", "sys.momentum.*", "sys.accessibility.*"],
+        "props": [
+          { "name": "label", "type": "string", "required": true, "notes": "Visible option text." },
+          { "name": "value", "type": "string", "required": true, "notes": "Stable option value." },
+          { "name": "name", "type": "string", "required": false, "notes": "Radio group name supplied by the parent pattern." },
+          { "name": "checked", "type": "boolean", "required": true, "notes": "Selected value for controlled usage." },
+          { "name": "description", "type": "string", "required": false, "notes": "Support text under the label." },
+          { "name": "error", "type": "string", "required": false, "notes": "Validation or policy message." },
+          { "name": "disabled", "type": "boolean", "required": false, "notes": "Blocks selection." },
+          { "name": "onChange", "type": "(value: string) => void", "required": true, "notes": "Reports the selected option value." }
+        ],
+        "productExamples": [
+          { "context": "Route setup", "example": "Choose fastest, cheapest, or balanced route preference." },
+          { "context": "Wallet policy", "example": "Choose one approval mode for fuel purchases." },
+          { "context": "Authentication", "example": "Choose one fallback verification method." }
+        ],
+        "guidelines": { "do": ["Use for one option in an exclusive choice set.", "Keep label visible.", "Use support text when the option changes policy or scope."], "dont": ["Do not use for independent boolean choices.", "Do not use without a parent choice question.", "Do not create group validation inside the atomic component."], "info": ["Radio Group becomes a pattern when choices need shared label, arrow-key orchestration, validation, or layout rules."] },
+        "contextDensityStrategy": [
+          { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "full-width option rows with clear touch space" },
+          { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "stacked or compact configuration rows" },
+          { "context": "desktops + TV", "density": "lg", "scaleSource": "Density", "layout": "readable option lists and remote-focus surfaces" }
+        ],
+        "tests": ["Label association", "Checked state announcement", "Keyboard focus visibility", "Disabled non-interaction", "Error message association", "Density adaptation"],
+        "agentInstructions": ["Use Radio Button only as one option in an exclusive choice set.", "Ask before inventing group behavior, validation, or layout orchestration.", "Use Checkbox for independent boolean choices and Select for compact closed choices."],
+        "rejectIf": ["It has no visible label.", "It is used as an independent toggle.", "Group behavior is hidden inside the atomic component.", "Selection depends only on color or raw motion."]
+      }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "visualSections": {
+    "voiceTypography": {
+      "title": "Typography System",
+      "description": "Voice uses the same structure as the reference zip: a 4 x 4 semantic grid plus utility roles. Edenred is reserved for display and headings; Ubuntu carries product text, UI labels, captions, and code.",
+      "summary": [
+        {
+          "value": "38",
+          "label": "ref.voice tokens"
+        },
+        {
+          "value": "18",
+          "label": "semantic type variants"
+        },
+        {
+          "value": "2",
+          "label": "code variants"
+        }
+      ],
+      "groups": [
+        {
+          "name": "Display",
+          "meta": "Edenred / Black",
+          "variants": [
+            [
+              "display-lg",
+              "Display LG",
+              "62px",
+              "Fleet"
+            ],
+            [
+              "display-md",
+              "Display MD",
+              "48px",
+              "Routes"
+            ],
+            [
+              "display-sm",
+              "Display SM",
+              "32px",
+              "Cards"
+            ]
+          ]
+        },
+        {
+          "name": "Heading",
+          "meta": "Edenred / Black",
+          "variants": [
+            [
+              "heading-lg",
+              "Heading LG",
+              "20px",
+              "Card declined at station"
+            ],
+            [
+              "heading-md",
+              "Heading MD",
+              "18px",
+              "Route requires location"
+            ],
+            [
+              "heading-sm",
+              "Heading SM",
+              "16px",
+              "Review fleet exceptions"
+            ]
+          ]
+        },
+        {
+          "name": "Label",
+          "meta": "Ubuntu / medium",
+          "variants": [
+            [
+              "label-lg",
+              "Label LG",
+              "16px",
+              "Available balance"
+            ],
+            [
+              "label-md",
+              "Label MD",
+              "14px",
+              "Station status"
+            ],
+            [
+              "label-sm",
+              "Label SM",
+              "12px",
+              "Last sync"
+            ]
+          ]
+        },
+        {
+          "name": "Paragraph",
+          "meta": "Ubuntu / regular",
+          "variants": [
+            [
+              "paragraph-lg",
+              "Paragraph LG",
+              "24px",
+              "Your card is safe. No charge was made."
+            ],
+            [
+              "paragraph-md",
+              "Paragraph MD",
+              "20px",
+              "Enable location to find nearby stations faster."
+            ],
+            [
+              "paragraph-sm",
+              "Paragraph SM",
+              "16px",
+              "Fuel limits update after the next sync."
+            ]
+          ]
+        }
+      ],
+      "utilities": [
+        [
+          "caption",
+          "Caption",
+          "11px",
+          "Metadata, helper text, timestamps."
+        ],
+        [
+          "overline",
+          "Overline",
+          "10px",
+          "Eyebrows, section labels, compact status."
+        ],
+        [
+          "code",
+          "Code",
+          "14px",
+          "Token names, examples, API snippets."
+        ],
+        [
+          "code-sm",
+          "Code SM",
+          "11px",
+          "Dense token references and small annotations."
+        ]
+      ]
+    }
+  }
+}

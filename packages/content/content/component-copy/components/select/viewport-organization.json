@@ -1,0 +1,50 @@
+{
+  "components": {
+    "select": {
+      "viewport-organization": {
+        "copy": "Adapt option access to the viewport. Select owns the field trigger and desktop option layer; modal or searchable choice flows belong to patterns.",
+        "items": [
+          {
+            "icon": "smartphone",
+            "title": "Smartphones + phablets",
+            "density": "lg",
+            "rule": "Use large density and keep helper text close to the trigger; escalate long or searchable choices to a pattern.",
+            "demo": {
+              "field": "Vehicle",
+              "value": "MX-4821",
+              "helper": "Assigned to Ana Gomez",
+              "density": "md",
+              "state": ""
+            }
+          },
+          {
+            "icon": "tablet_mac",
+            "title": "Tablets + laptops",
+            "density": "md",
+            "rule": "Use inline filters and popovers while keeping labels, helper text, and source freshness visible.",
+            "demo": {
+              "field": "Fleet",
+              "value": "North Region Fleet",
+              "helper": "28 vehicles",
+              "density": "md",
+              "state": ""
+            }
+          },
+          {
+            "icon": "desktop_windows",
+            "title": "Desktops + TV",
+            "density": "lg",
+            "rule": "Use larger filter surfaces or inspector panels when viewed at distance or in dashboards.",
+            "demo": {
+              "field": "Period",
+              "value": "Last 30 days",
+              "helper": "URL persisted",
+              "density": "lg",
+              "state": ""
+            }
+          }
+        ]
+      }
+    }
+  }
+}

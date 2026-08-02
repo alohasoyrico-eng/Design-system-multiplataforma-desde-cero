@@ -1,0 +1,21 @@
+{
+  "components": {
+    "card": {
+      "tests-rejection-rules": {
+        "mustTest": [
+          "Renders semantic surface with title, description, optional icon, and state.",
+          "Interactive Card is keyboard reachable and preserves focus visibility.",
+          "Default, hover, focus, selected, loading, error, disabled, and muted states remain distinct.",
+          "Mobile stack, desktop grid, and dense dashboard layouts do not overflow.",
+          "Surface, border, radius, padding, elevation, motion, icon, and text resolve through Design System tokens."
+        ],
+        "rejectIf": [
+          "Card is used as a decorative wrapper.",
+          "Nested decorative cards are required.",
+          "Product sequencing is hidden inside the base component.",
+          "State is color-only or recovery text is missing."
+        ]
+      }
+    }
+  }
+}

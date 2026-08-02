@@ -1,0 +1,87 @@
+{
+  "artifacts": {
+    "components": {
+      "combobox": {
+        "layer": "Component",
+        "platform": "Cross-platform",
+        "audiences": ["Design", "Engineering", "Product", "Agents"],
+        "maturityTarget": 3,
+        "status": "gold-standard",
+        "purpose": "Let users type to filter and choose one known operational value while preserving field, listbox, keyboard, empty-state, and clear-action semantics.",
+        "referenceDecision": "Adapt",
+        "referenceRationale": "The ZIP includes SelectCombo and Combobox. Flow promotes the ARIA/HTML convention name Combobox and translates the reference look, option layer, clear action, and chevron motion through Design System foundations and primitives.",
+        "anatomy": [
+          { "part": "Field shell", "rule": "Owns label, helper, density, validation, disabled state, and focus.", "tokens": ["comp.input.*", "sys.frame.*", "sys.voice.*"] },
+          { "part": "Editable input", "rule": "Captures typed query and exposes combobox semantics.", "tokens": ["comp.input.*", "sys.accessibility.*"] },
+          { "part": "Clear action", "rule": "Clears the local input/selection using field action treatment.", "tokens": ["comp.input.*", "sys.state.*"] },
+          { "part": "Option layer", "rule": "Lists filtered options, selected state, metadata, and empty results.", "tokens": ["comp.select.*", "sys.depth.*", "sys.momentum.*"] }
+        ],
+        "variants": [{ "id": "default", "description": "Editable single-select field with local filtering." }],
+        "states": ["default", "open", "focus", "filled", "empty", "error", "disabled"],
+        "statePrecedence": "disabled > error > open > focus > empty > filled > default",
+        "foundations": {
+          "Energy": { "status": "covered", "decision": "Use semantic surface, focus, selected, error, and disabled colors.", "tokens": ["comp.input.*", "comp.select.*", "sys.energy.*"], "behavior": "The field and option layer communicate state without raw colors.", "example": "Vehicle lookup.", "test": "Contrast and state audit.", "rejectIf": "Raw color values or icon-only state." },
+          "Voice": { "status": "covered", "decision": "Use visible label, placeholder, helper, option label, metadata, and empty copy.", "tokens": ["sys.voice.*"], "behavior": "Users understand what can be searched and selected.", "example": "Search by plate or driver.", "test": "Copy audit.", "rejectIf": "Placeholder-only label or silent empty state." },
+          "Frame": { "status": "covered", "decision": "Use Input field rhythm and Select option layer sizing.", "tokens": ["sys.frame.*"], "behavior": "The option layer follows the field without overflow.", "example": "Filter row combobox.", "test": "Responsive layout audit.", "rejectIf": "Listbox detaches from the field or clips content." },
+          "Depth": { "status": "covered", "decision": "Use popover depth for the option layer only.", "tokens": ["sys.depth.*"], "behavior": "The listbox appears above neighboring content without becoming a dialog.", "example": "Open vehicle list.", "test": "Layer audit.", "rejectIf": "Nested surfaces or raw z-index beyond component role." },
+          "Momentum": { "status": "covered", "decision": "Use state and press motion aliases for open layer and chevron.", "tokens": ["sys.momentum.*"], "behavior": "Opening, filtering, selecting, and clearing feel consistent with Select.", "example": "Chevron rotates with spring rhythm.", "test": "Motion audit.", "rejectIf": "Raw cubic-bezier or flat motion." },
+          "State": { "status": "covered", "decision": "Resolve disabled, error, open, focus, empty, filled, and default states.", "tokens": ["sys.state.*"], "behavior": "State precedence remains machine-readable.", "example": "No results after filtering.", "test": "State audit.", "rejectIf": "Conflicting state or hidden empty state." },
+          "Tone": { "status": "covered", "decision": "Use helper and empty copy for recovery tone.", "tokens": ["sys.tone.*"], "behavior": "No-match feedback is concise and non-blaming.", "example": "No matching options.", "test": "Tone review.", "rejectIf": "Error-like language for normal empty filtering." },
+          "Growth": { "status": "covered", "decision": "Escalate remote search, global command palettes, multi-select, and saved query policy.", "tokens": ["sys.growth.*"], "behavior": "Combobox stays one field.", "example": "Known vehicle list.", "test": "Layer classification.", "rejectIf": "Owns global search or async orchestration." },
+          "Symbol": { "status": "covered", "decision": "Use icons as support only.", "tokens": ["sys.symbol.*"], "behavior": "Icon does not replace label, clear text, or empty copy.", "example": "Search icon.", "test": "Text-backed icon audit.", "rejectIf": "Icon-only option or action." },
+          "Iconography": { "status": "covered", "decision": "Use Design System symbol sizing for leading, clear, and chevron icons.", "tokens": ["sys.iconography.*"], "behavior": "Icons align with Input and Select.", "example": "Search and expand_more.", "test": "Icon sizing audit.", "rejectIf": "Raw icon sizing outside aliases." },
+          "Accessibility": { "status": "covered", "decision": "Expose combobox/listbox wiring, active descendant, keyboard selection, clear action, and visible empty state.", "tokens": ["sys.accessibility.*"], "behavior": "Keyboard and assistive tech users can type, move, select, clear, and recover.", "example": "aria-autocomplete=list.", "test": "A11y smoke and browser audit.", "rejectIf": "Missing label, listbox, active option, or empty copy." }
+        },
+        "primitiveDependencies": ["Color", "Typography", "Spacing", "Radius", "Elevation", "Iconography", "Motion Curves", "Duration", "Density", "Focus", "Disabled"],
+        "tokenDependencies": ["comp.input.*", "comp.select.*", "sys.energy.*", "sys.voice.*", "sys.frame.*", "sys.depth.*", "sys.momentum.*", "sys.state.*", "sys.accessibility.*"],
+        "props": [
+          { "name": "label", "type": "string", "required": true, "notes": "Visible field label." },
+          { "name": "value", "type": "string", "required": false, "notes": "Selected value or current input value." },
+          { "name": "name", "type": "string", "required": false, "notes": "Native field name for form submission." },
+          { "name": "options", "type": "Array<{ label: string, value?: string, meta?: string, disabled?: boolean }>", "required": true, "notes": "Known options filtered locally." },
+          { "name": "helper", "type": "string", "required": false, "notes": "Short helper or recovery copy." },
+          { "name": "icon", "type": "string", "required": false, "notes": "Leading Material Symbol." },
+          { "name": "placeholder", "type": "string", "required": false, "notes": "Prompt before typing." },
+          { "name": "emptyText", "type": "string", "required": false, "notes": "Visible no-results copy." },
+          { "name": "disabled", "type": "boolean", "required": false, "notes": "Disables the field." },
+          { "name": "density", "type": "\"sm\" | \"md\" | \"lg\"", "required": false, "notes": "Maps to field density." },
+          { "name": "state", "type": "\"default\" | \"open\" | \"focus\" | \"filled\" | \"empty\" | \"error\" | \"disabled\"", "required": false, "notes": "Semantic state." },
+          { "name": "onValueChange", "type": "(value, meta) => void", "required": false, "notes": "Emits typed input, selected option, or cleared state." }
+        ],
+        "componentDependencies": ["input", "select"],
+        "productExamples": [
+          { "context": "Vehicle lookup", "example": "Type a plate, driver, or fleet hint and choose one known vehicle record." },
+          { "context": "Driver assignment", "example": "Filter known drivers without turning the field into global search." },
+          { "context": "Support ownership", "example": "Choose one known case owner and keep empty results visible." }
+        ],
+        "guidelines": {
+          "do": [
+            "Use for one known option when typing helps narrow the list.",
+            "Keep label, helper, empty text, and selected value visible.",
+            "Escalate remote query policy, saved filters, and command behavior to patterns."
+          ],
+          "dont": [
+            "Do not use for global search or command palettes.",
+            "Do not use for multiple selected values.",
+            "Do not hide empty, error, or disabled recovery states."
+          ],
+          "info": [
+            "Combobox translates SelectCombo and Combobox ZIP references through Flow field and option-layer foundations."
+          ]
+        },
+        "contextDensityStrategy": [
+          { "context": "smartphones + phablets", "density": "lg", "scaleSource": "Density", "layout": "full-width field with legible option labels and touch-safe clear action" },
+          { "context": "tablets + laptops", "density": "md", "scaleSource": "Density", "layout": "form column or toolbar field with helper text close to the control" },
+          { "context": "desktops + TV", "density": "sm", "scaleSource": "Density", "layout": "compact filter row when value, clear action, and option layer remain readable" }
+        ],
+        "agentInstructions": [
+          "Use Combobox only for one editable known-value selection.",
+          "Use Select when typing is unnecessary.",
+          "Ask before adding remote search, multi-select, command behavior, or saved query state."
+        ],
+        "tests": ["Label association", "Local filtering", "Keyboard option selection", "Clear action", "Empty results", "Disabled/error states", "Responsive listbox"],
+        "rejectIf": ["Owns global search", "Allows multiple selected values", "Empty state is hidden", "Raw color, spacing, motion, or typography values are used"]
+      }
+    }
+  }
+}

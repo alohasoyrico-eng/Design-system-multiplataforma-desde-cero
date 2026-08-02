@@ -1,0 +1,166 @@
+{
+  "components": {
+    "phone-input": {
+      "renderer": "phone-input",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "card-number-input": {
+      "renderer": "card-number-input",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "date-picker": {
+      "renderer": "date-picker",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "segmented-control": {
+      "renderer": "segmented-control",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "popover": {
+      "renderer": "popover",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "floating-action-button": {
+      "renderer": "floating-action-button",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "card-summary": {
+      "renderer": "card-summary",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "movement-row": {
+      "renderer": "movement-row",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "quick-action": {
+      "renderer": "quick-action",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "biometric-prompt": {
+      "renderer": "biometric-prompt",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "breadcrumbs": {
+      "renderer": "breadcrumbs",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "pagination": {
+      "renderer": "pagination",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "audit-event": {
+      "renderer": "audit-event",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "error-panel": {
+      "renderer": "error-panel",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "tree-view": {
+      "renderer": "tree-view",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "motion-boundary": {
+      "renderer": "motion-boundary",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "animated-moment": {
+      "renderer": "animated-moment",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    },
+    "card-expiry-input": {
+      "renderer": "card-expiry-input",
+      "tabs": [
+        "overview",
+        "design",
+        "build",
+        "miel"
+      ]
+    }
+  }
+}

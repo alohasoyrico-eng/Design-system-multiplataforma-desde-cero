@@ -1,0 +1,23 @@
+{
+  "name": "@design-system/content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./catalog": "./content/catalog.json",
+    "./component-behavior-contracts": "./content/component-behavior-contracts.json",
+    "./component-copy": "./content/component-copy.json",
+    "./component-docs": "./content/component-docs.json",
+    "./component-implementation-status": "./content/component-implementation-status.json",
+    "./component-quality-backlog": "./content/component-quality-backlog.json",
+    "./foundation-copy": "./content/foundation-copy.json",
+    "./home": "./content/home.json",
+    "./pattern-backlog": "./content/pattern-backlog.json",
+    "./pattern-copy": "./content/pattern-copy.json",
+    "./primitive-copy": "./content/primitive-copy.json",
+    "./reference-copy": "./content/reference-copy.json",
+    "./template-blueprints": "./content/template-blueprints.json",
+    "./fixtures/prototyping": "./content/fixtures/prototyping.json",
+    "./i18n/ui": "./content/i18n/ui.json"
+  }
+}

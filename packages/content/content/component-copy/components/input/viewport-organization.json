@@ -1,0 +1,14 @@
+{
+  "components": {
+    "input": {
+      "viewport-organization": {
+        "copy": "Viewport behavior follows Density and Frame: one column when space is tight, grouped rows only when labels, helper text, and states remain readable.",
+        "items": [
+          { "title": "Smartphones + phablets", "density": "lg", "icon": "smartphone", "rule": "Stack fields full-width with visible helper or recovery copy.", "demo": { "field": "Plate", "value": "", "placeholder": "ABC-123", "helper": "Use registered vehicle plate", "density": "lg", "state": "focus", "icon": "directions_car" } },
+          { "title": "Tablets + laptops", "density": "md", "icon": "tablet_mac", "rule": "Group related fields when labels and helper text remain readable.", "demo": { "field": "Driver ID", "value": "MX-2048", "placeholder": "Enter driver ID", "helper": "Active driver record", "density": "md", "state": "filled", "icon": "badge" } },
+          { "title": "Desktops + TV", "density": "lg", "icon": "desktop_windows", "rule": "Use larger inspector fields for remote viewing or review surfaces.", "demo": { "field": "Wallet alias", "value": "North route card", "placeholder": "Name this wallet", "helper": "Visible to managers", "density": "lg", "state": "filled", "icon": "account_balance_wallet" } }
+        ]
+      }
+    }
+  }
+}

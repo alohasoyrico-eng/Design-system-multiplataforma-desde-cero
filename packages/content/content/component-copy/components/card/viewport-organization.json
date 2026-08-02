@@ -1,0 +1,50 @@
+{
+  "components": {
+    "card": {
+      "viewport-organization": {
+        "copy": "Reorganize card content by context. Do not shrink a dashboard card and call it mobile.",
+        "items": [
+          {
+            "icon": "smartphone",
+            "title": "Smartphones + phablets",
+            "density": "lg",
+            "rule": "Stack cards and prioritize one scan value plus one next action.",
+            "demo": {
+              "title": "Card ready",
+              "value": "$8,412.50",
+              "detail": "Start route or open wallet",
+              "icon": "credit_card",
+              "state": "interactive"
+            }
+          },
+          {
+            "icon": "tablet_mac",
+            "title": "Tablets + laptops",
+            "density": "md",
+            "rule": "Use two-column comparison when card content remains readable.",
+            "demo": {
+              "title": "Station detail",
+              "value": "Pemex Polanco",
+              "detail": "1.8 km · open 24 h",
+              "icon": "local_gas_station",
+              "state": "selected"
+            }
+          },
+          {
+            "icon": "desktop_windows",
+            "title": "Desktops + TV",
+            "density": "lg",
+            "rule": "Use scan grids with larger targets and explicit state labels.",
+            "demo": {
+              "title": "Fleet health",
+              "value": "93%",
+              "detail": "18 exceptions need review",
+              "icon": "monitoring",
+              "state": "default"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

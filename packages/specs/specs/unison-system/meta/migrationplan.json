@@ -1,0 +1,259 @@
+{
+  "migrationPlan": {
+    "immediateQueue": [
+      "Canvas benchmark migration: translate visual quality from the ZIP through Design System foundations and primitives before copying any component behavior.",
+      "Gold pair alignment: Button and Select must prove the benchmark look while preserving Design System tokens, Density-owned scale, and audit rules.",
+      "Base component batch: Card, Icon Button, Badge, Chip, Field, and Input.",
+      "First pattern batch: Wallet overview, Card detail and quick actions, Movement detail, Nearby stations, and Route guidance.",
+      "Finish foundations consciously against the reference: adopt structure where it fits, adapt examples to this product, reject copied generic content.",
+      "Selection and inputs batch: Select, Input, Code Input, Phone Input, Date Picker.",
+      "Mobile surfaces batch: Bottom Sheet, Quick Action, Card Summary, Movement Row, Mobile Movement Detail pattern.",
+      "Dashboard batch: KPI Tile, Chart Panel, Virtual Data Table pattern, Dashboard Filter Bar, and Notification Panel pattern coverage.",
+      "Configuration batch: Permission Matrix, driver administration pattern, vehicle administration pattern, Audit Event.",
+      "Driver mobile patterns: onboarding, auth, card overview, card detail, movements, routes, station detail.",
+      "Fleet manager patterns: dashboard suite, filters, finance, maintenance, EV, toll, roles, admin.",
+      "Templates: Driver Mobile App, Driver Card Wallet, Routes and Stations, Fleet Dashboard Suite, Configuration Console."
+    ],
+    "visualBenchmark": {
+      "source": "Design system multiplataforma desde cero.zip",
+      "stance": "Adapt visual quality, reject raw implementation.",
+      "principle": "Visual parity by behavior, hierarchy, composition, state richness, and product specificity; not by copying raw tokens or props.",
+      "keepFromSystem": [
+        "foundations",
+        "primitive families",
+        "semantic token architecture",
+        "Density-owned scale",
+        "Edenred and Ubuntu typography contract",
+        "Material Symbols governed by Symbol and Iconography",
+        "ECharts as dashboard visualization engine",
+        "MapLibre GL or Mapbox strategy for product map flows",
+        "agent-readable contracts and audit gates"
+      ],
+      "adaptFromZip": [
+        "component inventory breadth",
+        "mobility-specific examples",
+        "wallet, route, authentication, configuration, and dashboard patterns",
+        "surface richness and interaction polish",
+        "microinteraction intent",
+        "state coverage",
+        "documentation demos and prompts as scaffolding"
+      ],
+      "rejectFromZip": [
+        "raw hex or raw size values as public contract",
+        "Sora and JetBrains Mono replacing Voice without a formal decision",
+        "public size props that bypass Density",
+        "inline styles as final component implementation",
+        "hand-written charts replacing the Charts primitive and ECharts strategy",
+        "direct OSM tile usage without Maps primitive fallback, permissions, attribution, and production strategy",
+        "demos that depend on browser Babel or CDN runtime as production architecture"
+      ]
+    },
+    "verticalMigration": [
+      {
+        "name": "Wallet",
+        "components": [
+          "Payment Card",
+          "Transaction Row",
+          "Quick Action",
+          "Bottom Sheet",
+          "Badge"
+        ],
+        "patterns": [
+          "Wallet overview",
+          "Card detail and quick actions",
+          "Movement detail"
+        ],
+        "template": "Driver Card Wallet"
+      },
+      {
+        "name": "Routes and Stations",
+        "components": [
+          "Station Pin",
+          "Station Detail and Route Guidance pattern",
+          "Route Summary",
+          "Chip",
+          "Bottom Sheet"
+        ],
+        "patterns": [
+          "Nearby stations",
+          "Station detail",
+          "Route guidance",
+          "Map fallback list"
+        ],
+        "template": "Routes and Stations"
+      },
+      {
+        "name": "Authentication",
+        "components": [
+          "Code Input",
+          "Biometric Prompt",
+          "Passcode Keypad",
+          "Input",
+          "Button"
+        ],
+        "patterns": [
+          "Login",
+          "OTP verification",
+          "Biometric fallback"
+        ],
+        "template": "Authentication, Login, Biometrics and OTP"
+      },
+      {
+        "name": "Fleet Desktop",
+        "components": [
+          "KPI Tile",
+          "Chart Panel",
+          "Virtual Data Table pattern",
+          "Dashboard Filter Bar",
+          "Permission Matrix"
+        ],
+        "patterns": [
+          "Dashboard analytics",
+          "CRUD list and detail",
+          "Roles and permissions",
+          "Bulk actions"
+        ],
+        "template": "Fleet Dashboard Suite"
+      }
+    ],
+    "foundationBatch": [
+      {
+        "foundation": "Energy",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "action",
+          "success",
+          "warning",
+          "error",
+          "surfaces",
+          "map/status/dashboard use"
+        ],
+        "doneWhen": "Color roles, state colors, and component examples all resolve to Energy tokens."
+      },
+      {
+        "foundation": "Voice",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "driver guidance",
+          "repair copy",
+          "dashboard labels",
+          "permission warnings"
+        ],
+        "doneWhen": "Edenred/Ubuntu roles are visible in type specimens and real content examples."
+      },
+      {
+        "foundation": "Frame",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "mobile card layout",
+          "desktop dashboard grid",
+          "settings table",
+          "route panel"
+        ],
+        "doneWhen": "Spacing, density, grid, and responsive examples are explicit and token-backed."
+      },
+      {
+        "foundation": "Depth",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "bottom sheet",
+          "desktop drawer",
+          "menu",
+          "dialog",
+          "map panel"
+        ],
+        "doneWhen": "Elevation, overlay, z-index, and focus layering are shown in product surfaces."
+      },
+      {
+        "foundation": "Momentum",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "button feedback",
+          "sheet reveal",
+          "loading",
+          "route transition",
+          "reduced motion"
+        ],
+        "doneWhen": "Motion examples are animated or stateful and include reduced-motion behavior."
+      },
+      {
+        "foundation": "State",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "hover",
+          "focus",
+          "pressed",
+          "selected",
+          "loading",
+          "disabled",
+          "error",
+          "success"
+        ],
+        "doneWhen": "State precedence is documented and visible in examples."
+      },
+      {
+        "foundation": "Tone",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "neutral",
+          "assistive",
+          "urgent",
+          "repair",
+          "confirmation copy"
+        ],
+        "doneWhen": "Content examples show what changes in language and why."
+      },
+      {
+        "foundation": "Growth",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "seed",
+          "stable",
+          "measured",
+          "deprecated component/product states"
+        ],
+        "doneWhen": "Adoption and telemetry examples are tied to product decisions."
+      },
+      {
+        "foundation": "Symbol",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "route",
+          "station",
+          "card",
+          "vehicle",
+          "permission",
+          "status metaphors"
+        ],
+        "doneWhen": "Symbols are domain-specific and do not replace functional icons."
+      },
+      {
+        "foundation": "Iconography",
+        "stance": "Adopt + adapt",
+        "examplesRequired": [
+          "Material Symbols for actions",
+          "navigation",
+          "status",
+          "vehicle",
+          "fuel",
+          "route",
+          "payment"
+        ],
+        "doneWhen": "Icons render as Material Symbols and map to accessible names and semantic roles."
+      },
+      {
+        "foundation": "Accessibility",
+        "stance": "Adapt",
+        "examplesRequired": [
+          "focus path",
+          "touch target",
+          "contrast",
+          "screen reader",
+          "keyboard",
+          "recovery"
+        ],
+        "doneWhen": "Accessibility is shown as behavior, not only a checklist."
+      }
+    ]
+  }
+}

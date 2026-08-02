@@ -1,0 +1,116 @@
+{
+  "artifacts": {
+    "templates": {
+      "fleet-dashboard-suite": {
+        "layer": "Template",
+        "platform": "Desktop",
+        "audiences": [
+          "Product Designers",
+          "PMs",
+          "Developers",
+          "Researchers",
+          "Service Designers",
+          "Agents"
+        ],
+        "purpose": "Fleet team moves across seven operational dashboards while preserving filters, context, thresholds, and accountability.",
+        "maturityTarget": "measured",
+        "governingFoundations": [
+          "Energy",
+          "Voice",
+          "Frame",
+          "Depth",
+          "Momentum",
+          "State",
+          "Tone",
+          "Accessibility"
+        ],
+        "primitiveDependencies": [
+          "Color",
+          "Typography",
+          "Spacing",
+          "Iconography",
+          "Focus",
+          "Loading",
+          "Disabled",
+          "Breakpoints",
+          "Charts"
+        ],
+        "patternDependencies": [
+          "Fleet Dashboard Overview",
+          "Fuel Dashboard",
+          "Maintenance Dashboard",
+          "Electromobility Dashboard",
+          "Toll Dashboard",
+          "Fleet Dashboard",
+          "Finance Dashboard"
+        ],
+        "tokenDependencies": [
+          "sys.energy.*",
+          "sys.voice.*",
+          "sys.frame.*",
+          "sys.state.*",
+          "sys.accessibility.*",
+          "sys.momentum.*",
+          "sys.charts.*"
+        ],
+        "densityContext": [
+          "Laptop",
+          "Desktop",
+          "TV"
+        ],
+        "modules": [
+          "Dashboard switcher",
+          "Shared filter bar",
+          "Domain KPI stack",
+          "Drill-down table"
+        ],
+        "dataSources": [
+          "fuel",
+          "maintenance",
+          "EV",
+          "toll",
+          "fleet",
+          "finance"
+        ],
+        "permissions": [
+          "dashboard access",
+          "finance visibility",
+          "fleet segment"
+        ],
+        "states": [
+          "loaded",
+          "loading",
+          "empty",
+          "error",
+          "permission",
+          "offline"
+        ],
+        "surfaces": [
+          "Laptop",
+          "Desktop",
+          "TV"
+        ],
+        "telemetry": [
+          "dashboard switched",
+          "threshold inspected",
+          "drill-down opened"
+        ],
+        "qualityGates": [
+          "Shared filters carry across all dashboards.",
+          "Each KPI includes definition, threshold, trend, and drill-down.",
+          "Finance visibility changes both data and available exports."
+        ],
+        "agentInstructions": [
+          "This template is the multi-domain dashboard suite: each dashboard must share filters and navigation while preserving its own KPI definitions, thresholds, and drill-down evidence.",
+          "The screen system coordinates dashboard switching, shared filters, KPI stacks, and drill-down tables across operational domains.",
+          "Navigation follows domain accountability: overview, fuel, maintenance, EV, toll, fleet, and finance."
+        ],
+        "rejectIf": [
+          "Template invents behavior outside its approved pattern dependencies.",
+          "Template modules omit data, permission, state, or recovery ownership.",
+          "Template bypasses Design System foundations, primitives, density, or semantic tokens."
+        ]
+      }
+    }
+  }
+}

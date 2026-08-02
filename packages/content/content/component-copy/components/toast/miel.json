@@ -1,0 +1,25 @@
+{
+  "components": {
+    "toast": {
+      "miel": {
+        "copy": "MIEL treats Toast as event feedback, not a task surface: agents can use it for short non-blocking confirmation or recovery while humans confirm severity, persistence, queue rules, and whether feedback belongs inline instead.",
+        "canDecide": [
+          "Use Toast for saved, synced, exported, offline, undo, or recoverable error events.",
+          "Choose status role for neutral, info, and success; alert role only for urgent warning or danger.",
+          "Include at most one short action when it directly undoes or retries the event."
+        ],
+        "mustAsk": [
+          "The user must make a decision before continuing.",
+          "The message needs to persist, explain policy, or guide field-level recovery.",
+          "Multiple toasts could stack, queue, or conflict with navigation and primary actions."
+        ],
+        "rejectIf": [
+          "Toast replaces Dialog, Alert Strip, Inline Validation, or Empty State.",
+          "Toast contains long instructions or more than one action.",
+          "Dismiss, action, timer, or live-region behavior is not defined."
+        ],
+        "handoff": "I am using Toast for non-blocking event feedback. I need confirmation on severity, role, duration, placement, queue behavior, and whether the message should be inline instead."
+      }
+    }
+  }
+}
