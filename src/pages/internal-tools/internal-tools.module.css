@@ -1,0 +1,417 @@
+/* ── Page header ── */
+
+.pageIntro {
+  margin-bottom: 24px;
+}
+
+.overline {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.pageTitle {
+  font: var(--type-title-lg);
+  letter-spacing: var(--tracking-tight);
+  margin: 6px 0 0;
+}
+
+.pageDesc {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin: 6px 0 0;
+}
+
+.pageHeaderRow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.pageCount {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── KPI grid ── */
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+/* ── Queue cards (resumen) ── */
+
+.queueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.queueHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.queueTitle {
+  font: var(--type-title-sm);
+  flex: 1;
+}
+
+.queueCount {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.queueRows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.queueRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.queueRowLeft {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.queueLink {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  color: var(--text-accent);
+}
+
+/* ── Drawer shared ── */
+
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drawerHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.drawerName {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.drawerMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Thread (tickets) ── */
+
+.threadList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 200px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.threadMsg {
+  display: flex;
+}
+
+.threadMsg[data-role="user"] {
+  justify-content: flex-start;
+}
+
+.threadMsg[data-role="agent"] {
+  justify-content: flex-end;
+}
+
+.threadBubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.threadMsg[data-role="user"] .threadBubble {
+  background: var(--surface-sunken);
+  color: var(--text-primary);
+}
+
+.threadMsg[data-role="agent"] .threadBubble {
+  background: var(--action-accent);
+  color: var(--text-on-accent, #fff);
+}
+
+.threadText {
+  margin-bottom: 4px;
+}
+
+.threadTime {
+  font-size: 10.5px;
+  opacity: 0.7;
+}
+
+.replyRow {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.replyInput {
+  flex: 1;
+  min-height: var(--hit-target-min);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+  background: var(--surface-card);
+  color: var(--text-primary);
+}
+
+.replyInput:focus {
+  border-color: var(--border-focus);
+}
+
+/* ── Key-value list (cuentas perfil) ── */
+
+.kvList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kvRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+}
+
+.kvLabel {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ── Timeline ── */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 12px;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  position: relative;
+}
+
+.timelineItem:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 30px;
+  bottom: -2px;
+  width: 1px;
+  background: var(--border-default);
+}
+
+.timelineDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.timelineItem[data-status="done"] .timelineDot {
+  background: var(--status-success);
+}
+
+.timelineItem[data-status="active"] .timelineDot {
+  background: var(--action-accent);
+  box-shadow: 0 0 0 3px var(--surface-accent-subtle);
+}
+
+.timelineItem[data-status="error"] .timelineDot {
+  background: var(--status-danger);
+}
+
+.timelineItem[data-status="pending"] .timelineDot {
+  background: var(--border-default);
+}
+
+.timelineBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.timelineTitle {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.timelineTime {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── Ticket links (cuentas) ── */
+
+.ticketLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticketLinkCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  font-size: 13px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* ── Status view ── */
+
+.statusView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  min-height: 300px;
+  padding: 32px;
+}
+
+.statusTitle {
+  font: var(--type-title);
+  font-weight: 700;
+}
+
+.statusDesc {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  max-width: 320px;
+}
+
+/* ── Stat grid (growth detail) ── */
+
+.statGrid4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.statLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.statValue {
+  font: var(--type-title-sm);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+
+/* ── Kanban (growth) ── */
+
+.kanbanBoard {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.kanbanColumn {
+  flex: 1;
+  min-width: 200px;
+  max-width: 260px;
+}
+
+.kanbanColHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 8px 4px 10px;
+  border-bottom: 2px solid var(--border-default);
+  margin-bottom: 10px;
+}
+
+.kanbanColCount {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.kanbanCards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kanbanCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kanbanCardMeta {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.kanbanEmpty {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 16px;
+  text-align: center;
+}

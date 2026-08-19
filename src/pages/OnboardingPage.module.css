@@ -1,0 +1,97 @@
+.root {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+.logo {
+  height: 26px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font: var(--type-title-lg);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 28px;
+}
+
+/* ── Step content ── */
+
+.stepContent {
+  min-height: 140px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Verification ── */
+
+.verify {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.verifyHint {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.resendTimer {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.resendLink {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-link);
+}
+
+/* ── Team invites ── */
+
+.inviteRow {
+  display: flex;
+  gap: 10px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Navigation ── */
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+
+.actionsEnd {
+  display: flex;
+  gap: 10px;
+}
+
+/* ── Footer ── */
+
+.footer {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 16px;
+}

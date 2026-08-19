@@ -1,0 +1,27 @@
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.4;
+  padding: 0;
+  min-width: 0;
+}
+
+.reveal {
+  width: 44px;
+  align-self: stretch;
+  margin: calc(-1 * var(--pad-control-y)) -12px calc(-1 * var(--pad-control-y)) 0;
+  padding: 0;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}

@@ -1,0 +1,29 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+}
+
+.bubble {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  max-width: 260px;
+  box-shadow: var(--shadow-float);
+  pointer-events: none;
+  animation: flowPop var(--dur-fast) var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    animation: none;
+  }
+}

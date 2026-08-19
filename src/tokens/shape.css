@@ -1,0 +1,12 @@
+/* Flow · Shape — very rounded, consumer-soft */
+:root {
+  --radius-xs: 8px;    /* checkboxes, small chips */
+  --radius-sm: 12px;   /* inputs interiores, menu items */
+  --radius-md: 16px;   /* inputs, selects, small cards */
+  --radius-lg: 20px;   /* cards */
+  --radius-xl: 28px;   /* modals, page shells, hero cards */
+  --radius-pill: 999px;/* buttons, chips, badges */
+
+  --border-width: 1px;
+  --border-width-strong: 1.5px;
+}

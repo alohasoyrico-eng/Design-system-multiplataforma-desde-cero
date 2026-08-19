@@ -1,0 +1,86 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 16px;
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--border-default);
+  background: var(--surface-sunken);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.dropzone[data-drag-over] {
+  border-color: var(--border-focus);
+  background: var(--surface-accent-subtle);
+}
+
+.dropzoneIcon {
+  font-size: 28px;
+  color: var(--text-muted);
+}
+
+.dropzoneLabel {
+  font: var(--type-body);
+  color: var(--text-primary);
+}
+
+.dropzoneHint {
+  font: var(--type-caption);
+  color: var(--text-muted);
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+}
+
+.fileIcon {
+  font-size: 18px;
+  color: var(--text-muted);
+}
+
+.fileName {
+  flex: 1;
+  font: var(--type-body);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileSize {
+  font: var(--type-overline);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.fileRemove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--hit-target-min);
+  height: var(--hit-target-min);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-muted);
+}

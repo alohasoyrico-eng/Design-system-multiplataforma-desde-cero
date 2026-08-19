@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+}
+
+.display {
+  flex: 1;
+}
+
+.display[data-empty] {
+  color: var(--text-muted);
+}
+
+.display:not([data-empty]) {
+  color: var(--text-primary);
+}
+
+.drop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 6px;
+  z-index: 999;
+  background: var(--surface-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-float);
+  border: var(--border-width) solid var(--border-subtle);
+  padding: 12px;
+  animation: flowScaleIn var(--dur-fast) var(--ease-out);
+}
+
+.input {
+  border: none;
+  font: var(--type-body);
+  color: var(--text-primary);
+  background: transparent;
+  outline: none;
+}

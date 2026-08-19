@@ -1,0 +1,19 @@
+node_modules
+dist
+dist-ssr
+*.local
+*.log
+
+.DS_Store
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Claude Code (keep launch.json, exclude local settings and session data)
+.claude/settings.local.json
+.claude/plans/
+.claude/agents/
+.claude/projects/

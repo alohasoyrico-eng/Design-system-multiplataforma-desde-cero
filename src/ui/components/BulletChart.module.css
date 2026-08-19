@@ -1,0 +1,98 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: var(--font-body);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.label {
+  font-size: 12.5px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track {
+  position: relative;
+  height: 18px;
+  background: var(--surface-sunken);
+  border-radius: 6px;
+}
+
+.prev {
+  position: absolute;
+  left: 0;
+  top: 35%;
+  bottom: 35%;
+  background: var(--border-strong);
+  opacity: 0.4;
+  border-radius: 4px;
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  bottom: 3px;
+  border-radius: 5px;
+  background: var(--flow-red-500);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.bar[data-over] {
+  background: var(--status-danger);
+}
+
+.target {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2.5px;
+  background: var(--flow-ink-900);
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 60px;
+  text-align: right;
+}
+
+.value[data-over] {
+  color: var(--status-danger-text);
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 100px;
+  color: var(--text-muted);
+  font: var(--type-caption);
+}

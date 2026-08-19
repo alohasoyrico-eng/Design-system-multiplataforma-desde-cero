@@ -1,0 +1,18 @@
+.root {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-rest);
+  box-sizing: border-box;
+  padding: var(--pad-card);
+}
+
+.root[data-interactive] {
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.root[data-interactive]:hover {
+  transform: var(--lift-hover);
+  box-shadow: var(--shadow-raised);
+}

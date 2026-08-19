@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.title {
+  font: var(--type-title-lg);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin: 8px 0 0;
+}
+
+.error {
+  font: var(--type-caption);
+  color: var(--status-danger-text);
+  margin: 0;
+}

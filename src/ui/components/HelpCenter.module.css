@@ -1,0 +1,212 @@
+.root {
+  display: flex;
+  gap: 0;
+  background: var(--surface-card);
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-rest);
+  min-height: 500px;
+}
+
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--surface-sunken);
+  border-right: var(--border-width) solid var(--border-subtle);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchWrap {
+  padding: 16px;
+  border-bottom: var(--border-width) solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  width: 100%;
+  min-height: var(--hit-target-min);
+  box-sizing: border-box;
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 0 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  background: var(--surface-card);
+  color: var(--text-primary);
+}
+
+.searchInput:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.articleList {
+  flex: 1;
+  overflow: auto;
+  padding: 8px;
+}
+
+.catToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: left;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.catToggle:hover {
+  color: var(--text-primary);
+}
+
+.catChevron {
+  font-size: 14px;
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+.catChevron[data-open] {
+  transform: rotate(90deg);
+}
+
+.catChildren {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+}
+
+.articleBtn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12px;
+  background: transparent;
+  color: var(--text-primary);
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.articleBtn[data-active] {
+  background: var(--surface-accent-subtle);
+  color: var(--text-accent);
+}
+
+.articleBtn:hover:not([data-active]) {
+  background: var(--surface-card);
+}
+
+.searchResult {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-primary);
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.searchResult[data-active] {
+  background: var(--surface-accent-subtle);
+  color: var(--text-accent);
+}
+
+.searchResult:hover:not([data-active]) {
+  background: var(--surface-card);
+}
+
+.resultTitle {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.resultCat {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.content {
+  flex: 1;
+  padding: 32px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contentCategory {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-overline);
+  color: var(--text-muted);
+}
+
+.contentTitle {
+  margin: 8px 0 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.contentBody {
+  margin-top: 24px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contentBody p {
+  margin: 0;
+}
+
+.tags {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: var(--border-width) solid var(--border-subtle);
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 4px 8px;
+  background: var(--surface-sunken);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+.emptyContent {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.resultCount {
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+}

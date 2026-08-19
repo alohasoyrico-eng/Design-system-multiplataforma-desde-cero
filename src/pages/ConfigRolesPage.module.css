@@ -1,0 +1,87 @@
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 28px 64px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 6px 0 20px;
+}
+
+.title {
+  font: var(--type-title-lg);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+.backLink {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-link);
+  text-decoration: none;
+}
+
+.tabBar {
+  margin-bottom: 24px;
+  display: inline-flex;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.sectionHint {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+.searchRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.searchInput {
+  width: 280px;
+}
+
+.pushRight {
+  margin-left: auto;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.memberCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footnote {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.inviteFields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

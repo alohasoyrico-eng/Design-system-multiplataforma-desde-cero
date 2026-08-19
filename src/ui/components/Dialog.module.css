@@ -1,0 +1,32 @@
+.root {
+  width: 420px;
+  max-width: 90vw;
+  background: var(--surface-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-overlay);
+  padding: var(--pad-card);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font: var(--type-title);
+  color: var(--text-primary);
+}
+
+.title[data-tone='danger'] {
+  color: var(--status-danger-text);
+}
+
+.description {
+  font: var(--type-body);
+  color: var(--text-secondary);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}

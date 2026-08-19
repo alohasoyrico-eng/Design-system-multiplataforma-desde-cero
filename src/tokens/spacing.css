@@ -1,0 +1,32 @@
+/* Flow · Spacing — 4px base, airy by default */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Component-level */
+  --pad-control-y: 12px;   /* inputs, buttons md */
+  --pad-control-x: 20px;
+  --pad-card: 24px;
+  --pad-section: 32px;
+  --gap-inline: 8px;       /* icon-to-label */
+  --gap-stack: 16px;       /* between cards */
+  --hit-target-min: 44px;  /* WCAG touch minimum */
+
+  /* Density — comfortable default, dense overridable per-subtree */
+  --density-cell-y: 14px;
+  --density-cell-x: 16px;
+  --density-head-y: 12px;
+}
+
+[data-density="dense"] {
+  --density-cell-y: 10px;
+  --density-head-y: 8px;
+}

@@ -1,0 +1,111 @@
+.root {
+  background: var(--surface-card);
+  border-right: var(--border-width) solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  transition: width var(--dur-base) var(--ease-spring);
+}
+
+.header {
+  border-bottom: var(--border-width) solid var(--border-subtle);
+  flex: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer {
+  border-top: var(--border-width) solid var(--border-subtle);
+  flex: none;
+  display: flex;
+}
+
+.item {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-height: var(--hit-target-min);
+  font: var(--type-body);
+  font-weight: 500;
+  font-family: inherit;
+  position: relative;
+  transition: background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.item[data-active] {
+  background: var(--surface-accent-subtle);
+  color: var(--text-accent);
+  font-weight: 700;
+}
+
+.item:not([data-active]):hover {
+  background: var(--surface-sunken);
+  color: var(--text-primary);
+}
+
+.item:not([data-active]):not(:hover) {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.item:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  z-index: 1;
+}
+
+.itemIcon {
+  font-size: 20px;
+  flex: none;
+}
+
+.itemLabel {
+  flex: 1;
+  text-align: left;
+}
+
+.chevron {
+  font-size: 18px;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.chevron[data-open] {
+  transform: rotate(180deg);
+}
+
+.tooltip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+  background: var(--surface-card);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-subtle);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  font: var(--type-caption);
+  font-weight: 600;
+  box-shadow: var(--shadow-float);
+}
+
+.sectionChildren {
+  background: var(--surface-sunken);
+}

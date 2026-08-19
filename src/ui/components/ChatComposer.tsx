@@ -1,0 +1,88 @@
+import { useRef, useEffect, type CSSProperties } from 'react'
+import css from './ChatComposer.module.css'
+
+export interface ChatComposerProps {
+  value?: string
+  onChange?: (value: string) => void
+  onSend?: (value: string) => void
+  placeholder?: string
+  suggestions?: string[]
+  disabled?: boolean
+  style?: CSSProperties
+}
+
+export function ChatComposer({
+  value = '',
+  onChange,
+  onSend,
+  placeholder = 'Pregunta sobre tu flota…',
+  suggestions = [],
+  disabled = false,
+  style,
+}: ChatComposerProps) {
+  const ref = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    ref.current.style.height = 'auto'
+    ref.current.style.height = Math.min(120, ref.current.scrollHeight) + 'px'
+  }, [value])
+
+  const send = () => {
+    if (value.trim() && !disabled) onSend?.(value.trim())
+  }
+
+  const onKey = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      send()
+    }
+  }
+
+  const canSend = !!value.trim() && !disabled
+
+  return (
+    <div className={css.root} style={style}>
+      {suggestions.length > 0 && (
+        <div className={css.suggestions}>
+          {suggestions.map((s, i) => (
+            <button
+              key={i}
+              type="button"
+              className={css.suggestion}
+              onClick={() => onSend?.(s)}
+              disabled={disabled}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className={css.inputRow}>
+        <textarea
+          ref={ref}
+          className={css.textarea}
+          value={value}
+          disabled={disabled}
+          rows={1}
+          placeholder={placeholder}
+          aria-label={placeholder}
+          aria-disabled={disabled}
+          onChange={e => onChange?.(e.target.value)}
+          onKeyDown={onKey}
+        />
+        <button
+          type="button"
+          className={css.sendBtn}
+          aria-label="Enviar"
+          disabled={!canSend}
+          data-active={canSend ? '' : undefined}
+          onClick={send}
+        >
+          <span className="flow-icon" aria-hidden="true" style={{ fontSize: 19 }}>arrow_upward</span>
+        </button>
+      </div>
+    </div>
+  )
+}

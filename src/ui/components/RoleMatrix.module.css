@@ -1,0 +1,96 @@
+.root {
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+}
+
+.table th {
+  padding: 10px 16px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.table th:first-child {
+  text-align: left;
+  width: 200px;
+}
+
+.lockIcon {
+  font-size: 13px;
+  vertical-align: -2px;
+  margin-left: 4px;
+  color: var(--text-muted);
+}
+
+.groupRow td {
+  padding: 12px 16px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  border-bottom: none;
+}
+
+.permRow td {
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.permRow td:first-child {
+  color: var(--text-secondary);
+}
+
+.permRow:last-child td {
+  border-bottom: none;
+}
+
+.cell {
+  text-align: center;
+}
+
+.toggle {
+  width: var(--hit-target-min);
+  height: var(--hit-target-min);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border-default);
+  background: var(--surface-card);
+  transition: all var(--dur-fast) var(--ease-spring);
+}
+
+.toggle[data-on] {
+  border: none;
+  background: var(--action-accent);
+}
+
+.toggle:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.toggle:not(:disabled):hover {
+  transform: scale(1.08);
+}
+
+.checkIcon {
+  font-size: 16px;
+  color: var(--text-on-accent);
+  animation: flowScaleIn var(--dur-fast) var(--ease-spring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkIcon { animation: none; }
+}

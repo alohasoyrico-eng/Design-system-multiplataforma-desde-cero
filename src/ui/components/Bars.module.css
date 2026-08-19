@@ -1,0 +1,36 @@
+.root {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.tooltip {
+  font: var(--type-overline);
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  animation: flowPop var(--dur-fast) var(--ease-spring);
+}
+
+.bar {
+  width: 100%;
+  min-height: 4px;
+  border-radius: var(--radius-xs);
+  transition: height var(--dur-base) var(--ease-spring),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.label {
+  font: var(--type-overline);
+  color: var(--text-muted);
+  white-space: nowrap;
+}

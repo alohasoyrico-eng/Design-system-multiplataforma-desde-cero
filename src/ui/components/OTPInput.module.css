@@ -1,0 +1,75 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  gap: 8px;
+  cursor: text;
+}
+
+.root[data-disabled] {
+  cursor: not-allowed;
+}
+
+.root[data-invalid] {
+  animation: flowShake 320ms var(--ease-out);
+}
+
+.box {
+  width: 44px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.root[data-disabled] .box {
+  background: var(--surface-sunken);
+}
+
+.box[data-filled] {
+  border-color: var(--border-strong);
+}
+
+.box[data-active] {
+  border-width: 1.5px;
+  border-color: var(--border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+.box[data-invalid] {
+  border-width: 1.5px;
+  border-color: var(--status-danger);
+}
+
+.digit {
+  animation: flowPop var(--dur-fast) var(--ease-spring);
+}
+
+.caret {
+  width: 2px;
+  height: 24px;
+  background: var(--action-accent);
+  border-radius: 2px;
+  animation: flowBlink 1s step-end infinite;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  border: none;
+  font-size: 16px;
+}
+
+@keyframes flowBlink {
+  50% { opacity: 0; }
+}

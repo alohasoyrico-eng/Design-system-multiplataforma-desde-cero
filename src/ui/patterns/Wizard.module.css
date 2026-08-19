@@ -1,0 +1,79 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: var(--border-width) solid var(--border-subtle);
+}
+
+.actionsEnd {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summarySection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summaryTitle {
+  font: var(--type-title-sm);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summaryEdit {
+  font: var(--type-caption);
+  font-weight: 600;
+  color: var(--text-accent);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 4px 8px;
+  min-height: var(--hit-target-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.summaryRow + .summaryRow {
+  border-top: var(--border-width) solid var(--border-subtle);
+}
+
+.summaryLabel {
+  font: var(--type-body);
+  color: var(--text-secondary);
+}
+
+.summaryValue {
+  font: var(--type-body-strong);
+  color: var(--text-primary);
+}
