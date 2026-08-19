@@ -1,0 +1,28 @@
+{
+  "name": "@flowds/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for the Flow Design System — exposes component APIs, tokens, and architecture rules to consuming agents",
+  "type": "module",
+  "bin": {
+    "flow-mcp": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "typescript": "^5.8.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -1,90 +1,46 @@
-# Flow Design System
+# Flow
 
-Sistema de diseño multiplataforma para interfaces de flota, fintech y operaciones internas.
-React + TypeScript + CSS Modules. Cero dependencias de framework de estilos.
+Un kit de piezas listas para armar interfaces — dashboards, formularios, tablas, mapas, chats, wizards — sin empezar de cero cada vez.
 
-## Inicio rápido
+Piensa en Flow como una caja de LEGO para pantallas: cada pieza encaja con las demás, se ve bien en claro y en oscuro, y funciona en móvil y escritorio.
+
+## Vélo corriendo en 30 segundos
 
 ```bash
+git clone git@github.com:alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git
+cd Design-system-multiplataforma-desde-cero
 npm install
-npm run dev        # localhost:5173 — app con todas las plantillas
-npm run typecheck  # verifica tipos
-npm run test       # corre vitest
-npm run build      # build de producción
+npm run dev
 ```
 
-Abre `localhost:5173` y navega por el sidebar: dashboards, unidades, conductores, reportes,
-ajustes, onboarding, internal tools, chat, mailings, roles, wizard.
+Abre `localhost:5173`. Vas a ver un sidebar con 19 pantallas funcionando — dashboards con gráficas reales, tablas editables, un mapa con pins, un chat, un wizard paso a paso, y más. Todo eso está hecho con las piezas de Flow.
 
-## Cómo está organizado
+## Qué hay en la caja
 
-Todo vive en `src/`. La arquitectura tiene 5 capas. Las dependencias solo van hacia abajo:
+**68 piezas** organizadas en tres niveles, de lo más simple a lo más completo:
 
-```
-src/
-├── tokens/          ← colores, tipografía, espaciado, forma, motion (CSS custom properties)
-├── ui/
-│   ├── primitives/  ← controles atómicos: Button, Input, Badge, Avatar, Select...
-│   │   └── shells/  ← carcasas reutilizables (ControlShell, OverlayShell, DataGrid...)
-│   ├── components/  ← composiciones de interfaz: Card, Table, Dialog, KanbanBoard, MapCanvas...
-│   └── patterns/    ← flujos de dominio: AuthForm, Settings, Wizard
-├── pages/           ← plantillas completas (templates): cada archivo es una pantalla
-├── layout/          ← estructura de página: sidebar, header, layout shell
-├── data/            ← tipos, mocks, API hooks (TanStack Query + MSW)
-└── styles.css       ← entry point de tokens (importa todo tokens/*.css)
-```
+### Piezas básicas (20)
+Los ladrillos. Cada una hace una sola cosa bien.
 
-### La regla de las capas
+`Button` `Input` `Select` `Checkbox` `Switch` `Radio` `Slider` `Badge` `Avatar` `Chip` `Spinner` `Skeleton` `Progress` `Divider` `Field` `Flag` `IconButton` `Textarea` `Sparkline` `FlowChart`
 
-| Capa | Qué entra | Puede importar de |
-|---|---|---|
-| **tokens** | Decisiones de diseño sin JSX: color, tipo, espacio, forma, motion | nada |
-| **primitives** | Controles atómicos. Un archivo = un control. Dueño de su carcasa | tokens, shells |
-| **components** | Composiciones que nombran un concepto de **interfaz** (Table, Dialog, Tabs) | primitives |
-| **patterns** | Resuelven una tarea de **negocio** (AuthForm, Settings, Wizard) | components |
-| **templates** | Pantallas reales con datos finales. Se copian, no se importan | patterns |
+### Piezas compuestas (45)
+Combinaciones de piezas básicas que forman cosas más útiles.
 
-**Si dudas entre component y pattern**: ¿nombra un concepto de interfaz o de negocio?
-`Select` y `Dialog` son de interfaz → component. `AuthForm` y `PaymentCard` son de negocio → pattern.
+`Card` `Table` `Dialog` `Drawer` `Tabs` `Accordion` `Menu` `Tooltip` `Breadcrumb` `Pagination` `Toast` `Stepper` `Timeline` `Sidebar` `TopBar` `EmptyState` `FileUpload` `DatePicker` `GlobalSearch` `HelpCenter` `NotificationCenter` `SegmentedControl` `KanbanBoard` `MapCanvas` `ChatMessage` `ChatThread` `ChatComposer` `RoleMatrix` `BulkActionsTable` `FilterableEditableTable` `OTPInput` `OnboardingCarousel` `StatusView` `StatTile` `Donut` `Bars` `BulletChart` `ParetoChart` `ScatterPlot` `SmallMultiples` `Treemap` `GanttChart` `CircularProgress` `CardMedia` `TableTree`
 
-## Inventario actual
+### Flujos completos (3)
+Pantallas que resuelven tareas reales de negocio.
 
-### Primitives (20)
+`AuthForm` (login/registro) · `Settings` (ajustes con secciones) · `Wizard` (paso a paso con validación)
 
-Avatar, Badge, Button, Checkbox, Chip, Divider, Field, Flag, FlowChart, IconButton,
-Input, Progress, Radio, Select, Skeleton, Slider, Sparkline, Spinner, Switch, Textarea
+## Cómo se usa una pieza
 
-**Shells (6):** ControlShell, DataGrid, Listbox, OverlayShell, Popover, ToggleControl
-
-### Components (45)
-
-Accordion, Bars, Breadcrumb, BulkActionsTable, BulletChart, Card, CardMedia,
-ChatComposer, ChatMessage, ChatThread, CircularProgress, DatePicker, Dialog, Donut,
-Drawer, EmptyState, FileUpload, FilterableEditableTable, GanttChart, GlobalSearch,
-HelpCenter, KanbanBoard, MapCanvas, Menu, NotificationCenter, OTPInput,
-OnboardingCarousel, Pagination, ParetoChart, RoleMatrix, ScatterPlot, SegmentedControl,
-Sidebar, SmallMultiples, StatTile, StatusView, Stepper, Table, TableTree, Tabs,
-Timeline, Toast, Tooltip, TopBar, Treemap
-
-### Patterns (3)
-
-AuthForm, Settings, Wizard
-
-### Templates (19 pantallas)
-
-**Dashboards (6):** Overview, Combustible, Mantenimiento, Electromovilidad, Peaje, Finanzas
-**Fleet:** Unidades, Conductores, Reportes
-**Internal Tools (7):** Resumen, Tickets, Cuentas, Pricing, Casos, Back-office, Growth
-**Flows:** Onboarding, Auth, Settings, Wizard, Config Roles, Agent Chat, Mailings
-
-## Cómo usar un componente
-
-Cada componente exporta su interfaz de props con TypeScript. VS Code autocompleta todo:
+Importa, pasa props, listo. VS Code te autocompleta todo:
 
 ```tsx
-import { Button } from './ui/primitives/Button'
-import { Card } from './ui/components/Card'
-import { StatTile } from './ui/components/StatTile'
+import { Button } from './ui/primitives'
+import { Card, StatTile } from './ui/components'
 
 <Card>
   <StatTile label="Unidades activas" value="128" icon="local_taxi" />
@@ -92,62 +48,66 @@ import { StatTile } from './ui/components/StatTile'
 </Card>
 ```
 
-### Barrel imports
+Cada pieza acepta `style` para ajustes puntuales. Las variaciones de apariencia se controlan con la prop `variant`, el tamaño con `size`.
 
-Cada capa tiene un `index.ts` que re-exporta todo:
+## Colores y modo oscuro
 
-```tsx
-import { Button, Input, Badge, Avatar } from './ui/primitives'
-import { Card, Table, Dialog, KanbanBoard } from './ui/components'
-import { AuthForm, Settings } from './ui/patterns'
+Flow usa nombres de color en vez de códigos hexadecimales. Eso hace que el modo oscuro funcione solo:
+
+```css
+/* Así se escriben los estilos en Flow */
+.miTarjeta {
+  background: var(--surface-card);    /* blanco en claro, gris oscuro en oscuro */
+  color: var(--text-primary);         /* negro en claro, blanco en oscuro */
+  border: 1px solid var(--border-subtle);
+}
 ```
 
-## Tokens y temas
-
-Los tokens son CSS custom properties definidos en `src/tokens/*.css`.
-El modo oscuro se activa con `data-theme="dark"` en cualquier nodo del DOM:
+Para activar el modo oscuro en cualquier parte de tu página:
 
 ```html
 <div data-theme="dark">
-  <!-- todo dentro hereda el tema oscuro -->
+  <!-- todo lo de adentro se pone oscuro -->
 </div>
 ```
 
-Archivos de tokens:
+### Los nombres más usados
 
-| Archivo | Qué controla |
+| Lo que necesitas | Nombre que usas |
 |---|---|
-| `colors.css` | Paleta semántica: `--surface-*`, `--text-*`, `--border-*`, `--status-*` |
-| `dark.css` | Override de colores para `[data-theme="dark"]` |
-| `typography.css` | Familias, escalas, pesos: `--font-body`, `--font-mono`, `--text-*` |
-| `spacing.css` | Escala de espaciado: `--space-xs` a `--space-3xl` |
-| `shape.css` | Radios y bordes: `--radius-sm` a `--radius-full` |
-| `elevation.css` | Sombras: `--shadow-sm` a `--shadow-overlay` |
-| `motion.css` | Duraciones y easings: `--dur-fast`, `--ease-out`, `--ease-spring` |
-| `dataviz.css` | Paleta de visualización de datos |
-| `a11y.css` | Focus ring, reduced motion |
+| Fondo de página | `--surface-canvas` |
+| Fondo de tarjeta | `--surface-card` |
+| Fondo de input | `--surface-sunken` |
+| Texto principal | `--text-primary` |
+| Texto secundario | `--text-secondary` |
+| Texto apagado | `--text-muted` |
+| Borde suave | `--border-subtle` |
+| Borde normal | `--border-default` |
+| Color de marca | `--flow-red-500` |
+| Éxito | `--status-success` |
+| Advertencia | `--status-warning` |
+| Error | `--status-danger` |
 
-**Regla:** los componentes usan tokens semánticos (`var(--surface-card)`, `var(--text-primary)`),
-nunca hex ni valores mágicos. Esto es lo que hace que el modo oscuro funcione sin tocar componentes.
+Todos los nombres están en `src/tokens/`. Si necesitas la lista completa, abre `CLAUDE.md`.
 
 ## Iconos
 
-Usamos Material Symbols con la clase `flow-icon`:
+Un solo archivo de fuente. Escribes el nombre del icono y aparece:
 
 ```tsx
 <span className="flow-icon">dashboard</span>
+<span className="flow-icon">person</span>
+<span className="flow-icon">settings</span>
 ```
 
-La fuente se carga en `tokens/fonts.css`. El catálogo completo está en
-[fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols).
+Busca iconos por nombre en [fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols). Son miles.
 
-## Charts
+## Gráficas
 
-Todos los charts pasan por el primitive `FlowChart` (wrapper de ECharts).
-Nunca uses ECharts directamente — FlowChart maneja temas, responsive y accesibilidad:
+Una sola pieza para todas las gráficas. Dile el tipo y los datos:
 
 ```tsx
-import { FlowChart } from './ui/primitives/FlowChart'
+import { FlowChart } from './ui/primitives'
 
 <FlowChart
   type="bar"
@@ -157,54 +117,117 @@ import { FlowChart } from './ui/primitives/FlowChart'
 />
 ```
 
-Tipos soportados: `bar`, `line`, `area`, `stacked`, `stacked100`, `pie`, `radar`,
-`heatmap`, `funnel`, `scatter`, `gauge`, `pareto`.
+Tipos: `bar` · `line` · `area` · `pie` · `radar` · `heatmap` · `funnel` · `scatter` · `gauge` · `pareto` · `stacked` · `stacked100`
 
-Los componentes de alto nivel (`Donut`, `ScatterPlot`, `BulletChart`, `ParetoChart`,
-`Treemap`, `GanttChart`, `SmallMultiples`) envuelven FlowChart con APIs más específicas.
+Las gráficas especializadas (`Donut`, `ScatterPlot`, `GanttChart`, etc.) son atajos con APIs más cómodas.
 
-## Stack técnico
+---
 
-| Qué | Con qué |
+## Cómo está organizado (para cuando quieras crear piezas nuevas)
+
+Flow tiene una regla simple: **las piezas solo pueden usar piezas más simples que ellas**.
+
+```
+tokens       →  los colores, tamaños y tiempos (sin interfaz)
+primitives   →  piezas básicas (Button, Input, Badge...)
+components   →  combinan primitives (Card, Table, Dialog...)
+patterns     →  resuelven tareas de negocio (AuthForm, Settings...)
+templates    →  pantallas completas (se copian, no se importan)
+```
+
+Un `Card` (component) puede usar `Button` (primitive). Pero un `Button` no puede usar `Card` — eso iría hacia arriba. Si necesitas que dos piezas del mismo nivel compartan algo, baja eso compartido al nivel de abajo.
+
+### Para crear una pieza nueva
+
+1. Decide en qué nivel va: ¿Es un control atómico? → `src/ui/primitives/`. ¿Combina controles? → `src/ui/components/`. ¿Resuelve algo de negocio? → `src/ui/patterns/`.
+
+2. Crea dos archivos:
+```
+src/ui/components/MiPieza.tsx          ← el componente
+src/ui/components/MiPieza.module.css   ← los estilos (opcional)
+```
+
+3. Exporta las props con `export interface`:
+```tsx
+export interface MiPiezaProps {
+  title: string
+  size?: 'sm' | 'md' | 'lg'
+  style?: CSSProperties
+}
+```
+
+4. Agrega la línea de exportación al índice de su nivel:
+```tsx
+// en src/ui/components/index.ts
+export { MiPieza, type MiPiezaProps } from './MiPieza'
+```
+
+5. Verifica: `npm run typecheck`
+
+Las reglas completas y la receta detallada están en `CLAUDE.md`.
+
+## Verificación
+
+```bash
+npm run typecheck   # tipos de TypeScript
+npm run test        # tests unitarios
+npm run build       # build de producción
+```
+
+## Stack
+
+React 19 · TypeScript · CSS Modules (sin Tailwind) · Vite · TanStack Router · TanStack Query · ECharts · Vitest · Material Symbols
+
+---
+
+## Usar Flow desde otro proyecto (MCP Server)
+
+Si trabajas en un proyecto que consume Flow y usas un agente de IA (Claude Code, Cursor, etc.), puedes conectar el servidor MCP para que tu agente consulte las piezas, tokens y reglas sin salir de tu repo.
+
+### 1. Prepara el servidor (una vez)
+
+```bash
+cd mcp-server
+npm install
+npm run build
+```
+
+### 2. Conecta tu proyecto
+
+En tu otro proyecto, crea o edita `.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "flow-ds": {
+      "command": "node",
+      "args": ["/ruta/a/Flow/mcp-server/dist/server.js"]
+    }
+  }
+}
+```
+
+### 3. Tu agente ahora puede
+
+| Preguntarle al servidor | Para qué |
 |---|---|
-| UI | React 19 + TypeScript 7 |
-| Estilos | CSS Modules + tokens (custom properties). Sin Tailwind |
-| Routing | TanStack Router (type-safe) |
-| Data | TanStack Query + MSW (mocks en desarrollo) |
-| Charts | ECharts vía FlowChart primitive |
-| Build | Vite 8 |
-| Tests | Vitest + Testing Library |
-| Lint | oxlint |
-| Iconos | Material Symbols (variable font) |
+| `list_inventory` | "¿Qué piezas hay?" |
+| `get_component_api("Button")` | "¿Qué props acepta Button?" |
+| `get_tokens("colors")` | "¿Cuáles son los colores?" |
+| `get_architecture_rules` | "¿Cuáles son las reglas?" |
+| `validate_import(from, to)` | "¿Este import está bien?" |
 
-## Reglas para contribuir
-
-1. **Tokens semánticos siempre.** `var(--surface-card)`, nunca `#ffffff`.
-2. **Target táctil de 44px** en todo lo que se pueda tocar.
-3. **Foco visible** en todo elemento operable.
-4. **Una variante no es un archivo nuevo.** Si es la misma cosa con otro aspecto, es una prop.
-5. **Las capas no se saltan.** Un component no importa de patterns. Un primitive no importa de components.
-6. **La composición interna no se filtra a la API.** Que Select use Popover + Listbox es asunto interno.
-
-## Estructura de un componente típico
-
-```
-src/ui/components/
-├── Card.tsx          ← componente + interfaz de props exportada
-└── Card.module.css   ← estilos (CSS Module, clases locales)
-```
-
-El `.tsx` exporta el componente y su interfaz de props.
-El `.module.css` tiene los estilos. Componentes que son wrappers finos no lo necesitan.
+---
 
 ## Para agentes de IA
 
-Si eres un agente de IA (Claude, Cursor, Copilot) trabajando en este repo:
+Si eres un agente trabajando **dentro** de este repo:
 
-1. Lee `CLAUDE.md` — tiene las reglas de arquitectura que debes seguir.
-2. Antes de crear un archivo, decide su capa (primitive / component / pattern / template).
-3. Busca si ya existe un componente que hace lo que necesitas antes de crear uno nuevo.
-4. Usa `npm run typecheck` para verificar que no rompiste tipos.
-5. Usa tokens semánticos en los estilos. Grep por `var(--` en cualquier archivo existente para ver el patrón.
-6. Los barrel exports en `src/ui/{primitives,components,patterns}/index.ts`
-   necesitan incluir cualquier componente nuevo que crees.
+1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas que debes seguir.
+2. Antes de crear un archivo, decide su nivel (primitive / component / pattern).
+3. Busca si ya existe una pieza que haga lo que necesitas.
+4. Usa tokens de color (`var(--surface-card)`), nunca hex (`#ffffff`).
+5. Corre `npm run typecheck` después de cada cambio.
+6. Agrega cada pieza nueva al `index.ts` de su nivel.
+
+Si trabajas desde **otro repo**, conecta el MCP server (sección anterior).
