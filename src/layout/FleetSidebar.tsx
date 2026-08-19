@@ -16,6 +16,7 @@ const NAV: [string, string, string][] = [
   ['/conductores', 'group', 'Conductores'],
   ['/asistente', 'smart_toy', 'Asistente'],
   ['/reportes', 'monitoring', 'Reportes'],
+  ['/wallet', 'account_balance_wallet', 'Wallet'],
   ['/ajustes', 'settings', 'Ajustes'],
 ]
 

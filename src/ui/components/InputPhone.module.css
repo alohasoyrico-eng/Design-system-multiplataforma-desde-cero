@@ -1,0 +1,19 @@
+.prefix {
+  font: var(--type-data);
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font: var(--type-data);
+  color: var(--text-primary);
+  outline: none;
+  min-width: 0;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}

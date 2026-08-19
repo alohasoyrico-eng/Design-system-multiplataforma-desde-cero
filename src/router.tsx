@@ -20,6 +20,7 @@ import { AgentChatPage } from './pages/AgentChatPage'
 import { MailingsPage } from './pages/MailingsPage'
 import { ConfigRolesPage } from './pages/ConfigRolesPage'
 import { PrimitivesShowcasePage } from './pages/PrimitivesShowcasePage'
+import { WalletPage } from './pages/WalletPage'
 
 const rootRoute = createRootRoute({ component: Outlet })
 
@@ -119,6 +120,12 @@ const showcaseRoute = createRoute({
   component: PrimitivesShowcasePage,
 })
 
+const walletRoute = createRoute({
+  getParentRoute: () => appLayout,
+  path: '/wallet',
+  component: WalletPage,
+})
+
 const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/login',
@@ -200,6 +207,7 @@ const routeTree = rootRoute.addChildren([
     mailingsRoute,
     configRolesRoute,
     showcaseRoute,
+    walletRoute,
   ]),
   itLayout.addChildren([
     itResumenRoute,

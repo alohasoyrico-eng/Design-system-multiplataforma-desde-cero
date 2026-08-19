@@ -1,0 +1,120 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+
+.title {
+  font: var(--type-title);
+  color: var(--text-primary);
+}
+
+.description {
+  font: var(--type-body);
+  color: var(--text-secondary);
+  max-width: 280px;
+}
+
+.biometric {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--border-default);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-spring);
+}
+
+.biometric:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+.biometric:hover {
+  border-color: var(--border-strong);
+}
+
+.icon {
+  font-size: 36px;
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.biometric[data-state='scanning'] {
+  border-color: var(--action-accent);
+  animation: pulse var(--dur-slow) var(--ease-in-out) infinite;
+}
+
+.biometric[data-state='scanning'] .icon {
+  color: var(--action-accent);
+}
+
+.biometric[data-state='success'] {
+  border-color: var(--status-success);
+  background: var(--status-success-bg);
+}
+
+.biometric[data-state='success'] .icon {
+  color: var(--status-success);
+}
+
+.biometric[data-state='error'] {
+  border-color: var(--status-danger);
+  background: var(--status-danger-bg);
+  animation: shake var(--dur-base) var(--ease-spring);
+}
+
+.biometric[data-state='error'] .icon {
+  color: var(--status-danger);
+}
+
+.stateLabel {
+  font: var(--type-caption);
+  color: var(--text-muted);
+  min-height: 1.2em;
+}
+
+.stateLabel[data-state='success'] {
+  color: var(--status-success-text);
+}
+
+.stateLabel[data-state='error'] {
+  color: var(--status-danger-text);
+}
+
+.fallback {
+  border: none;
+  background: transparent;
+  font: var(--type-body);
+  color: var(--text-accent);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  min-height: var(--hit-target-min);
+  display: flex;
+  align-items: center;
+}
+
+.fallback:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+.fallback:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .biometric[data-state='scanning'] {
+    animation: none;
+    border-width: 3px;
+  }
+}

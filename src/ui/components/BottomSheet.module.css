@@ -1,0 +1,49 @@
+.root {
+  background: var(--surface-card);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: var(--shadow-overlay);
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hit-target-min);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--space-2) 0;
+  width: 100%;
+}
+
+.handle:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+  border-radius: var(--radius-sm);
+}
+
+.bar {
+  width: 36px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+}
+
+.title {
+  font: var(--type-title-sm);
+  color: var(--text-primary);
+  padding: 0 var(--pad-card) var(--space-3);
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 var(--pad-card) var(--pad-card);
+}

@@ -1,0 +1,86 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  min-height: var(--hit-target-min);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: default;
+  box-sizing: border-box;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+button.root {
+  cursor: pointer;
+}
+
+button.root:hover {
+  background: var(--surface-sunken);
+}
+
+button.root:focus-visible {
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.root[data-pending] {
+  opacity: 0.6;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.icon[data-category='fuel'] { color: var(--status-warning-text); background: var(--status-warning-bg); }
+.icon[data-category='toll'] { color: var(--status-info-text); background: var(--status-info-bg); }
+.icon[data-category='payment'] { color: var(--status-success-text); background: var(--status-success-bg); }
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  font: var(--type-body);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  font: var(--type-caption);
+  color: var(--text-muted);
+}
+
+.pendingLabel {
+  font: var(--type-caption);
+  color: var(--status-warning-text);
+}
+
+.amount {
+  font: var(--type-data);
+  color: var(--status-success-text);
+  text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.root[data-negative] .amount {
+  color: var(--text-primary);
+}
