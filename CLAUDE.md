@@ -1,8 +1,7 @@
 # Flow — reglas de arquitectura
 
-> Plantilla. Copia este archivo como `CLAUDE.md` en la raíz del repo que implementa Flow.
-> Claude Code lo lee en cada sesión, así que la regla está presente cuando se escribe el código,
-> no cuando ya se mandó a revisión.
+Claude Code lee este archivo en cada sesión. La regla está presente cuando se escribe el código,
+no cuando ya se mandó a revisión.
 
 ## La cascada
 
@@ -32,16 +31,6 @@ Dos criterios que resuelven casi todas las dudas:
 - **R3 — una carcasa, un dueño.** Fuera de los shells, nada redeclara borde+foco+radio de control, backdrop fijo, ni sus propios `@keyframes`.
 - **R4 — la composición no se filtra a la API.** Que `Select` esté hecho de `Popover` + `Listbox` es asunto interno. Ninguna prop pública nombra sus partes.
 
-## Los contratos manda sobre el código
-
-`contracts/<id>.json` es la fuente de verdad, no el `.jsx` de referencia.
-
-- `api` — las props públicas. Es lo único versionado: romperlo es breaking change.
-- `conformance` — el comportamiento observable, obligatorio y verificable desde fuera. `_base.json` lo hereda todo ítem.
-- `composition` — cómo lo construyó el sistema. Aquí es guía: si ya tienes tu propio popover, úsalo, **pero heredas la obligación de cumplir por tu cuenta los criterios que ese shell garantizaba**.
-
-Al implementar un ítem: lee su contrato, cumple `api` y `conformance`, y **agrega su id a `adoption.adopted` en `architecture.json`**. Ahí entra a la revisión; no antes.
-
 ## Al escribir componentes
 
 - **Tokens semánticos siempre**, nunca hex ni valores mágicos. Rompe esto y se rompe el modo oscuro.
@@ -50,12 +39,265 @@ Al implementar un ítem: lee su contrato, cumple `api` y `conformance`, y **agre
 - **El estado final del render no depende de que corra un frame de animación.** En un iframe en segundo plano, una pestaña oculta o un preview, el componente debe verse completo. Si algo arranca en su frame cero —una barra de altura 0, un panel sin foco— y espera un `requestAnimationFrame` que nunca llega, se ve roto y nadie lo nota en una pestaña activa.
 - **Un control no dibuja nada encima de su propia área.** Contadores, iconos y accesorios van en `leading`, `trailing` o `footer` de la carcasa.
 
-## Revisión
+---
 
-```bash
-node platforms/check-layers.mjs --target src
+## Receta: crear un componente nuevo
+
+Estos son los pasos exactos. No te saltes ninguno.
+
+### 1. Decide la capa
+
+¿Es un concepto de interfaz (Table, Dialog)? → `src/ui/components/`
+¿Es un concepto de negocio (PaymentCard, AuthForm)? → `src/ui/patterns/`
+¿Es un control atómico que no compone nada del sistema? → `src/ui/primitives/`
+
+### 2. Crea el archivo .tsx
+
+```
+src/ui/components/MiComponente.tsx
 ```
 
-R1, R2 y R4 bloquean. R3 es un ratchet: su número puede bajar, nunca subir.
+Estructura mínima:
+
+```tsx
+import type { CSSProperties, ReactNode } from 'react'
+import css from './MiComponente.module.css'
+
+export interface MiComponenteProps {
+  // props aquí
+  style?: CSSProperties
+}
+
+export function MiComponente({ style }: MiComponenteProps) {
+  return (
+    <div className={css.root} style={style}>
+      {/* contenido */}
+    </div>
+  )
+}
+```
+
+### 3. Crea el archivo .module.css (si necesita estilos propios)
+
+```
+src/ui/components/MiComponente.module.css
+```
+
+```css
+.root {
+  /* usa tokens, nunca valores crudos */
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+```
+
+Componentes que son wrappers finos (como Table que envuelve DataGrid) no necesitan `.module.css`.
+
+### 4. Exporta la interfaz de props
+
+La interfaz **debe** tener `export` delante:
+
+```tsx
+export interface MiComponenteProps {  // ← export obligatorio
+```
+
+### 5. Agrega al barrel export
+
+Abre `src/ui/components/index.ts` (o `primitives/index.ts` o `patterns/index.ts` según la capa) y agrega:
+
+```tsx
+export { MiComponente, type MiComponenteProps } from './MiComponente'
+```
+
+### 6. Verifica
+
+```bash
+npm run typecheck   # cero errores
+```
+
+---
+
+## Convenciones de props
+
+Estos son los nombres estándar. Úsalos tal cual — no inventes sinónimos.
+
+| Prop | Tipo | Para qué |
+|---|---|---|
+| `variant` | string union | Variación visual. Ej: `'primary' \| 'accent' \| 'secondary' \| 'ghost' \| 'danger'` |
+| `size` | `'sm' \| 'md' \| 'lg'` | Tamaño. Default `'md'` |
+| `tone` | `'default' \| 'success' \| 'warning' \| 'danger' \| 'info'` | Color semántico (Badge, StatTile) |
+| `icon` | `string` | Nombre del icono Material Symbol. Va a la izquierda |
+| `iconTrailing` | `string` | Icono a la derecha |
+| `disabled` | `boolean` | Inhabilita interacción |
+| `loading` | `boolean` | Muestra spinner |
+| `style` | `CSSProperties` | Override inline. Casi todo componente lo acepta |
+| `children` | `ReactNode` | Contenido. Solo si el componente es contenedor |
+| `className` | — | **No lo uses.** Los estilos van en `.module.css` |
+
+### Props de interacción
+
+| Prop | Tipo | Patrón |
+|---|---|---|
+| `onClick` | `() => void` | Acción primaria |
+| `onChange` | `(value: T) => void` | Valor controlado. El tipo depende del componente |
+| `onClose` | `() => void` | Para overlays (Dialog, Drawer, OverlayShell) |
+| `open` | `boolean` | Controla visibilidad de overlays |
+| `value` | `T` | Valor controlado del input/select |
+
+### Props de layout de shells
+
+| Prop | Patrón |
+|---|---|
+| `leading` | Contenido a la izquierda (icono, avatar) |
+| `trailing` | Contenido a la derecha (botón, badge) |
+| `footer` | Contenido al pie |
+
+---
+
+## Referencia de tokens
+
+Usa estos tokens en los estilos. Nunca valores crudos.
+
+### Superficies
+
+| Token | Cuándo usarlo |
+|---|---|
+| `--surface-canvas` | Fondo de la página completa |
+| `--surface-card` | Fondo de cards, modals, drawers, popovers |
+| `--surface-sunken` | Fondo hundido: inputs, áreas de drop, columnas de kanban |
+| `--surface-inverse` | Fondo oscuro para contraste (tooltips, toasts) |
+| `--surface-accent-subtle` | Fondo con tinte de acento (filas seleccionadas, highlights) |
+| `--surface-backdrop` | Overlay semitransparente detrás de modals |
+
+### Texto
+
+| Token | Cuándo usarlo |
+|---|---|
+| `--text-primary` | Texto principal: títulos, body, valores |
+| `--text-secondary` | Texto secundario: descripciones, subtítulos |
+| `--text-muted` | Texto terciario: placeholders, hints, metadata |
+| `--text-on-accent` | Texto sobre fondo de acento (botón accent) |
+| `--text-on-inverse` | Texto sobre fondo inverse |
+| `--text-accent` | Texto con color de marca (links, labels activos) |
+
+### Bordes
+
+| Token | Cuándo usarlo |
+|---|---|
+| `--border-subtle` | Bordes suaves: cards, divisores, filas de tabla |
+| `--border-default` | Bordes normales: inputs en reposo |
+| `--border-strong` | Bordes enfáticos: hover en inputs, separadores activos |
+| `--border-focus` | Borde de foco (rojo marca) |
+
+### Estado
+
+| Token | Cuándo usarlo |
+|---|---|
+| `--status-success` / `-text` / `-bg` | Éxito, completado, activo |
+| `--status-warning` / `-text` / `-bg` | Advertencia, pendiente, riesgo |
+| `--status-danger` / `-text` / `-bg` | Error, rechazado, peligro |
+| `--status-info` / `-text` / `-bg` | Informativo, en progreso |
+
+### Forma
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--radius-xs` | 8px | Checkboxes, chips pequeños |
+| `--radius-sm` | 12px | Inputs interiores, menu items |
+| `--radius-md` | 16px | Inputs, selects, cards pequeños |
+| `--radius-lg` | 20px | Cards, secciones |
+| `--radius-xl` | 28px | Modals, page shells |
+| `--radius-pill` | 999px | Buttons, chips, badges |
+
+### Espaciado
+
+Escala: `--space-1` (4px), `--space-2` (8px), `--space-3` (12px), `--space-4` (16px), `--space-5` (20px), `--space-6` (24px), `--space-8` (32px), `--space-10` (40px), `--space-12` (48px), `--space-16` (64px).
+
+### Motion
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--dur-instant` | 100ms | Press, feedback inmediato |
+| `--dur-fast` | 160ms | Hover, toggle |
+| `--dur-base` | 240ms | Expand, reveal |
+| `--dur-slow` | 400ms | Overlays, transiciones de página |
+| `--ease-spring` | cubic-bezier(0.34,1.56,0.64,1) | Touch feedback, hover lift |
+| `--ease-out` | cubic-bezier(0.22,1,0.36,1) | Enter, expand |
+| `--ease-in-out` | cubic-bezier(0.65,0,0.35,1) | Move, morph |
+
+### Sombras
+
+`--shadow-rest` → `--shadow-raised` → `--shadow-float` → `--shadow-overlay` (de menos a más elevación).
+`--shadow-accent-glow` para botones accent en hover.
+
+### Tipografía
+
+| Token | Fuente |
+|---|---|
+| `--font-display` | Sora |
+| `--font-body` | Sora |
+| `--font-mono` | JetBrains Mono |
+
+### Iconos
+
+Material Symbols con clase `flow-icon`:
+
+```tsx
+<span className="flow-icon" aria-hidden="true">dashboard</span>
+```
+
+Catálogo: busca por nombre en [fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols).
+
+### Charts
+
+Todos los charts pasan por `FlowChart` (wrapper de ECharts en `src/ui/primitives/FlowChart.tsx`).
+Nunca uses ECharts directamente. Tipos: `bar`, `line`, `area`, `stacked`, `stacked100`, `pie`, `radar`, `heatmap`, `funnel`, `scatter`, `gauge`, `pareto`.
+
+---
+
+## Estilos: CSS Modules
+
+Cada componente con estilos propios tiene un `.module.css` al lado del `.tsx`.
+
+### Reglas de CSS
+
+1. **Solo tokens.** `color: var(--text-primary)`, nunca `color: #17171a`.
+2. **Variantes con data attributes**, no con clases extra:
+   ```css
+   .root[data-variant="accent"] { background: var(--flow-red-500); }
+   .root[data-size="sm"] { padding: var(--space-2); }
+   ```
+3. **Hover y estados con pseudo-clases CSS**, no con JS handlers:
+   ```css
+   .root:hover { background: var(--surface-sunken); }
+   .root:focus-visible { box-shadow: var(--focus-ring); }
+   .root:disabled { opacity: 0.5; pointer-events: none; }
+   ```
+4. **Valores que dependen de runtime** (como el color computado de Avatar) van como inline style.
+5. **No uses `@keyframes` fuera de shells.** Si necesitas animación, usa las transiciones con tokens de motion.
+
+---
+
+## Verificación
+
+```bash
+npm run typecheck   # TypeScript sin errores
+npm run test        # Vitest pasa
+npm run build       # Build de producción exitoso
+```
 
 Verifica el comportamiento **midiendo el DOM montado**, no leyendo el código: un componente puede cumplir su contrato en el archivo e incumplirlo en la página.
+
+---
+
+## Errores comunes
+
+- **Importar de la capa equivocada.** Un component que importa de patterns viola R1.
+- **Crear un archivo nuevo en vez de agregar una prop.** Tres botones con distinto color no son tres componentes — es `variant`.
+- **Usar hex en lugar de token.** `#ffffff` se ve bien en light mode. En dark mode se rompe.
+- **Olvidar el barrel export.** Si no está en `index.ts`, no existe para quien use el import limpio.
+- **No exportar la interfaz de props.** Sin `export interface`, el autocompletado de VS Code no funciona desde el barrel.
+- **Usar `onMouseEnter`/`onMouseLeave` para hover.** Eso es un JS hover handler. Usa `:hover` en CSS.
+- **Poner `className` como prop.** Los estilos van en `.module.css`, no como clases externas.
