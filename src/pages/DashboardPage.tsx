@@ -23,7 +23,7 @@ import { Treemap } from '../ui/components/Treemap'
 import { BulletChart } from '../ui/components/BulletChart'
 import { GanttChart } from '../ui/components/GanttChart'
 import { MapCanvas } from '../ui/components/MapCanvas'
-import { ChartLegend } from '../ui/components/ChartLegend'
+import { ChartLegend } from '../ui/primitives/ChartLegend'
 import { DOMAIN } from '../data/domain-colors'
 import css from '../App.module.css'
 

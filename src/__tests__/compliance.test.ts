@@ -69,7 +69,7 @@ describe('Token compliance — colors', () => {
   // Exceptions: PaymentCard rgba tints (computed from card color),
   // MailingsPage email preview bg, PhoneFrame dark casing
   const COLOR_EXCEPTIONS = [
-    'components/PaymentCard.module.css',
+    'PaymentCard.module.css',
     'MailingsPage.module.css',
     'PhoneFrame.module.css',
   ]
@@ -172,6 +172,28 @@ describe('Architecture — layer imports', () => {
       /from\s+['"].*\/patterns\//
     )
     expect(hits, `Component → pattern imports:\n${formatHits(hits)}`).toHaveLength(0)
+  })
+
+  it('components never import from same layer (other components)', () => {
+    // Exception: RouteBanner imports Card (layout container coupling, documented)
+    const SAME_LAYER_EXCEPTIONS = ['RouteBanner.tsx']
+    const filtered = componentsTsx.filter(f => !SAME_LAYER_EXCEPTIONS.some(e => f.endsWith(e)))
+    const hits = grepFiles(
+      filtered,
+      /from\s+['"]\.\/(?!.*\.module\.css)/,
+      /\.module\.css|\.css/
+    ).filter(h => !h.text.includes('.module.css') && !h.text.includes('.css\''))
+    expect(hits, `Same-layer component imports (R1 violation):\n${formatHits(hits)}`).toHaveLength(0)
+  })
+
+  it('patterns never import from same layer (other patterns)', () => {
+    const patternsTsx = walk(join(UI, 'patterns'), '.tsx')
+    const hits = grepFiles(
+      patternsTsx,
+      /from\s+['"]\.\/(?!.*\.module\.css)/,
+      /\.module\.css|\.css/
+    ).filter(h => !h.text.includes('.module.css') && !h.text.includes('.css\''))
+    expect(hits, `Same-layer pattern imports (R1 violation):\n${formatHits(hits)}`).toHaveLength(0)
   })
 })
 

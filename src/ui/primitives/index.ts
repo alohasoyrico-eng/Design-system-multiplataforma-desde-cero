@@ -1,6 +1,8 @@
 export { Avatar, type AvatarProps } from './Avatar'
 export { Badge, type BadgeProps } from './Badge'
 export { Button, type ButtonProps } from './Button'
+export { ChartLegend, type ChartLegendProps, type ChartLegendItem } from './ChartLegend'
+export { ChatMessage, type ChatMessageProps } from './ChatMessage'
 export { Checkbox, type CheckboxProps } from './Checkbox'
 export { Chip, type ChipProps } from './Chip'
 export { DetailRow, type DetailRowProps } from './DetailRow'

@@ -19,39 +19,33 @@ Abre `localhost:5173`. Vas a ver un sidebar con 13 pantallas funcionando — das
 
 **92 piezas React** + **93 widgets Flutter** con paridad completa, organizadas en cuatro niveles:
 
-### Primitives (22)
+### Primitives (24)
 
 Los ladrillos. Cada una hace una sola cosa bien.
 
-`Avatar` `Badge` `Button` `Checkbox` `Chip` `DetailRow` `Divider` `Field` `Flag` `FlowChart` `IconButton` `Input` `Progress` `Radio` `SectionHeader` `Select` `Skeleton` `Slider` `Sparkline` `Spinner` `Switch` `Textarea`
+`Avatar` `Badge` `Button` `ChartLegend` `ChatMessage` `Checkbox` `Chip` `DetailRow` `Divider` `Field` `Flag` `FlowChart` `IconButton` `Input` `Progress` `Radio` `SectionHeader` `Select` `Skeleton` `Slider` `Sparkline` `Spinner` `Switch` `Textarea`
 
-### Components (64)
+### Components (49)
 
 Combinan primitives para resolver necesidades de interfaz.
 
-**Layout y navegación** — `Accordion` `Breadcrumb` `Card` `CardMedia` `Dialog` `Drawer` `Menu` `NavBar` `Pagination` `SegmentedControl` `Sidebar` `Stepper` `TabBar` `Table` `TableTree` `Tabs` `Timeline` `Toast` `Tooltip` `TopBar`
+**Layout y navegación** — `Accordion` `BottomSheet` `Breadcrumb` `Card` `CardMedia` `Dialog` `Drawer` `Menu` `NavBar` `Pagination` `PeekSheet` `RouteBanner` `SegmentedControl` `SheetBody` `Sidebar` `Stepper` `TabBar` `Table` `TableTree` `Tabs` `Timeline` `Toast` `Tooltip` `TopBar`
 
-**Formularios y entrada** — `BalanceDisplay` `BiometricPrompt` `BulkActionsTable` `DatePicker` `FileUpload` `FilterableEditableTable` `FilterBar` `GlobalSearch` `InputAmount` `InputPhone` `KanbanBoard` `OTPInput` `PasscodeKeypad` `RoleMatrix`
+**Formularios y entrada** — `ChatComposer` `DatePicker` `FileUpload` `FilterBar` `GlobalSearch` `KanbanBoard` `OTPInput`
 
-**Dataviz** — `Bars` `BulletChart` `ChartLegend` `CircularProgress` `Donut` `GanttChart` `LimitBar` `MapCanvas` `ParetoChart` `ScatterPlot` `SmallMultiples` `StatTile` `Treemap`
+**Dataviz** — `Bars` `BulletChart` `CircularProgress` `Donut` `GanttChart` `LimitBar` `MapCanvas` `ParetoChart` `ScatterPlot` `SmallMultiples` `StatTile` `Treemap`
 
-**Comunicación** — `ChatComposer` `ChatMessage` `ChatThread` `EmptyState` `HelpCenter` `NotificationCenter` `StatusView`
+**Comunicación** — `ChatThread` `EmptyState` `HelpCenter` `NotificationCenter` `QuickAction` `StatusView`
 
-**Mobile** — `BottomSheet` `NipReveal` `OnboardingCarousel` `PaymentCard` `PeekSheet` `QuickAction` `RouteBanner` `SheetBody` `TransactionGroup` `TransactionRow`
-
-### Patterns (6)
+### Patterns (19)
 
 Resuelven tareas recurrentes de negocio.
 
-`AuthForm` · `CardCarousel` · `ProfileMenu` · `QuickActionBar` · `Settings` · `Wizard`
+`AuthForm` · `BalanceDisplay` · `BiometricPrompt` · `BulkActionsTable` · `CardCarousel` · `FilterableEditableTable` · `InputAmount` · `InputPhone` · `NipReveal` · `OnboardingCarousel` · `PasscodeKeypad` · `PaymentCard` · `ProfileMenu` · `QuickActionBar` · `RoleMatrix` · `Settings` · `TransactionGroup` · `TransactionRow` · `Wizard`
 
 ### Templates (13 páginas)
 
 Pantallas completas funcionando: `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase`
-
-### Shells (6, internos)
-
-Carcasas que estandarizan borde, foco y backdrop: `ControlShell` `DataGrid` `Listbox` `OverlayShell` `Popover` `ToggleControl`. Solo los usan los primitives — nunca se importan directamente.
 
 ## Cómo se usa una pieza
 

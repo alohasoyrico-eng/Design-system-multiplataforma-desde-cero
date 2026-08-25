@@ -1,5 +1,5 @@
 import { useRef, useEffect, type ReactNode, type CSSProperties } from 'react'
-import { ChatMessage } from './ChatMessage'
+import { ChatMessage } from '../primitives/ChatMessage'
 import css from './ChatThread.module.css'
 
 interface ToolChip {

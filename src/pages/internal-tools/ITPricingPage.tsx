@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Guard, useITToast } from '../../layout/InternalToolsLayout'
 import { Table } from '../../ui/components/Table'
-import { FilterableEditableTable, type FilterableColumn } from '../../ui/components/FilterableEditableTable'
+import { FilterableEditableTable, type FilterableColumn } from '../../ui/patterns/FilterableEditableTable'
 import { Badge } from '../../ui/primitives/Badge'
 import { Button } from '../../ui/primitives/Button'
 import { Drawer } from '../../ui/components/Drawer'

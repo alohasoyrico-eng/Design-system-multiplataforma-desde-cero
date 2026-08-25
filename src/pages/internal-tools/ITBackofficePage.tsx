@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Guard, useITToast } from '../../layout/InternalToolsLayout'
 import { Table } from '../../ui/components/Table'
-import { BulkActionsTable } from '../../ui/components/BulkActionsTable'
+import { BulkActionsTable } from '../../ui/patterns/BulkActionsTable'
 import { Badge } from '../../ui/primitives/Badge'
 import { Button } from '../../ui/primitives/Button'
 import { Card } from '../../ui/components/Card'

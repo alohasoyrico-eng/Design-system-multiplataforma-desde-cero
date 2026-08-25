@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import { FlowChart } from '../primitives/FlowChart'
-import { ChartLegend } from './ChartLegend'
+import { ChartLegend } from '../primitives/ChartLegend'
 
 export interface DonutSegment {
   label: string

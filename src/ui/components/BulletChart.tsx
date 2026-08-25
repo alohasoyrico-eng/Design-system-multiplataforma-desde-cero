@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import css from './BulletChart.module.css'
-import { ChartLegend } from './ChartLegend'
+import { ChartLegend } from '../primitives/ChartLegend'
 
 export interface BulletRow {
   label: string

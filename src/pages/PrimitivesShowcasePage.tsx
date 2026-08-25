@@ -19,7 +19,7 @@ import { Treemap } from '../ui/components/Treemap'
 import { KanbanBoard } from '../ui/components/KanbanBoard'
 import { CardMedia } from '../ui/components/CardMedia'
 import { StatusView } from '../ui/components/StatusView'
-import { OnboardingCarousel } from '../ui/components/OnboardingCarousel'
+import { OnboardingCarousel } from '../ui/patterns/OnboardingCarousel'
 import { Button } from '../ui/primitives/Button'
 import { IconButton } from '../ui/primitives/IconButton'
 
