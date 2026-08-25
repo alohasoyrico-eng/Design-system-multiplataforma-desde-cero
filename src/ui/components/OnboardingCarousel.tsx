@@ -1,19 +1,14 @@
 import { useRef, type CSSProperties, type ReactNode } from 'react'
+import { useIntl } from 'react-intl'
+import css from './OnboardingCarousel.module.css'
 
 const PALETTE = [1, 2, 3, 4, 5, 6].map((i) => `var(--illustration-${i})`)
 
 function DefaultIllustration({ icon, index }: { icon?: string; index: number }) {
   const color = PALETTE[index % PALETTE.length]
   return (
-    <div style={{
-      width: 168, height: 168, borderRadius: '50%', background: `${color}1A`,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-    }}>
-      <div style={{
-        width: 108, height: 108, borderRadius: '50%', background: color,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: `0 12px 28px ${color}40`,
-      }}>
+    <div className={css.illustration} style={{ background: `${color}1A` }}>
+      <div className={css.illustrationInner} style={{ background: color, boxShadow: `0 12px 28px ${color}40` }}>
         <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{ fontSize: 52, color: 'var(--text-on-accent)' }}>
           {icon || 'auto_awesome'}
         </span>
@@ -42,8 +37,12 @@ export interface OnboardingCarouselProps {
 
 export function OnboardingCarousel({
   slides = [], index = 0, onIndexChange, onSkip, onDone,
-  skipLabel = 'Omitir', doneLabel = 'Empezar', style,
+  skipLabel, doneLabel, style,
 }: OnboardingCarouselProps) {
+  const intl = useIntl()
+  const resolvedSkipLabel = skipLabel ?? intl.formatMessage({ id: 'onboarding.skip', defaultMessage: 'Omitir' })
+  const resolvedDoneLabel = doneLabel ?? intl.formatMessage({ id: 'onboarding.done', defaultMessage: 'Empezar' })
+  const continueLabel = intl.formatMessage({ id: 'common.continue', defaultMessage: 'Continuar' })
   const touch = useRef<number | null>(null)
   const go = (i: number) => onIndexChange?.(Math.max(0, Math.min(slides.length - 1, i)))
   const last = index === slides.length - 1
@@ -51,7 +50,8 @@ export function OnboardingCarousel({
 
   return (
     <div
-      style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-body)', ...style }}
+      className={css.root}
+      style={style}
       onTouchStart={(e) => { touch.current = e.touches[0].clientX }}
       onTouchEnd={(e) => {
         if (touch.current == null) return
@@ -61,63 +61,40 @@ export function OnboardingCarousel({
       }}
     >
       {onSkip && !last && (
-        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '4px 4px 0' }}>
-          <button
-            type="button"
-            onClick={onSkip}
-            style={{
-              border: 'none', background: 'transparent', color: 'var(--text-muted)',
-              fontFamily: 'inherit', fontSize: 13.5, fontWeight: 600, cursor: 'pointer', padding: 8,
-            }}
-          >
-            {skipLabel}
+        <div className={css.skip}>
+          <button type="button" className={css.skipBtn} onClick={onSkip}>
+            {resolvedSkipLabel}
           </button>
         </div>
       )}
-      <div style={{
-        flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
-        justifyContent: 'center', textAlign: 'center', gap: 24, padding: '8px 28px',
-      }}>
+      <div className={css.slideArea}>
         {slide.illustration || <DefaultIllustration icon={slide.icon} index={index} />}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <div style={{ font: 'var(--type-title-sm)', color: 'var(--text-primary)' }}>{slide.title}</div>
+        <div className={css.slideText}>
+          <div className={css.slideTitle}>{slide.title}</div>
           {slide.description && (
-            <div style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.55, maxWidth: 300 }}>
-              {slide.description}
-            </div>
+            <div className={css.slideDesc}>{slide.description}</div>
           )}
         </div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 18, padding: '0 24px 8px', alignItems: 'center' }}>
-        <div style={{ display: 'flex', gap: 6 }}>
+      <div className={css.bottom}>
+        <div className={css.dots}>
           {slides.map((_, i) => (
             <button
               key={i}
               type="button"
+              className={css.dot}
+              data-active={i === index || undefined}
               aria-label={`Ir a diapositiva ${i + 1}`}
               onClick={() => go(i)}
-              style={{
-                width: i === index ? 20 : 6, height: 6, borderRadius: 999,
-                border: 'none', padding: 0, cursor: 'pointer',
-                background: i === index ? 'var(--action-accent)' : 'var(--border-default)',
-                transition: 'width var(--dur-base) var(--ease-spring), background var(--dur-fast) var(--ease-out)',
-              }}
             />
           ))}
         </div>
         <button
           type="button"
+          className={css.continueBtn}
           onClick={() => last ? onDone?.() : go(index + 1)}
-          style={{
-            width: '100%', minHeight: 52, border: 'none', borderRadius: 999,
-            background: 'var(--action-primary)', color: 'var(--text-on-inverse)',
-            fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer',
-            transition: 'transform var(--dur-fast) var(--ease-spring)',
-          }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.02)' }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'none' }}
         >
-          {last ? doneLabel : 'Continuar'}
+          {last ? resolvedDoneLabel : continueLabel}
         </button>
       </div>
     </div>

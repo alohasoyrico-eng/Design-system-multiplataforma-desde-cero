@@ -1,0 +1,71 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-8);
+  gap: var(--space-3);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.name {
+  font: var(--type-title-lg);
+  color: var(--text-primary);
+}
+
+.role {
+  font: var(--type-body-md);
+  color: var(--text-muted);
+}
+
+.items {
+  width: 100%;
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+.itemIcon {
+  font-size: var(--icon-default);
+  color: var(--text-muted);
+}
+
+.itemLabel {
+  font: var(--type-body-md);
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.itemChevron {
+  font-size: var(--icon-md);
+  color: var(--text-muted);
+}

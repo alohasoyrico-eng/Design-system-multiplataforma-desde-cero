@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useIntl } from 'react-intl'
 import css from './FileUpload.module.css'
 
 export interface UploadedFile {
@@ -22,6 +23,7 @@ function formatSize(bytes: number): string {
 }
 
 export function FileUpload({ files = [], onChange, accept, label, hint }: FileUploadProps) {
+  const intl = useIntl()
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragOver, setDragOver] = useState(false)
 
@@ -56,7 +58,7 @@ export function FileUpload({ files = [], onChange, accept, label, hint }: FileUp
               <button
                 className={css.fileRemove}
                 onClick={(e) => { e.stopPropagation(); onChange?.(files.filter((_, j) => j !== i)) }}
-                aria-label={'Quitar ' + f.name}
+                aria-label={intl.formatMessage({ id: 'common.remove', defaultMessage: 'Quitar {name}' }, { name: f.name })}
               >
                 <span className="flow-icon" style={{ fontSize: 16 }}>close</span>
               </button>

@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl'
 import { IconButton } from '../primitives/IconButton'
 import { Popover } from '../primitives/shells/Popover'
 import css from './NotificationCenter.module.css'
@@ -25,14 +26,17 @@ const TONE_ICONS: Record<string, { icon: string; color: string }> = {
 }
 
 export function NotificationCenter({ items = [], onItemClick, onMarkAllRead }: NotificationCenterProps) {
+  const intl = useIntl()
   const unread = items.filter((n) => !n.read).length
+  const notificationsLabel = intl.formatMessage({ id: 'notifications.label', defaultMessage: 'Notificaciones' })
+  const unreadSuffix = unread ? `, ${intl.formatMessage({ id: 'notifications.unread', defaultMessage: '{count} sin leer' }, { count: unread })}` : ''
 
   return (
     <Popover
       trigger={
         <IconButton
           icon="notifications"
-          ariaLabel={'Notificaciones' + (unread ? `, ${unread} sin leer` : '')}
+          ariaLabel={notificationsLabel + unreadSuffix}
           badge={unread > 0 ? true : undefined}
         />
       }
@@ -41,7 +45,7 @@ export function NotificationCenter({ items = [], onItemClick, onMarkAllRead }: N
       {({ close }) => (
         <div className={css.root}>
           <div className={css.header}>
-            <span className={css.headerTitle}>Notificaciones</span>
+            <span className={css.headerTitle}>{notificationsLabel}</span>
             {unread > 0 && (
               <button className={css.markRead} onClick={() => onMarkAllRead?.()}>
                 Marcar todo como leido

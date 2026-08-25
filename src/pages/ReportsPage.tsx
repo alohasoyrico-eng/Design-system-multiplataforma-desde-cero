@@ -100,7 +100,7 @@ export function ReportsPage() {
           <Card style={{ gridColumn: '1 / -1' }}>
             <div className={css.sparklineRow}>
               {([
-                ['Tendencia de viajes', [290, 340, 310, 365, 388, 395, 412], 'var(--action-accent)'],
+                ['Tendencia de viajes', [290, 340, 310, 365, 388, 395, 412], 'var(--viz-1)'],
                 ['Km recorridos', [610, 720, 684, 790, 812, 795, 810], 'var(--surface-inverse)'],
                 ['Cancelaciones', [18, 14, 16, 11, 9, 12, 8], 'var(--status-warning)'],
               ] as [string, number[], string][]).map(([title, vals, color], i) => (

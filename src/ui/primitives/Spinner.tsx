@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './Spinner.module.css'
 
 export interface SpinnerProps {
@@ -8,13 +9,15 @@ export interface SpinnerProps {
   style?: CSSProperties
 }
 
-export function Spinner({ size = 20, color, label = 'Cargando', style }: SpinnerProps) {
+export function Spinner({ size = 20, color, label, style }: SpinnerProps) {
+  const intl = useIntl()
+  const resolvedLabel = label ?? intl.formatMessage({ id: 'common.loading', defaultMessage: 'Cargando' })
   const borderWidth = Math.max(2, size / 9)
 
   return (
     <span
       role="status"
-      aria-label={label}
+      aria-label={resolvedLabel}
       className={css.root}
       style={{
         width: size,

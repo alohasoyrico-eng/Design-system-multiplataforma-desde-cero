@@ -1,0 +1,64 @@
+{
+  "common.loading": "Cargando",
+  "common.select": "Seleccionar…",
+  "common.selectDate": "Seleccionar fecha",
+  "common.selectEntity": "Selecciona…",
+  "common.noData": "Sin datos para este periodo",
+  "common.noResults": "Ningún registro coincide con el filtro",
+  "common.empty": "Sin datos",
+  "common.emptyColumn": "Vacía",
+  "common.emptyColumnAbandon": "Sin salidas",
+  "common.show": "Mostrar",
+  "common.hide": "Ocultar",
+  "common.expand": "Expandir",
+  "common.collapse": "Colapsar",
+  "common.continue": "Continuar",
+  "common.next": "Siguiente",
+  "common.confirm": "Confirmar",
+  "common.skip": "Omitir",
+  "common.start": "Empezar",
+  "common.remove": "Quitar {name}",
+  "common.search": "Busca unidades, conductores, viajes…",
+  "common.general": "General",
+
+  "balance.label": "Balance total",
+  "balance.show": "Mostrar saldo",
+  "balance.hide": "Ocultar saldo",
+
+  "biometric.faceId": "Reconocimiento facial",
+  "biometric.fingerprint": "Huella digital",
+  "biometric.scanning": "Verificando...",
+  "biometric.success": "Verificado",
+  "biometric.error": "No reconocido",
+  "biometric.fallback": "Usar passcode",
+
+  "auth.login": "Entrar",
+  "auth.signup": "Crear cuenta",
+  "auth.recover": "Recuperar contraseña",
+  "auth.submitLogin": "Entrar",
+  "auth.submitSignup": "Crear cuenta",
+  "auth.submitRecover": "Enviar instrucciones",
+  "auth.emailError": "Ingresa un correo válido.",
+  "auth.passwordError": "La contraseña debe tener al menos 8 caracteres.",
+  "auth.credentialsError": "Correo o contraseña incorrectos.",
+  "auth.passwordHint": "Mínimo 8 caracteres.",
+
+  "chat.placeholder": "Pregunta sobre tu flota…",
+  "chat.userMessage": "Tu mensaje",
+  "chat.agentMessage": "Respuesta del asistente",
+
+  "notifications.label": "Notificaciones",
+  "notifications.unread": "{count} sin leer",
+
+  "settings.dangerZone": "Zona peligrosa",
+
+  "timeline.done": "Completado",
+  "timeline.active": "En curso",
+  "timeline.pending": "Pendiente",
+  "timeline.error": "Error",
+
+  "scatter.yDefault": "Unidades",
+
+  "onboarding.skip": "Omitir",
+  "onboarding.done": "Empezar"
+}

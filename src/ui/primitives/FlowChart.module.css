@@ -10,5 +10,5 @@
 .emptyInner {
   text-align: center;
   color: var(--text-secondary);
-  font-size: 13px;
+  font: var(--type-body-sm);
 }

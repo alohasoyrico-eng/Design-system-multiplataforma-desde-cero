@@ -1,10 +1,9 @@
 .root {
   position: relative;
-  aspect-ratio: 1.586;
+  aspect-ratio: 1.82;
   width: 100%;
-  max-width: 340px;
-  border-radius: var(--radius-xl);
-  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -13,6 +12,11 @@
   border: none;
   text-align: left;
   cursor: default;
+  box-shadow:
+    var(--shadow-raised),
+    inset 0 0 0 1px var(--alpha-white-35),
+    inset 0 0 0 3px var(--alpha-black-12);
+  backdrop-filter: blur(28px) saturate(1.8) brightness(1.05);
   transition: transform var(--dur-fast) var(--ease-spring),
     box-shadow var(--dur-fast) var(--ease-out);
 }
@@ -23,7 +27,7 @@ button.root {
 
 button.root:hover {
   transform: var(--lift-hover);
-  box-shadow: var(--shadow-raised);
+  box-shadow: var(--shadow-float);
 }
 
 button.root:focus-visible {
@@ -32,78 +36,159 @@ button.root:focus-visible {
 }
 
 .root[data-variant='ink'] {
-  background: var(--surface-inverse);
+  background: rgba(20,20,24,0.72);
   color: var(--card-fg-on-ink);
 }
 
 .root[data-variant='accent'] {
-  background: var(--action-accent);
+  background: rgba(200,30,30,0.7);
   color: var(--card-fg-on-accent);
 }
 
 .root[data-variant='sand'] {
-  background: var(--surface-sunken);
+  background: rgba(230,225,215,0.7);
   color: var(--text-primary);
+}
+
+.root[data-variant='fuel'],
+.root[data-variant='ev'],
+.root[data-variant='maintenance'],
+.root[data-variant='toll'] {
+  background: transparent;
+  color: var(--card-fg-on-accent);
+  box-shadow: var(--shadow-raised);
+  backdrop-filter: blur(28px) saturate(1.8);
+}
+
+.root[data-variant='fuel'] {
+  color: var(--flow-grey-900);
 }
 
 .top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  position: relative;
+  z-index: 3;
 }
 
-.logo {
-  opacity: 0.8;
+.balance {
+  font: var(--type-data-md);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--alpha-white-15);
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.7;
+  transition: opacity var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.toggleBtn:hover {
+  opacity: 1;
+  background: var(--alpha-white-25);
+}
+
+.toggleBtn:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+.productRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  position: relative;
+  z-index: 3;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  line-height: 1;
 }
 
 .label {
-  font: var(--type-overline);
+  font: var(--type-label-sm);
+  font-size: var(--_card-label-size, 9px);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-overline);
   opacity: 0.7;
+  line-height: 1;
 }
 
 .number {
   display: flex;
-  gap: var(--space-3);
-  font: var(--type-data);
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-data-sm);
+  font-weight: 500;
   letter-spacing: 0.12em;
+  position: relative;
+  z-index: 3;
 }
 
 .dots {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .last4 {
   font-variant-numeric: tabular-nums;
+  font-weight: 700;
 }
 
 .bottom {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: 3;
 }
 
 .holder {
-  font: var(--type-caption);
+  font: var(--type-label-sm);
+  font-size: var(--_card-micro-size, 10px);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  font-weight: 400;
 }
 
 .root[data-variant='ink'] .holder,
-.root[data-variant='accent'] .holder {
+.root[data-variant='accent'] .holder,
+.root[data-variant='fuel'] .holder,
+.root[data-variant='ev'] .holder,
+.root[data-variant='maintenance'] .holder,
+.root[data-variant='toll'] .holder {
   opacity: 0.7;
 }
 
 .expires {
-  font: var(--type-caption);
+  font: var(--type-label-sm);
+  font-size: var(--_card-micro-size, 10px);
+  font-weight: 400;
   opacity: 0.6;
+  position: relative;
+  z-index: 3;
 }
 
 .frozenOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--alpha-black-50);
   backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
@@ -111,10 +196,11 @@ button.root:focus-visible {
   justify-content: center;
   gap: var(--space-2);
   color: white;
-  font: var(--type-caption);
+  font: var(--type-body-sm);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
+  z-index: 4;
 }
 
 .root[data-frozen] {

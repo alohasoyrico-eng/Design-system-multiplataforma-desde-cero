@@ -166,7 +166,7 @@ export function WalletPage() {
           </div>
 
           <BottomSheet open={sheet} onClose={() => setSheet(false)} title="Detalle" fixed={false}>
-            <p style={{ color: 'var(--text-secondary)', font: 'var(--type-body)' }}>
+            <p style={{ color: 'var(--text-secondary)', font: 'var(--type-body-md)' }}>
               Este es un BottomSheet. En producción mostraría el detalle del movimiento o
               la confirmación del envío.
             </p>

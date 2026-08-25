@@ -88,12 +88,12 @@
 }
 
 .label {
-  font: var(--type-body);
+  font: var(--type-body-md);
   color: var(--text-primary);
 }
 
 .description {
-  font-size: 13px;
+  font: var(--type-body-sm);
   color: var(--text-secondary);
   line-height: 1.4;
 }

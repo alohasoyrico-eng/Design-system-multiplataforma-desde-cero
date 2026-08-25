@@ -2,26 +2,26 @@
   background: var(--surface-card);
   border: var(--border-width) solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 16px;
+  padding: var(--space-4);
   box-shadow: var(--shadow-rest);
 }
 
 .rows {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .taskName {
   width: 120px;
   flex-shrink: 0;
-  font-size: 13px;
+  font: var(--type-body-sm);
   font-weight: 500;
   color: var(--text-primary);
 }
@@ -57,8 +57,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: var(--space-2);
   min-height: 120px;
   color: var(--text-muted);
-  font: var(--type-caption);
+  font: var(--type-body-sm);
 }

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useMemo, useCallback, type ReactNode, type CSSProperties, type KeyboardEvent } from 'react'
+import { useIntl } from 'react-intl'
 import css from './GlobalSearch.module.css'
 
 export interface SearchResult {
@@ -40,9 +41,11 @@ export function GlobalSearch({
   recents = [],
   onSelect,
   onClearRecents,
-  placeholder = 'Busca unidades, conductores, viajes…',
+  placeholder,
   style,
 }: GlobalSearchProps) {
+  const intl = useIntl()
+  const resolvedPlaceholder = placeholder ?? intl.formatMessage({ id: 'common.search', defaultMessage: 'Busca unidades, conductores, viajes…' })
   const [activeIndex, setActiveIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
@@ -146,9 +149,9 @@ export function GlobalSearch({
         aria-expanded={true}
         aria-controls="flow-search-list"
         aria-activedescendant={flat[activeIndex] ? `flow-search-opt-${activeIndex}` : undefined}
-        aria-label={placeholder}
+        aria-label={resolvedPlaceholder}
         autoComplete="off"
-        placeholder={placeholder}
+        placeholder={resolvedPlaceholder}
         value={value}
         onChange={(e) => onValueChange?.(e.target.value)}
         onKeyDown={onInputKeyDown}

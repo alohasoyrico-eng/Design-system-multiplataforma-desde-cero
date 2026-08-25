@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback, type CSSProperties, type ReactNode } from 'react'
+import { useIntl } from 'react-intl'
 import { OverlayShell } from '../primitives/shells/OverlayShell'
 import { Badge } from '../primitives/Badge'
 import { IconButton } from '../primitives/IconButton'
@@ -35,6 +36,7 @@ export function KanbanBoard<T extends object>({
   renderCard, renderColumnHeader, columnStyle, onMove, onAdvance, abandonColumn, renderDetail,
   detailKey, onDetailChange, style,
 }: KanbanBoardProps<T>) {
+  const intl = useIntl()
   const [drag, setDrag] = useState<string | null>(null)
   const [over, setOver] = useState<string | null>(null)
   const [reject, setReject] = useState<string | null>(null)
@@ -143,7 +145,7 @@ export function KanbanBoard<T extends object>({
           if (e.clientX > r.right - 72) el.scrollLeft += 20
           else if (e.clientX < r.left + 72) el.scrollLeft -= 20
         }}
-        style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 6, alignItems: 'flex-start' }}
+        style={{ display: 'flex', gap: 'var(--space-3)', overflowX: 'auto', paddingBottom: 'var(--space-2)', alignItems: 'flex-start' }}
       >
         {all.map((col, colIdx) => {
           const list = grouped[col.id]
@@ -165,8 +167,8 @@ export function KanbanBoard<T extends object>({
                 border: isReject ? '1.5px solid var(--status-danger)'
                   : isOver ? '1.5px solid var(--border-strong)'
                     : col.abandon ? '1.5px dashed var(--border-default)' : '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-lg)', padding: 12,
-                display: 'flex', flexDirection: 'column', gap: 10,
+                borderRadius: 'var(--radius-lg)', padding: 'var(--space-3)',
+                display: 'flex', flexDirection: 'column', gap: 'var(--space-2)',
                 transition: 'border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out)',
                 ...colSt,
               }}
@@ -174,7 +176,7 @@ export function KanbanBoard<T extends object>({
               {renderColumnHeader
                 ? renderColumnHeader(col, { count: list.length, atLimit, isOver })
                 : (
-                  <header style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 24 }}>
+                  <header style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', minHeight: 24 }}>
                     {col.color && !col.abandon && (
                       <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: '50%', background: col.color, flex: 'none' }} />
                     )}
@@ -187,7 +189,7 @@ export function KanbanBoard<T extends object>({
                   </header>
                 )
               }
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, minHeight: 40 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', minHeight: 40 }}>
                 {list.map((item, rowIdx) => {
                   const k = keyOf(item)
                   const dragging = drag === k
@@ -209,7 +211,7 @@ export function KanbanBoard<T extends object>({
                       style={{
                         position: 'relative', background: 'var(--surface-card)',
                         border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-lg)',
-                        padding: 12, cursor: renderDetail ? 'pointer' : 'grab',
+                        padding: 'var(--space-3)', cursor: renderDetail ? 'pointer' : 'grab',
                         opacity: dragging ? 0.45 : 1, textAlign: 'left',
                         transition: 'opacity var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out)',
                       }}
@@ -230,8 +232,8 @@ export function KanbanBoard<T extends object>({
                   )
                 })}
                 {list.length === 0 && (
-                  <p style={{ margin: 0, padding: '10px 2px', fontSize: 12.5, color: 'var(--text-muted)' }}>
-                    {col.abandon ? 'Sin salidas' : 'Vacia'}
+                  <p style={{ margin: 0, padding: 'var(--space-2) 2px', fontSize: 12.5, color: 'var(--text-muted)' }}>
+                    {col.abandon ? intl.formatMessage({ id: 'common.emptyColumnAbandon', defaultMessage: 'Sin salidas' }) : intl.formatMessage({ id: 'common.emptyColumn', defaultMessage: 'Vacía' })}
                   </p>
                 )}
               </div>
@@ -248,15 +250,15 @@ export function KanbanBoard<T extends object>({
             display: 'flex', flexDirection: 'column', color: 'var(--text-primary)',
           }}>
             <header style={{
-              flex: 'none', display: 'flex', alignItems: 'center', gap: 12,
-              padding: '18px 20px 14px', borderBottom: '1px solid var(--border-subtle)',
+              flex: 'none', display: 'flex', alignItems: 'center', gap: 'var(--space-3)',
+              padding: 'var(--space-5) var(--space-5) var(--space-3)', borderBottom: '1px solid var(--border-subtle)',
             }}>
               <span style={{ flex: 1, fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
                 Detalle
               </span>
               <IconButton icon="close" variant="ghost" ariaLabel="Cerrar" onClick={() => setOpen(null)} />
             </header>
-            <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px 24px' }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: 'var(--space-4) var(--space-5) var(--space-6)' }}>
               {renderDetail(openItem)}
             </div>
           </aside>

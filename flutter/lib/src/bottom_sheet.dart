@@ -56,13 +56,7 @@ class FlowBottomSheet extends StatelessWidget {
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(FlowRadius.xl),
         ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x33000000),
-            blurRadius: 24,
-            offset: Offset(0, -4),
-          ),
-        ],
+        boxShadow: FlowShadow.float,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -79,7 +73,7 @@ class FlowBottomSheet extends StatelessWidget {
                 child: Text(
                   title!,
                   style: TextStyle(
-                    fontSize: FlowFontSize.title,
+                    fontSize: FlowFontSize.titleLg,
                     fontWeight: FontWeight.w600,
                     color: scheme.textPrimary,
                   ),

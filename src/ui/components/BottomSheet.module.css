@@ -37,7 +37,7 @@
 }
 
 .title {
-  font: var(--type-title-sm);
+  font: var(--type-title-md);
   color: var(--text-primary);
   padding: 0 var(--pad-card) var(--space-3);
 }

@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useMemo, type CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import * as echarts from 'echarts/core'
 import { BarChart, LineChart, PieChart, ScatterChart, RadarChart, GaugeChart, FunnelChart, TreemapChart, HeatmapChart, BoxplotChart } from 'echarts/charts'
 import { GridComponent, TooltipComponent, LegendComponent, VisualMapComponent } from 'echarts/components'
@@ -37,7 +38,7 @@ export interface FlowChartProps {
   series?: ChartSeries[]
   labels?: string[]
   matrix?: ChartMatrix
-  indicators?: Array<string | { name: string; max: number }>
+  indicators?: Array<string | { name: string; max: number; icon?: string }>
   totals?: number[]
   target?: number
   max?: number
@@ -55,6 +56,8 @@ export interface FlowChartProps {
   showValues?: boolean
   area?: boolean
   itemColors?: string[]
+  color?: string
+  thresholds?: [number, string][]
   option?: Record<string, unknown>
   onSelect?: (params: unknown) => void
   ariaLabel: string
@@ -82,18 +85,18 @@ function readTokens(el: HTMLElement) {
     resolve,
     palette: [1, 2, 3, 4, 5, 6, 7, 8].map(i => t('--viz-' + i, '#2E7CF6')),
     ramp: [1, 2, 3, 4, 5, 6].map(i => t('--viz-ramp-' + i, '#E7F0FE')),
-    accent: t('--viz-accent', '#FF3617'),
-    positive: t('--viz-positive', '#12B76A'),
-    negative: t('--viz-negative', '#D92D20'),
-    neutral: t('--viz-neutral', '#B5B1AA'),
-    grid: t('--viz-grid', '#EEEBE6'),
-    axis: t('--viz-axis', '#E0DDD7'),
-    label: t('--viz-label', '#55534E'),
-    tipBg: t('--viz-tooltip-bg', '#17171A'),
-    tipText: t('--viz-tooltip-text', '#F4F3F1'),
+    accent: t('--viz-accent', '#F72717'),
+    positive: t('--viz-positive', '#007840'),
+    negative: t('--viz-negative', '#ca0e00'),
+    neutral: t('--viz-neutral', '#94A3B8'),
+    grid: t('--viz-grid', '#E2E8F0'),
+    axis: t('--viz-axis', '#CBD5E1'),
+    label: t('--viz-label', '#475569'),
+    tipBg: t('--viz-tooltip-bg', '#0F172A'),
+    tipText: t('--viz-tooltip-text', '#F8FAFC'),
     card: t('--surface-card', '#FFFFFF'),
-    text: t('--text-primary', '#17171A'),
-    muted: t('--text-muted', '#8A8781'),
+    text: t('--text-primary', '#0F172A'),
+    muted: t('--text-muted', '#64748B'),
     fontBody: cleanFont(t('--font-body', 'sans-serif')),
     fontMono: cleanFont(t('--font-mono', 'monospace')),
     kpiWeight: kpi ? Number(kpi[1]) : 600,
@@ -121,10 +124,21 @@ function merge(base: any, extra: any): any {
 }
 
 function paletteFor(count: number, mode: string, tk: Tokens) {
-  const duo = [tk.text, tk.accent, tk.neutral]
+  const duo = [tk.palette[0], tk.accent, tk.neutral]
   if (mode === 'categorical') return tk.palette
   if (mode === 'duo') return duo
   return count <= 3 ? duo : tk.palette
+}
+
+function colorRamp(hex: string, steps: number): string[] {
+  const h = hex.startsWith('#') ? hex : '#2E7CF6'
+  const r = parseInt(h.slice(1, 3), 16)
+  const g = parseInt(h.slice(3, 5), 16)
+  const b = parseInt(h.slice(5, 7), 16)
+  return Array.from({ length: steps }, (_, i) => {
+    const a = 0.08 + (i / (steps - 1)) * 0.92
+    return `rgba(${r},${g},${b},${a.toFixed(2)})`
+  })
 }
 
 function resolveVars(o: unknown, rz: (c: string) => string): unknown {
@@ -144,7 +158,7 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
   const {
     series = [], labels = [], format, legend = false, stack = false, smooth = true,
     highlight, horizontal = false, matrix, indicators, target, max, min,
-    showValues = false, area, palette = 'auto', animate = true, itemColors,
+    showValues = false, area, palette = 'auto', animate = true, itemColors, color, thresholds,
   } = props
 
   const motion = animate && !isReduced()
@@ -364,7 +378,7 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
         visualMap: {
           min: Math.min(...vals, 0), max: Math.max(...vals, 1),
           orient: 'horizontal', left: 'center', bottom: 0, itemWidth: 11, itemHeight: 90,
-          inRange: { color: tk.ramp }, textStyle: monoStyle, formatter: (v: number) => String(fmt(Math.round(v))),
+          inRange: { color: color ? colorRamp(rz(color), 6) : tk.ramp }, textStyle: monoStyle, formatter: (v: number) => String(fmt(Math.round(v))),
         },
         series: [merge({
           type: 'heatmap', data: m.values,
@@ -374,12 +388,40 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
       })
     }
     case 'radar': {
-      const inds = (indicators || labels).map(x => (typeof x === 'string' ? { name: x, max: max || 100 } : x))
+      const inds = (indicators || labels).map(x => (typeof x === 'string' ? { name: x, max: max || 100 } : x)) as Array<{ name: string; max: number; icon?: string }>
+      const indColors = itemColors && itemColors.length === inds.length ? itemColors.map(c => rz(c)) : null
+      const hasIcons = inds.some(i => i.icon)
+
+      const richEntries: Record<string, Record<string, unknown>> = {}
+      let axisNameFormatter: ((name: string) => string) | undefined
+
+      if (hasIcons || indColors) {
+        inds.forEach((ind, i) => {
+          const iconColor = indColors ? indColors[i] : tk.label
+          if (ind.icon) {
+            richEntries[`i${i}`] = { fontFamily: 'Material Symbols Rounded', fontSize: 18, color: iconColor, verticalAlign: 'middle' }
+            richEntries[`t${i}`] = { fontFamily: tk.fontBody, fontSize: 11, fontWeight: 600, color: tk.label, verticalAlign: 'middle', padding: [0, 0, 0, 3] }
+          } else {
+            richEntries[`t${i}`] = { fontFamily: tk.fontBody, fontSize: 11.5, fontWeight: 600, color: indColors ? iconColor : tk.label }
+          }
+        })
+        axisNameFormatter = (name: string) => {
+          const idx = inds.findIndex(i => i.name === name)
+          if (idx < 0) return name
+          const ind = inds[idx]
+          return ind.icon ? `{i${idx}|${ind.icon}}{t${idx}| ${name}}` : `{t${idx}|${name}}`
+        }
+      }
+
+      const axisNameCfg: Record<string, unknown> = axisNameFormatter
+        ? { formatter: axisNameFormatter, rich: richEntries }
+        : { color: tk.label, fontFamily: tk.fontBody, fontSize: 11.5 }
+
       return merge(base, {
-        tooltip: { trigger: 'item' },
+        tooltip: { show: false },
         radar: {
-          indicator: inds, radius: '66%', splitNumber: 4,
-          axisName: { color: tk.label, fontFamily: tk.fontBody, fontSize: 11.5 },
+          indicator: inds.map(i => ({ name: i.name, max: i.max })), radius: '66%', splitNumber: 4,
+          axisName: axisNameCfg,
           splitLine: { lineStyle: { color: tk.grid, type: 'dashed' } },
           splitArea: { show: false },
           axisLine: { lineStyle: { color: tk.grid } },
@@ -472,31 +514,51 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
       })
     }
     case 'gauge': {
-      const v = target != null ? target : (series[0]?.values?.[0]) || 0
+      const v = (series[0]?.values?.[0]) || 0
       const cap2 = max != null ? max : 100
-      return merge(base, {
-        tooltip: { show: false },
-        series: [{
+      const gaugeColor = (() => {
+        if (thresholds?.length) {
+          for (const [cutoff, c] of thresholds) if (v < cutoff) return rz(c)
+          return rz(thresholds[thresholds.length - 1][1])
+        }
+        return v / cap2 >= 0.85 ? tk.negative : rz(series[0]?.color || color || tk.palette[0])
+      })()
+      const gaugeSeries: unknown[] = [{
+        type: 'gauge', startAngle: 200, endAngle: -20, min: min || 0, max: cap2,
+        radius: '96%', center: ['50%', '62%'],
+        progress: { show: true, width: 14, roundCap: true, itemStyle: { color: gaugeColor } },
+        axisLine: { lineStyle: { width: 14, color: [[1, tk.grid]] }, roundCap: true },
+        axisTick: { show: false }, splitLine: { show: false },
+        axisLabel: { show: false },
+        pointer: { show: false },
+        anchor: { show: false },
+        title: { show: false },
+        detail: {
+          valueAnimation: motion, offsetCenter: [0, '-6%'],
+          fontFamily: tk.fontMono, fontSize: tk.kpiSize, fontWeight: tk.kpiWeight, color: tk.text,
+          formatter: (x: number) => String(fmt(x)),
+        },
+        data: [{ value: v }],
+        animation: motion,
+        animationDuration: 900,
+        animationEasing: 'cubicOut',
+      }]
+      if (target != null) {
+        gaugeSeries.push({
           type: 'gauge', startAngle: 200, endAngle: -20, min: min || 0, max: cap2,
           radius: '96%', center: ['50%', '62%'],
-          progress: { show: true, width: 14, roundCap: true, itemStyle: { color: v / cap2 >= 0.85 ? tk.negative : tk.text } },
-          axisLine: { lineStyle: { width: 14, color: [[1, tk.grid]] }, roundCap: true },
-          axisTick: { show: false }, splitLine: { show: false },
-          axisLabel: { show: false },
-          pointer: { show: false },
-          anchor: { show: false },
-          title: { show: false },
-          detail: {
-            valueAnimation: motion, offsetCenter: [0, '-6%'],
-            fontFamily: tk.fontMono, fontSize: tk.kpiSize, fontWeight: tk.kpiWeight, color: tk.text,
-            formatter: (x: number) => String(fmt(x)),
+          axisLine: { show: false }, axisTick: { show: false }, splitLine: { show: false },
+          axisLabel: { show: false }, progress: { show: false }, detail: { show: false },
+          pointer: {
+            show: true, length: '12%', width: 3, offsetCenter: [0, '-38%'],
+            icon: 'triangle', itemStyle: { color: tk.text },
           },
-          data: [{ value: v }],
-          animation: motion,
-          animationDuration: 900,
-          animationEasing: 'cubicOut',
-        }],
-      })
+          anchor: { show: false }, title: { show: false },
+          data: [{ value: target }],
+          animation: false,
+        })
+      }
+      return merge(base, { tooltip: { show: false }, series: gaugeSeries })
     }
     case 'funnel': {
       const data = (series[0] ? series[0].data || (series[0].values || []) : []) as Array<number | { label?: string; name?: string; value: number }>
@@ -509,7 +571,8 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
           type: 'funnel', left: '4%', right: '4%', top: legend ? 34 : 10, bottom: 6,
           minSize: '24%', gap: 2, sort: 'descending',
           data: items.map((it, i) => {
-            const fill = tk.ramp[Math.max(0, tk.ramp.length - 1 - i)]
+            const funnelRamp = (color || series[0]?.color) ? colorRamp(rz((color || series[0]?.color)!), items.length) : tk.ramp
+            const fill = funnelRamp[Math.max(0, funnelRamp.length - 1 - i)]
             return { ...it, itemStyle: { color: fill, borderWidth: 0, borderRadius: 4 } }
           }),
           label: { show: true, position: 'inside', fontFamily: tk.fontBody, fontSize: 12, fontWeight: 600, formatter: (p: { name: string }) => p.name },
@@ -554,17 +617,20 @@ export function FlowChart({
   type = 'line',
   height = 280,
   loading = false,
-  emptyLabel = 'Sin datos para este periodo',
+  emptyLabel,
   option: override,
   onSelect,
   ariaLabel,
   style,
   ...rest
 }: FlowChartProps) {
+  const intl = useIntl()
+  const resolvedEmptyLabel = emptyLabel ?? intl.formatMessage({ id: 'common.noData', defaultMessage: 'Sin datos para este periodo' })
   const hostRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<echarts.ECharts | null>(null)
   const rafRef = useRef(0)
   const lastSize = useRef({ w: 0, h: 0 })
+  const radarHandlerRef = useRef<((e: { offsetX: number; offsetY: number }) => void) | null>(null)
   const [themeKey, setThemeKey] = useState(0)
 
   const props = rest as FlowChartProps
@@ -589,8 +655,84 @@ export function FlowChart({
       if (onSelect) chartRef.current.on('click', p => onSelect(p))
     }
     const tk = readTokens(hostRef.current)
-    const opt = resolveVars(merge(buildOption(type as FlowChartType, { ...props, type: type as FlowChartType }, tk), override as Record<string, unknown>), tk.resolve)
+
+    const opt = resolveVars(merge(buildOption(type as FlowChartType, { ...props, type: type as FlowChartType }, tk), override as Record<string, unknown>), tk.resolve) as Record<string, unknown>
     chartRef.current.setOption(opt as echarts.EChartsCoreOption, true)
+
+    if (type === 'radar') {
+      if (radarHandlerRef.current) chartRef.current.getZr().off('mousemove', radarHandlerRef.current)
+      const host = hostRef.current
+      const inds = (props.indicators || props.labels || []).map(x =>
+        typeof x === 'string' ? { name: x, max: props.max || 100 } : x
+      ) as Array<{ name: string; max: number }>
+      const n = inds.length
+      const chart = chartRef.current
+      const meta = (props.series || []).length > 1 ? (props.series || [])[1] : null
+
+      let tipEl = host.querySelector('.flow-radar-tip') as HTMLDivElement | null
+      if (!tipEl) {
+        tipEl = document.createElement('div')
+        tipEl.className = 'flow-radar-tip'
+        tipEl.style.cssText = `position:absolute;pointer-events:none;z-index:9999;display:none;background:${tk.card};border:1px solid ${tk.grid};border-radius:8px;padding:8px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.18);transition:opacity var(--dur-fast) var(--ease-out)`
+        host.style.position = 'relative'
+        host.appendChild(tipEl)
+      }
+      tipEl.style.background = tk.card
+      tipEl.style.borderColor = tk.grid
+
+      let radarHoverIdx = -1
+      let isOver = false
+
+      chart.on('mouseover', (p: { componentType?: string; seriesType?: string }) => {
+        if (p.componentType === 'series' && p.seriesType === 'radar') { isOver = true; if (tipEl) tipEl.style.display = '' }
+      })
+      chart.on('mouseout', (p: { componentType?: string; seriesType?: string }) => {
+        if (p.componentType === 'series' && p.seriesType === 'radar') { isOver = false; radarHoverIdx = -1; if (tipEl) tipEl.style.display = 'none' }
+      })
+
+      const handler = (e: { offsetX: number; offsetY: number }) => {
+        if (!host || !isOver || n === 0 || !tipEl) return
+        const cx = host.clientWidth / 2
+        const cy = host.clientHeight / 2
+        const dx = e.offsetX - cx
+        const dy = -(e.offsetY - cy)
+        let angle = Math.atan2(dy, dx)
+        if (angle < 0) angle += 2 * Math.PI
+        let best = 0, minD = Infinity
+        for (let i = 0; i < n; i++) {
+          const a = (Math.PI / 2 + (2 * Math.PI * i) / n) % (2 * Math.PI)
+          let d = Math.abs(angle - a)
+          if (d > Math.PI) d = 2 * Math.PI - d
+          if (d < minD) { minD = d; best = i }
+        }
+        if (best !== radarHoverIdx) {
+          radarHoverIdx = best
+          const ind = inds[best]
+          if (!ind) return
+          const v = (props.series?.[0]?.values?.[best]) ?? 0
+          if (meta) {
+            const mv = meta.values?.[best] ?? 0
+            const diff = v - (mv as number)
+            const sc = diff >= 0 ? tk.positive : diff > -10 ? tk.resolve('var(--status-warning)') : tk.negative
+            tipEl.innerHTML = `<div style="font-family:${tk.fontBody};font-size:12px;color:${tk.text};min-width:120px"><div style="border-left:3px solid ${sc};padding-left:8px"><div style="font-weight:700;margin-bottom:4px">${ind.name}</div><div><span style="font-weight:700;font-family:${tk.fontMono};font-size:18px">${v}</span> <span style="color:${tk.label}">/ ${mv}</span></div></div></div>`
+          } else {
+            tipEl.innerHTML = `<div style="font-family:${tk.fontBody};font-size:12px;color:${tk.text}"><div style="font-weight:700;margin-bottom:4px">${ind.name}</div><div style="font-weight:700;font-family:${tk.fontMono};font-size:18px">${v}</div></div>`
+          }
+        }
+        const tw = tipEl.offsetWidth, th = tipEl.offsetHeight
+        const cw = host.clientWidth, ch = host.clientHeight
+        let tx = e.offsetX + 14, ty = e.offsetY - th - 10
+        if (tx + tw > cw) tx = e.offsetX - tw - 14
+        if (ty < 0) ty = e.offsetY + 14
+        tipEl.style.left = tx + 'px'
+        tipEl.style.top = ty + 'px'
+      }
+      radarHandlerRef.current = handler
+      chart.getZr().on('mousemove', handler)
+    } else if (radarHandlerRef.current) {
+      chartRef.current.getZr().off('mousemove', radarHandlerRef.current)
+      radarHandlerRef.current = null
+    }
 
     let looped = false
     const probe = requestAnimationFrame(() => { looped = true })
@@ -612,14 +754,22 @@ export function FlowChart({
       c.setOption(still as echarts.EChartsCoreOption, true)
     }, 320)
 
-    return () => { cancelAnimationFrame(probe); clearTimeout(settle) }
+    return () => {
+      cancelAnimationFrame(probe); clearTimeout(settle)
+      if (type === 'radar' && chartRef.current && !chartRef.current.isDisposed()) {
+        chartRef.current.off('mouseover')
+        chartRef.current.off('mouseout')
+      }
+      const tip = hostRef.current?.querySelector('.flow-radar-tip')
+      if (tip) tip.remove()
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasData, type, themeKey, override, JSON.stringify(props.series || null), JSON.stringify(props.matrix || null), props.highlight, props.stack, props.legend, props.horizontal, props.showValues, props.palette, props.animate])
 
   useEffect(() => {
     if (!chartRef.current) return
     if (loading) {
-      const tk = hostRef.current ? readTokens(hostRef.current) : { accent: '#FF3617' }
+      const tk = hostRef.current ? readTokens(hostRef.current) : { accent: '#F72717' }
       chartRef.current.showLoading('default', { text: '', maskColor: 'transparent', color: tk.accent, spinnerRadius: 9, lineWidth: 2 })
     } else {
       chartRef.current.hideLoading()
@@ -651,10 +801,10 @@ export function FlowChart({
 
   if (!hasData) {
     return (
-      <div className={css.empty} style={{ height, ...style }} role="img" aria-label={emptyLabel}>
+      <div className={css.empty} style={{ height, ...style }} role="img" aria-label={resolvedEmptyLabel}>
         <div className={css.emptyInner}>
           <span className="flow-icon" aria-hidden="true" style={{ fontSize: 26, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>bar_chart</span>
-          {emptyLabel}
+          {resolvedEmptyLabel}
         </div>
       </div>
     )

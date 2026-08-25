@@ -76,7 +76,7 @@ export function SmallMultiples({
                 {format ? format(last) : last}
               </span>
             </div>
-            {sparkline(it.values, out ? 'var(--flow-red-500)' : 'var(--flow-ink-500)')}
+            {sparkline(it.values, out ? 'var(--viz-negative)' : 'var(--viz-neutral)')}
           </button>
         )
       })}

@@ -22,7 +22,7 @@ export function Sparkline({ values = [], width = 120, height = 40, color, showDo
   const last = values[values.length - 1]
   const lastX = width
   const lastY = height - ((last - min) / range) * (height - 4) - 2
-  const fill = color || 'var(--action-accent)'
+  const fill = color || 'var(--viz-1)'
 
   return (
     <svg

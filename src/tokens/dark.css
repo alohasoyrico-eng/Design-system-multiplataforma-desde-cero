@@ -1,44 +1,51 @@
-/* Flow · Modo oscuro — no es otro tema: son los mismos tokens semánticos de Canvas
-   con otros valores. Se activa con [data-mode="dark"] en <html> o en cualquier subtree.
-   Debe importarse después de los demás tokens. */
+/* Flow · Modo oscuro — mismos tokens semánticos, valores recalculados para
+   cool slate + blue accent. Se activa con [data-mode="dark"]. */
 
 /* ---- Color ---- */
 [data-mode="dark"] {
-  --surface-canvas: #131315;
-  --surface-card: #1C1C1F;
-  --surface-sunken: #18181B;
-  --surface-inverse: #F4F3F1;
-  --surface-accent-subtle: rgba(255, 54, 23, 0.14);
+  --surface-canvas: #0C1222;
+  --surface-card: #131D30;
+  --surface-sunken: #0A0F1D;
+  --surface-inverse: var(--flow-grey-50);
+  --surface-accent-subtle: rgba(0, 96, 223, 0.14);
 
-  --text-primary: #F4F3F1;
-  --text-secondary: #B9B7B2;
-  --text-muted: #9A9792;   /* 3.97:1 antes */
+  --text-primary: var(--flow-grey-100);
+  --text-secondary: var(--flow-grey-400);
+  --text-muted: var(--flow-grey-500);
   --text-on-accent: #FFFFFF;
-  --text-on-inverse: #17171A;
-  --text-accent: #FF6A52;
-  --text-link: #FF6A52;
+  --text-on-inverse: var(--flow-grey-900);
+  --text-accent: var(--flow-blue-300);
+  --text-link: var(--flow-blue-300);
 
-  --border-subtle: #26262A;
-  --border-default: #313136;
-  --border-strong: #4A4A50;
+  --border-subtle: #1A2540;
+  --border-default: var(--flow-grey-800);
+  --border-strong: var(--flow-grey-700);
 
-  --action-primary: #F4F3F1;
+  --action-primary: var(--flow-grey-100);
   --action-primary-hover: #FFFFFF;
-  --action-accent: #FF6A52;
-  --action-accent-hover: #FF5038;
+  --action-accent: var(--flow-blue-400);
+  --action-accent-hover: var(--flow-blue-300);
 
   --surface-backdrop: rgba(0, 0, 0, 0.5);
 
-  --status-success-bg: rgba(18, 183, 106, 0.16);
-  --status-success-text: #3BD68B;
-  --status-warning-bg: rgba(232, 147, 12, 0.16);
-  --status-warning-text: #F5AE3D;
-  --status-danger-bg: rgba(217, 45, 32, 0.18);
-  --status-danger-text: #FF7A6E;
-  --status-info-bg: rgba(46, 124, 246, 0.16);
-  --status-info-text: #6AA6FF;
+  --status-success: var(--flow-green-300);
+  --status-success-text: var(--flow-green-200);
+  --status-success-bg: rgba(0, 120, 64, 0.16);
+  --status-warning: var(--flow-orange-400);
+  --status-warning-text: var(--flow-orange-300);
+  --status-warning-bg: rgba(191, 65, 15, 0.16);
+  --status-danger: var(--flow-danger-300);
+  --status-danger-text: var(--flow-danger-200);
+  --status-danger-bg: rgba(202, 14, 0, 0.18);
+  --status-info: var(--flow-blue-300);
+  --status-info-text: var(--flow-blue-200);
+  --status-info-bg: rgba(0, 96, 223, 0.16);
+  --status-live: var(--flow-red-200);
 
-  --focus-ring: 0 0 0 3px rgba(255, 74, 46, 0.4);
+  --border-focus: var(--flow-blue-400);
+  --focus-ring: 0 0 0 3px rgba(26, 124, 255, 0.4);
+
+  --avatar-offline: var(--flow-grey-600);
 
   color-scheme: dark;
 }
@@ -49,38 +56,27 @@
   --shadow-raised: 0 4px 12px rgba(0, 0, 0, 0.35);
   --shadow-float: 0 10px 24px rgba(0, 0, 0, 0.45);
   --shadow-overlay: 0 24px 64px rgba(0, 0, 0, 0.6);
+  --shadow-accent-glow: 0 8px 24px rgba(0, 96, 223, 0.35);
 }
 
 /* ---- Data-viz ---- */
 [data-mode="dark"] {
-  --viz-1: #6AA6FF;
-  --viz-2: #3BD68B;
-  --viz-3: #F5AE3D;
+  --viz-1: var(--flow-blue-300);
+  --viz-2: var(--flow-green-300);
+  --viz-3: var(--flow-orange-300);
   --viz-4: #A98BFF;
   --viz-5: #3FC7D4;
-  --viz-6: #F172BE;
-  --viz-7: #B5B1AA;
-  --viz-8: #E8A54D;
+  --viz-6: #EAB308;
+  --viz-7: var(--flow-grey-400);
+  --viz-8: var(--flow-orange-200);
 
-  --viz-accent: #FF6A52;
-  --viz-neutral: #4A4A50;
+  --viz-accent: var(--flow-red-200);
+  --viz-neutral: var(--flow-grey-700);
 
-  --viz-ramp-1: #1C1C1F;
-  --viz-ramp-2: #2A2A2E;
-  --viz-ramp-3: #3D3D42;
-  --viz-ramp-4: #5A5A60;
-  --viz-ramp-5: #85858B;
-  --viz-ramp-6: #C9C7C2;
-
-  /* Contrapartida oscura de los tokens que antes heredaban su valor claro.
-     El rojo de marca sube a --flow-red-400 sobre fondo oscuro; los indicadores
-     de estado se aclaran para leerse sobre superficie oscura. */
-  --border-focus: #FF6A52;
-  --status-live: #FF6A52;
-  --status-success: #3BD68B;
-  --status-warning: #F5AE3D;
-  --status-danger: #FF7A6E;
-  --status-info: #6AA6FF;
-  --shadow-accent-glow: 0 8px 24px rgba(255, 54, 23, 0.35);
-  --avatar-offline: #5B5A5E;
+  --viz-ramp-1: #0E1526;
+  --viz-ramp-2: #1E293B;
+  --viz-ramp-3: #334155;
+  --viz-ramp-4: #475569;
+  --viz-ramp-5: #94A3B8;
+  --viz-ramp-6: #CBD5E1;
 }

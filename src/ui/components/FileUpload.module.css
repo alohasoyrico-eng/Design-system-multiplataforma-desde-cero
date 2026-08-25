@@ -1,15 +1,15 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .dropzone {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 24px 16px;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
   border-radius: var(--radius-lg);
   border: 2px dashed var(--border-default);
   background: var(--surface-sunken);
@@ -24,43 +24,43 @@
 }
 
 .dropzoneIcon {
-  font-size: 28px;
+  font-size: var(--icon-xl);
   color: var(--text-muted);
 }
 
 .dropzoneLabel {
-  font: var(--type-body);
+  font: var(--type-body-md);
   color: var(--text-primary);
 }
 
 .dropzoneHint {
-  font: var(--type-caption);
+  font: var(--type-body-sm);
   color: var(--text-muted);
 }
 
 .fileList {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .fileItem {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2);
   border-radius: var(--radius-sm);
   background: var(--surface-sunken);
 }
 
 .fileIcon {
-  font-size: 18px;
+  font-size: var(--icon-md);
   color: var(--text-muted);
 }
 
 .fileName {
   flex: 1;
-  font: var(--type-body);
+  font: var(--type-body-md);
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -68,7 +68,7 @@
 }
 
 .fileSize {
-  font: var(--type-overline);
+  font: var(--type-label-sm);
   font-family: var(--font-mono);
   color: var(--text-muted);
 }

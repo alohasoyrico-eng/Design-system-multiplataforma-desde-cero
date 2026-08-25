@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .header {
@@ -11,15 +11,13 @@
 }
 
 .label {
-  font-family: var(--font-body);
-  font-size: 13px;
+  font: var(--type-body-sm);
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .value {
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font: var(--type-data);
   font-weight: 600;
   color: var(--text-secondary);
   transition: color var(--dur-fast) var(--ease-out);
@@ -45,7 +43,7 @@
   left: 0;
   right: 0;
   height: 6px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--surface-sunken);
   border: 1px solid var(--border-subtle);
 }
@@ -54,7 +52,7 @@
   position: absolute;
   left: 0;
   height: 6px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--action-accent);
 }
 
@@ -65,16 +63,16 @@
   border-radius: 50%;
   background: var(--surface-card);
   border: 2px solid var(--action-accent);
-  box-shadow: 0 1px 3px rgba(23, 23, 26, 0.2);
+  box-shadow: var(--shadow-rest);
   pointer-events: none;
   transition:
     transform var(--dur-fast) var(--ease-spring),
     box-shadow var(--dur-fast) var(--ease-out);
 }
 
-.thumb[data-hover] {
+.track:hover:not([data-disabled]) .thumb {
   transform: var(--hover-scale);
-  box-shadow: 0 2px 8px rgba(23, 23, 26, 0.18);
+  box-shadow: var(--shadow-raised);
 }
 
 .thumb[data-drag] {

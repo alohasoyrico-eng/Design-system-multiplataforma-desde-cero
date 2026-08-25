@@ -1,0 +1,64 @@
+{
+  "common.loading": "Carregando",
+  "common.select": "Selecionar…",
+  "common.selectDate": "Selecionar data",
+  "common.selectEntity": "Selecione…",
+  "common.noData": "Sem dados para este período",
+  "common.noResults": "Nenhum registro corresponde ao filtro",
+  "common.empty": "Sem dados",
+  "common.emptyColumn": "Vazia",
+  "common.emptyColumnAbandon": "Sem saídas",
+  "common.show": "Mostrar",
+  "common.hide": "Ocultar",
+  "common.expand": "Expandir",
+  "common.collapse": "Recolher",
+  "common.continue": "Continuar",
+  "common.next": "Próximo",
+  "common.confirm": "Confirmar",
+  "common.skip": "Pular",
+  "common.start": "Começar",
+  "common.remove": "Remover {name}",
+  "common.search": "Buscar unidades, motoristas, viagens…",
+  "common.general": "Geral",
+
+  "balance.label": "Saldo total",
+  "balance.show": "Mostrar saldo",
+  "balance.hide": "Ocultar saldo",
+
+  "biometric.faceId": "Reconhecimento facial",
+  "biometric.fingerprint": "Impressão digital",
+  "biometric.scanning": "Verificando...",
+  "biometric.success": "Verificado",
+  "biometric.error": "Não reconhecido",
+  "biometric.fallback": "Usar código",
+
+  "auth.login": "Entrar",
+  "auth.signup": "Criar conta",
+  "auth.recover": "Recuperar senha",
+  "auth.submitLogin": "Entrar",
+  "auth.submitSignup": "Criar conta",
+  "auth.submitRecover": "Enviar instruções",
+  "auth.emailError": "Insira um e-mail válido.",
+  "auth.passwordError": "A senha deve ter pelo menos 8 caracteres.",
+  "auth.credentialsError": "E-mail ou senha incorretos.",
+  "auth.passwordHint": "Mínimo 8 caracteres.",
+
+  "chat.placeholder": "Pergunte sobre sua frota…",
+  "chat.userMessage": "Sua mensagem",
+  "chat.agentMessage": "Resposta do assistente",
+
+  "notifications.label": "Notificações",
+  "notifications.unread": "{count} não lidas",
+
+  "settings.dangerZone": "Zona de perigo",
+
+  "timeline.done": "Concluído",
+  "timeline.active": "Em andamento",
+  "timeline.pending": "Pendente",
+  "timeline.error": "Erro",
+
+  "scatter.yDefault": "Unidades",
+
+  "onboarding.skip": "Pular",
+  "onboarding.done": "Começar"
+}

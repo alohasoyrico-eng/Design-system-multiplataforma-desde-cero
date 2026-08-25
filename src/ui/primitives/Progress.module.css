@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .header {
@@ -11,7 +11,7 @@
 }
 
 .label {
-  font: var(--type-body);
+  font: var(--type-body-md);
   color: var(--text-primary);
 }
 

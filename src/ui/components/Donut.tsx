@@ -1,10 +1,12 @@
 import type { CSSProperties } from 'react'
 import { FlowChart } from '../primitives/FlowChart'
+import { ChartLegend } from './ChartLegend'
 
 export interface DonutSegment {
   label: string
   value: number
   color?: string
+  icon?: string
 }
 
 export interface DonutProps {
@@ -21,7 +23,7 @@ export function Donut({ segments = [], size = 160, centerLabel, centerValue, leg
   const total = segments.reduce((a, s) => a + s.value, 0) || 1
 
   const pick = segments.length <= 3
-    ? ['var(--text-primary)', 'var(--viz-accent)', 'var(--viz-neutral)']
+    ? ['var(--viz-1)', 'var(--viz-accent)', 'var(--viz-neutral)']
     : [1, 2, 3, 4, 5, 6, 7, 8].map((n) => `var(--viz-${n})`)
   const colored = segments.map((s, i) => ({ ...s, color: s.color || pick[i % pick.length] }))
 
@@ -54,25 +56,22 @@ export function Donut({ segments = [], size = 160, centerLabel, centerValue, leg
   )
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 18, ...style }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-5)', ...style }}>
       <div style={{ position: 'relative', width: size, height: size, flex: 'none' }}>
         {chart}
         {center}
       </div>
       {legend && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, minWidth: 0, flex: 1 }}>
-          {colored.map((s) => (
-            <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12.5, minWidth: 0 }}>
-              <span aria-hidden="true" style={{ width: 9, height: 9, borderRadius: '50%', flex: 'none', background: s.color }} />
-              <span style={{ flex: 1, color: 'var(--text-secondary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {s.label}
-              </span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--text-primary)', flex: 'none' }}>
-                {Math.round(s.value / total * 100)}%
-              </span>
-            </div>
-          ))}
-        </div>
+        <ChartLegend
+          direction="vertical"
+          style={{ minWidth: 0, flex: 1 }}
+          items={colored.map((s) => ({
+            label: s.label,
+            color: s.color,
+            value: Math.round(s.value / total * 100) + '%',
+            icon: s.icon,
+          }))}
+        />
       )}
     </div>
   )

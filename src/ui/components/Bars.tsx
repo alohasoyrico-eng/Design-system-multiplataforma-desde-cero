@@ -4,6 +4,7 @@ import css from './Bars.module.css'
 export interface BarsDataPoint {
   label: string
   value: number
+  color?: string
 }
 
 export interface BarsProps {
@@ -16,7 +17,7 @@ export interface BarsProps {
 export function Bars({ data = [], height = 200, color, format }: BarsProps) {
   const max = Math.max(...data.map((d) => d.value), 1)
   const [hover, setHover] = useState(-1)
-  const barColor = color || 'var(--action-accent)'
+  const barColor = color || 'var(--viz-1)'
   const fmt = format || ((v: number) => v)
 
   return (
@@ -36,7 +37,7 @@ export function Bars({ data = [], height = 200, color, format }: BarsProps) {
               className={css.bar}
               style={{
                 height: `${pct}%`,
-                background: barColor,
+                background: d.color || barColor,
                 opacity: hover === i || isMax ? 1 : 0.65,
               }}
             />

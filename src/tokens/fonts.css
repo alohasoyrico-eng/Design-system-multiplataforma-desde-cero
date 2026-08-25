@@ -1,4 +1,22 @@
-/* Flow · Fonts — loaded via <link> in index.html (Vite can't forward @import url to external CDNs) */
+/* Flow · Fonts */
+
+/* Edenred — self-hosted from public/fonts/ */
+@font-face {
+  font-family: 'Edenred';
+  src: url('/fonts/edenred-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Edenred';
+  src: url('/fonts/edenred_bold-webfont.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ubuntu + IBM Plex Mono loaded via <link> in index.html */
 
 .flow-icon {
   font-family: 'Material Symbols Rounded';

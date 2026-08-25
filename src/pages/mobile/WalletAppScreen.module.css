@@ -1,0 +1,378 @@
+.app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.tabContent {
+  flex: 1;
+  overflow: auto;
+  padding: 44px var(--space-4) 92px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tabContent[data-home] {
+  padding: 0 0 92px;
+  gap: 0;
+  scrollbar-width: none;
+}
+
+.tabContent[data-home]::-webkit-scrollbar {
+  display: none;
+}
+
+.tabContent[data-flush] {
+  padding: 0;
+  overflow: hidden;
+}
+
+
+/* Hero section — organic gradient bg matching active card */
+.heroSection {
+  position: relative;
+
+  --text-primary: var(--text-on-inverse);
+  --text-secondary: var(--alpha-white-70);
+  --text-muted: var(--alpha-white-50);
+  --surface-sunken: var(--alpha-white-12);
+  --surface-card: var(--alpha-white-15);
+  --border-default: var(--alpha-white-20);
+  --border-subtle: var(--alpha-white-10);
+}
+
+.heroSection[data-product='fuel'] {
+  --text-primary: var(--flow-grey-900);
+  --text-secondary: var(--flow-grey-700);
+  --text-muted: var(--flow-grey-500);
+  --surface-sunken: var(--alpha-black-8);
+  --surface-card: var(--alpha-black-5);
+  --border-default: var(--alpha-black-15);
+  --border-subtle: var(--alpha-black-8);
+}
+
+.blobClip {
+  position: absolute;
+  inset: 0 0 -25px 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0 0 -25px 0;
+  background: var(--product-hero-bg);
+  transition: background 350ms var(--ease-spring);
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 0;
+  background: var(--blob1-color);
+  width: var(--blob1-size);
+  height: var(--blob1-size);
+  left: var(--blob1-x);
+  top: var(--blob1-y);
+  transition:
+    background 400ms var(--ease-out),
+    width 700ms cubic-bezier(0.12, 2.4, 0.3, 1),
+    height 700ms cubic-bezier(0.12, 2.4, 0.3, 1),
+    left 650ms cubic-bezier(0.08, 2.2, 0.28, 1),
+    top 650ms cubic-bezier(0.08, 2.2, 0.28, 1);
+}
+
+.blob[data-n="2"] {
+  background: var(--blob2-color);
+  width: var(--blob2-size);
+  height: var(--blob2-size);
+  left: var(--blob2-x);
+  top: var(--blob2-y);
+  transition:
+    background 400ms var(--ease-out),
+    width 800ms cubic-bezier(0.10, 2.6, 0.25, 1),
+    height 800ms cubic-bezier(0.10, 2.6, 0.25, 1),
+    left 750ms cubic-bezier(0.06, 2.0, 0.30, 1),
+    top 750ms cubic-bezier(0.06, 2.0, 0.30, 1);
+  transition-delay: 60ms;
+}
+
+.blob[data-n="3"] {
+  background: var(--blob3-color);
+  width: var(--blob3-size);
+  height: var(--blob3-size);
+  left: var(--blob3-x);
+  top: var(--blob3-y);
+  transition:
+    background 400ms var(--ease-out),
+    width 900ms cubic-bezier(0.08, 2.8, 0.22, 1),
+    height 900ms cubic-bezier(0.08, 2.8, 0.22, 1),
+    left 850ms cubic-bezier(0.05, 2.4, 0.25, 1),
+    top 850ms cubic-bezier(0.05, 2.4, 0.25, 1);
+  transition-delay: 120ms;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding: 44px var(--space-8) calc(var(--space-4) + 25px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Add card entry point */
+.addCard {
+  aspect-ratio: 1.82;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  border: 2px dashed var(--alpha-white-30);
+  background: var(--alpha-white-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--alpha-white-50);
+  font: var(--type-body-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.addCard:hover {
+  border-color: var(--alpha-white-50);
+  background: var(--alpha-white-10);
+}
+
+/* Top bar */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.greeting {
+  font: var(--type-title-md);
+  color: var(--text-primary);
+}
+
+/* Movements card */
+.movSection {
+  position: relative;
+  z-index: 1;
+  margin: -25px var(--space-3) var(--space-3);
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-raised);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.movSection [data-category] {
+  color: var(--product-accent, var(--text-secondary));
+  background: var(--product-accent-soft, var(--surface-sunken));
+}
+
+.movSection > :not(.movSeeAll) {
+  border-bottom: none;
+}
+
+.movSeeAll {
+  border: none;
+  background: none;
+  font: var(--type-body-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: var(--space-2) 0;
+  font-family: var(--font-body);
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Benefits carousel */
+.benefitsSection {
+  padding: 0 0 var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.benefitsLabel {
+  font: var(--type-body-sm);
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0 var(--space-8);
+}
+
+.benefitsTrack {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-5) var(--space-8) var(--space-6);
+}
+
+.benefitsTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.benefitMedia {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--icon-2xl);
+  color: white;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sheetAmount {
+  font: var(--type-data-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.sheetBadges {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.sheetDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sheetAction {
+  margin-top: var(--space-4);
+}
+
+/* Rutas tab */
+.rutasView {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.stationItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.stationItem:last-child {
+  border-bottom: none;
+}
+
+.stationItem:hover {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-sm);
+}
+
+.stationIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stationIcon[data-kind='gas'] {
+  background: var(--status-warning-bg);
+  color: var(--status-warning-text);
+}
+
+.stationIcon[data-kind='ev'] {
+  background: var(--status-success-bg);
+  color: var(--status-success-text);
+}
+
+.stationInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.stationName {
+  font: var(--type-body-md);
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stationMeta {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+.stationPrice {
+  font: var(--type-data);
+  font-weight: 600;
+  color: var(--text-accent);
+  flex-shrink: 0;
+}
+
+.badgeRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.priceList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.serviceRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+

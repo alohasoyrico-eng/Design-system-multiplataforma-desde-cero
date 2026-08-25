@@ -1,4 +1,5 @@
 import { useState, useMemo, type CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './HelpCenter.module.css'
 
 export interface HelpArticle {
@@ -15,12 +16,14 @@ export interface HelpCenterProps {
 }
 
 export function HelpCenter({ articles, style }: HelpCenterProps) {
+  const intl = useIntl()
+  const generalLabel = intl.formatMessage({ id: 'common.general', defaultMessage: 'General' })
   const [search, setSearch] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(articles[0]?.id || null)
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
 
   const categories = useMemo(() => {
-    const cats = new Set(articles.map((a) => a.category || 'General'))
+    const cats = new Set(articles.map((a) => a.category || generalLabel))
     return Array.from(cats).sort()
   }, [articles])
 
@@ -67,7 +70,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
                 {filtered.length} resultado{filtered.length !== 1 ? 's' : ''}
               </div>
               {filtered.length > 0 ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}>
                   {filtered.map((article) => (
                     <button
                       key={article.id}
@@ -90,7 +93,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
               {categories.map((cat) => {
-                const catArticles = articles.filter((a) => (a.category || 'General') === cat)
+                const catArticles = articles.filter((a) => (a.category || generalLabel) === cat)
                 const isExpanded = expandedCategories.has(cat)
                 return (
                   <div key={cat}>

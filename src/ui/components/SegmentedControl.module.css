@@ -3,14 +3,14 @@
   display: flex;
   background: var(--surface-sunken);
   border-radius: var(--radius-pill);
-  padding: 4px;
+  padding: var(--space-1);
   font-family: var(--font-body);
 }
 
 .indicator {
   position: absolute;
-  top: 4px;
-  bottom: 4px;
+  top: var(--space-1);
+  bottom: var(--space-1);
   border-radius: var(--radius-pill);
   background: var(--surface-card);
   box-shadow: var(--shadow-raised);
@@ -28,16 +28,16 @@
   background: transparent;
   border-radius: var(--radius-pill);
   font-family: inherit;
-  font-size: 13.5px;
+  font: var(--type-body-sm);
   font-weight: 500;
   color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: var(--space-2);
   transition: color var(--dur-fast) var(--ease-out);
-  padding: 0 8px;
+  padding: 0 var(--space-2);
 }
 
 .segment[data-active] {
@@ -51,5 +51,5 @@
 }
 
 .segmentIcon {
-  font-size: 17px;
+  font-size: var(--icon-md);
 }

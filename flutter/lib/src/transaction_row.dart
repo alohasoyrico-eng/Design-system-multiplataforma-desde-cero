@@ -1,9 +1,9 @@
+
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'flow_tokens.dart';
 import 'flow_theme.dart';
-
 enum TransactionCategory { transfer, fuel, toll, service, payment }
-
 class FlowTransactionRow extends StatelessWidget {
   final TransactionCategory category;
   final String title;
@@ -12,7 +12,8 @@ class FlowTransactionRow extends StatelessWidget {
   final String currency;
   final bool pending;
   final VoidCallback? onTap;
-
+  final Color? iconColor;
+  final Color? iconBg;
   const FlowTransactionRow({
     super.key,
     this.category = TransactionCategory.transfer,
@@ -22,34 +23,31 @@ class FlowTransactionRow extends StatelessWidget {
     this.currency = '\$',
     this.pending = false,
     this.onTap,
+    this.iconColor,
+    this.iconBg,
   });
-
   IconData get _icon => switch (category) {
-    TransactionCategory.transfer => Icons.swap_horiz,
-    TransactionCategory.fuel => Icons.local_gas_station,
-    TransactionCategory.toll => Icons.toll,
-    TransactionCategory.service => Icons.build,
-    TransactionCategory.payment => Icons.payments,
+    TransactionCategory.transfer => Symbols.swap_horiz_rounded,
+    TransactionCategory.fuel => Symbols.local_gas_station_rounded,
+    TransactionCategory.toll => Symbols.toll_rounded,
+    TransactionCategory.service => Symbols.build_rounded,
+    TransactionCategory.payment => Symbols.payments_rounded,
   };
-
   Color _iconBg(FlowScheme scheme) => switch (category) {
     TransactionCategory.transfer => scheme.surfaceSunken,
-    TransactionCategory.fuel => FlowColors.amber50,
+    TransactionCategory.fuel => FlowColors.orange50,
     TransactionCategory.toll => FlowColors.blue50,
     TransactionCategory.service => scheme.surfaceSunken,
     TransactionCategory.payment => FlowColors.green50,
   };
-
   Color get _iconFg => switch (category) {
-    TransactionCategory.transfer => FlowColors.ink500,
-    TransactionCategory.fuel => FlowColors.amber600,
+    TransactionCategory.transfer => FlowColors.grey500,
+    TransactionCategory.fuel => FlowColors.orange600,
     TransactionCategory.toll => FlowColors.blue600,
-    TransactionCategory.service => FlowColors.ink500,
+    TransactionCategory.service => FlowColors.grey500,
     TransactionCategory.payment => FlowColors.green600,
   };
-
   String get _sign => amount < 0 ? '−' : '+';
-
   String _formatAmount() {
     final abs = amount.abs();
     final parts = abs.toStringAsFixed(2).split('.');
@@ -61,13 +59,11 @@ class FlowTransactionRow extends StatelessWidget {
     }
     return '$_sign$currency${buffer.toString()}.${parts[1]}';
   }
-
   @override
   Widget build(BuildContext context) {
     final scheme = FlowTheme.maybeOf(context) ?? FlowScheme.light;
     final opacity = pending ? 0.6 : 1.0;
     final amountColor = amount < 0 ? scheme.textPrimary : FlowColors.green600;
-
     final content = Opacity(
       opacity: opacity,
       child: Padding(
@@ -81,10 +77,10 @@ class FlowTransactionRow extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: _iconBg(scheme),
+                color: iconBg ?? _iconBg(scheme),
                 borderRadius: BorderRadius.circular(FlowRadius.sm),
               ),
-              child: Icon(_icon, color: _iconFg, size: 20),
+              child: Icon(_icon, color: iconColor ?? _iconFg, size: 20),
             ),
             const SizedBox(width: FlowSpace.s3),
             Expanded(
@@ -94,7 +90,7 @@ class FlowTransactionRow extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: FlowFontSize.body,
+                      fontSize: FlowFontSize.bodyMd,
                       fontWeight: FontWeight.w500,
                       color: scheme.textPrimary,
                     ),
@@ -105,7 +101,7 @@ class FlowTransactionRow extends StatelessWidget {
                     Text(
                       subtitle!,
                       style: TextStyle(
-                        fontSize: FlowFontSize.caption,
+                        fontSize: FlowFontSize.bodySm,
                         color: scheme.textMuted,
                       ),
                       maxLines: 1,
@@ -121,7 +117,7 @@ class FlowTransactionRow extends StatelessWidget {
                 Text(
                   _formatAmount(),
                   style: TextStyle(
-                    fontSize: FlowFontSize.body,
+                    fontSize: FlowFontSize.bodyMd,
                     fontWeight: FontWeight.w600,
                     color: amountColor,
                     fontFeatures: const [FontFeature.tabularFigures()],
@@ -131,8 +127,8 @@ class FlowTransactionRow extends StatelessWidget {
                   Text(
                     'Pendiente',
                     style: TextStyle(
-                      fontSize: FlowFontSize.caption,
-                      color: FlowColors.amber600,
+                      fontSize: FlowFontSize.bodySm,
+                      color: FlowColors.orange600,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -142,7 +138,6 @@ class FlowTransactionRow extends StatelessWidget {
         ),
       ),
     );
-
     if (onTap != null) {
       return Semantics(
         button: true,
@@ -158,7 +153,6 @@ class FlowTransactionRow extends StatelessWidget {
         ),
       );
     }
-
     return content;
   }
 }

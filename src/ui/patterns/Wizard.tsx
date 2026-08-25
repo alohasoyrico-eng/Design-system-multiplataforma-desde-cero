@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useIntl } from 'react-intl'
 import { Stepper, type StepperStep } from '../components/Stepper'
 import { Button } from '../primitives/Button'
 import css from './Wizard.module.css'
@@ -22,10 +23,13 @@ export function Wizard({
   onNext,
   onSubmit,
   submitting,
-  nextLabel = 'Siguiente',
-  submitLabel = 'Confirmar',
+  nextLabel,
+  submitLabel,
   children,
 }: WizardProps) {
+  const intl = useIntl()
+  const resolvedNextLabel = nextLabel ?? intl.formatMessage({ id: 'common.next', defaultMessage: 'Siguiente' })
+  const resolvedSubmitLabel = submitLabel ?? intl.formatMessage({ id: 'common.confirm', defaultMessage: 'Confirmar' })
   const isLast = current >= steps.length - 1
 
   return (
@@ -43,11 +47,11 @@ export function Wizard({
         <div className={css.actionsEnd}>
           {isLast ? (
             <Button variant="accent" onClick={onSubmit} loading={submitting} disabled={submitting}>
-              {submitLabel}
+              {resolvedSubmitLabel}
             </Button>
           ) : (
             <Button variant="primary" iconTrailing="arrow_forward" onClick={onNext}>
-              {nextLabel}
+              {resolvedNextLabel}
             </Button>
           )}
         </div>

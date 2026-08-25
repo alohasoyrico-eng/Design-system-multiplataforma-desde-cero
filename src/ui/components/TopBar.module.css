@@ -1,16 +1,16 @@
 .root {
-  height: 56px;
+  height: var(--height-bar);
   box-sizing: border-box;
   background: var(--surface-card);
   border-bottom: var(--border-width) solid var(--border-subtle);
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  gap: 16px;
+  padding: 0 var(--space-5);
+  gap: var(--space-4);
 }
 
 .navLink {
-  font: var(--type-body);
+  font: var(--type-body-md);
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
@@ -35,8 +35,8 @@
   min-height: var(--hit-target-min);
   border: var(--border-width) solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 0 12px;
-  font: var(--type-body);
+  padding: 0 var(--space-3);
+  font: var(--type-body-md);
   font-family: inherit;
   background: var(--surface-sunken);
   color: var(--text-primary);
@@ -74,13 +74,13 @@
   right: 6px;
   min-width: 16px;
   height: 16px;
-  padding: 0 4px;
+  padding: 0 var(--space-1);
   border-radius: var(--radius-pill);
   box-sizing: border-box;
   background: var(--status-danger);
   color: var(--text-on-accent);
-  font: var(--type-data);
-  font-size: 10px;
+  font: var(--type-data-xs);
+  font-size: var(--_badge-size, 10px);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -94,13 +94,13 @@
   background: var(--surface-card);
   color: var(--text-primary);
   border-radius: var(--radius-sm);
-  padding: 0 12px;
-  font: var(--type-body);
+  padding: 0 var(--space-3);
+  font: var(--type-body-md);
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--space-2);
   white-space: nowrap;
 }
 
@@ -113,26 +113,26 @@
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 4px;
+  margin-top: var(--space-1);
   min-width: 180px;
   z-index: 100;
   background: var(--surface-card);
   border: var(--border-width) solid var(--border-subtle);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-float);
-  padding: 4px;
+  padding: var(--space-1);
   animation: flowScaleIn var(--dur-fast) var(--ease-out) both;
 }
 
 .entityOption {
   width: 100%;
   min-height: var(--hit-target-min);
-  padding: 0 12px;
+  padding: 0 var(--space-3);
   border: none;
   border-radius: var(--radius-sm);
   background: transparent;
   color: var(--text-primary);
-  font: var(--type-body);
+  font: var(--type-body-md);
   font-weight: 600;
   font-family: inherit;
   text-align: left;
@@ -154,8 +154,8 @@
 .breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font: var(--type-caption);
+  gap: var(--space-2);
+  font: var(--type-body-sm);
   color: var(--text-secondary);
 }
 

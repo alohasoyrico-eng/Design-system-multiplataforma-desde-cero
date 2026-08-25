@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useIntl } from 'react-intl'
 import css from './Settings.module.css'
 
 export interface SettingsRowProps {
@@ -38,10 +39,12 @@ export interface SettingsDangerZoneProps {
   children: ReactNode
 }
 
-export function SettingsDangerZone({ title = 'Zona peligrosa', children }: SettingsDangerZoneProps) {
+export function SettingsDangerZone({ title, children }: SettingsDangerZoneProps) {
+  const intl = useIntl()
+  const resolvedTitle = title ?? intl.formatMessage({ id: 'settings.dangerZone', defaultMessage: 'Zona peligrosa' })
   return (
     <div className={css.danger}>
-      <div className={css.dangerTitle}>{title}</div>
+      <div className={css.dangerTitle}>{resolvedTitle}</div>
       {children}
     </div>
   )

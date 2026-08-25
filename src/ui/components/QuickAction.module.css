@@ -1,0 +1,66 @@
+.root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-body);
+  padding: 0;
+}
+
+.root:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.circle {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunken);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.root:hover:not(:disabled) .circle {
+  transform: scale(1.08);
+}
+
+.root[data-active] .circle {
+  background: var(--surface-accent-subtle);
+}
+
+.icon {
+  font-size: var(--icon-lg);
+  color: var(--text-primary);
+}
+
+.root[data-active] .icon {
+  color: var(--text-accent);
+}
+
+.label {
+  font: var(--type-label-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.root[data-active] .label {
+  color: var(--text-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circle {
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .root:hover:not(:disabled) .circle {
+    transform: none;
+  }
+}

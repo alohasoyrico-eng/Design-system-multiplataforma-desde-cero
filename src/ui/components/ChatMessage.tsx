@@ -1,4 +1,5 @@
 import type { ReactNode, CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './ChatMessage.module.css'
 
 interface ToolChip {
@@ -26,8 +27,13 @@ export function ChatMessage({
   timestamp,
   style,
 }: ChatMessageProps) {
+  const intl = useIntl()
+  const ariaLabel = role === 'user'
+    ? intl.formatMessage({ id: 'chat.userMessage', defaultMessage: 'Tu mensaje' })
+    : intl.formatMessage({ id: 'chat.agentMessage', defaultMessage: 'Respuesta del asistente' })
+
   return (
-    <div className={css.root} data-role={role} style={style} aria-label={role === 'user' ? 'Tu mensaje' : 'Respuesta del asistente'}>
+    <div className={css.root} data-role={role} style={style} aria-label={ariaLabel}>
       {tool && (
         <div className={css.toolChip}>
           {tool.status === 'running' ? (

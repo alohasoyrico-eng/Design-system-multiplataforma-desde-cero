@@ -7,6 +7,9 @@ dist-ssr
 
 .DS_Store
 .idea
+flutter/.dart_tool/
+flutter/.packages
+flutter/build/
 *.suo
 *.ntvs*
 *.njsproj

@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useIntl } from 'react-intl'
 import { ControlShell } from '../primitives/shells/ControlShell'
 import css from './DatePicker.module.css'
 
@@ -8,7 +9,9 @@ export interface DatePickerProps {
   placeholder?: string
 }
 
-export function DatePicker({ value, onChange, placeholder = 'Seleccionar fecha' }: DatePickerProps) {
+export function DatePicker({ value, onChange, placeholder }: DatePickerProps) {
+  const intl = useIntl()
+  const resolvedPlaceholder = placeholder ?? intl.formatMessage({ id: 'common.selectDate', defaultMessage: 'Seleccionar fecha' })
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -24,7 +27,7 @@ export function DatePicker({ value, onChange, placeholder = 'Seleccionar fecha' 
         style={{ cursor: 'pointer' }}
       >
         <span className={css.display} data-empty={!value || undefined}>
-          {formatted || placeholder}
+          {formatted || resolvedPlaceholder}
         </span>
       </ControlShell>
       {open && (

@@ -1,4 +1,5 @@
 import { useRef, useEffect, type CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './ChatComposer.module.css'
 
 export interface ChatComposerProps {
@@ -15,11 +16,13 @@ export function ChatComposer({
   value = '',
   onChange,
   onSend,
-  placeholder = 'Pregunta sobre tu flota…',
+  placeholder,
   suggestions = [],
   disabled = false,
   style,
 }: ChatComposerProps) {
+  const intl = useIntl()
+  const resolvedPlaceholder = placeholder ?? intl.formatMessage({ id: 'chat.placeholder', defaultMessage: 'Pregunta sobre tu flota…' })
   const ref = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -66,8 +69,8 @@ export function ChatComposer({
           value={value}
           disabled={disabled}
           rows={1}
-          placeholder={placeholder}
-          aria-label={placeholder}
+          placeholder={resolvedPlaceholder}
+          aria-label={resolvedPlaceholder}
           aria-disabled={disabled}
           onChange={e => onChange?.(e.target.value)}
           onKeyDown={onKey}

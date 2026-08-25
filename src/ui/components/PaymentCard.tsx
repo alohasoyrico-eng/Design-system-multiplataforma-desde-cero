@@ -1,15 +1,24 @@
 import type { CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './PaymentCard.module.css'
 
 export interface PaymentCardProps {
   holder: string
   last4: string
-  variant?: 'ink' | 'accent' | 'sand'
+  variant?: 'ink' | 'accent' | 'sand' | 'fuel' | 'ev' | 'maintenance' | 'toll'
   frozen?: boolean
   label?: string
+  icon?: string
   expires?: string
+  balance?: string
+  hidden?: boolean
+  onToggleHidden?: () => void
   onClick?: () => void
   style?: CSSProperties
+}
+
+function mask(text: string) {
+  return text.replace(/\S/g, '•')
 }
 
 export function PaymentCard({
@@ -18,10 +27,15 @@ export function PaymentCard({
   variant = 'ink',
   frozen,
   label,
+  icon,
   expires,
+  balance,
+  hidden,
+  onToggleHidden,
   onClick,
   style,
 }: PaymentCardProps) {
+  const intl = useIntl()
   const Tag = onClick ? 'button' : 'div'
 
   return (
@@ -35,8 +49,24 @@ export function PaymentCard({
       aria-label={`Tarjeta ${holder} terminación ${last4}${frozen ? ', congelada' : ''}`}
     >
       <div className={css.top}>
-        <span className={css.logo}>
-          <span className="flow-icon" aria-hidden="true" style={{ fontSize: 28 }}>credit_card</span>
+        <span className={css.balance}>{balance ? (hidden ? '••••••' : balance) : ''}</span>
+        {onToggleHidden && (
+          <button
+            type="button"
+            className={css.toggleBtn}
+            onClick={(e) => { e.stopPropagation(); onToggleHidden() }}
+            aria-label={hidden ? intl.formatMessage({ id: 'balance.show', defaultMessage: 'Mostrar saldo' }) : intl.formatMessage({ id: 'balance.hide', defaultMessage: 'Ocultar saldo' })}
+          >
+            <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16 }}>
+              {hidden ? 'visibility' : 'visibility_off'}
+            </span>
+          </button>
+        )}
+      </div>
+
+      <div className={css.productRow}>
+        <span className={css.chip}>
+          <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16 }}>{icon ?? 'sim_card'}</span>
         </span>
         {label && <span className={css.label}>{label}</span>}
       </div>
@@ -45,12 +75,12 @@ export function PaymentCard({
         <span className={css.dots}>••••</span>
         <span className={css.dots}>••••</span>
         <span className={css.dots}>••••</span>
-        <span className={css.last4}>{last4}</span>
+        <span className={css.last4}>{hidden ? '••••' : last4}</span>
       </div>
 
       <div className={css.bottom}>
-        <div className={css.holder}>{holder}</div>
-        {expires && <div className={css.expires}>{expires}</div>}
+        <div className={css.holder}>{hidden ? mask(holder) : holder}</div>
+        {expires && <div className={css.expires}>{hidden ? '••/••' : expires}</div>}
       </div>
 
       {frozen && (

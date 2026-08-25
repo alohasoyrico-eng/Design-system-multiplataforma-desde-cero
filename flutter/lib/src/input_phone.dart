@@ -99,7 +99,7 @@ class _FlowInputPhoneState extends State<FlowInputPhone> {
             Text(
               widget.prefix,
               style: TextStyle(
-                fontSize: FlowFontSize.body,
+                fontSize: FlowFontSize.bodyMd,
                 fontWeight: FontWeight.w600,
                 color: scheme.textMuted,
               ),
@@ -122,7 +122,7 @@ class _FlowInputPhoneState extends State<FlowInputPhone> {
                     LengthLimitingTextInputFormatter(14),
                   ],
                   style: TextStyle(
-                    fontSize: FlowFontSize.body,
+                    fontSize: FlowFontSize.bodyMd,
                     fontWeight: FontWeight.w500,
                     color: scheme.textPrimary,
                     letterSpacing: 0.5,

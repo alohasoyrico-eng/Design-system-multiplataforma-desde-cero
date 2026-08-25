@@ -1,0 +1,36 @@
+.root {
+  position: absolute;
+  top: 80px;
+  left: var(--space-3);
+  right: var(--space-3);
+  z-index: 5;
+  animation: bannerSlideDown var(--dur-base) var(--ease-spring);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font: var(--type-body-md);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+@keyframes bannerSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -10,20 +10,20 @@
 .trigger {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-2);
   width: 100%;
   min-height: var(--hit-target-min);
-  padding: 12px 0;
+  padding: var(--space-3) 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  font: var(--type-body-strong);
+  font: var(--type-body-md-strong);
   color: var(--text-primary);
   text-align: left;
 }
 
 .triggerIcon {
-  font-size: 20px;
+  font-size: var(--icon-default);
   color: var(--text-muted);
 }
 
@@ -32,12 +32,12 @@
 }
 
 .triggerMeta {
-  font: var(--type-caption);
+  font: var(--type-body-sm);
   color: var(--text-muted);
 }
 
 .chevron {
-  font-size: 20px;
+  font-size: var(--icon-default);
   color: var(--text-muted);
   transition: transform var(--dur-fast) var(--ease-spring);
 }
@@ -47,6 +47,6 @@
 }
 
 .panel {
-  padding: 0 0 16px;
+  padding: 0 0 var(--space-4);
   animation: flowIn var(--dur-fast) var(--ease-out);
 }

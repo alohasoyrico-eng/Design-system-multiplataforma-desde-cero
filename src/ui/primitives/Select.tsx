@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useId, type CSSProperties, type ReactNode } from 'react'
+import { useIntl } from 'react-intl'
 import { ControlShell } from './shells/ControlShell'
 import { Popover } from './shells/Popover'
 import { Listbox, type ListboxItem } from './shells/Listbox'
@@ -39,12 +40,14 @@ export function Select({
   searchable,
   clearable,
   renderOption,
-  placeholder = 'Seleccionar…',
+  placeholder,
   icon,
   disabled,
   invalid,
   style,
 }: SelectProps) {
+  const intl = useIntl()
+  const resolvedPlaceholder = placeholder ?? intl.formatMessage({ id: 'common.select', defaultMessage: 'Seleccionar…' })
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
   const searchRef = useRef<HTMLInputElement>(null)
@@ -136,7 +139,7 @@ export function Select({
         }}
       >
         <span className={css.triggerText} data-empty={!selectedLabels || undefined}>
-          {selectedLabels || placeholder}
+          {selectedLabels || resolvedPlaceholder}
         </span>
       </span>
     </ControlShell>

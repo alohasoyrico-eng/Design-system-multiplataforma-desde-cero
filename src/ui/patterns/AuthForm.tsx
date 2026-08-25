@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent, type ReactNode } from 'react'
+import { useIntl } from 'react-intl'
 import { Input } from '../primitives/Input'
 import { Button } from '../primitives/Button'
 import { Field } from '../primitives/Field'
@@ -34,6 +35,7 @@ export function AuthForm({
   footer,
   submitLabel,
 }: AuthFormProps) {
+  const intl = useIntl()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [name, setName] = useState('')
@@ -63,17 +65,17 @@ export function AuthForm({
     setFormErr(null)
 
     if (!email.includes('@')) {
-      setEmailErr('Ingresa un correo válido.')
+      setEmailErr(intl.formatMessage({ id: 'auth.emailError', defaultMessage: 'Ingresa un correo válido.' }))
       focusInput(emailIndex)
       return
     }
 
     if (mode !== 'recover' && (!pass || pass.length < 8)) {
       if (mode === 'signup') {
-        setPassErr('La contraseña debe tener al menos 8 caracteres.')
+        setPassErr(intl.formatMessage({ id: 'auth.passwordError', defaultMessage: 'La contraseña debe tener al menos 8 caracteres.' }))
         focusInput(passIndex)
       } else {
-        setFormErr('Correo o contraseña incorrectos.')
+        setFormErr(intl.formatMessage({ id: 'auth.credentialsError', defaultMessage: 'Correo o contraseña incorrectos.' }))
         focusInput(emailIndex)
       }
       return
@@ -82,13 +84,13 @@ export function AuthForm({
     onSubmit({ email, password: pass, name, mode })
   }
 
-  const defaultTitle = mode === 'login' ? 'Entrar'
-    : mode === 'signup' ? 'Crear cuenta'
-    : 'Recuperar contraseña'
+  const defaultTitle = mode === 'login' ? intl.formatMessage({ id: 'auth.login', defaultMessage: 'Entrar' })
+    : mode === 'signup' ? intl.formatMessage({ id: 'auth.signup', defaultMessage: 'Crear cuenta' })
+    : intl.formatMessage({ id: 'auth.recover', defaultMessage: 'Recuperar contraseña' })
 
-  const defaultSubmitLabel = mode === 'login' ? 'Entrar'
-    : mode === 'signup' ? 'Crear cuenta'
-    : 'Enviar instrucciones'
+  const defaultSubmitLabel = mode === 'login' ? intl.formatMessage({ id: 'auth.submitLogin', defaultMessage: 'Entrar' })
+    : mode === 'signup' ? intl.formatMessage({ id: 'auth.submitSignup', defaultMessage: 'Crear cuenta' })
+    : intl.formatMessage({ id: 'auth.submitRecover', defaultMessage: 'Enviar instrucciones' })
 
   return (
     <form ref={formRef} onSubmit={submit} className={css.root}>
@@ -124,7 +126,7 @@ export function AuthForm({
           label="Contraseña"
           htmlFor="auth-pass"
           required
-          help={mode === 'signup' ? 'Mínimo 8 caracteres.' : undefined}
+          help={mode === 'signup' ? intl.formatMessage({ id: 'auth.passwordHint', defaultMessage: 'Mínimo 8 caracteres.' }) : undefined}
           error={passErr ?? undefined}
         >
           <Input

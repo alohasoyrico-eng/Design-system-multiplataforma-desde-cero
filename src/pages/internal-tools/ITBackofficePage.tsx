@@ -130,7 +130,7 @@ export function ITBackofficePage() {
               { key: 'status', label: 'Estado', render: (r) => <Badge tone={STATUS_TONE[(r as Doc).status]}>{(r as Doc).status}</Badge> },
             ]}
             rows={docs}
-            density="dense"
+            density="compact"
             style={{ border: 'none', boxShadow: 'none' }}
           />
         </Card>

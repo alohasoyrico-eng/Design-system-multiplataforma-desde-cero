@@ -4,13 +4,13 @@
 }
 
 .pageTitle {
-  font: var(--type-display);
+  font: var(--type-display-md);
   color: var(--text-primary);
   margin: 0 0 var(--space-2);
 }
 
 .pageDesc {
-  font: var(--type-body);
+  font: var(--type-body-md);
   color: var(--text-secondary);
   margin: 0 0 var(--space-8);
   max-width: 500px;
@@ -68,7 +68,7 @@
 }
 
 .greeting {
-  font: var(--type-title);
+  font: var(--type-title-lg);
   color: var(--text-primary);
 }
 
@@ -91,7 +91,7 @@
 }
 
 .sectionTitle {
-  font: var(--type-title-sm);
+  font: var(--type-title-md);
   color: var(--text-primary);
   padding: var(--space-2) 0 var(--space-1);
 }
@@ -104,7 +104,7 @@
 }
 
 .viewTitle {
-  font: var(--type-title);
+  font: var(--type-title-lg);
   color: var(--text-primary);
   padding: var(--space-2) 0;
 }
@@ -128,4 +128,21 @@
   height: 1px;
   background: var(--border-subtle);
   margin: var(--space-2) 0;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: var(--space-4);
+  }
+
+  .pageTitle {
+    font: var(--type-headline-lg);
+  }
+
+  .phoneFrame {
+    margin: 0 calc(-1 * var(--space-4));
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 var(--space-4);
+  }
 }

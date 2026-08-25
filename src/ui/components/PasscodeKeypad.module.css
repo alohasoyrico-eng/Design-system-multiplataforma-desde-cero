@@ -35,7 +35,7 @@
 }
 
 .error {
-  font: var(--type-caption);
+  font: var(--type-body-sm);
   color: var(--status-danger-text);
 }
 
@@ -51,11 +51,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
+  min-height: var(--height-bar);
   min-width: var(--hit-target-min);
   border: none;
   background: transparent;
-  font: var(--type-title);
+  font: var(--type-title-lg);
   color: var(--text-primary);
   cursor: pointer;
   border-radius: var(--radius-pill);

@@ -53,8 +53,8 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
           aria-label="Acciones sobre la selección"
           style={{
             background: 'var(--surface-accent-subtle)', border: '1px solid var(--border-focus)',
-            borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', padding: '12px 16px',
-            display: 'flex', alignItems: 'center', gap: 12,
+            borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', padding: 'var(--space-3) var(--space-4)',
+            display: 'flex', alignItems: 'center', gap: 'var(--space-3)',
             animation: 'flowScaleIn var(--dur-fast) var(--ease-out)',
           }}
         >
@@ -80,8 +80,8 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
       {n === 0 && (
         <div style={{
           background: 'var(--surface-card)', border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', padding: '10px 16px',
-          display: 'flex', alignItems: 'center', gap: 8,
+          borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', padding: 'var(--space-2) var(--space-4)',
+          display: 'flex', alignItems: 'center', gap: 'var(--space-2)',
         }}>
           <Checkbox checked={false} onChange={toggleAll} aria-label="Seleccionar todo" />
           <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -93,7 +93,7 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
         columns={selColumns}
         rows={rows}
         rowKey={rowKey}
-        density="dense"
+        density="compact"
         zebraToken="var(--surface-sunken)"
         style={{ borderRadius: n > 0 || true ? '0 0 var(--radius-lg) var(--radius-lg)' : undefined, borderTop: 'none' }}
       />

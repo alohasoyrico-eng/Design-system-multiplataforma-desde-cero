@@ -5,6 +5,7 @@ export interface TreemapNode {
   label: string
   value: number
   deviation?: number
+  color?: string
 }
 
 export interface TreemapProps {
@@ -15,15 +16,18 @@ export interface TreemapProps {
   style?: CSSProperties
 }
 
-function colorFor(dev: number | undefined): string {
-  if (dev == null) return 'var(--viz-neutral)'
-  if (dev > 0.1) return 'var(--viz-negative)'
-  if (dev > 0) return 'var(--viz-3)'
-  return 'var(--viz-positive)'
+function autoColor(dev: number | undefined, index: number, palette: string[]): string {
+  if (dev != null) {
+    if (dev > 0.1) return 'var(--viz-negative)'
+    if (dev < -0.05) return 'var(--viz-positive)'
+  }
+  return palette[index % palette.length]
 }
 
+const CAT_PALETTE = ['var(--viz-1)', 'var(--viz-4)', 'var(--viz-5)', 'var(--viz-3)', 'var(--viz-6)', 'var(--viz-2)']
+
 export function Treemap({ nodes = [], height = 280, format, onDrill, style }: TreemapProps) {
-  const data = nodes.map((n) => ({ label: n.label, value: n.value, color: colorFor(n.deviation) }))
+  const data = nodes.map((n, i) => ({ label: n.label, value: n.value, color: n.color || autoColor(n.deviation, i, CAT_PALETTE) }))
 
   return (
     <FlowChart

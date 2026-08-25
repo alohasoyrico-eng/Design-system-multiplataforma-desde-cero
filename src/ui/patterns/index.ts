@@ -1,3 +1,6 @@
 export { AuthForm, type AuthFormProps } from './AuthForm'
+export { CardCarousel, type CardCarouselProps } from './CardCarousel'
+export { ProfileMenu, type ProfileMenuProps, type ProfileMenuItem } from './ProfileMenu'
+export { QuickActionBar, type QuickActionBarProps } from './QuickActionBar'
 export { Settings, type SettingsProps } from './Settings'
 export { Wizard, type WizardProps } from './Wizard'

@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import { ControlShell } from './shells/ControlShell'
 import css from './Input.module.css'
 
@@ -12,7 +13,9 @@ export interface InputProps {
   error?: boolean
   type?: string
   revealable?: boolean
+  mono?: boolean
   style?: CSSProperties
+  id?: string
 }
 
 export function Input({
@@ -25,16 +28,18 @@ export function Input({
   error,
   type = 'text',
   revealable,
+  mono,
   style,
   ...rest
 }: InputProps) {
+  const intl = useIntl()
   const [shown, setShown] = useState(false)
 
   const reveal = revealable ? (
     <button
       type="button"
       tabIndex={0}
-      aria-label={shown ? 'Ocultar' : 'Mostrar'}
+      aria-label={shown ? intl.formatMessage({ id: 'common.hide', defaultMessage: 'Ocultar' }) : intl.formatMessage({ id: 'common.show', defaultMessage: 'Mostrar' })}
       aria-pressed={shown}
       onClick={() => setShown(v => !v)}
       className={css.reveal}
@@ -57,6 +62,7 @@ export function Input({
       <input
         type={revealable ? (shown ? 'text' : 'password') : type}
         className={css.input}
+        data-mono={mono || undefined}
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}

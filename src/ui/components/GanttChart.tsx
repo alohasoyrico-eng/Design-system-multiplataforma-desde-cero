@@ -45,7 +45,7 @@ export function GanttChart({ tasks, style }: GanttChartProps) {
                 style={{
                   left: `${getLeft(task.start)}%`,
                   width: `${getWidth(task.start, task.end)}%`,
-                  background: task.color || 'var(--action-accent)',
+                  background: task.color || 'var(--viz-1)',
                   opacity: task.progress != null ? 1 : 0.4,
                 }}
               >

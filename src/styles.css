@@ -1,11 +1,13 @@
 @import "tokens/fonts.css";
 @import "tokens/colors.css";
 @import "tokens/typography.css";
+@import "tokens/iconography.css";
 @import "tokens/spacing.css";
 @import "tokens/shape.css";
 @import "tokens/elevation.css";
 @import "tokens/motion.css";
 @import "tokens/dataviz.css";
+@import "tokens/products.css";
 @import "tokens/a11y.css";
 @import "tokens/dark.css";
 
@@ -17,7 +19,7 @@
 }
 
 body {
-  font: var(--type-body);
+  font: var(--type-body-md);
   color: var(--text-primary);
   background: var(--surface-canvas);
   -webkit-font-smoothing: antialiased;

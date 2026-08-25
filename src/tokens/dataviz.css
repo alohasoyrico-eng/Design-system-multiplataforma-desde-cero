@@ -6,24 +6,30 @@
   --viz-3: #E8930C;
   --viz-4: #7A5AF8;
   --viz-5: #0E9BA8;
-  --viz-6: #D444A0;
+  --viz-6: #CA8A04;
   --viz-7: #6B6A6E;
   --viz-8: #B26A00;
 
   --viz-accent: var(--flow-red-500);
   --viz-positive: var(--status-success);
   --viz-negative: var(--status-danger);
-  --viz-neutral: var(--flow-ink-300);
+  --viz-neutral: var(--flow-grey-400);
+
+  /* Domain aliases — each maps to a categorical position.
+     Mnemonic: fuel=warm orange, toll=purple, maint=teal, EV=green */
+  --viz-combustible: var(--viz-3);
+  --viz-peaje: var(--viz-4);
+  --viz-mantenimiento: var(--viz-5);
+  --viz-electro: var(--viz-2);
+  --viz-viajes: var(--viz-6);
 
   /* Rampa secuencial para heatmaps y treemaps (claro → oscuro) */
-  /* Rampa secuencial en tinta sobre arena: la intensidad de dato no inventa matiz.
-     El matiz vive solo en la paleta categorica (--viz-1..8) y en el rojo funcional. */
-  --viz-ramp-1: #F3F1ED;
-  --viz-ramp-2: #DEDAD3;
-  --viz-ramp-3: #C2BDB4;
-  --viz-ramp-4: #9A958C;
-  --viz-ramp-5: #625F5C;
-  --viz-ramp-6: #17171A;
+  --viz-ramp-1: #F1F5F9;
+  --viz-ramp-2: #CBD5E1;
+  --viz-ramp-3: #94A3B8;
+  --viz-ramp-4: #64748B;
+  --viz-ramp-5: #334155;
+  --viz-ramp-6: #0F172A;
 
   /* Cromo del chart */
   --viz-grid: var(--border-subtle);

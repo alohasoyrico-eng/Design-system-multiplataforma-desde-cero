@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import { IconButton } from '../ui/primitives/IconButton'
 
+function getInitialMode(): boolean {
+  return document.documentElement.getAttribute('data-mode') === 'dark'
+}
+
 export function ThemeToggle() {
-  const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(getInitialMode)
   const toggle = () => {
     const next = !dark
     setDark(next)
-    document.documentElement.setAttribute('data-mode', next ? 'dark' : 'light')
+    const mode = next ? 'dark' : 'light'
+    document.documentElement.setAttribute('data-mode', mode)
+    localStorage.setItem('flow-theme', mode)
   }
   return <IconButton icon={dark ? 'light_mode' : 'dark_mode'} ariaLabel="Cambiar modo" onClick={toggle} />
 }

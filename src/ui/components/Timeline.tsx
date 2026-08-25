@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './Timeline.module.css'
 
 export interface TimelineItem {
@@ -22,21 +23,21 @@ const STATUS_ICON: Record<string, string> = {
   error: 'close',
 }
 
-const STATUS_LABEL: Record<string, string> = {
-  done: 'Completado',
-  active: 'En curso',
-  pending: 'Pendiente',
-  error: 'Error',
-}
-
 const STATUS_COLOR: Record<string, string> = {
   done: 'var(--status-success)',
   active: 'var(--action-accent)',
-  pending: 'var(--flow-ink-300)',
+  pending: 'var(--flow-grey-400)',
   error: 'var(--status-danger)',
 }
 
 export function Timeline({ items, mode = 'steps', style }: TimelineProps) {
+  const intl = useIntl()
+  const STATUS_LABEL: Record<string, string> = {
+    done: intl.formatMessage({ id: 'timeline.done', defaultMessage: 'Completado' }),
+    active: intl.formatMessage({ id: 'timeline.active', defaultMessage: 'En curso' }),
+    pending: intl.formatMessage({ id: 'timeline.pending', defaultMessage: 'Pendiente' }),
+    error: intl.formatMessage({ id: 'timeline.error', defaultMessage: 'Error' }),
+  }
   const isEvents = mode === 'events'
 
   return (

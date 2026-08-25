@@ -1,13 +1,15 @@
 import type { CSSProperties, MouseEventHandler } from 'react'
 import css from './IconButton.module.css'
 
-export type IconButtonVariant = 'ghost' | 'secondary'
+export type IconButtonVariant = 'ghost' | 'tonal' | 'primary' | 'accent' | 'secondary'
+export type IconButtonSize = 'sm' | 'md' | 'lg'
 
 export interface IconButtonProps {
   icon: string
   ariaLabel: string
   variant?: IconButtonVariant
-  size?: 'md'
+  size?: IconButtonSize
+  selected?: boolean
   badge?: number | boolean
   disabled?: boolean
   onClick?: MouseEventHandler<HTMLButtonElement>
@@ -18,23 +20,25 @@ export function IconButton({
   icon,
   ariaLabel,
   variant = 'ghost',
+  size = 'md',
+  selected,
   badge,
   disabled,
   onClick,
   style,
-  ...rest
 }: IconButtonProps) {
   return (
     <button
       className={css.root}
       data-variant={variant}
+      data-size={size}
+      data-selected={selected || undefined}
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
       style={style}
-      {...rest}
     >
-      <span className={`flow-icon ${css.icon}`}>{icon}</span>
+      <span className={`flow-icon${selected ? ' flow-icon--fill' : ''} ${css.icon}`}>{icon}</span>
       {badge != null && <span className={css.badge} />}
     </button>
   )

@@ -16,7 +16,6 @@ export interface SliderProps {
 export function Slider({ value = 0, onChange, min = 0, max = 100, step = 1, label, format, disabled, style }: SliderProps) {
   const [drag, setDrag] = useState(false)
   const [focus, setFocus] = useState(false)
-  const [hover, setHover] = useState(false)
   const pct = ((value - min) / (max - min)) * 100
   const fmt = format ? format(value) : String(value)
 
@@ -35,7 +34,6 @@ export function Slider({ value = 0, onChange, min = 0, max = 100, step = 1, labe
           className={css.thumb}
           data-drag={drag || undefined}
           data-focus={focus || undefined}
-          data-hover={hover && !drag && !disabled ? '' : undefined}
           aria-hidden="true"
           style={{ left: `calc(${pct}% - 11px)` }}
         />
@@ -54,8 +52,6 @@ export function Slider({ value = 0, onChange, min = 0, max = 100, step = 1, labe
           onMouseUp={() => setDrag(false)}
           onTouchStart={() => setDrag(true)}
           onTouchEnd={() => setDrag(false)}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
           onFocus={() => setFocus(true)}
           onBlur={() => { setFocus(false); setDrag(false) }}
         />

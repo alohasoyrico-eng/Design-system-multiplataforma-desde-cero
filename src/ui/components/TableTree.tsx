@@ -1,4 +1,5 @@
 import { useState, useCallback, type ReactNode, type CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './TableTree.module.css'
 
 export interface TableTreeColumn {
@@ -24,6 +25,7 @@ export interface TableTreeProps {
 }
 
 export function TableTree({ columns, rows, rowKey = 'id', onRowClick, selectedKey, style }: TableTreeProps) {
+  const intl = useIntl()
   const [expanded, setExpanded] = useState<Set<string>>(new Set())
 
   const toggle = useCallback((key: string) => {
@@ -68,7 +70,7 @@ export function TableTree({ columns, rows, rowKey = 'id', onRowClick, selectedKe
                       type="button"
                       className={css.toggle}
                       data-open={isOpen || undefined}
-                      aria-label={isOpen ? 'Colapsar' : 'Expandir'}
+                      aria-label={isOpen ? intl.formatMessage({ id: 'common.collapse', defaultMessage: 'Colapsar' }) : intl.formatMessage({ id: 'common.expand', defaultMessage: 'Expandir' })}
                       onClick={(e) => { e.stopPropagation(); toggle(key) }}
                     >
                       <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16 }}>

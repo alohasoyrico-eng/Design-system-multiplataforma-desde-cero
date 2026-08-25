@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter/services.dart';
 import 'flow_tokens.dart';
 import 'flow_theme.dart';
-
 class FlowPasscodeKeypad extends StatefulWidget {
   final int length;
   final String value;
@@ -11,7 +12,6 @@ class FlowPasscodeKeypad extends StatefulWidget {
   final bool invalid;
   final IconData? biometricIcon;
   final VoidCallback? onBiometric;
-
   const FlowPasscodeKeypad({
     super.key,
     this.length = 6,
@@ -22,28 +22,24 @@ class FlowPasscodeKeypad extends StatefulWidget {
     this.biometricIcon,
     this.onBiometric,
   });
-
   @override
   State<FlowPasscodeKeypad> createState() => _FlowPasscodeKeypadState();
 }
-
 class _FlowPasscodeKeypadState extends State<FlowPasscodeKeypad>
     with SingleTickerProviderStateMixin {
   late AnimationController _shakeController;
   late Animation<double> _shakeAnimation;
-
   @override
   void initState() {
     super.initState();
     _shakeController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 400),
+      duration: FlowDuration.slow,
     );
     _shakeAnimation = Tween<double>(begin: 0, end: 12).animate(
       CurvedAnimation(parent: _shakeController, curve: Curves.elasticIn),
     );
   }
-
   @override
   void didUpdateWidget(FlowPasscodeKeypad oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -53,13 +49,11 @@ class _FlowPasscodeKeypadState extends State<FlowPasscodeKeypad>
       });
     }
   }
-
   @override
   void dispose() {
     _shakeController.dispose();
     super.dispose();
   }
-
   void _onDigit(String digit) {
     if (widget.value.length >= widget.length) return;
     final next = widget.value + digit;
@@ -68,16 +62,13 @@ class _FlowPasscodeKeypadState extends State<FlowPasscodeKeypad>
       widget.onComplete?.call(next);
     }
   }
-
   void _onDelete() {
     if (widget.value.isEmpty) return;
     widget.onChange?.call(widget.value.substring(0, widget.value.length - 1));
   }
-
   @override
   Widget build(BuildContext context) {
     final scheme = FlowTheme.maybeOf(context) ?? FlowScheme.light;
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -117,20 +108,17 @@ class _FlowPasscodeKeypadState extends State<FlowPasscodeKeypad>
     );
   }
 }
-
 class _ProgressDots extends StatelessWidget {
   final int filled;
   final int total;
   final bool invalid;
   final FlowScheme scheme;
-
   const _ProgressDots({
     required this.filled,
     required this.total,
     required this.invalid,
     required this.scheme,
   });
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -159,14 +147,12 @@ class _ProgressDots extends StatelessWidget {
     );
   }
 }
-
 class _Keypad extends StatelessWidget {
   final ValueChanged<String> onDigit;
   final VoidCallback onDelete;
   final IconData? biometricIcon;
   final VoidCallback? onBiometric;
   final FlowScheme scheme;
-
   const _Keypad({
     required this.onDigit,
     required this.onDelete,
@@ -174,7 +160,6 @@ class _Keypad extends StatelessWidget {
     this.onBiometric,
     required this.scheme,
   });
-
   @override
   Widget build(BuildContext context) {
     final rows = [
@@ -183,7 +168,6 @@ class _Keypad extends StatelessWidget {
       ['7', '8', '9'],
       ['bio', '0', 'del'],
     ];
-
     return Column(
       children: rows.map((row) {
         return Padding(
@@ -200,13 +184,13 @@ class _Keypad extends StatelessWidget {
                     label: 'Usar biométrico',
                   );
                 }
-                return const SizedBox(width: 80, height: 56);
+                return const SizedBox(width: 80, height: FlowSize.bar);
               }
               if (key == 'del') {
                 return _KeypadButton(
                   onTap: onDelete,
                   scheme: scheme,
-                  child: Icon(Icons.backspace_outlined, color: scheme.textPrimary, size: 22),
+                  child: Icon(Symbols.backspace_rounded, color: scheme.textPrimary, size: 22),
                   label: 'Borrar',
                 );
               }
@@ -219,7 +203,7 @@ class _Keypad extends StatelessWidget {
                 child: Text(
                   key,
                   style: TextStyle(
-                    fontSize: FlowFontSize.titleLg,
+                    fontSize: FlowFontSize.headlineLg,
                     fontWeight: FontWeight.w500,
                     color: scheme.textPrimary,
                   ),
@@ -233,20 +217,17 @@ class _Keypad extends StatelessWidget {
     );
   }
 }
-
 class _KeypadButton extends StatelessWidget {
   final VoidCallback? onTap;
   final FlowScheme scheme;
   final Widget child;
   final String label;
-
   const _KeypadButton({
     this.onTap,
     required this.scheme,
     required this.child,
     required this.label,
   });
-
   @override
   Widget build(BuildContext context) {
     return Padding(

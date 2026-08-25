@@ -8,12 +8,12 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  font: var(--type-body);
+  font: var(--type-body-md);
 }
 
 .th {
   padding: var(--density-head-y) var(--density-cell-x);
-  font: var(--type-overline);
+  font: var(--type-label-sm);
   letter-spacing: var(--tracking-overline);
   text-transform: uppercase;
   color: var(--text-muted);

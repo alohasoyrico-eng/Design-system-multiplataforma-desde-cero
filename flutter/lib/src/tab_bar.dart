@@ -88,7 +88,7 @@ class _TabDestination extends StatelessWidget {
       child: InkResponse(
         onTap: onTap,
         child: SizedBox(
-          height: 56,
+          height: FlowSize.bar,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -115,7 +115,7 @@ class _TabDestination extends StatelessWidget {
               Text(
                 item.label,
                 style: TextStyle(
-                  fontSize: FlowFontSize.caption,
+                  fontSize: FlowFontSize.bodySm,
                   fontWeight: active ? FontWeight.w600 : FontWeight.w400,
                   color: color,
                 ),
@@ -139,7 +139,7 @@ class _Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+      padding: const EdgeInsets.symmetric(horizontal: FlowSpace.s1, vertical: 1),
       constraints: const BoxConstraints(minWidth: 16),
       decoration: BoxDecoration(
         color: scheme.actionAccent,

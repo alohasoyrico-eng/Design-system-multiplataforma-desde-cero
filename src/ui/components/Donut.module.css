@@ -1,7 +1,7 @@
 .root {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: var(--space-5);
 }
 
 .ring {
@@ -27,14 +27,15 @@
 }
 
 .centerLabel {
-  font-size: 11px;
+  font: var(--type-label-sm);
+  font-weight: 400;
   color: var(--text-muted);
 }
 
 .legend {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
   min-width: 0;
   flex: 1;
 }
@@ -42,8 +43,8 @@
 .legendItem {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
+  gap: var(--space-2);
+  font: var(--type-body-sm);
   min-width: 0;
 }
 

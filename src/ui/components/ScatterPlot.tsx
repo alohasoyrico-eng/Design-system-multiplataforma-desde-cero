@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import { FlowChart } from '../primitives/FlowChart'
 
 export interface ScatterPoint {
@@ -14,6 +15,7 @@ export interface ScatterPlotProps {
   yLabel?: string
   xThreshold?: number
   yThreshold?: number
+  color?: string
   format?: { x?: (v: number) => string; y?: (v: number) => string }
   height?: number
   selectedId?: string
@@ -22,9 +24,11 @@ export interface ScatterPlotProps {
 }
 
 export function ScatterPlot({
-  points = [], xLabel, yLabel, xThreshold, yThreshold, format = {},
+  points = [], xLabel, yLabel, xThreshold, yThreshold, color, format = {},
   height = 260, onSelect, style,
 }: ScatterPlotProps) {
+  const intl = useIntl()
+  const yDefault = intl.formatMessage({ id: 'scatter.yDefault', defaultMessage: 'Unidades' })
   const values = points.map((p) => [p.x, p.y, p.label, p.id])
   const fmt = format.y || format.x || ((v: number) => String(v))
 
@@ -40,8 +44,9 @@ export function ScatterPlot({
       format={fmt}
       style={style}
       series={[{
-        label: yLabel || 'Unidades',
+        label: yLabel || yDefault,
         values: values as unknown as number[],
+        color,
         markLine: lines.length ? {
           silent: true, symbol: 'none',
           lineStyle: { color: 'var(--viz-axis)', type: 'dashed', width: 1 },

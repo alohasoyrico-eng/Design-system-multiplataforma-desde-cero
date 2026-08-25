@@ -9,7 +9,7 @@ export interface GridColumn<T = Record<string, unknown>> {
   render?: (row: T) => ReactNode
 }
 
-export type Density = 'default' | 'dense'
+export type Density = 'default' | 'compact'
 
 export interface DataGridProps<T = Record<string, unknown>> {
   columns?: GridColumn<T>[]

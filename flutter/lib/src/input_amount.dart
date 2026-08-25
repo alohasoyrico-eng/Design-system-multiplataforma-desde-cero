@@ -106,7 +106,7 @@ class _FlowInputAmountState extends State<FlowInputAmount> {
             Text(
               widget.currency,
               style: TextStyle(
-                fontSize: FlowFontSize.title,
+                fontSize: FlowFontSize.titleLg,
                 color: scheme.textMuted,
                 fontWeight: FontWeight.w500,
               ),
@@ -124,7 +124,7 @@ class _FlowInputAmountState extends State<FlowInputAmount> {
                   ],
                   textAlign: TextAlign.right,
                   style: TextStyle(
-                    fontSize: FlowFontSize.title,
+                    fontSize: FlowFontSize.titleLg,
                     fontWeight: FontWeight.w500,
                     color: scheme.textPrimary,
                   ),

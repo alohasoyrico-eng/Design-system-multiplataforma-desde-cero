@@ -130,7 +130,7 @@ export function ITPricingPage() {
           { key: 'by', label: 'Última edición' },
         ]}
         rows={rules}
-        density="dense"
+        density="compact"
       />
 
       <RuleDetail rule={selected} onClose={() => setSelected(null)} onSubmit={onSubmit} />

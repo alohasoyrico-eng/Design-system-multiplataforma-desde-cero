@@ -1,0 +1,15 @@
+name: flow_ds_example
+description: Flow Design System — template screens
+
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flow_ds:
+    path: ../
+  latlong2: ^0.9.0

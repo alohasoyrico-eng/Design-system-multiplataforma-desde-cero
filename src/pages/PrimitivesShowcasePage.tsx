@@ -144,11 +144,11 @@ export function PrimitivesShowcasePage() {
 
   return (
     <div style={{ padding: 40, maxWidth: 640, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <h2 style={{ font: 'var(--type-title-lg)', margin: 0 }}>Showcase</h2>
+      <h2 style={{ font: 'var(--type-headline-lg)', margin: 0 }}>Showcase</h2>
 
       {/* ── Primitives ── */}
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Divider</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Divider</h3>
         <Divider />
         <div style={{ height: 16 }} />
         <Divider label="Sección" />
@@ -165,7 +165,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Spinner</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Spinner</h3>
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <Spinner size={16} />
           <Spinner />
@@ -177,7 +177,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Radio</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Radio</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Radio name="demo" value="a" label="Opción A" description="Descripción de la primera opción" checked={radio === 'a'} onChange={setRadio} />
           <Radio name="demo" value="b" label="Opción B" checked={radio === 'b'} onChange={setRadio} />
@@ -188,7 +188,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Slider</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Slider</h3>
         <Slider value={slider} onChange={setSlider} label="Velocidad máxima" format={(v) => `${v} km/h`} />
         <div style={{ height: 16 }} />
         <Slider value={65} onChange={() => {}} label="Deshabilitado" disabled />
@@ -197,7 +197,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Flag</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Flag</h3>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           <Flag country="mx" label="México" size={32} />
           <Flag country="us" label="USA" size={32} />
@@ -211,10 +211,10 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       {/* ── Components ── */}
-      <h2 style={{ font: 'var(--type-title-lg)', margin: 0 }}>Components</h2>
+      <h2 style={{ font: 'var(--type-headline-lg)', margin: 0 }}>Components</h2>
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Tooltip</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Tooltip</h3>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Guardar cambios" position="top">
             <Button>Hover me (top)</Button>
@@ -234,7 +234,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>SegmentedControl</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>SegmentedControl</h3>
         <SegmentedControl
           items={[
             { value: 'list', label: 'Lista', icon: 'view_list' },
@@ -244,7 +244,7 @@ export function PrimitivesShowcasePage() {
           value={segment}
           onChange={setSegment}
         />
-        <p style={{ font: 'var(--type-body)', color: 'var(--text-secondary)', marginTop: 12 }}>
+        <p style={{ font: 'var(--type-body-md)', color: 'var(--text-secondary)', marginTop: 12 }}>
           Vista seleccionada: <strong>{segment}</strong>
         </p>
       </section>
@@ -252,7 +252,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Timeline</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Timeline</h3>
         <SegmentedControl
           items={[
             { value: 'steps', label: 'Steps' },
@@ -271,7 +271,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>CircularProgress</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>CircularProgress</h3>
         <div style={{ display: 'flex', gap: 24, alignItems: 'flex-end', flexWrap: 'wrap' }}>
           <CircularProgress value={72} showValue label="Batería" />
           <CircularProgress value={45} max={100} tone="warning" showValue label="Cuota" size={48} />
@@ -283,67 +283,67 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>TableTree</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>TableTree</h3>
         <TableTree columns={TREE_COLS} rows={TREE_ROWS} />
       </section>
 
       <Divider />
 
-      <h2 style={{ font: 'var(--type-title-lg)', margin: 0 }}>Dataviz</h2>
+      <h2 style={{ font: 'var(--type-headline-lg)', margin: 0 }}>Dataviz</h2>
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Donut</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Donut</h3>
         <Donut segments={DONUT_DATA} centerLabel="Unidades" centerValue={90} />
       </section>
 
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>BulletChart</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>BulletChart</h3>
         <BulletChart rows={BULLET_DATA} />
       </section>
 
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>GanttChart</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>GanttChart</h3>
         <GanttChart tasks={GANTT_DATA} />
       </section>
 
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>SmallMultiples</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>SmallMultiples</h3>
         <SmallMultiples items={SM_DATA} isOutlier={(it) => it.id === 'ar'} format={(v) => `$${v}k`} />
       </section>
 
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>ScatterPlot</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>ScatterPlot</h3>
         <ScatterPlot points={SCATTER_POINTS} xLabel="Distancia (km)" yLabel="Eficiencia (%)" xThreshold={50} yThreshold={60} />
       </section>
 
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>ParetoChart</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>ParetoChart</h3>
         <ParetoChart data={PARETO_DATA} threshold={0.8} />
       </section>
 
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>Treemap</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>Treemap</h3>
         <Treemap nodes={TREEMAP_DATA} />
       </section>
 
       <Divider />
 
-      <h2 style={{ font: 'var(--type-title-lg)', margin: 0 }}>UI Desktop</h2>
+      <h2 style={{ font: 'var(--type-headline-lg)', margin: 0 }}>UI Desktop</h2>
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>KanbanBoard</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>KanbanBoard</h3>
         <KanbanBoard
           columns={KANBAN_COLS}
           items={kanbanItems}
@@ -358,7 +358,7 @@ export function PrimitivesShowcasePage() {
           )}
           renderDetail={(item) => (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <h3 style={{ margin: 0, font: 'var(--type-title-sm)' }}>{item.title as string}</h3>
+              <h3 style={{ margin: 0, font: 'var(--type-title-md)' }}>{item.title as string}</h3>
               {item.description && <p style={{ margin: 0, fontSize: 13.5, color: 'var(--text-secondary)' }}>{item.description as string}</p>}
               {item.assignee && <p style={{ margin: 0, fontSize: 13, color: 'var(--text-muted)' }}>Asignado: {item.assignee as string}</p>}
             </div>
@@ -374,7 +374,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>CardMedia</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>CardMedia</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
           <CardMedia
             image="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect fill='%23374151' width='320' height='200'/%3E%3Ctext x='160' y='105' text-anchor='middle' fill='%239CA3AF' font-size='14'%3EImagen 1%3C/text%3E%3C/svg%3E"
@@ -394,7 +394,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>StatusView</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>StatusView</h3>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           <StatusView status="success" title="Operación completada" description="Los datos se sincronizaron correctamente." />
           <StatusView status="error" title="Error de conexión" description="No se pudo conectar al servidor." primaryAction={<Button size="sm">Reintentar</Button>} />
@@ -406,7 +406,7 @@ export function PrimitivesShowcasePage() {
       <Divider />
 
       <section>
-        <h3 style={{ font: 'var(--type-title-sm)', marginBottom: 12 }}>OnboardingCarousel</h3>
+        <h3 style={{ font: 'var(--type-title-md)', marginBottom: 12 }}>OnboardingCarousel</h3>
         <div style={{ border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-m)', overflow: 'hidden', maxWidth: 400, height: 480 }}>
           <OnboardingCarousel
             slides={ONBOARDING_SLIDES}

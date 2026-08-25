@@ -6,27 +6,47 @@
   --space-4: 16px;
   --space-5: 20px;
   --space-6: 24px;
+  --space-7: 28px;
   --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
 
+  /* Sizing */
+  --height-control-lg: 52px;
+  --height-bar: 56px;
+
   /* Component-level */
-  --pad-control-y: 12px;   /* inputs, buttons md */
+  --pad-control-y: 12px;
   --pad-control-x: 20px;
   --pad-card: 24px;
   --pad-section: 32px;
-  --gap-inline: 8px;       /* icon-to-label */
-  --gap-stack: 16px;       /* between cards */
-  --hit-target-min: 44px;  /* WCAG touch minimum */
+  --gap-inline: 8px;
+  --gap-stack: 16px;
+  --hit-target-min: 44px;
 
-  /* Density — comfortable default, dense overridable per-subtree */
+  /* Layout */
+  --content-max: 1440px;
+  --sidebar-width: 240px;
+  --sidebar-collapsed: 64px;
+  --bp-sm: 576px;
+  --bp-md: 982px;
+
+  /* Density — comfortable default, compact overridable per-subtree */
+  --density-control-y: var(--pad-control-y);
+  --density-control-x: var(--pad-control-x);
+  --density-item-y: 12px;
+  --density-item-x: var(--space-4);
   --density-cell-y: 14px;
   --density-cell-x: 16px;
   --density-head-y: 12px;
 }
 
-[data-density="dense"] {
+[data-density="compact"] {
+  --density-control-y: 8px;
+  --density-control-x: 16px;
+  --density-item-y: 8px;
+  --density-item-x: var(--space-3);
   --density-cell-y: 10px;
   --density-head-y: 8px;
 }

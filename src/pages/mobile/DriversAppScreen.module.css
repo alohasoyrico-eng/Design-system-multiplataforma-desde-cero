@@ -1,0 +1,286 @@
+.view {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.userName {
+  font: var(--type-title-md);
+  color: var(--text-primary);
+}
+
+/* Shift toggle */
+.shiftRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shiftLabel {
+  font: var(--type-title-md);
+  color: var(--text-primary);
+}
+
+.shiftHint {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+/* Ride request */
+.rideRequest {
+  background: var(--action-accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-accent-glow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: flowIn var(--dur-base) var(--ease-spring);
+}
+
+.rideHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rideBadge {
+  font: var(--type-label-sm);
+  color: var(--text-on-accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.countdown {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdownRing {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+  color: var(--text-on-accent);
+}
+
+.countdownNum {
+  font: var(--type-data);
+  font-weight: 700;
+  color: var(--text-on-accent);
+}
+
+.rideRoute {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.rideStop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-body-md);
+  color: var(--text-on-accent);
+}
+
+.rideDotOrigin {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--text-on-accent);
+  flex-shrink: 0;
+}
+
+.rideDotDest {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--text-on-accent);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.rideMeta {
+  display: flex;
+  gap: var(--space-2);
+  font: var(--type-body-sm);
+  color: var(--text-on-accent);
+  opacity: 0.8;
+}
+
+.ridePrice {
+  margin-left: auto;
+  font: var(--type-data-md);
+  font-weight: 700;
+  opacity: 1;
+}
+
+.rideCtas {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.rideCtas > :last-child {
+  flex: 2;
+}
+
+.rideCtas > :first-child {
+  flex: 1;
+}
+
+/* Stats */
+.statsRow {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.statsRow > * {
+  flex: 1;
+}
+
+/* Weekly goal */
+.goalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.goalLabel {
+  font: var(--type-body-md);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.goalValue {
+  font: var(--type-data-sm);
+  color: var(--text-muted);
+}
+
+/* Rating */
+.ratingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ratingValue {
+  font: var(--type-data-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ratingLabel {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin-left: var(--space-2);
+}
+
+.ratingPeriod {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+/* Trip card */
+.tripHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tripTitle {
+  font: var(--type-title-md);
+  color: var(--text-primary);
+}
+
+.tripRoute {
+  font: var(--type-body-md);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+}
+
+.tripCta {
+  margin-top: var(--space-3);
+}
+
+/* Trips tab */
+.tripRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.tripRowRoute {
+  font: var(--type-body-md);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.tripRowTime {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+.tripRowAmount {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--status-success-text);
+}
+
+.tabWrap {
+  flex-shrink: 0;
+}
+
+/* Earnings tab */
+.earningsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.earningsSum {
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.earningsSumValue {
+  font: var(--type-data-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+}
+
+.earningsSumLabel {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+  display: block;
+}
+
+/* Toast */
+.toastWrap {
+  position: absolute;
+  bottom: 72px;
+  left: var(--space-4);
+  right: var(--space-4);
+  z-index: 50;
+}

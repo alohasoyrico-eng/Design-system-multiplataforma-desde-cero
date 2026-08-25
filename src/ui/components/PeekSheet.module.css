@@ -1,0 +1,38 @@
+.root {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background: var(--surface-card);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  box-shadow: var(--shadow-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: peekUp var(--dur-base) var(--ease-out);
+}
+
+.handle {
+  width: 36px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--border-default);
+  align-self: center;
+}
+
+.title {
+  font: var(--type-title-md);
+  color: var(--text-primary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes peekUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}

@@ -51,5 +51,6 @@
 }
 
 .root[data-alignment='bottom'] > .panel {
+  width: 100%;
   animation: flowOvBottom var(--dur-base) var(--ease-out);
 }

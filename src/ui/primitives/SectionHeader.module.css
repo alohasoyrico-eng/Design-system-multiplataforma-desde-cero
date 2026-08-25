@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.title {
+  font: var(--type-title-lg);
+  color: var(--text-primary);
+}
+
+.root[data-size='sm'] .title {
+  font: var(--type-title-md);
+  padding: var(--space-2) 0 var(--space-1);
+}
+
+.trailing {
+  font: var(--type-body-sm);
+  color: var(--text-accent);
+}

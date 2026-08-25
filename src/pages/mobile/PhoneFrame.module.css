@@ -1,0 +1,53 @@
+.frame {
+  width: 375px;
+  height: 812px;
+  border-radius: 44px;
+  border: 3px solid var(--border-strong);
+  background: var(--surface-canvas);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: var(--shadow-overlay);
+  flex-shrink: 0;
+  transform: translateZ(0);
+}
+
+.frame[data-mode="dark"] {
+  background: #0C1222;
+  border-color: var(--flow-grey-700);
+}
+
+.notchFloat {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 28px;
+  background: var(--border-strong);
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.frame[data-mode="dark"] .notchFloat {
+  background: var(--flow-grey-700);
+}
+
+.screen {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bleed {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 41px;
+}

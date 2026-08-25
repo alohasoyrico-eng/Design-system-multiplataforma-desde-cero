@@ -1,7 +1,7 @@
 .root {
   position: relative;
   display: inline-flex;
-  gap: 8px;
+  gap: var(--space-2);
   cursor: text;
 }
 
@@ -14,16 +14,16 @@
 }
 
 .box {
-  width: 44px;
-  height: 52px;
+  width: var(--hit-target-min);
+  height: var(--height-control-lg);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--surface-card);
   border: 1px solid var(--border-default);
-  font-family: var(--font-mono);
-  font-size: 22px;
+  font: var(--type-data-md);
+  font-size: var(--_otp-digit-size, 22px);
   font-weight: 600;
   color: var(--text-primary);
   transition: border-color var(--dur-fast) var(--ease-out),
@@ -67,9 +67,5 @@
   width: 100%;
   opacity: 0;
   border: none;
-  font-size: 16px;
-}
-
-@keyframes flowBlink {
-  50% { opacity: 0; }
+  font-size: var(--_ios-no-zoom, 16px);
 }

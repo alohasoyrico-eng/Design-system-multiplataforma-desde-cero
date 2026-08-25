@@ -1,8 +1,8 @@
 # Flow
 
-Un kit de piezas listas para armar interfaces — dashboards, formularios, tablas, mapas, chats, wizards — sin empezar de cero cada vez.
+Un design system multiplataforma listo para armar interfaces — dashboards, formularios, tablas, mapas, chats, wizards — sin empezar de cero cada vez.
 
-Piensa en Flow como una caja de LEGO para pantallas: cada pieza encaja con las demás, se ve bien en claro y en oscuro, y funciona en móvil y escritorio.
+Piensa en Flow como una caja de LEGO para pantallas: cada pieza encaja con las demás, se ve bien en claro y en oscuro, y funciona en React (web/desktop) y Flutter (móvil).
 
 ## Vélo corriendo en 30 segundos
 
@@ -13,26 +13,45 @@ npm install
 npm run dev
 ```
 
-Abre `localhost:5173`. Vas a ver un sidebar con 19 pantallas funcionando — dashboards con gráficas reales, tablas editables, un mapa con pins, un chat, un wizard paso a paso, y más. Todo eso está hecho con las piezas de Flow.
+Abre `localhost:5173`. Vas a ver un sidebar con 13 pantallas funcionando — dashboards con gráficas reales, tablas editables, un mapa con pins, un chat, un wizard paso a paso, una wallet móvil, y más.
 
 ## Qué hay en la caja
 
-**68 piezas** organizadas en tres niveles, de lo más simple a lo más completo:
+**92 piezas React** + **93 widgets Flutter** con paridad completa, organizadas en cuatro niveles:
 
-### Piezas básicas (20)
+### Primitives (22)
+
 Los ladrillos. Cada una hace una sola cosa bien.
 
-`Button` `Input` `Select` `Checkbox` `Switch` `Radio` `Slider` `Badge` `Avatar` `Chip` `Spinner` `Skeleton` `Progress` `Divider` `Field` `Flag` `IconButton` `Textarea` `Sparkline` `FlowChart`
+`Avatar` `Badge` `Button` `Checkbox` `Chip` `DetailRow` `Divider` `Field` `Flag` `FlowChart` `IconButton` `Input` `Progress` `Radio` `SectionHeader` `Select` `Skeleton` `Slider` `Sparkline` `Spinner` `Switch` `Textarea`
 
-### Piezas compuestas (45)
-Combinaciones de piezas básicas que forman cosas más útiles.
+### Components (64)
 
-`Card` `Table` `Dialog` `Drawer` `Tabs` `Accordion` `Menu` `Tooltip` `Breadcrumb` `Pagination` `Toast` `Stepper` `Timeline` `Sidebar` `TopBar` `EmptyState` `FileUpload` `DatePicker` `GlobalSearch` `HelpCenter` `NotificationCenter` `SegmentedControl` `KanbanBoard` `MapCanvas` `ChatMessage` `ChatThread` `ChatComposer` `RoleMatrix` `BulkActionsTable` `FilterableEditableTable` `OTPInput` `OnboardingCarousel` `StatusView` `StatTile` `Donut` `Bars` `BulletChart` `ParetoChart` `ScatterPlot` `SmallMultiples` `Treemap` `GanttChart` `CircularProgress` `CardMedia` `TableTree`
+Combinan primitives para resolver necesidades de interfaz.
 
-### Flujos completos (3)
-Pantallas que resuelven tareas reales de negocio.
+**Layout y navegación** — `Accordion` `Breadcrumb` `Card` `CardMedia` `Dialog` `Drawer` `Menu` `NavBar` `Pagination` `SegmentedControl` `Sidebar` `Stepper` `TabBar` `Table` `TableTree` `Tabs` `Timeline` `Toast` `Tooltip` `TopBar`
 
-`AuthForm` (login/registro) · `Settings` (ajustes con secciones) · `Wizard` (paso a paso con validación)
+**Formularios y entrada** — `BalanceDisplay` `BiometricPrompt` `BulkActionsTable` `DatePicker` `FileUpload` `FilterableEditableTable` `FilterBar` `GlobalSearch` `InputAmount` `InputPhone` `KanbanBoard` `OTPInput` `PasscodeKeypad` `RoleMatrix`
+
+**Dataviz** — `Bars` `BulletChart` `ChartLegend` `CircularProgress` `Donut` `GanttChart` `LimitBar` `MapCanvas` `ParetoChart` `ScatterPlot` `SmallMultiples` `StatTile` `Treemap`
+
+**Comunicación** — `ChatComposer` `ChatMessage` `ChatThread` `EmptyState` `HelpCenter` `NotificationCenter` `StatusView`
+
+**Mobile** — `BottomSheet` `NipReveal` `OnboardingCarousel` `PaymentCard` `PeekSheet` `QuickAction` `RouteBanner` `SheetBody` `TransactionGroup` `TransactionRow`
+
+### Patterns (6)
+
+Resuelven tareas recurrentes de negocio.
+
+`AuthForm` · `CardCarousel` · `ProfileMenu` · `QuickActionBar` · `Settings` · `Wizard`
+
+### Templates (13 páginas)
+
+Pantallas completas funcionando: `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase`
+
+### Shells (6, internos)
+
+Carcasas que estandarizan borde, foco y backdrop: `ControlShell` `DataGrid` `Listbox` `OverlayShell` `Popover` `ToggleControl`. Solo los usan los primitives — nunca se importan directamente.
 
 ## Cómo se usa una pieza
 
@@ -48,67 +67,54 @@ import { Card, StatTile } from './ui/components'
 </Card>
 ```
 
-Cada pieza acepta `style` para ajustes puntuales. Las variaciones de apariencia se controlan con la prop `variant`, el tamaño con `size`.
+Cada pieza acepta `style` para ajustes puntuales. Las variaciones de apariencia se controlan con `variant`, el tamaño con `size`.
 
-## Colores y modo oscuro
+## Tokens y modo oscuro
 
-Flow usa nombres de color en vez de códigos hexadecimales. Eso hace que el modo oscuro funcione solo:
+Flow usa tokens semánticos en vez de hex. El modo oscuro funciona solo:
 
 ```css
-/* Así se escriben los estilos en Flow */
 .miTarjeta {
-  background: var(--surface-card);    /* blanco en claro, gris oscuro en oscuro */
-  color: var(--text-primary);         /* negro en claro, blanco en oscuro */
+  background: var(--surface-card);
+  color: var(--text-primary);
   border: 1px solid var(--border-subtle);
 }
 ```
 
-Para activar el modo oscuro en cualquier parte de tu página:
-
 ```html
-<div data-theme="dark">
-  <!-- todo lo de adentro se pone oscuro -->
-</div>
+<div data-theme="dark"><!-- todo lo de adentro se pone oscuro --></div>
 ```
 
-### Los nombres más usados
+### Tokens más usados
 
-| Lo que necesitas | Nombre que usas |
-|---|---|
-| Fondo de página | `--surface-canvas` |
-| Fondo de tarjeta | `--surface-card` |
-| Fondo de input | `--surface-sunken` |
-| Texto principal | `--text-primary` |
-| Texto secundario | `--text-secondary` |
-| Texto apagado | `--text-muted` |
-| Borde suave | `--border-subtle` |
-| Borde normal | `--border-default` |
-| Color de marca | `--flow-red-500` |
-| Éxito | `--status-success` |
-| Advertencia | `--status-warning` |
-| Error | `--status-danger` |
+| Superficie | Texto | Borde | Estado |
+|---|---|---|---|
+| `--surface-canvas` | `--text-primary` | `--border-subtle` | `--status-success` |
+| `--surface-card` | `--text-secondary` | `--border-default` | `--status-warning` |
+| `--surface-sunken` | `--text-muted` | `--border-strong` | `--status-danger` |
+| `--surface-inverse` | `--text-accent` | `--border-focus` | `--status-info` |
 
-Todos los nombres están en `src/tokens/`. Si necesitas la lista completa, abre `CLAUDE.md`.
+### Sistema de tokens (12 archivos)
+
+`colors` · `dark` · `typography` · `spacing` · `shape` · `elevation` · `motion` · `dataviz` · `fonts` · `iconography` · `a11y` · `products`
+
+Todos en `src/tokens/`. La referencia completa está en `CLAUDE.md`.
 
 ## Iconos
 
-Un solo archivo de fuente. Escribes el nombre del icono y aparece:
+Material Symbols. Escribes el nombre y aparece:
 
 ```tsx
 <span className="flow-icon">dashboard</span>
-<span className="flow-icon">person</span>
-<span className="flow-icon">settings</span>
 ```
 
-Busca iconos por nombre en [fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols). Son miles.
+Catálogo: [fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols)
 
 ## Gráficas
 
-Una sola pieza para todas las gráficas. Dile el tipo y los datos:
+`FlowChart` envuelve ECharts. Un solo componente, 12 tipos:
 
 ```tsx
-import { FlowChart } from './ui/primitives'
-
 <FlowChart
   type="bar"
   labels={['Ene', 'Feb', 'Mar']}
@@ -119,64 +125,87 @@ import { FlowChart } from './ui/primitives'
 
 Tipos: `bar` · `line` · `area` · `pie` · `radar` · `heatmap` · `funnel` · `scatter` · `gauge` · `pareto` · `stacked` · `stacked100`
 
-Las gráficas especializadas (`Donut`, `ScatterPlot`, `GanttChart`, etc.) son atajos con APIs más cómodas.
+Componentes especializados (`Donut`, `BulletChart`, `ScatterPlot`, `GanttChart`, `ParetoChart`, `Treemap`, `SmallMultiples`) ofrecen APIs más directas sobre FlowChart.
+
+## Flutter
+
+Paridad completa con React. 93 widgets en `flutter/`:
+
+```bash
+cd flutter
+flutter pub get
+```
+
+```dart
+import 'package:flow_ds/flow_ds.dart';
+
+FlowButton(label: 'Agregar', variant: FlowButtonVariant.accent, icon: Icons.add)
+```
+
+Los tokens (`FlowTokens`) y el theme (`FlowTheme`) se aplican con `FlowTheme.light()` o `FlowTheme.dark()`.
 
 ---
 
-## Cómo está organizado (para cuando quieras crear piezas nuevas)
+## Arquitectura
 
-Flow tiene una regla simple: **las piezas solo pueden usar piezas más simples que ellas**.
+Las piezas solo pueden usar piezas más simples que ellas:
 
 ```
-tokens       →  los colores, tamaños y tiempos (sin interfaz)
-primitives   →  piezas básicas (Button, Input, Badge...)
+tokens       →  colores, tamaños, tiempos (sin JSX)
+shells       →  carcasas internas (borde, foco, backdrop)
+primitives   →  controles atómicos (Button, Input, Badge...)
 components   →  combinan primitives (Card, Table, Dialog...)
 patterns     →  resuelven tareas de negocio (AuthForm, Settings...)
 templates    →  pantallas completas (se copian, no se importan)
 ```
 
-Un `Card` (component) puede usar `Button` (primitive). Pero un `Button` no puede usar `Card` — eso iría hacia arriba. Si necesitas que dos piezas del mismo nivel compartan algo, baja eso compartido al nivel de abajo.
+Un `Card` (component) puede usar `Button` (primitive). Pero un `Button` no puede usar `Card`. Si necesitas que dos piezas del mismo nivel compartan algo, baja eso compartido al nivel de abajo.
 
 ### Para crear una pieza nueva
 
-1. Decide en qué nivel va: ¿Es un control atómico? → `src/ui/primitives/`. ¿Combina controles? → `src/ui/components/`. ¿Resuelve algo de negocio? → `src/ui/patterns/`.
+1. Decide en qué nivel va: ¿Control atómico? → `src/ui/primitives/`. ¿Combina controles? → `src/ui/components/`. ¿Tarea de negocio? → `src/ui/patterns/`.
 
-2. Crea dos archivos:
+2. Crea el componente y sus estilos:
 ```
-src/ui/components/MiPieza.tsx          ← el componente
-src/ui/components/MiPieza.module.css   ← los estilos (opcional)
-```
-
-3. Exporta las props con `export interface`:
-```tsx
-export interface MiPiezaProps {
-  title: string
-  size?: 'sm' | 'md' | 'lg'
-  style?: CSSProperties
-}
+src/ui/components/MiPieza.tsx
+src/ui/components/MiPieza.module.css
 ```
 
-4. Agrega la línea de exportación al índice de su nivel:
-```tsx
-// en src/ui/components/index.ts
-export { MiPieza, type MiPiezaProps } from './MiPieza'
-```
+3. Exporta las props con `export interface`.
 
-5. Verifica: `npm run typecheck`
+4. Agrega al barrel: `src/ui/components/index.ts`
+
+5. Crea el test: `src/ui/components/__tests__/MiPieza.test.tsx`
+
+6. Verifica:
+```bash
+npm run typecheck
+npm run test
+```
 
 Las reglas completas y la receta detallada están en `CLAUDE.md`.
 
 ## Verificación
 
 ```bash
-npm run typecheck   # tipos de TypeScript
-npm run test        # tests unitarios
+npm run typecheck   # TypeScript — cero errores
+npm run test        # 661 tests — todos pasan
 npm run build       # build de producción
 ```
 
 ## Stack
 
-React 19 · TypeScript · CSS Modules (sin Tailwind) · Vite · TanStack Router · TanStack Query · ECharts · Vitest · Material Symbols
+| Capa | Tecnología |
+|---|---|
+| UI | React 19 · TypeScript · CSS Modules |
+| Routing | TanStack Router |
+| Data | TanStack Query |
+| Charts | ECharts (via FlowChart) |
+| Icons | Material Symbols |
+| Testing | Vitest · Testing Library (99 archivos, 661 tests) |
+| Build | Vite |
+| Mobile | Flutter · Dart |
+| Styling | Tokens semánticos — sin Tailwind |
 
 ---
 
@@ -209,7 +238,7 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 
 ### 3. Tu agente ahora puede
 
-| Preguntarle al servidor | Para qué |
+| Herramienta | Para qué |
 |---|---|
 | `list_inventory` | "¿Qué piezas hay?" |
 | `get_component_api("Button")` | "¿Qué props acepta Button?" |
@@ -223,11 +252,12 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 
 Si eres un agente trabajando **dentro** de este repo:
 
-1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas que debes seguir.
-2. Antes de crear un archivo, decide su nivel (primitive / component / pattern).
-3. Busca si ya existe una pieza que haga lo que necesitas.
-4. Usa tokens de color (`var(--surface-card)`), nunca hex (`#ffffff`).
+1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas de arquitectura, la receta para crear componentes, y la referencia completa de tokens.
+2. Antes de crear un archivo, decide su capa (primitive / component / pattern).
+3. Busca si ya existe una pieza que haga lo que necesitas — hay 92.
+4. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).
 5. Corre `npm run typecheck` después de cada cambio.
-6. Agrega cada pieza nueva al `index.ts` de su nivel.
+6. Agrega cada pieza nueva al `index.ts` de su capa y crea su test.
+7. Si el cambio toca Flutter, mantén paridad: cada widget React tiene su equivalente en `flutter/lib/src/`.
 
 Si trabajas desde **otro repo**, conecta el MCP server (sección anterior).

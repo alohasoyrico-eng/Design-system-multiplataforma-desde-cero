@@ -125,8 +125,8 @@ export function WizardPage() {
           submitLabel="Registrar unidad"
         >
           {step === 0 && (
-            <div ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-stack)' }}>
                 <div data-field="plate">
                   <Field label="Placa" htmlFor="wz-plate" required error={errors.plate}>
                     <Input value={data.plate} onChange={set('plate')} placeholder="ABC-123-X" error={!!errors.plate} />
@@ -138,7 +138,7 @@ export function WizardPage() {
                   </Field>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-stack)' }}>
                 <div data-field="brand">
                   <Field label="Marca" htmlFor="wz-brand" required error={errors.brand}>
                     <Input value={data.brand} onChange={set('brand')} placeholder="Toyota" error={!!errors.brand} />
@@ -150,7 +150,7 @@ export function WizardPage() {
                   </Field>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-stack)' }}>
                 <div data-field="year">
                   <Field label="Año" htmlFor="wz-year" required error={errors.year}>
                     <Select options={YEARS} value={data.year} onChange={set('year')} placeholder="Seleccionar…" invalid={!!errors.year} />
@@ -177,13 +177,13 @@ export function WizardPage() {
           )}
 
           {step === 1 && (
-            <div ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
               <div data-field="driver">
                 <Field label="Nombre completo" htmlFor="wz-driver" required error={errors.driver}>
                   <Input value={data.driver} onChange={set('driver')} placeholder="Juan Pérez" error={!!errors.driver} />
                 </Field>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-stack)' }}>
                 <div data-field="license">
                   <Field label="Número de licencia" htmlFor="wz-license" required error={errors.license}>
                     <Input value={data.license} onChange={set('license')} placeholder="LIC-12345" error={!!errors.license} />

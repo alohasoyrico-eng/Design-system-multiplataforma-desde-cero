@@ -1,0 +1,31 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+
+.value {
+  font: var(--type-data-xl);
+  font-size: var(--_nip-value-size, 40px);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 8px;
+}
+
+.blur {
+  filter: blur(4px);
+  transition: filter var(--dur-fast);
+}
+
+.hint {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+.warning {
+  font: var(--type-body-md);
+  color: var(--text-secondary);
+  text-align: center;
+}

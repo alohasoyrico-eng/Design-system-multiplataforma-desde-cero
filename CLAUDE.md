@@ -180,7 +180,8 @@ Usa estos tokens en los estilos. Nunca valores crudos.
 | `--text-muted` | Texto terciario: placeholders, hints, metadata |
 | `--text-on-accent` | Texto sobre fondo de acento (botón accent) |
 | `--text-on-inverse` | Texto sobre fondo inverse |
-| `--text-accent` | Texto con color de marca (links, labels activos) |
+| `--text-accent` | Texto con color de acento azul (labels activos) |
+| `--text-link` | Links. Azul acento |
 
 ### Bordes
 
@@ -189,7 +190,7 @@ Usa estos tokens en los estilos. Nunca valores crudos.
 | `--border-subtle` | Bordes suaves: cards, divisores, filas de tabla |
 | `--border-default` | Bordes normales: inputs en reposo |
 | `--border-strong` | Bordes enfáticos: hover en inputs, separadores activos |
-| `--border-focus` | Borde de foco (rojo marca) |
+| `--border-focus` | Borde de foco (azul acento) |
 
 ### Estado
 
@@ -199,6 +200,26 @@ Usa estos tokens en los estilos. Nunca valores crudos.
 | `--status-warning` / `-text` / `-bg` | Advertencia, pendiente, riesgo |
 | `--status-danger` / `-text` / `-bg` | Error, rechazado, peligro |
 | `--status-info` / `-text` / `-bg` | Informativo, en progreso |
+
+### Paleta base (Edenred Foundation Core)
+
+| Ramp | Uso | Rango |
+|---|---|---|
+| `--flow-grey-*` | Neutros (cool slate) | 50–900 |
+| `--flow-red-*` | Rojo marca Edenred #F72717 (identidad, NO CTAs) | 50–900 |
+| `--flow-blue-*` | Azul acento #0060df (CTAs, links, foco, info) | 50–900 |
+| `--flow-green-*` | Éxito | 50–900 |
+| `--flow-orange-*` | Advertencia | 50–900 |
+| `--flow-danger-*` | Error/peligro (rojo funcional, NO marca) | 50–700 |
+
+El rojo de marca NO se usa para CTAs ni acciones — produce falso affordance con `--status-danger`. Los CTAs usan azul (`--action-accent`).
+
+### Overlay alpha
+
+| Token | Valor |
+|---|---|
+| `--alpha-white-5` a `--alpha-white-70` | rgba blanco con opacidades 0.06–0.70 |
+| `--alpha-black-5` a `--alpha-black-50` | rgba negro con opacidades 0.06–0.50 |
 
 ### Forma
 
@@ -213,7 +234,34 @@ Usa estos tokens en los estilos. Nunca valores crudos.
 
 ### Espaciado
 
-Escala: `--space-1` (4px), `--space-2` (8px), `--space-3` (12px), `--space-4` (16px), `--space-5` (20px), `--space-6` (24px), `--space-8` (32px), `--space-10` (40px), `--space-12` (48px), `--space-16` (64px).
+Escala: `--space-1` (4px), `--space-2` (8px), `--space-3` (12px), `--space-4` (16px), `--space-5` (20px), `--space-6` (24px), `--space-7` (28px), `--space-8` (32px), `--space-10` (40px), `--space-12` (48px), `--space-16` (64px).
+
+### Sizing
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--height-control-lg` | 52px | Controles tamaño lg (Button, ControlShell, IconButton, OTPInput) |
+| `--height-bar` | 56px | Barras fijas (TopBar, TabBar, PasscodeKeypad) |
+| `--hit-target-min` | 44px | Mínimo de área táctil en cualquier control |
+
+### Layout
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--sidebar-width` | 240px | Ancho del sidebar en layouts internos |
+| `--sidebar-collapsed` | 64px | Sidebar colapsado |
+| `--content-max` | 1440px | Máximo ancho de contenido |
+
+### Component-level spacing
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--pad-card` | 24px | Padding interior de cards, modals, drawers |
+| `--pad-section` | 32px | Padding de secciones de página |
+| `--gap-inline` | 8px | Gap icon-to-label |
+| `--gap-stack` | 16px | Gap vertical entre cards/secciones |
+
+Valores sub-4px (1px, 2px, 3px) se mantienen como literal cuando son ajuste visual fino.
 
 ### Motion
 
@@ -236,9 +284,29 @@ Escala: `--space-1` (4px), `--space-2` (8px), `--space-3` (12px), `--space-4` (1
 
 | Token | Fuente |
 |---|---|
-| `--font-display` | Sora |
-| `--font-body` | Sora |
-| `--font-mono` | JetBrains Mono |
+| `--font-display` | Edenred (self-hosted .woff2) |
+| `--font-body` | Ubuntu (Google Fonts) |
+| `--font-mono` | IBM Plex Mono (Google Fonts) |
+
+Jerarquía tipográfica:
+
+**Edenred** — todos los títulos. Bold para niveles 1-4, Regular para nivel 5 (card/dialog).
+**Ubuntu** — body, labels, elementos interactivos (botones, inputs, nav).
+**IBM Plex Mono Light** — todo lo numérico/código: KPIs, OTP, IDs, timestamps, badges numéricos.
+
+| Token | Nivel | Weight Size/LH | Fuente |
+|---|---|---|---|
+| `--type-display-lg` | 1 · Hero | 700 48px/1.1 | Edenred Bold |
+| `--type-display-md` | 2 · Hero secundario | 700 36px/1.15 | Edenred Bold |
+| `--type-headline-lg` | 3 · Título de página | 700 28px/1.25 | Edenred Bold |
+| `--type-title-lg` | 4 · Título de sección | 700 20px/1.3 | Edenred Bold |
+| `--type-title-md` | 5 · Título de card | 400 16px/1.4 | Edenred Regular |
+| `--type-body-md` | Body default | 400 14px/1.55 | Ubuntu |
+| `--type-body-md-strong` | Body enfatizado | 600 14px/1.55 | Ubuntu |
+| `--type-body-sm` | Metadata/hints | 400 12px/1.5 | Ubuntu |
+| `--type-label-sm` | Labels/status | 700 11px/1.3 | Ubuntu |
+| `--type-data` | Datos tabulares | 300 13px/1.5 | IBM Plex Mono |
+| `--type-data-lg` | KPIs/balances | 300 26px/1.15 | IBM Plex Mono |
 
 ### Iconos
 
@@ -263,7 +331,7 @@ Cada componente con estilos propios tiene un `.module.css` al lado del `.tsx`.
 
 ### Reglas de CSS
 
-1. **Solo tokens.** `color: var(--text-primary)`, nunca `color: #17171a`.
+1. **Solo tokens.** `color: var(--text-primary)`, nunca `color: #0F172A`.
 2. **Variantes con data attributes**, no con clases extra:
    ```css
    .root[data-variant="accent"] { background: var(--flow-red-500); }

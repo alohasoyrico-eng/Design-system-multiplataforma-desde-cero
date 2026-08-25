@@ -16,10 +16,10 @@
 .labeled {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
   width: 100%;
   color: var(--text-muted);
-  font-size: 12px;
+  font: var(--type-body-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;

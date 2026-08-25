@@ -7,11 +7,13 @@ export interface FieldProps {
   required?: boolean
   help?: string
   error?: string
+  valid?: boolean
+  validMessage?: string
   children: ReactNode
   style?: CSSProperties
 }
 
-export function Field({ label, htmlFor, required, help, error, children, style }: FieldProps) {
+export function Field({ label, htmlFor, required, help, error, valid, validMessage, children, style }: FieldProps) {
   const autoId = useId()
   const messageId = `${htmlFor ?? autoId}-msg`
 
@@ -19,20 +21,29 @@ export function Field({ label, htmlFor, required, help, error, children, style }
     console.warn('[Field] htmlFor is missing — label will not be associated with a control.')
   }
 
+  const messageText = error ?? (valid && validMessage ? validMessage : help)
+  const messageState = error ? 'error' : valid ? 'valid' : undefined
+
   return (
-    <div className={css.root} style={style}>
+    <div className={css.root} data-error={error ? '' : undefined} data-valid={valid || undefined} style={style}>
       <label className={css.label} htmlFor={htmlFor}>
         {label}
         {required && <span className={css.required} aria-hidden="true"> *</span>}
       </label>
-      {children}
+      <div className={css.control}>{children}</div>
       <div
         className={css.message}
         id={messageId}
         role={error ? 'alert' : undefined}
-        data-error={error ? '' : undefined}
+        data-state={messageState}
       >
-        {error ?? help}
+        {messageState === 'valid' && (
+          <span className={`flow-icon ${css.validIcon}`} aria-hidden="true">check_circle</span>
+        )}
+        {messageState === 'error' && (
+          <span className={`flow-icon ${css.errorIcon}`} aria-hidden="true">error</span>
+        )}
+        {messageText}
       </div>
     </div>
   )

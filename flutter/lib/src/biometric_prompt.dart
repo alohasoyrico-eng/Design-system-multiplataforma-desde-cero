@@ -1,10 +1,10 @@
+
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'flow_tokens.dart';
 import 'flow_theme.dart';
-
 enum BiometricMethod { face, fingerprint }
 enum BiometricState { idle, scanning, success, error }
-
 class FlowBiometricPrompt extends StatelessWidget {
   final BiometricMethod method;
   final BiometricState state;
@@ -13,7 +13,6 @@ class FlowBiometricPrompt extends StatelessWidget {
   final VoidCallback? onUse;
   final VoidCallback? onFallback;
   final String fallbackLabel;
-
   const FlowBiometricPrompt({
     super.key,
     this.method = BiometricMethod.face,
@@ -24,41 +23,35 @@ class FlowBiometricPrompt extends StatelessWidget {
     this.onFallback,
     this.fallbackLabel = 'Usar passcode',
   });
-
   IconData get _icon => method == BiometricMethod.face
-      ? Icons.face
-      : Icons.fingerprint;
-
+      ? Symbols.face_rounded
+      : Symbols.fingerprint_rounded;
   String get _defaultTitle => method == BiometricMethod.face
       ? 'Face ID'
       : 'Touch ID';
-
   Color _iconColor(FlowScheme scheme) => switch (state) {
     BiometricState.idle => scheme.textMuted,
     BiometricState.scanning => scheme.actionAccent,
     BiometricState.success => FlowColors.green500,
     BiometricState.error => FlowColors.danger500,
   };
-
   String get _statusText => switch (state) {
     BiometricState.idle => 'Toca para verificar',
     BiometricState.scanning => 'Verificando…',
     BiometricState.success => 'Verificado',
     BiometricState.error => 'No reconocido',
   };
-
   @override
   Widget build(BuildContext context) {
     final scheme = FlowTheme.maybeOf(context) ?? FlowScheme.light;
     final reducedMotion = MediaQuery.of(context).disableAnimations;
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           title ?? _defaultTitle,
           style: TextStyle(
-            fontSize: FlowFontSize.title,
+            fontSize: FlowFontSize.titleLg,
             fontWeight: FontWeight.w600,
             color: scheme.textPrimary,
           ),
@@ -68,7 +61,7 @@ class FlowBiometricPrompt extends StatelessWidget {
           Text(
             description!,
             style: TextStyle(
-              fontSize: FlowFontSize.body,
+              fontSize: FlowFontSize.bodyMd,
               color: scheme.textSecondary,
             ),
             textAlign: TextAlign.center,
@@ -92,7 +85,7 @@ class FlowBiometricPrompt extends StatelessWidget {
               : Text(
                   _statusText,
                   style: TextStyle(
-                    fontSize: FlowFontSize.body,
+                    fontSize: FlowFontSize.bodyMd,
                     color: scheme.textMuted,
                   ),
                 ),
@@ -103,7 +96,7 @@ class FlowBiometricPrompt extends StatelessWidget {
           child: Text(
             fallbackLabel,
             style: TextStyle(
-              fontSize: FlowFontSize.body,
+              fontSize: FlowFontSize.bodyMd,
               color: scheme.textAccent,
               fontWeight: FontWeight.w500,
             ),
@@ -113,13 +106,10 @@ class FlowBiometricPrompt extends StatelessWidget {
     );
   }
 }
-
 class _ErrorStatus extends StatelessWidget {
   final String text;
   final FlowScheme scheme;
-
   const _ErrorStatus({required this.text, required this.scheme});
-
   @override
   Widget build(BuildContext context) {
     return Semantics(
@@ -127,7 +117,7 @@ class _ErrorStatus extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: FlowFontSize.body,
+          fontSize: FlowFontSize.bodyMd,
           color: FlowColors.danger500,
           fontWeight: FontWeight.w500,
         ),
@@ -135,28 +125,23 @@ class _ErrorStatus extends StatelessWidget {
     );
   }
 }
-
 class _BiometricIcon extends StatefulWidget {
   final IconData icon;
   final Color color;
   final bool scanning;
   final bool success;
-
   const _BiometricIcon({
     required this.icon,
     required this.color,
     required this.scanning,
     required this.success,
   });
-
   @override
   State<_BiometricIcon> createState() => _BiometricIconState();
 }
-
 class _BiometricIconState extends State<_BiometricIcon>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
   @override
   void initState() {
     super.initState();
@@ -166,7 +151,6 @@ class _BiometricIconState extends State<_BiometricIcon>
     );
     if (widget.scanning) _controller.repeat(reverse: true);
   }
-
   @override
   void didUpdateWidget(_BiometricIcon oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -177,13 +161,11 @@ class _BiometricIconState extends State<_BiometricIcon>
       _controller.value = 0;
     }
   }
-
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -207,7 +189,7 @@ class _BiometricIconState extends State<_BiometricIcon>
           color: widget.color.withValues(alpha: 0.12),
         ),
         child: Icon(
-          widget.success ? Icons.check_circle : widget.icon,
+          widget.success ? Symbols.check_circle_rounded : widget.icon,
           size: 40,
           color: widget.color,
         ),

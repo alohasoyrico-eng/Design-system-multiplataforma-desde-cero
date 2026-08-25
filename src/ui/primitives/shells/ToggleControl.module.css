@@ -29,6 +29,6 @@
 }
 
 .label {
-  font: var(--type-body);
+  font: var(--type-body-md);
   color: var(--text-primary);
 }

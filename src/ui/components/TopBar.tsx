@@ -1,4 +1,5 @@
 import { useState, type ReactNode, type CSSProperties } from 'react'
+import { useIntl } from 'react-intl'
 import css from './TopBar.module.css'
 
 export interface TopBarNavItem {
@@ -51,6 +52,7 @@ export function TopBar({
   onToggleSidebar,
   style,
 }: TopBarProps) {
+  const intl = useIntl()
   const [showEntityMenu, setShowEntityMenu] = useState(false)
 
   if (variant === 'fullscreen') return null
@@ -58,7 +60,7 @@ export function TopBar({
   const renderStandard = () => (
     <>
       {logo && <div style={{ display: 'flex', alignItems: 'center' }}>{logo}</div>}
-      <nav aria-label="Secciones" style={{ display: 'flex', gap: 20, flex: 1 }}>
+      <nav aria-label="Secciones" style={{ display: 'flex', gap: 'var(--space-5)', flex: 1 }}>
         {navItems.map((n) => (
           <a
             key={n.id}
@@ -101,7 +103,7 @@ export function TopBar({
 
   const renderAdmin = () => (
     <>
-      <div style={{ flex: 1, display: 'flex', gap: 12 }}>
+      <div style={{ flex: 1, display: 'flex', gap: 'var(--space-3)' }}>
         <input
           type="text"
           aria-label="Buscar unidades y conductores"
@@ -140,7 +142,7 @@ export function TopBar({
           aria-expanded={showEntityMenu}
           onClick={() => setShowEntityMenu((v) => !v)}
         >
-          {currentEntityObj?.label || 'Selecciona…'}
+          {currentEntityObj?.label || intl.formatMessage({ id: 'common.selectEntity', defaultMessage: 'Selecciona…' })}
           <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16 }}>expand_more</span>
         </button>
         {showEntityMenu && (

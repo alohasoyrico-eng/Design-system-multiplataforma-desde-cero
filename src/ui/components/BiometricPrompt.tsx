@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useIntl, type IntlShape } from 'react-intl'
 import css from './BiometricPrompt.module.css'
 
 export interface BiometricPromptProps {
@@ -17,11 +18,13 @@ const METHOD_ICON = {
   fingerprint: 'fingerprint',
 }
 
-const STATE_LABEL: Record<string, string> = {
-  idle: '',
-  scanning: 'Verificando...',
-  success: 'Verificado',
-  error: 'No reconocido',
+function getStateLabel(intl: IntlShape, state: string): string {
+  switch (state) {
+    case 'scanning': return intl.formatMessage({ id: 'biometric.scanning', defaultMessage: 'Verificando...' })
+    case 'success': return intl.formatMessage({ id: 'biometric.success', defaultMessage: 'Verificado' })
+    case 'error': return intl.formatMessage({ id: 'biometric.error', defaultMessage: 'No reconocido' })
+    default: return ''
+  }
 }
 
 export function BiometricPrompt({
@@ -31,9 +34,16 @@ export function BiometricPrompt({
   description,
   onUse,
   onFallback,
-  fallbackLabel = 'Usar passcode',
+  fallbackLabel,
   style,
 }: BiometricPromptProps) {
+  const intl = useIntl()
+  const resolvedFallbackLabel = fallbackLabel ?? intl.formatMessage({ id: 'biometric.fallback', defaultMessage: 'Usar passcode' })
+  const methodLabel = method === 'face'
+    ? intl.formatMessage({ id: 'biometric.faceId', defaultMessage: 'Reconocimiento facial' })
+    : intl.formatMessage({ id: 'biometric.fingerprint', defaultMessage: 'Huella digital' })
+  const stateLabel = getStateLabel(intl, state)
+
   return (
     <div className={css.root} style={style}>
       {title && <div className={css.title}>{title}</div>}
@@ -44,7 +54,7 @@ export function BiometricPrompt({
         data-state={state}
         onClick={onUse}
         type="button"
-        aria-label={`${method === 'face' ? 'Reconocimiento facial' : 'Huella digital'}${STATE_LABEL[state] ? ` — ${STATE_LABEL[state]}` : ''}`}
+        aria-label={`${methodLabel}${stateLabel ? ` — ${stateLabel}` : ''}`}
         disabled={state === 'scanning' || state === 'success'}
       >
         <span className={`flow-icon ${css.icon}`} aria-hidden="true">
@@ -59,7 +69,7 @@ export function BiometricPrompt({
           role={state === 'error' ? 'alert' : 'status'}
           aria-live="polite"
         >
-          {STATE_LABEL[state]}
+          {stateLabel}
         </div>
       )}
 
@@ -68,7 +78,7 @@ export function BiometricPrompt({
         onClick={onFallback}
         type="button"
       >
-        {fallbackLabel}
+        {resolvedFallbackLabel}
       </button>
     </div>
   )
