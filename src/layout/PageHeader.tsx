@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
-import { Breadcrumb } from '../ui/components/Breadcrumb'
-import css from '../App.module.css'
+import { PageHeader as PageHeaderPattern } from '../ui/patterns/PageHeader'
 
 export interface PageHeaderProps {
   crumbs: { label: string }[]
@@ -10,12 +9,10 @@ export interface PageHeaderProps {
 
 export function PageHeader({ crumbs, title, actions }: PageHeaderProps) {
   return (
-    <div className={css.pageHeader}>
-      <div>
-        <Breadcrumb items={crumbs} />
-        <h1 className={css.pageTitle}>{title}</h1>
-      </div>
-      <div className={css.pageActions}>{actions}</div>
-    </div>
+    <PageHeaderPattern
+      title={title}
+      breadcrumb={crumbs.map(c => c.label)}
+      actions={actions}
+    />
   )
 }

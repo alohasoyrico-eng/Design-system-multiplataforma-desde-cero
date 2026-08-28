@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Link, useMatchRoute } from '@tanstack/react-router'
 import { Avatar } from '../ui/primitives/Avatar'
 import css from '../App.module.css'
@@ -20,37 +21,47 @@ const NAV: [string, string, string][] = [
   ['/ajustes', 'settings', 'Ajustes'],
 ]
 
-export function FleetSidebar() {
+export interface FleetSidebarProps {
+  children?: ReactNode
+  open?: boolean
+  onClose?: () => void
+}
+
+export function FleetSidebar({ children, open, onClose }: FleetSidebarProps) {
   const matchRoute = useMatchRoute()
   return (
-    <nav aria-label="Principal" className={css.sidebar}>
-      <img src="/assets/flow-logo.png" alt="Flow" className={css.sidebarLogo} />
-      <div className={css.sidebarGroup}>Dashboards</div>
-      {DASHBOARDS.map(([to, icon, label]) => {
-        const active = !!matchRoute({ to })
-        return (
-          <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined}>
-            <span className={'flow-icon' + (active ? ' flow-icon--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
-            {label}
-          </Link>
-        )
-      })}
-      {NAV.map(([to, icon, label]) => {
-        const active = !!matchRoute({ to })
-        return (
-          <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined}>
-            <span className={'flow-icon' + (active ? ' flow-icon--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
-            {label}
-          </Link>
-        )
-      })}
-      <div className={css.sidebarUser}>
-        <Avatar name="Marta Vidal" status="online" />
-        <div className={css.sidebarUserInfo}>
-          <div className={css.sidebarUserName}>Marta Vidal</div>
-          <div className={css.sidebarUserRole}>Fleet admin</div>
+    <>
+      {open && <div className={css.sidebarBackdrop} onClick={onClose} />}
+      <nav aria-label="Principal" className={css.sidebar} data-open={open || undefined}>
+        <img src="/assets/flow-logo.svg" alt="Flow" className={css.sidebarLogo} />
+        {children}
+        <div className={css.sidebarGroup}>Dashboards</div>
+        {DASHBOARDS.map(([to, icon, label]) => {
+          const active = !!matchRoute({ to })
+          return (
+            <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined} onClick={onClose}>
+              <span className={'flow-icon' + (active ? ' flow-icon--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
+              {label}
+            </Link>
+          )
+        })}
+        {NAV.map(([to, icon, label]) => {
+          const active = !!matchRoute({ to })
+          return (
+            <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined} onClick={onClose}>
+              <span className={'flow-icon' + (active ? ' flow-icon--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
+              {label}
+            </Link>
+          )
+        })}
+        <div className={css.sidebarUser}>
+          <Avatar name="Marta Vidal" status="online" />
+          <div className={css.sidebarUserInfo}>
+            <div className={css.sidebarUserName}>Marta Vidal</div>
+            <div className={css.sidebarUserRole}>Fleet admin</div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   )
 }

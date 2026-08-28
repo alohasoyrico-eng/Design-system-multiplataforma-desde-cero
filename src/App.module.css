@@ -29,7 +29,7 @@
 }
 
 .sidebarLogo {
-  height: 24px;
+  height: 40px;
   align-self: flex-start;
   margin: var(--space-1) var(--space-2) var(--space-5);
 }
@@ -481,12 +481,6 @@
   min-width: 0;
 }
 
-.dashDatePicker {
-  flex: 1 1 200px;
-  min-width: 140px;
-  max-width: 240px;
-}
-
 .kpiGrid4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -616,54 +610,33 @@
   margin-bottom: var(--space-1);
 }
 
+.sidebarBackdrop {
+  display: none;
+}
+
 /* ── Responsive ── */
 
-@media (max-width: 1024px) {
+@media (max-width: 982px) {
   .sidebar {
-    width: var(--sidebar-collapsed);
-    padding: var(--space-5) var(--space-1);
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .sidebarLogo {
-    width: 32px;
-    height: 24px;
-    object-fit: cover;
-    object-position: left;
-    margin: var(--space-1) 0 var(--space-5);
-  }
-
-  .sidebarGroup {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 200;
+    box-shadow: var(--shadow-overlay);
   }
 
-  .sidebarItem,
-  .sidebarItem[data-active] {
-    justify-content: center;
-    padding: 0;
-    width: var(--hit-target-min);
-    font-size: 0 !important;
-    gap: 0;
-    overflow: hidden;
+  .sidebar[data-open] {
+    display: flex;
   }
 
-  .sidebarIcon {
-    font-size: var(--icon-default) !important;
-    flex-shrink: 0;
-  }
-
-  .sidebarUser {
-    justify-content: center;
-  }
-
-  .sidebarUserInfo {
-    display: none;
-  }
-
-  .sidebarActions {
-    flex-direction: column;
-    align-items: center;
+  .sidebarBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 199;
+    background: var(--surface-backdrop);
   }
 
   .main {
@@ -693,17 +666,12 @@
   }
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-
+@media (max-width: 576px) {
   .main {
     padding: var(--space-4);
   }
 
   .kpiGrid4 {
-    grid-template-columns: 1fr 1fr;
     gap: var(--space-2);
   }
 

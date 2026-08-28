@@ -42,4 +42,29 @@ describe('GlobalSearch', () => {
     const { container } = renderWithIntl(<GlobalSearch open={false} mode="palette" />)
     expect(container.querySelector('[role="combobox"]')).not.toBeInTheDocument()
   })
+
+  it('renders shortcut badge inside search bar', () => {
+    renderWithIntl(<GlobalSearch open />)
+    const kbd = document.querySelector('kbd')
+    expect(kbd).toBeInTheDocument()
+  })
+
+  it('renders suggestion chips when provided and no query', () => {
+    renderWithIntl(<GlobalSearch open suggestions={['density', 'focus ring']} value="" />)
+    expect(screen.getByText('density')).toBeInTheDocument()
+    expect(screen.getByText('focus ring')).toBeInTheDocument()
+  })
+
+  it('hides suggestion chips when query is entered', () => {
+    renderWithIntl(<GlobalSearch open suggestions={['density']} value="test" />)
+    expect(screen.queryByText('density')).not.toBeInTheDocument()
+  })
+
+  it('clicking suggestion chip calls onValueChange', async () => {
+    const user = userEvent.setup()
+    const onValueChange = vi.fn()
+    renderWithIntl(<GlobalSearch open suggestions={['density']} value="" onValueChange={onValueChange} />)
+    await user.click(screen.getByText('density'))
+    expect(onValueChange).toHaveBeenCalledWith('density')
+  })
 })

@@ -9,6 +9,33 @@
   gap: var(--space-4);
 }
 
+.root[data-surface="inverse"] {
+  background: var(--surface-inverse);
+  border-bottom-color: transparent;
+  color: var(--text-on-inverse);
+}
+
+/* ── Logo ── */
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+}
+
+.logoCenter {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Nav ── */
+
+.navWrap {
+  display: flex;
+  gap: var(--space-5);
+  flex: 1;
+}
+
 .navLink {
   font: var(--type-body-md);
   font-weight: 500;
@@ -20,6 +47,11 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 
+.navLink[data-size="sm"] {
+  font: var(--type-body-sm);
+  font-weight: 500;
+}
+
 .navLink[data-active] {
   font-weight: 700;
   color: var(--text-primary);
@@ -29,63 +61,79 @@
   color: var(--text-primary);
 }
 
-.searchInput {
-  flex: 1;
-  box-sizing: border-box;
-  min-height: var(--hit-target-min);
-  border: var(--border-width) solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 0 var(--space-3);
-  font: var(--type-body-md);
-  font-family: inherit;
-  background: var(--surface-sunken);
-  color: var(--text-primary);
-}
-
-.searchInput:focus-visible {
+.navLink:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
 }
 
-.iconBtn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  width: var(--hit-target-min);
-  height: var(--hit-target-min);
-  border-radius: var(--radius-pill);
-  padding: 0;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
+.root[data-surface="inverse"] .navLink {
+  color: var(--alpha-white-50);
 }
 
-.iconBtn:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+.root[data-surface="inverse"] .navLink[data-active] {
+  color: var(--text-on-inverse);
 }
 
-.notifBadge {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 var(--space-1);
-  border-radius: var(--radius-pill);
-  box-sizing: border-box;
-  background: var(--status-danger);
-  color: var(--text-on-accent);
-  font: var(--type-data-xs);
-  font-size: var(--_badge-size, 10px);
-  font-weight: 700;
+.root[data-surface="inverse"] .navLink:hover {
+  color: var(--alpha-white-70);
+}
+
+.root[data-surface="inverse"] .navLink:focus-visible {
+  color: var(--text-on-inverse);
+}
+
+/* ── Breadcrumb (minimal variant) ── */
+
+.breadcrumbNav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-2);
+  font: var(--type-body-sm);
+  color: var(--text-secondary);
 }
+
+.breadcrumbSep {
+  color: var(--text-muted);
+  margin-right: var(--space-2);
+}
+
+.breadcrumbLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumbLink:hover {
+  color: var(--text-primary);
+}
+
+.breadcrumbLink:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+.breadcrumbCurrent {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── Notifications (admin variant) ── */
+
+.notifWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.notifCount {
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  pointer-events: none;
+}
+
+/* ── Entity picker (multientity variant) ── */
 
 .entityBtn {
   min-height: var(--hit-target-min);
@@ -97,6 +145,7 @@
   padding: 0 var(--space-3);
   font: var(--type-body-md);
   font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -107,21 +156,6 @@
 .entityBtn:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-}
-
-.entityMenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  margin-top: var(--space-1);
-  min-width: 180px;
-  z-index: 100;
-  background: var(--surface-card);
-  border: var(--border-width) solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-float);
-  padding: var(--space-1);
-  animation: flowScaleIn var(--dur-fast) var(--ease-out) both;
 }
 
 .entityOption {
@@ -151,28 +185,23 @@
   background: var(--surface-sunken);
 }
 
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font: var(--type-body-sm);
-  color: var(--text-secondary);
+/* ── Responsive hamburger ── */
+
+.menuBtn {
+  display: none;
 }
 
-.breadcrumbLink {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-weight: 500;
+@media (max-width: 982px) {
+  .menuBtn {
+    display: flex;
+  }
+
+  .navWrap {
+    display: none;
+  }
 }
 
-.breadcrumbLink:hover {
-  color: var(--text-primary);
-}
-
-.breadcrumbCurrent {
-  color: var(--text-primary);
-  font-weight: 600;
-}
+/* ── Utilities ── */
 
 .spacer {
   flex: 1;

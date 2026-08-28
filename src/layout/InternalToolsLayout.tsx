@@ -53,7 +53,7 @@ export function InternalToolsLayout() {
         <div className={css.shell}>
           <nav aria-label="Internal Tools" className={css.sidebar}>
             <Link to="/" className={css.logo}>
-              <img src="/assets/flow-logo.png" alt="Flow" className={css.logoImg} />
+              <img src="/assets/flow-logo.svg" alt="Flow" className={css.logoImg} />
             </Link>
             <div className={css.brand}>INTERNAL TOOLS</div>
 

@@ -1,6 +1,14 @@
 import { useState, useRef, useEffect, useMemo, useCallback, type ReactNode, type CSSProperties, type KeyboardEvent } from 'react'
 import { useIntl } from 'react-intl'
+import { Badge } from '../primitives/Badge'
+import { Chip } from '../primitives/Chip'
+import { IconButton } from '../primitives/IconButton'
+import { Spinner } from '../primitives/Spinner'
+import { EmptyState } from '../components/EmptyState'
 import css from './GlobalSearch.module.css'
+
+const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
+const shortcutLabel = isMac ? '⌘K' : 'Ctrl+K'
 
 export interface SearchResult {
   id: string
@@ -23,6 +31,7 @@ export interface GlobalSearchProps {
   groupOrder?: string[]
   loading?: boolean
   recents?: SearchResult[]
+  suggestions?: string[]
   onSelect?: (item: SearchResult) => void
   onClearRecents?: () => void
   placeholder?: string
@@ -39,6 +48,7 @@ export function GlobalSearch({
   groupOrder = [],
   loading = false,
   recents = [],
+  suggestions = [],
   onSelect,
   onClearRecents,
   placeholder,
@@ -159,41 +169,47 @@ export function GlobalSearch({
         data-mode={mode}
       />
       {value ? (
-        <button
-          type="button"
-          className={css.clearBtn}
-          aria-label="Limpiar búsqueda"
+        <IconButton
+          icon="close"
+          ariaLabel="Limpiar búsqueda"
+          size="sm"
           onClick={() => { onValueChange?.(''); inputRef.current?.focus() }}
-        >
-          <span className="flow-icon" aria-hidden="true" style={{ fontSize: 18 }}>close</span>
-        </button>
+        />
       ) : (
-        mode === 'palette' && <kbd className={css.kbd} aria-hidden="true">Cmd+K</kbd>
+        mode === 'palette' && <Badge as="kbd" aria-hidden="true">{shortcutLabel}</Badge>
       )}
     </div>
   )
 
+  const suggestionChips = suggestions.length > 0 && value.length < minChars ? (
+    <div className={css.suggestions}>
+      {suggestions.map((s) => (
+        <Chip
+          key={s}
+          label={s}
+          size="sm"
+          mono
+          onClick={() => onValueChange?.(s)}
+        />
+      ))}
+    </div>
+  ) : null
+
   let body: ReactNode
   if (loading) {
     body = (
-      <div className={css.loadingState} role="status" aria-live="polite">
-        <span className={css.loadingDot} aria-hidden="true" />
+      <div className={css.loadingState} aria-live="polite">
+        <Spinner size={14} label="Buscando" />
         Buscando…
       </div>
     )
   } else if (!flat.length) {
     body = (
-      <div className={css.emptyState}>
-        <div className="flow-icon" aria-hidden="true" style={{ fontSize: 28, color: 'var(--text-muted)' }}>
-          {value.length >= minChars ? 'search_off' : 'search'}
-        </div>
-        <p style={{ margin: '8px 0 2px', fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' }}>
-          {value.length >= minChars ? `Sin resultados para "${value}"` : 'Busca en toda la plataforma'}
-        </p>
-        <p style={{ margin: 0, fontSize: 12.5, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          Prueba con una placa, un nombre o un ID de viaje.
-        </p>
-      </div>
+      <EmptyState
+        icon={value.length >= minChars ? 'search_off' : 'search'}
+        title={value.length >= minChars ? `Sin resultados para "${value}"` : 'Busca en toda la plataforma'}
+        description="Prueba con una placa, un nombre o un ID de viaje."
+      />
     )
   } else {
     let idx = -1
@@ -226,19 +242,19 @@ export function GlobalSearch({
                   onClick={() => commit(r)}
                 >
                   {r.icon && (
-                    <span className="flow-icon" aria-hidden="true" style={{ fontSize: 20, color: active ? 'var(--text-primary)' : 'var(--text-muted)', flex: 'none' }}>
+                    <span className={`flow-icon ${css.optionIcon}`} aria-hidden="true" data-active={active || undefined}>
                       {r.icon}
                     </span>
                   )}
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className={css.optionLabel} style={{ fontFamily: r.mono ? 'var(--font-mono)' : undefined }}>
+                  <div className={css.optionBody}>
+                    <div className={css.optionLabel} data-mono={r.mono || undefined}>
                       {highlight(r.label)}
                     </div>
                     {r.meta && <div className={css.optionMeta}>{r.meta}</div>}
                   </div>
-                  {r.trailing && <div style={{ flex: 'none' }}>{r.trailing}</div>}
+                  {r.trailing && <div className={css.optionTrailing}>{r.trailing}</div>}
                   {active && (
-                    <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16, color: 'var(--text-muted)', flex: 'none' }}>
+                    <span className={`flow-icon ${css.optionReturn}`} aria-hidden="true">
                       keyboard_return
                     </span>
                   )}
@@ -274,16 +290,13 @@ export function GlobalSearch({
 
   return (
     <div
-      style={{
-        position: 'fixed', inset: 0, zIndex: 900, display: 'flex',
-        alignItems: 'flex-start', justifyContent: 'center', paddingTop: 80,
-        background: 'var(--surface-backdrop)',
-        ...style,
-      }}
+      className={css.backdrop}
+      style={style}
       onClick={(e) => { if (e.target === e.currentTarget) onOpenChange?.(false) }}
     >
       <div className={css.paletteCard}>
         {searchField}
+        {suggestionChips}
         {body}
         {footer}
       </div>
