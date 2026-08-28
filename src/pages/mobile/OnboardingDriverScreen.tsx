@@ -162,7 +162,7 @@ export function OnboardingDriverScreen() {
 
         {step === 'welcome' && (
           <>
-            <img src="/flow-logo.png" alt="Flow" className={css.logo} />
+            <img src="/flow-logo.svg" alt="Flow" className={css.logo} />
             <div className={css.welcomeBottom}>
               <h1 className={css.heroTitle}>
                 Todo tu día,<br /><span className={css.heroAccent}>en movimiento.</span>
@@ -318,7 +318,7 @@ export function OnboardingDriverScreen() {
 
         {step === 'login' && (
           <div className={css.loginView}>
-            <img src="/flow-logo.png" alt="Flow" className={css.logo} />
+            <img src="/flow-logo.svg" alt="Flow" className={css.logo} />
 
             {loginMode === 'bio' && (
               <div className={css.bioCenter}>

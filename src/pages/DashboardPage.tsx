@@ -9,11 +9,12 @@ import { Tabs } from '../ui/components/Tabs'
 import { Menu } from '../ui/components/Menu'
 import { Badge } from '../ui/primitives/Badge'
 import { Button } from '../ui/primitives/Button'
-import { Breadcrumb } from '../ui/components/Breadcrumb'
-import { DatePicker } from '../ui/components/DatePicker'
+import { DateRangePicker } from '../ui/components/DateRangePicker'
 import { Sparkline } from '../ui/primitives/Sparkline'
+import { IconButton } from '../ui/primitives/IconButton'
 import { NotificationCenter } from '../ui/components/NotificationCenter'
 import { ThemeToggle } from '../components/ThemeToggle'
+import { useOpenSearch } from '../components/SearchContext'
 import { useNotifications } from '../data/api'
 import { Donut } from '../ui/components/Donut'
 import { ScatterPlot } from '../ui/components/ScatterPlot'
@@ -24,42 +25,54 @@ import { BulletChart } from '../ui/components/BulletChart'
 import { GanttChart } from '../ui/components/GanttChart'
 import { MapCanvas } from '../ui/components/MapCanvas'
 import { ChartLegend } from '../ui/primitives/ChartLegend'
+import { PageHeader } from '../ui/patterns/PageHeader'
 import { DOMAIN } from '../data/domain-colors'
 import css from '../App.module.css'
+
+const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
+const searchTooltip = `Buscar (${isMac ? '⌘K' : 'Ctrl+K'})`
 
 function DashboardHeader({ title, crumbs, cta }: { title: string; crumbs: string[]; cta?: ReactNode }) {
   const [range, setRange] = useState('30d')
   const [custom, setCustom] = useState('')
   const { data: notifs = [] } = useNotifications()
+  const openSearch = useOpenSearch()
   return (
-    <div className={css.dashToolbar}>
-      <div className={css.dashToolbarLeft}>
-        <Breadcrumb items={crumbs.map(c => ({ label: c }))} />
-        <h1 className={css.pageTitle}>{title}</h1>
-      </div>
-      <div className={css.dashToolbarRight}>
-        <Tabs value={range} onChange={setRange} items={[
-          { value: '7d', label: '7 dias' },
-          { value: '30d', label: '30 dias' },
-          { value: '90d', label: 'Trimestre' },
-        ]} />
-        <div className={css.dashDatePicker}>
-          <DatePicker value={custom} onChange={setCustom} placeholder="Rango personalizado" />
-        </div>
-        {cta}
-        <Menu
-          align="right"
-          trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
-          items={[
-            { label: 'CSV', icon: 'table' },
-            { label: 'PDF', icon: 'picture_as_pdf' },
-            { label: 'Enviar por correo', icon: 'mail' },
-          ]}
-        />
-        <NotificationCenter items={notifs} onItemClick={() => {}} onMarkAllRead={() => {}} />
-        <ThemeToggle />
-      </div>
-    </div>
+    <PageHeader
+      title={title}
+      breadcrumb={crumbs}
+      trailing={
+        <>
+          <IconButton icon="search" ariaLabel={searchTooltip} onClick={openSearch} />
+          <NotificationCenter items={notifs} onItemClick={() => {}} onMarkAllRead={() => {}} />
+          <ThemeToggle />
+        </>
+      }
+      filters={
+        <>
+          <Tabs value={range} onChange={setRange} items={[
+            { value: '7d', label: '7 dias' },
+            { value: '30d', label: '30 dias' },
+            { value: '90d', label: 'Trimestre' },
+          ]} />
+          <DateRangePicker value={custom} onChange={setCustom} placeholder="Rango personalizado" />
+        </>
+      }
+      actions={
+        <>
+          {cta}
+          <Menu
+            align="right"
+            trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
+            items={[
+              { label: 'CSV', icon: 'table' },
+              { label: 'PDF', icon: 'picture_as_pdf' },
+              { label: 'Enviar por correo', icon: 'mail' },
+            ]}
+          />
+        </>
+      }
+    />
   )
 }
 

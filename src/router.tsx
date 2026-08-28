@@ -21,6 +21,8 @@ import { MailingsPage } from './pages/MailingsPage'
 import { ConfigRolesPage } from './pages/ConfigRolesPage'
 import { PrimitivesShowcasePage } from './pages/PrimitivesShowcasePage'
 import { MobilePage } from './pages/mobile/MobilePage'
+import { TopBarDemoPage } from './pages/TopBarDemoPage'
+import { ComponentDetailPage } from './pages/ComponentDetailPage'
 
 const rootRoute = createRootRoute({ component: Outlet })
 
@@ -188,6 +190,18 @@ const itGrowthRoute = createRoute({
   component: ITGrowthPage,
 })
 
+const topbarDemoRoute = createRoute({
+  getParentRoute: () => appLayout,
+  path: '/topbar-demo',
+  component: TopBarDemoPage,
+})
+
+const componentDetailRoute = createRoute({
+  getParentRoute: () => appLayout,
+  path: '/docs/button',
+  component: ComponentDetailPage,
+})
+
 const routeTree = rootRoute.addChildren([
   loginRoute,
   onboardingRoute,
@@ -208,6 +222,8 @@ const routeTree = rootRoute.addChildren([
     configRolesRoute,
     showcaseRoute,
     mobileRoute,
+    topbarDemoRoute,
+    componentDetailRoute,
   ]),
   itLayout.addChildren([
     itResumenRoute,

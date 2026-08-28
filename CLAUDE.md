@@ -156,6 +156,44 @@ Estos son los nombres estándar. Úsalos tal cual — no inventes sinónimos.
 
 ---
 
+## Arquitectura de tokens: ref → sys → comp
+
+Los tokens siguen una cadena de tres niveles. Las capas que no son density-sensitive (colores, sombras, motion) se quedan planas.
+
+```
+ref (valores crudos)  →  sys (decisiones de UI + density)  →  comp (overrides por componente, opcional)
+```
+
+| Capa | Vive en | Qué contiene | Quién la toca |
+|---|---|---|---|
+| **ref** | `src/tokens/ref/` | Escala cruda: `--ref-space-100: 4px`, `--ref-radius-100: 8px`, `--ref-type-size-14: 14px` | Solo el equipo de foundations |
+| **sys** | `src/tokens/spacing.css`, `shape.css`, `typography.css` | Aliases semánticos: `--space-1: var(--ref-space-100)`. Density overrides viven aquí | Foundations + quien agregue densidades |
+| **comp** | (futuro) En el `.module.css` del componente | Override puntual: `--button-radius: var(--radius-pill)` | El dueño del componente |
+
+### Density
+
+`data-density` se pone en cualquier nodo del DOM. Los tokens density-sensitive se redefinen para ese subárbol.
+
+```html
+<div data-density="compact"><!-- todo aquí es más apretado --></div>
+<div data-density="comfortable"><!-- todo aquí es más holgado --></div>
+```
+
+**Density-sensitive** (cambian con `data-density`): spacing, radius, sizing/heights, typography, padding/gap.
+
+**Density-independent** (se quedan planos): colores, sombras, motion, dataviz, font families.
+
+### Archivos ref
+
+| Archivo | Tokens |
+|---|---|
+| `ref/spacing.css` | `--ref-space-100` … `--ref-space-1600` |
+| `ref/radius.css` | `--ref-radius-100` … `--ref-radius-pill` |
+| `ref/sizing.css` | `--ref-size-target`, `--ref-size-control`, `--ref-size-bar`, layout sizes |
+| `ref/typography.css` | `--ref-type-size-*`, `--ref-type-lh-*`, `--ref-type-wt-*`, tracking |
+
+---
+
 ## Referencia de tokens
 
 Usa estos tokens en los estilos. Nunca valores crudos.

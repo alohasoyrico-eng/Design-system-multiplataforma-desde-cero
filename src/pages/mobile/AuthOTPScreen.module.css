@@ -6,7 +6,7 @@
 }
 
 .logo {
-  height: 22px;
+  height: 32px;
   align-self: center;
   margin-top: var(--space-3);
   filter: invert(1);

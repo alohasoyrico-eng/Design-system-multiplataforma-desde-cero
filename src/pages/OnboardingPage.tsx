@@ -152,7 +152,7 @@ export function OnboardingPage() {
 
   return (
     <div className={css.root}>
-      <img src="/assets/flow-logo.png" alt="Flow" className={css.logo} />
+      <img src="/assets/flow-logo.svg" alt="Flow" className={css.logo} />
       <h1 className={css.title}>Crea tu flota</h1>
 
       <Stepper

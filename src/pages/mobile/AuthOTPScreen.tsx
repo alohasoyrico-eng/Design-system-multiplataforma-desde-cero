@@ -40,7 +40,7 @@ export function AuthOTPScreen() {
     <PhoneFrame dark>
       <div className={css.view}>
         <img
-          src="/flow-logo.png"
+          src="/flow-logo.svg"
           alt="Flow"
           className={css.logo}
         />

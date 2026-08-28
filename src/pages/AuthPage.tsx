@@ -39,7 +39,7 @@ export function AuthPage() {
   return (
     <div className={css.root}>
       <section className={css.brand} aria-hidden="true">
-        <img src="/assets/flow-logo.png" alt="" className={css.logo} />
+        <img src="/assets/flow-logo.svg" alt="" className={css.logo} />
         <div>
           <div className={css.headline}>
             Todo tu día,<br />

@@ -1,0 +1,83 @@
+/* ── Component Detail Template ── */
+
+.page {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--pad-section) var(--space-10);
+}
+
+/* ── Zone 4: Hero header ── */
+
+.hero {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-8);
+  align-items: end;
+  margin-bottom: var(--space-8);
+}
+
+.heroMain {
+  min-width: 0;
+}
+
+.heroHeadline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(64px, 13vw, 196px);
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  color: var(--action-accent);
+  margin: 0 0 var(--space-5);
+}
+
+.heroDesc {
+  font: var(--type-body-md);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 52ch;
+  margin: 0;
+}
+
+.heroMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.heroPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+@media (max-width: 982px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .heroMeta {
+    align-items: flex-start;
+  }
+
+  .heroPills {
+    justify-content: flex-start;
+  }
+
+  .heroHeadline {
+    font-size: clamp(48px, 13vw, 96px);
+  }
+}
+
+@media (max-width: 576px) {
+  .page {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .heroHeadline {
+    font-size: clamp(36px, 15vw, 64px);
+  }
+}

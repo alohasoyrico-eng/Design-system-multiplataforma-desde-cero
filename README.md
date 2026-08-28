@@ -88,11 +88,29 @@ Flow usa tokens semánticos en vez de hex. El modo oscuro funciona solo:
 | `--surface-sunken` | `--text-muted` | `--border-strong` | `--status-danger` |
 | `--surface-inverse` | `--text-accent` | `--border-focus` | `--status-info` |
 
-### Sistema de tokens (12 archivos)
+### Sistema de tokens (16 archivos, 3 capas)
 
-`colors` · `dark` · `typography` · `spacing` · `shape` · `elevation` · `motion` · `dataviz` · `fonts` · `iconography` · `a11y` · `products`
+Los tokens siguen una cadena `ref → sys → comp`:
 
-Todos en `src/tokens/`. La referencia completa está en `CLAUDE.md`.
+```
+ref (valores crudos)  →  sys (decisiones de UI)  →  comp (overrides por componente)
+```
+
+**Ref** (`src/tokens/ref/`): escala cruda platform-agnostic — `spacing` · `radius` · `sizing` · `typography`
+
+**Sys** (`src/tokens/`): aliases semánticos + density — `colors` · `dark` · `typography` · `spacing` · `shape` · `elevation` · `motion` · `dataviz` · `fonts` · `iconography` · `a11y` · `products`
+
+### Density
+
+Tres densidades que ajustan spacing, radios, sizing y tipografía:
+
+```html
+<div data-density="compact"><!-- tabla densa, data-heavy --></div>
+<div data-density="comfortable"><!-- lectura relajada --></div>
+<!-- sin atributo = default -->
+```
+
+La referencia completa está en `CLAUDE.md`.
 
 ## Iconos
 
@@ -183,7 +201,7 @@ Las reglas completas y la receta detallada están en `CLAUDE.md`.
 
 ```bash
 npm run typecheck   # TypeScript — cero errores
-npm run test        # 661 tests — todos pasan
+npm run test        # 670 tests — todos pasan
 npm run build       # build de producción
 ```
 
@@ -196,7 +214,7 @@ npm run build       # build de producción
 | Data | TanStack Query |
 | Charts | ECharts (via FlowChart) |
 | Icons | Material Symbols |
-| Testing | Vitest · Testing Library (99 archivos, 661 tests) |
+| Testing | Vitest · Testing Library (99 archivos, 670 tests) |
 | Build | Vite |
 | Mobile | Flutter · Dart |
 | Styling | Tokens semánticos — sin Tailwind |
