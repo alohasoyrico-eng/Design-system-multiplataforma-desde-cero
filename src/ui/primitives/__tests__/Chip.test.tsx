@@ -37,6 +37,11 @@ describe('Chip', () => {
     expect(screen.getByLabelText('Quitar Removable')).toBeInTheDocument()
   })
 
+  it('renders size sm with data-size attribute', () => {
+    const { container } = render(<Chip label="Small" size="sm" />)
+    expect(container.firstChild).toHaveAttribute('data-size', 'sm')
+  })
+
   it('fires onRemove without triggering onClick', async () => {
     const user = userEvent.setup()
     const onClick = vi.fn()

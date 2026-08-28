@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.label {
+  font: var(--type-label-sm);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.meta {
+  font: var(--type-data);
+  color: var(--text-muted);
+  white-space: nowrap;
+}

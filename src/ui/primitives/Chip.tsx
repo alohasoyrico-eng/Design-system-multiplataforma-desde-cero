@@ -3,6 +3,8 @@ import css from './Chip.module.css'
 
 export interface ChipProps {
   label: string
+  size?: 'sm' | 'md'
+  mono?: boolean
   selected?: boolean
   onClick?: MouseEventHandler<HTMLButtonElement>
   onRemove?: () => void
@@ -13,6 +15,8 @@ export interface ChipProps {
 
 export function Chip({
   label,
+  size = 'md',
+  mono = false,
   selected = false,
   onClick,
   onRemove,
@@ -43,6 +47,8 @@ export function Chip({
       <Tag
         type={clickable ? 'button' : undefined}
         className={css.root}
+        data-size={size}
+        data-mono={mono || undefined}
         data-selected={selected || undefined}
         data-disabled={disabled || undefined}
         onClick={disabled ? undefined : (onClick as MouseEventHandler<HTMLElement>)}
@@ -59,6 +65,8 @@ export function Chip({
   return (
     <span
       className={`${css.root} ${css.compound}`}
+      data-size={size}
+      data-mono={mono || undefined}
       data-selected={selected || undefined}
       data-disabled={disabled || undefined}
       style={style}

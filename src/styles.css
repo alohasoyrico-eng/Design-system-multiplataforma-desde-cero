@@ -1,3 +1,10 @@
+/* Ref layer — raw platform-agnostic values */
+@import "tokens/ref/spacing.css";
+@import "tokens/ref/radius.css";
+@import "tokens/ref/sizing.css";
+@import "tokens/ref/typography.css";
+
+/* Sys layer — semantic tokens, density overrides */
 @import "tokens/fonts.css";
 @import "tokens/colors.css";
 @import "tokens/typography.css";

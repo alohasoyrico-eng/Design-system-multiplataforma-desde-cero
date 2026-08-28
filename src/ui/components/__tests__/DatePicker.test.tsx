@@ -27,17 +27,22 @@ describe('DatePicker', () => {
     expect(display).toBeInTheDocument()
   })
 
-  it('opens date input on click', async () => {
+  it('opens calendar on click and selects a day', async () => {
+    const onChange = vi.fn()
     const user = userEvent.setup()
-    const { container } = renderWithIntl(<DatePicker />)
+    renderWithIntl(<DatePicker onChange={onChange} />)
     await user.click(screen.getByText('Seleccionar fecha'))
-    const dateInput = container.querySelector('input[type="date"]')
-    expect(dateInput).toBeInTheDocument()
+    expect(screen.getByText('Hoy')).toBeInTheDocument()
+    await user.click(screen.getByText('15'))
+    expect(onChange).toHaveBeenCalledWith(expect.stringContaining('-15'))
   })
 
-  it('does not show date input by default', () => {
-    const { container } = renderWithIntl(<DatePicker />)
-    const dateInput = container.querySelector('input[type="date"]')
-    expect(dateInput).not.toBeInTheDocument()
+  it('clears value with Borrar button', async () => {
+    const onChange = vi.fn()
+    const user = userEvent.setup()
+    renderWithIntl(<DatePicker value="2024-03-15" onChange={onChange} />)
+    await user.click(screen.getByText(/15/))
+    await user.click(screen.getByText('Borrar'))
+    expect(onChange).toHaveBeenCalledWith('')
   })
 })

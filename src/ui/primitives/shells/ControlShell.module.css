@@ -29,6 +29,11 @@
   padding: var(--space-3) var(--space-6);
 }
 
+.root[data-filled] {
+  background: var(--surface-sunken);
+  border-color: var(--border-subtle);
+}
+
 .root[data-error] {
   border-color: var(--status-danger);
 }

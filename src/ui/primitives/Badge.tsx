@@ -7,16 +7,17 @@ export interface BadgeProps {
   tone?: BadgeTone
   icon?: string
   live?: boolean
+  as?: 'span' | 'kbd'
   children?: ReactNode
   style?: CSSProperties
 }
 
-export function Badge({ tone = 'default', icon, live, children, style }: BadgeProps) {
+export function Badge({ tone = 'default', icon, live, as: Tag = 'span', children, style }: BadgeProps) {
   return (
-    <span className={css.root} data-tone={tone} style={style}>
+    <Tag className={css.root} data-tone={tone} style={style}>
       {live && <span className={css.dot} />}
       {icon && <span className={`flow-icon ${css.icon}`} aria-hidden="true">{icon}</span>}
       {children}
-    </span>
+    </Tag>
   )
 }

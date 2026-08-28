@@ -1,52 +1,74 @@
-/* Flow · Spacing — 4px base, airy by default */
+/* Flow · Sys · Spacing — semantic aliases + density overrides */
 :root {
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-7: 28px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
+  /* Scale — aliases to ref */
+  --space-1: var(--ref-space-100);
+  --space-2: var(--ref-space-200);
+  --space-3: var(--ref-space-300);
+  --space-4: var(--ref-space-400);
+  --space-5: var(--ref-space-500);
+  --space-6: var(--ref-space-600);
+  --space-7: var(--ref-space-700);
+  --space-8: var(--ref-space-800);
+  --space-10: var(--ref-space-1000);
+  --space-12: var(--ref-space-1200);
+  --space-16: var(--ref-space-1600);
 
   /* Sizing */
-  --height-control-lg: 52px;
-  --height-bar: 56px;
+  --height-control-lg: var(--ref-size-control);
+  --height-bar: var(--ref-size-bar);
 
   /* Component-level */
-  --pad-control-y: 12px;
-  --pad-control-x: 20px;
-  --pad-card: 24px;
-  --pad-section: 32px;
-  --gap-inline: 8px;
-  --gap-stack: 16px;
-  --hit-target-min: 44px;
+  --pad-control-y: var(--ref-space-300);
+  --pad-control-x: var(--ref-space-500);
+  --pad-card: var(--ref-space-600);
+  --pad-section: var(--ref-space-800);
+  --gap-inline: var(--ref-space-200);
+  --gap-stack: var(--ref-space-400);
+  --hit-target-min: var(--ref-size-target);
 
   /* Layout */
-  --content-max: 1440px;
-  --sidebar-width: 240px;
-  --sidebar-collapsed: 64px;
+  --content-max: var(--ref-size-content-max);
+  --sidebar-width: var(--ref-size-sidebar);
+  --sidebar-collapsed: var(--ref-size-sidebar-collapsed);
   --bp-sm: 576px;
   --bp-md: 982px;
 
-  /* Density — comfortable default, compact overridable per-subtree */
+  /* Density — default values (comfortable default) */
   --density-control-y: var(--pad-control-y);
   --density-control-x: var(--pad-control-x);
-  --density-item-y: 12px;
+  --density-item-y: var(--ref-space-300);
   --density-item-x: var(--space-4);
   --density-cell-y: 14px;
-  --density-cell-x: 16px;
-  --density-head-y: 12px;
+  --density-cell-x: var(--ref-space-400);
+  --density-head-y: var(--ref-space-300);
 }
 
 [data-density="compact"] {
-  --density-control-y: 8px;
-  --density-control-x: 16px;
-  --density-item-y: 8px;
+  --pad-card: var(--ref-space-400);
+  --pad-section: var(--ref-space-600);
+  --gap-stack: var(--ref-space-300);
+  --height-control-lg: var(--ref-size-target);
+  --height-bar: 48px;
+
+  --density-control-y: var(--ref-space-200);
+  --density-control-x: var(--ref-space-400);
+  --density-item-y: var(--ref-space-200);
   --density-item-x: var(--space-3);
   --density-cell-y: 10px;
-  --density-head-y: 8px;
+  --density-head-y: var(--ref-space-200);
+}
+
+[data-density="comfortable"] {
+  --pad-card: var(--ref-space-800);
+  --pad-section: var(--ref-space-1000);
+  --gap-stack: var(--ref-space-500);
+  --height-control-lg: 56px;
+  --height-bar: 60px;
+
+  --density-control-y: var(--ref-space-400);
+  --density-control-x: var(--ref-space-600);
+  --density-item-y: var(--ref-space-400);
+  --density-item-x: var(--space-5);
+  --density-cell-y: 16px;
+  --density-head-y: var(--ref-space-400);
 }

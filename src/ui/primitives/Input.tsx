@@ -9,6 +9,7 @@ export interface InputProps {
   placeholder?: string
   icon?: string
   size?: 'sm' | 'md' | 'lg'
+  filled?: boolean
   disabled?: boolean
   error?: boolean
   type?: string
@@ -24,6 +25,7 @@ export function Input({
   placeholder,
   icon,
   size = 'md',
+  filled,
   disabled,
   error,
   type = 'text',
@@ -53,6 +55,7 @@ export function Input({
   return (
     <ControlShell
       size={size}
+      filled={filled}
       disabled={disabled}
       error={error}
       leading={icon && <span className="flow-icon" style={{ fontSize: 18 }} aria-hidden="true">{icon}</span>}

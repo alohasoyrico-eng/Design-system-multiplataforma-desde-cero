@@ -3,6 +3,7 @@ import css from './ControlShell.module.css'
 
 export interface ControlShellProps {
   size?: 'sm' | 'md' | 'lg'
+  filled?: boolean
   disabled?: boolean
   error?: boolean
   leading?: ReactNode
@@ -14,7 +15,7 @@ export interface ControlShellProps {
 }
 
 export const ControlShell = forwardRef<HTMLDivElement, ControlShellProps>(function ControlShell(
-  { size = 'md', disabled, error, leading, trailing, footer, children, style, onClick, ...rest },
+  { size = 'md', filled, disabled, error, leading, trailing, footer, children, style, onClick, ...rest },
   ref,
 ) {
   return (
@@ -23,6 +24,7 @@ export const ControlShell = forwardRef<HTMLDivElement, ControlShellProps>(functi
       className={css.root}
       data-control-shell=""
       data-size={size}
+      data-filled={filled || undefined}
       data-error={error || undefined}
       data-disabled={disabled || undefined}
       onClick={onClick}

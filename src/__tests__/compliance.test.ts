@@ -363,3 +363,65 @@ describe('Animation ownership', () => {
     expect(hits, `@keyframes outside motion.css:\n${formatHits(hits)}`).toHaveLength(0)
   })
 })
+
+// ── 13. Token tiers: ref → sys chain ────────────────────────────────
+
+describe('Token tiers', () => {
+  const TOKENS = join(ROOT, 'tokens')
+  const REF = join(TOKENS, 'ref')
+
+  it('ref layer files exist', () => {
+    const expected = ['spacing.css', 'radius.css', 'sizing.css', 'typography.css']
+    for (const file of expected) {
+      try {
+        statSync(join(REF, file))
+      } catch {
+        expect.fail(`Missing ref token file: tokens/ref/${file}`)
+      }
+    }
+  })
+
+  it('ref tokens use only raw values (no var() references)', () => {
+    let files: string[]
+    try { files = readdirSync(REF).filter(f => f.endsWith('.css')).map(f => join(REF, f)) } catch { files = [] }
+    const hits = grepFiles(files, /var\(/, /\/\*/)
+    expect(hits, `Ref tokens must not reference other tokens:\n${formatHits(hits)}`).toHaveLength(0)
+  })
+
+  it('sys spacing tokens alias ref tokens', () => {
+    const spacingFile = join(TOKENS, 'spacing.css')
+    const content = readFileSync(spacingFile, 'utf-8')
+    expect(content).toContain('var(--ref-space-')
+    expect(content).toContain('var(--ref-size-')
+  })
+
+  it('sys shape tokens alias ref tokens', () => {
+    const shapeFile = join(TOKENS, 'shape.css')
+    const content = readFileSync(shapeFile, 'utf-8')
+    expect(content).toContain('var(--ref-radius-')
+  })
+
+  it('sys typography tokens reference ref tracking', () => {
+    const typFile = join(TOKENS, 'typography.css')
+    const content = readFileSync(typFile, 'utf-8')
+    expect(content).toContain('var(--ref-tracking-')
+  })
+
+  it('density overrides exist for compact and comfortable', () => {
+    const spacingContent = readFileSync(join(TOKENS, 'spacing.css'), 'utf-8')
+    const shapeContent = readFileSync(join(TOKENS, 'shape.css'), 'utf-8')
+    const typContent = readFileSync(join(TOKENS, 'typography.css'), 'utf-8')
+
+    for (const content of [spacingContent, shapeContent, typContent]) {
+      expect(content, 'Missing compact density override').toContain('[data-density="compact"]')
+      expect(content, 'Missing comfortable density override').toContain('[data-density="comfortable"]')
+    }
+  })
+
+  it('styles.css imports ref layer before sys layer', () => {
+    const stylesContent = readFileSync(join(ROOT, 'styles.css'), 'utf-8')
+    const refPos = stylesContent.indexOf('tokens/ref/')
+    const sysPos = stylesContent.indexOf('tokens/fonts.css')
+    expect(refPos, 'ref imports must come before sys imports').toBeLessThan(sysPos)
+  })
+})

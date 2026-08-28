@@ -44,14 +44,60 @@ describe('Breadcrumb', () => {
     expect(screen.getByRole('navigation', { name: 'Breadcrumb' })).toBeInTheDocument()
   })
 
-  it('renders separators between items', () => {
+  it('renders chevron separators in default variant', () => {
     const { container } = render(<Breadcrumb items={items} />)
-    const separators = container.querySelectorAll('.flow-icon')
-    expect(separators).toHaveLength(2)
+    const icons = container.querySelectorAll('.flow-icon')
+    expect(icons).toHaveLength(2)
+    expect(icons[0].textContent).toBe('chevron_right')
   })
 
   it('renders empty when no items provided', () => {
     const { container } = render(<Breadcrumb />)
     expect(container.querySelector('ol')?.children).toHaveLength(0)
+  })
+})
+
+describe('Breadcrumb variant="subtle"', () => {
+  it('renders slash separators instead of chevrons', () => {
+    const { container } = render(<Breadcrumb items={items} variant="subtle" />)
+    const separators = container.querySelectorAll('[aria-hidden="true"]')
+    const slashes = Array.from(separators).filter(el =>
+      el.textContent === '/' && !el.classList.contains('flow-icon')
+    )
+    expect(slashes).toHaveLength(2)
+  })
+
+  it('renders home icon for first item', () => {
+    const { container } = render(<Breadcrumb items={items} variant="subtle" />)
+    const homeIcon = container.querySelector('.flow-icon')
+    expect(homeIcon).toBeInTheDocument()
+    expect(homeIcon!.textContent).toBe('home')
+  })
+
+  it('sets aria-label on home icon link', () => {
+    render(<Breadcrumb items={items} variant="subtle" />)
+    const link = screen.getByLabelText('Inicio')
+    expect(link.tagName).toBe('A')
+    expect(link).toHaveAttribute('href', '/')
+  })
+
+  it('accepts custom homeIcon', () => {
+    const { container } = render(
+      <Breadcrumb items={items} variant="subtle" homeIcon="cottage" />
+    )
+    const icon = container.querySelector('.flow-icon')
+    expect(icon!.textContent).toBe('cottage')
+  })
+
+  it('sets data-variant on the list', () => {
+    const { container } = render(<Breadcrumb items={items} variant="subtle" />)
+    const list = container.querySelector('ol')
+    expect(list).toHaveAttribute('data-variant', 'subtle')
+  })
+
+  it('renders remaining items as text labels', () => {
+    render(<Breadcrumb items={items} variant="subtle" />)
+    expect(screen.getByText('Productos')).toBeInTheDocument()
+    expect(screen.getByText('Detalle')).toBeInTheDocument()
   })
 })
