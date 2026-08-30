@@ -132,7 +132,7 @@ export function ITGrowthPage() {
                   <Button variant="secondary" onClick={() => { moveCandidate(c.id, 'abandonado'); setDetailKey(null) }}>
                     Marcar abandonado
                   </Button>
-                  <Button variant="accent" onClick={() => { advanceCandidate(c.id); setDetailKey(null) }}>
+                  <Button variant="primary" onClick={() => { advanceCandidate(c.id); setDetailKey(null) }}>
                     Mover a siguiente etapa
                   </Button>
                 </div>

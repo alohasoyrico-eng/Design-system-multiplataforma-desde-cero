@@ -37,7 +37,7 @@
 /* --- variant: ghost --- */
 .root[data-variant='ghost'] {
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 .root[data-variant='ghost']:hover:not(:disabled) {
   background: var(--surface-sunken);
@@ -69,15 +69,6 @@
 }
 .root[data-variant='primary']:hover:not(:disabled) {
   filter: brightness(1.1);
-}
-
-/* --- variant: accent --- */
-.root[data-variant='accent'] {
-  background: var(--action-accent);
-  color: var(--text-on-accent);
-}
-.root[data-variant='accent']:hover:not(:disabled) {
-  box-shadow: var(--shadow-accent-glow);
 }
 
 /* --- selected state --- */

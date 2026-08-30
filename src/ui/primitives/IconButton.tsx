@@ -1,7 +1,7 @@
 import type { CSSProperties, MouseEventHandler } from 'react'
 import css from './IconButton.module.css'
 
-export type IconButtonVariant = 'ghost' | 'tonal' | 'primary' | 'accent' | 'secondary'
+export type IconButtonVariant = 'ghost' | 'tonal' | 'primary' | 'secondary'
 export type IconButtonSize = 'sm' | 'md' | 'lg'
 
 export interface IconButtonProps {

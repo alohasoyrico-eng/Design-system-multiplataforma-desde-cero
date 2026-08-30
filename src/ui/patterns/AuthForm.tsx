@@ -145,7 +145,7 @@ export function AuthForm({
 
       <Button
         type="submit"
-        variant="accent"
+        variant="primary"
         size="lg"
         fullWidth
         loading={loading}

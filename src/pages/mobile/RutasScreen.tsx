@@ -193,7 +193,7 @@ export function RutasScreen() {
               ))}
             </div>
 
-            <Button variant="accent" size="lg" icon="navigation" fullWidth onClick={() => setRouting(true)}>
+            <Button variant="primary" size="lg" icon="navigation" fullWidth onClick={() => setRouting(true)}>
               Cómo llegar · {station.eta}
             </Button>
           </SheetBody>

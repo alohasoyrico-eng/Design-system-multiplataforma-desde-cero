@@ -23,6 +23,7 @@ import { PrimitivesShowcasePage } from './pages/PrimitivesShowcasePage'
 import { MobilePage } from './pages/mobile/MobilePage'
 import { TopBarDemoPage } from './pages/TopBarDemoPage'
 import { ComponentDetailPage } from './pages/ComponentDetailPage'
+import { DocsLayout } from './layout/DocsLayout'
 
 const rootRoute = createRootRoute({ component: Outlet })
 
@@ -196,9 +197,17 @@ const topbarDemoRoute = createRoute({
   component: TopBarDemoPage,
 })
 
+// ── Docs ──
+
+const docsLayout = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/docs',
+  component: DocsLayout,
+})
+
 const componentDetailRoute = createRoute({
-  getParentRoute: () => appLayout,
-  path: '/docs/button',
+  getParentRoute: () => docsLayout,
+  path: '/$componentId',
   component: ComponentDetailPage,
 })
 
@@ -223,6 +232,8 @@ const routeTree = rootRoute.addChildren([
     showcaseRoute,
     mobileRoute,
     topbarDemoRoute,
+  ]),
+  docsLayout.addChildren([
     componentDetailRoute,
   ]),
   itLayout.addChildren([

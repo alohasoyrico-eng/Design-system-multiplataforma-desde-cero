@@ -34,7 +34,7 @@ function RuleDetail({ rule, onClose, onSubmit }: {
       footer={rule && !submitted ? (
         <>
           <Button variant="secondary" onClick={() => { setSubmitted(false); onClose() }}>Cancelar</Button>
-          <Button variant="accent" onClick={handleSubmit}>Enviar a aprobación</Button>
+          <Button variant="primary" onClick={handleSubmit}>Enviar a aprobación</Button>
         </>
       ) : undefined}
     >

@@ -46,7 +46,7 @@ export function Wizard({
         )}
         <div className={css.actionsEnd}>
           {isLast ? (
-            <Button variant="accent" onClick={onSubmit} loading={submitting} disabled={submitting}>
+            <Button variant="primary" onClick={onSubmit} loading={submitting} disabled={submitting}>
               {resolvedSubmitLabel}
             </Button>
           ) : (

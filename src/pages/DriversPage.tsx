@@ -42,7 +42,7 @@ export function DriversPage() {
             <div className={css.inputWidth260}>
               <Input icon="search" placeholder="Buscar conductor…" value={query} onChange={setQuery} size="sm" />
             </div>
-            <Button variant="accent" icon="person_add">Invitar</Button>
+            <Button variant="primary" icon="person_add">Invitar</Button>
           </>
         }
       />

@@ -23,9 +23,9 @@ describe('IconButton', () => {
   })
 
   it('sets data-variant and data-size', () => {
-    render(<IconButton icon="star" ariaLabel="Fav" variant="accent" size="lg" />)
+    render(<IconButton icon="star" ariaLabel="Fav" variant="primary" size="lg" />)
     const btn = screen.getByLabelText('Fav')
-    expect(btn).toHaveAttribute('data-variant', 'accent')
+    expect(btn).toHaveAttribute('data-variant', 'primary')
     expect(btn).toHaveAttribute('data-size', 'lg')
   })
 

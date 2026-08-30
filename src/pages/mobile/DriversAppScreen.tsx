@@ -144,7 +144,7 @@ export function DriversAppScreen() {
                 </div>
                 <div className={css.rideCtas}>
                   <Button variant="ghost" onClick={handlePass}>Pasar</Button>
-                  <Button variant="accent" onClick={handleAccept}>Aceptar</Button>
+                  <Button variant="primary" onClick={handleAccept}>Aceptar</Button>
                 </div>
               </div>
             )}

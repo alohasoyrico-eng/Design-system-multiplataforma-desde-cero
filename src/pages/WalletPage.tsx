@@ -132,7 +132,7 @@ export function WalletPage() {
                 <Field label="Monto a enviar">
                   <InputAmount value={amount} onChange={setAmount} />
                 </Field>
-                <Button variant="accent" fullWidth icon="send" onClick={() => setSheet(true)}>
+                <Button variant="primary" fullWidth icon="send" onClick={() => setSheet(true)}>
                   Enviar {amount ? `$${amount}` : ''}
                 </Button>
               </div>

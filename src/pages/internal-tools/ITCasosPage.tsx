@@ -32,7 +32,7 @@ function CaseDetail({ caso, onClose, onResolve }: {
       footer={canAct ? (
         <>
           <Button variant="danger" onClick={() => resolve('rechazada')}>Rechazar</Button>
-          <Button variant="accent" onClick={() => resolve('resuelta')}>Resolver a favor del cliente</Button>
+          <Button variant="primary" onClick={() => resolve('resuelta')}>Resolver a favor del cliente</Button>
         </>
       ) : undefined}
     >

@@ -11,10 +11,11 @@ export interface SegmentedControlProps {
   items: SegmentedItem[]
   value: string
   onChange?: (value: string) => void
+  size?: 'md' | 'sm'
   style?: CSSProperties
 }
 
-export function SegmentedControl({ items, value, onChange, style }: SegmentedControlProps) {
+export function SegmentedControl({ items, value, onChange, size = 'md', style }: SegmentedControlProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({})
   const [indicator, setIndicator] = useState<{ left: number; width: number } | null>(null)
@@ -51,7 +52,7 @@ export function SegmentedControl({ items, value, onChange, style }: SegmentedCon
   )
 
   return (
-    <div ref={rootRef} role="tablist" className={css.root} style={style} onKeyDown={handleKeyDown}>
+    <div ref={rootRef} role="tablist" className={css.root} data-size={size !== 'md' ? size : undefined} style={style} onKeyDown={handleKeyDown}>
       {indicator && (
         <span
           aria-hidden="true"

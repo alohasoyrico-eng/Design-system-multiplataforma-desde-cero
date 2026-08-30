@@ -80,7 +80,7 @@ function OverviewView() {
   return (
     <>
       <DashboardHeader title="Overview" crumbs={['Dashboards', 'Overview']}
-        cta={<Link to="/unidades/nueva" style={{ textDecoration: 'none' }}><Button variant="accent" icon="add">Agregar unidad</Button></Link>}
+        cta={<Link to="/unidades/nueva" style={{ textDecoration: 'none' }}><Button variant="primary" icon="add">Agregar unidad</Button></Link>}
       />
       <div className={css.kpiGrid4}>
         <StatTile label="Unidades activas" value="128" delta="+4 vs ayer" trend={[98, 104, 112, 109, 118, 124, 128]} icon="local_taxi" />
@@ -214,7 +214,7 @@ function CombustibleView() {
   return (
     <>
       <DashboardHeader title="Combustible" crumbs={['Dashboards', 'Combustible']}
-        cta={<Button variant="accent" icon="local_gas_station">Registrar carga</Button>}
+        cta={<Button variant="primary" icon="local_gas_station">Registrar carga</Button>}
       />
       <div className={css.kpiGrid4}>
         <StatTile label="Gasto del mes" value="$182,400" delta="+8% vs mes pasado" icon="local_gas_station" tone="danger" />
@@ -309,7 +309,7 @@ function MantenimientoView() {
   return (
     <>
       <DashboardHeader title="Mantenimiento" crumbs={['Dashboards', 'Mantenimiento']}
-        cta={<Button variant="accent" icon="build">Agendar servicio</Button>}
+        cta={<Button variant="primary" icon="build">Agendar servicio</Button>}
       />
       <div className={css.kpiGrid4}>
         <StatTile label="En taller ahora" value="9" delta="+2 vs semana pasada" icon="build" tone="danger" />
@@ -428,7 +428,7 @@ function ElectroView() {
   return (
     <>
       <DashboardHeader title="Electromovilidad" crumbs={['Dashboards', 'Electromovilidad']}
-        cta={<Button variant="accent" icon="ev_station">Nueva carga</Button>}
+        cta={<Button variant="primary" icon="ev_station">Nueva carga</Button>}
       />
       <div className={css.kpiGrid4}>
         <StatTile label="kWh cargados (mes)" value="4,820" delta="+18%" icon="bolt" tone="success" />
@@ -524,7 +524,7 @@ function PeajeView() {
   return (
     <>
       <DashboardHeader title="Peaje" crumbs={['Dashboards', 'Peaje']}
-        cta={<Button variant="accent" icon="toll">Registrar cruce</Button>}
+        cta={<Button variant="primary" icon="toll">Registrar cruce</Button>}
       />
       <div className={css.kpiGrid4}>
         <StatTile label="Gasto en peaje (mes)" value="$41,080" delta="+6%" icon="toll" tone="danger" />
@@ -611,7 +611,7 @@ function FinanzasView() {
   return (
     <>
       <DashboardHeader title="Finanzas" crumbs={['Dashboards', 'Finanzas']}
-        cta={<Button variant="accent" icon="summarize">Generar reporte</Button>}
+        cta={<Button variant="primary" icon="summarize">Generar reporte</Button>}
       />
       <div className={css.kpiGrid4}>
         <StatTile label="Ingreso del mes" value="$612k" delta="+11%" icon="trending_up" tone="success" />

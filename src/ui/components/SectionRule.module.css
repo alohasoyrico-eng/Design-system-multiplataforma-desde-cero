@@ -12,12 +12,6 @@
   white-space: nowrap;
 }
 
-.line {
-  flex: 1;
-  height: 1px;
-  background: var(--border-subtle);
-}
-
 .meta {
   font: var(--type-data);
   color: var(--text-muted);

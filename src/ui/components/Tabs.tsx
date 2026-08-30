@@ -12,7 +12,7 @@ export interface TabsProps {
   items?: TabItem[]
   value?: string
   onChange?: (value: string) => void
-  variant?: 'pill' | 'underline'
+  variant?: 'pill' | 'underline' | 'bar'
   style?: CSSProperties
 }
 

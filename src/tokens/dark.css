@@ -73,6 +73,12 @@
   --viz-accent: var(--flow-red-200);
   --viz-neutral: var(--flow-grey-700);
 
+  --code-keyword: var(--flow-blue-400);
+  --code-string: var(--flow-green-400);
+  --code-tag: var(--flow-danger-400);
+  --code-comment: var(--flow-grey-500);
+  --code-default: var(--flow-grey-200);
+
   --viz-ramp-1: #0E1526;
   --viz-ramp-2: #1E293B;
   --viz-ramp-3: #334155;

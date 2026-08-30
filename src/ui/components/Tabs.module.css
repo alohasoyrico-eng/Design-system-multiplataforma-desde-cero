@@ -28,7 +28,7 @@
   padding: var(--space-2) var(--space-4);
   border: none;
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font: var(--type-body-md);
   cursor: pointer;
   position: relative;
@@ -74,7 +74,7 @@
   top: auto;
   bottom: 0;
   border-radius: 1px;
-  background: var(--text-primary);
+  background: var(--action-accent);
   box-shadow: none;
   transition: left var(--dur-base) var(--ease-out),
     width var(--dur-base) var(--ease-out);
@@ -93,6 +93,46 @@
 }
 
 .root[data-variant="underline"] .tab[data-active] {
+  font: var(--type-body-md);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── bar variant (for use inside SectionBar) ── */
+
+.root[data-variant="bar"] {
+  display: inline-flex;
+  gap: var(--space-6);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.indicator[data-variant="bar"] {
+  height: 2px;
+  top: auto;
+  bottom: 0;
+  border-radius: 1px;
+  background: var(--action-accent);
+  box-shadow: none;
+  transition: left var(--dur-base) var(--ease-out),
+    width var(--dur-base) var(--ease-out);
+}
+
+.root[data-variant="bar"] .tab {
+  padding: var(--space-3) 0;
+  border-radius: 0;
+  font: var(--type-body-md);
+  font-weight: 500;
+  color: var(--text-muted);
+  flex: none;
+}
+
+.root[data-variant="bar"] .tab:hover {
+  color: var(--text-secondary);
+}
+
+.root[data-variant="bar"] .tab[data-active] {
   font: var(--type-body-md);
   font-weight: 600;
   color: var(--text-primary);

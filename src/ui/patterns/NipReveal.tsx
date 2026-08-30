@@ -22,7 +22,7 @@ export function NipReveal({ digits, blurLast = true, duration = 5000, warning, s
     return (
       <div className={css.root} style={style}>
         {warning && <span className={css.warning}>{warning}</span>}
-        <Button variant="accent" onClick={handleShow}>Mostrar NIP</Button>
+        <Button variant="primary" onClick={handleShow}>Mostrar NIP</Button>
       </div>
     )
   }

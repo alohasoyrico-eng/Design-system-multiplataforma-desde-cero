@@ -4,7 +4,7 @@ import css from './SectionHeader.module.css'
 export interface SectionHeaderProps {
   children: ReactNode
   trailing?: ReactNode
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'display'
   style?: CSSProperties
 }
 

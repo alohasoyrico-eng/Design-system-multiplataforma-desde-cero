@@ -34,7 +34,7 @@ function DocDetail({ doc, onClose, onDecision }: {
       footer={canAct ? (
         <>
           <Button variant="danger" onClick={() => decide('rechazado')}>Rechazar</Button>
-          <Button variant="accent" onClick={() => decide('aprobado')}>Aprobar</Button>
+          <Button variant="primary" onClick={() => decide('aprobado')}>Aprobar</Button>
         </>
       ) : undefined}
     >

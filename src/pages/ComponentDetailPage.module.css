@@ -3,81 +3,287 @@
 .page {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--pad-section) var(--space-10);
+  padding: 0 var(--space-10);
+  padding-bottom: var(--space-16);
 }
 
-/* ── Zone 4: Hero header ── */
+.section {
+  padding-top: var(--space-16);
+}
 
-.hero {
+.sectionHeading {
+  margin: var(--space-6) 0 var(--space-7);
+}
+
+.headingSub {
+  display: block;
+  color: var(--text-muted);
+}
+
+.notFound {
+  padding: var(--space-16) 0;
+  font: var(--type-body-md);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── Guidance when/notWhen columns ── */
+
+.guidanceColumns {
   display: grid;
-  grid-template-columns: 7fr 5fr;
-  gap: var(--space-8);
-  align-items: end;
-  margin-bottom: var(--space-8);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--gap-stack) var(--space-12);
 }
 
-.heroMain {
+.ruleHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.ruleDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  flex: none;
+}
+
+.ruleDot[data-tone='success'] {
+  background: var(--status-success);
+}
+
+.ruleDot[data-tone='danger'] {
+  background: var(--status-danger);
+}
+
+.ruleLabel {
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ruleLabel[data-tone='success'] {
+  color: var(--status-success-text);
+}
+
+.ruleLabel[data-tone='danger'] {
+  color: var(--status-danger-text);
+}
+
+.ruleSource {
+  margin-left: auto;
+  font: var(--type-body-sm);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.ruleItemRow {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ruleItem {
+  flex: 1;
+  min-width: 0;
+  font: var(--type-body-md);
+  color: var(--text-secondary);
+}
+
+.ruleInstead {
+  flex: none;
+  font: var(--type-body-md-strong);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-accent);
+}
+
+/* ── Usage code pair ── */
+
+.usagePair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-stack);
+}
+
+.usagePane {
+  flex: 1 1 340px;
   min-width: 0;
 }
 
-.heroHeadline {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(64px, 13vw, 196px);
-  line-height: 0.84;
-  letter-spacing: -0.055em;
-  color: var(--action-accent);
-  margin: 0 0 var(--space-5);
+/* ── Accessibility list ── */
+
+.a11yItem {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font: var(--type-body-md);
+  color: var(--text-secondary);
 }
 
-.heroDesc {
+/* ── MIEL tab ── */
+
+.mielColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--gap-stack) var(--space-12);
+  align-items: start;
+}
+
+.mielDesc {
+  margin: 0 0 var(--space-5);
   font: var(--type-body-md);
-  font-size: 16px;
   line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 52ch;
-  margin: 0;
 }
 
-.heroMeta {
+.mielDownloads {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.syncStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.syncDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--status-success);
+}
+
+/* ── API table required marker ── */
+
+.required {
+  color: var(--status-danger-text);
+}
+
+/* ── Platform Support variant name ── */
+
+.variantName {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--text-accent);
+}
+
+/* ── Specimen placeholder ── */
+
+.specimenPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.specimenName {
+  font: var(--type-title-lg);
+}
+
+.specimenMeta {
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Proposal + changelog ── */
+
+.proposalDesc {
+  flex: 1 1 240px;
+  min-width: 0;
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+.changelogStatus {
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--status-success-text);
+}
+
+/* ── Nav footer ── */
+
+.navFooter {
+  margin-top: var(--space-16);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap-stack);
+}
+
+/* ── SectionBar trailing ── */
+
+.barTrailing {
+  display: flex;
+  align-items: center;
   gap: var(--space-3);
 }
 
-.heroPills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  justify-content: flex-end;
+.barLink {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  font: var(--type-label-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: var(--surface-card);
 }
 
-@media (max-width: 982px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
+.barLink:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
 
-  .heroMeta {
-    align-items: flex-start;
-  }
+/* ── Scroll arc ── */
 
-  .heroPills {
-    justify-content: flex-start;
-  }
+.scrollArc {
+  position: fixed;
+  right: var(--space-6);
+  bottom: var(--space-6);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-3);
+  background: var(--surface-inverse);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--alpha-white-5);
+  border-radius: var(--radius-pill);
+}
 
-  .heroHeadline {
-    font-size: clamp(48px, 13vw, 96px);
-  }
+.arcSvg {
+  color: var(--text-on-inverse);
+  flex: none;
+  overflow: visible;
+}
+
+.arcPct {
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  color: var(--alpha-white-70);
+  min-width: 28px;
 }
 
 @media (max-width: 576px) {
   .page {
-    padding: var(--space-6) var(--space-4);
-  }
-
-  .heroHeadline {
-    font-size: clamp(36px, 15vw, 64px);
+    padding: 0 var(--space-4);
+    padding-bottom: var(--space-16);
   }
 }

@@ -281,7 +281,7 @@ export function SettingsPage() {
         actions={
           <>
             <Button variant="ghost" onClick={() => setExportDialog(false)}>Cancelar</Button>
-            <Button variant="accent" onClick={() => { setExportDialog(false); notify('Exportación iniciada — recibirás un correo') }}>Exportar</Button>
+            <Button variant="primary" onClick={() => { setExportDialog(false); notify('Exportación iniciada — recibirás un correo') }}>Exportar</Button>
           </>
         }
       />

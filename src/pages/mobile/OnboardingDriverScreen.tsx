@@ -170,7 +170,7 @@ export function OnboardingDriverScreen() {
               <p className={css.heroDesc}>
                 Activa tu tarjeta Flow en unos minutos. Solo necesitas tu correo, tu teléfono y tu tarjeta.
               </p>
-              <Button variant="accent" size="lg" fullWidth onClick={next}>Comenzar</Button>
+              <Button variant="primary" size="lg" fullWidth onClick={next}>Comenzar</Button>
               <span className={css.loginHint}>¿Ya tienes cuenta? <button type="button" className={css.loginLink}>Entrar</button></span>
             </div>
           </>
@@ -312,7 +312,7 @@ export function OnboardingDriverScreen() {
             <p className={css.doneDesc}>
               Tu tarjeta •••• {cardNum.replace(/\s/g, '').slice(-4) || '4821'} está lista para usarse.
             </p>
-            <Button variant="accent" size="lg" onClick={() => { setLoginBioState('idle'); setLoginMode('bio'); setLoginPin(''); next() }}>Entrar a la app</Button>
+            <Button variant="primary" size="lg" onClick={() => { setLoginBioState('idle'); setLoginMode('bio'); setLoginPin(''); next() }}>Entrar a la app</Button>
           </div>
         )}
 
@@ -372,7 +372,7 @@ export function OnboardingDriverScreen() {
                 </span>
               </span>
               <h1 className={css.doneTitle}>Sesión iniciada</h1>
-              <Button variant="accent" size="lg" onClick={() => setIdx(0)}>Reiniciar demo</Button>
+              <Button variant="primary" size="lg" onClick={() => setIdx(0)}>Reiniciar demo</Button>
             </div>
           </div>
         )}

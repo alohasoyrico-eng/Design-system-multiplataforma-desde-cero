@@ -143,7 +143,7 @@ export function OnboardingPage() {
           status="success"
           title="¡Cuenta creada!"
           description={`${company || 'Tu empresa'} ya está lista. Te enviamos un correo a ${email || 'tu dirección'} con los siguientes pasos.`}
-          primaryAction={<Button variant="accent" icon="dashboard" onClick={() => window.location.href = '/'}>Ir al dashboard</Button>}
+          primaryAction={<Button variant="primary" icon="dashboard" onClick={() => window.location.href = '/'}>Ir al dashboard</Button>}
           fullScreen
         />
       </div>
@@ -284,7 +284,7 @@ export function OnboardingPage() {
               </Button>
             )}
             <Button
-              variant={isLast ? 'accent' : 'primary'}
+              variant="primary"
               iconTrailing={isLast ? undefined : 'arrow_forward'}
               icon={isLast ? 'check' : undefined}
               disabled={!canAdvance || submitting}

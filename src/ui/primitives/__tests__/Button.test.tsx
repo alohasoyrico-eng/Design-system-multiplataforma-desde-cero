@@ -37,7 +37,7 @@ describe('Button', () => {
   })
 
   it('renders with all variant data attributes', () => {
-    const variants = ['primary', 'accent', 'secondary', 'ghost', 'danger'] as const
+    const variants = ['primary', 'secondary', 'ghost', 'danger'] as const
     variants.forEach((v) => {
       const { unmount } = render(<Button variant={v}>OK</Button>)
       expect(screen.getByRole('button')).toHaveAttribute('data-variant', v)

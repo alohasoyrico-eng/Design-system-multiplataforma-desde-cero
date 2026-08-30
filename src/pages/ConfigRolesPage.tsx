@@ -131,7 +131,7 @@ export function ConfigRolesPage() {
             <div className={css.searchInput}>
               <Input icon="search" placeholder="Buscar…" size="sm" value="" onChange={() => {}} />
             </div>
-            <Button variant="accent" icon="person_add" style={{ marginLeft: 'auto' }} onClick={() => setInvite(true)}>
+            <Button variant="primary" icon="person_add" style={{ marginLeft: 'auto' }} onClick={() => setInvite(true)}>
               Invitar
             </Button>
           </div>
@@ -219,7 +219,7 @@ export function ConfigRolesPage() {
               <Input icon="search" placeholder="Buscar placa…" size="sm" value="" onChange={() => {}} />
             </div>
             <Link to="/unidades/nueva" style={{ marginLeft: 'auto', textDecoration: 'none' }}>
-              <Button variant="accent" icon="add">Alta de unidad</Button>
+              <Button variant="primary" icon="add">Alta de unidad</Button>
             </Link>
           </div>
           <Table
@@ -309,7 +309,7 @@ export function ConfigRolesPage() {
           <>
             <Button variant="ghost" onClick={() => setInvite(false)}>Cancelar</Button>
             <Button
-              variant="accent"
+              variant="primary"
               disabled={!email.includes('@')}
               onClick={() => {
                 setInvite(false)

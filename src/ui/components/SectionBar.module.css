@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  background: color-mix(in srgb, var(--surface-card) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 var(--space-4);
+  z-index: 30;
+}
+
+.root[data-sticky] {
+  position: sticky;
+  top: var(--height-bar);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}

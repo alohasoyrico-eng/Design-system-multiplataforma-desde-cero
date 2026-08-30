@@ -1,0 +1,8 @@
+.root {
+  display: inline-flex;
+  gap: 2px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+  background: var(--surface-card);
+}

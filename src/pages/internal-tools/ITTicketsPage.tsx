@@ -25,7 +25,7 @@ function TicketDetail({ ticket, onClose, onStatusChange }: {
       footer={ticket ? (
         <>
           <Button variant="secondary" onClick={() => onStatusChange(ticket.id, 'esperando cliente')}>Esperar cliente</Button>
-          <Button variant="accent" onClick={() => onStatusChange(ticket.id, 'cerrado')}>Cerrar ticket</Button>
+          <Button variant="primary" onClick={() => onStatusChange(ticket.id, 'cerrado')}>Cerrar ticket</Button>
         </>
       ) : undefined}
     >

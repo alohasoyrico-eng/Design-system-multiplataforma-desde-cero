@@ -49,7 +49,7 @@ export function UnitsPage() {
         <PageHeader
           crumbs={[{ label: 'Flota' }, { label: 'Unidades' }]}
           title="Unidades"
-          actions={<Link to="/unidades/nueva" style={{ textDecoration: 'none' }}><Button variant="accent" icon="add">Agregar unidad</Button></Link>}
+          actions={<Link to="/unidades/nueva" style={{ textDecoration: 'none' }}><Button variant="primary" icon="add">Agregar unidad</Button></Link>}
         />
         <div className={css.filterRow}>
           <Tabs
