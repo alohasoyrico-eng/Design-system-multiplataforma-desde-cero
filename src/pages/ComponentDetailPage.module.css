@@ -100,7 +100,7 @@
   flex: none;
   font: var(--type-body-md-strong);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--ref-type-size-12);
   color: var(--text-accent);
 }
 
@@ -219,6 +219,7 @@
 
 .navFooter {
   margin-top: var(--space-16);
+  margin-bottom: var(--space-12);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--gap-stack);

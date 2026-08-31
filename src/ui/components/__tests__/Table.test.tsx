@@ -33,7 +33,7 @@ describe('Table', () => {
     expect(bodyRows).toHaveLength(3)
   })
 
-  it('passes density to DataGrid', () => {
+  it('sets data-density for compact', () => {
     const { container } = render(<Table columns={columns} rows={rows} density="compact" />)
     expect(container.firstChild).toHaveAttribute('data-density', 'compact')
   })

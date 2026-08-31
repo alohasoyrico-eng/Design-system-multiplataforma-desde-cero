@@ -8,3 +8,47 @@
 .main {
   flex: 1;
 }
+
+/* ── Search trigger ── */
+
+.searchTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 32px;
+  padding: 0 var(--space-3);
+  background: var(--alpha-black-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--dur-fast) var(--ease-out);
+  font-family: inherit;
+}
+
+.searchTrigger:hover {
+  border-color: var(--border-strong);
+}
+
+.searchTrigger:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.searchTrigger .flow-icon {
+  font-size: 16px;
+  flex: none;
+}
+
+.searchLabel {
+  flex: 1;
+}
+
+.searchKbd {
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  opacity: 0.7;
+}

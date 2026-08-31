@@ -5,8 +5,7 @@
   border-bottom: var(--border-width) solid var(--border-subtle);
   display: flex;
   align-items: center;
-  padding: 0 var(--space-5);
-  gap: var(--space-4);
+  justify-content: center;
 }
 
 .root[data-surface="inverse"] {
@@ -15,11 +14,39 @@
   color: var(--text-on-inverse);
 }
 
+.root[data-surface="glass"] {
+  height: 64px;
+  background: color-mix(in srgb, var(--surface-card) 68%, transparent);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border-bottom-color: var(--alpha-black-5);
+  --inline-search-bg: var(--alpha-black-5);
+  --inline-search-border: var(--border-subtle);
+}
+
+.root[data-sticky] {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+/* ── Inner container ── */
+
+.inner {
+  width: 100%;
+  max-width: var(--content-max);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-5);
+  gap: var(--space-5);
+}
+
 /* ── Logo ── */
 
 .logoWrap {
   display: flex;
   align-items: center;
+  flex: none;
 }
 
 .logoCenter {
@@ -33,7 +60,7 @@
 .navWrap {
   display: flex;
   gap: var(--space-5);
-  flex: 1;
+  flex: none;
 }
 
 .navLink {
@@ -45,6 +72,7 @@
   align-items: center;
   min-height: var(--hit-target-min);
   transition: color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
 }
 
 .navLink[data-size="sm"] {
@@ -81,6 +109,39 @@
 
 .root[data-surface="inverse"] .navLink:focus-visible {
   color: var(--text-on-inverse);
+}
+
+/* ── Trailing area ── */
+
+.trailingWrap {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+/* ── Version badge ── */
+
+.versionBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex: none;
+}
+
+.root[data-surface="inverse"] .versionBadge {
+  border-color: var(--alpha-white-5);
+  color: var(--alpha-white-70);
 }
 
 /* ── Breadcrumb (minimal variant) ── */

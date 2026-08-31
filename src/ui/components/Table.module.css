@@ -1,11 +1,4 @@
 .root {
-  overflow-x: auto;
-  border-radius: var(--radius-sm);
-  border: var(--border-width) solid var(--border-subtle);
-  background: var(--surface-card);
-}
-
-.table {
   width: 100%;
   border-collapse: collapse;
   font: var(--type-body-md);
@@ -17,7 +10,7 @@
   letter-spacing: var(--tracking-overline);
   text-transform: uppercase;
   color: var(--text-muted);
-  border-bottom: var(--border-width) solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-default);
   user-select: none;
   white-space: nowrap;
 }
@@ -29,10 +22,6 @@
 .row {
   background: transparent;
   transition: background var(--dur-fast) var(--ease-out);
-}
-
-.row:nth-child(even) {
-  background: var(--_zebra);
 }
 
 .row:hover:not([data-selected]) {
@@ -49,7 +38,7 @@
 
 .td {
   padding: var(--density-cell-y) var(--density-cell-x);
-  border-bottom: var(--border-width) solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
   white-space: nowrap;
 }
 

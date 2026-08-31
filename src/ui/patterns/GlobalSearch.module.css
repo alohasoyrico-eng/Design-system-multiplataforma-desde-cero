@@ -63,6 +63,7 @@
 
 .input[data-mode='inline'] {
   font: var(--type-body-sm);
+  min-height: 32px;
 }
 
 .list {
@@ -203,22 +204,23 @@
 .inlineField {
   display: flex;
   align-items: center;
-  background: var(--surface-sunken);
-  border: var(--border-width) solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background: var(--inline-search-bg, var(--surface-sunken));
+  border: var(--border-width) solid var(--inline-search-border, var(--border-subtle));
+  border-radius: var(--radius-sm);
+  height: 32px;
 }
 
 .inlineDrop {
   position: absolute;
   top: calc(100% + var(--space-2));
-  left: 0;
   right: 0;
   z-index: 60;
+  min-width: 320px;
   background: var(--surface-card);
   border: var(--border-width) solid var(--border-subtle);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-float);
   overflow: hidden;
   animation: flowScaleIn var(--dur-fast) var(--ease-out);
-  transform-origin: top center;
+  transform-origin: top right;
 }

@@ -6,7 +6,7 @@ import { Tabs } from '../ui/components/Tabs'
 import { SectionBar } from '../ui/components/SectionBar'
 import { SectionRule } from '../ui/components/SectionRule'
 import { CodeBlock } from '../ui/components/CodeBlock'
-import { Table } from '../ui/components/Table'
+import { Table, type GridColumn } from '../ui/components/Table'
 import { SegmentedControl } from '../ui/components/SegmentedControl'
 import { SectionHeader } from '../ui/primitives/SectionHeader'
 import { InlineCode } from '../ui/primitives/InlineCode'
@@ -23,7 +23,6 @@ import { DownloadCard } from '../ui/patterns/DownloadCard'
 import { ProposalCard } from '../ui/patterns/ProposalCard'
 import { getContract, getContractNeighbors } from '../data/contracts'
 import type { ContractItem } from '../data/contracts'
-import type { GridColumn } from '../ui/primitives/shells/DataGrid'
 import { useReveal } from '../hooks/useReveal'
 import css from './ComponentDetailPage.module.css'
 
@@ -41,6 +40,22 @@ const DENSITIES = [
 ]
 
 const INTERACTION_STATES = ['default', 'hover', 'focus', 'active', 'disabled', 'loading']
+
+const PLATFORM_STATUS_LADDER: Record<string, string[]> = {
+  react:   ['ready', 'ready', 'ready', 'ready', 'beta'],
+  angular: ['ready', 'beta', 'beta', 'planned', 'planned'],
+  flutter: ['ready', 'ready', 'beta', 'beta', 'planned'],
+}
+
+function variantPlatformStatus(
+  componentStatus: string | undefined,
+  variantIndex: number,
+  platform: string,
+): string {
+  if (!componentStatus) return '—'
+  const ladder = PLATFORM_STATUS_LADDER[platform] ?? ['ready']
+  return ladder[Math.min(variantIndex, ladder.length - 1)]
+}
 
 const CHANGELOG = [
   { version: '1.112', note: 'Tighten compact padding from 16px to 14px', by: 'agent', status: 'signed' },
@@ -216,7 +231,7 @@ export function ComponentDetailPage() {
               value={density}
               onChange={setDensity}
             />
-            <a href="#" className={css.barLink}>Figma</a>
+            <a href="#" className={css.barLink}>Angular</a>
             <a href="#" className={css.barLink}>GitHub</a>
           </div>
         }
@@ -248,7 +263,14 @@ export function ComponentDetailPage() {
         )}
       </nav>
 
-      <DocFooter lastUpdated="26 Aug 2026" version="React ^1.112.0" />
+      <DocFooter
+        lastUpdated="26 Aug 2026"
+        version="React ^1.112.0 · Flutter ^0.9.4"
+        links={[
+          { label: 'Edit this page', href: '#' },
+          { label: 'Report an issue', href: '#' },
+        ]}
+      />
 
       <ScrollArc />
     </div>
@@ -354,14 +376,14 @@ function OverviewTab({ contract }: { contract: ContractItem }) {
                 ),
               },
               { key: 'react', label: 'React' },
+              { key: 'angular', label: 'Angular' },
               { key: 'flutter', label: 'Flutter' },
-              { key: 'figma', label: 'Figma' },
             ]}
-            rows={contract.variants.map(v => ({
+            rows={contract.variants.map((v, i) => ({
               variant: v.v,
-              react: contract.platforms.web ?? '—',
-              flutter: contract.platforms.flutter ?? '—',
-              figma: 'ready',
+              react: variantPlatformStatus(contract.platforms.web, i, 'react'),
+              angular: variantPlatformStatus(contract.platforms.angular, i, 'angular'),
+              flutter: variantPlatformStatus(contract.platforms.flutter, i, 'flutter'),
             }))}
             rowKey="variant"
             sortable={false}
