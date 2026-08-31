@@ -43,13 +43,12 @@
   justify-content: center;
 }
 
+.successIcon {
+  font-size: var(--icon-3xl);
+}
+
 .successTitle {
   font: var(--type-title-lg);
   font-weight: 700;
   color: var(--text-primary);
-}
-
-@keyframes flowScaleIn {
-  from { transform: scale(0.5); opacity: 0; }
-  to   { transform: scale(1);   opacity: 1; }
 }

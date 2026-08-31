@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { IconButton } from '../primitives/IconButton'
 import { Badge } from '../primitives/Badge'
 import { Input } from '../primitives/Input'
-import { Popover } from '../primitives/shells/Popover'
+import { Popover } from '../primitives/Popover'
 import css from './TopBar.module.css'
 
 export interface TopBarNavItem {

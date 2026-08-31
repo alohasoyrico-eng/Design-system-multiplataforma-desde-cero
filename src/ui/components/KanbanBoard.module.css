@@ -1,0 +1,29 @@
+.columnLabel {
+  flex: 1;
+  font: var(--type-label-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.columnLabel[data-abandon] {
+  color: var(--text-muted);
+}
+
+.columnLabel:not([data-abandon]) {
+  color: var(--text-secondary);
+}
+
+.emptyHint {
+  margin: 0;
+  padding: var(--space-2) 2px;
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+.detailLabel {
+  flex: 1;
+  font: var(--type-label-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

@@ -12,3 +12,10 @@
   color: var(--text-secondary);
   font: var(--type-body-sm);
 }
+
+.emptyIcon {
+  font-size: var(--icon-xl);
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: var(--space-1);
+}

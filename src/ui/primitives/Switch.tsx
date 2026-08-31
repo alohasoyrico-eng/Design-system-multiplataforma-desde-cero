@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { ToggleControl } from './shells/ToggleControl'
+import { ToggleControl } from './ToggleControl'
 import css from './Switch.module.css'
 
 export interface SwitchProps {

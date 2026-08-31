@@ -1,8 +1,9 @@
 import { useState, type CSSProperties, type ReactNode } from 'react'
-import { DataGrid, type GridColumn } from '../primitives/shells/DataGrid'
+import { DataGrid, type GridColumn } from '../components/DataGrid'
 import { Button } from '../primitives/Button'
 import { IconButton } from '../primitives/IconButton'
 import { Checkbox } from '../primitives/Checkbox'
+import css from './BulkActionsTable.module.css'
 
 export interface BulkAction {
   id: string
@@ -59,7 +60,7 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
           }}
         >
           <Checkbox checked={allSelected} onChange={toggleAll} aria-label="Seleccionar todo" />
-          <span aria-live="polite" style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-accent)' }}>
+          <span aria-live="polite" className={css.selectionCount}>
             {n} seleccionado{n > 1 ? 's' : ''}
           </span>
           <div style={{ flex: 1 }} />
@@ -84,7 +85,7 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
           display: 'flex', alignItems: 'center', gap: 'var(--space-2)',
         }}>
           <Checkbox checked={false} onChange={toggleAll} aria-label="Seleccionar todo" />
-          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <span className={css.recordCount}>
             {rows.length} registro{rows.length !== 1 ? 's' : ''}
           </span>
         </div>

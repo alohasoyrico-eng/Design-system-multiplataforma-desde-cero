@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Breadcrumb } from '../ui/components/Breadcrumb'
+import { Breadcrumb } from '../ui/primitives/Breadcrumb'
 import { MAIL_TEMPLATES } from './mailings-data'
 import css from './MailingsPage.module.css'
 

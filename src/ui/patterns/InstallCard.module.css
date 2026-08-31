@@ -13,6 +13,6 @@
 .platform {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 18px;
+  font-size: var(--icon-md);
   color: var(--text-on-inverse);
 }

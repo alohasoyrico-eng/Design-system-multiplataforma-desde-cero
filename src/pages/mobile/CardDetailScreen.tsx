@@ -5,14 +5,14 @@ import { PaymentCard } from '../../ui/patterns/PaymentCard'
 import { TransactionRow } from '../../ui/patterns/TransactionRow'
 import { BottomSheet } from '../../ui/components/BottomSheet'
 import { QuickAction } from '../../ui/components/QuickAction'
-import { QuickActionBar } from '../../ui/patterns/QuickActionBar'
-import { LimitBar } from '../../ui/components/LimitBar'
+import { QuickActionBar } from '../../ui/components/QuickActionBar'
+import { LimitBar } from '../../ui/primitives/LimitBar'
 import { NavBar } from '../../ui/components/NavBar'
 import { NipReveal } from '../../ui/patterns/NipReveal'
 import { Badge } from '../../ui/primitives/Badge'
 import { Button } from '../../ui/primitives/Button'
 import { SectionHeader } from '../../ui/primitives/SectionHeader'
-import { SheetBody } from '../../ui/components/SheetBody'
+import { SheetBody } from '../../ui/primitives/SheetBody'
 
 const TRANSACTIONS = [
   { category: 'fuel' as const, title: 'Gasolinera Pemex #412', subtitle: 'Hoy, 14:23', amount: -850.00 },

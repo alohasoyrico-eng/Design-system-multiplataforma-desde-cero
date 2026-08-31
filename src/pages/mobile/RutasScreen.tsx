@@ -6,13 +6,13 @@ import { BottomSheet } from '../../ui/components/BottomSheet'
 import { Card } from '../../ui/components/Card'
 import { FilterBar } from '../../ui/components/FilterBar'
 import { PeekSheet } from '../../ui/components/PeekSheet'
-import { RouteBanner } from '../../ui/components/RouteBanner'
+import { RouteBanner } from '../../ui/patterns/RouteBanner'
 import { Badge } from '../../ui/primitives/Badge'
 import { Button } from '../../ui/primitives/Button'
 import { Chip } from '../../ui/primitives/Chip'
 import { IconButton } from '../../ui/primitives/IconButton'
 import { DetailRow } from '../../ui/primitives/DetailRow'
-import { SheetBody } from '../../ui/components/SheetBody'
+import { SheetBody } from '../../ui/primitives/SheetBody'
 
 const ME: [number, number] = [19.4326, -99.1500]
 

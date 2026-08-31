@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { IconButton } from '../primitives/IconButton'
-import { Popover } from '../primitives/shells/Popover'
+import { Popover } from '../primitives/Popover'
 import css from './NotificationCenter.module.css'
 
 export interface NotificationItem {

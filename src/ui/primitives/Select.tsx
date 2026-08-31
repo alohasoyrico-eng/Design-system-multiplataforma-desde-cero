@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback, useId, type CSSProperties, type ReactNode } from 'react'
 import { useIntl } from 'react-intl'
-import { ControlShell } from './shells/ControlShell'
-import { Popover } from './shells/Popover'
-import { Listbox, type ListboxItem } from './shells/Listbox'
+import { ControlShell } from './ControlShell'
+import { Popover } from './Popover'
+import { Listbox, type ListboxItem } from './Listbox'
 import css from './Select.module.css'
 
 export interface SelectOption {
@@ -109,7 +109,7 @@ export function Select({
     <ControlShell
       disabled={disabled}
       error={invalid}
-      leading={icon && <span className="flow-icon" style={{ fontSize: 18 }} aria-hidden="true">{icon}</span>}
+      leading={icon && <span className="flow-icon flow-icon--md" aria-hidden="true">{icon}</span>}
       trailing={
         <>
           {clearable && selectedValues.length > 0 && !open && (

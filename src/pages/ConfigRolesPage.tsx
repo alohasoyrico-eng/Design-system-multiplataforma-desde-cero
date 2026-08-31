@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { Breadcrumb } from '../ui/components/Breadcrumb'
+import { Breadcrumb } from '../ui/primitives/Breadcrumb'
 import { Tabs } from '../ui/components/Tabs'
 import { Table } from '../ui/components/Table'
 import { RoleMatrix } from '../ui/patterns/RoleMatrix'
 import { Menu } from '../ui/components/Menu'
 import { Dialog } from '../ui/components/Dialog'
-import { Toast, ToastStack } from '../ui/components/Toast'
+import { Toast, ToastStack } from '../ui/primitives/Toast'
 import { Button } from '../ui/primitives/Button'
 import { IconButton } from '../ui/primitives/IconButton'
 import { Badge } from '../ui/primitives/Badge'
@@ -87,7 +87,7 @@ export function ConfigRolesPage() {
       <div className={css.headerRow}>
         <h1 className={css.title}>Configuración</h1>
         <Link to="/" className={css.backLink}>
-          <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16 }}>arrow_back</span>
+          <span className="flow-icon flow-icon--sm" aria-hidden="true">arrow_back</span>
           Dashboards
         </Link>
       </div>

@@ -1,0 +1,12 @@
+.selectionCount {
+  font: var(--type-data);
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+.recordCount {
+  font: var(--type-label-sm);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

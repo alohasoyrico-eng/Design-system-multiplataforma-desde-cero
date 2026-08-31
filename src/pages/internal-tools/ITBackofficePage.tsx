@@ -6,8 +6,10 @@ import { Badge } from '../../ui/primitives/Badge'
 import { Button } from '../../ui/primitives/Button'
 import { Card } from '../../ui/components/Card'
 import { Drawer } from '../../ui/components/Drawer'
+import { StatusView } from '../../ui/primitives/StatusView'
+import { PageHeader } from '../../ui/patterns/PageHeader'
 import { DOCS, STATUS_TONE, type Doc } from './data'
-import css from './internal-tools.module.css'
+import css from './ITBackofficePage.module.css'
 
 function DocDetail({ doc, onClose, onDecision }: {
   doc: Doc | null; onClose: () => void; onDecision: (id: string, status: string) => void
@@ -39,35 +41,33 @@ function DocDetail({ doc, onClose, onDecision }: {
       ) : undefined}
     >
       {doc && !result && (
-        <div className={css.drawerContent}>
-          <div className={css.drawerHeaderRow}>
-            <span style={{ fontWeight: 700, fontSize: 14 }}>{doc.who}</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+            <span className={css.docName}>{doc.who}</span>
             <Badge tone={STATUS_TONE[doc.status]}>{doc.status}</Badge>
           </div>
-          <div className={css.drawerMeta}>Enviado {doc.submitted}</div>
+          <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>Enviado {doc.submitted}</div>
 
           <Card style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span className="flow-icon" style={{ fontSize: 28, color: 'var(--text-muted)' }}>draft</span>
+            <span className={`flow-icon ${css.docIcon}`} aria-hidden="true">draft</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 600, fontSize: 13, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{doc.file}</div>
-              <div className={css.drawerMeta}>{doc.doc}</div>
+              <div className={css.docFile}>{doc.file}</div>
+              <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{doc.doc}</div>
             </div>
             <Button variant="secondary" size="sm" icon="visibility">Ver</Button>
           </Card>
         </div>
       )}
       {doc && result && (
-        <div className={css.statusView}>
-          <span className="flow-icon" style={{ fontSize: 48, color: result === 'aprobado' ? 'var(--status-success)' : 'var(--status-danger)' }}>
-            {result === 'aprobado' ? 'check_circle' : 'cancel'}
-          </span>
-          <div className={css.statusTitle}>{result === 'aprobado' ? 'Documento aprobado' : 'Documento rechazado'}</div>
-          <div className={css.statusDesc}>
-            {result === 'aprobado'
+        <StatusView
+          status={result === 'aprobado' ? 'success' : 'error'}
+          title={result === 'aprobado' ? 'Documento aprobado' : 'Documento rechazado'}
+          description={
+            result === 'aprobado'
               ? `El documento de ${doc.who} ha sido aprobado.`
-              : `El documento de ${doc.who} ha sido rechazado.`}
-          </div>
-        </div>
+              : `El documento de ${doc.who} ha sido rechazado.`
+          }
+        />
       )}
     </Drawer>
   )
@@ -88,10 +88,7 @@ export function ITBackofficePage() {
 
   return (
     <Guard allowed={['admin', 'ops']}>
-      <div className={css.pageHeaderRow}>
-        <h1 className={css.pageTitle}>Back-office</h1>
-        <span className={css.pageCount}>{pendingCount} pendientes de {docs.length}</span>
-      </div>
+      <PageHeader title="Back-office" trailing={<span style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{pendingCount} pendientes de {docs.length}</span>} />
 
       <BulkActionsTable
         rowKey="id"
@@ -114,27 +111,25 @@ export function ITBackofficePage() {
         rows={docs}
       />
 
-      <div style={{ marginTop: 16 }}>
-        <Card>
-          <div className={css.sectionHeader} style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: 12 }}>
-            Vista detallada (click en fila)
-          </div>
-          <Table
-            rowKey="id"
-            onRowClick={(row) => setSelected(row as Doc)}
-            columns={[
-              { key: 'id', label: 'ID', mono: true },
-              { key: 'who', label: 'Persona / Empresa', render: (r) => <span style={{ fontWeight: 600 }}>{(r as Doc).who}</span> },
-              { key: 'doc', label: 'Documento' },
-              { key: 'submitted', label: 'Enviado' },
-              { key: 'status', label: 'Estado', render: (r) => <Badge tone={STATUS_TONE[(r as Doc).status]}>{(r as Doc).status}</Badge> },
-            ]}
-            rows={docs}
-            density="compact"
-            style={{ border: 'none', boxShadow: 'none' }}
-          />
-        </Card>
-      </div>
+      <Card style={{ marginTop: 'var(--gap-stack)' }}>
+        <div style={{ font: 'var(--type-label-sm)', letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 12 }}>
+          Vista detallada (click en fila)
+        </div>
+        <Table
+          rowKey="id"
+          onRowClick={(row) => setSelected(row as Doc)}
+          columns={[
+            { key: 'id', label: 'ID', mono: true },
+            { key: 'who', label: 'Persona / Empresa', render: (r) => <span style={{ fontWeight: 600 }}>{(r as Doc).who}</span> },
+            { key: 'doc', label: 'Documento' },
+            { key: 'submitted', label: 'Enviado' },
+            { key: 'status', label: 'Estado', render: (r) => <Badge tone={STATUS_TONE[(r as Doc).status]}>{(r as Doc).status}</Badge> },
+          ]}
+          rows={docs}
+          density="compact"
+          style={{ border: 'none', boxShadow: 'none' }}
+        />
+      </Card>
 
       <DocDetail doc={selected} onClose={() => setSelected(null)} onDecision={onDecision} />
     </Guard>

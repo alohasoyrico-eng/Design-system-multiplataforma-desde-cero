@@ -8,8 +8,9 @@ import { Drawer } from '../../ui/components/Drawer'
 import { Field } from '../../ui/primitives/Field'
 import { Input } from '../../ui/primitives/Input'
 import { Select } from '../../ui/primitives/Select'
+import { StatusView } from '../../ui/primitives/StatusView'
+import { PageHeader } from '../../ui/patterns/PageHeader'
 import { PRICING_RULES, STATUS_TONE, type PricingRule } from './data'
-import css from './internal-tools.module.css'
 
 function RuleDetail({ rule, onClose, onSubmit }: {
   rule: PricingRule | null; onClose: () => void; onSubmit: (id: string) => void
@@ -39,7 +40,7 @@ function RuleDetail({ rule, onClose, onSubmit }: {
       ) : undefined}
     >
       {rule && !submitted && (
-        <div className={css.drawerContent}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
           <Field label="Nombre">
             <Input value={rule.name} disabled />
           </Field>
@@ -66,11 +67,11 @@ function RuleDetail({ rule, onClose, onSubmit }: {
         </div>
       )}
       {rule && submitted && (
-        <div className={css.statusView}>
-          <span className="flow-icon" style={{ fontSize: 48, color: 'var(--status-warning)' }}>hourglass_top</span>
-          <div className={css.statusTitle}>Enviado a aprobación</div>
-          <div className={css.statusDesc}>La regla "{rule.name}" ha sido enviada. Recibirás notificación cuando sea aprobada.</div>
-        </div>
+        <StatusView
+          status="pending"
+          title="Enviado a aprobación"
+          description={`La regla "${rule.name}" ha sido enviada. Recibirás notificación cuando sea aprobada.`}
+        />
       )}
     </Drawer>
   )
@@ -99,10 +100,7 @@ export function ITPricingPage() {
 
   return (
     <Guard allowed={['admin', 'pricing']}>
-      <div className={css.pageHeaderRow}>
-        <h1 className={css.pageTitle}>Pricing</h1>
-        <span className={css.pageCount}>{rules.length} reglas</span>
-      </div>
+      <PageHeader title="Pricing" trailing={<span style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{rules.length} reglas</span>} />
 
       <FilterableEditableTable
         rowKey="id"
@@ -114,7 +112,7 @@ export function ITPricingPage() {
         }}
       />
 
-      <div style={{ marginTop: 16, fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginBottom: 8 }}>
+      <div style={{ marginTop: 'var(--gap-stack)', font: 'var(--type-label-sm)', letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 8 }}>
         Detalle (click en fila)
       </div>
       <Table

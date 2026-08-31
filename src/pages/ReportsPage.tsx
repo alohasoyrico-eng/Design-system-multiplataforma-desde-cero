@@ -7,8 +7,8 @@ import { Tabs } from '../ui/components/Tabs'
 import { Menu } from '../ui/components/Menu'
 import { Bars } from '../ui/components/Bars'
 import { DatePicker } from '../ui/components/DatePicker'
-import { PageHeader } from '../layout/PageHeader'
-import css from '../App.module.css'
+import { PageHeader } from '../ui/patterns/PageHeader'
+import css from './ReportsPage.module.css'
 
 export function ReportsPage() {
   const [range, setRange] = useState('7d')
@@ -24,7 +24,7 @@ export function ReportsPage() {
   return (
     <>
       <PageHeader
-        crumbs={[{ label: 'Flota' }, { label: 'Reportes' }]}
+        breadcrumb={['Flota', 'Reportes']}
         title="Reportes"
         actions={
           <Menu

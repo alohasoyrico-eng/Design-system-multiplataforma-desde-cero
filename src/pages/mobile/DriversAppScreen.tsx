@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import css from './DriversAppScreen.module.css'
 import { PhoneFrame } from './PhoneFrame'
-import { TabBar } from '../../ui/components/TabBar'
+import { TabBar } from '../../ui/primitives/TabBar'
 import { StatTile } from '../../ui/components/StatTile'
 import { Card } from '../../ui/components/Card'
 import { BottomSheet } from '../../ui/components/BottomSheet'
-import { Toast, ToastStack } from '../../ui/components/Toast'
+import { Toast, ToastStack } from '../../ui/primitives/Toast'
 import { Switch } from '../../ui/primitives/Switch'
 import { Button } from '../../ui/primitives/Button'
 import { Badge } from '../../ui/primitives/Badge'
@@ -15,7 +15,7 @@ import { Progress } from '../../ui/primitives/Progress'
 import { ProfileMenu } from '../../ui/patterns/ProfileMenu'
 import { DetailRow } from '../../ui/primitives/DetailRow'
 import { SectionHeader } from '../../ui/primitives/SectionHeader'
-import { SheetBody } from '../../ui/components/SheetBody'
+import { SheetBody } from '../../ui/primitives/SheetBody'
 
 const TABS = [
   { id: 'home', label: 'Inicio', icon: 'home' },

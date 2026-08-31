@@ -70,3 +70,7 @@
   color: var(--text-muted);
   font: var(--type-body-sm);
 }
+
+.emptyIcon {
+  opacity: 0.6;
+}

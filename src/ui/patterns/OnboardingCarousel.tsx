@@ -9,7 +9,7 @@ function DefaultIllustration({ icon, index }: { icon?: string; index: number }) 
   return (
     <div className={css.illustration} style={{ background: `${color}1A` }}>
       <div className={css.illustrationInner} style={{ background: color, boxShadow: `0 12px 28px ${color}40` }}>
-        <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{ fontSize: 52, color: 'var(--text-on-accent)' }}>
+        <span className={`flow-icon flow-icon--fill ${css.heroIcon}`} aria-hidden="true">
           {icon || 'auto_awesome'}
         </span>
       </div>

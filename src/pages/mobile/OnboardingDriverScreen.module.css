@@ -206,6 +206,10 @@
   justify-content: center;
 }
 
+.successIcon {
+  font-size: var(--icon-3xl);
+}
+
 .doneTitle {
   font: var(--type-headline-lg);
   margin: 0;
@@ -238,9 +242,4 @@
   font: var(--type-body-sm);
   color: var(--text-muted);
   text-align: center;
-}
-
-@keyframes flowScaleIn {
-  from { transform: scale(0.5); opacity: 0; }
-  to   { transform: scale(1);   opacity: 1; }
 }

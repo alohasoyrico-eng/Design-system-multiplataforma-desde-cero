@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { ControlShell } from './shells/ControlShell'
+import { ControlShell } from './ControlShell'
 import css from './Textarea.module.css'
 
 export interface TextareaProps {

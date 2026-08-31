@@ -1,0 +1,25 @@
+.app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-10);
+  box-sizing: border-box;
+  background: var(--surface-canvas);
+}
+
+@media (max-width: 982px) {
+  .main {
+    padding: var(--space-6);
+  }
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding: var(--space-4);
+  }
+}

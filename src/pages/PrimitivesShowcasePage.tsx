@@ -6,8 +6,8 @@ import { Slider } from '../ui/primitives/Slider'
 import { Flag } from '../ui/primitives/Flag'
 import { Tooltip } from '../ui/components/Tooltip'
 import { SegmentedControl } from '../ui/components/SegmentedControl'
-import { Timeline } from '../ui/components/Timeline'
-import { CircularProgress } from '../ui/components/CircularProgress'
+import { Timeline } from '../ui/primitives/Timeline'
+import { CircularProgress } from '../ui/primitives/CircularProgress'
 import { TableTree } from '../ui/components/TableTree'
 import { Donut } from '../ui/components/Donut'
 import { BulletChart } from '../ui/components/BulletChart'
@@ -17,8 +17,9 @@ import { ScatterPlot } from '../ui/components/ScatterPlot'
 import { ParetoChart } from '../ui/components/ParetoChart'
 import { Treemap } from '../ui/components/Treemap'
 import { KanbanBoard } from '../ui/components/KanbanBoard'
+import css from './PrimitivesShowcasePage.module.css'
 import { CardMedia } from '../ui/components/CardMedia'
-import { StatusView } from '../ui/components/StatusView'
+import { StatusView } from '../ui/primitives/StatusView'
 import { OnboardingCarousel } from '../ui/patterns/OnboardingCarousel'
 import { Button } from '../ui/primitives/Button'
 import { IconButton } from '../ui/primitives/IconButton'
@@ -349,18 +350,18 @@ export function PrimitivesShowcasePage() {
           items={kanbanItems}
           renderCard={(item, { dragging }) => (
             <div style={{ opacity: dragging ? 0.5 : 1 }}>
-              <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' }}>{item.title as string}</div>
+              <div className={css.kanbanTitle}>{item.title as string}</div>
               <div style={{ display: 'flex', gap: 6, marginTop: 6, alignItems: 'center' }}>
-                {item.tag && <span style={{ fontSize: 11, background: 'var(--surface-sunken)', padding: '1px 6px', borderRadius: 4 }}>{item.tag as string}</span>}
-                {item.assignee && <span style={{ fontSize: 11, color: 'var(--text-muted)', marginLeft: 'auto' }}>{item.assignee as string}</span>}
+                {item.tag && <span className={css.kanbanTag}>{item.tag as string}</span>}
+                {item.assignee && <span className={css.kanbanAssignee}>{item.assignee as string}</span>}
               </div>
             </div>
           )}
           renderDetail={(item) => (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <h3 style={{ margin: 0, font: 'var(--type-title-md)' }}>{item.title as string}</h3>
-              {item.description && <p style={{ margin: 0, fontSize: 13.5, color: 'var(--text-secondary)' }}>{item.description as string}</p>}
-              {item.assignee && <p style={{ margin: 0, fontSize: 13, color: 'var(--text-muted)' }}>Asignado: {item.assignee as string}</p>}
+              {item.description && <p style={{ margin: 0 }} className={css.kanbanDetailDesc}>{item.description as string}</p>}
+              {item.assignee && <p style={{ margin: 0 }} className={css.kanbanDetailAssignee}>Asignado: {item.assignee as string}</p>}
             </div>
           )}
           onMove={(cardId, toCol) => {

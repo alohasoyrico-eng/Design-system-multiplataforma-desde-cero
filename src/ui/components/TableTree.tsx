@@ -73,7 +73,7 @@ export function TableTree({ columns, rows, rowKey = 'id', onRowClick, selectedKe
                       aria-label={isOpen ? intl.formatMessage({ id: 'common.collapse', defaultMessage: 'Colapsar' }) : intl.formatMessage({ id: 'common.expand', defaultMessage: 'Expandir' })}
                       onClick={(e) => { e.stopPropagation(); toggle(key) }}
                     >
-                      <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16 }}>
+                      <span className="flow-icon flow-icon--sm" aria-hidden="true">
                         chevron_right
                       </span>
                     </button>

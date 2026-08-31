@@ -113,7 +113,7 @@
 }
 
 .optionIcon {
-  font-size: 20px;
+  font-size: var(--icon-default);
   color: var(--text-muted);
   flex: none;
 }
@@ -154,7 +154,7 @@
 }
 
 .optionReturn {
-  font-size: 16px;
+  font-size: var(--icon-sm);
   color: var(--text-muted);
   flex: none;
 }

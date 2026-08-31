@@ -5,8 +5,8 @@ import { Input } from '../ui/primitives/Input'
 import { Select } from '../ui/primitives/Select'
 import { Field } from '../ui/primitives/Field'
 import { Wizard, WizardSummary, WizardSummarySection, WizardSummaryRow } from '../ui/patterns/Wizard'
-import { PageHeader } from '../layout/PageHeader'
-import { useNotify } from '../components/NotifyContext'
+import { PageHeader } from '../ui/patterns/PageHeader'
+import { useNotify } from '../app/NotifyContext'
 
 const STEPS = [
   { label: 'Vehículo', description: 'Datos de la unidad' },
@@ -110,7 +110,7 @@ export function WizardPage() {
   return (
     <>
       <PageHeader
-        crumbs={[{ label: 'Flota' }, { label: 'Unidades' }, { label: 'Alta de unidad' }]}
+        breadcrumb={['Flota', 'Unidades', 'Alta de unidad']}
         title="Alta de unidad"
       />
 

@@ -13,11 +13,11 @@ bájalo a la capa que ambos comparten — no lo copies.
 
 | Capa | Entra si | Puede importar |
 |---|---|---|
-| foundations | Es una decisión expresable sin JSX (color, tipo, espacio, forma, motion) | nada |
-| primitives | No importa nada del sistema salvo tokens y shells. Es hoja del grafo y dueña de una sola carcasa | foundations, shells |
-| components | Compone primitives y nombra un concepto de **interfaz**, no de negocio | primitives |
-| patterns | Resuelve una tarea recurrente y **sí** conoce el dominio | components |
-| templates | Nombra una pantalla real y trae contenido final. Se copia, no se importa | patterns |
+| foundations | Es una decisión expresable sin JSX (color, tipo, espacio, forma, motion). Cadena ref→sys obligatoria. | nada |
+| primitives | **Átomo UI.** Un solo concepto visual, una sola responsabilidad. No importa nada del sistema salvo tokens (foundations). Hoja del grafo. | foundations |
+| components | **Molécula UI.** Concepto de **interfaz** compuesto — coordina múltiples sub-conceptos (paneles, estados, sub-áreas) O envuelve interacción compleja (focus trap, scroll virtual, drag). *Debe* componer primitives cuando existe uno que cubra una de sus partes. | primitives |
+| patterns | **Receta de dominio.** Nombra un concepto de **negocio**, no de interfaz. *Debe* componer desde components o primitives — si no importa nada de la cascada, le falta composición o le sobra capa. | components |
+| templates | **Pantalla ensamblada.** Importa patterns como unidad principal. Si el ratio directo/patterns es >5:1, le faltan patterns intermedios. No crea clases CSS reutilizables — si una clase se repite en 2+ templates, debe promoverse. No declara @keyframes. Inline styles solo para valores runtime. | patterns |
 
 Dos criterios que resuelven casi todas las dudas:
 
@@ -28,7 +28,7 @@ Dos criterios que resuelven casi todas las dudas:
 
 - **R1 — hacia abajo.** Una dependencia externa (una librería de charts, tiles de mapa) no reclasifica la capa: R1 mira el grafo del sistema.
 - **R2 — una variante no es un componente.** Un archivo nuevo por cada variación es lo que produce sistemas con catorce copias del mismo borde. Si es la misma cosa con otra piel, es una prop.
-- **R3 — una carcasa, un dueño.** Fuera de los shells, nada redeclara borde+foco+radio de control, backdrop fijo, ni sus propios `@keyframes`.
+- **R3 — una carcasa, un dueño.** Nada redeclara borde+foco+radio de control, backdrop fijo, ni sus propios `@keyframes`. Las animaciones usan transiciones con tokens de motion, no keyframes.
 - **R4 — la composición no se filtra a la API.** Que `Select` esté hecho de `Popover` + `Listbox` es asunto interno. Ninguna prop pública nombra sus partes.
 
 ## Al escribir componentes
@@ -142,11 +142,11 @@ Estos son los nombres estándar. Úsalos tal cual — no inventes sinónimos.
 |---|---|---|
 | `onClick` | `() => void` | Acción primaria |
 | `onChange` | `(value: T) => void` | Valor controlado. El tipo depende del componente |
-| `onClose` | `() => void` | Para overlays (Dialog, Drawer, OverlayShell) |
+| `onClose` | `() => void` | Para overlays (Dialog, Drawer, BottomSheet) |
 | `open` | `boolean` | Controla visibilidad de overlays |
 | `value` | `T` | Valor controlado del input/select |
 
-### Props de layout de shells
+### Props de layout (leading/trailing/footer)
 
 | Prop | Patrón |
 |---|---|
@@ -382,7 +382,8 @@ Cada componente con estilos propios tiene un `.module.css` al lado del `.tsx`.
    .root:disabled { opacity: 0.5; pointer-events: none; }
    ```
 4. **Valores que dependen de runtime** (como el color computado de Avatar) van como inline style.
-5. **No uses `@keyframes` fuera de shells.** Si necesitas animación, usa las transiciones con tokens de motion.
+5. **No uses `@keyframes`.** Las animaciones usan transiciones con tokens de motion (`--dur-*`, `--ease-*`), no keyframes.
+6. **Inline styles solo para valores runtime** (posición computada, color dinámico, width de progress) o `style={style}` pass-through. Layout, tipografía y spacing van en CSS Module con tokens. Inline `fontSize` prohibido — usar tokens de tipo.
 
 ---
 

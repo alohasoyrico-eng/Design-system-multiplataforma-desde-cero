@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link, useMatchRoute } from '@tanstack/react-router'
 import { Avatar } from '../ui/primitives/Avatar'
-import css from '../App.module.css'
+import css from './FleetSidebar.module.css'
 
 const DASHBOARDS: [string, string, string][] = [
   ['/', 'space_dashboard', 'Overview'],

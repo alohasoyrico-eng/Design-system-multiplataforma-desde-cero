@@ -13,8 +13,8 @@ import { DateRangePicker } from '../ui/components/DateRangePicker'
 import { Sparkline } from '../ui/primitives/Sparkline'
 import { IconButton } from '../ui/primitives/IconButton'
 import { NotificationCenter } from '../ui/components/NotificationCenter'
-import { ThemeToggle } from '../components/ThemeToggle'
-import { useOpenSearch } from '../components/SearchContext'
+import { ThemeToggle } from '../app/ThemeToggle'
+import { useOpenSearch } from '../app/SearchContext'
 import { useNotifications } from '../data/api'
 import { Donut } from '../ui/components/Donut'
 import { ScatterPlot } from '../ui/components/ScatterPlot'
@@ -27,7 +27,7 @@ import { MapCanvas } from '../ui/components/MapCanvas'
 import { ChartLegend } from '../ui/primitives/ChartLegend'
 import { PageHeader } from '../ui/patterns/PageHeader'
 import { DOMAIN } from '../data/domain-colors'
-import css from '../App.module.css'
+import css from './DashboardPage.module.css'
 
 const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
 const searchTooltip = `Buscar (${isMac ? '⌘K' : 'Ctrl+K'})`
@@ -189,7 +189,7 @@ function OverviewView() {
         <Table
           columns={[
             { key: 'sev', label: '', render: (r: { sev: string }) => (
-              <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{ fontSize: 18, color: r.sev === 'alta' ? 'var(--status-danger)' : 'var(--status-warning)' }}>warning</span>
+              <span className="flow-icon flow-icon--fill flow-icon--md" aria-hidden="true" style={{ color: r.sev === 'alta' ? 'var(--status-danger)' : 'var(--status-warning)' }}>warning</span>
             ) },
             { key: 'msg', label: 'Alerta' },
             { key: 'unit', label: 'Unidad', mono: true },

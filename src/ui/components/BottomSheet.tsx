@@ -1,5 +1,5 @@
 import type { ReactNode, CSSProperties } from 'react'
-import { OverlayShell } from '../primitives/shells/OverlayShell'
+import { OverlayShell } from '../primitives/OverlayShell'
 import css from './BottomSheet.module.css'
 
 export interface BottomSheetProps {

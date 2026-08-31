@@ -1,10 +1,10 @@
 import { useState, useEffect, createContext, useContext, type ReactNode } from 'react'
 import { Link, Outlet, useMatchRoute } from '@tanstack/react-router'
-import { Toast, ToastStack } from '../ui/components/Toast'
+import { Toast, ToastStack } from '../ui/primitives/Toast'
 import { Avatar } from '../ui/primitives/Avatar'
 import { Select } from '../ui/primitives/Select'
-import { EmptyState } from '../ui/components/EmptyState'
-import { ThemeToggle } from '../components/ThemeToggle'
+import { EmptyState } from '../ui/primitives/EmptyState'
+import { ThemeToggle } from '../app/ThemeToggle'
 import { ROLES, NAV, type RoleId } from '../pages/internal-tools/data'
 import css from './InternalToolsLayout.module.css'
 

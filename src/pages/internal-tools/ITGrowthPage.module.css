@@ -1,0 +1,21 @@
+.cardName {
+  font: var(--type-body-sm);
+  font-weight: 600;
+}
+
+.cardMeta {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.detailName {
+  font: var(--type-title-md);
+  font-weight: 700;
+}
+
+.detailContact {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin-top: 2px;
+}

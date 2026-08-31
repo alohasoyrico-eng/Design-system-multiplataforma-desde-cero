@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { OverlayShell } from '../primitives/shells/OverlayShell'
+import { OverlayShell } from '../primitives/OverlayShell'
 import css from './Dialog.module.css'
 
 export interface DialogProps {

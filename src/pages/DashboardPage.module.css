@@ -1,0 +1,82 @@
+.kpiGrid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.dashGrid2 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--gap-stack);
+  margin-bottom: var(--space-4);
+}
+
+.dashGrid2eq {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--gap-stack);
+  margin-bottom: var(--space-4);
+}
+
+.chartHeader {
+  font: var(--type-title-md);
+  margin-bottom: var(--space-1);
+}
+
+.chartDesc {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.chartHeaderSolo {
+  font: var(--type-title-md);
+  margin-bottom: var(--space-3);
+}
+
+.sparkRow {
+  display: flex;
+  gap: var(--space-7);
+  flex-wrap: wrap;
+}
+
+.sparkItem {
+  flex: 1;
+  min-width: 220px;
+}
+
+.sparkItemLabel {
+  font: var(--type-label-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-1);
+}
+
+@media (max-width: 982px) {
+  .kpiGrid4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashGrid2,
+  .dashGrid2eq {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .kpiGrid4 {
+    gap: var(--space-2);
+  }
+
+  .sparkRow {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sparkItem {
+    min-width: 0;
+  }
+}

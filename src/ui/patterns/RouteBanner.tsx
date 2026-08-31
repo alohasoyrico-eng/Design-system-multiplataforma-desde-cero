@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import css from './RouteBanner.module.css'
-import { Card } from './Card'
+import { Card } from '../components/Card'
 import { IconButton } from '../primitives/IconButton'
 
 export interface RouteBannerProps {
@@ -16,7 +16,7 @@ export function RouteBanner({ icon = 'navigation', title, subtitle, onClose, sty
     <div className={css.root} style={style}>
       <Card padding={14}>
         <div className={css.content}>
-          <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{ fontSize: 22, color: 'var(--text-accent)' }}>
+          <span className={`flow-icon flow-icon--fill ${css.icon}`} aria-hidden="true">
             {icon}
           </span>
           <div className={css.info}>

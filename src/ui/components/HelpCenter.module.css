@@ -201,6 +201,18 @@
   color: var(--text-muted);
 }
 
+.tagLabel {
+  font: var(--type-label-sm);
+  color: var(--text-muted);
+}
+
+.noResults {
+  padding: var(--space-4) var(--space-3);
+  text-align: center;
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
 .resultCount {
   padding: var(--space-2) var(--space-3);
   font: var(--type-label-sm);

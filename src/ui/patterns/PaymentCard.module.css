@@ -203,6 +203,10 @@ button.root:focus-visible {
   z-index: 4;
 }
 
+.frozenIcon {
+  font-size: var(--icon-2xl);
+}
+
 .root[data-frozen] {
   pointer-events: none;
 }

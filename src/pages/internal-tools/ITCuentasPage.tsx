@@ -2,10 +2,13 @@ import { useState } from 'react'
 import { Table } from '../../ui/components/Table'
 import { Badge } from '../../ui/primitives/Badge'
 import { Avatar } from '../../ui/primitives/Avatar'
+import { DetailRow } from '../../ui/primitives/DetailRow'
 import { Tabs } from '../../ui/components/Tabs'
 import { Drawer } from '../../ui/components/Drawer'
+import { Timeline } from '../../ui/primitives/Timeline'
+import { PageHeader } from '../../ui/patterns/PageHeader'
 import { ACCOUNTS, STATUS_TONE, type Account } from './data'
-import css from './internal-tools.module.css'
+import css from './ITCuentasPage.module.css'
 
 function AccountDetail({ account, onClose }: { account: Account | null; onClose: () => void }) {
   const [tab, setTab] = useState('perfil')
@@ -19,12 +22,12 @@ function AccountDetail({ account, onClose }: { account: Account | null; onClose:
   return (
     <Drawer open={!!account} onClose={onClose} title={account?.name ?? ''} width={520}>
       {account && (
-        <div className={css.drawerContent}>
-          <div className={css.drawerHeaderRow}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
             <Avatar name={account.name} size="lg" />
             <div style={{ flex: 1 }}>
               <Badge tone={account.type === 'Flota' ? 'info' : 'default'}>{account.type}</Badge>
-              <div className={css.drawerMeta} style={{ marginTop: 4 }}>{account.metric} · desde {account.since}</div>
+              <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)', marginTop: 4 }}>{account.metric} · desde {account.since}</div>
             </div>
             <Badge tone={STATUS_TONE[account.status]}>{account.status}</Badge>
           </div>
@@ -40,37 +43,34 @@ function AccountDetail({ account, onClose }: { account: Account | null; onClose:
           />
 
           {tab === 'perfil' && (
-            <div className={css.kvList}>
-              <div className={css.kvRow}><span className={css.kvLabel}>Tipo de cuenta</span><span>{account.type}</span></div>
-              <div className={css.kvRow}><span className={css.kvLabel}>{account.type === 'Flota' ? 'Unidades' : 'Viajes'}</span><span>{account.metric}</span></div>
-              <div className={css.kvRow}><span className={css.kvLabel}>Cliente desde</span><span>{account.since}</span></div>
-              <div className={css.kvRow}><span className={css.kvLabel}>Estado</span><Badge tone={STATUS_TONE[account.status]}>{account.status}</Badge></div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+              <DetailRow label="Tipo de cuenta" value={account.type} />
+              <DetailRow label={account.type === 'Flota' ? 'Unidades' : 'Viajes'} value={account.metric} />
+              <DetailRow label="Cliente desde" value={account.since} />
+              <DetailRow label="Estado" value={<Badge tone={STATUS_TONE[account.status]}>{account.status}</Badge>} />
             </div>
           )}
 
           {tab === 'actividad' && (
-            <div className={css.timeline}>
-              {account.activity.map((a, i) => (
-                <div key={i} className={css.timelineItem} data-status={a.status}>
-                  <div className={css.timelineDot} />
-                  <div className={css.timelineBody}>
-                    <div className={css.timelineTitle}>{a.title}</div>
-                    <div className={css.timelineTime}>{a.timestamp}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <Timeline
+              items={account.activity.map(a => ({
+                title: a.title,
+                timestamp: a.timestamp,
+                status: a.status as 'done' | 'active' | 'pending' | 'error',
+              }))}
+              mode="events"
+            />
           )}
 
           {tab === 'tickets' && (
             <div className={css.ticketLinks}>
               {account.tickets.length === 0 && (
-                <div className={css.drawerMeta}>Sin tickets asociados</div>
+                <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>Sin tickets asociados</div>
               )}
               {account.tickets.map(t => (
                 <div key={t.id} className={css.ticketLinkCard}>
                   <div style={{ flex: 1 }}>
-                    <span className={css.mono}>{t.id}</span> {t.subject}
+                    <span className={css.ticketId}>{t.id}</span> {t.subject}
                   </div>
                   <Badge tone={STATUS_TONE[t.status]}>{t.status}</Badge>
                 </div>
@@ -88,10 +88,7 @@ export function ITCuentasPage() {
 
   return (
     <>
-      <div className={css.pageHeaderRow}>
-        <h1 className={css.pageTitle}>Cuentas</h1>
-        <span className={css.pageCount}>{ACCOUNTS.length} cuentas</span>
-      </div>
+      <PageHeader title="Cuentas" trailing={<span style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{ACCOUNTS.length} cuentas</span>} />
 
       <Table
         rowKey="id"

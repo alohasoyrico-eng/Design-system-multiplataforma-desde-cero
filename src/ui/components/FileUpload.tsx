@@ -60,7 +60,7 @@ export function FileUpload({ files = [], onChange, accept, label, hint }: FileUp
                 onClick={(e) => { e.stopPropagation(); onChange?.(files.filter((_, j) => j !== i)) }}
                 aria-label={intl.formatMessage({ id: 'common.remove', defaultMessage: 'Quitar {name}' }, { name: f.name })}
               >
-                <span className="flow-icon" style={{ fontSize: 16 }}>close</span>
+                <span className="flow-icon flow-icon--sm" aria-hidden="true">close</span>
               </button>
             </div>
           ))}

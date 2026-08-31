@@ -39,7 +39,7 @@ export function Chip({
       onClick={e => { e.stopPropagation(); onRemove() }}
       className={css.remove}
     >
-      <span className="flow-icon" aria-hidden="true" style={{ fontSize: 16 }}>close</span>
+      <span className="flow-icon flow-icon--sm" aria-hidden="true">close</span>
     </button>
   )
 

@@ -8,8 +8,8 @@ import { Select } from '../ui/primitives/Select'
 import { Field } from '../ui/primitives/Field'
 import { Dialog } from '../ui/components/Dialog'
 import { Settings, SettingsSection, SettingsRow, SettingsDangerZone, SettingsDangerRow } from '../ui/patterns/Settings'
-import { PageHeader } from '../layout/PageHeader'
-import { useNotify } from '../components/NotifyContext'
+import { PageHeader } from '../ui/patterns/PageHeader'
+import { useNotify } from '../app/NotifyContext'
 
 const TABS = [
   { value: 'general', label: 'General', icon: 'tune' },
@@ -44,7 +44,7 @@ export function SettingsPage() {
   return (
     <>
       <PageHeader
-        crumbs={[{ label: 'Flota' }, { label: 'Ajustes' }]}
+        breadcrumb={['Flota', 'Ajustes']}
         title="Ajustes"
       />
 

@@ -2,11 +2,12 @@ import { TopBar } from '../ui/patterns/TopBar'
 import { IconButton } from '../ui/primitives/IconButton'
 import { Badge } from '../ui/primitives/Badge'
 import { FlowLogo } from '../ui/primitives/FlowLogo'
+import css from './TopBarDemoPage.module.css'
 
 const logo = <FlowLogo />
 
 const avatar = (
-  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--surface-accent-subtle)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 600, color: 'var(--text-accent)' }}>MV</div>
+  <div className={css.demoAvatar}>MV</div>
 )
 
 const navItems = [
@@ -63,7 +64,7 @@ export function TopBarDemoPage() {
 
       <section>
         <h2 style={{ font: 'var(--type-title-lg)', color: 'var(--text-primary)', marginBottom: 'var(--space-3)' }}>5 · fullscreen</h2>
-        <div style={{ height: 56, border: '1px dashed var(--border-subtle)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontSize: 12, fontStyle: 'italic' }}>return null — no renderiza nada</div>
+        <div className={css.placeholder}>return null — no renderiza nada</div>
       </section>
 
       <section>

@@ -4,7 +4,7 @@ import { PaymentCard } from '../ui/patterns/PaymentCard'
 import { TransactionRow } from '../ui/patterns/TransactionRow'
 import { InputAmount } from '../ui/patterns/InputAmount'
 import { InputPhone } from '../ui/patterns/InputPhone'
-import { TabBar } from '../ui/components/TabBar'
+import { TabBar } from '../ui/primitives/TabBar'
 import { BottomSheet } from '../ui/components/BottomSheet'
 import { BiometricPrompt } from '../ui/patterns/BiometricPrompt'
 import { PasscodeKeypad } from '../ui/patterns/PasscodeKeypad'
@@ -92,7 +92,7 @@ export function WalletPage() {
                     type="button"
                     aria-label="Bloquear"
                   >
-                    <span className="flow-icon" style={{ fontSize: 20 }}>lock</span>
+                    <span className="flow-icon flow-icon--default" aria-hidden="true">lock</span>
                   </button>
                 </div>
 

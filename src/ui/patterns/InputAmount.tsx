@@ -1,5 +1,5 @@
 import { useRef, type CSSProperties } from 'react'
-import { ControlShell } from '../primitives/shells/ControlShell'
+import { ControlShell } from '../primitives/ControlShell'
 import css from './InputAmount.module.css'
 
 export interface InputAmountProps {

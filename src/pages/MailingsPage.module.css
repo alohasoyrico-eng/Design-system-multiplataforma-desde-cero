@@ -57,7 +57,7 @@
   display: block;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  background: #f3f1ed;
+  background: var(--surface-sunken);
   min-height: 500px;
 }
 

@@ -1,10 +1,12 @@
 import type { ReactNode, CSSProperties } from 'react'
-import { Breadcrumb } from '../components/Breadcrumb'
-import { useSidebarToggle } from '../../components/SidebarContext'
+import { Breadcrumb } from '../primitives/Breadcrumb'
+import { useSidebarToggle } from '../../app/SidebarContext'
 import css from './PageHeader.module.css'
 
 export interface PageHeaderProps {
   title: string
+  overline?: string
+  description?: string
   breadcrumb?: string[]
   filters?: ReactNode
   actions?: ReactNode
@@ -14,6 +16,8 @@ export interface PageHeaderProps {
 
 export function PageHeader({
   title,
+  overline,
+  description,
   breadcrumb = [],
   filters,
   actions,
@@ -40,7 +44,9 @@ export function PageHeader({
           {breadcrumb.length > 0 && (
             <Breadcrumb items={breadcrumb.map(c => ({ label: c }))} />
           )}
+          {overline && <div className={css.overline}>{overline}</div>}
           <h1 className={css.title}>{title}</h1>
+          {description && <p className={css.description}>{description}</p>}
         </div>
         <div className={css.spacer} />
         {!hasSecondRow && actions && <div className={css.actions}>{actions}</div>}

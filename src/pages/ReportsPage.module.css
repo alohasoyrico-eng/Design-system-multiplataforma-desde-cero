@@ -1,0 +1,67 @@
+.reportsFilterRow {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.dateWrapper {
+  width: 190px;
+  margin-left: auto;
+}
+
+.reportsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-stack);
+}
+
+.chartTitle {
+  font: var(--type-title-md);
+  margin-bottom: var(--space-1);
+}
+
+.chartSubtitle {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.chartTotal {
+  font: var(--type-data);
+  color: var(--text-primary);
+}
+
+.sparklineRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.sparklineItem {
+  flex: 1;
+  min-width: 200px;
+}
+
+.sparklineLabel {
+  font: var(--type-label-sm);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 982px) {
+  .reportsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .dateWrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+}

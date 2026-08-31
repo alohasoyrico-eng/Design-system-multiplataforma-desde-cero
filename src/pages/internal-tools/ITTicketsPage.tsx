@@ -5,9 +5,11 @@ import { Badge } from '../../ui/primitives/Badge'
 import { Avatar } from '../../ui/primitives/Avatar'
 import { Button } from '../../ui/primitives/Button'
 import { IconButton } from '../../ui/primitives/IconButton'
+import { Input } from '../../ui/primitives/Input'
 import { Drawer } from '../../ui/components/Drawer'
+import { ChatMessage } from '../../ui/primitives/ChatMessage'
+import { PageHeader } from '../../ui/patterns/PageHeader'
 import { TICKETS, PRIORITY_TONE, STATUS_TONE, type Ticket } from './data'
-import css from './internal-tools.module.css'
 
 function TicketDetail({ ticket, onClose, onStatusChange }: {
   ticket: Ticket | null
@@ -30,34 +32,29 @@ function TicketDetail({ ticket, onClose, onStatusChange }: {
       ) : undefined}
     >
       {ticket && (
-        <div className={css.drawerContent}>
-          <div className={css.drawerHeaderRow}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
             <Avatar name={ticket.who} size="sm" />
             <div style={{ flex: 1 }}>
-              <div className={css.drawerName}>{ticket.who}</div>
-              <div className={css.drawerMeta}>Canal: {ticket.channel} · Asignado a {ticket.assignee}</div>
+              <div style={{ font: 'var(--type-body-md)', fontWeight: 700 }}>{ticket.who}</div>
+              <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>Canal: {ticket.channel} · Asignado a {ticket.assignee}</div>
             </div>
             <Badge tone={PRIORITY_TONE[ticket.priority]}>{ticket.priority}</Badge>
             <Badge tone={STATUS_TONE[ticket.status]}>{ticket.status}</Badge>
           </div>
 
-          <div className={css.threadList}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', flex: 1, minHeight: 200, overflowY: 'auto', padding: 'var(--space-2) 0' }}>
             {ticket.thread.map((msg, i) => (
-              <div key={i} className={css.threadMsg} data-role={msg.role}>
-                <div className={css.threadBubble}>
-                  <div className={css.threadText}>{msg.text}</div>
-                  <div className={css.threadTime}>{msg.timestamp}</div>
-                </div>
-              </div>
+              <ChatMessage key={i} role={msg.role as 'user' | 'agent'} text={msg.text} timestamp={msg.timestamp} />
             ))}
           </div>
 
-          <div className={css.replyRow}>
-            <input
+          <div style={{ display: 'flex', gap: 'var(--space-2)', flexShrink: 0 }}>
+            <Input
               value={reply}
-              onChange={(e) => setReply(e.target.value)}
+              onChange={setReply}
               placeholder="Escribe una respuesta…"
-              className={css.replyInput}
+              style={{ flex: 1 }}
             />
             <IconButton icon="send" ariaLabel="Enviar" onClick={() => setReply('')} />
           </div>
@@ -82,10 +79,7 @@ export function ITTicketsPage() {
 
   return (
     <Guard allowed={['admin', 'agente']}>
-      <div className={css.pageHeaderRow}>
-        <h1 className={css.pageTitle}>Tickets</h1>
-        <span className={css.pageCount}>{openCount} abiertos de {tickets.length}</span>
-      </div>
+      <PageHeader title="Tickets" trailing={<span style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{openCount} abiertos de {tickets.length}</span>} />
 
       <Table
         rowKey="id"

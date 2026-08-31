@@ -4,8 +4,10 @@ import { Table } from '../../ui/components/Table'
 import { Badge } from '../../ui/primitives/Badge'
 import { Button } from '../../ui/primitives/Button'
 import { Drawer } from '../../ui/components/Drawer'
+import { Timeline } from '../../ui/primitives/Timeline'
+import { StatusView } from '../../ui/primitives/StatusView'
+import { PageHeader } from '../../ui/patterns/PageHeader'
 import { CASES, STATUS_TONE, type Case } from './data'
-import css from './internal-tools.module.css'
 
 function CaseDetail({ caso, onClose, onResolve }: {
   caso: Case | null; onClose: () => void; onResolve: (id: string, status: string) => void
@@ -37,37 +39,32 @@ function CaseDetail({ caso, onClose, onResolve }: {
       ) : undefined}
     >
       {caso && !result && (
-        <div className={css.drawerContent}>
-          <div className={css.drawerHeaderRow}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
             <Badge tone={STATUS_TONE[caso.status]}>{caso.status}</Badge>
-            <span className={css.drawerMeta}>{caso.who} · {caso.amount} · Abierto {caso.opened}</span>
+            <span style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{caso.who} · {caso.amount} · Abierto {caso.opened}</span>
           </div>
 
-          <div className={css.timeline}>
-            {caso.steps.map((s, i) => (
-              <div key={i} className={css.timelineItem} data-status={s.status}>
-                <div className={css.timelineDot} />
-                <div className={css.timelineBody}>
-                  <div className={css.timelineTitle}>{s.title}</div>
-                  <div className={css.timelineTime}>{s.timestamp}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Timeline
+            items={caso.steps.map(s => ({
+              title: s.title,
+              timestamp: s.timestamp,
+              status: s.status as 'done' | 'active' | 'pending' | 'error',
+            }))}
+            mode="events"
+          />
         </div>
       )}
       {caso && result && (
-        <div className={css.statusView}>
-          <span className="flow-icon" style={{ fontSize: 48, color: result === 'resuelta' ? 'var(--status-success)' : 'var(--status-danger)' }}>
-            {result === 'resuelta' ? 'check_circle' : 'cancel'}
-          </span>
-          <div className={css.statusTitle}>{result === 'resuelta' ? 'Caso resuelto' : 'Caso rechazado'}</div>
-          <div className={css.statusDesc}>
-            {result === 'resuelta'
+        <StatusView
+          status={result === 'resuelta' ? 'success' : 'error'}
+          title={result === 'resuelta' ? 'Caso resuelto' : 'Caso rechazado'}
+          description={
+            result === 'resuelta'
               ? `El caso de ${caso.who} ha sido resuelto a favor del cliente.`
-              : `El caso de ${caso.who} ha sido rechazado.`}
-          </div>
-        </div>
+              : `El caso de ${caso.who} ha sido rechazado.`
+          }
+        />
       )}
     </Drawer>
   )
@@ -88,10 +85,7 @@ export function ITCasosPage() {
 
   return (
     <Guard allowed={['admin', 'agente']}>
-      <div className={css.pageHeaderRow}>
-        <h1 className={css.pageTitle}>Casos</h1>
-        <span className={css.pageCount}>{openCount} abiertos de {cases.length}</span>
-      </div>
+      <PageHeader title="Casos" trailing={<span style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{openCount} abiertos de {cases.length}</span>} />
 
       <Table
         rowKey="id"

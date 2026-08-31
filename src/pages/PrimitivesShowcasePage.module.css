@@ -1,0 +1,30 @@
+.kanbanTitle {
+  font: var(--type-body-md);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.kanbanTag {
+  font: var(--type-label-sm);
+  font-weight: 400;
+  background: var(--surface-sunken);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.kanbanAssignee {
+  font: var(--type-label-sm);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.kanbanDetailDesc {
+  font: var(--type-body-md);
+  color: var(--text-secondary);
+}
+
+.kanbanDetailAssignee {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}

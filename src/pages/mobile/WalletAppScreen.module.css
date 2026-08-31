@@ -148,6 +148,10 @@
     background var(--dur-fast) var(--ease-out);
 }
 
+.addCardIcon {
+  font-size: var(--icon-2xl);
+}
+
 .addCard:hover {
   border-color: var(--alpha-white-50);
   background: var(--alpha-white-10);

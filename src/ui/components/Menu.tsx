@@ -1,5 +1,5 @@
 import type { ReactNode, CSSProperties } from 'react'
-import { Popover } from '../primitives/shells/Popover'
+import { Popover } from '../primitives/Popover'
 import css from './Menu.module.css'
 
 export interface MenuItem {

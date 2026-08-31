@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useIntl } from 'react-intl'
-import { Stepper, type StepperStep } from '../components/Stepper'
+import { Stepper, type StepperStep } from '../primitives/Stepper'
 import { Button } from '../primitives/Button'
 import css from './Wizard.module.css'
 

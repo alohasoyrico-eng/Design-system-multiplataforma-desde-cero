@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Checkbox } from '../ui/primitives/Checkbox'
-import { Toast, ToastStack } from '../ui/components/Toast'
+import { Toast, ToastStack } from '../ui/primitives/Toast'
 import { AuthForm, type AuthMode, type AuthSubmitData } from '../ui/patterns/AuthForm'
 import css from './AuthPage.module.css'
 

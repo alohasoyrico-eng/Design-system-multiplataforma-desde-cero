@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Stepper, type StepperStep } from '../ui/components/Stepper'
+import { Stepper, type StepperStep } from '../ui/primitives/Stepper'
 import { Card } from '../ui/components/Card'
 import { Input } from '../ui/primitives/Input'
 import { Select } from '../ui/primitives/Select'
@@ -9,7 +9,7 @@ import { Badge } from '../ui/primitives/Badge'
 import { Chip } from '../ui/primitives/Chip'
 import { OTPInput } from '../ui/components/OTPInput'
 import { OnboardingCarousel } from '../ui/patterns/OnboardingCarousel'
-import { StatusView } from '../ui/components/StatusView'
+import { StatusView } from '../ui/primitives/StatusView'
 import css from './OnboardingPage.module.css'
 
 const STEPS: StepperStep[] = [

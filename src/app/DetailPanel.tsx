@@ -5,7 +5,7 @@ import { Progress } from '../ui/primitives/Progress'
 import { Card } from '../ui/components/Card'
 import { statusBadge } from '../utils/statusBadge'
 import type { Unit } from '../data/types'
-import css from '../App.module.css'
+import css from './DetailPanel.module.css'
 
 export interface DetailPanelProps {
   unit: Unit | undefined

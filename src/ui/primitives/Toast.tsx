@@ -30,7 +30,7 @@ export function Toast({ message, tone = 'success', onDismiss }: ToastProps) {
       <span className={css.message}>{message}</span>
       {onDismiss && (
         <button onClick={onDismiss} aria-label="Cerrar" className={css.dismiss}>
-          <span className="flow-icon" style={{ fontSize: 18 }}>close</span>
+          <span className="flow-icon flow-icon--md" aria-hidden="true">close</span>
         </button>
       )}
     </div>

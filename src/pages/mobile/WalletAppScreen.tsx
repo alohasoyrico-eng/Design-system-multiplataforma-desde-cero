@@ -2,30 +2,30 @@ import { useState, useRef } from 'react'
 import css from './WalletAppScreen.module.css'
 import { PhoneFrame } from './PhoneFrame'
 import { PaymentCard } from '../../ui/patterns/PaymentCard'
-import { CardCarousel } from '../../ui/patterns/CardCarousel'
-import { QuickActionBar } from '../../ui/patterns/QuickActionBar'
+import { CardCarousel } from '../../ui/components/CardCarousel'
+import { QuickActionBar } from '../../ui/components/QuickActionBar'
 import { TransactionRow } from '../../ui/patterns/TransactionRow'
-import { TabBar } from '../../ui/components/TabBar'
+import { TabBar } from '../../ui/primitives/TabBar'
 import { BottomSheet } from '../../ui/components/BottomSheet'
 import { QuickAction } from '../../ui/components/QuickAction'
 import { MapCanvas } from '../../ui/components/MapCanvas'
 import { Card } from '../../ui/components/Card'
 import { FilterBar } from '../../ui/components/FilterBar'
-import { LimitBar } from '../../ui/components/LimitBar'
+import { LimitBar } from '../../ui/primitives/LimitBar'
 import { NavBar } from '../../ui/components/NavBar'
 import { NipReveal } from '../../ui/patterns/NipReveal'
 import { PeekSheet } from '../../ui/components/PeekSheet'
-import { RouteBanner } from '../../ui/components/RouteBanner'
+import { RouteBanner } from '../../ui/patterns/RouteBanner'
 import { TransactionGroup } from '../../ui/patterns/TransactionGroup'
 import { Button } from '../../ui/primitives/Button'
 import { Avatar } from '../../ui/primitives/Avatar'
 import { Badge } from '../../ui/primitives/Badge'
 import { IconButton } from '../../ui/primitives/IconButton'
 import { Chip } from '../../ui/primitives/Chip'
-import { EmptyState } from '../../ui/components/EmptyState'
+import { EmptyState } from '../../ui/primitives/EmptyState'
 import { ProfileMenu } from '../../ui/patterns/ProfileMenu'
 import { CardMedia } from '../../ui/components/CardMedia'
-import { SheetBody } from '../../ui/components/SheetBody'
+import { SheetBody } from '../../ui/primitives/SheetBody'
 import { DetailRow } from '../../ui/primitives/DetailRow'
 import { SectionHeader } from '../../ui/primitives/SectionHeader'
 
@@ -244,7 +244,7 @@ export function WalletAppScreen() {
                     <PaymentCard key={c.key} holder={c.holder} last4={c.last4} variant={c.variant} label={c.label} icon={c.icon} expires={c.expires} balance={c.balance} hidden={balanceHidden} onToggleHidden={() => setBalanceHidden(!balanceHidden)} />
                   ))}
                   <button type="button" className={css.addCard} onClick={() => {}}>
-                    <span className="flow-icon" aria-hidden="true" style={{ fontSize: 32 }}>add</span>
+                    <span className={`flow-icon ${css.addCardIcon}`} aria-hidden="true">add</span>
                     <span>Agregar tarjeta</span>
                   </button>
                 </CardCarousel>

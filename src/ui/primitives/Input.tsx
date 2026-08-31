@@ -1,6 +1,6 @@
 import { useState, type CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
-import { ControlShell } from './shells/ControlShell'
+import { ControlShell } from './ControlShell'
 import css from './Input.module.css'
 
 export interface InputProps {
@@ -46,7 +46,7 @@ export function Input({
       onClick={() => setShown(v => !v)}
       className={css.reveal}
     >
-      <span className="flow-icon" aria-hidden="true" style={{ fontSize: 20 }}>
+      <span className="flow-icon flow-icon--default" aria-hidden="true">
         {shown ? 'visibility_off' : 'visibility'}
       </span>
     </button>
@@ -58,7 +58,7 @@ export function Input({
       filled={filled}
       disabled={disabled}
       error={error}
-      leading={icon && <span className="flow-icon" style={{ fontSize: 18 }} aria-hidden="true">{icon}</span>}
+      leading={icon && <span className="flow-icon flow-icon--md" aria-hidden="true">{icon}</span>}
       trailing={reveal}
       style={style}
     >

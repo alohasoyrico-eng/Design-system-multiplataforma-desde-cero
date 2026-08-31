@@ -1,0 +1,25 @@
+.demoAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-accent-subtle);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--type-body-sm);
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+.placeholder {
+  height: 56px;
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font: var(--type-body-sm);
+  font-style: italic;
+}

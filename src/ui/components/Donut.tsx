@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { FlowChart } from '../primitives/FlowChart'
 import { ChartLegend } from '../primitives/ChartLegend'
+import css from './Donut.module.css'
 
 export interface DonutSegment {
   label: string
@@ -38,26 +39,19 @@ export function Donut({ segments = [], size = 160, centerLabel, centerValue, leg
   )
 
   const center = (centerValue != null || centerLabel) && (
-    <div style={{
-      position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center', pointerEvents: 'none', gap: 1,
-    }}>
+    <div className={css.center}>
       {centerValue != null && (
-        <div style={{ font: 'var(--type-data-lg)', color: 'var(--text-primary)', lineHeight: 1.1 }}>
-          {centerValue}
-        </div>
+        <div className={css.centerValue}>{centerValue}</div>
       )}
       {centerLabel && (
-        <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-          {centerLabel}
-        </div>
+        <div className={css.centerLabel}>{centerLabel}</div>
       )}
     </div>
   )
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-5)', ...style }}>
-      <div style={{ position: 'relative', width: size, height: size, flex: 'none' }}>
+    <div className={css.root} style={style}>
+      <div className={css.ring} style={{ width: size, height: size }}>
         {chart}
         {center}
       </div>

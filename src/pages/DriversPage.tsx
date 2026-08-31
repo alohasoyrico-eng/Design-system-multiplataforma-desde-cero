@@ -7,19 +7,19 @@ import { Avatar } from '../ui/primitives/Avatar'
 import { Progress } from '../ui/primitives/Progress'
 import { Card } from '../ui/components/Card'
 import { Table } from '../ui/components/Table'
-import { Pagination } from '../ui/components/Pagination'
+import { Pagination } from '../ui/primitives/Pagination'
 import { Accordion } from '../ui/components/Accordion'
 import { Drawer } from '../ui/components/Drawer'
 import { Menu } from '../ui/components/Menu'
 import { FileUpload } from '../ui/components/FileUpload'
 import type { UploadedFile } from '../ui/components/FileUpload'
 import { Skeleton } from '../ui/primitives/Skeleton'
-import { EmptyState } from '../ui/components/EmptyState'
-import { PageHeader } from '../layout/PageHeader'
+import { EmptyState } from '../ui/primitives/EmptyState'
+import { PageHeader } from '../ui/patterns/PageHeader'
 import { statusBadge } from '../utils/statusBadge'
-import { useNotify } from '../components/NotifyContext'
+import { useNotify } from '../app/NotifyContext'
 import { useDrivers } from '../data/api'
-import css from '../App.module.css'
+import css from './DriversPage.module.css'
 
 export function DriversPage() {
   const notify = useNotify()
@@ -35,7 +35,7 @@ export function DriversPage() {
   return (
     <>
       <PageHeader
-        crumbs={[{ label: 'Flota' }, { label: 'Conductores' }]}
+        breadcrumb={['Flota', 'Conductores']}
         title="Conductores"
         actions={
           <>

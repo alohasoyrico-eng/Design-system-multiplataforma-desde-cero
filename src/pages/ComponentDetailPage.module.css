@@ -170,9 +170,7 @@
 /* ── Platform Support variant name ── */
 
 .variantName {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
+  font: var(--type-title-lg);
   letter-spacing: -0.03em;
   color: var(--text-accent);
 }

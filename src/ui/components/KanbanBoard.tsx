@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect, useCallback, type CSSProperties, type ReactNode } from 'react'
 import { useIntl } from 'react-intl'
-import { OverlayShell } from '../primitives/shells/OverlayShell'
+import { OverlayShell } from '../primitives/OverlayShell'
 import { Badge } from '../primitives/Badge'
 import { IconButton } from '../primitives/IconButton'
+import css from './KanbanBoard.module.css'
 
 const SR: CSSProperties = { position: 'absolute', width: 1, height: 1, margin: -1, padding: 0, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0 }
 
@@ -180,7 +181,7 @@ export function KanbanBoard<T extends object>({
                     {col.color && !col.abandon && (
                       <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: '50%', background: col.color, flex: 'none' }} />
                     )}
-                    <span style={{ flex: 1, fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: col.abandon ? 'var(--text-muted)' : 'var(--text-secondary)' }}>
+                    <span className={css.columnLabel} data-abandon={col.abandon || undefined}>
                       {col.label}
                     </span>
                     <Badge tone={atLimit ? 'warning' : 'default'}>
@@ -232,7 +233,7 @@ export function KanbanBoard<T extends object>({
                   )
                 })}
                 {list.length === 0 && (
-                  <p style={{ margin: 0, padding: 'var(--space-2) 2px', fontSize: 12.5, color: 'var(--text-muted)' }}>
+                  <p className={css.emptyHint}>
                     {col.abandon ? intl.formatMessage({ id: 'common.emptyColumnAbandon', defaultMessage: 'Sin salidas' }) : intl.formatMessage({ id: 'common.emptyColumn', defaultMessage: 'Vacía' })}
                   </p>
                 )}
@@ -253,7 +254,7 @@ export function KanbanBoard<T extends object>({
               flex: 'none', display: 'flex', alignItems: 'center', gap: 'var(--space-3)',
               padding: 'var(--space-5) var(--space-5) var(--space-3)', borderBottom: '1px solid var(--border-subtle)',
             }}>
-              <span style={{ flex: 1, fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+              <span className={css.detailLabel}>
                 Detalle
               </span>
               <IconButton icon="close" variant="ghost" ariaLabel="Cerrar" onClick={() => setOpen(null)} />

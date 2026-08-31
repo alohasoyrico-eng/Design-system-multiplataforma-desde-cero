@@ -83,7 +83,7 @@ export function ChatComposer({
           data-active={canSend ? '' : undefined}
           onClick={send}
         >
-          <span className="flow-icon" aria-hidden="true" style={{ fontSize: 19 }}>arrow_upward</span>
+          <span className="flow-icon flow-icon--default" aria-hidden="true">arrow_upward</span>
         </button>
       </div>
     </div>

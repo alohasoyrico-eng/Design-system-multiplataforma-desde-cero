@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { OverlayShell } from '../primitives/shells/OverlayShell'
+import { OverlayShell } from '../primitives/OverlayShell'
 import css from './Drawer.module.css'
 
 export interface DrawerProps {
@@ -18,7 +18,7 @@ export function Drawer({ open, onClose, title, width = 380, footer, children }: 
         <div className={css.header}>
           <div className={css.title}>{title}</div>
           <button className={css.close} onClick={onClose} aria-label="Cerrar">
-            <span className="flow-icon" style={{ fontSize: 20 }}>close</span>
+            <span className="flow-icon flow-icon--default" aria-hidden="true">close</span>
           </button>
         </div>
         <div className={css.body}>{children}</div>

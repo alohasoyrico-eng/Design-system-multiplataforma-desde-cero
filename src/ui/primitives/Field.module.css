@@ -5,7 +5,7 @@
 }
 
 .root[data-error] > .control {
-  animation: fieldShake var(--dur-base) var(--ease-spring);
+  animation: flowShake var(--dur-base) var(--ease-spring);
 }
 
 .label {
@@ -34,34 +34,16 @@
 
 .message[data-state='error'] {
   color: var(--status-danger-text);
-  animation: fieldSlideIn var(--dur-fast) var(--ease-out);
+  animation: flowSlideDown var(--dur-fast) var(--ease-out);
 }
 
 .message[data-state='valid'] {
   color: var(--status-success-text);
-  animation: fieldSlideIn var(--dur-fast) var(--ease-out);
+  animation: flowSlideDown var(--dur-fast) var(--ease-out);
 }
 
 .validIcon,
 .errorIcon {
   font-size: var(--icon-xs);
-  animation: fieldScaleIn var(--dur-base) var(--ease-spring);
-}
-
-@keyframes fieldShake {
-  0%, 100% { transform: translateX(0); }
-  20%  { transform: translateX(-6px); }
-  40%  { transform: translateX(5px); }
-  60%  { transform: translateX(-3px); }
-  80%  { transform: translateX(2px); }
-}
-
-@keyframes fieldSlideIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fieldScaleIn {
-  from { transform: scale(0); }
-  to   { transform: scale(1); }
+  animation: flowScaleIn var(--dur-base) var(--ease-spring);
 }

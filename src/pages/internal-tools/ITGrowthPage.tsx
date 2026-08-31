@@ -4,13 +4,16 @@ import { StatTile } from '../../ui/components/StatTile'
 import { Badge } from '../../ui/primitives/Badge'
 import { Avatar } from '../../ui/primitives/Avatar'
 import { Button } from '../../ui/primitives/Button'
+import { AutoGrid } from '../../ui/primitives/AutoGrid'
+import { DetailRow } from '../../ui/primitives/DetailRow'
 import { KanbanBoard } from '../../ui/components/KanbanBoard'
-import { Timeline } from '../../ui/components/Timeline'
+import { Timeline } from '../../ui/primitives/Timeline'
+import { PageHeader } from '../../ui/patterns/PageHeader'
+import css from './ITGrowthPage.module.css'
 import {
   GROWTH_STAGES, GROWTH_CANDIDATES, CHANNEL_TONE, RISK_TONE,
   type GrowthCandidate,
 } from './data'
-import css from './internal-tools.module.css'
 
 const KANBAN_COLS = GROWTH_STAGES.map(s => ({
   id: s.id,
@@ -48,19 +51,17 @@ export function ITGrowthPage() {
 
   return (
     <Guard allowed={['admin', 'growth']}>
-      <div className={css.pageIntro}>
-        <h1 className={css.pageTitle}>Growth · Onboarding de flotas</h1>
-        <p className={css.pageDesc}>
-          Embudo de onboarding B2B: de prospecto a flota activada. Arrastra tarjetas entre columnas o usa Shift+flechas.
-        </p>
-      </div>
+      <PageHeader
+        title="Growth · Onboarding de flotas"
+        description="Embudo de onboarding B2B: de prospecto a flota activada. Arrastra tarjetas entre columnas o usa Shift+flechas."
+      />
 
-      <div className={css.kpiGrid}>
+      <AutoGrid minWidth="180px" gap="var(--space-3)" style={{ marginBottom: 'var(--space-7)' }}>
         <StatTile label="Cuentas en proceso" value={active.length} icon="hourglass_top" />
         <StatTile label="Riesgo alto" value={highRisk} icon="warning" tone={highRisk > 0 ? 'warning' : 'neutral'} />
         <StatTile label="Flotas activadas" value={activated} icon="check_circle" tone="success" />
         <StatTile label="Valor en pipeline" value={`$${(pipelineValue / 1000).toFixed(0)}k/mes`} icon="payments" />
-      </div>
+      </AutoGrid>
 
       <KanbanBoard<GrowthCandidate>
         columns={KANBAN_COLS}
@@ -76,13 +77,13 @@ export function ITGrowthPage() {
           <div style={{ opacity: dragging ? 0.5 : 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <Avatar name={c.name} size="sm" />
-              <span style={{ fontWeight: 600, fontSize: 13 }}>{c.name}</span>
+              <span className={css.cardName}>{c.name}</span>
             </div>
             <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 6 }}>
               <Badge tone={CHANNEL_TONE[c.channel]}>{c.channel}</Badge>
               {c.risk && <Badge tone={RISK_TONE[c.risk]}>{c.risk}</Badge>}
             </div>
-            <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 6 }}>
+            <div className={css.cardMeta}>
               {c.units} unidades · {c.value}
             </div>
           </div>
@@ -94,32 +95,20 @@ export function ITGrowthPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <Avatar name={c.name} size="lg" />
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, fontSize: 16 }}>{c.name}</div>
-                  <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 2 }}>{c.contact}</div>
+                  <div className={css.detailName}>{c.name}</div>
+                  <div className={css.detailContact}>{c.contact}</div>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                 <Badge tone={CHANNEL_TONE[c.channel]}>{c.channel}</Badge>
                 {c.risk && <Badge tone={RISK_TONE[c.risk]}>riesgo {c.risk}</Badge>}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Unidades</div>
-                  <div style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>{c.units}</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Valor estimado</div>
-                  <div style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>{c.value}</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Account exec</div>
-                  <div style={{ fontSize: 14, marginTop: 2 }}>{c.owner}</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Días en etapa</div>
-                  <div style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>{c.days}</div>
-                </div>
-              </div>
+              <AutoGrid minWidth="120px" gap="var(--space-3)">
+                <DetailRow label="Unidades" value={c.units} mono />
+                <DetailRow label="Valor estimado" value={c.value} mono />
+                <DetailRow label="Account exec" value={c.owner} />
+                <DetailRow label="Días en etapa" value={c.days} mono />
+              </AutoGrid>
               <Timeline
                 items={GROWTH_STAGES.map((s, i) => ({
                   title: s.label,

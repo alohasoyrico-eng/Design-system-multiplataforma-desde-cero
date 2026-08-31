@@ -4,7 +4,7 @@ import { Badge } from '../primitives/Badge'
 import { Chip } from '../primitives/Chip'
 import { IconButton } from '../primitives/IconButton'
 import { Spinner } from '../primitives/Spinner'
-import { EmptyState } from '../components/EmptyState'
+import { EmptyState } from '../primitives/EmptyState'
 import css from './GlobalSearch.module.css'
 
 const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)

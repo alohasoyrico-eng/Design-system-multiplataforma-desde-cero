@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { ControlShell } from '../primitives/shells/ControlShell'
+import { ControlShell } from '../primitives/ControlShell'
 import css from './InputPhone.module.css'
 
 export interface InputPhoneProps {

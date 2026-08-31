@@ -44,3 +44,11 @@
   font-weight: 600;
   margin-top: var(--space-1);
 }
+
+.toneIcon {
+  flex-shrink: 0;
+}
+
+.deltaIcon {
+  flex-shrink: 0;
+}

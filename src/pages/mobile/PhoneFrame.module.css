@@ -14,7 +14,7 @@
 }
 
 .frame[data-mode="dark"] {
-  background: #0C1222;
+  background: var(--surface-inverse);
   border-color: var(--flow-grey-700);
 }
 

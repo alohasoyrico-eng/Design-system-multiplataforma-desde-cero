@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
-import { ControlShell } from '../primitives/shells/ControlShell'
-import { Popover } from '../primitives/shells/Popover'
+import { ControlShell } from '../primitives/ControlShell'
+import { Popover } from '../primitives/Popover'
 import { Calendar } from '../primitives/Calendar'
 import css from './DatePicker.module.css'
 

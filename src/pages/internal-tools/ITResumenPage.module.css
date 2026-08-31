@@ -1,0 +1,60 @@
+.queueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-5);
+}
+
+.queueHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.queueTitle {
+  font: var(--type-title-md);
+  flex: 1;
+}
+
+.queueCount {
+  font: var(--type-data);
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.queueRows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.queueRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-body-sm);
+}
+
+.queueRowLeft {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.queueLink {
+  font: var(--type-body-sm);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: 2px;
+  color: var(--text-accent);
+}
+
+.resourceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--gap-stack);
+}

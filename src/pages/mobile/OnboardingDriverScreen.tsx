@@ -269,7 +269,7 @@ export function OnboardingDriverScreen() {
             <StepHeader step={7} total={7} onBack={back} title="Avisos que importan" subtitle="Te avisamos de cada cargo, depósito y alerta de seguridad." />
             <div className={css.notifCard}>
               <div className={css.notifRow}>
-                <span className="flow-icon" aria-hidden="true" style={{ fontSize: 22, color: 'var(--text-accent)' }}>notifications_active</span>
+                <span className="flow-icon flow-icon--lg" aria-hidden="true" style={{ color: 'var(--text-accent)' }}>notifications_active</span>
                 <div className={css.notifInfo}>
                   <span className={css.notifTitle}>Notificaciones push</span>
                   <span className={css.notifHint}>Cargos en tiempo real</span>
@@ -304,7 +304,7 @@ export function OnboardingDriverScreen() {
         {step === 'done' && (
           <div className={css.doneCenter}>
             <span className={css.successCircle}>
-              <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{ fontSize: 44, color: 'var(--status-success-text)', animation: 'flowScaleIn var(--dur-base) var(--ease-spring)' }}>
+              <span className={`flow-icon flow-icon--fill ${css.successIcon}`} aria-hidden="true" style={{ color: 'var(--status-success-text)', animation: 'flowScaleIn var(--dur-base) var(--ease-spring)' }}>
                 check_circle
               </span>
             </span>
@@ -367,7 +367,7 @@ export function OnboardingDriverScreen() {
           <div className={css.loginView}>
             <div className={css.doneCenter}>
               <span className={css.successCircle}>
-                <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{ fontSize: 44, color: 'var(--status-success-text)', animation: 'flowScaleIn var(--dur-base) var(--ease-spring)' }}>
+                <span className={`flow-icon flow-icon--fill ${css.successIcon}`} aria-hidden="true" style={{ color: 'var(--status-success-text)', animation: 'flowScaleIn var(--dur-base) var(--ease-spring)' }}>
                   check_circle
                 </span>
               </span>

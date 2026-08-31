@@ -7,14 +7,14 @@ import { Skeleton } from '../ui/primitives/Skeleton'
 import { Card } from '../ui/components/Card'
 import { Table } from '../ui/components/Table'
 import { Tabs } from '../ui/components/Tabs'
-import { EmptyState } from '../ui/components/EmptyState'
+import { EmptyState } from '../ui/primitives/EmptyState'
 import { Dialog } from '../ui/components/Dialog'
-import { DetailPanel } from '../components/DetailPanel'
-import { PageHeader } from '../layout/PageHeader'
+import { DetailPanel } from '../app/DetailPanel'
+import { PageHeader } from '../ui/patterns/PageHeader'
 import { statusBadge } from '../utils/statusBadge'
-import { useNotify } from '../components/NotifyContext'
+import { useNotify } from '../app/NotifyContext'
 import { useUnits, useDeleteUnit } from '../data/api'
-import css from '../App.module.css'
+import css from './UnitsPage.module.css'
 
 export function UnitsPage() {
   const notify = useNotify()
@@ -47,7 +47,7 @@ export function UnitsPage() {
     <div className={css.unitsWrapper}>
       <div className={css.unitsContent}>
         <PageHeader
-          crumbs={[{ label: 'Flota' }, { label: 'Unidades' }]}
+          breadcrumb={['Flota', 'Unidades']}
           title="Unidades"
           actions={<Link to="/unidades/nueva" style={{ textDecoration: 'none' }}><Button variant="primary" icon="add">Agregar unidad</Button></Link>}
         />

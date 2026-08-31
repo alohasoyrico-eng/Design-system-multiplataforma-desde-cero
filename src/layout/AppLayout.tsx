@@ -1,12 +1,12 @@
 import { useState, useCallback, useMemo } from 'react'
 import { Outlet, useNavigate } from '@tanstack/react-router'
-import { Toast, ToastStack } from '../ui/components/Toast'
+import { Toast, ToastStack } from '../ui/primitives/Toast'
 import { GlobalSearch, type SearchResult } from '../ui/patterns/GlobalSearch'
 import { FleetSidebar } from './FleetSidebar'
-import { NotifyProvider } from '../components/NotifyContext'
-import { SearchProvider } from '../components/SearchContext'
-import { SidebarProvider } from '../components/SidebarContext'
-import css from '../App.module.css'
+import { NotifyProvider } from '../app/NotifyContext'
+import { SearchProvider } from '../app/SearchContext'
+import { SidebarProvider } from '../app/SidebarContext'
+import css from './AppLayout.module.css'
 
 const SEARCH_SUGGESTIONS = ['combustible', 'mantenimiento', 'KTR-882', 'Marta Vidal']
 

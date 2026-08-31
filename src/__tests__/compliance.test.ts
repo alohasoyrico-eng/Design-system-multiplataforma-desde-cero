@@ -57,11 +57,11 @@ const tsxFiles = walk(UI, '.tsx')
 const pageCss = walk(join(ROOT, 'pages'), '.module.css')
 const allCss = [...cssModules, ...pageCss]
 
-// Also scan App.module.css and layout CSS
+// Also scan layout and app-level component CSS
 const layoutDir = join(ROOT, 'layout')
-const appCss = join(ROOT, 'App.module.css')
-try { if (statSync(appCss).isFile()) allCss.push(appCss) } catch {}
+const componentsDir = join(ROOT, 'app')
 try { allCss.push(...walk(layoutDir, '.module.css')) } catch {}
+try { allCss.push(...walk(componentsDir, '.module.css')) } catch {}
 
 // ── 1. Token compliance: no hardcoded colors ─────────────────────────
 
@@ -206,6 +206,10 @@ describe('Barrel exports', () => {
     { name: 'patterns', dir: join(UI, 'patterns') },
   ]
 
+  const INTERNAL_FILES: Record<string, string[]> = {
+    primitives: ['ToggleControl', 'Listbox'],
+  }
+
   for (const layer of layers) {
     it(`every ${layer.name}/*.tsx is exported from index.ts`, () => {
       const indexPath = join(layer.dir, 'index.ts')
@@ -214,9 +218,11 @@ describe('Barrel exports', () => {
         throw new Error(`${layer.name}/index.ts not found`)
       }
 
+      const internal = INTERNAL_FILES[layer.name] ?? []
       const tsxFiles = readdirSync(layer.dir)
         .filter((f: string) => f.endsWith('.tsx') && f !== 'index.tsx')
         .map((f: string) => basename(f, '.tsx'))
+        .filter((name: string) => !internal.includes(name))
 
       const missing = tsxFiles.filter((name: string) => !indexContent.includes(name))
       expect(missing, `Missing from ${layer.name}/index.ts: ${missing.join(', ')}`).toHaveLength(0)
@@ -343,23 +349,11 @@ describe('CSS Module pairing', () => {
   })
 })
 
-// ── 12. No @keyframes outside shells/motion.css ──────────────────────
+// ── 12. No @keyframes outside motion.css ──────────────────────
 
 describe('Animation ownership', () => {
-  // Per R3: nothing redeclares its own @keyframes outside shells
-  // Exception: RouteBanner has its own slide animation (renamed from flowIn)
-  const KEYFRAME_EXCEPTIONS = [
-    'RouteBanner.module.css',
-    'OTPInput.module.css',
-    'PeekSheet.module.css',
-  ]
-
-  it('no @keyframes in component CSS modules (use motion.css)', () => {
-    const componentCss = cssModules.filter(f =>
-      f.includes('/components/') &&
-      !KEYFRAME_EXCEPTIONS.some(e => f.includes(e))
-    )
-    const hits = grepFiles(componentCss, /@keyframes/)
+  it('no @keyframes in any CSS module (use motion.css)', () => {
+    const hits = grepFiles(allCss, /@keyframes/)
     expect(hits, `@keyframes outside motion.css:\n${formatHits(hits)}`).toHaveLength(0)
   })
 })
@@ -423,5 +417,51 @@ describe('Token tiers', () => {
     const refPos = stylesContent.indexOf('tokens/ref/')
     const sysPos = stylesContent.indexOf('tokens/fonts.css')
     expect(refPos, 'ref imports must come before sys imports').toBeLessThan(sysPos)
+  })
+})
+
+// ── 14. No inline fontSize in UI layer ─────────────────────────────
+
+describe('Icon sizes — no inline fontSize', () => {
+  const ECHARTS_EXEMPTIONS = [
+    'FlowChart.tsx',
+    'ScatterPlot.tsx',
+    'CircularProgress.tsx',
+  ]
+
+  it('no inline fontSize in UI tsx (use icon size classes or CSS Module)', () => {
+    const hits = grepFiles(
+      tsxFiles.filter(f => !ECHARTS_EXEMPTIONS.some(e => f.endsWith(e))),
+      /fontSize:/,
+      /\/\//
+    )
+    expect(hits, `Inline fontSize in UI layer:\n${formatHits(hits)}`).toHaveLength(0)
+  })
+
+  it('no inline fontSize in page tsx (use icon size classes or CSS Module)', () => {
+    const pageTsx = walk(join(ROOT, 'pages'), '.tsx')
+    const hits = grepFiles(pageTsx, /fontSize:/, /\/\//)
+    expect(hits, `Inline fontSize in pages:\n${formatHits(hits)}`).toHaveLength(0)
+  })
+})
+
+// ── 15. No hardcoded font-size in CSS (use typography tokens) ───────
+
+describe('Typography tokens in CSS', () => {
+  const FONT_SIZE_EXCEPTIONS = [
+    'FlowChart.module.css',
+    'Specimen.module.css',
+  ]
+
+  it('no hardcoded font-size > 10px in UI CSS without token', () => {
+    const hits = grepFiles(
+      cssModules.filter(f => !FONT_SIZE_EXCEPTIONS.some(e => f.includes(e))),
+      /font-size:\s*\d+px/,
+      /var\(|\/\*/
+    ).filter(h => {
+      const match = h.text.match(/font-size:\s*(\d+)px/)
+      return match && parseInt(match[1]) > 10
+    })
+    expect(hits, `Hardcoded font-size in UI CSS:\n${formatHits(hits)}`).toHaveLength(0)
   })
 })

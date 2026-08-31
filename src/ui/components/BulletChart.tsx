@@ -25,7 +25,7 @@ export function BulletChart(props: BulletChartProps) {
   if (!rows || !rows.length) {
     return (
       <div className={css.empty} style={style}>
-        <span className="flow-icon" aria-hidden="true" style={{ fontSize: 22 }}>bar_chart</span>
+        <span className="flow-icon flow-icon--lg" aria-hidden="true">bar_chart</span>
         Sin datos para este periodo
       </div>
     )
@@ -45,7 +45,7 @@ export function BulletChart(props: BulletChartProps) {
         return (
           <div key={i} className={css.row}>
             <span className={css.label}>
-              {r.icon && <span className="flow-icon" aria-hidden="true" style={{ fontSize: 15, color: barColor }}>{r.icon}</span>}
+              {r.icon && <span className="flow-icon flow-icon--sm" aria-hidden="true" style={{ color: barColor }}>{r.icon}</span>}
               {r.label}
             </span>
             <div className={css.track}>

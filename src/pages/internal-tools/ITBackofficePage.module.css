@@ -1,0 +1,17 @@
+.docName {
+  font: var(--type-body-md);
+  font-weight: 700;
+}
+
+.docIcon {
+  font-size: var(--icon-xl);
+  color: var(--text-muted);
+}
+
+.docFile {
+  font: var(--type-body-sm);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

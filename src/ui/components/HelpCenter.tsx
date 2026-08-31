@@ -85,7 +85,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
                   ))}
                 </div>
               ) : (
-                <div style={{ padding: '16px 12px', textAlign: 'center', fontSize: 12, color: 'var(--text-muted)' }}>
+                <div className={css.noResults}>
                   Sin resultados. Intenta con otro término o contacta soporte.
                 </div>
               )}
@@ -151,7 +151,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
             )}
             {selectedArticle.keywords && selectedArticle.keywords.length > 0 && (
               <div className={css.tags}>
-                <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>Tags:</span>
+                <span className={css.tagLabel}>Tags:</span>
                 {selectedArticle.keywords.map((tag) => (
                   <span key={tag} className={css.tag}>
                     {tag}
