@@ -1,0 +1,127 @@
+{
+  "id": "smallmultiples",
+  "name": "SmallMultiples",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Rejilla de mini-graficas, una por entidad, compartiendo escala Y para que las formas se comparen de un vistazo. La escala compartida es la decision.",
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; values: number[] }>",
+        "required": true
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "default": 46
+      },
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "number",
+        "default": 4
+      },
+      {
+        "name": "isOutlier",
+        "kind": "prop",
+        "type": "(item: object) => boolean"
+      },
+      {
+        "name": "format",
+        "kind": "prop",
+        "type": "(value: number) => string"
+      },
+      {
+        "name": "selectedId",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onSelect",
+        "kind": "event",
+        "type": "(id: string) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "smm-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "smm-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "smm-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "smm-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "smm-1",
+        "rule": "Todas las celdas comparten la misma escala Y y eso se declara en la interfaz: sin escala comun, comparar formas es una trampa visual.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "smm-2",
+        "rule": "Una entidad sin valores, o con una sola muestra, no rompe la escala compartida de las demas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "smm-3",
+        "rule": "Con onSelect cada celda es operable por teclado y su nombre accesible incluye la entidad.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "smm-4",
+        "rule": "La celda dibuja su propia carcasa hoy y es una de las infracciones de R3 declaradas: el borde y el foco deberian venir de un shell.",
+        "level": "should",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-1",
+    "--viz-accent",
+    "--border-subtle"
+  ],
+  "nonGoals": [
+    "No lleva ejes por celda: la escala es compartida y se declara una vez.",
+    "No sustituye a una tabla con Sparkline por fila cuando hacen falta cifras."
+  ],
+  "reference": {
+    "src": "components/SmallMultiples.jsx",
+    "states": "docs/cards/fleet-charts.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

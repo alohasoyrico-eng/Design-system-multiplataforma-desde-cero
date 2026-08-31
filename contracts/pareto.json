@@ -1,0 +1,113 @@
+{
+  "id": "pareto",
+  "name": "ParetoChart",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Barras ordenadas mas acumulado, con las que cruzan el umbral en acento. Ordena y colorea por umbral: eso no lo modela FlowChart.",
+  "api": {
+    "members": [
+      {
+        "name": "data",
+        "kind": "prop",
+        "type": "Array<{ label: string; value: number }>",
+        "required": true
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "default": 240
+      },
+      {
+        "name": "threshold",
+        "kind": "prop",
+        "type": "number",
+        "default": 0.8
+      },
+      {
+        "name": "format",
+        "kind": "prop",
+        "type": "(value: number) => string"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "prt-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prt-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prt-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prt-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "prt-1",
+        "rule": "Ordena de mayor a menor por su cuenta: recibir los datos desordenados no puede producir un Pareto desordenado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prt-2",
+        "rule": "La linea de acumulado llega exactamente al 100% en el ultimo punto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prt-3",
+        "rule": "El umbral se dibuja como referencia visible, no solo como cambio de color de las barras.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "deps": {
+    "external": [
+      {
+        "name": "echarts",
+        "loader": "cdn-lazy"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-1",
+    "--viz-accent",
+    "--viz-axis"
+  ],
+  "nonGoals": [
+    "No decide el umbral: 0.8 es el valor por defecto, no una ley."
+  ],
+  "reference": {
+    "src": "components/ParetoChart.jsx",
+    "states": "docs/cards/fleet-charts.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

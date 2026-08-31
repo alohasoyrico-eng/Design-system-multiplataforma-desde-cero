@@ -1,0 +1,81 @@
+{
+  "id": "emptystate",
+  "name": "EmptyState",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "No hay nada, y por que. Icono, titulo, explicacion y la accion que lo resuelve.",
+  "api": {
+    "members": [
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string",
+        "default": "inbox"
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "action",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "emp-1",
+        "rule": "Distingue 'no hay nada todavia' de 'no hay resultados para este filtro': el segundo caso ofrece limpiar el filtro, no crear.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "emp-2",
+        "rule": "El icono es decorativo y esta oculto al lector: lo que informa es el titulo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "emp-3",
+        "rule": "Si hay accion, es una sola y es la que resuelve el vacio.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--text-muted",
+    "--text-primary",
+    "--surface-card"
+  ],
+  "nonGoals": [
+    "No es Skeleton: aqui no falta por llegar, no hay.",
+    "No es un error: si algo fallo, dilo con StatusView."
+  ],
+  "reference": {
+    "src": "components/EmptyState.jsx",
+    "states": "docs/cards/states.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

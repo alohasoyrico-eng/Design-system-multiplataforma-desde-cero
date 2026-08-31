@@ -1,0 +1,122 @@
+{
+  "id": "donut",
+  "name": "Donut",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Reparto de un total con etiqueta central y leyenda con porcentajes. Decide la etiqueta central; no es un adaptador de FlowChart.",
+  "api": {
+    "members": [
+      {
+        "name": "segments",
+        "kind": "prop",
+        "type": "Array<{ label: string; value: number; color?: string }>",
+        "required": true
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "number",
+        "default": 160
+      },
+      {
+        "name": "thickness",
+        "kind": "prop",
+        "type": "number"
+      },
+      {
+        "name": "centerLabel",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "centerValue",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "legend",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "dnt-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dnt-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dnt-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dnt-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "dnt-1",
+        "rule": "La leyenda lleva el porcentaje ademas del nombre: un donut sin cifras obliga a estimar angulos.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "dnt-2",
+        "rule": "Mas de seis segmentos deja de ser legible; el resto se agrupa en 'Otros'.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "deps": {
+    "external": [
+      {
+        "name": "echarts",
+        "loader": "cdn-lazy",
+        "fallback": "Sin ECharts queda el hueco con su alto, no un salto de layout."
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-1",
+    "--viz-2",
+    "--viz-3",
+    "--viz-accent",
+    "--text-primary",
+    "--text-muted"
+  ],
+  "nonGoals": [
+    "No compara categorias entre si: para eso Bars.",
+    "No muestra evolucion."
+  ],
+  "reference": {
+    "src": "components/Donut.jsx",
+    "states": "docs/cards/dataviz.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

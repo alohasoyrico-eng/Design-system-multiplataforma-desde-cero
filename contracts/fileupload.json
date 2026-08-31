@@ -1,0 +1,134 @@
+{
+  "id": "fileupload",
+  "name": "FileUpload",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Zona de arrastre con lista de archivos removibles y tamano en mono. No compone ControlShell a proposito: una zona de arrastre no es un campo de una linea, y la desviacion esta declarada.",
+  "api": {
+    "types": [
+      {
+        "name": "UploadedFile",
+        "members": [
+          [
+            "name",
+            "string"
+          ],
+          [
+            "size",
+            "number?"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "files",
+        "kind": "prop",
+        "type": "UploadedFile[]"
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(files: UploadedFile[]) => void"
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "hint",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "accept",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "multiple",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "upl-1",
+        "rule": "Se puede usar sin arrastrar: la zona es un boton que abre el selector del sistema, alcanzable con teclado. El arrastre es un atajo, no la via.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "upl-2",
+        "rule": "El estado de arrastre encima se anuncia visualmente y no solo por color de borde.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "upl-3",
+        "rule": "Cada boton de quitar dice que archivo quita en su nombre accesible, no 'Quitar' a secas: en una lista de cinco, cinco botones iguales no se distinguen por audio.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "upl-4",
+        "rule": "El tamano va en la familia de dato y con unidad legible, no en bytes crudos.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "upl-5",
+        "rule": "accept se aplica al selector del sistema y tambien se valida al soltar: arrastrar no puede meter lo que el selector rechaza.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "upl-6",
+        "rule": "No compone ControlShell y es deliberado: la carcasa es un campo de una linea con adornos en sus extremos, y una zona de arrastre no lo es. Lo que sí hereda son los criterios de foco y objetivo tactil, que aqui se cumplen por su cuenta.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--border-default",
+    "--action-accent",
+    "--surface-accent-subtle",
+    "--radius-lg",
+    "--type-data"
+  ],
+  "nonGoals": [
+    "No sube nada: entrega la lista y quien la use decide el transporte.",
+    "No previsualiza imagenes."
+  ],
+  "reference": {
+    "src": "components/FileUpload.jsx",
+    "demo": "docs/demos/fileupload.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  },
+  "composition": {
+    "allowDeviation": false
+  }
+}

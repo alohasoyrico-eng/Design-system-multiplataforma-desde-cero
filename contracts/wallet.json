@@ -1,0 +1,87 @@
+{
+  "id": "wallet",
+  "name": "Wallet",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Tarjetas y movimientos en movil: saldo, lista de tarjetas y actividad reciente.",
+  "content": {
+    "surface": "Cartera del conductor",
+    "product": "drivers-app",
+    "viewport": [
+      "mobile"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "saldo",
+        "fills": "Cifra grande en mono con periodo"
+      },
+      {
+        "name": "tarjetas",
+        "fills": "PaymentCard con SegmentedControl para cambiar de tipo"
+      },
+      {
+        "name": "actividad",
+        "fills": "TransactionRow por movimiento, detalle en BottomSheet"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "payment-card",
+      "transaction-row",
+      "segmented",
+      "bottom-sheet",
+      "stattile",
+      "quick-action"
+    ],
+    "primitives": [
+      "icon-button",
+      "badge"
+    ],
+    "domain": "fintech",
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "wl-1",
+        "rule": "El saldo va en mono y dice de que periodo o cuenta es.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "wl-2",
+        "rule": "Cada movimiento escribe su signo, no solo lo colorea.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "wl-3",
+        "rule": "El detalle de un movimiento abre en BottomSheet y al cerrar el foco vuelve a su fila.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "wl-4",
+        "rule": "El NIP se muestra por tiempo limitado y lo dice antes de mostrarlo.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/wallet/index.html"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "id": "bullet",
+  "name": "BulletChart",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Real contra objetivo en una barra compacta. Mas denso que un indicador de aguja para comparar muchas entidades.",
+  "api": {
+    "members": [
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "Array<{ label: string; value: number; target: number; prev?: number; max?: number }>",
+        "required": true
+      },
+      {
+        "name": "format",
+        "kind": "prop",
+        "type": "(value: number) => string"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "blt-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "blt-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "blt-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "blt-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "blt-1",
+        "rule": "El objetivo se dibuja como marca perpendicular, distinta de la barra de valor: si los dos son barras, no se sabe cual es cual.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "blt-2",
+        "rule": "Cada fila dice en texto el valor y el objetivo: la comparacion no se deja al ojo.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "blt-3",
+        "rule": "Un valor que supera el maximo no se sale del carril: la escala se ajusta o se recorta con senal de desborde.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "blt-4",
+        "rule": "Alcanzar el objetivo se distingue por algo mas que el color de la barra.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-1",
+    "--viz-accent",
+    "--status-success",
+    "--border-strong",
+    "--type-data"
+  ],
+  "nonGoals": [
+    "No es Progress: aqui el punto de referencia es un objetivo de negocio, no un porcentaje de tarea.",
+    "No es un indicador de aguja."
+  ],
+  "reference": {
+    "src": "components/BulletChart.jsx",
+    "states": "docs/cards/fleet-charts.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "slider",
+  "name": "Slider",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Rango continuo. El pulgar crece y brilla al arrastrar, y la lectura va en la familia de dato.",
+  "api": {
+    "members": [
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "number"
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: number) => void"
+      },
+      {
+        "name": "min",
+        "kind": "prop",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "number",
+        "default": 100
+      },
+      {
+        "name": "step",
+        "kind": "prop",
+        "type": "number",
+        "default": 1
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "format",
+        "kind": "prop",
+        "type": "(value: number) => string",
+        "note": "Da unidad a la lectura."
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sld-1",
+        "rule": "Flechas mueven un step, PageUp y PageDown un salto mayor, Home y End a los extremos. Un rango que solo se arrastra no se puede usar sin raton.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sld-2",
+        "rule": "El pulgar mide --hit-target-min de objetivo aunque se dibuje mas pequeno, y el carril entero es arrastrable.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sld-3",
+        "rule": "aria-valuenow, aria-valuemin y aria-valuemax siguen al valor, y aria-valuetext lleva el texto de format cuando existe: '40' y '40 km' no son lo mismo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sld-4",
+        "rule": "El valor se recorta a min y max y se ajusta a step: arrastrar no produce valores que el teclado no podria alcanzar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sld-5",
+        "rule": "La lectura va en --type-data y no salta de ancho al cambiar de cifra: una lectura que se mueve mientras se arrastra es ilegible.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--action-accent",
+    "--surface-sunken",
+    "--radius-pill",
+    "--type-data",
+    "--shadow-accent-glow",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es un rango de dos extremos: eso seria otro control y hoy no existe.",
+    "No muestra marcas por paso: con muchos pasos son ruido."
+  ],
+  "reference": {
+    "src": "primitives/Slider.jsx",
+    "states": "docs/cards/forms.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

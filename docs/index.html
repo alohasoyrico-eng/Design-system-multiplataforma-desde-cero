@@ -1,0 +1,281 @@
+<!-- @dsCard group="Docs" viewport="1280x800" subtitle="Sitio de documentación: foundations, primitives, components, patterns y templates con tabs por audiencia" name="Docs Site" -->
+<!-- @startingPoint section="Docs" subtitle="Documentación navegable del design system" viewport="1280x800" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Docs</title>
+<link rel="stylesheet" href="../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../_ds_bundle.js"></script>
+<script src="registry-foundations.js"></script>
+<script src="registry-primitives.js"></script>
+<script src="registry-components.js"></script>
+<script src="registry-patterns.js"></script>
+<script src="registry-templates.js"></script>
+<style>
+  body{margin:0;font-family:var(--font-body);background:var(--surface-canvas);color:var(--text-primary)}
+  a{color:var(--text-link)} a:hover{color:var(--action-accent-hover)}
+  ::selection{background:var(--flow-red-100)}
+</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow || {};
+const { Tabs, Badge, Input, Chip } = NS;
+const ITEMS = (window.FlowDocs && window.FlowDocs.items) || [];
+const CATS = [
+  ['foundations','Foundations','palette'],
+  ['primitives','Primitives','category'],
+  ['components','Components','widgets'],
+  ['patterns','Patterns','account_tree'],
+  ['templates','Templates','dashboard_customize'],
+];
+const AUDIENCE = {
+  design: 'Product designers',
+  code: 'Developers (React · Angular · Flutter)',
+  content: 'Content designers',
+  usage: 'PMs · Researchers · Service designers',
+};
+
+function useHash(){
+  const [h,setH] = React.useState(window.location.hash.slice(1));
+  React.useEffect(()=>{
+    const f = ()=>setH(window.location.hash.slice(1));
+    window.addEventListener('hashchange',f);
+    return ()=>window.removeEventListener('hashchange',f);
+  },[]);
+  return h;
+}
+
+function Mono({children,style}){ return <span style={{fontFamily:'var(--font-mono)',fontSize:'0.92em',background:'var(--surface-sunken)',border:'1px solid var(--border-subtle)',borderRadius:6,padding:'1px 6px',...style}}>{children}</span>; }
+
+function Section({title,children}){
+  return <section style={{marginBottom:28}}>
+    <h3 style={{font:'var(--type-title-sm)',margin:'0 0 12px'}}>{title}</h3>
+    {children}
+  </section>;
+}
+
+function BulletList({items,icon,color}){
+  return <ul style={{listStyle:'none',margin:0,padding:0,display:'flex',flexDirection:'column',gap:8}}>
+    {(items||[]).map((it,i)=><li key={i} style={{display:'flex',gap:10,alignItems:'flex-start',fontSize:13.5,lineHeight:1.6,color:'var(--text-secondary)'}}>
+      <span className="flow-icon" aria-hidden="true" style={{fontSize:17,color:color||'var(--text-muted)',marginTop:2,flex:'none'}}>{icon||'arrow_right'}</span>
+      <span dangerouslySetInnerHTML={{__html:it}} />
+    </li>)}
+  </ul>;
+}
+
+function CodeBlock({label,code}){
+  return <div style={{marginBottom:14}}>
+    {label && <div style={{fontSize:11,fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:6}}>{label}</div>}
+    <pre style={{margin:0,background:'var(--surface-inverse)',color:'var(--text-on-inverse)',borderRadius:'var(--radius-md)',padding:'16px 18px',fontFamily:'var(--font-mono)',fontSize:12.5,lineHeight:1.65,overflowX:'auto',whiteSpace:'pre'}}>{code}</pre>
+  </div>;
+}
+
+function PropsTable({props}){
+  return <div style={{background:'var(--surface-card)',border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)',overflow:'hidden'}}>
+    <table style={{width:'100%',borderCollapse:'collapse',fontSize:13}}>
+      <thead><tr>{['Prop','Tipo','Default','Descripción'].map(h=>
+        <th key={h} style={{textAlign:'left',padding:'10px 16px',fontSize:11,fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)',background:'var(--surface-sunken)',borderBottom:'1px solid var(--border-subtle)'}}>{h}</th>)}</tr></thead>
+      <tbody>{props.map((p,i)=><tr key={i}>
+        <td style={{padding:'10px 16px',fontFamily:'var(--font-mono)',fontSize:12.5,fontWeight:600,borderBottom:i<props.length-1?'1px solid var(--border-subtle)':'none',whiteSpace:'nowrap'}}>{p[0]}</td>
+        <td style={{padding:'10px 16px',fontFamily:'var(--font-mono)',fontSize:11.5,color:'var(--text-accent)',borderBottom:i<props.length-1?'1px solid var(--border-subtle)':'none'}}>{p[1]}</td>
+        <td style={{padding:'10px 16px',fontFamily:'var(--font-mono)',fontSize:11.5,color:'var(--text-muted)',borderBottom:i<props.length-1?'1px solid var(--border-subtle)':'none'}}>{p[2]||'—'}</td>
+        <td style={{padding:'10px 16px',color:'var(--text-secondary)',borderBottom:i<props.length-1?'1px solid var(--border-subtle)':'none'}}>{p[3]}</td>
+      </tr>)}</tbody>
+    </table>
+  </div>;
+}
+
+function Demo({src,h}){
+  return <div style={{background:'var(--surface-card)',border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)',overflow:'hidden',boxShadow:'var(--shadow-rest)',marginBottom:8}}>
+    <iframe src={src} title="Demo" style={{width:'100%',height:h||360,border:'none',display:'block'}} />
+    <div style={{display:'flex',justifyContent:'flex-end',padding:'8px 14px',borderTop:'1px solid var(--border-subtle)'}}>
+      <a href={src} target="_blank" style={{fontSize:12,fontWeight:600,display:'inline-flex',alignItems:'center',gap:4}}>Abrir demo <span className="flow-icon" style={{fontSize:14}} aria-hidden="true">open_in_new</span></a>
+    </div>
+  </div>;
+}
+
+function DesignTab({item}){
+  const d = item.design||{};
+  return <div>
+    {(item.demos||[]).map((u,i)=><Demo key={i} src={u.src||u} h={u.h} />)}
+    {item.demo && <Demo src={item.demo} h={item.demoH} />}
+    {d.anatomy && <Section title="Anatomía"><p style={{fontSize:13.5,lineHeight:1.7,color:'var(--text-secondary)',margin:0,maxWidth:640}} dangerouslySetInnerHTML={{__html:d.anatomy}} /></Section>}
+    {d.variants && <Section title="Variantes">
+      <div style={{display:'flex',flexDirection:'column',gap:10}}>
+        {d.variants.map((v,i)=><div key={i} style={{display:'flex',gap:12,alignItems:'baseline'}}>
+          <Mono style={{flex:'none'}}>{v[0]}</Mono>
+          <span style={{fontSize:13.5,color:'var(--text-secondary)',lineHeight:1.6}}>{v[1]}</span>
+        </div>)}
+      </div>
+    </Section>}
+    {d.dos && <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+      <Section title="Haz"><BulletList items={d.dos} icon="check_circle" color="var(--status-success-text)" /></Section>
+      {d.donts && <Section title="Evita"><BulletList items={d.donts} icon="cancel" color="var(--status-danger-text)" /></Section>}
+    </div>}
+    {d.motion && <Section title="Micro-interacciones"><BulletList items={d.motion} icon="animation" color="var(--text-accent)" /></Section>}
+  </div>;
+}
+
+function CodeTab({item}){
+  const c = item.code||{};
+  return <div>
+    {c.props && <Section title="Contrato de props"><PropsTable props={c.props} />
+      <p style={{fontSize:12.5,color:'var(--text-muted)',marginTop:10}}>Fuente de verdad: <Mono>{item.src||''}</Mono> · el mismo contrato aplica a <Mono>@Input()</Mono>s en Angular y props de widget en Flutter.</p></Section>}
+    {c.react && <Section title="React (referencia canónica)"><CodeBlock code={c.react} /></Section>}
+    {c.angular && <Section title="Angular"><CodeBlock code={c.angular} /></Section>}
+    {c.flutter && <Section title="Flutter"><CodeBlock code={c.flutter} /></Section>}
+    {c.tokens && <Section title="Tokens que consume">
+      <div style={{display:'flex',flexWrap:'wrap',gap:8}}>{c.tokens.map(t=><Mono key={t}>{t}</Mono>)}</div>
+    </Section>}
+  </div>;
+}
+
+function ContentTab({item}){
+  const c = item.content||{};
+  return <div>
+    {c.voice && <Section title="Voz y redacción"><BulletList items={c.voice} /></Section>}
+    {c.examples && <Section title="Ejemplos">
+      <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        {c.examples.map((e,i)=><div key={i} style={{display:'flex',gap:12,alignItems:'center',background:'var(--surface-card)',border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-md)',padding:'10px 16px'}}>
+          <span className="flow-icon" aria-hidden="true" style={{fontSize:18,flex:'none',color:e[0]==='si'?'var(--status-success-text)':'var(--status-danger-text)'}}>{e[0]==='si'?'check_circle':'cancel'}</span>
+          <span style={{fontSize:13.5}}>{e[1]}</span>
+          {e[2] && <span style={{fontSize:12,color:'var(--text-muted)',marginLeft:'auto',textAlign:'right'}}>{e[2]}</span>}
+        </div>)}
+      </div>
+    </Section>}
+  </div>;
+}
+
+function UsageTab({item}){
+  const u = item.usage||{};
+  return <div>
+    {u.when && <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+      <Section title="Úsalo cuando"><BulletList items={u.when} icon="check_circle" color="var(--status-success-text)" /></Section>
+      <Section title="No lo uses cuando"><BulletList items={u.notWhen||[]} icon="cancel" color="var(--status-danger-text)" /></Section>
+    </div>}
+    {u.a11y && <Section title="Accesibilidad"><BulletList items={u.a11y} icon="accessibility_new" color="var(--status-info-text)" /></Section>}
+    {u.research && <Section title="Notas de research y métricas"><BulletList items={u.research} icon="science" /></Section>}
+    {u.service && <Section title="Service design"><BulletList items={u.service} icon="route" /></Section>}
+  </div>;
+}
+
+const DOMAINS = {fintech:'Fintech', mobility:'Movilidad'};
+const PRODUCTS = {'drivers-app':'Drivers App (móvil)','internal-tools':'Internal Tools','fleet-dashboard':'Fleet Dashboard','cross':'Los tres productos'};
+
+function ItemPage({item}){
+  const [tab,setTab] = React.useState('design');
+  React.useEffect(()=>{ setTab('design'); },[item.id]);
+  const tabs = [
+    {value:'design',label:'Diseño',icon:'brush'},
+    item.code?{value:'code',label:'Código',icon:'code'}:null,
+    item.content?{value:'content',label:'Contenido',icon:'edit_note'}:null,
+    item.usage?{value:'usage',label:'Uso',icon:'psychology'}:null,
+  ].filter(Boolean);
+  return <div style={{maxWidth:860}}>
+    <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:6}}>
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:0}}>{item.name}</h1>
+      {(()=>{ const S = {
+          stable:['success','check','Stable'],
+          beta:['warning','science','Beta'],
+          planned:['info','pending','Planned'],
+          deprecated:['danger','block','Deprecated'],
+        }[item.status || 'stable'] || ['success','check','Stable'];
+        return <Badge tone={S[0]} icon={S[1]}>{S[2]}</Badge>; })()}
+      {item.domain && <span style={{fontSize:11,fontWeight:600,letterSpacing:'.06em',textTransform:'uppercase',color:'var(--text-muted)',border:'1px solid var(--border-subtle)',borderRadius:999,padding:'2px 9px'}}>{DOMAINS[item.domain]||item.domain}</span>}
+      {item.platforms && <span style={{fontSize:12,color:'var(--text-muted)'}}>{item.platforms}</span>}
+    </div>
+    {(item.product || item.plannedNote) && <div style={{display:'flex',alignItems:'flex-start',gap:8,margin:'0 0 14px',padding:'10px 14px',background:'var(--surface-sunken)',borderRadius:'var(--radius-md)',fontSize:12.5,color:'var(--text-secondary)',maxWidth:640}}>
+      <span className="flow-icon" aria-hidden="true" style={{fontSize:16,color:'var(--text-muted)',flexShrink:0}}>flag</span>
+      <span>{item.product && <b style={{color:'var(--text-primary)'}}>Destino: {PRODUCTS[item.product]||item.product}. </b>}{item.plannedNote}</span>
+    </div>}
+    <p style={{fontSize:14.5,lineHeight:1.65,color:'var(--text-secondary)',margin:'0 0 20px',maxWidth:640}}>{item.subtitle}</p>
+    <div style={{marginBottom:8}}>
+      <Tabs value={tab} onChange={setTab} items={tabs} />
+    </div>
+    <div style={{fontSize:12,color:'var(--text-muted)',margin:'10px 2px 22px'}}>
+      <span className="flow-icon" aria-hidden="true" style={{fontSize:14,verticalAlign:-2,marginRight:4}}>group</span>
+      Para: {AUDIENCE[tab]}
+    </div>
+    {tab==='design' && <DesignTab item={item} />}
+    {tab==='code' && <CodeTab item={item} />}
+    {tab==='content' && <ContentTab item={item} />}
+    {tab==='usage' && <UsageTab item={item} />}
+  </div>;
+}
+
+function HomePage(){
+  const counts = {};
+  ITEMS.forEach(it=>counts[it.cat]=(counts[it.cat]||0)+1);
+  return <div style={{maxWidth:860}}>
+    <img src="../assets/flow-logo.png" alt="Flow" style={{height:40,marginBottom:20}} />
+    <h1 style={{font:'var(--type-display)',letterSpacing:'var(--tracking-tight)',margin:'0 0 12px'}}>Design System</h1>
+    <p style={{fontSize:15,lineHeight:1.7,color:'var(--text-secondary)',maxWidth:560,margin:'0 0 32px'}}>
+      El sistema de diseño de Flow para movilidad: Drivers App, Fleet Dashboards y herramientas internas.
+      Multiplataforma (React · Angular · Flutter), accesible por defecto y con micro-interacciones que se disfrutan.
+    </p>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill, minmax(240px, 1fr))',gap:14}}>
+      {CATS.map(([id,label,icon])=>{
+        const first = ITEMS.find(i=>i.cat===id);
+        return <a key={id} href={'#'+id+'/'+(first?first.id:'')} style={{textDecoration:'none',color:'inherit'}}>
+          <div style={{background:'var(--surface-card)',border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)',padding:22,cursor:'pointer',transition:'transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-out)'}}
+            onMouseEnter={(e)=>{e.currentTarget.style.transform='translateY(-3px)';e.currentTarget.style.boxShadow='var(--shadow-float)'}}
+            onMouseLeave={(e)=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow='none'}}>
+            <span className="flow-icon" aria-hidden="true" style={{fontSize:26,color:'var(--text-accent)'}}>{icon}</span>
+            <div style={{fontSize:15,fontWeight:700,margin:'10px 0 2px'}}>{label}</div>
+            <div style={{fontSize:12.5,color:'var(--text-muted)'}}>{counts[id]||0} ítems</div>
+          </div>
+        </a>;
+      })}
+    </div>
+  </div>;
+}
+
+function App(){
+  const hash = useHash();
+  const [q,setQ] = React.useState('');
+  const [dark,setDark] = React.useState(false);
+  const [cat,id] = hash.split('/');
+  const item = ITEMS.find(i=>i.cat===cat && i.id===id);
+  const ql = q.toLowerCase();
+  const visible = ITEMS.filter(i=>q===''||i.name.toLowerCase().includes(ql)||(i.subtitle||'').toLowerCase().includes(ql));
+  const toggleDark = ()=>{ const v=!dark; setDark(v); document.documentElement.setAttribute('data-mode',v?'dark':'light'); };
+  return <div style={{display:'flex',height:'100vh',overflow:'hidden'}}>
+    <nav aria-label="Documentación" style={{width:264,flex:'none',background:'var(--surface-card)',borderRight:'1px solid var(--border-subtle)',display:'flex',flexDirection:'column',boxSizing:'border-box'}}>
+      <div style={{padding:'20px 18px 12px',display:'flex',alignItems:'center',gap:10}}>
+        <a href="#" style={{display:'inline-flex'}}><img src="../assets/flow-logo.png" alt="Flow docs" style={{height:22,filter:dark?'invert(1)':'none'}} /></a>
+        <span style={{fontSize:11,fontWeight:700,letterSpacing:'.08em',color:'var(--text-muted)'}}>DOCS</span>
+        <button onClick={toggleDark} aria-label="Cambiar tema" style={{marginLeft:'auto',width:32,height:32,border:'none',background:'transparent',borderRadius:'50%',cursor:'pointer',color:'var(--text-muted)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}
+          onMouseEnter={(e)=>e.currentTarget.style.background='var(--surface-sunken)'}
+          onMouseLeave={(e)=>e.currentTarget.style.background='transparent'}>
+          <span className="flow-icon" aria-hidden="true" style={{fontSize:18}}>{dark?'light_mode':'dark_mode'}</span>
+        </button>
+      </div>
+      <div style={{padding:'0 14px 10px'}}>{Input && <Input icon="search" placeholder="Buscar…" value={q} onChange={setQ} size="sm" />}</div>
+      <div style={{flex:1,overflowY:'auto',padding:'0 10px 20px'}}>
+        {CATS.map(([cid,label,icon])=>{
+          const items = visible.filter(i=>i.cat===cid);
+          if(items.length===0) return null;
+          return <div key={cid} style={{marginBottom:14}}>
+            <div style={{display:'flex',alignItems:'center',gap:8,padding:'10px 10px 6px',fontSize:11,fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)'}}>
+              <span className="flow-icon" aria-hidden="true" style={{fontSize:15}}>{icon}</span>{label}
+            </div>
+            {items.map(i=>{
+              const active = item && item.id===i.id && item.cat===cid;
+              return <a key={i.id} href={'#'+cid+'/'+i.id} style={{display:'flex',alignItems:'center',gap:8,padding:'8px 12px',margin:'1px 0',borderRadius:12,fontSize:13,fontWeight:active?700:500,textDecoration:'none',background:active?'var(--surface-accent-subtle)':'transparent',color:active?'var(--text-accent)':'var(--text-secondary)',transition:'background var(--dur-instant) var(--ease-out)'}}
+                onMouseEnter={(e)=>{if(!active)e.currentTarget.style.background='var(--surface-sunken)'}}
+                onMouseLeave={(e)=>{if(!active)e.currentTarget.style.background='transparent'}}>
+                {i.name}
+                {i.status==='planned' && <span style={{marginLeft:'auto',fontSize:9.5,fontWeight:700,letterSpacing:'.06em',background:'var(--status-info-bg)',color:'var(--status-info-text)',borderRadius:999,padding:'2px 7px'}}>PLAN</span>}
+              </a>;
+            })}
+          </div>;
+        })}
+      </div>
+    </nav>
+    <main style={{flex:1,overflowY:'auto',padding:'36px 44px 80px',boxSizing:'border-box'}} data-screen-label={item?item.name:'home'}>
+      {item ? <ItemPage item={item} /> : <HomePage />}
+    </main>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

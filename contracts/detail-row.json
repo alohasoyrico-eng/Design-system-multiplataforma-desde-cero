@@ -1,0 +1,62 @@
+{
+  "id": "detail-row",
+  "name": "DetailRow",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Par label-valor en linea con separacion horizontal. Opcional mono para datos.",
+  "api": {
+    "members": [
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "mono",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "dr-1",
+        "rule": "El valor con mono usa --font-mono, no --font-body.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--font-mono",
+    "--text-primary",
+    "--text-secondary",
+    "--border-subtle"
+  ],
+  "nonGoals": [
+    "No apila: es siempre una linea. Para multiples lineas usar una lista de DetailRow."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/DetailRow.tsx"
+  }
+}

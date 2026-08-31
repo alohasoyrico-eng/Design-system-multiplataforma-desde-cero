@@ -1,0 +1,65 @@
+{
+  "id": "route-banner",
+  "name": "RouteBanner",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Banner de ruta activa con icono, titulo, subtitulo y cierre. Flota sobre el mapa.",
+  "api": {
+    "members": [
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string",
+        "default": "'navigation'"
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "subtitle",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "onClose",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "rb-1",
+        "rule": "El boton de cierre tiene hit target >= 44px.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--text-accent",
+    "--surface-card"
+  ],
+  "nonGoals": [
+    "No tiene estado expandido: para detalles de ruta usar un BottomSheet."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "components/RouteBanner.tsx"
+  }
+}

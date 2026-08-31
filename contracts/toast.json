@@ -1,0 +1,104 @@
+{
+  "id": "toast",
+  "name": "Toast",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Confirmacion efimera sobre superficie inversa, apilada abajo al centro. Toast es el mensaje; ToastStack la columna.",
+  "api": {
+    "members": [
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'neutral' | 'success' | 'warning' | 'danger'",
+        "default": "neutral",
+        "variantAxis": true
+      },
+      {
+        "name": "message",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "actionLabel",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onAction",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "onDismiss",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tst-1",
+        "rule": "La pila es una region con aria-live polite, y el mensaje se anuncia al aparecer sin robar el foco: un toast que enfoca interrumpe lo que el usuario estaba escribiendo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tst-2",
+        "rule": "Con accion, el toast no desaparece por tiempo mientras el puntero esta encima o el foco esta dentro: una accion que se esfuma antes de alcanzarla no es una accion.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tst-3",
+        "rule": "El boton de cerrar y el de accion miden --hit-target-min y tienen nombre accesible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tst-4",
+        "rule": "El tono no es el unico portador: el mensaje dice que paso. Un toast verde sin texto no confirma nada.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tst-5",
+        "rule": "Nunca lleva la unica via para completar una tarea, porque desaparece.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-inverse",
+    "--text-on-inverse",
+    "--status-success",
+    "--status-warning",
+    "--status-danger",
+    "--radius-lg",
+    "--shadow-overlay",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No pide confirmacion: eso es Dialog.",
+    "No es un centro de notificaciones: lo que hay que poder releer va en NotificationCenter."
+  ],
+  "reference": {
+    "src": "primitives/Toast.jsx",
+    "states": "docs/cards/feedback.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

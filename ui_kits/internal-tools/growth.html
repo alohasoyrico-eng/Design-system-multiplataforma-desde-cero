@@ -1,0 +1,188 @@
+<!-- @dsCard group="Internal Tools" viewport="1400x880" subtitle="Kanban del embudo de onboarding B2B de flotas: de prospecto a flota activada, con KYB, contrato y piloto" name="Internal Tools · Growth" -->
+<!-- @startingPoint section="Templates" subtitle="Growth: kanban del funnel de onboarding de flotas (B2B)" viewport="1400x880" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Growth</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" src="./shell.jsx"></script>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Badge, Avatar, Timeline, Button, StatTile, KanbanBoard } = NS;
+const { Shell, Guard, useRole } = window.FlowIT;
+
+// Onboarding de flotas (B2B): cuenta empresarial completa, no un conductor individual.
+// Cada etapa involucra distintas areas (ventas, legal, integracion, operaciones).
+const STAGES = [
+  {id:'prospecto', label:'Prospecto calificado', icon:'work', note:'Demo realizada y necesidad de flota confirmada.'},
+  {id:'propuesta', label:'Propuesta / contrato', icon:'description', note:'Cotización enviada; términos comerciales en negociación.'},
+  {id:'verificacion', label:'Verificación legal (KYB)', icon:'fact_check', note:'Revisión de RFC, pólizas de flota y representantes legales.'},
+  {id:'configuracion', label:'Configuración e integración', icon:'settings', note:'Alta de unidades, conductores y método de pago corporativo.'},
+  {id:'piloto', label:'Piloto en marcha', icon:'rocket_launch', note:'Subconjunto de unidades operando para validar el flujo.'},
+  {id:'activada', label:'Flota activada', icon:'check_circle', note:'Todas las unidades contratadas operando en producción.'},
+];
+const STAGE_COLOR = {prospecto:'var(--text-muted)', propuesta:'#2E7CF6', verificacion:'#E8930C', configuracion:'#7A5AF8', piloto:'#0E9384', activada:'var(--status-success)'};
+const CHANNEL_TONE = {referido:'accent', outbound:'info', inbound:'neutral'};
+const RISK_TONE = {bajo:'success', medio:'warning', alto:'danger'};
+
+const INITIAL = [
+  {id:'g1', name:'Rutas Cobalto', units:6, channel:'referido', owner:'Marta Vidal', columnId:'prospecto', days:2, risk:'bajo', value:'$5,200/mes', contact:'Sandra Mejía · Directora de operaciones'},
+  {id:'g2', name:'Logística Andina', units:34, channel:'outbound', owner:'Diego Ruiz', columnId:'prospecto', days:4, risk:'medio', value:'$28,900/mes', contact:'Raúl Ibarra · Gerente de flota'},
+  {id:'g3', name:'Transportes Bravo', units:20, channel:'inbound', owner:'Marta Vidal', columnId:'propuesta', days:6, risk:'medio', value:'$18,400/mes', contact:'Lorena Castañeda · CFO',
+    note:'Negociando descuento por volumen antes de firmar.'},
+  {id:'g4', name:'Flotillas del Sol', units:50, channel:'referido', owner:'Diego Ruiz', columnId:'propuesta', days:3, risk:'bajo', value:'$42,000/mes', contact:'Ismael Rocha · CEO'},
+  {id:'g5', name:'Grupo Vertex', units:15, channel:'outbound', owner:'Marta Vidal', columnId:'verificacion', days:8, risk:'alto', value:'$12,600/mes', contact:'Paula Nieto · Legal',
+    note:'Falta acta constitutiva actualizada; 2 recordatorios enviados.'},
+  {id:'g6', name:'Carga Rápida MX', units:28, channel:'inbound', owner:'Diego Ruiz', columnId:'verificacion', days:5, risk:'medio', value:'$24,200/mes', contact:'Héctor Salas · Operaciones',
+    note:'Pólizas de flota en revisión con el equipo legal.'},
+  {id:'g7', name:'Movilidad Norte', units:10, channel:'referido', owner:'Marta Vidal', columnId:'configuracion', days:4, risk:'bajo', value:'$8,900/mes', contact:'Diana Cobos · Gerente',
+    note:'6 de 10 conductores dados de alta; falta cargar métodos de pago.'},
+  {id:'g8', name:'Transportes Vidal SA', units:42, channel:'referido', owner:'Diego Ruiz', columnId:'piloto', days:6, risk:'bajo', value:'$36,800/mes', contact:'Marta Vidal · Dueña de flota',
+    note:'Piloto con 8 unidades en CDMX; resultados positivos hasta ahora.'},
+  {id:'g9', name:'KTR Flotillas', units:18, channel:'inbound', owner:'Marta Vidal', columnId:'piloto', days:3, risk:'medio', value:'$15,300/mes', contact:'Karla Torres · Directora',
+    note:'Piloto con 3 unidades; una incidencia de facturación por resolver.'},
+  {id:'g10', name:'Distribuciones Alfa', units:65, channel:'outbound', owner:'Diego Ruiz', columnId:'activada', days:30, risk:null, value:'$54,000/mes', contact:'Iván Cárdenas · COO'},
+  {id:'g11', name:'Fletes del Valle', units:22, channel:'referido', owner:'Marta Vidal', columnId:'activada', days:45, risk:null, value:'$19,000/mes', contact:'Renata Solís · Gerente'},
+  {id:'g12', name:'Transportes Rojo', units:12, channel:'outbound', owner:'Diego Ruiz', columnId:'abandonado', days:0, risk:null, value:'$9,800/mes', contact:'Bruno Peña · Dueño',
+    abandonedFrom:'verificacion', reason:'No completó el proceso de KYB tras 30 días; pospuso la migración a Flow.'},
+  {id:'g13', name:'Rutas Estrella', units:30, channel:'inbound', owner:'Marta Vidal', columnId:'abandonado', days:0, risk:null, value:'$25,500/mes', contact:'Óscar Beltrán · Compras',
+    abandonedFrom:'propuesta', reason:'Eligió otro proveedor por precio tras comparar cotizaciones.'},
+];
+
+function buildTimeline(cand){
+  const idx = STAGES.findIndex(s=>s.id===(cand.columnId==='abandonado' ? cand.abandonedFrom : cand.columnId));
+  const items = STAGES.slice(0, idx+1).map((s,i)=>({
+    title: s.label,
+    description: (cand.columnId!=='abandonado' && i===idx) ? (cand.note || s.note) : s.note,
+    status: cand.columnId==='abandonado' ? 'done' : (i===idx ? 'active' : 'done'),
+    icon: s.icon,
+  }));
+  if (cand.columnId==='abandonado') {
+    items.push({title:'Onboarding abandonado', description: cand.reason, status:'error', icon:'cancel'});
+  }
+  return items;
+}
+
+// El board pone la caja, el foco y el arrastre; esto es solo lo que Growth sabe de una cuenta.
+function CardBody({cand}){
+  return <div style={{display:'flex',flexDirection:'column',gap:8,paddingRight:22}}>
+    <div style={{display:'flex',alignItems:'center',gap:8}}>
+      <Avatar name={cand.name} size="sm" />
+      <span style={{fontSize:13.5,fontWeight:700,flex:1,color:'var(--text-primary)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{cand.name}</span>
+    </div>
+    <div style={{display:'flex',alignItems:'center',gap:6,flexWrap:'wrap'}}>
+      <Badge tone={CHANNEL_TONE[cand.channel]}>{cand.channel}</Badge>
+      {cand.risk && <Badge tone={RISK_TONE[cand.risk]}>riesgo {cand.risk}</Badge>}
+    </div>
+    <div style={{display:'flex',justifyContent:'space-between',fontFamily:'var(--font-mono)',fontSize:11.5,color:'var(--text-secondary)'}}>
+      <span>{cand.units} unidades</span><span>{cand.value}</span>
+    </div>
+    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',fontSize:11,color:'var(--text-muted)'}}>
+      <span>{cand.owner}</span>
+      {cand.columnId!=='abandonado' && <span>{cand.days} día{cand.days===1?'':'s'} aquí</span>}
+    </div>
+  </div>;
+}
+
+const COLUMNS = STAGES.map(s=>({id:s.id, label:s.label, color:STAGE_COLOR[s.id]}));
+
+function CandidateDetail({cand, onAdvance, onAbandon}){
+  const idx = STAGES.findIndex(s=>s.id===cand.columnId);
+  const canAdvance = cand.columnId!=='abandonado' && idx < STAGES.length-1;
+  const canAbandon = cand.columnId!=='abandonado' && cand.columnId!=='activada';
+  return <div style={{display:'flex',flexDirection:'column',gap:18}}>
+      <h2 style={{font:'var(--type-title)',fontSize:19,margin:0,letterSpacing:'var(--tracking-tight)'}}>{cand.name}</h2>
+      <div style={{display:'flex',alignItems:'center',gap:12}}>
+        <Avatar name={cand.name} size="lg" />
+        <div style={{flex:1,minWidth:0}}>
+          <div style={{display:'flex',gap:6,flexWrap:'wrap',marginBottom:4}}>
+            <Badge tone={CHANNEL_TONE[cand.channel]}>{cand.channel}</Badge>
+            {cand.risk && <Badge tone={RISK_TONE[cand.risk]}>riesgo {cand.risk}</Badge>}
+          </div>
+          <div style={{fontSize:12,color:'var(--text-muted)'}}>{cand.contact}</div>
+        </div>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,fontSize:13}}>
+        <div style={{background:'var(--surface-sunken)',borderRadius:12,padding:'10px 12px'}}>
+          <div style={{fontSize:10.5,color:'var(--text-muted)',fontWeight:700,letterSpacing:'.04em'}}>UNIDADES</div>
+          <div style={{fontFamily:'var(--font-mono)',fontWeight:700,marginTop:2}}>{cand.units}</div>
+        </div>
+        <div style={{background:'var(--surface-sunken)',borderRadius:12,padding:'10px 12px'}}>
+          <div style={{fontSize:10.5,color:'var(--text-muted)',fontWeight:700,letterSpacing:'.04em'}}>VALOR ESTIMADO</div>
+          <div style={{fontFamily:'var(--font-mono)',fontWeight:700,marginTop:2}}>{cand.value}</div>
+        </div>
+        <div style={{background:'var(--surface-sunken)',borderRadius:12,padding:'10px 12px'}}>
+          <div style={{fontSize:10.5,color:'var(--text-muted)',fontWeight:700,letterSpacing:'.04em'}}>ACCOUNT EXEC</div>
+          <div style={{fontWeight:600,marginTop:2}}>{cand.owner}</div>
+        </div>
+        <div style={{background:'var(--surface-sunken)',borderRadius:12,padding:'10px 12px'}}>
+          <div style={{fontSize:10.5,color:'var(--text-muted)',fontWeight:700,letterSpacing:'.04em'}}>DÍAS EN ETAPA</div>
+          <div style={{fontFamily:'var(--font-mono)',fontWeight:700,marginTop:2}}>{cand.columnId==='abandonado' ? '—' : cand.days}</div>
+        </div>
+      </div>
+      <Timeline items={buildTimeline(cand)} />
+      {(canAdvance || canAbandon) && <div style={{display:'flex',gap:10,justifyContent:'flex-end',borderTop:'1px solid var(--border-subtle)',paddingTop:14}}>
+        {canAbandon && <Button variant="secondary" onClick={()=>onAbandon(cand.id)}>Marcar abandonado</Button>}
+        {canAdvance && <Button variant="accent" onClick={()=>onAdvance(cand.id)}>Mover a siguiente etapa</Button>}
+      </div>}
+  </div>;
+}
+
+function App(){
+  const [role, setRole] = useRole();
+  const [cands, setCands] = React.useState(INITIAL);
+  const [open, setOpen] = React.useState(null);
+  // La regla de negocio la pone la pantalla: el embudo no se salta etapas.
+  // El board no la conoce; solo respeta el false y lo anuncia.
+  const move = (id, to)=>{
+    const c = cands.find(x=>x.id===id);
+    if (!c) return false;
+    if (to==='abandonado') { abandon(id); return; }
+    if (c.columnId==='abandonado') return false;
+    const from = STAGES.findIndex(s=>s.id===c.columnId), dest = STAGES.findIndex(s=>s.id===to);
+    if (dest > from + 1) return false;
+    setCands(cs=>cs.map(x=>x.id===id ? {...x, columnId:to, days:0, note:undefined, risk: to==='activada' ? null : x.risk} : x));
+  };
+  const advance = (id)=>{
+    setCands(cs=>cs.map(c=>{
+      if (c.id!==id) return c;
+      const idx = STAGES.findIndex(s=>s.id===c.columnId);
+      const next = STAGES[Math.min(idx+1, STAGES.length-1)];
+      return {...c, columnId: next.id, days: 0, note: undefined, risk: next.id==='activada' ? null : c.risk};
+    }));
+    setOpen(null);
+  };
+  const abandon = (id)=>{
+    setCands(cs=>cs.map(c=>c.id===id ? {...c, abandonedFrom: c.columnId, columnId:'abandonado', reason:'Marcado manualmente sin avance tras seguimiento comercial.'} : c));
+    setOpen(null);
+  };
+  const activeCount = cands.filter(c=>c.columnId!=='activada' && c.columnId!=='abandonado').length;
+  const highRisk = cands.filter(c=>c.risk==='alto').length;
+  const activatedCount = cands.filter(c=>c.columnId==='activada').length;
+  const abandonedCount = cands.filter(c=>c.columnId==='abandonado').length;
+  const pipelineValue = cands.filter(c=>c.columnId!=='abandonado').reduce((s,c)=>s+parseInt(c.value.replace(/\D/g,'')||'0'),0);
+  return <Shell active="growth" role={role} setRole={setRole}>
+    <Guard allowed={['admin','growth']} role={role}>
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'0 0 6px'}}>Growth · Onboarding de flotas</h1>
+      <p style={{fontSize:13.5,color:'var(--text-secondary)',margin:'0 0 20px'}}>Embudo de activación B2B: de prospecto calificado a flota completa operando, pasando por contrato, verificación legal (KYB), integración y piloto.</p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(160px, 1fr))',gap:14,marginBottom:26}}>
+        <StatTile label="Cuentas en proceso" value={String(activeCount)} icon="hourglass_top" />
+        <StatTile label="Riesgo alto" value={String(highRisk)} trend={highRisk>0?'down':'flat'} delta={highRisk>0?'dar seguimiento':'—'} icon="warning" tone="var(--status-warning)" />
+        <StatTile label="Flotas activadas" value={String(activatedCount)} trend="up" delta="operando" icon="check_circle" />
+        <StatTile label="Valor en pipeline" value={'$'+pipelineValue.toLocaleString()+'/mes'} icon="payments" />
+      </div>
+      <KanbanBoard columns={COLUMNS} items={cands} columnKey="columnId" itemKey="id"
+        abandonColumn={{id:'abandonado', label:'Abandonado', reasonKey:'reason'}}
+        detailKey={open} onDetailChange={setOpen}
+        onMove={move} onAdvance={advance}
+        renderCard={(c)=><CardBody cand={c} />}
+        renderDetail={(c)=><CandidateDetail cand={c} onAdvance={advance} onAbandon={abandon} />} />
+    </Guard>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.FlowIT ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

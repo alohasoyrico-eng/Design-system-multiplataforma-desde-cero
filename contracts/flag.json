@@ -1,0 +1,103 @@
+{
+  "id": "flag",
+  "name": "Flag",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Bandera de pais en SVG, recortada circular por defecto. La unica excepcion a «solo Material Symbols», y por eso esta declarada.",
+  "api": {
+    "members": [
+      {
+        "name": "country",
+        "kind": "prop",
+        "type": "string",
+        "required": true,
+        "note": "ISO 3166-1 alpha-2. Sin distinguir mayusculas."
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "number",
+        "note": "Lado en px: la bandera es cuadrada."
+      },
+      {
+        "name": "shape",
+        "kind": "prop",
+        "type": "'circle' | 'rounded' | 'square'",
+        "default": "circle"
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "note": "Nombre del pais. Sin el, la bandera es decorativa."
+      },
+      {
+        "name": "ring",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "flag-1",
+        "rule": "Con label es una imagen con nombre accesible; sin label esta oculta al lector de pantalla. Una bandera sin nombre que se anuncia como imagen es ruido.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "flag-2",
+        "rule": "El anillo interior existe para que una bandera con blanco al borde no se desvanezca sobre superficie clara. Con ring=false sobre --surface-card, la bandera de Japon desaparece.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "flag-3",
+        "rule": "Ningun emoji de bandera, en ningun caso. El renderizado de emoji depende del sistema operativo y no es una decision del sistema de diseno.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "flag-4",
+        "rule": "La hoja de flag-icons se inyecta una sola vez por documento, aunque se rendericen doscientas banderas.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--radius-sm",
+    "--radius-pill"
+  ],
+  "nonGoals": [
+    "No es un selector de pais: eso es Select searchable con renderOption.",
+    "No lleva el codigo telefonico ni el nombre: solo la bandera."
+  ],
+  "deps": {
+    "external": [
+      {
+        "name": "flag-icons",
+        "loader": "cdn-lazy",
+        "fallback": "Sin la hoja, el recuadro queda vacio y no roto."
+      }
+    ]
+  },
+  "reference": {
+    "src": "primitives/Flag.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

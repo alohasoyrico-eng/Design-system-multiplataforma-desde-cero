@@ -1,0 +1,39 @@
+{
+  "id": "nip-reveal",
+  "name": "NipReveal",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Revelado temporal de NIP/PIN con blur, timeout y advertencia. Patron de seguridad financiera.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "nr-1",
+        "rule": "Se oculta automaticamente despues del timeout.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "nr-2",
+        "rule": "Con blurLast el ultimo digito se desenfoca para proteccion parcial.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "implements": [
+    "button"
+  ],
+  "domain": "fintech",
+  "nonGoals": [
+    "No valida el NIP: solo lo muestra temporalmente."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/NipReveal.tsx"
+  }
+}

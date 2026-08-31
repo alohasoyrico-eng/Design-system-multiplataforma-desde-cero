@@ -1,0 +1,110 @@
+{
+  "id": "transaction-row",
+  "name": "TransactionRow",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "domain": "fintech",
+  "summary": "Movimiento con categoria, concepto e importe. El signo manda en el color y el importe va en mono.",
+  "api": {
+    "members": [
+      {
+        "name": "category",
+        "kind": "prop",
+        "type": "'transfer' | 'fuel' | 'toll' | 'service' | 'payment'",
+        "default": "transfer",
+        "variantAxis": true
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "subtitle",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "amount",
+        "kind": "prop",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "currency",
+        "kind": "prop",
+        "type": "string",
+        "default": "$"
+      },
+      {
+        "name": "pending",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onClick",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "trw-1",
+        "rule": "El signo se escribe, no solo se colorea: un cargo y un abono no pueden distinguirse unicamente por rojo y verde.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "trw-2",
+        "rule": "El importe va en --type-data y alineado a la derecha para que la columna se compare por la ultima cifra.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "trw-3",
+        "rule": "pending se dice con texto ademas de atenuar: un movimiento pendiente no es un movimiento apagado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "trw-4",
+        "rule": "Con onClick la fila entera es operable por teclado y mide --hit-target-min.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--type-data",
+    "--status-success-text",
+    "--text-primary",
+    "--text-muted",
+    "--surface-sunken",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No formatea divisas distintas de la del importe recibido.",
+    "No agrupa por fecha: eso es de la pantalla."
+  ],
+  "reference": {
+    "src": "components/TransactionRow.jsx",
+    "states": "docs/cards/fintech.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "filters-inline-edit",
+  "name": "FilterableEditableTable",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Tabla con fila de filtros por columna y edicion en celda. Piel de DataGrid.",
+  "api": {
+    "members": [
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "TableColumn[]",
+        "required": true
+      },
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "Array<object>",
+        "required": true
+      },
+      {
+        "name": "rowKey",
+        "kind": "prop",
+        "type": "string",
+        "default": "id"
+      },
+      {
+        "name": "onUpdate",
+        "kind": "event",
+        "type": "(rowKey: string, columnKey: string, value: string) => void"
+      },
+      {
+        "name": "onFilter",
+        "kind": "event",
+        "type": "(filters: Record<string, string>) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "data-grid"
+    ],
+    "criteria": [
+      {
+        "id": "fie-1",
+        "rule": "Cada filtro tiene nombre accesible con su columna: cinco campos 'Buscar' son cinco campos identicos al oido.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "fie-2",
+        "rule": "El resultado del filtrado se anuncia con el numero de filas restantes.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "fie-3",
+        "rule": "La celda editable entra en edicion con Enter y sale con Escape descartando; el foco vuelve a la celda.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "fie-4",
+        "rule": "Editar no reordena las filas bajo el cursor aunque el filtro deje de coincidir: se aplica al salir.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "fie-5",
+        "rule": "Dibuja carcasa de control propia en sus filtros y es la otra infraccion de R3 pendiente.",
+        "level": "should",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "data-grid"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--border-default",
+    "--radius-sm",
+    "--surface-sunken",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No valida lo editado: entrega el valor.",
+    "No guarda: emite onUpdate."
+  ],
+  "reference": {
+    "src": "components/FilterableEditableTable.jsx",
+    "demo": "docs/demos/tables-extended.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "id": "chat-composer",
+  "name": "ChatComposer",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Campo de envio con sugerencias. Se deshabilita mientras el agente responde.",
+  "api": {
+    "members": [
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "onSend",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "suggestions",
+        "kind": "prop",
+        "type": "string[]"
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ccm-1",
+        "rule": "Enter envia y Shift+Enter salta de linea: la convencion del chat, no la del formulario.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ccm-2",
+        "rule": "El boton de enviar mide --hit-target-min, lleva nombre accesible y se deshabilita de verdad con el campo vacio o mientras responde.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ccm-3",
+        "rule": "Las sugerencias son botones con nombre, no texto decorativo, y desaparecen al escribir.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ccm-4",
+        "rule": "El campo crece con el texto hasta un maximo y luego desplaza: no empuja la conversacion fuera de pantalla.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "ccm-5",
+        "rule": "Deshabilitado se dice, no solo se atenua.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--action-accent",
+    "--text-on-accent",
+    "--radius-lg",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No adjunta archivos: eso es FileUpload.",
+    "No guarda borradores."
+  ],
+  "reference": {
+    "src": "components/ChatComposer.jsx",
+    "demo": "ui_kits/agent-chat/index.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

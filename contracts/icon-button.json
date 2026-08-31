@@ -1,0 +1,124 @@
+{
+  "id": "icon-button",
+  "name": "IconButton",
+  "layer": "primitives",
+  "function": [
+    "actions"
+  ],
+  "status": "stable",
+  "summary": "Boton circular de solo icono. El nombre accesible es obligatorio porque no hay texto que lo de.",
+  "api": {
+    "members": [
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "ariaLabel",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'ghost' | 'tonal' | 'primary' | 'accent'",
+        "default": "ghost",
+        "variantAxis": true
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md' | 'lg'",
+        "default": "md"
+      },
+      {
+        "name": "selected",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Rellena el glifo y lo tine de acento."
+      },
+      {
+        "name": "badge",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onClick",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ib-1",
+        "rule": "ariaLabel es obligatorio y no tiene valor por defecto: un IconButton sin nombre no compila el contrato.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ib-2",
+        "rule": "El circulo mide --hit-target-min en todos los tamanos, sm incluido. El glifo se encoge; el objetivo no.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ib-3",
+        "rule": "El estado seleccionado se distingue por relleno del glifo, no solo por color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ib-4",
+        "rule": "El badge es un punto sin numero y su significado va en el ariaLabel del boton, no en el punto. Si hace falta un numero, no es este componente.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ib-5",
+        "rule": "Con prefers-reduced-motion el badge deja de latir sin dejar de estar.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--action-primary",
+    "--action-accent",
+    "--text-accent",
+    "--status-live",
+    "--radius-pill",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No lleva texto: si necesita etiqueta visible, es Button con icon.",
+    "No es un contador: el badge es presencia, no cantidad."
+  ],
+  "reference": {
+    "src": "primitives/IconButton.jsx",
+    "states": "docs/cards/actions.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "settings-pattern",
+  "name": "Settings",
+  "layer": "patterns",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Tabs por seccion, filas de switch y select, y zona peligrosa al final con confirmacion.",
+  "implements": [
+    "tabs",
+    "switch",
+    "select",
+    "dialog"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "set-p1",
+        "rule": "Un switch aplica al instante y lo confirma; si necesita guardado explicito, no es un switch.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "set-p2",
+        "rule": "Cada fila dice que hace el ajuste, no solo como se llama: 'Notificaciones push' necesita su linea de explicacion.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "set-p3",
+        "rule": "La zona peligrosa va al final, separada, y cada accion pide confirmacion escribiendo o repitiendo el nombre.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "set-p4",
+        "rule": "Cambiar de tab no pierde cambios sin guardar: o se guardan al instante o se avisa.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "set-p5",
+        "rule": "Cada control esta asociado a su etiqueta: en una pantalla de cincuenta filas, una etiqueta huerfana es invisible.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "tabs",
+      "switch",
+      "select",
+      "field",
+      "dialog"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No define que es configurable.",
+    "No gestiona permisos por rol: eso es RoleMatrix."
+  ],
+  "reference": {
+    "demo": "ui_kits/settings/index.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

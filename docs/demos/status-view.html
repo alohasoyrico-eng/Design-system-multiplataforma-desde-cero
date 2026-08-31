@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button } = NS;
+const { StatusView } = NS;
+function Demo(){
+  const [s,setS] = React.useState('loading');
+  return <div style={{display:'flex',flexDirection:'column',gap:10,maxWidth:360}}>
+    <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
+      {['loading','success','error','pending','offline'].map(v=>
+        <button key={v} onClick={()=>setS(v)} style={{fontSize:11,fontFamily:'var(--font-mono)',padding:'4px 8px',borderRadius:8,border:'1px solid var(--border-subtle)',background:s===v?'var(--surface-inverse)':'transparent',color:s===v?'#fff':'var(--text-secondary)',cursor:'pointer'}}>{v}</button>)}
+    </div>
+    <div style={{border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)'}}>
+      <StatusView status={s}
+        title={{loading:'Conectando con el servidor…',success:'Cuenta verificada',error:'No pudimos conectar con el servidor',pending:'Verificando tu pago',offline:'Sin conexión'}[s]}
+        description={{loading:'Sincronizando tus viajes y ganancias.',success:'Ya puedes empezar a recibir viajes.',error:'Revisa tu conexión e intenta de nuevo.',pending:'Esto puede tardar unos segundos.',offline:'Reconéctate para seguir usando Flow.'}[s]}
+        primaryAction={s==='error' && <Button variant="accent" fullWidth>Reintentar</Button>}
+      />
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.StatusView ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

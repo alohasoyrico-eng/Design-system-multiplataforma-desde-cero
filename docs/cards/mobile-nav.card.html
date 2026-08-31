@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="380x620" subtitle="TabBar (nav inferior movil) y OnboardingCarousel (bienvenida con ilustracion, dots y swipe)" name="Mobile Navigation" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Mobile Navigation</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas);padding:24px;box-sizing:border-box;display:flex;gap:24px;flex-wrap:wrap}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow || {};
+const { TabBar, OnboardingCarousel, Card } = NS;
+
+function Phone({children}){
+  return <div style={{width:332,height:572,border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-xl)',overflow:'hidden',background:'var(--surface-canvas)',display:'flex',flexDirection:'column',boxShadow:'var(--shadow-float)'}}>{children}</div>;
+}
+
+function TabBarDemo(){
+  const [tab,setTab] = React.useState('home');
+  const screens = {
+    home: {icon:'home',title:'Inicio',desc:'Resumen del turno y ganancias del dia.'},
+    map: {icon:'map',title:'Mapa',desc:'Zonas de demanda alta cerca de ti.'},
+    earnings: {icon:'payments',title:'Ganancias',desc:'$1,240 esta semana · 32 viajes.'},
+    profile: {icon:'person',title:'Perfil',desc:'Documentos, unidad y calificacion.'},
+  };
+  const s = screens[tab];
+  return <Phone>
+    <div style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:10,padding:20}}>
+      <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:40,color:'var(--text-accent)'}}>{s.icon}</span>
+      <div style={{fontSize:18,fontWeight:700}}>{s.title}</div>
+      <div style={{fontSize:13,color:'var(--text-muted)',textAlign:'center'}}>{s.desc}</div>
+    </div>
+    <TabBar activeId={tab} onChange={setTab} items={[
+      {id:'home',icon:'home',label:'Inicio'},
+      {id:'map',icon:'map',label:'Mapa'},
+      {id:'earnings',icon:'payments',label:'Ganancias',badge:2},
+      {id:'profile',icon:'person',label:'Perfil'},
+    ]} />
+  </Phone>;
+}
+
+function OnboardingDemo(){
+  const [i,setI] = React.useState(0);
+  const slides = [
+    {icon:'bolt', title:'Gana con cada viaje', description:'Tarifas dinamicas y bonos por demanda alta.'},
+    {icon:'shield', title:'Viaja protegido', description:'Seguro incluido en cada viaje activo, sin costo extra.'},
+    {icon:'account_balance_wallet', title:'Cobra al instante', description:'Retira tus ganancias a tu cuenta cuando quieras.'},
+  ];
+  return <Phone>
+    <OnboardingCarousel slides={slides} index={i} onIndexChange={setI} onSkip={()=>setI(slides.length-1)} onDone={()=>setI(0)} />
+  </Phone>;
+}
+
+function Demo(){
+  return <div style={{display:'flex',gap:24,flexWrap:'wrap'}}>
+    <TabBarDemo />
+    <OnboardingDemo />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.TabBar ? <Demo/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

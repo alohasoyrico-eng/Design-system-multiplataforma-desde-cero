@@ -1,0 +1,130 @@
+<!-- @dsCard group="Dashboards" viewport="1280x800" subtitle="Vision general: actividad, gasto y alertas de la flota" name="Overview" -->
+<!-- @startingPoint section="Dashboards" subtitle="Vision general: actividad, gasto y alertas de la flota" viewport="1280x800" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Overview</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, StatTile, Bars, Sparkline, FlowChart, Donut, Table, Badge, Card, Tabs, Breadcrumb, Avatar, Tooltip, Menu, Progress, DatePicker } = NS;
+
+
+function ThemeToggle(){
+  const [dark,setDark] = React.useState(false);
+  React.useEffect(()=>{
+    const saved = localStorage.getItem('flow-theme');
+    const isDark = saved === 'dark';
+    setDark(isDark);
+    document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light');
+  },[]);
+  const toggle = ()=>{
+    const next = !dark; setDark(next);
+    document.documentElement.setAttribute('data-mode', next ? 'dark' : 'light');
+    localStorage.setItem('flow-theme', next ? 'dark' : 'light');
+  };
+  // Era un boton a mano de 32px repetido en siete plantillas: IconButton pone el
+  // objetivo de 44, el foco y el hover sin repetirlos aqui.
+  return <IconButton icon={dark?'light_mode':'dark_mode'} ariaLabel="Cambiar modo" variant="ghost" size="sm" onClick={toggle} />;
+}
+
+function Shell({children}){
+  return <div style={{display:'flex',height:'100vh',overflow:'hidden'}}>
+    <nav aria-label="Dashboards" style={{width:230,flex:'none',background:'var(--surface-card)',borderRight:'1px solid var(--border-subtle)',display:'flex',flexDirection:'column',padding:'20px 12px',gap:4,boxSizing:'border-box'}}>
+      <a href="../fleet-dashboard/index.html" style={{display:'inline-flex',alignItems:'center',minHeight:'var(--hit-target-min)',margin:'4px 10px 14px'}}><img src="../../assets/flow-logo.png" alt="Flow" style={{height:24}} /></a>
+      <div style={{fontSize:10.5,fontWeight:700,letterSpacing:'.08em',color:'var(--text-muted)',padding:'0 14px 6px'}}>DASHBOARDS</div>
+      <a href="#" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:701-1,background:'var(--surface-accent-subtle)',color:'var(--text-accent)'}}>
+   <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:20}}>space_dashboard</span>Overview</a>
+      <a href="./combustible.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>local_gas_station</span>Combustible</a>
+      <a href="./mantenimiento.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>build</span>Mantenimiento</a>
+      <a href="./electro.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>bolt</span>Electromovilidad</a>
+      <a href="./peaje.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>toll</span>Peaje</a>
+      <a href="./finanzas.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>payments</span>Finanzas</a>
+      <a href="../config/index.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:500,color:'var(--text-secondary)',marginTop:'auto'}}>
+        <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>settings</span>Configuracion</a>
+      <div style={{display:'flex',alignItems:'center',gap:10,padding:'10px 10px'}}>
+        <Avatar name="Marta Vidal" status="online" />
+        <div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:600}}>Marta Vidal</div><div style={{fontSize:11,color:'var(--text-muted)'}}>Fleet admin</div></div>
+        <ThemeToggle />
+      </div>
+    </nav>
+    <main style={{flex:1,overflowY:'auto',padding:32,boxSizing:'border-box'}} data-screen-label="overview">{children}</main>
+  </div>;
+}
+
+function Header({title,children}){
+  const [range,setRange] = React.useState('30d');
+  const [custom,setCustom] = React.useState({});
+  return <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:24,flexWrap:'wrap'}}>
+    <div>
+      <Breadcrumb items={[{label:'Dashboards'},{label:'Overview'}]} />
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'6px 0 0'}}>{title}</h1>
+    </div>
+    <div style={{marginLeft:'auto',display:'flex',gap:12,alignItems:'center',flexWrap:'wrap',minWidth:0}}>
+      <Tabs value={range} onChange={setRange} items={[{value:'7d',label:'7 dias'},{value:'30d',label:'30 dias'},{value:'90d',label:'Trimestre'}]} />
+      <div style={{flex:'1 1 200px',minWidth:140,maxWidth:240}}><DatePicker mode="range" value={custom} onChange={setCustom} placeholder="Rango personalizado" /></div>
+      {children}
+      <Menu align="right" trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
+        items={[{label:'CSV',icon:'table'},{label:'PDF',icon:'picture_as_pdf'},{label:'Enviar por correo',icon:'mail'}]} />
+    </div>
+  </div>;
+}
+
+function App(){
+  return <Shell>
+    <Header title="Overview" />
+    
+    <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginBottom:18}}>
+      <StatTile label="Unidades activas" value="128" delta="+4 vs ayer" trend="up" icon="local_taxi" />
+      <StatTile label="Viajes hoy" value="412" delta="+12%" trend="up" icon="navigation" />
+      <StatTile label="Gasto del mes" value="$248k" delta="−4% vs mes pasado" trend="up" icon="payments" />
+      <StatTile label="Alertas abiertas" value="3" delta="−2 vs ayer" trend="up" icon="warning" tone="var(--status-warning-text)" />
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1.5fr 1fr',gap:16,marginBottom:16}}>
+      <Card>
+        <div style={{font:'var(--type-title-sm)',marginBottom:14}}>Viajes por dia</div>
+        <Bars height={190} data={[{label:'Lun',value:288},{label:'Mar',value:342},{label:'Mie',value:315},{label:'Jue',value:371},{label:'Vie',value:412},{label:'Sab',value:389},{label:'Dom',value:214}]} />
+      </Card>
+      <Card>
+        <div style={{font:'var(--type-title-sm)',marginBottom:14}}>Gasto por categoria</div>
+        <Donut size={150} centerValue="$248k" centerLabel="Total" segments={[{label:'Combustible',value:182},{label:'Peaje',value:41},{label:'Mantenimiento',value:25}]} />
+      </Card>
+    </div>
+    <Card>
+      <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Mix de gasto por producto y entidad</div>
+      <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:12}}>Normalizado a 100% — comparable aunque el gasto total difiera mucho entre entidades</div>
+      <FlowChart type="stacked100" palette="categorical" height={240}
+        labels={['CDMX','Guadalajara','Monterrey','Puebla']}
+        series={[
+          {label:'Combustible',values:[52,70,40,60]},
+          {label:'Peaje',values:[18,10,12,22]},
+          {label:'Mantenimiento',values:[20,15,18,14]},
+          {label:'Electromovilidad',values:[10,5,30,4]},
+        ]}
+        ariaLabel="Monterrey es la única entidad donde electromovilidad pesa un tercio del gasto" />
+    </Card>
+    <Card padding={0}>
+      <div style={{font:'var(--type-title-sm)',padding:'18px 20px 4px'}}>Alertas que requieren accion</div>
+      <Table columns={[
+        {key:'sev',label:'',width:40,render:(r)=><span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:18,color:r.sev==='alta'?'var(--status-danger)':'var(--status-warning)'}}>warning</span>},
+        {key:'msg',label:'Alerta'},{key:'unit',label:'Unidad',mono:true},{key:'time',label:'Desde'},
+        {key:'a',label:'',align:'right',render:()=><Button variant="ghost" size="sm">Resolver</Button>},
+      ]} rows={[
+        {sev:'alta',msg:'Consumo de combustible 38% sobre promedio',unit:'KTR-882-A',time:'hace 2 h'},
+        {sev:'media',msg:'Tag de peaje vence en 5 dias',unit:'PLQ-472-D',time:'hoy'},
+        {sev:'media',msg:'Servicio de 40,000 km vencido',unit:'MVD-101-C',time:'hace 3 dias'},
+      ]} rowKey="unit" dense style={{border:'none',boxShadow:'none'}} />
+    </Card>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga</div>);
+</script></body></html>

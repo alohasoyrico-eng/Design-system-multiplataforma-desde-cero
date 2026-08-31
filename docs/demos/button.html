@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, Menu, Field, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, DatePicker, FileUpload, OTPInput, PasscodeKeypad, Card, Badge, Chip, Avatar, Table, Skeleton, EmptyState, Accordion, Sparkline, Bars, PaymentCard, TransactionRow, MapCanvas, StatTile, Donut, RoleMatrix, Tabs, Stepper, Breadcrumb, Pagination, SegmentedControl, Spinner, Progress, Tooltip, Dialog, Toast, ToastStack, Drawer, BottomSheet, BiometricPrompt } = NS;
+function Demo(){
+return <div style={{display:'flex',flexDirection:'column',gap:16}}>
+  <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Button variant="primary">Primary</Button><Button variant="accent" icon="bolt">Accent</Button><Button variant="secondary">Secondary</Button><Button variant="ghost">Ghost</Button><Button variant="danger">Danger</Button></div>
+  <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Button size="sm" variant="secondary" icon="add">Small</Button><Button size="md" variant="secondary" icon="add">Medium</Button><Button size="lg" variant="secondary" icon="add">Large</Button></div>
+  <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Button variant="primary" loading>Guardando…</Button><Button variant="primary" disabled>Disabled</Button><Button variant="secondary" iconTrailing="arrow_forward">Continuar</Button></div>
+</div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

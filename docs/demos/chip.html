@@ -1,0 +1,20 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, Menu, Field, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, DatePicker, FileUpload, OTPInput, PasscodeKeypad, Card, Badge, Chip, Avatar, Table, Skeleton, EmptyState, Accordion, Sparkline, Bars, PaymentCard, TransactionRow, MapCanvas, StatTile, Donut, RoleMatrix, Tabs, Stepper, Breadcrumb, Pagination, SegmentedControl, Spinner, Progress, Tooltip, Dialog, Toast, ToastStack, Drawer, BottomSheet, BiometricPrompt } = NS;
+function Demo(){
+const [sel,setSel]=React.useState(['Sedan']);
+const t=(c)=>setSel(sel.includes(c)?sel.filter(x=>x!==c):[...sel,c]);
+return <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
+  {['Sedan','Van','Moto'].map(c=><Chip key={c} label={c} icon="local_taxi" selected={sel.includes(c)} onClick={()=>t(c)} />)}
+  <Chip label="CDMX" onRemove={()=>{}} />
+</div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

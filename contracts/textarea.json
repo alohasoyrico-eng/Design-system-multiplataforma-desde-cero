@@ -1,0 +1,118 @@
+{
+  "id": "textarea",
+  "name": "Textarea",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Texto de varias lineas sobre ControlShell, con contador en vivo cuando hay maxLength.",
+  "api": {
+    "members": [
+      {
+        "name": "id",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "number",
+        "default": 3
+      },
+      {
+        "name": "maxLength",
+        "kind": "prop",
+        "type": "number",
+        "note": "Activa el contador."
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "control-shell"
+    ],
+    "criteria": [
+      {
+        "id": "txa-1",
+        "rule": "El contador vive en la zona de pie de la carcasa, no encima del texto. Un control no dibuja nada sobre su propia area.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "txa-2",
+        "rule": "El contador se anuncia con cortesia y solo cerca del limite: leer cada pulsacion es peor que no leer ninguna.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "txa-3",
+        "rule": "maxLength recorta de verdad la entrada; el contador nunca muestra un numero mayor que el limite.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "txa-4",
+        "rule": "El area crece con rows y no con el contenido salvo que se pida: un campo que salta mientras se escribe mueve el cursor.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "control-shell"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--type-data",
+    "--text-muted",
+    "--status-danger-text"
+  ],
+  "nonGoals": [
+    "No es un editor de texto rico.",
+    "No cuenta palabras: cuenta caracteres, que es lo que el limite mide."
+  ],
+  "reference": {
+    "src": "primitives/Textarea.jsx",
+    "states": "docs/cards/forms.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

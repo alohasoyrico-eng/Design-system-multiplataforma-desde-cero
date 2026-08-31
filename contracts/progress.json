@@ -1,0 +1,105 @@
+{
+  "id": "progress",
+  "name": "Progress",
+  "layer": "primitives",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Barra determinada. El ancho se anima, pero el valor no depende de la animacion.",
+  "api": {
+    "members": [
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "number",
+        "default": 100
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "showValue",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Porcentaje a la derecha, en --type-data."
+      },
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'accent' | 'success' | 'warning' | 'ink'",
+        "default": "accent",
+        "variantAxis": true
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md'",
+        "default": "md"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "prg-1",
+        "rule": "Es un role=progressbar con aria-valuenow, aria-valuemin y aria-valuemax. El porcentaje pintado y el anunciado son el mismo numero.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prg-2",
+        "rule": "El valor se recorta al rango: por debajo de 0 y por encima de max la barra no se sale de su carril.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prg-3",
+        "rule": "El ancho final no depende de que corra la transicion: en una pestana oculta la barra ya esta en su porcentaje, no en cero.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "prg-4",
+        "rule": "El porcentaje se escribe en la familia de dato, no en la de texto.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--action-accent",
+    "--status-success",
+    "--status-warning",
+    "--surface-sunken",
+    "--radius-pill",
+    "--type-data",
+    "--ease-out"
+  ],
+  "nonGoals": [
+    "No es indeterminado: sin porcentaje conocido va Spinner.",
+    "No es un Stepper: no cuenta pasos con nombre."
+  ],
+  "reference": {
+    "src": "primitives/Progress.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

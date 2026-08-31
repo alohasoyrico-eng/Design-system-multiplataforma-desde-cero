@@ -1,0 +1,140 @@
+{
+  "id": "scatter",
+  "name": "ScatterPlot",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Dispersion con umbrales que parten el plano en cuadrantes. Los umbrales son la decision propia.",
+  "api": {
+    "members": [
+      {
+        "name": "points",
+        "kind": "prop",
+        "type": "Array<{ id: string; x: number; y: number; label?: string }>",
+        "required": true
+      },
+      {
+        "name": "xLabel",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "yLabel",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "xThreshold",
+        "kind": "prop",
+        "type": "number"
+      },
+      {
+        "name": "yThreshold",
+        "kind": "prop",
+        "type": "number"
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "default": 260
+      },
+      {
+        "name": "selectedId",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onSelect",
+        "kind": "event",
+        "type": "(id: string) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sct-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sct-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sct-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sct-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "sct-1",
+        "rule": "Los dos ejes llevan nombre con unidad: una dispersion sin ejes nombrados no se puede interpretar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sct-2",
+        "rule": "Los umbrales se dibujan como lineas y el cuadrante que importa se distingue del resto.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "sct-3",
+        "rule": "Con onSelect, la seleccion se puede alcanzar por teclado y el punto seleccionado se distingue por forma o tamano, no solo por color.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sct-4",
+        "rule": "Puntos superpuestos no se esconden entre si: transparencia o desplazamiento minimo.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "deps": {
+    "external": [
+      {
+        "name": "echarts",
+        "loader": "cdn-lazy"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-1",
+    "--viz-accent",
+    "--viz-grid",
+    "--viz-axis"
+  ],
+  "nonGoals": [
+    "No calcula regresion ni correlacion.",
+    "No agrupa en burbujas por tamano."
+  ],
+  "reference": {
+    "src": "components/ScatterPlot.jsx",
+    "states": "docs/cards/fleet-charts.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

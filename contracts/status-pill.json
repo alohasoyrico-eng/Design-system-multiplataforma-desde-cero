@@ -1,0 +1,64 @@
+{
+  "id": "status-pill",
+  "name": "StatusPill",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Pastilla de estado con dot coloreado y label. Cuatro tonos semanticos.",
+  "api": {
+    "members": [
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'success' | 'warning' | 'danger' | 'info'",
+        "default": "'success'"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sp-1",
+        "rule": "El dot es de 6px y el pill tiene altura de 30px, alineado con Badge.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sp-2",
+        "rule": "El tono es distinguible por forma (dot) ademas de color.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--status-success",
+    "--status-warning",
+    "--status-danger",
+    "--status-info",
+    "--radius-pill",
+    "--font-mono"
+  ],
+  "nonGoals": [
+    "No es interactivo: si necesita accion, es un Chip."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/StatusPill.tsx"
+  }
+}

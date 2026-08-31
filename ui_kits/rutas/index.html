@@ -1,0 +1,84 @@
+<!-- @dsCard group="Drivers App" viewport="1000x900" subtitle="Mapa OSM con estaciones, detalle en BottomSheet y ruta con ETA" name="Rutas" -->
+<!-- @startingPoint section="Templates" subtitle="Rutas: estaciones cercanas en mapa OSM, detalle y como llegar" viewport="1000x900" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Rutas</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="../ios-frame.jsx"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--flow-ink-700);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, MapCanvas, BottomSheet, Chip, Badge, Card } = NS;
+const Device = window.IOSDevice;
+
+const ME = {lat:19.4326,lng:-99.1500};
+const STATIONS = [
+  {id:'s1', kind:'gas', lat:19.4426, lng:-99.1680, label:'$23.4', icon:'local_gas_station', name:'Pemex Polanco', dist:'1.8 km', eta:'6 min', prices:[['Magna','$23.40'],['Premium','$25.10'],['Diesel','$24.80']], services:['Tienda','Aire y agua','Banos'], open:'24 h'},
+  {id:'s2', kind:'gas', lat:19.4290, lng:-99.1420, label:'$22.9', icon:'local_gas_station', name:'G500 Roma Norte', dist:'0.9 km', eta:'4 min', prices:[['Magna','$22.90'],['Premium','$24.70']], services:['Tienda','Banos'], open:'6:00–23:00'},
+  {id:'s3', kind:'ev', lat:19.4190, lng:-99.1610, label:'$4.2/kWh', icon:'bolt', name:'Electrolinera Condesa', dist:'1.4 km', eta:'5 min', prices:[['Carga rapida (150 kW)','$4.20/kWh'],['Carga normal (22 kW)','$3.10/kWh']], services:['4 conectores CCS','Cafe'], open:'24 h'},
+  {id:'s4', kind:'ev', lat:19.4400, lng:-99.1400, label:'$3.9/kWh', icon:'bolt', name:'EV Point Anzures', dist:'2.1 km', eta:'8 min', prices:[['Carga rapida (100 kW)','$3.90/kWh']], services:['2 conectores CCS'], open:'24 h'},
+];
+const ROUTES = {
+  s1:[ME,{lat:19.4360,lng:-99.1560},{lat:19.4400,lng:-99.1640},{lat:19.4426,lng:-99.1680}],
+  s2:[ME,{lat:19.4310,lng:-99.1460},{lat:19.4290,lng:-99.1420}],
+  s3:[ME,{lat:19.4270,lng:-99.1550},{lat:19.4220,lng:-99.1590},{lat:19.4190,lng:-99.1610}],
+  s4:[ME,{lat:19.4370,lng:-99.1450},{lat:19.4400,lng:-99.1400}],
+};
+
+function App(){
+  const [filter,setFilter] = React.useState('todas');
+  const [sel,setSel] = React.useState(null);
+  const [routing,setRouting] = React.useState(false);
+  const st = STATIONS.find(s=>s.id===sel);
+  const pins = STATIONS.filter(s=>filter==='todas'||s.kind===filter);
+  return <Device title="">
+    <div style={{position:'relative',height:'100%',background:'var(--surface-canvas)',overflow:'hidden'}}>
+      <MapCanvas center={{lat:19.4310,lng:-99.1530}} zoom={14} width="100%" height="100%"
+        pins={pins} selectedId={sel} onPinClick={(p)=>{setSel(p.id);setRouting(false);}}
+        route={routing && sel ? ROUTES[sel] : []}
+        style={{borderRadius:0,position:'absolute',inset:0}} />
+      <div style={{position:'absolute',top:12,left:14,right:14,display:'flex',gap:8,zIndex:5}}>
+        {[['todas','Todas',null],['gas','Gasolina','local_gas_station'],['ev','Electrico','bolt']].map(([v,l,ic])=>
+          <Chip key={v} label={l} icon={ic||undefined} selected={filter===v} onClick={()=>{setFilter(v); if(st && v!=='todas' && st.kind!==v){setSel(null);setRouting(false);}}} style={{boxShadow:'var(--shadow-raised)'}} />)}
+        <IconButton icon="my_location" ariaLabel="Mi ubicacion" variant="tonal" size="sm" style={{marginLeft:'auto',boxShadow:'var(--shadow-raised)'}} />
+      </div>
+      {routing && st && <div style={{position:'absolute',top:64,left:14,right:14,zIndex:5,animation:'flowIn var(--dur-base) var(--ease-spring)'}}>
+        <Card padding={14} style={{display:'flex',alignItems:'center',gap:12,boxShadow:'var(--shadow-float)'}}>
+          <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:22,color:'var(--text-accent)'}}>navigation</span>
+          <div style={{flex:1}}>
+            <div style={{fontSize:13.5,fontWeight:700}}>Hacia {st.name}</div>
+            <div style={{fontSize:12,color:'var(--text-muted)'}}>{st.dist} · llegas en {st.eta}</div>
+          </div>
+          <IconButton icon="close" ariaLabel="Cancelar ruta" size="sm" onClick={()=>setRouting(false)} />
+        </Card>
+      </div>}
+      <BottomSheet open={!!st && !routing} onClose={()=>setSel(null)} fixed={false} title={st?st.name:''} height="52%">
+        {st && <div style={{display:'flex',flexDirection:'column',gap:14}}>
+          <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+            <Badge tone={st.kind==='ev'?'success':'warning'} icon={st.icon}>{st.kind==='ev'?'Electrolinera':'Gasolinera'}</Badge>
+            <Badge icon="schedule">{st.open}</Badge>
+            <Badge icon="near_me">{st.dist}</Badge>
+          </div>
+          <Card padding={16}>
+            <div style={{display:'flex',flexDirection:'column',gap:10}}>
+              {st.prices.map(([k,v])=><div key={k} style={{display:'flex',fontSize:13.5}}>
+                <span style={{color:'var(--text-secondary)'}}>{k}</span>
+                <span style={{marginLeft:'auto',fontFamily:'var(--font-mono)',fontWeight:600}}>{v}</span>
+              </div>)}
+            </div>
+          </Card>
+          <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+            {st.services.map(s=><Badge key={s} tone="neutral">{s}</Badge>)}
+          </div>
+          <Button variant="accent" size="lg" icon="navigation" fullWidth onClick={()=>setRouting(true)}>Como llegar · {st.eta}</Button>
+        </div>}
+      </BottomSheet>
+    </div>
+  </Device>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'#fff',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

@@ -1,0 +1,71 @@
+{
+  "id": "wizard-pattern",
+  "name": "Formulario multi-paso",
+  "layer": "patterns",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Stepper con validacion por paso, estado que sobrevive al ir y volver, y resumen antes de enviar.",
+  "implements": [
+    "stepper",
+    "field",
+    "button"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "wiz-p1",
+        "rule": "Volver un paso conserva lo escrito. Perder datos al retroceder es el fallo que hace abandonar un formulario.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "wiz-p2",
+        "rule": "La validacion es por paso y no deja avanzar con errores; el primer campo con error recibe el foco.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "wiz-p3",
+        "rule": "El progreso se dice en texto ademas de dibujarse: 'paso 2 de 4'.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "wiz-p4",
+        "rule": "El ultimo paso resume lo que se va a enviar y permite volver a cualquier paso desde el resumen.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "wiz-p5",
+        "rule": "El boton de envio queda deshabilitado mientras envia y no permite un segundo envio.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "stepper",
+      "field",
+      "input",
+      "select",
+      "button"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No persiste entre sesiones: eso es del producto.",
+    "No ramifica pasos condicionales."
+  ],
+  "reference": {
+    "demo": "ui_kits/wizard/index.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "agent-chat-template",
+  "name": "Asistente de flota",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Pantalla conversacional: preguntas en lenguaje natural sobre gastos y unidades, con respuestas ricas embebidas.",
+  "content": {
+    "surface": "Asistente",
+    "product": "fleet-dashboard",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "hilo",
+        "fills": "ChatThread con autoscroll y estado vacio con sugerencias"
+      },
+      {
+        "name": "respuesta",
+        "fills": "ChatMessage del agente con StatTile o Table dentro"
+      },
+      {
+        "name": "envio",
+        "fills": "ChatComposer con sugerencias iniciales"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "chat-thread",
+      "chat-message",
+      "chat-composer",
+      "stattile",
+      "table"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ac-1",
+        "rule": "Una respuesta con datos trae el componente, no una tabla en texto: si el dato existe, se muestra como dato.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ac-2",
+        "rule": "El estado vacio propone tres preguntas concretas: una caja de texto sin pistas no se usa.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ac-3",
+        "rule": "Mientras el agente responde, el envio esta deshabilitado y se anuncia que esta trabajando.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ac-4",
+        "rule": "El chip de herramienta dice cual usa, en texto.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/agent-chat/index.html"
+  }
+}

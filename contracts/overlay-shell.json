@@ -1,0 +1,112 @@
+{
+  "id": "overlay-shell",
+  "name": "OverlayShell",
+  "layer": "primitives",
+  "shell": true,
+  "status": "beta",
+  "summary": "Capa modal: backdrop, bloqueo de scroll, foco atrapado y devuelto, Escape, apilamiento y una sola familia de keyframes.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "feedback"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "open",
+        "kind": "prop",
+        "type": "boolean",
+        "required": true
+      },
+      {
+        "name": "onClose",
+        "kind": "event",
+        "type": "() => void",
+        "required": true
+      },
+      {
+        "name": "align",
+        "kind": "prop",
+        "type": "'center' | 'end' | 'start' | 'bottom'",
+        "default": "center",
+        "note": "center=Dialog, end=Drawer, bottom=BottomSheet. Las tres capas dejan de ser tres backdrops."
+      },
+      {
+        "name": "dismissOnBackdrop",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "labelledBy",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ov-1",
+        "rule": "El foco entra al panel al abrir y vuelve al disparador al cerrar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ov-2",
+        "rule": "Tab no escapa del panel mientras esta abierto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ov-3",
+        "rule": "El fondo no hace scroll y no es alcanzable por lector de pantalla.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ov-4",
+        "rule": "Escape cierra la capa mas alta unicamente.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ov-5",
+        "rule": "Una sola familia de keyframes para las tres alineaciones.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ov-6",
+        "rule": "prefers-reduced-motion: aparece sin desplazamiento.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": false
+  },
+  "tokens": [
+    "--shadow-overlay",
+    "--surface-card",
+    "--ease-spring",
+    "--dur-base"
+  ],
+  "nonGoals": [
+    "No define el panel ni su contenido: solo la capa."
+  ],
+  "reference": {
+    "src": "primitives/shells/OverlayShell.jsx"
+  }
+}

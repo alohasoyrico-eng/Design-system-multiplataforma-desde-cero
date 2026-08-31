@@ -1,0 +1,224 @@
+<!-- @dsCard group="Drivers App" viewport="1000x900" subtitle="2 journeys: alta completa (correo, OTP SMS, tarjeta, passcode, biometricos) y usuario recurrente" name="Onboarding" -->
+<!-- @startingPoint section="Templates" subtitle="Onboarding driver: validacion por 3 canales + passcode y biometricos" viewport="1000x900" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Onboarding</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="../ios-frame.jsx"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--flow-ink-700);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, Input, Field, OTPInput, PasscodeKeypad, BiometricPrompt, PaymentCard, Progress, Switch, Badge } = NS;
+const Device = window.IOSDevice;
+
+const STEPS_A = ['welcome','email','emailCode','phone','smsCode','card','passcode','notif','bio','done'];
+
+function Screen({children, style}){
+  return <div style={{display:'flex',flexDirection:'column',height:'100%',padding:'18px 22px 28px',boxSizing:'border-box',background:'var(--surface-canvas)',...style}}>{children}</div>;
+}
+function StepHeader({step, total, onBack, title, subtitle}){
+  return <div style={{marginBottom:22}}>
+    <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:18}}>
+      {onBack && <IconButton icon="arrow_back" ariaLabel="Atras" variant="tonal" size="sm" onClick={onBack} />}
+      <div style={{flex:1,height:5,borderRadius:999,background:'var(--surface-sunken)',overflow:'hidden'}}>
+        <div style={{width:(step/total*100)+'%',height:'100%',borderRadius:999,background:'var(--action-accent)',transition:'width var(--dur-slow) var(--ease-out)'}}></div>
+      </div>
+      <span style={{fontFamily:'var(--font-mono)',fontSize:11,color:'var(--text-muted)'}}>{step}/{total}</span>
+    </div>
+    <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:0}}>{title}</h1>
+    {subtitle && <p style={{fontSize:13.5,color:'var(--text-secondary)',lineHeight:1.6,margin:'8px 0 0'}}>{subtitle}</p>}
+  </div>;
+}
+function Resend(){
+  const [left,setLeft] = React.useState(42);
+  React.useEffect(()=>{ const t=setInterval(()=>setLeft(l=>l>0?l-1:0),1000); return ()=>clearInterval(t); },[]);
+  return left>0
+    ? <span style={{fontSize:13,color:'var(--text-muted)'}}>Reenviar en 0:{String(left).padStart(2,'0')}</span>
+    : <a href="#" onClick={(e)=>{e.preventDefault();setLeft(42);}} style={{fontSize:13,fontWeight:700}}>Reenviar codigo</a>;
+}
+
+function JourneyA(){
+  const [i,setI] = React.useState(0);
+  const [email,setEmail] = React.useState('');
+  const [phone,setPhone] = React.useState('');
+  const [code1,setCode1] = React.useState('');
+  const [code2,setCode2] = React.useState('');
+  const [card,setCard] = React.useState('');
+  const [pin,setPin] = React.useState('');
+  const [pin2,setPin2] = React.useState('');
+  const [confirmPin,setConfirmPin] = React.useState(false);
+  const [pinErr,setPinErr] = React.useState(false);
+  const [notif,setNotif] = React.useState(true);
+  const [bioState,setBioState] = React.useState('idle');
+  const step = STEPS_A[i];
+  const next = ()=>setI(Math.min(i+1,STEPS_A.length-1));
+  const back = ()=>setI(Math.max(i-1,0));
+  const fmtCard = (v)=>v.replace(/\D/g,'').slice(0,16).replace(/(.{4})/g,'$1 ').trim();
+
+  return <Device title="">
+    {step==='welcome' && <Screen>
+      <img src="../../assets/flow-logo.png" alt="Flow" style={{height:30,alignSelf:'flex-start',marginTop:16}} />
+      <div style={{marginTop:'auto'}}>
+        <h1 style={{font:'var(--type-display)',letterSpacing:'var(--tracking-tight)',margin:0}}>Todo tu dia,<br/><span style={{color:'var(--flow-red-500)'}}>en movimiento.</span></h1>
+        <p style={{fontSize:14,color:'var(--text-secondary)',lineHeight:1.6,margin:'14px 0 26px'}}>Activa tu tarjeta Flow en unos minutos. Solo necesitas tu correo, tu telefono y tu tarjeta.</p>
+        <Button variant="accent" size="lg" fullWidth onClick={next}>Comenzar</Button>
+        <div style={{textAlign:'center',marginTop:14,fontSize:13,color:'var(--text-muted)'}}>Ya tienes cuenta? <a href="#" style={{fontWeight:700}}>Entrar</a></div>
+      </div>
+    </Screen>}
+
+    {step==='email' && <Screen>
+      <StepHeader step={1} total={7} onBack={back} title="Tu correo" subtitle="Te enviaremos un codigo de activacion para confirmarlo." />
+      <Field label="Correo" htmlFor="em"><Input id="em" type="email" icon="mail" placeholder="diego@correo.mx" value={email} onChange={setEmail} /></Field>
+      <div style={{marginTop:'auto'}}><Button variant="primary" size="lg" fullWidth disabled={!email.includes('@')} onClick={next}>Enviar codigo</Button></div>
+    </Screen>}
+
+    {step==='emailCode' && <Screen>
+      <StepHeader step={2} total={7} onBack={back} title="Confirma tu correo" subtitle={'Enviamos un codigo de 6 digitos a '+(email||'tu correo')+'.'} />
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:16}}>
+        <OTPInput length={6} value={code1} onChange={setCode1} onComplete={()=>setTimeout(next,300)} autoFocus />
+        <Resend />
+      </div>
+    </Screen>}
+
+    {step==='phone' && <Screen>
+      <StepHeader step={3} total={7} onBack={back} title="Tu telefono" subtitle="Lo confirmamos con un SMS. Es tu segundo canal de seguridad." />
+      <Field label="Telefono movil" htmlFor="ph"><Input id="ph" type="tel" icon="smartphone" mono placeholder="55 1234 5678" value={phone} onChange={setPhone} /></Field>
+      <div style={{marginTop:'auto'}}><Button variant="primary" size="lg" fullWidth disabled={phone.replace(/\D/g,'').length<10} onClick={next}>Enviar SMS</Button></div>
+    </Screen>}
+
+    {step==='smsCode' && <Screen>
+      <StepHeader step={4} total={7} onBack={back} title="Codigo SMS" subtitle={'Enviamos un OTP a '+(phone||'tu telefono')+'. Se llena solo al llegar.'} />
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:16}}>
+        <OTPInput length={6} value={code2} onChange={setCode2} onComplete={()=>setTimeout(next,300)} autoFocus />
+        <Resend />
+      </div>
+    </Screen>}
+
+    {step==='card' && <Screen>
+      <StepHeader step={5} total={7} onBack={back} title="Tu tarjeta Flow" subtitle="Captura el numero de 16 digitos tal como aparece al frente." />
+      <div style={{display:'flex',justifyContent:'center',marginBottom:20}}>
+        <PaymentCard holder="" last4={card.replace(/\s/g,'').slice(-4)||'••••'} variant="ink" label="Flota" width={250} />
+      </div>
+      <Field label="Numero de tarjeta" htmlFor="cd"><Input id="cd" mono icon="credit_card" placeholder="5231 0000 0000 0000" value={card} onChange={(v)=>setCard(fmtCard(v))} /></Field>
+      <div style={{marginTop:'auto'}}><Button variant="primary" size="lg" fullWidth disabled={card.replace(/\s/g,'').length<16} onClick={next}>Validar tarjeta</Button></div>
+    </Screen>}
+
+    {step==='passcode' && <Screen>
+      <StepHeader step={6} total={7} onBack={back} title={confirmPin?'Repite tu passcode':'Crea tu passcode'} subtitle={confirmPin?'Una vez mas para confirmarlo.':'6 digitos para entrar y autorizar pagos.'} />
+      <div style={{display:'flex',justifyContent:'center',marginTop:8}}>
+        <PasscodeKeypad value={confirmPin?pin2:pin} invalid={pinErr}
+          onChange={(v)=>{ setPinErr(false); confirmPin?setPin2(v):setPin(v); }}
+          onComplete={(v)=>{
+            if(!confirmPin){ setConfirmPin(true); return; }
+            if(v===pin){ next(); } else { setPinErr(true); setTimeout(()=>{setPin2('');setPinErr(false);},500); }
+          }} />
+      </div>
+    </Screen>}
+
+    {step==='notif' && <Screen>
+      <StepHeader step={7} total={7} onBack={back} title="Avisos que importan" subtitle="Te avisamos de cada cargo, deposito y alerta de seguridad." />
+      <div style={{background:'var(--surface-card)',borderRadius:'var(--radius-lg)',padding:20,boxShadow:'var(--shadow-rest)',display:'flex',flexDirection:'column',gap:16}}>
+        <div style={{display:'flex',alignItems:'center',gap:12}}>
+          <span className="flow-icon" aria-hidden="true" style={{fontSize:22,color:'var(--text-accent)'}}>notifications_active</span>
+          <div style={{flex:1}}>
+            <div style={{fontSize:14,fontWeight:600}}>Notificaciones push</div>
+            <div style={{fontSize:12,color:'var(--text-muted)'}}>Cargos en tiempo real</div>
+          </div>
+          <Switch checked={notif} onChange={setNotif} />
+        </div>
+      </div>
+      <div style={{marginTop:'auto'}}><Button variant="primary" size="lg" fullWidth onClick={next}>Continuar</Button></div>
+    </Screen>}
+
+    {step==='bio' && <Screen>
+      <div style={{margin:'auto',display:'flex',flexDirection:'column',alignItems:'center',gap:18}}>
+        <BiometricPrompt method="face" state={bioState}
+          title="Activa Face ID" description={bioState==='success'?'Listo. Entraras sin teclear.':'Entra y autoriza pagos con tu cara.'}
+          onUse={()=>{ setBioState('scanning'); setTimeout(()=>setBioState('success'),1200); setTimeout(next,2100); }}
+          onFallback={next} fallbackLabel="Ahora no" />
+      </div>
+    </Screen>}
+
+    {step==='done' && <Screen>
+      <div style={{margin:'auto',textAlign:'center',display:'flex',flexDirection:'column',alignItems:'center',gap:14}}>
+        <span style={{width:84,height:84,borderRadius:'50%',background:'var(--status-success-bg)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}>
+          <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:44,color:'var(--status-success-text)',animation:'flowScaleIn var(--dur-base) var(--ease-spring)'}}>check_circle</span>
+        </span>
+        <h1 style={{font:'var(--type-title-lg)',margin:0}}>Tarjeta activada</h1>
+        <p style={{fontSize:13.5,color:'var(--text-secondary)',lineHeight:1.6,margin:0,maxWidth:250}}>Tu tarjeta •••• {card.replace(/\s/g,'').slice(-4)||'4821'} esta lista para usarse.</p>
+        <Button variant="accent" size="lg" onClick={()=>setI(0)}>Ir a mi wallet</Button>
+      </div>
+    </Screen>}
+  </Device>;
+}
+
+function JourneyB(){
+  const [scr,setScr] = React.useState('lock'); // lock → wallet → newcard → done
+  const [pin,setPin] = React.useState('');
+  const [card,setCard] = React.useState('');
+  const [bioState,setBioState] = React.useState('idle');
+  const fmtCard = (v)=>v.replace(/\D/g,'').slice(0,16).replace(/(.{4})/g,'$1 ').trim();
+  const { TransactionRow, Card } = NS;
+  return <Device title="" dark={scr==='lock'}>
+    {scr==='lock' && <Screen style={{background:'var(--flow-ink-900)'}}>
+      <img src="../../assets/flow-logo.png" alt="Flow" style={{height:24,alignSelf:'center',marginTop:24,filter:'invert(1)'}} />
+      <div style={{margin:'auto 0',display:'flex',flexDirection:'column',alignItems:'center',gap:20}}>
+        <div style={{color:'#F4F3F1',fontSize:16,fontWeight:600}}>Hola de nuevo, Diego</div>
+        <div onClick={()=>{ setBioState('scanning'); setTimeout(()=>{setBioState('success'); setTimeout(()=>setScr('wallet'),700);},1100); }} style={{cursor:'pointer'}}>
+          <BiometricPrompt method="fingerprint" state={bioState} title="Toca para entrar" description={bioState==='success'?'Bienvenido.':'Huella o passcode.'} onFallback={()=>setScr('wallet')} />
+        </div>
+      </div>
+    </Screen>}
+
+    {scr==='wallet' && <Screen>
+      <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:16}}>
+        <div style={{fontSize:18,fontWeight:800,letterSpacing:'-0.02em'}}>Mis tarjetas</div>
+        <Badge tone="neutral" style={{marginLeft:'auto'}}>2 activas</Badge>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:12,marginBottom:18}}>
+        <PaymentCard holder="Diego Vera" last4="4821" variant="ink" label="Flota" expires="12/28" width={286} />
+        <PaymentCard holder="Diego Vera" last4="0937" variant="sand" label="Personal" expires="03/27" width={286} />
+      </div>
+      <Button variant="secondary" icon="add" fullWidth onClick={()=>setScr('newcard')}>Agregar tarjeta</Button>
+      <p style={{fontSize:12,color:'var(--text-muted)',textAlign:'center',marginTop:12,lineHeight:1.5}}>Tu identidad ya esta verificada:<br/>solo validaremos la tarjeta nueva.</p>
+    </Screen>}
+
+    {scr==='newcard' && <Screen>
+      <StepHeader step={1} total={1} onBack={()=>setScr('wallet')} title="Nueva tarjeta" subtitle="Sin pasos extra: tu correo y telefono ya estan confirmados." />
+      <div style={{display:'flex',justifyContent:'center',marginBottom:20}}>
+        <PaymentCard holder="Diego Vera" last4={card.replace(/\s/g,'').slice(-4)||'••••'} variant="accent" label="Nueva" width={250} />
+      </div>
+      <Field label="Numero de tarjeta" htmlFor="nc"><Input id="nc" mono icon="credit_card" placeholder="5231 0000 0000 0000" value={card} onChange={(v)=>setCard(fmtCard(v))} /></Field>
+      <div style={{marginTop:'auto'}}><Button variant="primary" size="lg" fullWidth disabled={card.replace(/\s/g,'').length<16} onClick={()=>setScr('done')}>Validar y agregar</Button></div>
+    </Screen>}
+
+    {scr==='done' && <Screen>
+      <div style={{margin:'auto',textAlign:'center',display:'flex',flexDirection:'column',alignItems:'center',gap:14}}>
+        <span style={{width:84,height:84,borderRadius:'50%',background:'var(--status-success-bg)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}>
+          <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:44,color:'var(--status-success-text)',animation:'flowScaleIn var(--dur-base) var(--ease-spring)'}}>check_circle</span>
+        </span>
+        <h1 style={{font:'var(--type-title-lg)',margin:0}}>Tarjeta agregada</h1>
+        <Button variant="accent" size="lg" onClick={()=>{setScr('wallet');setCard('');}}>Ver mis tarjetas</Button>
+      </div>
+    </Screen>}
+  </Device>;
+}
+
+function App(){
+  return <>
+    <div>
+      <div style={{color:'#fff',fontFamily:'var(--font-body)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px',display:'flex',alignItems:'center',gap:8}}><span style={{background:'var(--flow-red-500)',borderRadius:999,padding:'3px 10px',fontSize:11}}>A</span> Usuario nuevo · alta completa</div>
+      <JourneyA />
+    </div>
+    <div>
+      <div style={{color:'#fff',fontFamily:'var(--font-body)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px',display:'flex',alignItems:'center',gap:8}}><span style={{background:'var(--flow-ink-900)',borderRadius:999,padding:'3px 10px',fontSize:11,border:'1px solid rgba(255,255,255,.3)'}}>B</span> Usuario recurrente · multi-tarjeta</div>
+      <JourneyB />
+    </div>
+  </>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'#fff',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

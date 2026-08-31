@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x420" subtitle="Select searchable y DatePicker en rango" name="Select searchable & DatePicker range" -->
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow;
+const { Select, DatePicker } = NS || {};
+function Demo(){
+  const [unit,setUnit] = React.useState('u3');
+  const [range,setRange] = React.useState({from:'2026-07-01',to:'2026-07-09'});
+  const units = [
+    {value:'u1',label:'JMX-214-B',hint:'Ana Sosa'},{value:'u2',label:'KTR-882-A',hint:'Luis Prieto'},
+    {value:'u3',label:'MVD-101-C',hint:'Rosa Duarte'},{value:'u4',label:'PLQ-472-D',hint:'Marco Gil'},
+    {value:'u5',label:'QRS-330-E',hint:'Elena Ruz'},{value:'u6',label:'TWN-559-F',hint:'Pablo Mena'},
+  ];
+  return <div style={{display:'flex',flexDirection:'column',gap:24,padding:24,maxWidth:340}}>
+    <div>
+      <div style={{fontSize:12,fontWeight:600,color:'var(--text-muted)',marginBottom:8}}>Select searchable + clearable</div>
+      <Select searchable clearable value={unit} onChange={setUnit} icon="local_taxi" options={units} placeholder="Busca una unidad…" />
+    </div>
+    <div>
+      <div style={{fontSize:12,fontWeight:600,color:'var(--text-muted)',marginBottom:8}}>DatePicker mode="range"</div>
+      <DatePicker mode="range" value={range} onChange={setRange} />
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <Demo/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

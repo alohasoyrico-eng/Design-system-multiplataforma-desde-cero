@@ -1,0 +1,123 @@
+{
+  "id": "sidebar",
+  "name": "Sidebar",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Nav lateral de escritorio con secciones colapsables y modo de 60px solo iconos.",
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; icon?: string; section?: string; children?: Array<object> }>",
+        "required": true
+      },
+      {
+        "name": "activeId",
+        "kind": "prop",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "collapsed",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "variantAxis": true
+      },
+      {
+        "name": "expandedSections",
+        "kind": "prop",
+        "type": "Set<string>"
+      },
+      {
+        "name": "onNavigate",
+        "kind": "event",
+        "type": "(id: string) => void"
+      },
+      {
+        "name": "onToggleSection",
+        "kind": "event",
+        "type": "(section: string) => void"
+      },
+      {
+        "name": "headerContent",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "footerActions",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "width",
+        "kind": "prop",
+        "type": "string",
+        "default": "240px"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sbr-1",
+        "rule": "Es una navegacion con nombre y el item activo lleva aria-current. Una seccion colapsable es un boton con aria-expanded.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sbr-2",
+        "rule": "Colapsado, cada item conserva su nombre accesible y lo muestra en tooltip: un icono solo no dice a donde lleva.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sbr-3",
+        "rule": "Cada item mide --hit-target-min de alto en los dos modos.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sbr-4",
+        "rule": "El activo se distingue por superficie y peso, no solo por el color del texto.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "sbr-5",
+        "rule": "El globo del modo colapsado es decorativo y esta oculto al lector: el nombre accesible lo lleva el propio boton. Un tooltip como unica fuente del nombre no existe para quien no ve.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--surface-accent-subtle",
+    "--text-accent",
+    "--border-subtle",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es un Drawer: en movil se compone dentro de uno.",
+    "No guarda que seccion esta abierta: eso lo controla la pantalla."
+  ],
+  "reference": {
+    "src": "components/Sidebar.jsx",
+    "demo": "docs/demos/sidebar-topbar.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

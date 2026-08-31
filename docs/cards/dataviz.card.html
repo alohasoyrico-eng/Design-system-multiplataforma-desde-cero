@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" viewport="700x420" subtitle="Sparkline, Bars, FileUpload" name="Data viz & Upload" -->
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow;
+const { Sparkline, Bars, FileUpload, Card } = NS || {};
+function Demo(){
+  const [files,setFiles] = React.useState([{name:'tarjeta-circulacion.pdf',size:482000}]);
+  return <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,padding:20,alignItems:'start'}}>
+    <Card padding={18}>
+      <div style={{font:'var(--type-overline)',letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)'}}>Viajes · 7 días</div>
+      <div style={{font:'var(--type-data-lg)',margin:'4px 0 8px'}}>412</div>
+      <Sparkline values={[42,58,51,64,72,66,89]} width={240} height={54} />
+    </Card>
+    <Card padding={18}>
+      <div style={{font:'var(--type-overline)',letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:10}}>Ganancias por día</div>
+      <Bars height={130} format={(v)=>'$'+v} data={[{label:'Lun',value:820},{label:'Mar',value:1140},{label:'Mié',value:960},{label:'Jue',value:1310},{label:'Vie',value:1482},{label:'Sáb',value:1275},{label:'Dom',value:640}]} />
+    </Card>
+    <div style={{gridColumn:'1 / -1'}}>
+      <FileUpload files={files} onChange={setFiles} accept=".pdf,image/*" hint="PDF o foto · máx 10 MB" />
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <Demo/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

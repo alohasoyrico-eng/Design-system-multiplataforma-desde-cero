@@ -1,0 +1,45 @@
+{
+  "id": "flow-logo",
+  "name": "FlowLogo",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Logo SVG de Flow (wordmark completo). Escala por altura, color hereda currentColor para la tipografia.",
+  "api": {
+    "members": [
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "default": 28
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "fl-1",
+        "rule": "Tiene role=img y aria-label='Flow'.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [],
+  "nonGoals": [
+    "No hay variante isotipo. Si se necesita solo el icono, usar texto en --font-display."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/FlowLogo.tsx"
+  }
+}

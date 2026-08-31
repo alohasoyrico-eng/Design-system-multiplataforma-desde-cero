@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { TabBar } = NS;
+function Demo(){
+  const [tab,setTab] = React.useState('home');
+  return <div style={{width:360,border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)',overflow:'hidden'}}>
+    <div style={{height:280,background:'var(--surface-sunken)'}}></div>
+    <TabBar activeId={tab} onChange={setTab} items={[
+      {id:'home',icon:'home',label:'Inicio'},
+      {id:'map',icon:'map',label:'Mapa'},
+      {id:'earnings',icon:'payments',label:'Ganancias',badge:2},
+      {id:'profile',icon:'person',label:'Perfil'},
+    ]} />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.TabBar ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

@@ -1,0 +1,94 @@
+{
+  "id": "onboarding-driver",
+  "name": "Onboarding driver",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Alta de conductor en el movil: datos, documentos y verificacion.",
+  "content": {
+    "surface": "Alta de conductor",
+    "product": "drivers-app",
+    "viewport": [
+      "mobile"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "bienvenida",
+        "fills": "OnboardingCarousel de tres diapositivas"
+      },
+      {
+        "name": "datos",
+        "fills": "Field por dato, teclado adecuado por tipo"
+      },
+      {
+        "name": "documentos",
+        "fills": "FileUpload con lista de subidos y estado por documento"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "onboarding-carousel",
+      "field",
+      "input",
+      "input-phone",
+      "fileupload",
+      "status-view",
+      "otpinput",
+      "passcodekeypad",
+      "biometric",
+      "payment-card",
+      "toast"
+    ],
+    "primitives": [
+      "button",
+      "icon-button",
+      "badge",
+      "progress",
+      "switch"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "od-1",
+        "rule": "Se puede omitir la bienvenida desde cualquier diapositiva.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "od-2",
+        "rule": "Cada documento dice su estado: pendiente, en revision o rechazado con motivo.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "od-3",
+        "rule": "Subir se puede sin arrastrar: en movil el arrastre no existe.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "od-4",
+        "rule": "El teclado es el adecuado por campo: numerico para el telefono, no el completo.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/onboarding-driver/index.html"
+  }
+}

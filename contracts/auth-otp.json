@@ -1,0 +1,81 @@
+{
+  "id": "auth-otp",
+  "name": "Auth completa: OTP y biometricos",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Ingreso con codigo de un solo uso, passcode y Face ID con salida a passcode.",
+  "content": {
+    "surface": "Entrada al producto, segundo factor",
+    "product": "drivers-app",
+    "viewport": [
+      "mobile"
+    ],
+    "theme": [
+      "light",
+      "dark"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "codigo",
+        "fills": "OTPInput de 6 con autorrelleno del SMS"
+      },
+      {
+        "name": "passcode",
+        "fills": "PasscodeKeypad con puntos de progreso"
+      },
+      {
+        "name": "biometrico",
+        "fills": "BiometricPrompt con fallbackLabel a passcode"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "otpinput",
+      "passcodekeypad",
+      "biometric",
+      "status-view"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ao-1",
+        "rule": "Siempre hay una via alternativa: si el biometrico falla, passcode; si el SMS no llega, reenviar.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "ao-2",
+        "rule": "El codigo se autorrellena desde el SMS: un solo input con autocomplete one-time-code.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ao-3",
+        "rule": "Un intento fallido dice cuantos quedan antes de bloquear.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ao-4",
+        "rule": "El passcode no queda legible en el DOM en ningun momento.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/auth-otp/index.html"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "bulk-actions-pattern",
+  "name": "BulkActionsTable",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Tabla con seleccion multiple y barra de acciones sobre lo seleccionado. Piel de DataGrid.",
+  "api": {
+    "members": [
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "TableColumn[]",
+        "required": true
+      },
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "Array<object>",
+        "required": true
+      },
+      {
+        "name": "rowKey",
+        "kind": "prop",
+        "type": "string",
+        "default": "id"
+      },
+      {
+        "name": "actions",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; icon?: string; danger?: boolean }>",
+        "required": true
+      },
+      {
+        "name": "onActionClick",
+        "kind": "event",
+        "type": "(actionId: string, selection: string[]) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "data-grid"
+    ],
+    "criteria": [
+      {
+        "id": "blk-1",
+        "rule": "La barra de acciones dice cuantas filas hay seleccionadas y se anuncia al aparecer.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "blk-2",
+        "rule": "La casilla de la cabecera refleja el estado parcial con indeterminate real, no con un dibujo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "blk-3",
+        "rule": "Una accion destructiva pide confirmacion antes de aplicarse a varias filas.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "blk-4",
+        "rule": "La barra no tapa la ultima fila de la tabla al aparecer.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "blk-5",
+        "rule": "Dibuja carcasa de control propia y es una de las dos infracciones de R3 que quedan: el borde y el foco de sus botones deberian venir de un shell.",
+        "level": "should",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "data-grid"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--border-focus",
+    "--surface-accent-subtle",
+    "--radius-sm",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No decide las acciones: las recibe.",
+    "No exporta nada por su cuenta."
+  ],
+  "reference": {
+    "src": "components/BulkActionsTable.jsx",
+    "demo": "docs/demos/tables-extended.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "id": "menu",
+  "name": "Menu",
+  "layer": "components",
+  "function": [
+    "actions"
+  ],
+  "status": "stable",
+  "summary": "Acciones contextuales sobre Popover. El shell resuelve anclaje, colision, portal y Escape; este componente pone los items y su teclado.",
+  "api": {
+    "types": [
+      {
+        "name": "MenuItem",
+        "members": [
+          [
+            "label",
+            "string"
+          ],
+          [
+            "icon",
+            "string?"
+          ],
+          [
+            "danger",
+            "boolean?"
+          ],
+          [
+            "disabled",
+            "boolean?"
+          ],
+          [
+            "onClick",
+            "() => void"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "trigger",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<MenuItem | 'divider'>",
+        "required": true
+      },
+      {
+        "name": "align",
+        "kind": "prop",
+        "type": "'left' | 'right'",
+        "default": "left"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "popover"
+    ],
+    "criteria": [
+      {
+        "id": "mnu-1",
+        "rule": "El foco entra al primer item usable al abrir y vuelve al disparador al cerrar. Lo mueve el shell, que es el unico que sabe cuando el panel esta colocado: un elemento en visibility:hidden no acepta foco y enfocar en el frame de apertura falla en silencio.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mnu-2",
+        "rule": "Flechas recorren los items usables saltando divisores y deshabilitados; Home y End van a los extremos; Tab cierra.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mnu-3",
+        "rule": "Cada item mide --hit-target-min. Un item de menu es un objetivo tactil, no una fila de lista.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mnu-4",
+        "rule": "Un item destructivo se distingue por color y por posicion —al final, tras un divisor—, no solo por color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "mnu-5",
+        "rule": "La raiz no se deforma por el contexto: declara su alineacion propia, porque como hijo de un flex de alto fijo se estiraba y el disparador con radio de pastilla se volvia un ovalo.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "popover"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--status-danger-bg",
+    "--status-danger-text",
+    "--radius-sm",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es un Select: no tiene valor ni seleccion. Si lo que se elige se queda elegido, es Select.",
+    "No abre submenus."
+  ],
+  "reference": {
+    "src": "components/Menu.jsx",
+    "demo": "docs/demos/menu.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "card-carousel",
+  "name": "CardCarousel",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Carrusel horizontal de cards con scroll snap, dots de navegacion y control de indice.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cc-1",
+        "rule": "Scroll snap alinea cada card al centro.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cc-2",
+        "rule": "Los dots reflejan la posicion actual.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No tiene autoplay: el movimiento es siempre por gesto del usuario."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/CardCarousel.tsx"
+  }
+}

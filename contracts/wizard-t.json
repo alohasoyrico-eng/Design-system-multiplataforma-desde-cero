@@ -1,0 +1,86 @@
+{
+  "id": "wizard-t",
+  "name": "Wizard",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Alta de unidad en tres pasos: vehiculo, conductor y confirmacion, con validacion por paso.",
+  "content": {
+    "surface": "Alta de unidad",
+    "product": "fleet-dashboard",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "progreso",
+        "fills": "Stepper horizontal con el paso actual"
+      },
+      {
+        "name": "paso",
+        "fields": "Field por dato",
+        "fills": "Campos del paso"
+      },
+      {
+        "name": "resumen",
+        "fills": "Ultimo paso con todo lo capturado y enlaces para volver"
+      }
+    ]
+  },
+  "composition": {
+    "patterns": [
+      "wizard-pattern"
+    ],
+    "components": [
+      "stepper",
+      "field",
+      "input",
+      "select",
+      "datepicker",
+      "button"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "wz-1",
+        "rule": "Volver conserva lo escrito en los tres pasos.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "wz-2",
+        "rule": "No se puede avanzar con errores y el foco va al primer campo con problema.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "wz-3",
+        "rule": "El resumen muestra todo lo capturado antes de enviar.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "wz-4",
+        "rule": "El envio deshabilita el boton y no admite un segundo intento.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/wizard/index.html"
+  }
+}

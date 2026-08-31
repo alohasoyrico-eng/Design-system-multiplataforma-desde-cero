@@ -1,0 +1,120 @@
+{
+  "id": "listbox",
+  "name": "Listbox",
+  "layer": "primitives",
+  "shell": true,
+  "status": "beta",
+  "summary": "La maquina de una lista seleccionable: indice activo, teclado, filtrado, seleccion simple o multiple y semantica ARIA.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "forms"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<{ value: string; label: string; group?: string; disabled?: boolean }>",
+        "required": true
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string | string[]"
+      },
+      {
+        "name": "onSelect",
+        "kind": "event",
+        "type": "(value: string | string[]) => void",
+        "required": true
+      },
+      {
+        "name": "multiple",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "query",
+        "kind": "prop",
+        "type": "string",
+        "note": "Filtrado controlado. Sin esto cada consumidor reimplementa el includes()."
+      },
+      {
+        "name": "groupOrder",
+        "kind": "prop",
+        "type": "string[]"
+      },
+      {
+        "name": "renderItem",
+        "kind": "renderProp",
+        "type": "(item, state: { active: boolean; selected: boolean }) => React.ReactNode"
+      },
+      {
+        "name": "emptyLabel",
+        "kind": "prop",
+        "type": "string",
+        "default": "Sin resultados"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "lb-1",
+        "rule": "role=listbox con role=option en las filas y aria-selected.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "lb-2",
+        "rule": "aria-activedescendant sigue al resaltado; el foco no se mueve de fila en fila.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "lb-3",
+        "rule": "ArrowUp/Down, Home/End y typeahead navegan; el resaltado no se sale de rango.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "lb-4",
+        "rule": "La fila activa se mantiene visible al navegar sin usar scrollIntoView sobre la pagina.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "lb-5",
+        "rule": "Filas de 44px minimo: la lista tambien se usa con el dedo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "lb-6",
+        "rule": "Sin resultados dice por que, no queda en blanco.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-accent-subtle",
+    "--text-primary",
+    "--radius-sm"
+  ],
+  "nonGoals": [
+    "No dibuja panel ni se posiciona: eso es Popover.",
+    "No filtra por su cuenta: recibe query ya resuelto."
+  ],
+  "reference": {
+    "src": "primitives/shells/Listbox.jsx"
+  }
+}

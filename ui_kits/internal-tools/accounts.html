@@ -1,0 +1,90 @@
+<!-- @dsCard group="Internal Tools" viewport="1360x860" subtitle="Cuentas de flotas y conductores: perfil, actividad y tickets relacionados" name="Internal Tools · Cuentas" -->
+<!-- @startingPoint section="Templates" subtitle="Cuentas (flotas + conductores) con detalle en tabs" viewport="1360x860" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Cuentas</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" src="./shell.jsx"></script>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Table, Badge, Avatar, Tabs, Drawer, Timeline, Card } = NS;
+const { Shell, useRole } = window.FlowIT;
+
+const STATUS_TONE = {activa:'success','en revisión':'warning',suspendida:'neutral'};
+
+const ACCOUNTS = [
+  {id:'A-1', name:'Transportes Vidal SA', type:'Flota', metric:'42 unidades', status:'activa', since:'2022',
+    activity:[{title:'Alta de 3 unidades nuevas', timestamp:'hace 2 días', status:'done'},{title:'Renovación de póliza de flota', timestamp:'hace 1 semana', status:'done'},{title:'Solicitud de factura de comisión', timestamp:'hace 1 h', status:'active'}],
+    tickets:[{id:'T-1041', subject:'Solicita factura de comisión', status:'en progreso'}]},
+  {id:'A-2', name:'Ana Sosa', type:'Conductor', metric:'1,240 viajes', status:'activa', since:'2024',
+    activity:[{title:'Verificación de identidad aprobada', timestamp:'hace 3 meses', status:'done'},{title:'Reporte de pago faltante', timestamp:'hace 12 min', status:'active'}],
+    tickets:[{id:'T-1042', subject:'No se refleja el pago de esta semana', status:'abierto'}]},
+  {id:'A-3', name:'KTR Flotillas', type:'Flota', metric:'18 unidades', status:'en revisión', since:'2023',
+    activity:[{title:'Documentos de renovación enviados', timestamp:'hace 4 días', status:'done'},{title:'En revisión por back-office', timestamp:'hace 1 día', status:'active'}],
+    tickets:[{id:'T-1028', subject:'Cambio de unidad no se refleja', status:'cerrado'}]},
+  {id:'A-4', name:'Luis Prieto', type:'Conductor', metric:'860 viajes', status:'suspendida', since:'2023',
+    activity:[{title:'Reporte de conducción riesgosa', timestamp:'hace 1 día', status:'error'},{title:'Cuenta suspendida temporalmente', timestamp:'hace 1 día', status:'done'}],
+    tickets:[{id:'T-1038', subject:'App no detecta ubicación', status:'esperando cliente'}]},
+  {id:'A-5', name:'Rosa Duarte', type:'Conductor', metric:'2,105 viajes', status:'activa', since:'2022',
+    activity:[{title:'Disputa de pago resuelta a su favor', timestamp:'hace 5 días', status:'done'}],
+    tickets:[{id:'T-1035', subject:'Duda sobre bono de fin de semana', status:'cerrado'}]},
+  {id:'A-6', name:'Rutas Cobalto', type:'Flota', metric:'6 unidades', status:'en revisión', since:'2026',
+    activity:[{title:'Alta de flota iniciada', timestamp:'hace 1 día', status:'active'},{title:'Caso de fraude en revisión', timestamp:'hace 6 h', status:'active'}],
+    tickets:[]},
+  {id:'A-7', name:'Elena Ruz', type:'Conductor', metric:'1,580 viajes', status:'activa', since:'2023',
+    activity:[{title:'Cobro duplicado reembolsado', timestamp:'hace 2 h', status:'done'}],
+    tickets:[{id:'T-1030', subject:'Cobro duplicado en viaje', status:'en progreso'}]},
+];
+
+function AccountDetail({a, onClose}){
+  const [tab,setTab] = React.useState('perfil');
+  React.useEffect(()=>{ setTab('perfil'); },[a && a.id]);
+  return <Drawer open={!!a} onClose={onClose} title={a ? a.name : ''} width={520}>
+    {a && <div style={{display:'flex',flexDirection:'column',gap:18}}>
+      <div style={{display:'flex',alignItems:'center',gap:12}}>
+        <Avatar name={a.name} size="lg" />
+        <div>
+          <Badge tone="neutral" style={{marginBottom:6}}>{a.type}</Badge>
+          <div style={{fontSize:12,color:'var(--text-muted)'}}>{a.metric} · desde {a.since}</div>
+        </div>
+        <Badge tone={STATUS_TONE[a.status]} style={{marginLeft:'auto'}}>{a.status}</Badge>
+      </div>
+      <Tabs value={tab} onChange={setTab} items={[{value:'perfil',label:'Perfil'},{value:'actividad',label:'Actividad'},{value:'tickets',label:'Tickets',count:a.tickets.length}]} />
+      {tab==='perfil' && <div style={{display:'flex',flexDirection:'column',gap:10,fontSize:13.5}}>
+        <div style={{display:'flex',justifyContent:'space-between'}}><span style={{color:'var(--text-muted)'}}>Tipo de cuenta</span><span>{a.type}</span></div>
+        <div style={{display:'flex',justifyContent:'space-between'}}><span style={{color:'var(--text-muted)'}}>{a.type==='Flota'?'Unidades':'Viajes totales'}</span><span style={{fontFamily:'var(--font-mono)'}}>{a.metric}</span></div>
+        <div style={{display:'flex',justifyContent:'space-between'}}><span style={{color:'var(--text-muted)'}}>Cliente desde</span><span>{a.since}</span></div>
+        <div style={{display:'flex',justifyContent:'space-between'}}><span style={{color:'var(--text-muted)'}}>Estado</span><Badge tone={STATUS_TONE[a.status]}>{a.status}</Badge></div>
+      </div>}
+      {tab==='actividad' && <Timeline items={a.activity} />}
+      {tab==='tickets' && (a.tickets.length ? <div style={{display:'flex',flexDirection:'column',gap:8}}>
+        {a.tickets.map(t=><a key={t.id} href={'./tickets.html'} style={{display:'flex',justifyContent:'space-between',gap:10,padding:'10px 12px',borderRadius:12,background:'var(--surface-sunken)',textDecoration:'none',color:'var(--text-primary)',fontSize:13}}>
+          <span>{t.id} · {t.subject}</span><Badge tone="neutral">{t.status}</Badge>
+        </a>)}
+      </div> : <div style={{fontSize:13,color:'var(--text-muted)'}}>Sin tickets relacionados.</div>)}
+    </div>}
+  </Drawer>;
+}
+
+function App(){
+  const [role, setRole] = useRole();
+  const [open,setOpen] = React.useState(null);
+  return <Shell active="cuentas" role={role} setRole={setRole}>
+    <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'0 0 20px'}}>Cuentas</h1>
+    <Table rowKey="id" onRowClick={setOpen} columns={[
+      {key:'name', label:'Cuenta', render:(r)=><span style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.name} size="sm" />{r.name}</span>},
+      {key:'type', label:'Tipo', render:(r)=><Badge tone="neutral">{r.type}</Badge>},
+      {key:'metric', label:'Actividad', mono:true, align:'right'},
+      {key:'status', label:'Estado', render:(r)=><Badge tone={STATUS_TONE[r.status]}>{r.status}</Badge>},
+      {key:'since', label:'Desde', align:'right'},
+    ]} rows={ACCOUNTS} />
+    <AccountDetail a={open} onClose={()=>setOpen(null)} />
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.FlowIT ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

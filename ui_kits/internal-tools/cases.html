@@ -1,0 +1,88 @@
+<!-- @dsCard group="Internal Tools" viewport="1360x860" subtitle="Casos de fraude, disputas y seguridad con linea de tiempo de investigacion" name="Internal Tools · Casos" -->
+<!-- @startingPoint section="Templates" subtitle="Casos (fraude, disputas de pago, seguridad) con resolucion" viewport="1360x860" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Casos</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" src="./shell.jsx"></script>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Table, Badge, Drawer, Timeline, Button, StatusView, Toast, ToastStack } = NS;
+const { Shell, Guard, useRole } = window.FlowIT;
+
+const STATUS_TONE = {abierta:'accent',investigando:'info',resuelta:'success',rechazada:'neutral'};
+
+const CASES = [
+  {id:'C-501', type:'Disputa de pago', who:'Ana Sosa', amount:'$1,240', status:'investigando', opened:'hace 2 días',
+    steps:[{title:'Caso abierto por el cliente', timestamp:'lunes', status:'done'},{title:'Evidencia de viaje solicitada', timestamp:'lunes', status:'done'},{title:'En revisión por el analista', timestamp:'hoy', status:'active'}]},
+  {id:'C-500', type:'Fraude sospechado', who:'Rutas Cobalto', amount:'—', status:'abierta', opened:'hace 6 h',
+    steps:[{title:'Alerta automática por patrón de alta', timestamp:'hoy', status:'active'}]},
+  {id:'C-498', type:'Disputa de pago', who:'Rosa Duarte', amount:'$340', status:'resuelta', opened:'hace 5 días',
+    steps:[{title:'Caso abierto', timestamp:'hace 5 días', status:'done'},{title:'Evidencia revisada', timestamp:'hace 3 días', status:'done'},{title:'Resuelto a favor del cliente', timestamp:'hace 2 días', status:'done'}]},
+  {id:'C-495', type:'Seguridad', who:'Marco Gil', amount:'—', status:'investigando', opened:'hace 1 día',
+    steps:[{title:'Reporte de conducción riesgosa recibido', timestamp:'ayer', status:'done'},{title:'Revisión de telemetría en curso', timestamp:'hoy', status:'active'}]},
+  {id:'C-490', type:'Disputa de pago', who:'Transportes Vidal SA', amount:'$2,860', status:'rechazada', opened:'hace 4 días',
+    steps:[{title:'Caso abierto', timestamp:'hace 4 días', status:'done'},{title:'Evidencia insuficiente', timestamp:'hace 2 días', status:'error'},{title:'Disputa rechazada', timestamp:'hace 2 días', status:'done'}]},
+  {id:'C-488', type:'Fraude sospechado', who:'Cuenta anónima', amount:'—', status:'investigando', opened:'hace 3 días',
+    steps:[{title:'Múltiples cuentas en mismo dispositivo detectadas', timestamp:'hace 3 días', status:'done'},{title:'Verificación adicional solicitada', timestamp:'hace 1 día', status:'active'}]},
+];
+
+function CaseDetail({c, onClose, onResolve, result}){
+  return <Drawer open={!!c} onClose={onClose} title={c ? c.id+' · '+c.type : ''} width={480}
+    footer={c && !result && c.status!=='resuelta' && c.status!=='rechazada' && <React.Fragment>
+      <Button variant="danger" onClick={()=>onResolve(c.id,'rechazada')}>Rechazar</Button>
+      <Button variant="accent" onClick={()=>onResolve(c.id,'resuelta')}>Resolver a favor del cliente</Button>
+    </React.Fragment>}>
+    {c && (result
+      ? <StatusView status={result==='resuelta'?'success':'error'}
+          title={result==='resuelta' ? 'Caso resuelto a favor del cliente' : 'Caso rechazado'}
+          description={result==='resuelta' ? 'Se notificará a '+c.who+' y se procesará el ajuste correspondiente.' : 'Se notificará a '+c.who+' con el motivo del rechazo.'}
+          fullScreen />
+      : <div style={{display:'flex',flexDirection:'column',gap:18}}>
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <Badge tone={STATUS_TONE[c.status]}>{c.status}</Badge>
+            <span style={{fontSize:13,color:'var(--text-secondary)'}}>{c.who}{c.amount!=='—' ? ' · '+c.amount : ''}</span>
+            <span style={{fontSize:12,color:'var(--text-muted)',marginLeft:'auto'}}>Abierto {c.opened}</span>
+          </div>
+          <Timeline items={c.steps} />
+        </div>)}
+  </Drawer>;
+}
+
+function App(){
+  const [role, setRole] = useRole();
+  const [cases, setCases] = React.useState(CASES);
+  const [open, setOpen] = React.useState(null);
+  const [result, setResult] = React.useState(null);
+  const [toast, setToast] = React.useState(null);
+  const resolve = (id, status)=>{
+    setResult(status);
+    setTimeout(()=>{
+      setCases(cs=>cs.map(c=>c.id===id?{...c,status}:c));
+      setOpen(null); setResult(null);
+      setToast('Caso '+id+' actualizado.'); setTimeout(()=>setToast(null),3000);
+    }, 1400);
+  };
+  return <Shell active="casos" role={role} setRole={setRole}>
+    <Guard allowed={['admin','agente']} role={role}>
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'0 0 20px'}}>Casos</h1>
+      <Table rowKey="id" onRowClick={(c)=>{setResult(null);setOpen(c);}} columns={[
+        {key:'id', label:'ID', mono:true, width:80},
+        {key:'type', label:'Tipo'},
+        {key:'who', label:'Cuenta'},
+        {key:'amount', label:'Monto', mono:true, align:'right'},
+        {key:'status', label:'Estado', render:(r)=><Badge tone={STATUS_TONE[r.status]}>{r.status}</Badge>},
+        {key:'opened', label:'Abierto', align:'right'},
+      ]} rows={cases} />
+      <CaseDetail c={open} onClose={()=>{setOpen(null);setResult(null);}} onResolve={resolve} result={result} />
+      {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+    </Guard>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.FlowIT ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

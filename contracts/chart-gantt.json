@@ -1,0 +1,97 @@
+{
+  "id": "chart-gantt",
+  "name": "GanttChart",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "beta",
+  "summary": "Tareas en el tiempo con dependencias y progreso.",
+  "api": {
+    "members": [
+      {
+        "name": "tasks",
+        "kind": "prop",
+        "type": "Array<{ id: string; name: string; start: string; end: string; progress?: number; color?: string }>",
+        "required": true,
+        "note": "La etiqueta de cada tarea es 'name'. El contrato decia 'label' y estaba mal: con la prop equivocada el Gantt dibuja sus barras con el nombre vacio y parece no renderizar."
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "gnt-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gnt-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gnt-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gnt-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "gnt-1",
+        "rule": "Cada tarea dice sus fechas en texto: una barra sin fechas legibles no se puede verificar.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "gnt-2",
+        "rule": "Una dependencia circular no cuelga el render ni dibuja flechas infinitas: se detecta y se declara.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gnt-3",
+        "rule": "Tareas de duracion cero se dibujan como hito, no como barra de ancho cero invisible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gnt-4",
+        "rule": "Una tarea sin name se dibuja con un marcador de posicion visible, no con una barra muda: hoy el nombre ausente produce una tarjeta que parece vacia.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-1",
+    "--viz-accent",
+    "--border-subtle",
+    "--type-data"
+  ],
+  "nonGoals": [
+    "No calcula ruta critica.",
+    "No permite arrastrar para reprogramar."
+  ],
+  "reference": {
+    "src": "components/GanttChart.jsx",
+    "demo": "docs/demos/charts-extended.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

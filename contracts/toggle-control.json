@@ -1,0 +1,110 @@
+{
+  "id": "toggle-control",
+  "name": "ToggleControl",
+  "layer": "primitives",
+  "shell": true,
+  "status": "beta",
+  "summary": "La mecanica compartida de Checkbox, Radio y Switch: target, label clickeable, estados y agrupacion.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "forms"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "type",
+        "kind": "prop",
+        "type": "'checkbox' | 'radio' | 'switch'",
+        "required": true
+      },
+      {
+        "name": "checked",
+        "kind": "prop",
+        "type": "boolean"
+      },
+      {
+        "name": "indeterminate",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Solo checkbox."
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(checked: boolean) => void"
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "name",
+        "kind": "prop",
+        "type": "string",
+        "note": "Agrupa los radio."
+      },
+      {
+        "name": "renderIndicator",
+        "kind": "renderProp",
+        "type": "(state) => React.ReactNode",
+        "note": "La piel de cada uno de los tres. Es todo lo que los diferencia."
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tg-1",
+        "rule": "Target de 44px incluyendo el label; el label alterna el estado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tg-2",
+        "rule": "Control nativo real detras: participa en el formulario y lo anuncia el lector.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tg-3",
+        "rule": "El estado se distingue sin color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tg-4",
+        "rule": "indeterminate se refleja en la propiedad del DOM, no solo visualmente.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": false
+  },
+  "tokens": [
+    "--action-primary",
+    "--border-default",
+    "--focus-ring"
+  ],
+  "reference": {
+    "src": "primitives/shells/ToggleControl.jsx"
+  }
+}

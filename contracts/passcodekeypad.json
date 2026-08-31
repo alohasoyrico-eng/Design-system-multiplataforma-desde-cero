@@ -1,0 +1,112 @@
+{
+  "id": "passcodekeypad",
+  "name": "PasscodeKeypad",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "domain": "fintech",
+  "summary": "Teclado en pantalla para passcode, con puntos de progreso y atajo biometrico.",
+  "api": {
+    "members": [
+      {
+        "name": "length",
+        "kind": "prop",
+        "type": "number",
+        "default": 6
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "onComplete",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "biometricIcon",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onBiometric",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pkp-1",
+        "rule": "Cada tecla mide --hit-target-min y tiene nombre accesible; borrar tambien.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pkp-2",
+        "rule": "Los puntos de progreso dicen cuantos digitos van, en texto, sin revelar el valor.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pkp-3",
+        "rule": "El passcode nunca se muestra ni queda en el DOM como texto legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pkp-4",
+        "rule": "invalid limpia el valor y lo anuncia: dejar los puntos llenos tras un fallo confunde.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pkp-5",
+        "rule": "El atajo biometrico es opcional y su ausencia no deja hueco en la rejilla.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--text-primary",
+    "--action-accent",
+    "--radius-pill",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No valida el passcode: lo entrega.",
+    "No sustituye a OTPInput: ahi el codigo llega por SMS y se autorrellena."
+  ],
+  "reference": {
+    "src": "components/PasscodeKeypad.jsx",
+    "states": "docs/cards/fintech.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

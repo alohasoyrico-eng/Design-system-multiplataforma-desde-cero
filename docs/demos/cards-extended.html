@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { Card, CardMedia, StatTile, Badge } = NS;
+function KPI({label,value,unit,delta,trend}){
+  return <Card padding={16}>
+    <div style={{fontSize:11,fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)'}}>{label}</div>
+    <div style={{fontFamily:'var(--font-mono)',fontSize:24,fontWeight:600,margin:'4px 0 6px'}}>{unit||''}{value}</div>
+    {delta && <Badge tone={trend==='up'?'success':trend==='down'?'danger':'neutral'}>{delta}</Badge>}
+  </Card>;
+}
+const LIST = [
+  {id:'card-stats', title:'Card · Stats (composición Card + mono + Badge)', C:()=><div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))',gap:16}}>
+    <KPI label="Ingresos del mes" value="2,450" unit="$" delta="+12.5%" trend="up" />
+    <KPI label="Viajes" value="184" delta="−3.2%" trend="down" />
+    <KPI label="Unidades activas" value="12" delta="0%" trend="neutral" />
+  </div>},
+  {id:'card-interactive', title:'Card · Interactive', C:()=><div style={{maxWidth:320}}>
+    <Card interactive onClick={()=>{}}>
+      <div style={{display:'flex',gap:12,alignItems:'center'}}>
+        <span className="flow-icon" aria-hidden="true" style={{fontSize:24,color:'var(--text-accent)'}}>directions_car</span>
+        <div><div style={{fontWeight:700,fontFamily:'var(--font-mono)'}}>JMX-214-B</div><div style={{fontSize:13,color:'var(--text-secondary)'}}>Nissan Versa · Ana Sosa</div></div>
+      </div>
+    </Card>
+  </div>},
+  {id:'card-compact', title:'Card · Compact (padding reducido, filas apilables)', C:()=><div style={{display:'flex',flexDirection:'column',gap:8,maxWidth:360}}>
+    {[['****4102','Activa','success'],['****8830','Pausada','warning'],['****2214',null,null]].map(([n,b,t])=>
+      <Card key={n} interactive padding={10} onClick={()=>{}}>
+        <div style={{display:'flex',gap:10,alignItems:'center'}}>
+          <span className="flow-icon" aria-hidden="true" style={{fontSize:20,color:'var(--text-muted)'}}>credit_card</span>
+          <span style={{flex:1,fontSize:13.5,fontWeight:600}}>Tarjeta {n}</span>
+          {b && <Badge tone={t}>{b}</Badge>}
+        </div>
+      </Card>)}
+  </div>},
+  {id:'card-media', title:'Card · Media', C:()=><div style={{maxWidth:320}}><CardMedia image="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=60" title="Programa de conductores" description="Beneficios, seguros y combustible con la tarjeta Flow." /></div>},
+  {id:'card-elevated', title:'Card · Elevated', C:()=><div style={{maxWidth:320}}><Card variant="elevated"><div style={{fontWeight:700,marginBottom:4}}>Recomendado</div><div style={{fontSize:13,color:'var(--text-secondary)'}}>Activa el débito automático y evita cortes de servicio.</div></Card></div>},
+  {id:'card-minimal', title:'Card · Minimal', C:()=><div style={{maxWidth:320}}><Card variant="minimal"><div style={{display:'flex',gap:10,alignItems:'flex-start'}}><span className="flow-icon" aria-hidden="true" style={{fontSize:20,color:'var(--text-muted)'}}>info</span><div><div style={{fontWeight:700,marginBottom:2}}>Sin comisiones</div><div style={{fontSize:13,color:'var(--text-secondary)'}}>Las recargas entre cuentas Flow no tienen costo.</div></div></div></Card></div>},
+  {id:'card-ghost', title:'Card · Ghost', C:()=><div style={{background:'var(--surface-inverse)',borderRadius:'var(--radius-lg)',padding:20,maxWidth:320}}>
+    <Card variant="ghost"><div style={{color:'var(--text-on-inverse)',fontSize:13}}>Card · Ghost sobre fondo oscuro (overlays y mapas).</div></Card>
+  </div>},
+];
+function Demo(){ return <Sections list={LIST} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Card ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

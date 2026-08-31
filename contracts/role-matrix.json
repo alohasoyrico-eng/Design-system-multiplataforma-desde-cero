@@ -1,0 +1,105 @@
+{
+  "id": "role-matrix",
+  "name": "RoleMatrix",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Matriz de permisos por roles, con filas agrupadas y roles bloqueables. Sobre DataGrid con filas de grupo.",
+  "api": {
+    "members": [
+      {
+        "name": "roles",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; locked?: boolean }>",
+        "required": true
+      },
+      {
+        "name": "permissions",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; group?: string }>",
+        "required": true
+      },
+      {
+        "name": "values",
+        "kind": "prop",
+        "type": "Record<string, Record<string, boolean>>",
+        "required": true
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(next: Values, permId: string, roleId: string) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "data-grid"
+    ],
+    "criteria": [
+      {
+        "id": "rmx-1",
+        "rule": "Cada casilla dice en su nombre accesible el permiso, el rol y el estado. Sin eso, una matriz de cincuenta casillas es cincuenta botones identicos al oido.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "rmx-2",
+        "rule": "La casilla es un objetivo de --hit-target-min. Medía 26px: una matriz densa no justifica un objetivo pequeno, justifica columnas mas anchas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "rmx-3",
+        "rule": "Un rol bloqueado no se puede cambiar y lo dice: deshabilitado de verdad, no solo atenuado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "rmx-4",
+        "rule": "El estado se lee sin color: marca dentro de la casilla, no solo relleno.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "rmx-5",
+        "rule": "La cabecera de grupo no es una fila seleccionable ni entra al orden de tabulacion.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "data-grid"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--action-primary",
+    "--text-on-inverse",
+    "--border-default",
+    "--radius-xs",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No define los permisos: los recibe.",
+    "No es una tabla editable generica: sus celdas son booleanos."
+  ],
+  "reference": {
+    "src": "components/RoleMatrix.jsx",
+    "states": "docs/cards/admin.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

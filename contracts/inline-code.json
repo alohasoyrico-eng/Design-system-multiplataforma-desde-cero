@@ -1,0 +1,49 @@
+{
+  "id": "inline-code",
+  "name": "InlineCode",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Fragmento de codigo inline con fondo sutil y tipografia mono. No es un bloque: va dentro de parrafos.",
+  "api": {
+    "members": [
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ic-1",
+        "rule": "Usa --font-mono, no --font-body. El tamano es 0.9em del contexto.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--font-mono",
+    "--surface-sunken",
+    "--radius-xs"
+  ],
+  "nonGoals": [
+    "No tiene syntax highlighting: para eso esta CodeBlock."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/InlineCode.tsx"
+  }
+}

@@ -1,0 +1,98 @@
+<!-- @dsCard group="Fleet Dashboard" viewport="1000x800" subtitle="Asistente de flota: preguntas en lenguaje natural con respuestas ricas (tablas, KPIs)" name="Agent Chat" -->
+<!-- @startingPoint section="Templates" subtitle="Asistente conversacional para fleet managers" viewport="1000x800" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Asistente</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { ChatThread, ChatComposer, StatTile, Table, Badge, Card, Button, IconButton, Breadcrumb, EmptyState, Bars } = NS;
+
+let uid = 0;
+const nid = () => 'm' + (++uid);
+
+const RESPONSES = {
+  gasto: {
+    text: 'Este mes gastaste $248,400 en total. Combustible es el 73% del gasto — aquí el detalle de las unidades con mayor consumo:',
+    content: (Table, Badge) => <Table rowKey="unit" dense columns={[
+      {key:'unit',label:'Unidad',mono:true},{key:'driver',label:'Conductor'},
+      {key:'gasto',label:'Gasto',align:'right',mono:true},
+      {key:'st',label:'',render:(r)=><Badge tone={r.alto?'warning':'neutral'}>{r.alto?'Sobre promedio':'Normal'}</Badge>},
+    ]} rows={[
+      {unit:'KTR-882-A',driver:'Luis Prieto',gasto:'$4,820',alto:true},
+      {unit:'MVD-101-C',driver:'Rosa Duarte',gasto:'$3,910',alto:false},
+      {unit:'JMX-214-B',driver:'Ana Sosa',gasto:'$3,640',alto:false},
+    ]} />,
+  },
+  comparar: {
+    text: 'Comparando combustible vs electromovilidad este trimestre: las unidades electricas cuestan $0.86/km vs $2.14/km de combustion — una diferencia de $1.28/km.',
+    content: (Table, Badge, Bars) => <Bars height={140} format={(v)=>'$'+v} data={[{label:'Combustible',value:214},{label:'Electromovilidad',value:86}]} />,
+  },
+  unidad: {
+    text: 'JMX-214-B (Ana Sosa) tiene el mejor desempeño este mes: 184 km recorridos, 12 viajes, sin alertas abiertas.',
+    content: (Table, Badge) => <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:10}}>
+      <StatTile label="Viajes" value="12" icon="navigation" />
+      <StatTile label="Km" value="184" icon="route" />
+      <StatTile label="Alertas" value="0" icon="check_circle" tone="var(--status-success-text)" />
+    </div>,
+  },
+  default: { text: 'Puedo ayudarte con gasto, comparativas entre productos, o el desempeño de una unidad especifica. Intenta una de las sugerencias abajo.', content: null },
+};
+
+function pickResponse(q){
+  const ql = q.toLowerCase();
+  if (ql.includes('gast') || ql.includes('consum')) return RESPONSES.gasto;
+  if (ql.includes('compar') || ql.includes('electro') || ql.includes('vs')) return RESPONSES.comparar;
+  if (ql.includes('unidad') || ql.includes('jmx') || ql.includes('mejor')) return RESPONSES.unidad;
+  return RESPONSES.default;
+}
+
+function App(){
+  const [messages,setMessages] = React.useState([]);
+  const [draft,setDraft] = React.useState('');
+  const [busy,setBusy] = React.useState(false);
+
+  const ask = (text) => {
+    if (busy) return;
+    const userMsg = {id:nid(),role:'user',text};
+    const toolMsg = {id:nid(),role:'agent',tool:{label:'Consultando datos de flota',icon:'search',status:'running'}};
+    setMessages(m=>[...m,userMsg,toolMsg]);
+    setDraft('');
+    setBusy(true);
+    setTimeout(()=>{
+      const resp = pickResponse(text);
+      setMessages(m=>m.map(x=>x.id===toolMsg.id ? {...x, tool:{...x.tool,status:'done'}, text:resp.text, content: resp.content ? resp.content(Table,Badge,Bars) : null} : x));
+      setBusy(false);
+    }, 1100);
+  };
+
+  return <div style={{maxWidth:720,margin:'0 auto',height:'100vh',display:'flex',flexDirection:'column',boxSizing:'border-box',padding:'24px 24px 20px'}}>
+    <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:16,flex:'none'}}>
+      <Breadcrumb items={[{label:'Flota'},{label:'Asistente'}]} />
+    </div>
+    <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:18,flex:'none'}}>
+      <span style={{width:38,height:38,borderRadius:'50%',background:'var(--surface-inverse)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}>
+        <span className="flow-icon" aria-hidden="true" style={{fontSize:19,color:'#fff'}}>bolt</span>
+      </span>
+      <div>
+        <div style={{fontSize:15,fontWeight:700}}>Asistente de flota</div>
+        <div style={{fontSize:12,color:'var(--text-muted)'}}>Pregunta sobre unidades, gastos y comparativas</div>
+      </div>
+    </div>
+    <div style={{flex:1,overflowY:'auto',minHeight:0}}>
+      <ChatThread messages={messages} emptyState={
+        <EmptyState icon="forum" title="¿Que quieres saber de tu flota?" description="Pregunta en lenguaje natural — el asistente responde con datos reales, no solo texto." />
+      } />
+    </div>
+    <div style={{flex:'none',marginTop:14}}>
+      <ChatComposer value={draft} onChange={setDraft} onSend={ask} disabled={busy}
+        suggestions={messages.length===0 ? ['¿Cuánto gasté este mes?','Compara combustible vs electromovilidad','¿Cuál es mi mejor unidad?'] : []} />
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.ChatThread ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga</div>);
+</script></body></html>

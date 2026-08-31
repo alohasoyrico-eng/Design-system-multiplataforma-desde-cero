@@ -1,0 +1,32 @@
+{
+  "id": "download-card",
+  "name": "DownloadCard",
+  "layer": "patterns",
+  "function": [
+    "actions"
+  ],
+  "status": "stable",
+  "summary": "Card outlined con icono, nombre de archivo y accion de descarga.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "dc-1",
+        "rule": "El filename usa --font-mono.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "implements": [
+    "card"
+  ],
+  "nonGoals": [
+    "No maneja progreso de descarga."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/DownloadCard.tsx"
+  }
+}

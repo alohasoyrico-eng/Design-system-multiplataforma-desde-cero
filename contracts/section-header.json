@@ -1,0 +1,63 @@
+{
+  "id": "section-header",
+  "name": "SectionHeader",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Titulo de seccion con tres tamanos (sm, md, display) y slot trailing para acciones.",
+  "api": {
+    "members": [
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "trailing",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md' | 'display'",
+        "default": "'md'",
+        "variantAxis": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sh-1",
+        "rule": "Display usa --font-display con tracking negativo y clamp responsivo.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--font-display",
+    "--type-title-lg",
+    "--type-title-md",
+    "--text-primary",
+    "--text-muted"
+  ],
+  "nonGoals": [
+    "No es un h1-h6 semantico: el nivel se elige con 'as' o lo hereda del contexto."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/SectionHeader.tsx"
+  }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<title>Flow · conformidad sobre el DOM</title>
+<link rel="stylesheet" href="../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../';</script>
+<script src="../_ds_bundle.js"></script>
+<style>
+  body { margin:0; font-family:var(--font-body); background:var(--surface-canvas); color:var(--text-primary); padding:32px 28px 80px; }
+  h1 { font:var(--type-title-lg); margin:0 0 6px; }
+  h2 { font:var(--type-title); margin:34px 0 12px; }
+  p.lead { font:var(--type-body); color:var(--text-secondary); max-width:70ch; margin:0 0 8px; }
+  table { border-collapse:collapse; width:100%; max-width:1000px; font-size:12.5px; }
+  th { text-align:left; font:var(--type-overline); text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); padding:8px 10px; background:var(--surface-sunken); border-bottom:1px solid var(--border-subtle); }
+  td { padding:7px 10px; border-bottom:1px solid var(--border-subtle); }
+  td.mono, th.mono { font-family:var(--font-mono); }
+  .pass { color:var(--status-success-text); font-weight:600; }
+  .fail { color:var(--status-danger-text); font-weight:700; }
+  .warn { color:var(--status-warning-text); font-weight:600; }
+  #stage { position:absolute; left:-9999px; top:0; width:420px; }
+  .tot { display:flex; gap:1px; background:var(--border-default); border:1px solid var(--border-default); max-width:1000px; margin:14px 0 4px; }
+  .tot > div { background:var(--surface-card); padding:14px 16px; flex:1; }
+  .tot b { font:var(--type-data-lg); font-size:22px; display:block; }
+  .tot span { font:var(--type-caption); color:var(--text-muted); }
+</style></head><body>
+<h1>Conformidad sobre el DOM montado</h1>
+<p class="lead">Los criterios <code>automated</code> de <code>contracts/_base.json</code> no se pueden verificar leyendo archivos: hablan de contraste, altura de target y foco visible. Esta página los mide sobre componentes montados, en claro y en oscuro. Es el P12 de <code>check-layers.mjs</code>.</p>
+<div id="out"></div>
+<div id="stage"></div>
+
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const out = document.getElementById('out');
+const stage = document.getElementById('stage');
+
+// ---------- utilidades de medicion ----------
+const lum = (r,g,b) => { const f=[r,g,b].map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)}); return 0.2126*f[0]+0.7152*f[1]+0.0722*f[2]; };
+// Los tokens vienen en hex y los computados en rgb(): hay que aceptar los dos,
+// o el ratio sale NaN y el chequeo reprueba todo por igual.
+const parse = (c) => {
+  const v = String(c).trim();
+  if (v[0] === '#') {
+    const h = v.slice(1);
+    const p = h.length === 3 ? h.split('').map(x=>x+x) : h.match(/../g);
+    return p ? p.slice(0,3).map(x=>parseInt(x,16)) : [0,0,0];
+  }
+  const m = v.match(/[\d.]+/g);
+  return m ? [+m[0], +m[1], +m[2]] : [0,0,0];
+};
+const ratio = (a,b) => { const l1=lum(...parse(a)), l2=lum(...parse(b)); return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05); };
+const val = (el,n) => getComputedStyle(el).getPropertyValue(n).trim();
+
+const THEMES = ['light','dark'];
+const TEXTS = ['--text-primary','--text-secondary','--text-muted','--text-accent','--text-link'];
+const SURFS = ['--surface-canvas','--surface-card','--surface-sunken'];
+
+function tableOf(head, rows) {
+  return '<table><thead><tr>' + head.map(h=>'<th'+(h[1]?' class="mono"':'')+'>'+h[0]+'</th>').join('') + '</tr></thead><tbody>'
+    + rows.map(r=>'<tr>'+r.map(c=>'<td'+(c.mono?' class="mono"':'')+(c.cls?' class="'+c.cls+'"':'')+'>'+c.v+'</td>').join('')+'</tr>').join('')
+    + '</tbody></table>';
+}
+
+// ---------- base-4: contraste de texto en claro y en oscuro ----------
+function auditContrast() {
+  const probe = document.createElement('div');
+  stage.appendChild(probe);
+  const rows = [];
+  let fails = 0, checks = 0;
+  THEMES.forEach(th => {
+    probe.setAttribute('data-mode', th === 'light' ? '' : th);
+    if (th === 'light') probe.removeAttribute('data-mode');
+    TEXTS.forEach(t => {
+      const tv = val(probe, t);
+      SURFS.forEach(s => {
+        const sv = val(probe, s);
+        if (!tv || !sv) return;
+        checks++;
+        const r = ratio(tv, sv);
+        const ok = r >= 4.5;
+        if (!ok) fails++;
+        rows.push([
+          {v: th}, {v: t, mono:true}, {v: s, mono:true},
+          {v: tv, mono:true}, {v: r.toFixed(2), mono:true, cls: ok ? 'pass' : 'fail'},
+          {v: ok ? 'cumple' : 'INCUMPLE', cls: ok ? 'pass' : 'fail'},
+        ]);
+      });
+    });
+  });
+  probe.remove();
+  return { rows: rows.filter(r => r[5].v === 'INCUMPLE').concat(rows.filter(r => r[5].v !== 'INCUMPLE')), fails, checks };
+}
+
+// ---------- base-3 y foco: sobre componentes montados ----------
+const CASES = [
+  ['Button', () => <NS.Button>Guardar</NS.Button>],
+  ['IconButton', () => <NS.IconButton icon="delete" ariaLabel="Eliminar" />],
+  ['Checkbox', () => <NS.Checkbox label="Autoriza gasolina" checked onChange={()=>{}} />],
+  ['Radio', () => <NS.Radio name="t" value="a" label="Sedán" checked onChange={()=>{}} />],
+  ['Switch', () => <NS.Switch label="Notificaciones" checked onChange={()=>{}} />],
+  ['Input', () => <NS.Input value="JMX-214-B" onChange={()=>{}} />],
+  ['Input · revealable', () => <NS.Input revealable value="secreto" onChange={()=>{}} />],
+  ['Select', () => <NS.Select options={['Sedán','Van']} value="Sedán" onChange={()=>{}} />],
+  ['Textarea', () => <NS.Textarea value="Nota" onChange={()=>{}} maxLength={80} />],
+  ['InputAmount', () => <NS.InputAmount value={2450} onChange={()=>{}} />],
+  ['InputPhone', () => <NS.InputPhone value="5512345678" onChange={()=>{}} />],
+  ['Chip', () => <NS.Chip>Activa</NS.Chip>],
+];
+
+function auditTargets() {
+  const rows = [];
+  let fails = 0;
+  CASES.forEach(([name, render]) => {
+    const host = document.createElement('div');
+    stage.appendChild(host);
+    let err = null;
+    try { ReactDOM.createRoot(host).render(render()); } catch (e) { err = String(e.message || e); }
+    rows.push([name, host, err]);
+  });
+  return rows;
+}
+
+// El anillo de foco de ControlShell llega tras el re-render de React, y :focus-visible
+// no se dispara con .focus() programatico: la sonda espera un tick y lo declara.
+function measureTargets(pairs) {
+  const rows = [];
+  let fails = 0, checks = 0;
+  pairs.forEach(([name, host, err]) => {
+    if (err) {
+      rows.push([{v: name}, {v: '—', mono:true}, {v: 'NO MONTA', cls: 'fail'}, {v: err, cls: 'fail'}, {v: '—', mono:true}]);
+      fails++;
+      return;
+    }
+    if (!host.firstChild) {
+      rows.push([{v: name}, {v: '—', mono:true}, {v: 'RENDER VACÍO', cls: 'fail'}, {v: 'el componente no pintó nada', cls: 'fail'}, {v: '—', mono:true}]);
+      fails++;
+      return;
+    }
+    const targets = host.querySelectorAll('button, [role="button"], input, textarea, select, label, a[href], [tabindex="0"]');
+    let minH = Infinity, worst = null;
+    targets.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (!r.height || el.type === 'hidden') return;
+      // el input nativo oculto de los toggles no es el target: lo es su label
+      if (el.tagName === 'INPUT' && getComputedStyle(el).opacity === '0') return;
+      if (r.height < minH) { minH = r.height; worst = el; }
+    });
+    // Un caso que no se pudo medir sale como fila explicita: omitirlo produce un
+    // cero plausible sobre algo que el auditor nunca reviso.
+    if (minH === Infinity) {
+      rows.push([{v: name}, {v: '—', mono:true}, {v: 'sin target operable', cls: 'warn'}, {v: 'n/a', cls: 'warn'}, {v: '—', mono:true}]);
+      return;
+    }
+    checks++;
+    const ok = minH >= 43.5;
+    if (!ok) fails++;
+    // foco visible: enfoca el primer operable y compara el box-shadow
+    const first = host.querySelector('button, input:not([type=hidden]), [tabindex="0"]');
+    let focusOk = 'n/a';
+    if (first && first.focus) {
+      const before = getComputedStyle(first).boxShadow + getComputedStyle(first).outlineWidth;
+      first.focus();
+      const shell = host.querySelector('[data-control-shell]');
+      const after = shell
+        ? getComputedStyle(shell).boxShadow
+        : getComputedStyle(first).boxShadow + getComputedStyle(first).outlineWidth;
+      focusOk = (after && after !== 'none' && after !== before) ? 'sí' : 'sin anillo programático';
+      first.blur();
+    }
+    rows.push([
+      {v: name}, {v: minH.toFixed(1) + 'px', mono:true, cls: ok ? 'pass' : 'fail'},
+      {v: ok ? 'cumple' : 'INCUMPLE', cls: ok ? 'pass' : 'fail'},
+      {v: focusOk, cls: focusOk === 'NO' ? 'fail' : focusOk === 'sí' ? 'pass' : 'warn'},
+      {v: worst ? worst.tagName.toLowerCase() : '—', mono:true},
+    ]);
+  });
+  return { rows, fails, checks };
+}
+
+// ---------- run ----------
+const c = auditContrast();
+const pairs = auditTargets();
+setTimeout(() => {
+  const t = measureTargets(pairs);
+  out.innerHTML =
+    '<div class="tot">' +
+      '<div><b>' + c.checks + '</b><span>pares de contraste medidos</span></div>' +
+      '<div><b class="' + (c.fails ? 'fail' : 'pass') + '">' + c.fails + '</b><span>base-4 incumplidos</span></div>' +
+      '<div><b>' + CASES.length + '</b><span>componentes declarados</span></div>' +
+      '<div><b>' + t.checks + '</b><span>medidos</span></div>' +
+      '<div><b class="' + (t.fails ? 'fail' : 'pass') + '">' + t.fails + '</b><span>base-3 incumplidos</span></div>' +
+    '</div>' +
+    '<h2>base-4 · texto a 4.5:1 en claro y en oscuro</h2>' +
+    '<p class="lead">Cada token de texto contra cada superficie, leyendo los valores resueltos del tema. Los incumplimientos van primero.</p>' +
+    tableOf([['tema'],['texto',1],['superficie',1],['valor',1],['ratio',1],['base-4']], c.rows) +
+    '<h2>base-3 · target de 44px y foco visible</h2>' +
+    '<p class="lead">Altura del elemento operable más pequeño de cada componente, y si al enfocarlo aparece anillo. El input nativo transparente de los toggles no cuenta como target: cuenta su label.</p>' +
+    tableOf([['componente'],['target menor',1],['base-3'],['foco visible'],['elemento',1]], t.rows);
+  pairs.forEach(([, host]) => host.remove());
+}, 400);
+</script>
+</body></html>

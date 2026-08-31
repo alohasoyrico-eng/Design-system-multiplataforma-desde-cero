@@ -1,0 +1,85 @@
+{
+  "id": "card-media",
+  "name": "CardMedia",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Tarjeta con imagen de portada, titulo y descripcion.",
+  "api": {
+    "members": [
+      {
+        "name": "image",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "interactive",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onClick",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cmd-1",
+        "rule": "La imagen es decorativa cuando el titulo ya dice lo mismo: alt vacio en vez de repetir el titulo al oido.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cmd-2",
+        "rule": "Si la imagen no carga, la tarjeta conserva su alto y no colapsa el texto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cmd-3",
+        "rule": "El texto sobre la imagen, si lo hay, mantiene 4.5:1 con un velo, no con suerte.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--radius-lg",
+    "--shadow-rest"
+  ],
+  "nonGoals": [
+    "No es un carrusel.",
+    "No recorta la imagen a formas."
+  ],
+  "reference": {
+    "src": "components/CardMedia.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

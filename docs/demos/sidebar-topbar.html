@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Flow · Sidebar + TopBar</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body)} .demo{display:flex;flex-direction:column;height:200px;margin:20px;border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-rest)} .demo--tall{height:560px} .demo-label{font-size:12px;font-weight:700;color:var(--text-secondary);margin:0 20px 8px;text-transform:uppercase;letter-spacing:.08em} .demo h2{font-size:15px;margin:0 0 6px} .demo p{font-size:13px;color:var(--text-secondary);margin:0 0 4px;line-height:1.55}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow || {};
+const { Sidebar, TopBar, Avatar, IconButton, Drawer } = NS;
+const ITEM = new URLSearchParams(location.search).get('item');
+const LOGO = (h) => <img src="../../assets/flow-logo.png" alt="Flow" style={{height:h}} />;
+
+const NAV_ITEMS = [
+  { id: 'dashboard', label: 'Resumen', icon: 'space_dashboard', href: '#' },
+  { id: 'dashboards', label: 'Dashboards', icon: 'insights', children: [
+    { id: 'overview', label: 'Overview', icon: 'analytics', href: '#' },
+    { id: 'combustible', label: 'Combustible', icon: 'local_gas_station', href: '#' },
+    { id: 'mantenimiento', label: 'Mantenimiento', icon: 'build', href: '#' },
+    { id: 'finanzas', label: 'Finanzas', icon: 'payments', href: '#' },
+  ]},
+  { id: 'conductores', label: 'Conductores', icon: 'person', href: '#' },
+  { id: 'reportes', label: 'Reportes', icon: 'assessment', href: '#' },
+  { id: 'configuracion', label: 'Configuracion', icon: 'settings', href: '#' },
+];
+
+function SidebarShell() {
+  const [collapsed, setCollapsed] = React.useState(false);
+  const [active, setActive] = React.useState('overview');
+  const [expanded, setExpanded] = React.useState(new Set(['dashboards']));
+  const toggleSection = (id) => setExpanded(s => {
+    const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n;
+  });
+  return <div className="demo demo--tall">
+    <TopBar variant="minimal" breadcrumb={[{label:'Dashboards',href:'#'},{label:'Overview'}]} avatar={<Avatar name="Marta" size="sm" />} />
+    <div style={{display:'flex',flex:1,minHeight:0}}>
+      <Sidebar items={NAV_ITEMS} collapsed={collapsed} activeId={active}
+        expandedSections={expanded} onToggleSection={toggleSection} onNavigate={setActive}
+        headerContent={LOGO(collapsed ? 16 : 20)}
+        footerActions={<IconButton icon={collapsed ? 'chevron_right' : 'chevron_left'} ariaLabel={collapsed ? 'Expandir menu' : 'Colapsar menu'} size="sm" onClick={()=>setCollapsed(!collapsed)} />} />
+      <div style={{flex:1,padding:20,overflowY:'auto'}}>
+        <h2>Contenido principal</h2>
+        <p>Seccion «Dashboards» expandida. Click en un item lo marca activo.</p>
+        <p>El boton del footer alterna el modo colapsado de 60px: los labels pasan a tooltip al hover.</p>
+      </div>
+    </div>
+  </div>;
+}
+
+function Bar({ children, title, note }) {
+  return <div className="demo">
+    {children}
+    <div style={{padding:20,overflowY:'auto'}}><h2>{title}</h2><p>{note}</p></div>
+  </div>;
+}
+
+function MobileBar() {
+  const [open, setOpen] = React.useState(false);
+  const [active, setActive] = React.useState('dashboard');
+  const [expanded, setExpanded] = React.useState(new Set());
+  const toggleSection = (id) => setExpanded(s => {
+    const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n;
+  });
+  return <div className="demo" style={{position:'relative'}}>
+    <TopBar variant="mobile" onToggleSidebar={()=>setOpen(true)} logo={LOGO(16)} avatar={<Avatar name="Diego" size="sm" />} />
+    <div style={{padding:20,overflowY:'auto'}}>
+      <h2>TopBar: mobile</h2>
+      <p>Click en la hamburguesa: el Sidebar entra como Drawer desde la izquierda.</p>
+    </div>
+    <Drawer open={open} onClose={()=>setOpen(false)} side="left" width={260} title="Menu">
+      <Sidebar items={NAV_ITEMS} activeId={active} expandedSections={expanded}
+        onToggleSection={toggleSection}
+        onNavigate={(id)=>{ setActive(id); setOpen(false); }}
+        width="100%" style={{borderRight:'none'}} />
+    </Drawer>
+  </div>;
+}
+
+function TopBarSet() {
+  const [q, setQ] = React.useState('');
+  const [entity, setEntity] = React.useState('f1');
+  const entities = [{id:'f1',label:'Transportes Vidal'},{id:'f2',label:'Logistica Nacional'},{id:'f3',label:'Express Rapido'}];
+  return <>
+    <p className="demo-label">standard — nav horizontal, sin sidebar</p>
+    <Bar title="TopBar: standard" note="Nav top-level cuando no hay Sidebar. Los destinos llegan por navItems."
+      children={<TopBar variant="standard" logo={LOGO(20)} avatar={<Avatar name="Marta" size="sm" />}
+        navItems={[{id:'d',label:'Dashboards',href:'#',active:true},{id:'c',label:'Conductores',href:'#'},{id:'r',label:'Reportes',href:'#'}]} />} />
+
+    <p className="demo-label">minimal — shell con sidebar: breadcrumb + avatar</p>
+    <Bar title="TopBar: minimal" note="La navegacion vive en el Sidebar; el header solo situa al usuario."
+      children={<TopBar variant="minimal" breadcrumb={[{label:'Flota',href:'#'},{label:'ABC-123'}]} avatar={<Avatar name="Marta" size="sm" />} />} />
+
+    <p className="demo-label">admin — busqueda global + notificaciones</p>
+    <Bar title="TopBar: admin" note="Internal Tools. El badge usa --status-danger, no el rojo de marca, y corta en 99+."
+      children={<TopBar variant="admin" searchValue={q} onSearchChange={setQ} notificationCount={3} avatar={<Avatar name="Marta" size="sm" />} />} />
+
+    <p className="demo-label">multientidad — selector de empresa</p>
+    <Bar title="TopBar: multientidad" note="Fleet managers con varias flotas. La entidad activa contextualiza toda la sesion."
+      children={<TopBar variant="multientity" entities={entities} currentEntity={entity} onEntityChange={setEntity} avatar={<Avatar name="Marta" size="sm" />} />} />
+
+    <p className="demo-label">mobile — hamburguesa + logo centrado + avatar</p>
+    <MobileBar />
+  </>;
+}
+
+function App() {
+  if (ITEM === 'sidebar') return <SidebarShell />;
+  if (ITEM === 'topbar') return <TopBarSet />;
+  return <>
+    <p className="demo-label">Sidebar + TopBar minimal — shell desktop completo</p>
+    <SidebarShell />
+    <TopBarSet />
+  </>;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Sidebar ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

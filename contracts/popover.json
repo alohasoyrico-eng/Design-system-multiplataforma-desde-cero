@@ -1,0 +1,150 @@
+{
+  "id": "popover",
+  "name": "Popover",
+  "layer": "primitives",
+  "shell": true,
+  "status": "stable",
+  "summary": "Panel anclado a un disparador: posicion en los cuatro lados, colision con el viewport, portal, click-outside y Escape. Con surface='none' cede la piel al consumidor sin ceder el anclaje.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "layout"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "open",
+        "kind": "prop",
+        "type": "boolean",
+        "required": true
+      },
+      {
+        "name": "onOpenChange",
+        "kind": "event",
+        "type": "(open: boolean) => void",
+        "required": true
+      },
+      {
+        "name": "anchorRef",
+        "kind": "prop",
+        "type": "React.RefObject<HTMLElement>",
+        "required": true
+      },
+      {
+        "name": "placement",
+        "kind": "prop",
+        "type": "'top' | 'bottom' | 'left' | 'right' | '<side>-<start|center|end>'",
+        "default": "bottom-start",
+        "note": "El lado y la alineacion en el eje cruzado. Por defecto start en top/bottom, center en left/right."
+      },
+      {
+        "name": "matchAnchorWidth",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "minWidth",
+        "kind": "prop",
+        "type": "number"
+      },
+      {
+        "name": "surface",
+        "kind": "prop",
+        "type": "'card' | 'none'",
+        "default": "card",
+        "note": "'none' deja el panel sin fondo, borde, radio ni sombra: el consumidor pinta su piel. El shell sigue siendo el unico dueno del anclaje, la colision, el portal y los keyframes."
+      },
+      {
+        "name": "interactive",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true,
+        "note": "false para un panel que no se puede senalar: sin click-outside, sin puntero y sin devolver el foco."
+      },
+      {
+        "name": "offset",
+        "kind": "prop",
+        "type": "number",
+        "default": 6,
+        "note": "Separacion con el ancla. El panel nunca cruza esta separacion hacia el ancla."
+      },
+      {
+        "name": "returnFocusRef",
+        "kind": "prop",
+        "type": "React.RefObject<HTMLElement>"
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pp-1",
+        "rule": "Se renderiza en portal: no lo recorta un overflow del ancestro.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pp-2",
+        "rule": "Voltea al lado opuesto antes de salirse del viewport, y solo si al otro lado cabe mejor. Sobre el eje cruzado se recorta contra la ventana con 8px de margen. Sobre el eje principal nunca: si no cabe en ningun lado, el panel se queda pegado al ancla y limita su propia altura al espacio disponible con scroll interno. Un panel que se desliza sobre su disparador tapa el valor que se esta editando.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pp-3",
+        "rule": "Escape cierra y devuelve el foco al ancla, o al returnFocusRef si se declara. Un panel no interactivo cierra sin mover el foco, porque nunca lo tuvo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pp-4",
+        "rule": "Clic fuera cierra; clic dentro no. Un panel no interactivo no escucha el clic: no es senalable.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pp-5",
+        "rule": "Sigue al ancla en scroll y resize mientras esta abierto.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "pp-6",
+        "rule": "El origen de la transformacion sale del lado real tras voltear, no del lado pedido: un panel que abre hacia arriba se escala desde abajo.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "pp-7",
+        "rule": "Es el unico dueno de los keyframes de entrada del panel. Un consumidor que pinta su propia piel con surface='none' sigue sin declarar animacion propia (R3).",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-card",
+    "--shadow-float",
+    "--radius-md",
+    "--border-subtle"
+  ],
+  "nonGoals": [
+    "No es un modal: no atrapa el foco ni bloquea el fondo. Eso es OverlayShell.",
+    "No decide el contenido del panel: no pone padding, ni lista, ni items. Eso es del consumidor (Select pone Listbox, Menu pone sus items)."
+  ],
+  "reference": {
+    "src": "primitives/shells/Popover.jsx"
+  }
+}

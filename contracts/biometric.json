@@ -1,0 +1,107 @@
+{
+  "id": "biometric",
+  "name": "BiometricPrompt",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "domain": "fintech",
+  "summary": "Peticion de cara o huella con estado y salida a passcode.",
+  "api": {
+    "members": [
+      {
+        "name": "method",
+        "kind": "prop",
+        "type": "'face' | 'fingerprint'",
+        "default": "face",
+        "variantAxis": true
+      },
+      {
+        "name": "state",
+        "kind": "prop",
+        "type": "'idle' | 'scanning' | 'success' | 'error'",
+        "default": "idle"
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onUse",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "onFallback",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "fallbackLabel",
+        "kind": "prop",
+        "type": "string",
+        "default": "Usar passcode"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "bio-1",
+        "rule": "Siempre hay salida a passcode: un metodo biometrico que falla no puede dejar sin acceso.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "bio-2",
+        "rule": "Cada cambio de estado se anuncia; error con role=alert.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "bio-3",
+        "rule": "El estado no se comunica solo por color ni solo por animacion.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "bio-4",
+        "rule": "Con prefers-reduced-motion el escaneo no pulsa pero sigue indicando que trabaja.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--action-accent",
+    "--status-success",
+    "--status-danger",
+    "--text-muted",
+    "--ease-spring"
+  ],
+  "nonGoals": [
+    "No autentica: dispara el intento y recibe el resultado.",
+    "No guarda credenciales."
+  ],
+  "reference": {
+    "src": "components/BiometricPrompt.jsx",
+    "states": "docs/cards/fintech.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

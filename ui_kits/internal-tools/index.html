@@ -1,0 +1,103 @@
+<!-- @dsCard group="Internal Tools" viewport="1360x860" subtitle="Resumen: KPIs y colas de todos los modulos, filtradas por rol" name="Internal Tools · Resumen" -->
+<!-- @startingPoint section="Templates" subtitle="Internal Tools: CRM interno para soporte, cuentas, pricing, casos y back-office" viewport="1360x860" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Internal Tools</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" src="./shell.jsx"></script>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { StatTile, Badge, Avatar, Card, Button } = NS;
+const { Shell, Guard, useRole, ROLES } = window.FlowIT;
+
+const TICKETS_PREVIEW = [
+  {id:'T-1042', subject:'No se refleja el pago de esta semana', who:'Ana Sosa', priority:'alta', status:'abierto'},
+  {id:'T-1033', subject:'No puede agregar tarjeta nueva', who:'Marco Gil', priority:'media', status:'abierto'},
+  {id:'T-1030', subject:'Cobro duplicado en viaje', who:'Elena Ruz', priority:'alta', status:'en progreso'},
+];
+const CASES_PREVIEW = [
+  {id:'C-500', type:'Fraude sospechado', who:'Rutas Cobalto', status:'abierta'},
+  {id:'C-501', type:'Disputa de pago', who:'Ana Sosa', status:'investigando'},
+  {id:'C-495', type:'Seguridad', who:'Marco Gil', status:'investigando'},
+];
+const PRICING_PREVIEW = [
+  {id:'P-104', name:'Tarifa base Guadalajara', status:'pendiente aprobación'},
+  {id:'P-106', name:'Comisión flotas grandes', status:'pendiente aprobación'},
+];
+const BACKOFFICE_PREVIEW = [
+  {id:'D-220', who:'Diego Vera', doc:'Licencia de conducir', status:'pendiente'},
+  {id:'D-221', who:'Ana Sosa', doc:'Tarjeta de circulación', status:'pendiente'},
+  {id:'D-222', who:'Marco Gil', doc:'Seguro de unidad', status:'pendiente'},
+];
+
+const PRIORITY_TONE = {alta:'danger',media:'warning',baja:'neutral'};
+const STATUS_TONE = {abierto:'accent','en progreso':'info','esperando cliente':'warning',cerrado:'neutral',abierta:'accent',investigando:'info',resuelta:'success',rechazada:'neutral','pendiente aprobación':'warning',pendiente:'warning',aprobado:'success',rechazado:'neutral'};
+
+function QueueCard({icon,title,href,children,count}){
+  return <Card style={{display:'flex',flexDirection:'column',gap:14,minWidth:0}}>
+    <div style={{display:'flex',alignItems:'center',gap:10}}>
+      <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:20,color:'var(--text-accent)'}}>{icon}</span>
+      <div style={{font:'var(--type-title-sm)',flex:1}}>{title}</div>
+      {count!=null && <span style={{fontFamily:'var(--font-mono)',fontSize:13,fontWeight:700,color:'var(--text-muted)'}}>{count}</span>}
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:8}}>{children}</div>
+    <a href={href} style={{fontSize:12.5,fontWeight:700,textDecoration:'none',display:'inline-flex',alignItems:'center',gap:4,marginTop:2}}>Ver todo<span className="flow-icon" aria-hidden="true" style={{fontSize:15}}>arrow_forward</span></a>
+  </Card>;
+}
+function Row({left,right}){
+  return <div style={{display:'flex',alignItems:'center',gap:10,fontSize:13}}>
+    <span style={{flex:1,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',color:'var(--text-primary)'}}>{left}</span>
+    {right}
+  </div>;
+}
+
+function App(){
+  const [role, setRole] = useRole();
+  const can = (roles)=>roles.includes(role);
+  return <Shell active="resumen" role={role} setRole={setRole}>
+    <div style={{marginBottom:24}}>
+      <div style={{fontSize:11,fontWeight:700,letterSpacing:'.08em',color:'var(--text-muted)',textTransform:'uppercase'}}>Internal Tools</div>
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'6px 0 0'}}>Resumen</h1>
+      <p style={{fontSize:13.5,color:'var(--text-secondary)',margin:'6px 0 0'}}>Vista consolidada de soporte, cuentas, pricing y back-office. Viendo como <strong>{ROLES.find(r=>r.id===role).label}</strong>.</p>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(180px, 1fr))',gap:14,marginBottom:28}}>
+      {can(['admin','agente']) && <StatTile label="Tickets abiertos" value="14" delta="+3 hoy" trend="up" icon="confirmation_number" />}
+      {can(['admin','agente']) && <StatTile label="SLA en riesgo" value="2" delta="revisar" trend="down" icon="schedule" tone="var(--status-warning)" />}
+      {can(['admin','agente']) && <StatTile label="Casos abiertos" value="4" delta="1 nuevo hoy" trend="up" icon="gavel" />}
+      {can(['admin','pricing']) && <StatTile label="Reglas pendientes" value="2" delta="por aprobar" icon="sell" />}
+      {can(['admin','ops']) && <StatTile label="Aprobaciones pendientes" value="4" delta="documentos" icon="fact_check" />}
+      {can(['admin','growth']) && <StatTile label="Riesgo de abandono" value="3" delta="en onboarding" trend="down" icon="trending_up" tone="var(--status-warning)" />}
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:18}}>
+      {can(['admin','agente']) && <QueueCard icon="confirmation_number" title="Tickets" href="./tickets.html" count="14">
+        {TICKETS_PREVIEW.map(t=><Row key={t.id} left={t.subject} right={<Badge tone={PRIORITY_TONE[t.priority]}>{t.priority}</Badge>} />)}
+      </QueueCard>}
+      {can(['admin','agente']) && <QueueCard icon="gavel" title="Casos" href="./cases.html" count="4">
+        {CASES_PREVIEW.map(c=><Row key={c.id} left={c.type+' · '+c.who} right={<Badge tone={STATUS_TONE[c.status]}>{c.status}</Badge>} />)}
+      </QueueCard>}
+      {can(['admin','pricing']) && <QueueCard icon="sell" title="Pricing" href="./pricing.html" count="2">
+        {PRICING_PREVIEW.map(p=><Row key={p.id} left={p.name} right={<Badge tone={STATUS_TONE[p.status]}>{p.status}</Badge>} />)}
+      </QueueCard>}
+      {can(['admin','ops']) && <QueueCard icon="fact_check" title="Back-office" href="./backoffice.html" count="4">
+        {BACKOFFICE_PREVIEW.map(d=><Row key={d.id} left={d.who+' · '+d.doc} right={<Badge tone={STATUS_TONE[d.status]}>{d.status}</Badge>} />)}
+      </QueueCard>}
+      <QueueCard icon="apartment" title="Cuentas" href="./accounts.html" count="7">
+        <Row left="Transportes Vidal SA · Flota" right={<Badge tone="success">activa</Badge>} />
+        <Row left="Rutas Cobalto · Flota" right={<Badge tone="warning">en revisión</Badge>} />
+        <Row left="Luis Prieto · Conductor" right={<Badge tone="neutral">suspendida</Badge>} />
+      </QueueCard>
+      {can(['admin','growth']) && <QueueCard icon="trending_up" title="Growth · Onboarding de flotas" href="./growth.html" count="13">
+        <Row left="Grupo Vertex · KYB" right={<Badge tone="danger">riesgo alto</Badge>} />
+        <Row left="Carga Rápida MX · KYB" right={<Badge tone="warning">riesgo medio</Badge>} />
+        <Row left="Transportes Bravo · propuesta" right={<Badge tone="warning">riesgo medio</Badge>} />
+      </QueueCard>}
+    </div>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.FlowIT ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

@@ -1,0 +1,139 @@
+{
+  "id": "global-search",
+  "name": "GlobalSearch",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Ir a una entidad conocida: paleta con atajo, campo en linea o pagina de resultados, con grupos y teclado.",
+  "api": {
+    "members": [
+      {
+        "name": "mode",
+        "kind": "prop",
+        "type": "'palette' | 'inline'",
+        "default": "palette",
+        "variantAxis": true
+      },
+      {
+        "name": "open",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onOpenChange",
+        "kind": "event",
+        "type": "(open: boolean) => void"
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "onValueChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "results",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; group?: string; hint?: string }>"
+      },
+      {
+        "name": "groupOrder",
+        "kind": "prop",
+        "type": "string[]"
+      },
+      {
+        "name": "loading",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "recents",
+        "kind": "prop",
+        "type": "Array<object>"
+      },
+      {
+        "name": "onSelect",
+        "kind": "event",
+        "type": "(item: object) => void"
+      },
+      {
+        "name": "onClearRecents",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "gsc-1",
+        "rule": "El input es role=combobox con aria-controls y aria-activedescendant siguiendo al resaltado; la lista es un listbox con opciones.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gsc-2",
+        "rule": "En palette el foco entra al campo al abrir y vuelve al disparador al cerrar; Escape cierra.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gsc-3",
+        "rule": "El estado de carga se anuncia con aria-live y no vacia la lista anterior de golpe.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gsc-4",
+        "rule": "Las cabeceras de grupo no son opciones ni se pueden seleccionar con las flechas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "gsc-5",
+        "rule": "Sin resultados dice que probar, no solo que no hay: una busqueda vacia sin pista es un callejon.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--surface-sunken",
+    "--surface-accent-subtle",
+    "--text-accent",
+    "--radius-lg",
+    "--shadow-overlay"
+  ],
+  "nonGoals": [
+    "No busca: recibe resultados.",
+    "No es Select: aqui se navega a una entidad, no se captura un valor."
+  ],
+  "reference": {
+    "src": "components/GlobalSearch.jsx",
+    "demo": "docs/demos/global-search.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

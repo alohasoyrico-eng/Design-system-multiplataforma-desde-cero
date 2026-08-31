@@ -1,0 +1,29 @@
+{
+  "id": "page-header",
+  "name": "PageHeader",
+  "layer": "patterns",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Header de pagina con titulo, breadcrumb, filtros, acciones y boton de menu responsive.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ph-1",
+        "rule": "El breadcrumb no se trunca en desktop: se trunca en movil.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No incluye busqueda: para eso usar GlobalSearch en TopBar."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/PageHeader.tsx"
+  }
+}

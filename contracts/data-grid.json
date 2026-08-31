@@ -1,0 +1,199 @@
+{
+  "id": "data-grid",
+  "name": "DataGrid",
+  "layer": "primitives",
+  "shell": true,
+  "status": "beta",
+  "summary": "La mecanica de una tabla: columnas, header sticky, zebra por token, seleccion, orden y celda editable.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "display"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "GridColumn<T>[]",
+        "required": true
+      },
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "T[]",
+        "required": true
+      },
+      {
+        "name": "rowKey",
+        "kind": "prop",
+        "type": "string",
+        "default": "id"
+      },
+      {
+        "name": "sort",
+        "kind": "prop",
+        "type": "{ key: string; dir: 1 | -1 }"
+      },
+      {
+        "name": "onSortChange",
+        "kind": "event",
+        "type": "(sort) => void",
+        "unusedByDesign": "Orden en servidor: ningun consumidor de este repo lo necesita porque todos ordenan en cliente. Existe para el codebase destino."
+      },
+      {
+        "name": "selection",
+        "kind": "prop",
+        "type": "string[]",
+        "note": "Habilita la columna de seleccion. Absorbe BulkActionsTable."
+      },
+      {
+        "name": "onSelectionChange",
+        "kind": "event",
+        "type": "(keys: string[]) => void"
+      },
+      {
+        "name": "editable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Enter guarda, Escape cancela. Absorbe FilterableEditableTable."
+      },
+      {
+        "name": "stickyHeader",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "density",
+        "kind": "prop",
+        "type": "'default' | 'dense'",
+        "default": "default"
+      },
+      {
+        "name": "renderDetail",
+        "kind": "renderProp",
+        "type": "(row: T) => React.ReactNode"
+      },
+      {
+        "name": "zebra",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Bandas desde --surface-sunken. Nunca un rgba a mano."
+      },
+      {
+        "name": "tree",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Filas con hijos, chevron e indentacion. Absorbe TableTree."
+      },
+      {
+        "name": "childrenKey",
+        "kind": "prop",
+        "type": "string",
+        "default": "children"
+      },
+      {
+        "name": "onRowClick",
+        "kind": "event",
+        "type": "(row: T) => void"
+      },
+      {
+        "name": "selectedKey",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "emptyLabel",
+        "kind": "prop",
+        "type": "string",
+        "note": "Sin filas dice por que."
+      }
+    ],
+    "generics": [
+      {
+        "param": "T",
+        "default": "any",
+        "describes": "La fila"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "dg-1",
+        "rule": "Zebra desde --surface-sunken; ningun rgba a mano.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dg-2",
+        "rule": "Header ordenable anuncia aria-sort y es un boton enfocable.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dg-3",
+        "rule": "Fila clickeable es enfocable y se opera con Enter y Espacio. No se le pone role=button: rompe la semantica de tabla; la fila conserva su rol de fila.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dg-4",
+        "rule": "Seleccion con checkbox real y estado indeterminate en el header.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dg-5",
+        "rule": "La celda en edicion guarda con Enter y cancela con Escape sin perder el foco de la tabla.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dg-6",
+        "rule": "El header sticky no tapa la primera fila al llegar arriba.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "dg-7",
+        "rule": "Una fila { __group } se pinta como encabezado de seccion a todo el ancho y no participa en la seleccion ni en el orden.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dg-9",
+        "rule": "Cuando la tabla es mas ancha que su contenedor, el contenedor desplaza en horizontal. Nunca recorta: la ultima columna es donde viven los botones de accion de cada fila, y un control recortado es un control inalcanzable.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "primitives": [
+      "checkbox",
+      "icon-button"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--border-subtle",
+    "--type-data"
+  ],
+  "nonGoals": [
+    "No virtualiza.",
+    "No trae filtros: el filtrado es del contenedor.",
+    "No es una linea de tiempo: TableTimeline no tiene columnas ni filas, es otra cosa con nombre de tabla."
+  ],
+  "reference": {
+    "src": "primitives/shells/DataGrid.jsx"
+  }
+}

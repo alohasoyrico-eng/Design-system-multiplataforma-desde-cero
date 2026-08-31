@@ -1,0 +1,114 @@
+{
+  "id": "bars",
+  "name": "Bars",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Barras verticales que destacan la maxima. Esa decision es lo que la hace un componente y no una llamada a FlowChart.",
+  "api": {
+    "members": [
+      {
+        "name": "data",
+        "kind": "prop",
+        "type": "Array<{ label: string; value: number }>",
+        "required": true
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "default": 200
+      },
+      {
+        "name": "color",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "highlightMax",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "format",
+        "kind": "prop",
+        "type": "(value: number) => string"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "brs-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "brs-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "brs-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "brs-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "brs-1",
+        "rule": "Con highlightMax, exactamente una barra va en acento. Si hay empate en el maximo, ninguna: dos acentos no destacan nada.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "brs-2",
+        "rule": "Las etiquetas del eje no se solapan: con muchas categorias rotan o se recortan, no se pisan.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "deps": {
+    "external": [
+      {
+        "name": "echarts",
+        "loader": "cdn-lazy"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-1",
+    "--viz-accent",
+    "--viz-grid",
+    "--viz-label"
+  ],
+  "nonGoals": [
+    "No apila series: eso es FlowChart type=stacked.",
+    "No es Sparkline: aqui las categorias tienen nombre."
+  ],
+  "reference": {
+    "src": "components/Bars.jsx",
+    "states": "docs/cards/dataviz.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "doc-hero",
+  "name": "DocHero",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Hero de pagina de documentacion con headline clamp responsivo, descripcion, pills de plataforma y badge a11y.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "dh-1",
+        "rule": "El headline usa --font-display con clamp responsivo.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "dh-2",
+        "rule": "Los pills de plataforma son StatusPill, no HTML crudo.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "implements": [
+    "status-pill",
+    "badge"
+  ],
+  "nonGoals": [
+    "No tiene imagen ni specimen: el hero es tipografico."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/DocHero.tsx"
+  }
+}

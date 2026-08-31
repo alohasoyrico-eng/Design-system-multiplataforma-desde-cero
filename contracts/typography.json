@@ -1,0 +1,65 @@
+{
+  "id": "typography",
+  "name": "Tipografia",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "Sora para todo texto, JetBrains Mono para dato. Los --type-* son shorthands completos: familia, tamano, peso y linea en una sola declaracion.",
+  "tokens": [
+    "--font-display",
+    "--font-body",
+    "--font-mono",
+    "--type-display-xl",
+    "--type-display",
+    "--type-title-lg",
+    "--type-title",
+    "--type-title-sm",
+    "--type-body",
+    "--type-body-strong",
+    "--type-caption",
+    "--type-overline",
+    "--type-data",
+    "--type-data-lg",
+    "--tracking-tight",
+    "--tracking-overline"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "typ-1",
+        "rule": "Cifras, placas, IDs, montos y KPIs usan --type-data o --type-data-lg. El resto usa la familia de texto. Un numero en la familia de texto es un defecto.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "typ-2",
+        "rule": "Los --type-* son shorthand de font: no hay que combinarlos con un font-size o font-weight aparte para obtener el estilo completo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "typ-3",
+        "rule": "Toda familia referenciada por un --font-* esta declarada en tokens/fonts.css. Ninguna familia se nombra al vuelo en un componente.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "typ-4",
+        "rule": "--tracking-tight solo en escalas display y title; --tracking-overline solo en overline.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "Escala de tamanos libre: fuera de los catorce --type-* no hay tamanos validos."
+  ],
+  "reference": {
+    "src": "tokens/typography.css",
+    "states": "guidelines/typography.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "bottom-sheet",
+  "name": "BottomSheet",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Hoja inferior movil con asa. Sube con resorte sobre el velo y deja ver el contexto detras. Compone OverlayShell.",
+  "api": {
+    "members": [
+      {
+        "name": "open",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onClose",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "fixed",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true,
+        "note": "false posiciona en absoluto, para el marco de telefono de los demos."
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "overlay-shell"
+    ],
+    "criteria": [
+      {
+        "id": "bsh-1",
+        "rule": "El asa es un boton con nombre accesible y objetivo de --hit-target-min: es la via de cierre mas usada en movil y medía 23px de alto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "bsh-2",
+        "rule": "Deja ver el contexto detras: el velo no es opaco. Una hoja que tapa toda la pantalla es un modal y deberia ser Dialog.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "bsh-3",
+        "rule": "Con fixed=false sigue atrapando el foco dentro del marco: el modo para demos no rebaja el comportamiento.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "bsh-4",
+        "rule": "El estado final no depende del resorte de subida: en una pestana oculta la hoja aparece arriba, no fuera de pantalla.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "overlay-shell"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-card",
+    "--border-default",
+    "--radius-xl",
+    "--shadow-overlay",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No se arrastra a media altura: abierta o cerrada.",
+    "No sustituye a Drawer en escritorio."
+  ],
+  "reference": {
+    "src": "components/BottomSheet.jsx",
+    "states": "docs/cards/mobile-nav.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

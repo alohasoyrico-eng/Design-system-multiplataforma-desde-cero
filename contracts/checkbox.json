@@ -1,0 +1,104 @@
+{
+  "id": "checkbox",
+  "name": "Checkbox",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Casilla sobre ToggleControl. El check entra con resorte y sabe estar indeterminada.",
+  "api": {
+    "members": [
+      {
+        "name": "checked",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(checked: boolean) => void"
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "note": "Clickeable: forma parte del objetivo."
+      },
+      {
+        "name": "indeterminate",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "toggle-control"
+    ],
+    "criteria": [
+      {
+        "id": "cbx-1",
+        "rule": "indeterminate se refleja en la propiedad del input nativo, no solo en el dibujo: un lector de pantalla anuncia 'parcialmente marcado' o no lo anuncia.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cbx-2",
+        "rule": "Indeterminado se dibuja con guion y marcado con check: dos estados distintos no comparten forma.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cbx-3",
+        "rule": "Con prefers-reduced-motion el check aparece sin resorte y sin trazado progresivo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cbx-4",
+        "rule": "El check final no depende de la animacion: en una pestana oculta la casilla marcada se ve marcada.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "toggle-control"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--action-primary",
+    "--border-default",
+    "--radius-xs",
+    "--ease-spring"
+  ],
+  "nonGoals": [
+    "No aplica el cambio al instante: eso es Switch.",
+    "No agrupa: la casilla padre con indeterminate la coordina la pantalla."
+  ],
+  "reference": {
+    "src": "primitives/Checkbox.jsx",
+    "states": "docs/cards/forms.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

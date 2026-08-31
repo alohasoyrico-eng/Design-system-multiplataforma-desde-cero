@@ -1,0 +1,78 @@
+{
+  "id": "auth-t",
+  "name": "Auth",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Ingreso y registro en escritorio, con panel de marca en tinta y formulario validado por campo.",
+  "content": {
+    "surface": "Entrada al producto",
+    "product": "cross",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "marca",
+        "fills": "Panel en tinta con logo y una frase"
+      },
+      {
+        "name": "formulario",
+        "fills": "Field por linea, error por campo, boton con estado de carga"
+      }
+    ]
+  },
+  "composition": {
+    "patterns": [
+      "auth-pattern"
+    ],
+    "components": [
+      "field",
+      "input",
+      "button"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "au-1",
+        "rule": "Un campo por linea: dos campos juntos en el ingreso invitan a errores de tabulacion.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "au-2",
+        "rule": "El error de credenciales es generico y no dice cual de los dos campos falla.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "au-3",
+        "rule": "El formulario se envia con Enter desde cualquier campo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "au-4",
+        "rule": "El panel de marca es decorativo: sin el, el formulario sigue completo y usable.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/auth/index.html"
+  }
+}

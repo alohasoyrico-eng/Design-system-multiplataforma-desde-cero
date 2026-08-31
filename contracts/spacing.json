@@ -1,0 +1,66 @@
+{
+  "id": "spacing",
+  "name": "Espaciado",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "Base de 4px, aireado por defecto. Los --pad-* y --gap-* fijan la densidad de control, tarjeta y seccion para que no se decida caso por caso.",
+  "tokens": [
+    "--space-1",
+    "--space-2",
+    "--space-3",
+    "--space-4",
+    "--space-5",
+    "--space-6",
+    "--space-8",
+    "--space-10",
+    "--space-12",
+    "--space-16",
+    "--pad-control-y",
+    "--pad-control-x",
+    "--pad-card",
+    "--pad-section",
+    "--gap-inline",
+    "--gap-stack",
+    "--hit-target-min"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "spc-1",
+        "rule": "Todo valor de la escala es multiplo de 4px. Un valor intermedio significa que falta un token, no que se escriba a mano.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spc-2",
+        "rule": "--hit-target-min es 44px o mas, y ningun control declara su propia altura minima de toque.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spc-3",
+        "rule": "Grupos de hermanos se separan con gap de flex o grid, no con margenes por elemento ni espacios en blanco del markup.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spc-4",
+        "rule": "El padding de tarjeta y de seccion sale de --pad-card y --pad-section; no se reescribe por pantalla.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "Escala tipo t-shirt: los nombres son numericos a proposito, porque el sistema tiene diez pasos y no cinco."
+  ],
+  "reference": {
+    "src": "tokens/spacing.css",
+    "states": "guidelines/spacing.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

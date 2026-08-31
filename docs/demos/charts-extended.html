@@ -1,0 +1,86 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { GanttChart, KanbanBoard, FlowChart, Badge } = NS;
+const TASKS = [
+  {id:1,name:'Alta de flota',start:'2026-06-01',end:'2026-06-12',progress:100,color:'var(--status-success)'},
+  {id:2,name:'Emisión de tarjetas',start:'2026-06-08',end:'2026-06-24',progress:70,color:'var(--action-accent)'},
+  {id:3,name:'Onboarding conductores',start:'2026-06-20',end:'2026-07-10',progress:35,color:'var(--action-accent)'},
+  {id:4,name:'Go-live CDMX',start:'2026-07-08',end:'2026-07-18',progress:0,color:'var(--text-muted)'},
+];
+const WATER = [
+  {label:'Saldo inicial',value:1200,color:'var(--text-muted)'},
+  {label:'Recargas',value:800,color:'var(--status-success)'},
+  {label:'Gasolina',value:-450,color:'var(--status-danger)'},
+  {label:'Peajes',value:-120,color:'var(--status-danger)'},
+  {label:'Reembolsos',value:90,color:'var(--status-success)'},
+];
+const POLAR = [
+  {label:'Puntualidad',value:88,color:'var(--action-accent)'},
+  {label:'Seguridad',value:92,color:'var(--action-accent)'},
+  {label:'Consumo',value:64,color:'var(--action-accent)'},
+  {label:'Disponibilidad',value:78,color:'var(--action-accent)'},
+  {label:'Satisfacción',value:85,color:'var(--action-accent)'},
+];
+const KCOLS = [
+  {id:'todo',label:'Por hacer',color:'var(--text-muted)'},
+  {id:'doing',label:'En curso',color:'var(--status-warning)',limit:3},
+  {id:'done',label:'Hecho',color:'var(--status-success)'},
+];
+const KTASKS = [
+  {id:1,title:'Verificación semestral JMX-214',columnId:'todo',priority:'high',assignee:'Ana Sosa',dias:6},
+  {id:2,title:'Renovar póliza flota CDMX',columnId:'doing',priority:'medium',assignee:'Luis Beltrán',dias:2},
+  {id:3,title:'Alta tarjeta ****2214',columnId:'doing',priority:'low',dias:9},
+  {id:4,title:'Servicio 40,000 km',columnId:'done',priority:'medium',assignee:'Taller Norte',dias:1},
+];
+const PRIO = {high:'danger',medium:'warning',low:'neutral'};
+function KanbanDemo(){
+  const [items,setItems] = React.useState(KTASKS);
+  const [open,setOpen] = React.useState(null);
+  // La pantalla decide si el movimiento vale: sin responsable no sale de Por hacer.
+  const move = (id,to)=>{
+    const it = items.find(x=>String(x.id)===String(id));
+    if (to!=='todo' && !it.assignee) return false;
+    setItems(items.map(x=>String(x.id)===String(id)?{...x,columnId:to}:x));
+  };
+  return <KanbanBoard columns={KCOLS} items={items} abandonColumn={{id:'cancelada',label:'Cancelada'}}
+    detailKey={open} onDetailChange={setOpen} onMove={move}
+    onAdvance={(id)=>{const it=items.find(x=>String(x.id)===String(id));const i=KCOLS.findIndex(c=>c.id===it.columnId);move(id,KCOLS[Math.min(i+1,KCOLS.length-1)].id);}}
+    renderCard={(t)=>(<div style={{display:'flex',flexDirection:'column',gap:8,paddingRight:24}}>
+      <span style={{font:'var(--type-body-strong)',fontSize:13.5,lineHeight:1.35}}>{t.title}</span>
+      <div style={{display:'flex',alignItems:'center',gap:8}}>
+        <Badge tone={PRIO[t.priority]}>{t.priority}</Badge>
+        <span style={{fontFamily:'var(--font-mono)',fontSize:11,color:'var(--text-muted)'}}>{t.dias} d</span>
+        <span style={{flex:1}} />
+        <span style={{fontSize:11,color:'var(--text-muted)'}}>{t.assignee || 'sin dueño'}</span>
+      </div>
+    </div>)}
+    renderDetail={(t)=>(<div style={{display:'flex',flexDirection:'column',gap:12}}>
+      <h3 style={{margin:0,font:'var(--type-title)',fontSize:18}}>{t.title}</h3>
+      <p style={{margin:0,font:'var(--type-body)',color:'var(--text-secondary)'}}>{t.dias} días en la etapa. {t.assignee ? 'Responsable: '+t.assignee : 'Sin responsable: no puede avanzar.'}</p>
+    </div>)} />;
+}
+const LIST = [
+  {id:'chart-gantt', title:'Gantt', C:()=><GanttChart tasks={TASKS} />},
+  {id:'chart-waterfall', title:'Waterfall', C:()=><FlowChart type="waterfall" height={260}
+    labels={WATER.map(d=>d.label)} series={[{label:'Variación',values:WATER.map(d=>d.value)}]}
+    totals={[0]} ariaLabel="La gasolina se come más de la mitad de las recargas del periodo" />},
+  {id:'chart-polar', title:'Polar', C:()=><FlowChart type="radar" height={280}
+    indicators={POLAR.map(d=>({name:d.label,max:100}))} series={[{label:'Perfil',values:POLAR.map(d=>d.value)}]}
+    ariaLabel="Consumo es la única dimensión por debajo de 70" />},
+  {id:'chart-kanban', title:'Kanban', C:KanbanDemo},
+];
+function Demo(){ return <Sections list={LIST} style={{display:'flex',flexDirection:'column',maxWidth:820}} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.GanttChart ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

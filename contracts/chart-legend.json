@@ -1,0 +1,54 @@
+{
+  "id": "chart-legend",
+  "name": "ChartLegend",
+  "layer": "primitives",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Leyenda para charts con swatch de color, label y valor opcional. Horizontal o vertical.",
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "ChartLegendItem[]",
+        "required": true
+      },
+      {
+        "name": "direction",
+        "kind": "prop",
+        "type": "'horizontal' | 'vertical'",
+        "default": "'horizontal'"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cl-1",
+        "rule": "El swatch de color no es el unico diferenciador: cada item tiene label legible.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--font-mono",
+    "--text-secondary"
+  ],
+  "nonGoals": [
+    "No tiene interaccion: para toggle de series usar Chip."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/ChartLegend.tsx"
+  }
+}

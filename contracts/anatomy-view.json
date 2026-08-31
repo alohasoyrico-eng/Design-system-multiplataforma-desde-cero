@@ -1,0 +1,32 @@
+{
+  "id": "anatomy-view",
+  "name": "AnatomyView",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Descomposicion de un componente en sus partes constitutivas con specimen anotado y leyenda numerada.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "av-1",
+        "rule": "Cada parte tiene un numero visible y un label legible.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "implements": [
+    "specimen"
+  ],
+  "nonGoals": [
+    "No tiene posicionamiento interactivo de markers: la posicion es estatica."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/AnatomyView.tsx"
+  }
+}

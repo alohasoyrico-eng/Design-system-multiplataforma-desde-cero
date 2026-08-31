@@ -1,0 +1,67 @@
+<!-- @dsCard group="Fleet Dashboard" viewport="1280x760" subtitle="Login + registro con panel de marca" name="Auth" -->
+<!-- @startingPoint section="Templates" subtitle="Login y registro con panel de marca" viewport="1280x760" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Entrar</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+function ns(){ for (const k of ['Flow','FlowDS','FlowDesignSystem','DS','DesignSystem']) if (window[k] && window[k].Button) return window[k];
+  for (const k of Object.getOwnPropertyNames(window)) { try { const v = window[k]; if (v && typeof v === 'object' && v.Button && v.Badge) return v; } catch(e){} } return null; }
+const NS = ns();
+const { Button, Input, Field, Checkbox, Toast, ToastStack } = NS || {};
+
+function App(){
+  const [mode,setMode] = React.useState('login');
+  const [email,setEmail] = React.useState('');
+  const [pass,setPass] = React.useState('');
+  const [name,setName] = React.useState('');
+  const [remember,setRemember] = React.useState(true);
+  const [err,setErr] = React.useState(null);
+  const [loading,setLoading] = React.useState(false);
+  const [toast,setToast] = React.useState(null);
+
+  const submit = (e) => {
+    e.preventDefault();
+    if(!email.includes('@')){ setErr('Ingresa un correo válido.'); return; }
+    setErr(null); setLoading(true);
+    setTimeout(()=>{ setLoading(false); setToast(mode==='login'?'Bienvenida de vuelta.':'Cuenta creada. Revisa tu correo.'); setTimeout(()=>setToast(null),3500); }, 900);
+  };
+
+  return <div style={{display:'flex',minHeight:'100vh'}}>
+    <section aria-hidden="true" style={{flex:1,background:'var(--surface-inverse)',color:'var(--text-on-inverse)',display:'flex',flexDirection:'column',justifyContent:'space-between',padding:48,boxSizing:'border-box'}}>
+      <img src="../../assets/flow-logo.png" alt="" style={{height:30,filter:'invert(1)',alignSelf:'flex-start'}} />
+      <div>
+        <div style={{font:'var(--type-display)',letterSpacing:'var(--tracking-tight)',maxWidth:420}}>Todo tu día,<br/><span style={{color:'var(--flow-red-400)'}}>en movimiento.</span></div>
+        <div style={{fontSize:14,opacity:.65,marginTop:16,maxWidth:360,lineHeight:1.6}}>Gestiona tu flota, tus conductores y tus viajes desde un solo lugar.</div>
+      </div>
+      <div style={{fontSize:12,opacity:.45}}>© 2026 Flow Mobility</div>
+    </section>
+    <main style={{flex:1,display:'flex',alignItems:'center',justifyContent:'center',padding:40}}>
+      <form onSubmit={submit} style={{width:380,display:'flex',flexDirection:'column',gap:18}}>
+        <div>
+          <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:0}}>{mode==='login'?'Entrar':'Crear cuenta'}</h1>
+          <p style={{fontSize:13.5,color:'var(--text-secondary)',margin:'8px 0 0'}}>
+            {mode==='login'?'¿Primera vez en Flow? ':'¿Ya tienes cuenta? '}
+            <a href="#" onClick={(e)=>{e.preventDefault();setMode(mode==='login'?'signup':'login');setErr(null);}} style={{fontWeight:700}}>{mode==='login'?'Crea tu cuenta':'Entra'}</a>
+          </p>
+        </div>
+        {mode==='signup' && <Field label="Nombre" htmlFor="name" required><Input id="name" icon="person" placeholder="Ana Sosa" value={name} onChange={setName} /></Field>}
+        <Field label="Correo" htmlFor="email" required error={err}><Input id="email" type="email" icon="mail" placeholder="ana@flota.mx" value={email} onChange={setEmail} invalid={!!err} /></Field>
+        <Field label="Contraseña" htmlFor="pass" required help={mode==='signup'?'Mínimo 8 caracteres.':undefined}><Input id="pass" type="password" icon="lock" placeholder="••••••••" value={pass} onChange={setPass} /></Field>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <Checkbox checked={remember} onChange={setRemember} label="Recordarme" />
+          {mode==='login' && <a href="#" style={{fontSize:13,fontWeight:600}}>¿Olvidaste tu contraseña?</a>}
+        </div>
+        <Button type="submit" variant="accent" size="lg" fullWidth loading={loading}>{mode==='login'?'Entrar':'Crear cuenta'}</Button>
+        <p style={{fontSize:11.5,color:'var(--text-muted)',textAlign:'center',margin:0,lineHeight:1.6}}>Al continuar aceptas los <a href="#">Términos</a> y el <a href="#">Aviso de privacidad</a>.</p>
+      </form>
+    </main>
+    {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga en unos segundos</div>);
+</script></body></html>

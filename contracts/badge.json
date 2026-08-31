@@ -1,0 +1,95 @@
+{
+  "id": "badge",
+  "name": "Badge",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Pastilla de estado. Con live, un punto que late para estados en tiempo real: en ruta, en linea.",
+  "api": {
+    "members": [
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'neutral' | 'success' | 'warning' | 'danger' | 'info' | 'accent'",
+        "default": "neutral",
+        "variantAxis": true
+      },
+      {
+        "name": "live",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Punto que late. Solo para lo que cambia por si solo."
+      },
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "bdg-1",
+        "rule": "El estado no se comunica solo por tono: el texto del badge lo dice. Un badge verde sin texto no informa a quien no distingue el verde del ambar.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "bdg-2",
+        "rule": "Con prefers-reduced-motion el punto de live deja de latir pero sigue visible: se pierde el movimiento, no la informacion.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "bdg-3",
+        "rule": "live solo en estados que cambian sin intervencion. Un badge de categoria que late miente sobre su naturaleza.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "bdg-4",
+        "rule": "El tono danger usa --status-danger, nunca el rojo de marca.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--status-success-bg",
+    "--status-success-text",
+    "--status-warning-bg",
+    "--status-warning-text",
+    "--status-danger-bg",
+    "--status-danger-text",
+    "--status-info-bg",
+    "--status-info-text",
+    "--status-live",
+    "--radius-pill"
+  ],
+  "nonGoals": [
+    "No es interactivo: no filtra ni se selecciona. Eso es Chip.",
+    "No es un contador de notificaciones: ese vive en IconButton y en TabBar."
+  ],
+  "reference": {
+    "src": "primitives/Badge.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

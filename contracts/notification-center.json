@@ -1,0 +1,142 @@
+{
+  "id": "notification-center",
+  "name": "NotificationCenter",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Campana con panel: lo que hay que poder releer. El badge cuenta las no leidas y topa en 9+.",
+  "api": {
+    "types": [
+      {
+        "name": "NotificationItem",
+        "members": [
+          [
+            "id",
+            "string"
+          ],
+          [
+            "tone",
+            "'info' | 'success' | 'warning' | 'danger'"
+          ],
+          [
+            "title",
+            "string"
+          ],
+          [
+            "desc",
+            "string?"
+          ],
+          [
+            "time",
+            "string?"
+          ],
+          [
+            "read",
+            "boolean?"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "NotificationItem[]",
+        "required": true
+      },
+      {
+        "name": "onItemClick",
+        "kind": "event",
+        "type": "(item: NotificationItem) => void"
+      },
+      {
+        "name": "onMarkAllRead",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "align",
+        "kind": "prop",
+        "type": "'left' | 'right'",
+        "default": "right"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "popover"
+    ],
+    "criteria": [
+      {
+        "id": "ntf-1",
+        "rule": "El disparador dice cuantas hay sin leer en su nombre accesible. El badge es un numero pintado; sin el nombre, quien no lo ve no sabe que hay pendientes.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ntf-2",
+        "rule": "El panel se ancla con el shell: portal, colision y Escape que devuelve el foco a la campana.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ntf-3",
+        "rule": "No leida se distingue por algo mas que el color: un punto o el peso del titulo.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ntf-4",
+        "rule": "Cada notificacion es un objetivo de --hit-target-min y su hora va en la familia de dato.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ntf-5",
+        "rule": "Marcar todas como leidas es una accion con nombre, y el badge desaparece al aplicarla sin cerrar el panel.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ntf-6",
+        "rule": "Con la lista vacia muestra un estado vacio, no un panel en blanco.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "popover"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--status-live",
+    "--text-on-accent",
+    "--surface-accent-subtle",
+    "--type-data",
+    "--radius-md",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es un Toast: el toast se va y esto se queda.",
+    "No agrupa por fecha."
+  ],
+  "reference": {
+    "src": "components/NotificationCenter.jsx",
+    "demo": "docs/demos/notification-center.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

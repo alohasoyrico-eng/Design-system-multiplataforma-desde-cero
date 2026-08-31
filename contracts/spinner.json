@@ -1,0 +1,82 @@
+{
+  "id": "spinner",
+  "name": "Spinner",
+  "layer": "primitives",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Anillo indeterminado para cuando no se sabe cuanto falta ni que forma tendra.",
+  "api": {
+    "members": [
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "number",
+        "default": 20
+      },
+      {
+        "name": "color",
+        "kind": "prop",
+        "type": "string",
+        "note": "Token semantico. Por defecto hereda el color del texto."
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "default": "Cargando"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "spn-1",
+        "rule": "Anuncia la espera con role=status y su label. Un spinner mudo deja a quien no lo ve sin saber que la aplicacion trabaja.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spn-2",
+        "rule": "Con prefers-reduced-motion deja de girar y sigue presente como indicador: aqui el movimiento es el contenido, asi que se sustituye, no se elimina.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spn-3",
+        "rule": "Visible en su primer frame: nada que dependa de que arranque la animacion para tener forma.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spn-4",
+        "rule": "El color sale de un token. Un spinner con hex propio deja de verse en modo oscuro.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--action-accent",
+    "--border-subtle",
+    "--dur-slow"
+  ],
+  "nonGoals": [
+    "No indica progreso: si se conoce el porcentaje, va Progress.",
+    "No bloquea la pantalla: eso lo decide quien lo use."
+  ],
+  "reference": {
+    "src": "primitives/Spinner.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

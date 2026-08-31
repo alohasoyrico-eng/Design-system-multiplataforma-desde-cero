@@ -1,0 +1,100 @@
+{
+  "id": "sparkline",
+  "name": "Sparkline",
+  "layer": "primitives",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Micro-grafica de linea con punto final. SVG a mano a proposito: 88px dentro de un KPI no justifica montar ECharts.",
+  "api": {
+    "members": [
+      {
+        "name": "values",
+        "kind": "prop",
+        "type": "number[]",
+        "required": true
+      },
+      {
+        "name": "width",
+        "kind": "prop",
+        "type": "number",
+        "default": 88
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "default": 28
+      },
+      {
+        "name": "color",
+        "kind": "prop",
+        "type": "string",
+        "note": "Token de dataviz, no de texto."
+      },
+      {
+        "name": "showDot",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "spk-1",
+        "rule": "Con un solo valor dibuja una linea plana, no un lienzo vacio. Con cero valores no dibuja nada y no ocupa hueco.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spk-2",
+        "rule": "Todos los valores iguales dan una linea centrada, no una division por cero.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spk-3",
+        "rule": "Esta oculta al lector de pantalla: la cifra la dice el KPI que la contiene. Una tendencia sin escala ni ejes no es informacion leible en voz alta.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spk-4",
+        "rule": "El color sale de la paleta de dataviz, no de la de texto: es dato, no tipografia.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spk-5",
+        "rule": "Con prefers-reduced-motion el punto final deja de latir.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-accent",
+    "--viz-1",
+    "--flow-red-500"
+  ],
+  "nonGoals": [
+    "No lleva ejes, rejilla ni tooltip: para eso esta FlowChart.",
+    "No es una barra: la comparacion entre categorias es Bars."
+  ],
+  "reference": {
+    "src": "primitives/Sparkline.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

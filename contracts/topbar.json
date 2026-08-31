@@ -1,0 +1,141 @@
+{
+  "id": "topbar",
+  "name": "TopBar",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Header de 56px con seis disposiciones: standard, minimal, admin, multientidad, movil y fullscreen.",
+  "api": {
+    "members": [
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'standard' | 'minimal' | 'admin' | 'multientity' | 'mobile' | 'fullscreen'",
+        "default": "standard",
+        "variantAxis": true
+      },
+      {
+        "name": "logo",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "navItems",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; href?: string; active?: boolean }>"
+      },
+      {
+        "name": "breadcrumb",
+        "kind": "prop",
+        "type": "Array<{ label: string; href?: string }>"
+      },
+      {
+        "name": "searchValue",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onSearchChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "avatar",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "notificationCount",
+        "kind": "prop",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "onNotifications",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "entities",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string }>"
+      },
+      {
+        "name": "currentEntity",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onEntityChange",
+        "kind": "event",
+        "type": "(id: string) => void"
+      },
+      {
+        "name": "onToggleSidebar",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tpb-1",
+        "rule": "fullscreen no renderiza nada: es la ausencia de header, no un header vacio de 56px.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tpb-2",
+        "rule": "El buscador de admin y los botones de solo icono llevan nombre accesible. El contador de notificaciones va en el nombre del boton, no solo pintado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tpb-3",
+        "rule": "El selector de entidad es un boton con aria-haspopup y aria-expanded, y su panel un menu.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tpb-4",
+        "rule": "Todo lo operable mide --hit-target-min, incluidos los enlaces de nav.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tpb-5",
+        "rule": "Las seis variantes no cambian el orden del DOM: cambian que se muestra, no la secuencia de lectura.",
+        "level": "should",
+        "verify": "manual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--border-subtle",
+    "--surface-sunken",
+    "--radius-sm",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No navega: emite eventos.",
+    "No es responsive por su cuenta: la pantalla elige la variante."
+  ],
+  "reference": {
+    "src": "components/TopBar.jsx",
+    "demo": "docs/demos/sidebar-topbar.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

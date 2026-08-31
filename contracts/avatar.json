@@ -1,0 +1,112 @@
+{
+  "id": "avatar",
+  "name": "Avatar",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Iniciales o foto, con color determinista por nombre y punto de presencia opcional.",
+  "api": {
+    "members": [
+      {
+        "name": "name",
+        "kind": "prop",
+        "type": "string",
+        "note": "De aqui salen las iniciales y el color."
+      },
+      {
+        "name": "src",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md' | 'lg' | 'xl'",
+        "default": "md"
+      },
+      {
+        "name": "status",
+        "kind": "prop",
+        "type": "'online' | 'busy' | 'offline'"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "avt-1",
+        "rule": "El color sale del nombre de forma determinista: la misma persona tiene el mismo color en toda la aplicacion y entre sesiones. Y reparte: seis nombres cortos distintos no pueden caer en dos colores, porque el proposito de colorear iniciales es distinguir personas y un color determinista que no distingue no sirve de nada. Se verifica con una lista de nombres reales, no con uno.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "avt-2",
+        "rule": "Si la foto no carga, quedan las iniciales. Nunca un hueco ni el icono de imagen rota del navegador.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "avt-3",
+        "rule": "La presencia no se comunica solo por color: el punto lleva texto accesible con el estado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "avt-4",
+        "rule": "Las iniciales son una o dos, del nombre y del primer apellido. Tres letras en 32px no se leen.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "avt-5",
+        "rule": "Con prefers-reduced-motion el punto de busy deja de latir sin dejar de marcar el estado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "avt-6",
+        "rule": "Las iniciales alcanzan 4.5:1 sobre su color de identidad. Los seis colores viven en tokens (--avatar-1..6): una paleta dentro del componente no se puede verificar ni corregir de una vez.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "avt-7",
+        "rule": "El punto de presencia se separa del avatar por su anillo de --surface-card, no por contraste de matiz: sobre un avatar del mismo matiz el punto da 1.27:1 y el anillo es lo unico que lo delimita. El anillo crece con el tamano del avatar.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--avatar-1",
+    "--avatar-2",
+    "--avatar-3",
+    "--avatar-4",
+    "--avatar-5",
+    "--avatar-6",
+    "--avatar-offline",
+    "--status-success",
+    "--status-live",
+    "--text-on-accent",
+    "--radius-pill"
+  ],
+  "nonGoals": [
+    "No es un boton: si abre un menu de usuario, el boton lo pone la pantalla alrededor.",
+    "No apila varios avatares: eso lo compone quien lo use."
+  ],
+  "reference": {
+    "src": "primitives/Avatar.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

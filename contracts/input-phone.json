@@ -1,0 +1,126 @@
+{
+  "id": "input-phone",
+  "name": "InputPhone",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Telefono con lada como prefijo fijo y agrupacion 3-3-4 sobre los digitos. Sobre ControlShell, sin label propia.",
+  "api": {
+    "members": [
+      {
+        "name": "id",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string",
+        "default": "55 1234 5678"
+      },
+      {
+        "name": "prefix",
+        "kind": "prop",
+        "type": "string",
+        "default": "+52",
+        "note": "Lada. El pais se elige con Select, no aqui."
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md'",
+        "default": "md"
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "control-shell"
+    ],
+    "criteria": [
+      {
+        "id": "tel-1",
+        "rule": "La lada es adorno de la carcasa y no forma parte del valor emitido ni se puede borrar escribiendo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tel-2",
+        "rule": "La agrupacion 3-3-4 se aplica al escribir sin impedir pegar un numero completo con o sin espacios.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tel-3",
+        "rule": "El teclado movil es telefonico y el autocompletado del navegador puede rellenarlo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tel-4",
+        "rule": "Emite solo digitos, sin espacios ni lada.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tel-5",
+        "rule": "El numero va en la familia de dato.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "control-shell"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--type-data",
+    "--text-muted"
+  ],
+  "nonGoals": [
+    "No valida por pais: la longitud y el formato de otros paises no estan modelados.",
+    "No elige pais."
+  ],
+  "reference": {
+    "src": "components/InputPhone.jsx",
+    "states": "docs/cards/forms.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "id": "control-shell",
+  "name": "ControlShell",
+  "layer": "primitives",
+  "shell": true,
+  "status": "beta",
+  "summary": "La carcasa de todo control de formulario: borde, altura, padding, foco, disabled, invalid y adornos. Sin pixel propio mas alla del contenedor.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "forms"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md' | 'lg'",
+        "default": "md",
+        "note": "38 / 46 / 54px. Es la unica fuente de alturas de control del sistema."
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "multiline",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Padding en bloque y contenido estirado, para Textarea."
+      },
+      {
+        "name": "leading",
+        "kind": "slot",
+        "type": "string | React.ReactNode",
+        "note": "Glifo Material Symbols o nodo. Si es glifo, la carcasa lo tinta segun foco."
+      },
+      {
+        "name": "trailing",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "footer",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Zona de pie de la carcasa: contadores, hints. Existe para que ningun control posicione nada en absoluto sobre su propia area."
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "onShellClick",
+        "kind": "event",
+        "type": "() => void"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cs-1",
+        "rule": "El grosor del borde cambia con foco o invalid sin mover el contenido: el padding compensa.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cs-2",
+        "rule": "El anillo de foco aparece con foco dentro de la carcasa, no solo en el elemento nativo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cs-3",
+        "rule": "invalid manda sobre focus en el color del borde.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cs-4",
+        "rule": "disabled baja opacidad y cambia a --surface-sunken; el control nativo tambien queda disabled.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cs-5",
+        "rule": "Altura minima 38px en sm y 44px efectivos de target a partir de md.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cs-6",
+        "rule": "Nada se dibuja encima del area del control: los accesorios van en leading, trailing o footer. Un contador nunca comparte pixeles con el asa de resize.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cs-7",
+        "rule": "Ningun tamano de la carcasa baja de --hit-target-min mas sus bordes, sm incluido. Un tamano pequeno se distingue por tipografia y padding; si se distingue por alto, se convierte en el hueco por donde el sistema entero se salta el objetivo tactil.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cs-8",
+        "rule": "Los adornos de leading y trailing se centran verticalmente por su cuenta. La fila estira a sus hijos para que el control ocupe todo el alto y el objetivo sea real; un glifo estirado se apoya en su line-height y queda mas alto que la etiqueta.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": false
+  },
+  "tokens": [
+    "--border-default",
+    "--border-focus",
+    "--status-danger",
+    "--surface-card",
+    "--surface-sunken",
+    "--radius-md",
+    "--focus-ring",
+    "--dur-fast",
+    "--ease-out"
+  ],
+  "nonGoals": [
+    "No pone label, help ni error: eso es Field.",
+    "No valida: la validacion es del contenedor."
+  ],
+  "reference": {
+    "src": "primitives/shells/ControlShell.jsx"
+  }
+}

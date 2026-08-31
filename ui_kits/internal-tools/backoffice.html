@@ -1,0 +1,88 @@
+<!-- @dsCard group="Internal Tools" viewport="1360x860" subtitle="Cola de aprobacion de documentos (KYC, licencias, seguros) de flotas y conductores" name="Internal Tools · Back-office" -->
+<!-- @startingPoint section="Templates" subtitle="Back-office: aprobacion de documentos y altas" viewport="1360x860" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Back-office</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" src="./shell.jsx"></script>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Table, Badge, Drawer, Button, StatusView, Card, Toast, ToastStack } = NS;
+const { Shell, Guard, useRole } = window.FlowIT;
+
+const STATUS_TONE = {pendiente:'warning',aprobado:'success',rechazado:'neutral'};
+
+const DOCS = [
+  {id:'D-220', who:'Diego Vera', doc:'Licencia de conducir', submitted:'hace 1 día', status:'pendiente', file:'licencia_dvera.pdf'},
+  {id:'D-221', who:'Ana Sosa', doc:'Tarjeta de circulación (renovación)', submitted:'hace 2 días', status:'pendiente', file:'tarjeta_circ_asosa.pdf'},
+  {id:'D-222', who:'Marco Gil', doc:'Seguro de unidad', submitted:'hace 3 h', status:'pendiente', file:'poliza_mgil.pdf'},
+  {id:'D-223', who:'Rosa Duarte', doc:'Verificación de identidad (INE)', submitted:'hace 5 días', status:'aprobado', file:'ine_rduarte.pdf'},
+  {id:'D-224', who:'Luis Prieto', doc:'Licencia de conducir (vencida)', submitted:'hace 6 días', status:'rechazado', file:'licencia_lprieto.pdf'},
+  {id:'D-225', who:'Rutas Cobalto', doc:'Documentos de alta de flota', submitted:'hace 1 día', status:'pendiente', file:'alta_flota_cobalto.zip'},
+];
+
+function DocDetail({d, onClose, onDecision, result}){
+  return <Drawer open={!!d} onClose={onClose} title={d ? d.id+' · '+d.doc : ''} width={460}
+    footer={d && !result && d.status==='pendiente' && <React.Fragment>
+      <Button variant="danger" onClick={()=>onDecision(d.id,'rechazado')}>Rechazar</Button>
+      <Button variant="accent" onClick={()=>onDecision(d.id,'aprobado')}>Aprobar</Button>
+    </React.Fragment>}>
+    {d && (result
+      ? <StatusView status={result==='aprobado'?'success':'error'}
+          title={result==='aprobado' ? 'Documento aprobado' : 'Documento rechazado'}
+          description={result==='aprobado' ? 'Se notificó a '+d.who+' que su documento fue aprobado.' : 'Se notificó a '+d.who+' con el motivo del rechazo.'}
+          fullScreen />
+      : <div style={{display:'flex',flexDirection:'column',gap:16}}>
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <span style={{fontSize:14,fontWeight:700}}>{d.who}</span>
+            <Badge tone={STATUS_TONE[d.status]} style={{marginLeft:'auto'}}>{d.status}</Badge>
+          </div>
+          <div style={{fontSize:12,color:'var(--text-muted)'}}>Enviado {d.submitted}</div>
+          <Card style={{display:'flex',alignItems:'center',gap:12,padding:16}}>
+            <span className="flow-icon" aria-hidden="true" style={{fontSize:28,color:'var(--text-muted)'}}>draft</span>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontSize:13,fontWeight:600,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{d.file}</div>
+              <div style={{fontSize:11.5,color:'var(--text-muted)'}}>{d.doc}</div>
+            </div>
+            <Button variant="secondary" size="sm" icon="visibility">Ver</Button>
+          </Card>
+        </div>)}
+  </Drawer>;
+}
+
+function App(){
+  const [role, setRole] = useRole();
+  const [docs, setDocs] = React.useState(DOCS);
+  const [open, setOpen] = React.useState(null);
+  const [result, setResult] = React.useState(null);
+  const [toast, setToast] = React.useState(null);
+  const decide = (id, status)=>{
+    setResult(status);
+    setTimeout(()=>{
+      setDocs(ds=>ds.map(d=>d.id===id?{...d,status}:d));
+      setOpen(null); setResult(null);
+      setToast('Documento '+id+' '+status+'.'); setTimeout(()=>setToast(null),3000);
+    }, 1200);
+  };
+  return <Shell active="backoffice" role={role} setRole={setRole}>
+    <Guard allowed={['admin','ops']} role={role}>
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'0 0 20px'}}>Back-office</h1>
+      <Table rowKey="id" onRowClick={(d)=>{setResult(null);setOpen(d);}} columns={[
+        {key:'id', label:'ID', mono:true, width:80},
+        {key:'who', label:'Cuenta', render:(r)=><span style={{fontWeight:600}}>{r.who}</span>},
+        {key:'doc', label:'Documento'},
+        {key:'submitted', label:'Enviado'},
+        {key:'status', label:'Estado', render:(r)=><Badge tone={STATUS_TONE[r.status]}>{r.status}</Badge>},
+      ]} rows={docs} />
+      <DocDetail d={open} onClose={()=>{setOpen(null);setResult(null);}} onDecision={decide} result={result} />
+      {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+    </Guard>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.FlowIT ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

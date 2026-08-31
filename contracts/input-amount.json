@@ -1,0 +1,131 @@
+{
+  "id": "input-amount",
+  "name": "InputAmount",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Monto con prefijo de moneda, miles y decimales de la locale, alineado a la derecha. Sobre ControlShell, sin label propia.",
+  "api": {
+    "members": [
+      {
+        "name": "id",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string",
+        "default": "0.00"
+      },
+      {
+        "name": "currency",
+        "kind": "prop",
+        "type": "string",
+        "default": "$"
+      },
+      {
+        "name": "locale",
+        "kind": "prop",
+        "type": "string",
+        "default": "es-MX"
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md'",
+        "default": "md"
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "control-shell"
+    ],
+    "criteria": [
+      {
+        "id": "amt-1",
+        "rule": "El valor va alineado a la derecha y en la familia de dato: una columna de montos se compara por la ultima cifra, no por la primera.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "amt-2",
+        "rule": "El prefijo de moneda es adorno de la carcasa: no es enfocable, no se borra al escribir y no forma parte del valor emitido.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "amt-3",
+        "rule": "El separador de miles se aplica al escribir sin mover el cursor a otro sitio: un formateo que salta hace imposible corregir una cifra.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "amt-4",
+        "rule": "El teclado movil es numerico.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "amt-5",
+        "rule": "Emite el valor sin formato: quien lo recibe no tiene que deshacer los separadores.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "control-shell"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--type-data",
+    "--text-muted"
+  ],
+  "nonGoals": [
+    "No convierte divisas.",
+    "No valida rangos: eso es de Field."
+  ],
+  "reference": {
+    "src": "components/InputAmount.jsx",
+    "states": "docs/cards/forms.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

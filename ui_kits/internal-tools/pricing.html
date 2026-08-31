@@ -1,0 +1,83 @@
+<!-- @dsCard group="Internal Tools" viewport="1360x860" subtitle="Reglas de tarifas y comisiones: cola + edicion con envio a aprobacion" name="Internal Tools · Pricing" -->
+<!-- @startingPoint section="Templates" subtitle="Pricing: reglas de tarifas, surge y comision con flujo de aprobacion" viewport="1360x860" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Pricing</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" src="./shell.jsx"></script>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Table, Badge, Drawer, Field, Input, Select, Button, StatusView, Toast, ToastStack } = NS;
+const { Shell, Guard, useRole } = window.FlowIT;
+
+const STATUS_TONE = {vigente:'success','pendiente aprobación':'warning',borrador:'neutral'};
+
+const RULES = [
+  {id:'P-101', name:'Tarifa base CDMX', scope:'Ciudad · CDMX', type:'Base', value:'$10.50/km', status:'vigente', by:'Marta Vidal'},
+  {id:'P-102', name:'Recargo hora pico', scope:'Zona centro', type:'Surge', value:'×1.8', status:'vigente', by:'Diego Ruiz'},
+  {id:'P-103', name:'Comisión estándar', scope:'Nacional', type:'Comisión', value:'18%', status:'vigente', by:'Admin'},
+  {id:'P-104', name:'Tarifa base Guadalajara', scope:'Ciudad · GDL', type:'Base', value:'$9.80/km', status:'pendiente aprobación', by:'Diego Ruiz'},
+  {id:'P-105', name:'Promo fin de semana', scope:'Zona norte CDMX', type:'Surge', value:'×0.9', status:'borrador', by:'Marta Vidal'},
+  {id:'P-106', name:'Comisión flotas grandes', scope:'Nacional (50+ unidades)', type:'Comisión', value:'15%', status:'pendiente aprobación', by:'Admin'},
+];
+
+function RuleDetail({r, onClose, onSubmit, submitting}){
+  const [name,setName] = React.useState('');
+  const [value,setValue] = React.useState('');
+  const [scope,setScope] = React.useState('');
+  React.useEffect(()=>{ if(r){ setName(r.name); setValue(r.value); setScope(r.scope); } },[r && r.id]);
+  return <Drawer open={!!r} onClose={onClose} title={r ? 'Editar regla · '+r.id : ''} width={460}
+    footer={r && !submitting && <React.Fragment>
+      <Button variant="secondary" onClick={onClose}>Cancelar</Button>
+      <Button variant="accent" onClick={()=>onSubmit(r.id)}>Enviar a aprobación</Button>
+    </React.Fragment>}>
+    {r && (submitting
+      ? <StatusView status="pending" title="Enviado a aprobación" description={'La regla "'+r.name+'" quedará vigente cuando un admin la apruebe.'} fullScreen />
+      : <div style={{display:'flex',flexDirection:'column',gap:16}}>
+          <Field label="Nombre de la regla"><Input value={name} onChange={setName} /></Field>
+          <Field label="Alcance"><Input value={scope} onChange={setScope} /></Field>
+          <Field label="Tipo"><Select value={r.type} onChange={()=>{}} options={[{value:'Base',label:'Base'},{value:'Surge',label:'Surge'},{value:'Comisión',label:'Comisión'}]} /></Field>
+          <Field label="Valor" help="Tarifa por km, multiplicador o porcentaje según el tipo."><Input value={value} onChange={setValue} mono /></Field>
+          <Field label="Estado actual"><Badge tone={STATUS_TONE[r.status]}>{r.status}</Badge></Field>
+        </div>)}
+  </Drawer>;
+}
+
+function App(){
+  const [role, setRole] = useRole();
+  const [rules, setRules] = React.useState(RULES);
+  const [open, setOpen] = React.useState(null);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [toast, setToast] = React.useState(null);
+  const submit = (id)=>{
+    setSubmitting(true);
+    setTimeout(()=>{
+      setRules(rs=>rs.map(r=>r.id===id?{...r,status:'pendiente aprobación'}:r));
+      setSubmitting(false); setOpen(null);
+      setToast('Regla '+id+' enviada a aprobación.'); setTimeout(()=>setToast(null),3000);
+    }, 900);
+  };
+  return <Shell active="pricing" role={role} setRole={setRole}>
+    <Guard allowed={['admin','pricing']} role={role}>
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'0 0 20px'}}>Pricing</h1>
+      <Table rowKey="id" onRowClick={(r)=>{setSubmitting(false);setOpen(r);}} columns={[
+        {key:'id', label:'ID', mono:true, width:80},
+        {key:'name', label:'Regla', render:(r)=><span style={{fontWeight:600}}>{r.name}</span>},
+        {key:'scope', label:'Alcance'},
+        {key:'type', label:'Tipo'},
+        {key:'value', label:'Valor', mono:true, align:'right'},
+        {key:'status', label:'Estado', render:(r)=><Badge tone={STATUS_TONE[r.status]}>{r.status}</Badge>},
+        {key:'by', label:'Actualizado por'},
+      ]} rows={rules} />
+      <RuleDetail r={open} onClose={()=>setOpen(null)} onSubmit={submit} submitting={submitting} />
+      {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+    </Guard>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.FlowIT ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+  body { margin: 0; background: var(--surface-canvas); }
+  a { color: var(--text-primary); }
+  a:hover { color: var(--text-accent); }
+</style>
+</helmet>
+<div data-mode="{{ theme }}" style="min-height: 100%; background: var(--surface-canvas); color: var(--text-primary); font: var(--type-body); padding: 72px 40px 120px;">
+  <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 68px;">
+
+    <header style="display: flex; flex-direction: column; gap: 24px;">
+      <div style="display: flex; align-items: baseline; gap: 16px; font: var(--type-overline); letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);">
+        <span>Flow · documento interno</span>
+        <span style="flex: 1; height: 1px; background: var(--border-subtle);"></span>
+        <span style="font-family: var(--font-mono);">auditoría de una sesión</span>
+      </div>
+      <h1 style="font: var(--type-display); margin: 0; max-width: 24ch; text-wrap: pretty;">Patrones de falla</h1>
+      <p style="font: var(--type-body); font-size: 17px; line-height: 1.6; max-width: 68ch; margin: 0; color: var(--text-secondary); text-wrap: pretty;">Los defectos de esta sesión no fueron accidentes independientes. Se repiten seis mecanismos, cada uno con su forma de sobrevivir a la revisión. Documentarlos por familia sirve para lo que no sirve documentarlos uno por uno: saber qué chequeo falta.</p>
+    </header>
+
+    <section style="display: flex; flex-direction: column; gap: 26px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">01</span> Lo que costó cada familia
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-inverse); color: var(--text-on-inverse); padding: 18px 16px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">3</span>
+          <span style="font: var(--type-caption); opacity: .7;">frame que no llega</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 16px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">5</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">extremo sin el otro</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 16px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">9</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">forma no verificable</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 16px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">41</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">documentar sin leer</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 16px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">6</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">derivar de lo derivado</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 16px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">4</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">cifra sin medir</span>
+        </div>
+      </div>
+      <p style="font: var(--type-body); max-width: 68ch; margin: 0; color: var(--text-secondary);">Sesenta y ocho defectos con seis causas. <b style="color: var(--text-primary);">Ninguno se encontró leyendo código, y ninguno se vio a ojo:</b> los tres del frame se vieron idénticos en tres intentos consecutivos, y los 41 de documentación se veían impecables en pantalla.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 26px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">02</span> Las seis familias
+      </h2>
+
+      <div style="display: flex; flex-direction: column; gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+
+        <div style="background: var(--surface-card); padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">El frame que no llega</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-accent);">base-5 · automated</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">El estado inicial de una animación es invisible —barra de altura cero, línea sin trazo, foco que aún no entró— y el estado final llega por <span style="font-family: var(--font-mono); font-size: 12.5px;">requestAnimationFrame</span>. En un iframe throttleado, una pestaña oculta o un preview, ese frame no llega nunca y el componente se queda en cero.</p>
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">Por qué sobrevive:</b> en una pestaña activa funciona siempre. Nadie prueba en segundo plano.</p>
+            <p style="margin: 0; font: var(--type-caption); color: var(--text-muted);">Tres apariciones: el foco de <span style="font-family: var(--font-mono);">OverlayShell</span>; las series de <span style="font-family: var(--font-mono);">FlowChart</span> en seis dashboards; y el propio parche, que apagó la animación global sin ver que la configuración por serie gana.</p>
+          </div>
+        </div>
+
+        <div style="background: var(--surface-card); padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Un extremo sin el otro</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-accent);">P5 · P8 · parcial</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">Algo se declara y nadie lo consume, o algo se consume y nadie lo declaró. Las dos mitades existen; el cable entre ellas no.</p>
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">Por qué sobrevive:</b> las dos mitades pasan revisión por separado. Nada falla, simplemente no ocurre.</p>
+            <p style="margin: 0; font: var(--type-caption); color: var(--text-muted);"><span style="font-family: var(--font-mono);">Listbox</span> exponía <span style="font-family: var(--font-mono);">onActiveIdChange</span> y <span style="font-family: var(--font-mono);">Select</span> no lo cableaba, así que <span style="font-family: var(--font-mono);">aria-activedescendant</span> nunca se emitió. Tres campos del registry que la docs no leía. Un contrato con id que no casaba con ningún ítem. Y <span style="font-family: var(--font-mono);">KanbanBoard</span>, con dos pantallas que lo esquivan.</p>
+            <div style="border-left: var(--border-width-strong) solid var(--border-default); padding-left: 16px;">
+              <p style="margin: 0; font: var(--type-caption); color: var(--text-secondary);"><b style="color: var(--text-primary);">Falta chequeo:</b> un callback documentado en un shell debe estar pasado por al menos un consumidor. Es la mitad de la familia que sigue sin red.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--surface-card); padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">La forma que no se puede verificar</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-accent);">P1 · P4 · P7</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">Metadata que finge ser dato: una ruta con llaves, dos archivos separados por un punto medio, un glob, dos campos que dicen lo mismo, un anclaje que no existe. Ninguna es resoluble, así que ningún chequeo de enlaces las mira.</p>
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">Por qué sobrevive:</b> se lee bien. <span style="font-family: var(--font-mono); font-size: 12.5px;">{Treemap,Pareto}.jsx</span> le dice lo correcto a un humano y nada a una máquina.</p>
+            <p style="margin: 0; font: var(--type-caption); color: var(--text-muted);">Once ítems compartían un <span style="font-family: var(--font-mono);">src</span> con separador; dos apuntaban a archivos borrados; tres pintaban su demo dos veces; dos anclajes renderizaban un iframe vacío sin error.</p>
+            <div style="border-left: var(--border-width-strong) solid var(--border-default); padding-left: 16px;">
+              <p style="margin: 0; font: var(--type-caption); color: var(--text-secondary);"><b style="color: var(--text-primary);">La regla:</b> la forma que no se puede verificar no debería existir en el esquema. No se valida mejor — se prohíbe.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--surface-card); padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Documentar sin leer la fuente</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-accent);">P9 · P10</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">La prosa describe lo que el componente debería hacer, no lo que hace. Props que no existen, props reales sin documentar, y el subtítulo prometiendo lo que un <span style="font-family: var(--font-mono); font-size: 12.5px;">dont</span> declara fuera de alcance cuatro campos más abajo.</p>
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">Por qué sobrevive:</b> la documentación plausible es indistinguible de la correcta hasta que alguien copia el ejemplo.</p>
+            <p style="margin: 0; font: var(--type-caption); color: var(--text-muted);"><span style="font-family: var(--font-mono);">OTPInput</span> documentaba un reenvío inexistente. <span style="font-family: var(--font-mono);">Progress</span> omitía el <span style="font-family: var(--font-mono);">label</span> que da nombre accesible a la barra. Seis pares documentaban las props del otro. Veinte ítems tenían props reales sin documentar.</p>
+          </div>
+        </div>
+
+        <div style="background: var(--surface-card); padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Derivar de lo ya derivado</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">sin chequeo · procedimental</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">El generador toma como entrada un texto que ya transformó: la firma con los literales neutralizados, el tipo inferido por descarte, la fila que se salta la corrección por tener nota. La salida es plausible y falsa.</p>
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">Por qué sobrevive:</b> el generador no falla. Produce basura con la forma correcta, que es peor que un error.</p>
+            <p style="margin: 0; font: var(--type-caption); color: var(--text-muted);">El parser cortaba en la primera llave y truncaba <span style="font-family: var(--font-mono);">center = {'{'}lat, lng{'}'}</span>. Las comas dentro de una cadena inventaron props. El marcador <span style="font-family: var(--font-mono);">'S'</span> se escribió como valor por defecto en cinco ítems. <span style="font-family: var(--font-mono);">typeOf(undefined)</span> tipó como <span style="font-family: var(--font-mono);">string</span> todos los callbacks.</p>
+            <div style="border-left: var(--border-width-strong) solid var(--border-default); padding-left: 16px;">
+              <p style="margin: 0; font: var(--type-caption); color: var(--text-secondary);"><b style="color: var(--text-primary);">Las dos reglas:</b> derivar siempre del artefacto original, nunca de su normalización. Y validar la salida del chequeo contra el archivo antes de creerle: dos veces produjo basura antes de producir verdad, y las dos veces la delató compararla.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--surface-card); padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">La cifra dicha al pasar</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">CLAUDE.md · procedimental</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">Un número usado para justificar una decisión, sin medirlo. Las cuatro veces estuvo mal, y las cuatro escondían trabajo pendiente.</p>
+            <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">Por qué sobrevive:</b> la cifra plausible cierra la conversación. Nadie pide la fuente de un número que suena bien.</p>
+            <p style="margin: 0; font: var(--type-caption); color: var(--text-muted);">«Los ui_kits están llenos de estilos inline» eran nueve casos nombrables, y el chequeo ni miraba ahí. «Cobertura 7 de 106» eran catorce contratos, uno huérfano. «Los siete de data-viz son los que más se usan» aparecen una vez cada uno; <span style="font-family: var(--font-mono);">StatTile</span> tiene 37. «El costo es bajo» ignoró el riesgo de ejecución y costó 41 entradas.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 26px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">03</span> El patrón de los patrones
+      </h2>
+      <div style="display: flex; gap: 20px; align-items: flex-start; background: var(--surface-card); border: var(--border-width-strong) solid var(--border-default); padding: 26px 28px;">
+        <span style="font: var(--type-overline); text-transform: uppercase; letter-spacing: .08em; color: var(--text-accent); white-space: nowrap; padding-top: 4px;">Lo común</span>
+        <div style="display: flex; flex-direction: column; gap: 14px; max-width: 72ch;">
+          <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">Las seis familias comparten una propiedad: <b style="color: var(--text-primary);">producen un resultado plausible.</b> Ninguna lanza un error, ninguna se ve mal, ninguna rompe la carga. El componente se ve dibujado, la documentación se lee completa, la ruta parece una ruta, la cifra suena razonable.</p>
+          <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">Por eso el orden de la revisión importa más que su rigor. Leer código encuentra lo que está mal escrito; <b style="color: var(--text-primary);">medir el artefacto montado encuentra lo que está mal aunque esté bien escrito.</b> Los 68 defectos de esta sesión salieron de contar píxeles, consultar el DOM, resolver rutas contra el disco y comparar la firma real con lo documentado.</p>
+          <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);">Y de ahí la asimetría de los chequeos: <b style="color: var(--text-primary);">más vale laxo y creído que estricto e ignorado.</b> Dos versiones del chequeo dieron falsos positivos —P7 sobre demos que filtran distinto, P9 con 40 de 46 falsos— y un chequeo que reprueba código correcto se desactiva en una semana.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 26px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">04</span> Lo que falta
+      </h2>
+      <div style="display: flex; flex-direction: column; gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-card); padding: 20px 22px; display: grid; grid-template-columns: 90px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-accent);">P11</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font: var(--type-body-strong);">Todo callback de un shell tiene al menos un consumidor que lo pasa</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">Es la mitad sin red de «un extremo sin el otro»: la que dejó <span style="font-family: var(--font-mono); font-size: 12.5px;">aria-activedescendant</span> sin emitir durante semanas.</span>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 22px; display: grid; grid-template-columns: 90px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-accent);">P12</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font: var(--type-body-strong);">Los criterios <span style="font-family: var(--font-mono);">automated</span> corren sobre el DOM montado</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">Hoy <span style="font-family: var(--font-mono); font-size: 12.5px;">check-layers.mjs</span> lee archivos. Los criterios que hablan de foco, altura y anuncios necesitan una página viva, o dan verde sobre tres shells roídos.</span>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 22px; display: grid; grid-template-columns: 90px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-muted);">—</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font: var(--type-body-strong);">Un nombre de prop, una forma</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);"><span style="font-family: var(--font-mono); font-size: 12.5px;">format</span> es una función en <span style="font-family: var(--font-mono); font-size: 12.5px;">Treemap</span> y un objeto en <span style="font-family: var(--font-mono); font-size: 12.5px;">ScatterPlot</span>. Dos formas con un nombre se vuelven dos tipos incompatibles en el generador multiplataforma.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="border-top: var(--border-width-strong) solid var(--border-default); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; font: var(--type-caption); color: var(--text-muted);">
+      <span>Flow · patrones de falla · auditoría de una sesión</span>
+      <span style="font-family: var(--font-mono);">68 defectos · 6 causas</span>
+    </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;canvas&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;canvas&quot;,&quot;tsType&quot;:&quot;'canvas'|'dark'&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'canvas' };
+  }
+}
+</script>
+</body>
+</html>

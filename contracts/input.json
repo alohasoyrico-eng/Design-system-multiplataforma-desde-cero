@@ -1,0 +1,155 @@
+{
+  "id": "input",
+  "name": "Input",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Texto de una linea sobre ControlShell. Con revealable trae el ojo de contrasena, que es lo que hacia innecesario un InputPassword.",
+  "supersedes": [
+    "inputpassword",
+    "inputemail"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "id",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "type",
+        "kind": "prop",
+        "type": "string",
+        "default": "text",
+        "note": "Nativo. type='email' con el error de Field es lo que sustituyo a InputEmail."
+      },
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "suffix",
+        "kind": "prop",
+        "type": "string",
+        "note": "Texto fijo al final: unidad, dominio."
+      },
+      {
+        "name": "revealable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Ojo de mostrar u ocultar. Absorbe InputPassword."
+      },
+      {
+        "name": "mono",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Para placas, IDs y montos."
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md'",
+        "default": "md"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "control-shell"
+    ],
+    "criteria": [
+      {
+        "id": "inp-1",
+        "rule": "El ojo de revealable es un objetivo propio de --hit-target-min en la zona trailing de la carcasa, y anuncia si el texto esta visible u oculto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "inp-2",
+        "rule": "El sufijo no es enfocable ni se lee como parte del valor: es adorno de la carcasa.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "inp-3",
+        "rule": "Con mono el valor va en --type-data. Una placa en la familia de texto se lee peor y se alinea mal en columna.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "inp-4",
+        "rule": "invalid marca aria-invalid ademas del borde: el color no puede ser el unico portador del error.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "inp-5",
+        "rule": "El texto no queda tapado por el icono ni por el sufijo al escribir hasta el final: la carcasa reserva su sitio.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "control-shell"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--type-data",
+    "--type-body",
+    "--text-muted",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No valida: la regla y el mensaje son de Field.",
+    "No formatea numeros ni telefonos: eso es InputAmount e InputPhone."
+  ],
+  "reference": {
+    "src": "primitives/Input.jsx",
+    "states": "docs/cards/forms.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

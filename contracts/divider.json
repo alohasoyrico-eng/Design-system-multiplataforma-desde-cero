@@ -1,0 +1,78 @@
+{
+  "id": "divider",
+  "name": "Divider",
+  "layer": "primitives",
+  "function": [
+    "layout"
+  ],
+  "status": "stable",
+  "summary": "Separador. Linea horizontal, con etiqueta centrada, o regla vertical para grupos en linea.",
+  "api": {
+    "members": [
+      {
+        "name": "orientation",
+        "kind": "prop",
+        "type": "'horizontal' | 'vertical'",
+        "default": "horizontal",
+        "variantAxis": true
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "note": "Solo horizontal: la linea se corta a los dos lados del texto."
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "div-1",
+        "rule": "Con label es un separador con nombre accesible; sin label esta oculto al lector de pantalla, porque una linea decorativa no es informacion.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "div-2",
+        "rule": "El vertical se estira al alto de su contenedor sin fijar una altura propia: una regla de 20px en una barra de 44 se ve como un error.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "div-3",
+        "rule": "Con label, la linea aparece a ambos lados del texto y no solo a uno.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "div-4",
+        "rule": "Grosor de --border-width y color de --border-subtle. Un separador que compite con el contenido esta mal.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--border-subtle",
+    "--border-width",
+    "--text-muted",
+    "--type-overline"
+  ],
+  "nonGoals": [
+    "No es espaciado: si solo hace falta aire, va gap.",
+    "No agrupa: si las secciones necesitan titulo, va un encabezado."
+  ],
+  "reference": {
+    "src": "primitives/Divider.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

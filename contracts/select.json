@@ -1,0 +1,182 @@
+{
+  "id": "select",
+  "name": "Select",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Selección de una lista conocida: trigger con carcasa de control, panel anclado y navegación por teclado.",
+  "supersedes": [
+    "select-multiple",
+    "select-country",
+    "select-combo",
+    "select-withinput",
+    "combobox"
+  ],
+  "api": {
+    "types": [
+      {
+        "name": "SelectOption",
+        "members": [
+          [
+            "value",
+            "string"
+          ],
+          [
+            "label",
+            "string"
+          ],
+          [
+            "icon",
+            "string?"
+          ],
+          [
+            "group",
+            "string?"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "options",
+        "kind": "prop",
+        "type": "Array<string | SelectOption>",
+        "required": true
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string | string[]",
+        "note": "Array cuando multiple."
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string | string[]) => void"
+      },
+      {
+        "name": "multiple",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Absorbe SelectMultiple."
+      },
+      {
+        "name": "searchable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Absorbe SelectCombo y el filtro de SelectCountry."
+      },
+      {
+        "name": "creatable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Absorbe SelectWithInput: permite un valor fuera de la lista."
+      },
+      {
+        "name": "clearable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Boton de limpiar en la zona trailing cuando hay valor y el panel esta cerrado. Absorbe Combobox, que existia solo por este boton."
+      },
+      {
+        "name": "renderOption",
+        "kind": "renderProp",
+        "type": "(o: SelectOption) => React.ReactNode",
+        "note": "Así la bandera de SelectCountry deja de necesitar un componente propio."
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string",
+        "note": "Glifo Material Symbols, leading."
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "control-shell",
+      "popover",
+      "listbox"
+    ],
+    "criteria": [
+      {
+        "id": "sel-1",
+        "rule": "Escape cierra y devuelve el foco al trigger.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sel-2",
+        "rule": "aria-activedescendant sigue al resaltado; el trigger es role=combobox con aria-expanded.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sel-3",
+        "rule": "Filas de 44px mínimo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sel-4",
+        "rule": "El panel no se recorta contra el borde del viewport: voltea de lado.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "sel-9",
+        "rule": "Con clearable, el boton de limpiar vive en la zona trailing de la carcasa y no se dibuja encima del campo; su area operable mide --hit-target-min aunque el glifo mida 16px; y limpiar no abre el panel.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "control-shell",
+      "popover",
+      "listbox"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--border-default",
+    "--border-focus",
+    "--radius-md",
+    "--surface-card",
+    "--shadow-float"
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "primitives/Select.jsx",
+    "states": "docs/cards/forms.card.html",
+    "demo": "docs/demos/select.html"
+  }
+}

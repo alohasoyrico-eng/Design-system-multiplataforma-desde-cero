@@ -1,0 +1,163 @@
+{
+  "id": "internal-tools-t",
+  "name": "Internal Tools",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "CRM interno para soporte, cuentas, pricing, casos y back-office. 7 pantallas con nav lateral gated por rol y selector de rol persistente.",
+  "content": {
+    "surface": "Internal Tools (backoffice CRM)",
+    "product": "internal-tools",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light",
+      "dark"
+    ],
+    "copy": "final",
+    "screens": [
+      {
+        "name": "resumen",
+        "file": "index.html",
+        "description": "KPIs y colas consolidados, filtrados por rol activo.",
+        "roles": ["admin", "agente", "pricing", "ops", "growth"]
+      },
+      {
+        "name": "tickets",
+        "file": "tickets.html",
+        "description": "Cola de tickets de soporte con hilo de conversación, cliente y acciones rápidas.",
+        "roles": ["admin", "agente"]
+      },
+      {
+        "name": "cuentas",
+        "file": "accounts.html",
+        "description": "Cuentas de flotas y conductores: perfil, actividad y tickets relacionados.",
+        "roles": ["admin", "agente", "pricing", "ops", "growth"]
+      },
+      {
+        "name": "pricing",
+        "file": "pricing.html",
+        "description": "Reglas de tarifas y comisiones: cola + edición con envío a aprobación.",
+        "roles": ["admin", "pricing"]
+      },
+      {
+        "name": "casos",
+        "file": "cases.html",
+        "description": "Casos de fraude, disputas y seguridad con línea de tiempo de investigación.",
+        "roles": ["admin", "agente"]
+      },
+      {
+        "name": "backoffice",
+        "file": "backoffice.html",
+        "description": "Cola de aprobación de documentos (KYC, licencias, seguros) de flotas y conductores.",
+        "roles": ["admin", "ops"]
+      },
+      {
+        "name": "growth",
+        "file": "growth.html",
+        "description": "Kanban del embudo de onboarding B2B de flotas: de prospecto a flota activada.",
+        "roles": ["admin", "growth"]
+      }
+    ],
+    "slots": [
+      {
+        "name": "shell",
+        "fills": "Sidebar fija 240px con logo, selector de rol (Select), nav gated por rol, Avatar + ThemeToggle al pie"
+      },
+      {
+        "name": "roleSelector",
+        "fills": "Select con 5 roles: Admin, Agente de soporte, Pricing/Finanzas, Ops/Back-office, Growth/Producto"
+      },
+      {
+        "name": "guard",
+        "fills": "EmptyState con icono lock cuando el rol activo no tiene acceso a la pantalla"
+      }
+    ]
+  },
+  "composition": {
+    "patterns": [
+      "stat-tile",
+      "crud"
+    ],
+    "components": [
+      "table",
+      "tabs",
+      "drawer",
+      "dialog",
+      "toast",
+      "notification-center"
+    ],
+    "primitives": [
+      "button",
+      "icon-button",
+      "badge",
+      "avatar",
+      "card",
+      "input",
+      "select",
+      "field"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "it-1",
+        "rule": "La nav filtra ítems según el rol activo; un agente no ve Pricing, Back-office ni Growth.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "it-2",
+        "rule": "Si el usuario navega a una pantalla sin acceso, Guard muestra EmptyState, no una página en blanco.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "it-3",
+        "rule": "El rol seleccionado persiste en localStorage y se restaura al recargar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "it-4",
+        "rule": "Cada pantalla mantiene el sidebar visible con highlight en el ítem activo.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "it-5",
+        "rule": "La rejilla de resumen aguanta 1360px sin scroll horizontal.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "it-6",
+        "rule": "Todos los controles interactivos cumplen 44px de target mínimo.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/internal-tools/index.html",
+    "files": [
+      "ui_kits/internal-tools/shell.jsx",
+      "ui_kits/internal-tools/index.html",
+      "ui_kits/internal-tools/tickets.html",
+      "ui_kits/internal-tools/accounts.html",
+      "ui_kits/internal-tools/pricing.html",
+      "ui_kits/internal-tools/cases.html",
+      "ui_kits/internal-tools/backoffice.html",
+      "ui_kits/internal-tools/growth.html"
+    ]
+  }
+}

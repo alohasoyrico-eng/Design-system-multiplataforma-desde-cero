@@ -1,0 +1,61 @@
+{
+  "id": "page-frame",
+  "name": "PageFrame",
+  "layer": "primitives",
+  "function": [
+    "layout"
+  ],
+  "status": "stable",
+  "summary": "Frame de contenido centrado con ancho maximo configurable. Reemplaza el patron repetido de max-width + margin auto.",
+  "api": {
+    "members": [
+      {
+        "name": "maxWidth",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "as",
+        "kind": "prop",
+        "type": "'div' | 'main' | 'section'",
+        "default": "'div'"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pf-1",
+        "rule": "Reduce padding en viewports menores a 576px.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--content-max",
+    "--pad-section",
+    "--space-10",
+    "--space-4"
+  ],
+  "nonGoals": [
+    "No fija alturas. No incluye header ni footer."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/PageFrame.tsx"
+  }
+}

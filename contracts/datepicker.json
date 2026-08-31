@@ -1,0 +1,195 @@
+{
+  "id": "datepicker",
+  "name": "DatePicker",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "El unico calendario del sistema. mode cambia la forma del valor, no la piel: 'single' habla en ISO, 'range' en {from, to}.",
+  "supersedes": [
+    "daterangepicker",
+    "inputdate"
+  ],
+  "api": {
+    "types": [
+      {
+        "name": "DateRange",
+        "members": [
+          [
+            "from",
+            "string | undefined"
+          ],
+          [
+            "to",
+            "string | undefined"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "id",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "mode",
+        "kind": "prop",
+        "type": "'single' | 'range'",
+        "default": "single",
+        "variantAxis": true,
+        "note": "Cambia el tipo de value y de onChange. Es un mode, no una variante: el requisito de entrada es distinto."
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string | DateRange",
+        "note": "ISO 'YYYY-MM-DD' en single; DateRange en range."
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string | DateRange) => void"
+      },
+      {
+        "name": "placeholder",
+        "kind": "prop",
+        "type": "string",
+        "note": "Por defecto depende del mode."
+      },
+      {
+        "name": "min",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "presets",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "requiredWhen": "mode=range",
+        "note": "Atajos de 7, 30 y 90 dias. Por defecto true en range, sin sentido en single."
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "modes": [
+    {
+      "value": "single",
+      "requires": [
+        "value: string ISO"
+      ],
+      "note": "Un clic cierra el panel."
+    },
+    {
+      "value": "range",
+      "requires": [
+        "value: {from, to}"
+      ],
+      "note": "Dos clics: el primero fija from y limpia to; un clic anterior a from invierte el rango; el segundo cierra."
+    }
+  ],
+  "conformance": {
+    "inherits": [
+      "control-shell",
+      "popover"
+    ],
+    "criteria": [
+      {
+        "id": "dp-1",
+        "rule": "La rejilla se recorre con flechas: izquierda y derecha un dia, arriba y abajo una semana, Home y End al primero y ultimo del mes, PageUp y PageDown cambian de mes. Salir del mes por una flecha avanza la vista.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dp-2",
+        "rule": "Un solo dia del mes es tabulable: el seleccionado, o hoy, o el primero. Los demas quedan en tabindex -1 y se alcanzan con flechas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dp-3",
+        "rule": "Celda de dia, boton de mes y atajo de rango miden --hit-target-min. Un calendario se toca con el dedo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dp-4",
+        "rule": "Lunes es el primer dia de la semana y los meses van en espanol.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "dp-5",
+        "rule": "Hoy se marca con anillo, no con relleno: el relleno es seleccion. Un dia fuera de min/max esta deshabilitado y no solo atenuado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dp-6",
+        "rule": "En range, los extremos redondean solo por su lado exterior y el tramo intermedio no redondea, para que el rango se lea como una barra continua.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "dp-7",
+        "rule": "El color del dia seleccionado sale de --text-on-accent sobre --action-accent. Ningun blanco literal.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "control-shell",
+      "popover"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--action-accent",
+    "--text-on-accent",
+    "--surface-accent-subtle",
+    "--text-accent",
+    "--border-strong",
+    "--radius-pill",
+    "--hit-target-min",
+    "--type-data"
+  ],
+  "nonGoals": [
+    "No es un campo de texto de fecha: no se teclea la fecha, se elige. Si hace falta teclearla, es un Input con mascara y no este componente.",
+    "No es un calendario de agenda: no muestra eventos ni horas."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  },
+  "reference": {
+    "src": "components/DatePicker.jsx",
+    "states": "docs/cards/combo-range.card.html",
+    "demo": "docs/demos/datepicker.html"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "motion",
+  "name": "Motion",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "Resorte para lo que se toca, ease-out para lo que aparece. Cuatro duraciones entre 100 y 400ms, y un bloque de reduced-motion que las anula sin anular el cambio de estado.",
+  "tokens": [
+    "--ease-spring",
+    "--ease-out",
+    "--ease-in-out",
+    "--dur-instant",
+    "--dur-fast",
+    "--dur-base",
+    "--dur-slow",
+    "--lift-hover",
+    "--press-scale",
+    "--hover-scale"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "mot-1",
+        "rule": "Toda duracion esta entre 100ms y 400ms. Por debajo no se percibe; por encima estorba.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mot-2",
+        "rule": "prefers-reduced-motion lleva todas las duraciones a 1ms y anula desplazamiento y escala, sin eliminar el cambio de estado: lo que cambia sigue cambiando, deja de moverse.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mot-3",
+        "rule": "El estado final del render no depende de que corra un frame de animacion. En pestana oculta, iframe en segundo plano o preview, el componente se ve completo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mot-4",
+        "rule": "--ease-spring solo en respuesta a un toque o un hover; --ease-out en lo que entra o se expande; --ease-in-out en lo que se mueve o transforma.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "mot-5",
+        "rule": "Ningun archivo fuera de tokens/ declara @keyframes propios ni una curva literal.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "Animar por deleite: si el movimiento no comunica un cambio de estado, no va."
+  ],
+  "reference": {
+    "src": "tokens/motion.css",
+    "states": "guidelines/motion.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

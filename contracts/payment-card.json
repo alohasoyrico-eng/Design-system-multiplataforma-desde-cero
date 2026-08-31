@@ -1,0 +1,147 @@
+{
+  "id": "payment-card",
+  "name": "PaymentCard",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "La tarjeta Flow visual en proporción real 1.586, con estado congelado.",
+  "api": {
+    "members": [
+      {
+        "name": "holder",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "last4",
+        "kind": "prop",
+        "type": "string",
+        "required": true,
+        "note": "Solo los últimos cuatro. El PAN completo no entra al componente."
+      },
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'ink' | 'accent' | 'sand'",
+        "default": "ink",
+        "variantAxis": true
+      },
+      {
+        "name": "frozen",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "note": "Etiqueta arriba a la derecha: FLOTA / PERSONAL."
+      },
+      {
+        "name": "expires",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onClick",
+        "kind": "event",
+        "type": "() => void"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "value": "ink",
+      "use": "Tarjeta principal."
+    },
+    {
+      "value": "accent",
+      "use": "Una sola por vista: la tarjeta activa."
+    },
+    {
+      "value": "sand",
+      "use": "Secundarias y listas."
+    }
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pc-1",
+        "rule": "Proporción 1.586 en cualquier ancho.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pc-2",
+        "rule": "Nunca muestra el PAN completo ni el CVV.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pc-3",
+        "rule": "frozen se anuncia por texto, no solo por el velo visual.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pc-4",
+        "rule": "El número se lee en --type-data con separación por grupos.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "primitives": [
+      "badge"
+    ],
+    "allowDeviation": true
+  },
+  "deps": {
+    "assets": [
+      {
+        "path": "assets/flow-logo.png",
+        "resolve": "window.FLOW_ASSET_BASE + path"
+      }
+    ],
+    "globals": [
+      {
+        "name": "FLOW_ASSET_BASE",
+        "purpose": "Ruta a la raíz del DS para resolver el logo",
+        "required": true
+      }
+    ]
+  },
+  "content": {
+    "surface": "Wallet y detalle de tarjeta",
+    "product": "drivers-app",
+    "viewport": [
+      "mobile"
+    ],
+    "theme": [
+      "light",
+      "dark"
+    ],
+    "copy": "final"
+  },
+  "tokens": [
+    "--surface-inverse",
+    "--action-accent",
+    "--type-data",
+    "--radius-xl"
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "components/PaymentCard.jsx",
+    "demo": "docs/demos/payment-card.html"
+  },
+  "domain": "fintech"
+}

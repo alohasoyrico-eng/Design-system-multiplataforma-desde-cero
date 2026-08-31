@@ -1,0 +1,33 @@
+{
+  "id": "state-grid",
+  "name": "StateGrid",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Grid de estados visuales de un componente (hover, focus, disabled, loading) con specimen y label por celda.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sg-1",
+        "rule": "Cada celda usa Card outlined + Specimen, no HTML crudo.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "implements": [
+    "card",
+    "specimen"
+  ],
+  "nonGoals": [
+    "No muestra transiciones entre estados: cada celda es un snapshot estatico."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/StateGrid.tsx"
+  }
+}

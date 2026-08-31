@@ -1,0 +1,86 @@
+{
+  "id": "switch",
+  "name": "Switch",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Interruptor de encendido: el thumb se estira al presionar y cruza con resorte.",
+  "api": {
+    "members": [
+      {
+        "name": "checked",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(checked: boolean) => void"
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "note": "Clickeable: forma parte del target."
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "toggle-control"
+    ],
+    "criteria": [
+      {
+        "id": "sw-1",
+        "rule": "El cambio de estado se lee sin depender del color: el thumb se desplaza.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "sw-2",
+        "rule": "En prefers-reduced-motion el thumb cruza sin resorte ni estiramiento.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "toggle-control"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--action-primary",
+    "--border-default",
+    "--radius-pill",
+    "--ease-spring"
+  ],
+  "nonGoals": [
+    "Sustituir a Checkbox en formularios: Switch aplica un cambio inmediato, no una selección que se guarda al enviar."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "primitives/Switch.jsx",
+    "states": "docs/cards/forms.card.html",
+    "demo": "docs/demos/switch.html"
+  }
+}

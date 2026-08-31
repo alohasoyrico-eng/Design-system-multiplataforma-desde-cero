@@ -1,0 +1,633 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "flow/contracts/_schema.json",
+  "title": "Flow item contract",
+  "description": "Master por item. De aqui se generan .d.ts, entrada de registry, scaffold de docs y firmas Angular/Flutter. Nadie edita los generados a mano. El esquema NO es uniforme entre capas: ver allOf.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "layer",
+    "status",
+    "summary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "layer": {
+      "enum": [
+        "foundations",
+        "primitives",
+        "components",
+        "patterns",
+        "templates"
+      ]
+    },
+    "shell": {
+      "type": "boolean",
+      "description": "Primitive de comportamiento sin pixel propio. No se publica como item de docs."
+    },
+    "function": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "actions",
+          "forms",
+          "display",
+          "feedback",
+          "navigation",
+          "dataviz",
+          "layout"
+        ]
+      },
+      "description": "Etiqueta de agrupacion en docs. Reemplaza a la carpeta por funcion."
+    },
+    "status": {
+      "enum": [
+        "stable",
+        "beta",
+        "planned",
+        "deprecated"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "since": {
+      "type": "string"
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Ids que este item absorbe. Sostiene la regla R2."
+    },
+    "adapters": {
+      "type": "array",
+      "description": "Compatibilidad temporal. Un adaptador sin deleteBy es una implementacion paralela permanente.",
+      "items": {
+        "type": "object",
+        "required": [
+          "exports",
+          "reason",
+          "deleteBy",
+          "owner"
+        ],
+        "properties": {
+          "exports": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "deleteBy": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "api": {
+      "type": "object",
+      "description": "Contrato PUBLICO. Normativo y versionado: romperlo es breaking change. Unica fuente del .d.ts. Nada declarado en composition puede aparecer aqui (regla R4).",
+      "additionalProperties": false,
+      "properties": {
+        "generics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "param"
+            ],
+            "properties": {
+              "param": {
+                "type": "string"
+              },
+              "default": {
+                "type": "string"
+              },
+              "describes": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "types": {
+          "type": "array",
+          "description": "Interfaces auxiliares que el consumidor necesita nombrar (TableColumn, MapPin, ChartSeries). La tabla plana del registry no las podia expresar.",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "members"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "generic": {
+                "type": "boolean"
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "kind",
+              "type"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "prop",
+                  "event",
+                  "slot",
+                  "renderProp"
+                ],
+                "description": "El registry los aplanaba a todos en 'prop'. Angular y Flutter los mapean distinto: prop=@Input, event=@Output, slot=ng-content."
+              },
+              "type": {
+                "type": "string"
+              },
+              "default": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "null"
+                ]
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "note": {
+                "type": "string"
+              },
+              "requiredWhen": {
+                "type": "string",
+                "description": "Requisito condicional: 'type=heatmap'. Sin esto, FlowChart no es expresable."
+              },
+              "variantAxis": {
+                "type": "boolean",
+                "description": "Esta prop ES el eje de variantes documentadas del item."
+              }
+            }
+          }
+        }
+      }
+    },
+    "modes": {
+      "type": "array",
+      "description": "Valores de una prop enum que cambian los requisitos de entrada, no solo la piel. Distinto de variants.",
+      "items": {
+        "type": "object",
+        "required": [
+          "value"
+        ],
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "variants": {
+      "type": "array",
+      "description": "Misma data, distinta apariencia o densidad. Se documentan dentro del item, nunca como item aparte (R2).",
+      "items": {
+        "type": "object",
+        "required": [
+          "value"
+        ],
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "use": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "conformance": {
+      "type": "object",
+      "description": "Normativo y agnostico de framework. Verificable desde afuera sin saber la composicion. Es lo que hace segura la desviacion en el codebase destino.",
+      "additionalProperties": false,
+      "properties": {
+        "inherits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ids de shells cuyos criterios se expanden aqui al generar. Evita copiar el mismo focus-trap en 4 items y a la vez lo hace explicito para quien no use el shell."
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "rule",
+              "level",
+              "verify"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "rule": {
+                "type": "string"
+              },
+              "level": {
+                "enum": [
+                  "must",
+                  "should"
+                ]
+              },
+              "verify": {
+                "enum": [
+                  "automated",
+                  "visual",
+                  "manual"
+                ],
+                "description": "No todo es automatizable. Sin este campo el gate promete lo que no puede cumplir."
+              }
+            }
+          }
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "description": "Normativo para la implementacion de referencia de este repo; informativo para el codebase destino. Permite verificar R1 sin grafo de imports.",
+      "additionalProperties": false,
+      "properties": {
+        "shells": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primitives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowDeviation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Si el destino se desvia, hereda por su cuenta los criterios de conformance que el shell garantizaba."
+        }
+      }
+    },
+    "deps": {
+      "type": "object",
+      "description": "Dependencias que no son capas. Una dependencia externa NO convierte un item en primitive: R1 solo mira el grafo del sistema.",
+      "additionalProperties": false,
+      "properties": {
+        "external": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "loader"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "loader": {
+                "enum": [
+                  "cdn-lazy",
+                  "bundle",
+                  "runtime-fetch"
+                ]
+              },
+              "fallback": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "resolve"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "resolve": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "globals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "purpose"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "required": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "network": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "attribution": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "content": {
+      "type": "object",
+      "description": "Solo patterns y templates. Un template no tiene api: tiene contenido.",
+      "additionalProperties": false,
+      "properties": {
+        "surface": {
+          "type": "string"
+        },
+        "product": {
+          "enum": [
+            "drivers-app",
+            "fleet-dashboard",
+            "internal-tools",
+            "cross"
+          ]
+        },
+        "viewport": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "mobile",
+              "tablet",
+              "desktop"
+            ]
+          }
+        },
+        "theme": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "light",
+              "dark"
+            ]
+          }
+        },
+        "slots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "fills": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "copy": {
+          "type": "string",
+          "enum": [
+            "final",
+            "placeholder"
+          ]
+        }
+      }
+    },
+    "nonGoals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "platforms": {
+      "type": "object",
+      "description": "Alcance de adopcion. El gate del codebase destino se acota por esto: un item entra a la reja cuando alguien lo adopta, nunca antes.",
+      "additionalProperties": false,
+      "properties": {
+        "web": {
+          "enum": [
+            "reference",
+            "adopted",
+            "n/a"
+          ]
+        },
+        "angular": {
+          "enum": [
+            "reference",
+            "adopted",
+            "n/a"
+          ]
+        },
+        "flutter": {
+          "enum": [
+            "reference",
+            "adopted",
+            "n/a"
+          ]
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string"
+        },
+        "states": {
+          "type": "string"
+        },
+        "demo": {
+          "type": "string"
+        }
+      }
+    },
+    "domain": {
+      "enum": [
+        "fintech",
+        "mobility",
+        null
+      ],
+      "description": "El dominio no decide la capa: es campo, igual que function. Prohibido en foundations y primitives."
+    },
+    "implements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Ids de los components que este pattern compone. Une la receta con el widget en vez de duplicar la entrada."
+    },
+    "documentsAbsorption": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Ids absorbidos que este item menciona a proposito. La intencion se declara, no se adivina: sin esto R2 lo reprueba."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "layer": {
+            "const": "templates"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "content"
+        ],
+        "not": {
+          "required": [
+            "api"
+          ]
+        },
+        "$comment": "Hallazgo 1 de la sonda: un template no tiene contrato de props. Tiene composicion y contenido. El esquema no puede ser uniforme."
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "layer": {
+            "enum": [
+              "primitives",
+              "components"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "api",
+          "conformance"
+        ],
+        "$comment": "Todo lo publicado en estas capas expone API y responde a criterios verificables."
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "layer": {
+            "const": "patterns"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "conformance"
+        ],
+        "not": {
+          "required": [
+            "api"
+          ]
+        },
+        "$comment": "Un pattern no tiene una sola API: es una receta. Si expone props es un component. Esta es la frontera estructural que reemplazo al criterio de dominio, que no se podia recomputar."
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "layer": {
+            "const": "foundations"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "tokens"
+        ],
+        "not": {
+          "required": [
+            "api"
+          ]
+        }
+      }
+    }
+  ]
+}

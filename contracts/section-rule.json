@@ -1,0 +1,54 @@
+{
+  "id": "section-rule",
+  "name": "SectionRule",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Regla horizontal con label a la izquierda y meta (texto o ReactNode) a la derecha. Divide secciones.",
+  "api": {
+    "members": [
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "meta",
+        "kind": "prop",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sr-1",
+        "rule": "El label usa --font-mono uppercase con letter-spacing.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--font-mono",
+    "--text-muted",
+    "--border-subtle"
+  ],
+  "nonGoals": [
+    "No tiene variantes de color. El tono semantico se expresa en el meta (StatusPill, Badge)."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "components/SectionRule.tsx"
+  }
+}

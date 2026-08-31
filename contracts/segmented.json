@@ -1,0 +1,91 @@
+{
+  "id": "segmented",
+  "name": "SegmentedControl",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Segmentos de ancho igual para cambiar de vista en movil. El indicador viaja con resorte.",
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<{ value: string; label: string; icon?: string }>",
+        "required": true
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sgm-1",
+        "rule": "Es una tablist con las mismas reglas de teclado que Tabs: flechas recorren, solo el activo tabula. Que sea movil no rebaja el teclado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sgm-2",
+        "rule": "Cada segmento mide --hit-target-min de alto y reparte el ancho a partes iguales.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sgm-3",
+        "rule": "El activo se distingue por peso e indicador, no solo por color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "sgm-4",
+        "rule": "El indicador final no depende del resorte.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sgm-5",
+        "rule": "Dos o tres segmentos. Con cuatro las etiquetas se truncan y deja de ser legible.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--surface-card",
+    "--radius-pill",
+    "--shadow-raised",
+    "--ease-spring",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es Tabs de escritorio: aqui los segmentos reparten el ancho completo.",
+    "No es un grupo de radios: cambia de vista, no captura un valor de formulario."
+  ],
+  "reference": {
+    "src": "components/SegmentedControl.jsx",
+    "states": "docs/cards/mobile-nav.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

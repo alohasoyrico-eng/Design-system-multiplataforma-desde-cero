@@ -1,0 +1,109 @@
+{
+  "id": "circular-progress",
+  "name": "CircularProgress",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Anillo de progreso para tiles donde una barra ocuparia demasiado ancho: bateria, cuota, sincronizacion.",
+  "api": {
+    "members": [
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "number",
+        "default": 100
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "number",
+        "default": 56
+      },
+      {
+        "name": "strokeWidth",
+        "kind": "prop",
+        "type": "number",
+        "default": 5
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "showValue",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'accent' | 'success' | 'warning' | 'danger'",
+        "default": "accent",
+        "variantAxis": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cpr-1",
+        "rule": "Es un role=progressbar con aria-valuenow, min y max, igual que Progress: cambiar de forma no cambia la semantica.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cpr-2",
+        "rule": "El valor se recorta al rango y el anillo no se pasa de vuelta.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cpr-3",
+        "rule": "Con showValue la cifra va en la familia de dato y cabe dentro del anillo sin recortarse.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cpr-4",
+        "rule": "El arco final no depende de la transicion: en una pestana oculta muestra su porcentaje, no cero.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--action-accent",
+    "--status-success",
+    "--status-warning",
+    "--status-danger",
+    "--surface-sunken",
+    "--type-data"
+  ],
+  "nonGoals": [
+    "No es indeterminado: eso es Spinner.",
+    "No sustituye a Progress cuando hay ancho: la barra se compara mejor entre filas."
+  ],
+  "reference": {
+    "src": "components/CircularProgress.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

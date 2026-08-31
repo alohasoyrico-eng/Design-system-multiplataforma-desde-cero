@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { Treemap, ParetoChart, ScatterPlot, SmallMultiples, BulletChart, FlowChart } = NS;
+const units = [
+  {id:'u1',plate:'JMX-214',km:8200,costoKm:2.1},{id:'u2',plate:'KTR-882',km:3100,costoKm:3.4},
+  {id:'u3',plate:'MVD-101',km:9400,costoKm:1.9},{id:'u4',plate:'PLQ-472',km:2200,costoKm:2.6},
+  {id:'u5',plate:'QRS-330',km:6100,costoKm:2.3},{id:'u6',plate:'TWN-559',km:4800,costoKm:3.1},
+  {id:'u7',plate:'XCV-100',km:7300,costoKm:1.7},{id:'u8',plate:'BNM-220',km:1900,costoKm:4.2},
+];
+const regions = [
+  {id:'r1',label:'CDMX Norte',values:[42,48,45,51,49,55,58]},
+  {id:'r2',label:'CDMX Sur',values:[38,40,41,39,44,46,47]},
+  {id:'r3',label:'Guadalajara',values:[22,24,23,26,25,27,29]},
+  {id:'r4',label:'Monterrey',values:[30,29,31,30,55,60,62]},
+];
+const LIST = [
+  {id:'treemap', title:'Treemap (click = drill-down)', C:()=><Treemap format={(v)=>'$'+v+'k'} nodes={[
+    {id:'cdmx',label:'CDMX',value:812,deviation:0.14,children:[{id:'norte',label:'Norte',value:420,deviation:0.22},{id:'sur',label:'Sur',value:392,deviation:0.05}]},
+    {id:'gdl',label:'Guadalajara',value:340,deviation:-0.08},
+    {id:'mty',label:'Monterrey',value:298,deviation:0.31},
+    {id:'pue',label:'Puebla',value:120,deviation:-0.12},
+  ]} />},
+  {id:'pareto', title:'Pareto', C:()=><ParetoChart format={(v)=>'$'+v+'k'} data={[{label:'JMX-214',value:42},{label:'KTR-882',value:38},{label:'MVD-101',value:12},{label:'PLQ-472',value:9},{label:'QRS-330',value:7},{label:'TWN-559',value:5},{label:'XCV-100',value:3},{label:'BNM-220',value:2}]} />},
+  {id:'scatter', title:'Scatter (click = seleccionar)', C:function(){ const [sel,setSel]=React.useState(null);
+    return <ScatterPlot points={units.map(u=>({id:u.id,x:u.km,y:u.costoKm,label:u.plate}))} xLabel="Km recorridos" yLabel="Costo/km" xThreshold={3000} yThreshold={3} width={600} height={280} selectedId={sel} onSelect={setSel} />; }},
+  {id:'smallmultiples', title:'Small Multiples (click = seleccionar)', C:function(){ const [sel,setSel]=React.useState(null);
+    return <SmallMultiples items={regions} isOutlier={(it)=>Math.max(...it.values) > 55} format={(v)=>v+' viajes'} selectedId={sel} onSelect={setSel} />; }},
+  {id:'heatmap', title:'Heatmap', C:()=><FlowChart type="heatmap" format={(v)=>v+' viajes'} height={280}
+    matrix={{rows:['Lun','Mar','Mie','Jue','Vie','Sab'], cols:['6h','9h','12h','15h','18h','21h'],
+      values:[[12,28,22,30,45,20],[10,25,20,29,42,18],[14,30,25,32,48,22],[15,31,27,33,50,25],[18,35,30,38,60,30],[8,15,20,22,55,40]]
+        .flatMap((row,r)=>row.map((v,c)=>[c,r,v]))}}
+    ariaLabel="El pico de viajes es viernes a las 18h" />},
+  {id:'bullet', title:'Bullet', C:()=><BulletChart format={(v)=>'$'+v+'k'} rows={[
+    {label:'CDMX',value:82,target:75,prev:70,max:100},
+    {label:'Guadalajara',value:34,target:40,prev:38,max:100},
+    {label:'Monterrey',value:29,target:25,prev:22,max:100},
+  ]} />},
+  {id:'stacked100', title:'Stacked 100%', C:()=><FlowChart type="stacked100" palette="categorical" height={240}
+    labels={['CDMX','Guadalajara','Monterrey']}
+    series={[
+      {label:'Combustible',values:[52,70,40]},
+      {label:'Peaje',values:[18,10,12]},
+      {label:'Mantenimiento',values:[20,15,18]},
+      {label:'Electromovilidad',values:[10,5,30]},
+    ]}
+    ariaLabel="Monterrey concentra la electromovilidad de la flota" />},
+];
+function Demo(){ return <Sections list={LIST} style={{display:'flex',flexDirection:'column',maxWidth:680}} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Treemap ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

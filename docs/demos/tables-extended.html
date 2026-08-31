@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { Timeline, Table, TableTree, FilterableEditableTable, BulkActionsTable, Badge } = NS;
+const COLS = [
+  {key:'placa',label:'Placa',mono:true,sortable:true},
+  {key:'modelo',label:'Modelo',sortable:true},
+  {key:'conductor',label:'Conductor'},
+  {key:'estado',label:'Estado',render:(r)=>{const t={Activa:'success',Mantenimiento:'warning',Baja:'danger'}[r.estado]||'neutral';return Badge?<Badge tone={t}>{r.estado}</Badge>:r.estado;}},
+];
+const ROWS = [
+  {id:1,placa:'JMX-214-B',modelo:'Nissan Versa',conductor:'Ana Sosa',estado:'Activa',detalle:'Última revisión: 12 mar · 48,300 km · Póliza vigente hasta dic 2026.'},
+  {id:2,placa:'MXN-891-A',modelo:'Chevrolet Aveo',conductor:'Luis Beltrán',estado:'Mantenimiento',detalle:'En taller por frenos. Retorno estimado: viernes.'},
+  {id:3,placa:'GTO-102-C',modelo:'Kia Rio',conductor:'—',estado:'Baja',detalle:'Pendiente de venta. Documentación en resguardo.'},
+  {id:4,placa:'QRO-455-D',modelo:'Toyota Yaris',conductor:'Marta Ruiz',estado:'Activa',detalle:'Última revisión: 2 abr · 21,900 km · Póliza vigente hasta ago 2026.'},
+];
+const TREE = [
+  {id:'flota',nombre:'Flota CDMX',unidades:'6',children:[
+    {id:'act',nombre:'Activas',unidades:'4',children:[
+      {id:'t1',nombre:'JMX-214-B',unidades:'—'},
+      {id:'t2',nombre:'QRO-455-D',unidades:'—'},
+    ]},
+    {id:'mant',nombre:'En mantenimiento',unidades:'2'},
+  ]},
+  {id:'gdl',nombre:'Flota GDL',unidades:'3'},
+];
+const EVENTS = [
+  {id:1,label:'Alta de unidad',date:'2026-03-02',status:'completed',description:'JMX-214-B vinculada a Ana Sosa.'},
+  {id:2,label:'Servicio 40,000 km',date:'2026-04-18',status:'completed',description:'Cambio de aceite y frenos.'},
+  {id:3,label:'Renovación de póliza',date:'2026-07-01',status:'pending',description:'Vence en diciembre; cotización en curso.'},
+  {id:4,label:'Verificación semestral',date:'2026-07-20',status:'failed',description:'Rechazada por emisiones. Reagendar.'},
+];
+const LIST = [
+  {id:'table-tree', title:'Table · Tree', C:()=><TableTree columns={[{key:'nombre',label:'Grupo'},{key:'unidades',label:'Unidades',align:'right',mono:true}]} rows={TREE} rowKey="id" />},
+  {id:'timeline-events', title:'Timeline · mode="events" — absorbió TableTimeline', C:()=><Timeline mode="events" items={EVENTS.map(e=>({id:e.id,title:e.label,timestamp:new Date(e.date).toLocaleDateString('es-MX'),status:e.status==='completed'?'done':e.status==='pending'?'pending':e.status,description:e.description}))} />},
+  {id:'bulk-actions', title:'Table · Bulk Actions', C:()=><BulkActionsTable columns={COLS} rows={ROWS} rowKey="id"
+    actions={[{id:'export',label:'Exportar',icon:'download'},{id:'assign',label:'Asignar',icon:'person_add'},{id:'delete',label:'Eliminar',icon:'delete'}]}
+    onActionClick={(a,keys)=>console.log(a,[...keys])} />},
+  {id:'filters', title:'Filtros + edición en celda', C:function(){
+    const [rows,setRows] = React.useState(ROWS);
+    const cols = COLS.map(c=>({...c, filterable:true, editable:c.key!=='id'}));
+    return <FilterableEditableTable columns={cols} rows={rows} rowKey="id"
+      onUpdate={(k,field,val)=>setRows(rs=>rs.map(r=>r.id===k?{...r,[field]:val}:r))} />;
+  }},
+];
+function Demo(){ return <Sections list={LIST} style={{display:'flex',flexDirection:'column',maxWidth:760}} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Table ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

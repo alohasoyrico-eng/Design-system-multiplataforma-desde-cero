@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { OnboardingCarousel } = NS;
+function Demo(){
+  const [i,setI] = React.useState(0);
+  const slides = [
+    {icon:'bolt', title:'Gana con cada viaje', description:'Tarifas dinámicas y bonos por demanda alta.'},
+    {icon:'shield', title:'Viaja protegido', description:'Seguro incluido en cada viaje activo, sin costo extra.'},
+    {icon:'account_balance_wallet', title:'Cobra al instante', description:'Retira tus ganancias a tu cuenta cuando quieras.'},
+  ];
+  return <div style={{width:340,height:520,border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-xl)',overflow:'hidden',background:'var(--surface-canvas)'}}>
+    <OnboardingCarousel slides={slides} index={i} onIndexChange={setI} onSkip={()=>setI(slides.length-1)} onDone={()=>setI(0)} />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.OnboardingCarousel ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

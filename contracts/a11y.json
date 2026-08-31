@@ -1,0 +1,64 @@
+{
+  "id": "a11y",
+  "name": "Accesibilidad",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "Los minimos que hereda todo item publicado. No es una capa de revision al final: son criterios de token, verificables antes de que exista la pantalla.",
+  "tokens": [
+    "--focus-ring",
+    "--border-focus",
+    "--hit-target-min"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "a11y-1",
+        "rule": "Todo elemento operable muestra --focus-ring al recibir foco de teclado, y nadie escribe outline:none sin sustituir el indicador. La regla vive en tokens/a11y.css, no en cada componente. Dos mecanismos: :focus-visible para el foco que mueve el navegador, y :focus dentro de role=grid, menu y listbox, donde el foco lo mueve el propio sistema por codigo — ahi :focus-visible no se activa. Al verificar, un focus() de script no activa :focus-visible: se comprueba con :focus o leyendo la regla. Advertencia de medicion: en un iframe sin el foco del sistema, document.hasFocus() es false y ni :focus ni :focus-visible coinciden con nada. Un anillo que no aparece ahi no prueba un defecto; se comprueba leyendo las reglas cargadas y el estilo inline del elemento, que es donde vive el defecto real: un boxShadow inline le gana a la regla.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "a11y-2",
+        "rule": "Todo objetivo tactil mide 44px o mas, incluida la etiqueta cuando forma parte del control. Se mide contra el estilo computado, no contra getBoundingClientRect: el rect arrastra el posicionamiento subpixel de la fila y devuelve 43.9996 para una caja de 44px declarada. Un criterio automatizado que no se puede satisfacer por redondeo es un criterio que se acaba ignorando.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "a11y-3",
+        "rule": "Ninguna informacion se comunica solo por color: acompana forma, icono o texto.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "a11y-4",
+        "rule": "El foco entra a lo que se abre y vuelve al disparador al cerrarse. Se mide en el DOM montado, no en el archivo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "a11y-5",
+        "rule": "Escape cierra la capa mas alta y solo esa.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "a11y-6",
+        "rule": "El orden de tabulacion sigue el orden visual. Ningun tabindex positivo.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "Sustituir una auditoria: estos criterios son el suelo, no el techo."
+  ],
+  "reference": {
+    "src": "tokens/a11y.css",
+    "states": "guidelines/a11y.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

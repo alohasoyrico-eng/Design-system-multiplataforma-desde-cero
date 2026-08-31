@@ -1,0 +1,70 @@
+{
+  "id": "help-center",
+  "name": "HelpCenter",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Articulos de ayuda con buscador y agrupacion.",
+  "api": {
+    "members": [
+      {
+        "name": "articles",
+        "kind": "prop",
+        "type": "Array<{ id: string; title: string; group?: string; body?: React.ReactNode }>",
+        "required": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "hlp-1",
+        "rule": "El buscador tiene nombre accesible y mide --hit-target-min.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "hlp-2",
+        "rule": "El filtrado anuncia cuantos resultados quedan: una lista que se acorta en silencio no informa.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "hlp-3",
+        "rule": "Sin coincidencias ofrece salida: contacto o limpiar la busqueda.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "hlp-4",
+        "rule": "Un articulo abierto es una seccion asociada a su cabecera, con las mismas reglas que Accordion.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--border-subtle",
+    "--radius-md",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es un buscador global: solo filtra los articulos que recibe."
+  ],
+  "reference": {
+    "src": "components/HelpCenter.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

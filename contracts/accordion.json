@@ -1,0 +1,118 @@
+{
+  "id": "accordion",
+  "name": "Accordion",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Secciones que se expanden dentro de una tarjeta. La chevron gira con resorte y el contenido se abre animado.",
+  "api": {
+    "types": [
+      {
+        "name": "AccordionItem",
+        "members": [
+          [
+            "id",
+            "string"
+          ],
+          [
+            "title",
+            "string"
+          ],
+          [
+            "icon",
+            "string?"
+          ],
+          [
+            "meta",
+            "string?"
+          ],
+          [
+            "content",
+            "React.ReactNode"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "AccordionItem[]",
+        "required": true
+      },
+      {
+        "name": "defaultOpen",
+        "kind": "prop",
+        "type": "string",
+        "note": "id abierto al montar."
+      },
+      {
+        "name": "multiple",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "acc-1",
+        "rule": "La cabecera es un boton con aria-expanded y aria-controls apuntando a su panel; el panel se referencia de vuelta. Un div con onClick no anuncia que se puede abrir.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "acc-2",
+        "rule": "La cabecera entera es el objetivo, no solo la chevron, y mide --hit-target-min.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "acc-3",
+        "rule": "El contenido cerrado no es alcanzable con Tab ni por buscar en la pagina: si sigue en el arbol accesible, el orden de tabulacion salta a texto invisible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "acc-4",
+        "rule": "El estado final no depende de la animacion de apertura: en una pestana oculta la seccion abierta se ve abierta y con su alto real.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "acc-5",
+        "rule": "Sin multiple, abrir una cierra la anterior y eso se anuncia por aria-expanded en las dos.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--border-subtle",
+    "--surface-sunken",
+    "--radius-md",
+    "--ease-spring",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es navegacion: no cambia de vista.",
+    "No es una tabla en arbol: para filas con hijos esta TableTree."
+  ],
+  "reference": {
+    "src": "components/Accordion.jsx",
+    "states": "docs/cards/display.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

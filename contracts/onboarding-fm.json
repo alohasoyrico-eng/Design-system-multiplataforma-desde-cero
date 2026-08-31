@@ -1,0 +1,79 @@
+{
+  "id": "onboarding-fm",
+  "name": "Onboarding fleet manager",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Alta de cuenta de flota: datos de empresa, validacion de correo e invitacion al equipo.",
+  "content": {
+    "surface": "Alta de cuenta",
+    "product": "fleet-dashboard",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "progreso",
+        "fills": "Stepper de tres pasos"
+      },
+      {
+        "name": "empresa",
+        "fills": "Datos fiscales y de contacto"
+      },
+      {
+        "name": "equipo",
+        "fills": "Invitacion por correo con roles"
+      }
+    ]
+  },
+  "composition": {
+    "patterns": [
+      "wizard-pattern",
+      "auth-pattern"
+    ],
+    "components": [
+      "stepper",
+      "field",
+      "input",
+      "select",
+      "button"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "of-1",
+        "rule": "Se puede empezar a usar el producto sin completar el alta entera: nada bloquea la entrada salvo lo imprescindible.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "of-2",
+        "rule": "Invitar al equipo es opcional y se puede hacer despues.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "of-3",
+        "rule": "El correo se valida con un mensaje por campo, no con una alerta global.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/onboarding/index.html"
+  }
+}

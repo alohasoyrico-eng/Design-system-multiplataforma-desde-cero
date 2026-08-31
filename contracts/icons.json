@@ -1,0 +1,58 @@
+{
+  "id": "icons",
+  "name": "Iconografia",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "Material Symbols Rounded, una sola fuente. El relleno marca el estado activo; el tamano sigue la escala de espaciado.",
+  "tokens": [
+    "--space-4",
+    "--space-5",
+    "--space-6"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ico-1",
+        "rule": "Material Symbols Rounded es la unica fuente de iconos. Ningun emoji, ningun set mezclado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ico-2",
+        "rule": "Ningun icono se dibuja como SVG a mano salvo las dos excepciones declaradas del sistema: Flag (banderas de flag-icons) y Sparkline (dato, no icono).",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ico-3",
+        "rule": "Un icono que carga informacion tiene etiqueta accesible; uno decorativo esta oculto al lector de pantalla. Un IconButton sin ariaLabel no compila el contrato.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ico-4",
+        "rule": "El icono activo se distingue por relleno, no solo por color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ico-5",
+        "rule": "Tamanos de icono en pasos de la escala de espaciado: 16, 20 o 24.",
+        "level": "should",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "Ilustracion: el sistema no tiene ilustraciones propias y no las inventa."
+  ],
+  "reference": {
+    "src": "tokens/fonts.css",
+    "states": "guidelines/icons.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

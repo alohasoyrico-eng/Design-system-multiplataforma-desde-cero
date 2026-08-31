@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" viewport="700x560" subtitle="Input, Select, DatePicker, Textarea, Checkbox, Radio, Switch, Slider" name="Forms" -->
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+function ns(){ for (const k of ['Flow','FlowDS','FlowDesignSystem','DS','DesignSystem']) if (window[k] && window[k].Input) return window[k];
+  for (const k of Object.getOwnPropertyNames(window)) { try { const v = window[k]; if (v && typeof v === 'object' && v.Input && v.Switch) return v; } catch(e){} } return null; }
+const NS = ns(); const { Field, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, DatePicker } = NS || {};
+function Demo(){
+  const [q,setQ] = React.useState('');
+  const [plate,setPlate] = React.useState('JMX-214-B');
+  const [type,setType] = React.useState('sedan');
+  const [date,setDate] = React.useState('2026-07-08');
+  const [notes,setNotes] = React.useState('Cliente pide silla infantil.');
+  const [chk,setChk] = React.useState(true);
+  const [plan,setPlan] = React.useState('pro');
+  const [sw,setSw] = React.useState(true);
+  const [km,setKm] = React.useState(8);
+  return <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:18,padding:20,alignItems:'start'}}>
+    <Field label="Buscar" htmlFor="f1"><Input id="f1" icon="search" placeholder="Buscar unidad…" value={q} onChange={setQ} /></Field>
+    <Field label="Placa" htmlFor="f2" required><Input id="f2" mono value={plate} onChange={setPlate} suffix="placa" /></Field>
+    <Field label="Tipo de unidad"><Select icon="local_taxi" value={type} onChange={setType} options={[{value:'sedan',label:'Sedán'},{value:'van',label:'Van'},{value:'moto',label:'Moto'}]} /></Field>
+    <Field label="Inicio de turno"><DatePicker value={date} onChange={setDate} /></Field>
+    <Field label="Correo" error="Ingresa un correo válido."><Input type="email" icon="mail" invalid value="ana@" onChange={()=>{}} /></Field>
+    <Field label="Notas" help="Visible para el conductor."><Textarea value={notes} onChange={setNotes} maxLength={120} rows={2} /></Field>
+    <div style={{display:'flex',flexDirection:'column',gap:12}}>
+      <Checkbox checked={chk} onChange={setChk} label="Recordarme" />
+      <Checkbox indeterminate label="Seleccionar todo (3 de 12)" />
+      <Radio name="plan" value="basic" checked={plan==='basic'} onChange={setPlan} label="Básico" />
+      <Radio name="plan" value="pro" checked={plan==='pro'} onChange={setPlan} label="Pro" description="Flotas de 10+ unidades" />
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:18}}>
+      <Switch checked={sw} onChange={setSw} label="Notificaciones push" />
+      <Switch label="Modo silencioso" />
+      <Slider label="Radio de búsqueda" value={km} onChange={setKm} min={1} max={25} format={(v)=>v+' km'} />
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <Demo/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

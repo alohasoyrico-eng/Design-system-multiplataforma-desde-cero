@@ -1,0 +1,70 @@
+{
+  "id": "crud",
+  "name": "Listado + detalle (CRUD)",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Tabla con filtros, detalle en Drawer y confirmacion destructiva en Dialog. Lo que la receta garantiza es la continuidad entre los tres, que ninguno de ellos sabe solo.",
+  "implements": [
+    "table",
+    "drawer",
+    "dialog"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "crd-p1",
+        "rule": "Abrir el detalle no pierde la posicion en la lista: al cerrar, el foco vuelve a la fila que se abrio y el scroll no salta al principio.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "crd-p2",
+        "rule": "Guardar en el detalle actualiza la fila sin recargar la tabla entera ni reordenarla bajo el cursor.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "crd-p3",
+        "rule": "Borrar pide confirmacion en Dialog, dice que se borra por su nombre, y al confirmar el foco va a un sitio con sentido: la fila siguiente o el vacio.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "crd-p4",
+        "rule": "Los filtros activos se ven y se pueden limpiar de una vez. Una lista filtrada que parece vacia es la causa mas comun de 'no aparecen mis datos'.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "crd-p5",
+        "rule": "Vacio por filtro y vacio por falta de datos son dos EmptyState distintos con acciones distintas.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "table",
+      "drawer",
+      "dialog",
+      "emptystate"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No es una receta de permisos: quien puede borrar es del producto.",
+    "No define el esquema de datos."
+  ],
+  "reference": {
+    "demo": "ui_kits/internal-tools/index.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

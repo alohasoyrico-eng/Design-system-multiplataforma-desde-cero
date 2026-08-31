@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Flow · data-viz degenerado</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body{margin:0;font-family:var(--font-body);background:var(--surface-canvas);padding:24px}
+  h2{font:var(--type-title-sm);margin:24px 0 8px}
+  .caso{border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px;background:var(--surface-card);min-height:60px}
+  .rejilla{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .etq{font:var(--type-overline);color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  .err{font:var(--type-caption);color:var(--status-danger-text)}
+</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow || {};
+const { Donut, Bars, Treemap, ParetoChart, ScatterPlot, SmallMultiples, BulletChart, GanttChart } = NS;
+
+// Un limite de error por caso: un chart que revienta no debe tumbar la pagina,
+// y aqui interesa saber CUAL revienta, no perder los ocho.
+class Limite extends React.Component {
+  constructor(p){ super(p); this.state = {err:null}; }
+  static getDerivedStateFromError(e){ return {err: String(e && e.message || e)}; }
+  render(){ return this.state.err
+    ? React.createElement('div', {className:'err', 'data-reventado':'1'}, 'revienta: ' + this.state.err)
+    : this.props.children; }
+}
+
+const CASOS = [
+  ['Donut', (d) => <Donut segments={d.seg} centerLabel="Total" centerValue={d.seg.length} />],
+  ['Bars', (d) => <Bars data={d.cat} height={120} />],
+  ['Treemap', (d) => <Treemap nodes={d.nodos} height={140} />],
+  ['ParetoChart', (d) => <ParetoChart data={d.cat} height={140} />],
+  ['ScatterPlot', (d) => <ScatterPlot points={d.pts} xLabel="km" yLabel="costo" height={140} />],
+  ['SmallMultiples', (d) => <SmallMultiples items={d.series} columns={3} />],
+  ['BulletChart', (d) => <BulletChart rows={d.filas} />],
+  ['GanttChart', (d) => <GanttChart tasks={d.tareas} />],
+];
+
+const VACIO = { seg:[], cat:[], nodos:[], pts:[], series:[], filas:[], tareas:[] };
+const UNO = {
+  seg:[{label:'A',value:5}], cat:[{label:'A',value:5}], nodos:[{label:'A',value:5,deviation:0}],
+  pts:[{id:'a',x:1,y:1,label:'A'}], series:[{id:'a',label:'A',values:[3]}],
+  filas:[{label:'A',value:5,target:10}], tareas:[{id:'t1',name:'A',start:'2026-08-01',end:'2026-08-01'}],
+};
+const IGUALES = {
+  seg:[{label:'A',value:5},{label:'B',value:5}], cat:[{label:'A',value:5},{label:'B',value:5}],
+  nodos:[{label:'A',value:5,deviation:0},{label:'B',value:5,deviation:0}],
+  pts:[{id:'a',x:2,y:2},{id:'b',x:2,y:2}],
+  series:[{id:'a',label:'A',values:[4,4,4]},{id:'b',label:'B',values:[4,4,4]}],
+  filas:[{label:'A',value:5,target:5},{label:'B',value:5,target:5}],
+  tareas:[{id:'t1',name:'A',start:'2026-08-01',end:'2026-08-02'},{id:'t2',name:'B',start:'2026-08-01',end:'2026-08-02'}],
+};
+
+function Demo(){
+  return <div>
+    {[['Sin datos',VACIO],['Un solo dato',UNO],['Valores iguales',IGUALES]].map(([titulo,d]) =>
+      <section key={titulo} data-caso={titulo}>
+        <h2>{titulo}</h2>
+        <div className="rejilla">
+          {CASOS.map(([nombre,render]) =>
+            <div className="caso" key={nombre} data-chart={nombre}>
+              <div className="etq">{nombre}</div>
+              <Limite>{render(d)}</Limite>
+            </div>)}
+        </div>
+      </section>)}
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Donut ? <Demo/> : <div>cargando…</div>);
+</script></body></html>

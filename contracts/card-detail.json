@@ -1,0 +1,80 @@
+{
+  "id": "card-detail",
+  "name": "Detalle de tarjeta",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Tarjeta con acciones rapidas: congelar, limites y movimientos.",
+  "content": {
+    "surface": "Detalle de tarjeta",
+    "product": "drivers-app",
+    "viewport": [
+      "mobile"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "tarjeta",
+        "fills": "PaymentCard con estado congelada"
+      },
+      {
+        "name": "acciones",
+        "fills": "Congelar, limites y ver NIP"
+      },
+      {
+        "name": "movimientos",
+        "fills": "TransactionRow filtrado por esta tarjeta"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "payment-card",
+      "transaction-row",
+      "switch",
+      "bottom-sheet",
+      "quick-action"
+    ],
+    "primitives": [
+      "icon-button",
+      "badge"
+    ],
+    "domain": "fintech",
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cd-1",
+        "rule": "Congelar es reversible y lo dice: una accion irreversible pediria confirmacion.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cd-2",
+        "rule": "El estado congelada se ve en la propia tarjeta, no solo en el switch.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cd-3",
+        "rule": "Los ultimos cuatro digitos nunca se acompanan del numero completo.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/wallet/index.html"
+  }
+}

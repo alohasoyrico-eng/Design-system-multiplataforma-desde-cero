@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { Select, DatePicker } = NS;
+const units = [
+  {value:'u1',label:'JMX-214-B',hint:'Ana Sosa'},{value:'u2',label:'KTR-882-A',hint:'Luis Prieto'},
+  {value:'u3',label:'MVD-101-C',hint:'Rosa Duarte'},{value:'u4',label:'PLQ-472-D',hint:'Marco Gil'},
+  {value:'u5',label:'QRS-330-E',hint:'Elena Ruz'},{value:'u6',label:'TWN-559-F',hint:'Pablo Mena'},
+];
+const LIST = [
+  {id:'select-searchable', title:'Select searchable + clearable', C:function(){ const [unit,setUnit]=React.useState('u3');
+    return <Select searchable clearable value={unit} onChange={setUnit} icon="local_taxi" options={units} placeholder="Busca una unidad…" />; }},
+  {id:'datepicker-range', title:'DatePicker mode="range"', C:function(){ const [range,setRange]=React.useState({from:'2026-07-01',to:'2026-07-09'});
+    return <DatePicker mode="range" value={range} onChange={setRange} />; }},
+];
+function Demo(){ return <Sections list={LIST} style={{display:'flex',flexDirection:'column',maxWidth:340,minHeight:380}} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Select ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

@@ -1,0 +1,91 @@
+{
+  "id": "tabbar",
+  "name": "TabBar",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Nav inferior fija de movil, cuatro o cinco destinos. El activo rellena su glifo y crece un 12%.",
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; icon: string; badge?: number | true }>",
+        "required": true
+      },
+      {
+        "name": "activeId",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(id: string) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tbr-1",
+        "rule": "Cada destino mide --hit-target-min y el activo lleva aria-current: es la navegacion principal de la app, no una fila de iconos.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tbr-2",
+        "rule": "El activo se distingue por relleno del glifo ademas del color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tbr-3",
+        "rule": "El badge numerico topa en 9+ y su significado va en el nombre accesible del destino, no en el punto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tbr-4",
+        "rule": "Cuatro o cinco destinos. Con seis las etiquetas se truncan y deja de ser navegable con el pulgar.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "tbr-5",
+        "rule": "Respeta el area segura inferior del dispositivo: la barra no queda bajo el indicador del sistema.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--border-subtle",
+    "--text-accent",
+    "--text-muted",
+    "--status-live",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es Tabs: cambia de seccion de la app, no de vista dentro de una pantalla.",
+    "No lleva mas de un nivel."
+  ],
+  "reference": {
+    "src": "components/TabBar.jsx",
+    "states": "docs/cards/mobile-nav.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,103 @@
+<!-- @dsCard group="Drivers App" viewport="390x800" subtitle="Home de turno, solicitud de viaje, tema oscuro" name="Drivers App" -->
+<!-- @startingPoint section="Templates" subtitle="App móvil de conductores (dark): turno, viaje entrante, ganancias" viewport="390x800" -->
+<!DOCTYPE html><html data-mode="dark"><head><meta charset="utf-8"><title>Flow · Driver</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+function ns(){ for (const k of ['Flow','FlowDS','FlowDesignSystem','DS','DesignSystem']) if (window[k] && window[k].Button) return window[k];
+  for (const k of Object.getOwnPropertyNames(window)) { try { const v = window[k]; if (v && typeof v === 'object' && v.Button && v.Badge) return v; } catch(e){} } return null; }
+const NS = ns();
+const { Button, IconButton, Switch, Badge, Avatar, Card, Progress, Toast, ToastStack, TabBar } = NS || {};
+
+function RideRequest({onAccept,onSkip}){
+  const [left,setLeft] = React.useState(15);
+  React.useEffect(()=>{
+    const t = setInterval(()=>setLeft(l=>l>0?l-1:0),1000);
+    return ()=>clearInterval(t);
+  },[]);
+  return <div style={{background:'var(--action-accent)',borderRadius:'var(--radius-xl)',padding:22,color:'#fff',boxShadow:'var(--shadow-accent-glow)',animation:'flowIn var(--dur-base) var(--ease-spring)'}}>
+    <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:14}}>
+      <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:20}}>bolt</span>
+      <span style={{fontSize:13,fontWeight:700,letterSpacing:'0.04em'}}>NUEVO VIAJE · +1.8×</span>
+      <span style={{marginLeft:'auto',fontFamily:'var(--font-mono)',fontSize:14,fontWeight:600,background:'rgba(0,0,0,.22)',borderRadius:999,padding:'2px 10px'}}>{left}s</span>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:8,marginBottom:16}}>
+      <div style={{display:'flex',gap:10,alignItems:'center'}}><span style={{width:8,height:8,borderRadius:'50%',background:'#fff',flex:'none'}}></span><span style={{fontSize:14,fontWeight:600}}>Av. Reforma 222</span></div>
+      <div style={{display:'flex',gap:10,alignItems:'center'}}><span style={{width:8,height:8,borderRadius:2,background:'rgba(255,255,255,.6)',flex:'none'}}></span><span style={{fontSize:14,color:'rgba(255,255,255,.85)'}}>Roma Norte · 4.2 km</span></div>
+    </div>
+    <div style={{display:'flex',gap:10}}>
+      <button onClick={onSkip} style={{flex:1,minHeight:48,border:'none',borderRadius:999,background:'rgba(0,0,0,.22)',color:'#fff',fontFamily:'inherit',fontSize:14,fontWeight:600,cursor:'pointer'}}>Pasar</button>
+      <button onClick={onAccept} style={{flex:2,minHeight:48,border:'none',borderRadius:999,background:'#fff',color:'var(--flow-red-600)',fontFamily:'inherit',fontSize:14,fontWeight:800,cursor:'pointer',transition:'transform var(--dur-fast) var(--ease-spring)'}}
+        onMouseEnter={(e)=>e.currentTarget.style.transform='scale(1.03)'}
+        onMouseLeave={(e)=>e.currentTarget.style.transform='none'}>Aceptar · $86</button>
+    </div>
+  </div>;
+}
+
+function App(){
+  const [tab,setTab] = React.useState('home');
+  const [online,setOnline] = React.useState(true);
+  const [ride,setRide] = React.useState(true);
+  const [toast,setToast] = React.useState(null);
+  const accept = ()=>{ setRide(false); setToast('Viaje aceptado. Navegando al punto de recogida.'); setTimeout(()=>setToast(null),3500); };
+  return <div style={{maxWidth:390,margin:'0 auto',minHeight:'100vh',display:'flex',flexDirection:'column',background:'var(--surface-canvas)',color:'var(--text-primary)'}}>
+    <header style={{display:'flex',alignItems:'center',gap:12,padding:'18px 20px 8px'}}>
+      <img src="../../assets/flow-logo.png" alt="Flow" style={{height:22,filter:'invert(1)'}} />
+      <Badge tone={online?'success':'neutral'} live={online} style={{marginLeft:'auto'}}>{online?'En línea':'Desconectado'}</Badge>
+      <IconButton icon="notifications" ariaLabel="Notificaciones" variant="tonal" size="sm" badge />
+    </header>
+    <main style={{flex:1,padding:'12px 20px 20px',display:'flex',flexDirection:'column',gap:16,overflowY:'auto'}}>
+      <Card padding={20}>
+        <div style={{display:'flex',alignItems:'center',gap:12}}>
+          <Avatar name="Diego Vera" size="lg" status={online?'online':'offline'} />
+          <div style={{flex:1}}>
+            <div style={{fontSize:16,fontWeight:700}}>Hola, Diego</div>
+            <div style={{fontSize:12.5,color:'var(--text-muted)'}}>{online?'La ciudad es tu turno.':'Conéctate para recibir viajes.'}</div>
+          </div>
+          <Switch checked={online} onChange={(v)=>{setOnline(v); if(!v) setRide(false); else setRide(true);}} />
+        </div>
+      </Card>
+      {online && ride && <RideRequest onAccept={accept} onSkip={()=>setRide(false)} />}
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+        <Card padding={18}>
+          <div style={{font:'var(--type-overline)',letterSpacing:'var(--tracking-overline)',textTransform:'uppercase',color:'var(--text-muted)'}}>Hoy</div>
+          <div style={{font:'var(--type-data-lg)',marginTop:4}}>$1,482</div>
+          <div style={{fontSize:12,color:'var(--status-success-text)',fontWeight:600,marginTop:2}}>12 viajes</div>
+        </Card>
+        <Card padding={18}>
+          <div style={{font:'var(--type-overline)',letterSpacing:'var(--tracking-overline)',textTransform:'uppercase',color:'var(--text-muted)'}}>Rating</div>
+          <div style={{font:'var(--type-data-lg)',marginTop:4}}>4.94</div>
+          <div style={{fontSize:12,color:'var(--text-muted)',marginTop:2}}>últimos 30 días</div>
+        </Card>
+      </div>
+      <Card padding={18}>
+        <Progress label="Meta semanal" value={62} showValue tone="accent" />
+        <div style={{fontSize:12,color:'var(--text-muted)',marginTop:8}}>$3,720 de $6,000 · te faltan 3 días</div>
+      </Card>
+      <Card padding={18}>
+        <div style={{display:'flex',alignItems:'center',gap:12}}>
+          <span className="flow-icon" aria-hidden="true" style={{fontSize:22,color:'var(--status-warning-text)'}}>warning</span>
+          <div style={{flex:1}}>
+            <div style={{fontSize:13.5,fontWeight:600}}>Verificación de tarjeta de circulación</div>
+            <div style={{fontSize:12,color:'var(--text-muted)'}}>Vence en 12 días. Súbela para evitar pausas.</div>
+          </div>
+          <Button variant="secondary" size="sm">Subir</Button>
+        </div>
+      </Card>
+    </main>
+    <TabBar activeId={tab} onChange={setTab} items={[
+      {id:'home',icon:'home',label:'Inicio'},
+      {id:'map',icon:'map',label:'Mapa'},
+      {id:'earnings',icon:'payments',label:'Ganancias'},
+      {id:'profile',icon:'person',label:'Perfil'},
+    ]} />
+    {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12,color:'#ccc'}}>bundle no cargado — recarga en unos segundos</div>);
+</script></body></html>

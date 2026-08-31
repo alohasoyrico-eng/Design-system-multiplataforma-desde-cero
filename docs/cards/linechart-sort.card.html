@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x460" subtitle="FlowChart de líneas y Table con columnas ordenables" name="Líneas & Table sortable" -->
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow;
+const { FlowChart, Table, Card } = NS || {};
+function Demo(){
+  return <div style={{display:'flex',flexDirection:'column',gap:20,padding:20}}>
+    <Card>
+      <div style={{font:'var(--type-title-sm)',marginBottom:12}}>Ingreso vs costo</div>
+      <FlowChart type="line" labels={['Feb','Mar','Abr','May','Jun','Jul']} format={(v)=>'$'+v+'k'}
+        series={[{label:'Ingreso',values:[540,571,558,590,601,612]},{label:'Costo',values:[262,255,270,259,258,248],color:'var(--flow-ink-900)'}]}
+        ariaLabel="El margen se abre: el ingreso sube y el costo baja" />
+    </Card>
+    <Table rowKey="unit" defaultSort={{key:'trips',dir:-1}} columns={[
+      {key:'unit',label:'Unidad',mono:true,sortable:true},
+      {key:'driver',label:'Conductor',sortable:true},
+      {key:'trips',label:'Viajes',align:'right',mono:true,sortable:true},
+      {key:'km',label:'Km',align:'right',mono:true,sortable:true},
+    ]} rows={[
+      {unit:'JMX-214-B',driver:'Ana Sosa',trips:12,km:184},
+      {unit:'KTR-882-A',driver:'Luis Prieto',trips:8,km:96},
+      {unit:'MVD-101-C',driver:'Rosa Duarte',trips:15,km:221},
+      {unit:'PLQ-472-D',driver:'Marco Gil',trips:21,km:88},
+    ]} />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <Demo/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

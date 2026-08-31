@@ -1,0 +1,39 @@
+<!-- @dsCard group="Components" viewport="640x420" subtitle="Timeline (historial vertical de un registro) y Divider (linea simple, con label, vertical)" name="Timeline & Divider" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Timeline & Divider</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas);padding:24px;box-sizing:border-box}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow || {};
+const { Timeline, Divider, Card } = NS;
+
+function Demo(){
+  return <div style={{display:'flex',gap:28,alignItems:'flex-start'}}>
+    <Card style={{width:320}}>
+      <Timeline items={[
+        {title:'Viaje solicitado', timestamp:'08:11', status:'done'},
+        {title:'Conductor asignado', description:'Ana Sosa · JMX-214-B', timestamp:'08:12', status:'done'},
+        {title:'En camino a destino', timestamp:'08:14', status:'active'},
+        {title:'Pago procesado', status:'pending'},
+      ]} />
+    </Card>
+    <Card style={{width:260,display:'flex',flexDirection:'column',gap:18}}>
+      <div style={{fontSize:13,color:'var(--text-secondary)'}}>Movimiento anterior</div>
+      <Divider />
+      <div style={{fontSize:13,color:'var(--text-secondary)'}}>Movimiento reciente</div>
+      <Divider label="Hoy" />
+      <div style={{display:'flex',gap:14,alignItems:'stretch',height:24}}>
+        <span style={{fontSize:13}}>Editar</span>
+        <Divider orientation="vertical" />
+        <span style={{fontSize:13}}>Eliminar</span>
+      </div>
+    </Card>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Timeline ? <Demo/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

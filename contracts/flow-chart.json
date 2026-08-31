@@ -1,0 +1,271 @@
+{
+  "id": "flow-chart",
+  "name": "FlowChart",
+  "layer": "primitives",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Toda la data-viz en un componente: ECharts con el tema de Flow leído de los tokens en runtime.",
+  "supersedes": [
+    "line-chart",
+    "stacked-bars-100",
+    "heatmap",
+    "waterfall-chart",
+    "polar-chart"
+  ],
+  "api": {
+    "types": [
+      {
+        "name": "ChartSeries",
+        "members": [
+          [
+            "label",
+            "string"
+          ],
+          [
+            "values",
+            "any[]"
+          ],
+          [
+            "data",
+            "Array<{label,value,color?}>"
+          ],
+          [
+            "color",
+            "string"
+          ],
+          [
+            "symbolSize",
+            "number"
+          ]
+        ]
+      },
+      {
+        "name": "ChartMatrix",
+        "members": [
+          [
+            "rows",
+            "string[]"
+          ],
+          [
+            "cols",
+            "string[]"
+          ],
+          [
+            "values",
+            "[number,number,number][]"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "type",
+        "kind": "prop",
+        "type": "FlowChartType",
+        "default": "line",
+        "variantAxis": true
+      },
+      {
+        "name": "series",
+        "kind": "prop",
+        "type": "ChartSeries[]"
+      },
+      {
+        "name": "labels",
+        "kind": "prop",
+        "type": "string[]"
+      },
+      {
+        "name": "matrix",
+        "kind": "prop",
+        "type": "ChartMatrix",
+        "requiredWhen": "type=heatmap"
+      },
+      {
+        "name": "indicators",
+        "kind": "prop",
+        "type": "Array<string | {name,max}>",
+        "requiredWhen": "type=radar"
+      },
+      {
+        "name": "totals",
+        "kind": "prop",
+        "type": "number[]",
+        "requiredWhen": "type=waterfall"
+      },
+      {
+        "name": "target",
+        "kind": "prop",
+        "type": "number",
+        "requiredWhen": "type=gauge"
+      },
+      {
+        "name": "format",
+        "kind": "renderProp",
+        "type": "(value: number) => string",
+        "note": "Aplica a eje, tooltip y etiquetas a la vez."
+      },
+      {
+        "name": "palette",
+        "kind": "prop",
+        "type": "'auto' | 'duo' | 'categorical'",
+        "default": "auto"
+      },
+      {
+        "name": "highlight",
+        "kind": "prop",
+        "type": "string",
+        "note": "Una sola serie en --viz-accent."
+      },
+      {
+        "name": "animate",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "loading",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "option",
+        "kind": "prop",
+        "type": "Record<string, any>",
+        "note": "Merge profundo. Escape hatch, no camino normal."
+      },
+      {
+        "name": "onSelect",
+        "kind": "event",
+        "type": "(params: any) => void"
+      },
+      {
+        "name": "ariaLabel",
+        "kind": "prop",
+        "type": "string",
+        "required": true,
+        "note": "La conclusión, no el tipo de chart."
+      }
+    ]
+  },
+  "modes": [
+    {
+      "value": "heatmap",
+      "requires": [
+        "matrix"
+      ],
+      "note": "Ignora series."
+    },
+    {
+      "value": "radar",
+      "requires": [
+        "indicators",
+        "series"
+      ]
+    },
+    {
+      "value": "waterfall",
+      "requires": [
+        "series",
+        "totals"
+      ]
+    },
+    {
+      "value": "gauge",
+      "requires": [
+        "target"
+      ],
+      "note": "Cifra en --type-data-lg."
+    },
+    {
+      "value": "boxplot",
+      "requires": [
+        "series"
+      ],
+      "note": "values es [min,q1,med,q3,max]."
+    }
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "fc-1",
+        "rule": "ariaLabel obligatorio y describe la conclusión.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "fc-2",
+        "rule": "Con 1-3 series usa tinta + accent; la paleta categórica entra a partir de 4.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "fc-3",
+        "rule": "El rojo de marca no es color de serie.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "fc-4",
+        "rule": "Repinta al cambiar data-mode sin remontar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "fc-5",
+        "rule": "Si la librería no carga, degrada a mensaje; nunca a un hueco.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "fc-6",
+        "rule": "Sin datos muestra la causa, no un lienzo vacío.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "fc-7",
+        "rule": "prefers-reduced-motion desactiva la animación de entrada.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": true
+  },
+  "deps": {
+    "external": [
+      {
+        "name": "echarts",
+        "version": "^5",
+        "loader": "cdn-lazy",
+        "fallback": "Mensaje de error en la superficie del chart"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-grid",
+    "--viz-label",
+    "--viz-accent",
+    "--viz-ramp-1",
+    "--type-data",
+    "--type-data-lg"
+  ],
+  "nonGoals": [
+    "Sparkline: 88px dentro de un KPI no justifica montar ECharts; sigue siendo SVG a mano a propósito.",
+    "No absorbe a los siete que sí cargan una decisión analítica propia: Bars (destaca el máximo), Donut (etiqueta central y leyenda con porcentajes), ParetoChart (orden y umbral 80%), Treemap (color por desvío), ScatterPlot (umbrales de cuadrante), BulletChart y SmallMultiples (dibujo propio). Esos no son adaptadores: son patterns de data-viz y viven en la capa de patterns."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "primitives/FlowChart.jsx",
+    "demo": "docs/demos/flowchart.html"
+  }
+}

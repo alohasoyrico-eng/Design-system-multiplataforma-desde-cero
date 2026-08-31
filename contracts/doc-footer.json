@@ -1,0 +1,29 @@
+{
+  "id": "doc-footer",
+  "name": "DocFooter",
+  "layer": "patterns",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Footer de pagina de documentacion con metadata (last updated, version) y links de accion.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "df-1",
+        "rule": "La fecha y version usan --font-mono.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No es el footer global del sitio: es el footer de una pagina individual de docs."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/DocFooter.tsx"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "nav-card",
+  "name": "NavCard",
+  "layer": "patterns",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Card de navegacion prev/next entre paginas de documentacion con nombre y flecha direccional.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "nc-1",
+        "rule": "El link es accesible como <a> con href.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "nc-2",
+        "rule": "Hover cambia el fondo (fill), no eleva la card.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No tiene imagen ni descripcion: solo label y nombre."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/NavCard.tsx"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "color",
+  "name": "Color",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "Referencia arena/tinta/rojo y capa semantica encima. El rojo de marca es quirurgico: accion y estado vivo, nunca decoracion.",
+  "tokens": [
+    "--surface-canvas",
+    "--surface-card",
+    "--surface-sunken",
+    "--surface-inverse",
+    "--surface-accent-subtle",
+    "--text-primary",
+    "--text-secondary",
+    "--text-muted",
+    "--text-on-accent",
+    "--text-on-inverse",
+    "--text-accent",
+    "--text-link",
+    "--border-subtle",
+    "--border-default",
+    "--border-strong",
+    "--border-focus",
+    "--action-primary",
+    "--action-accent",
+    "--status-success",
+    "--status-warning",
+    "--status-danger",
+    "--status-info",
+    "--status-live",
+    "--focus-ring"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "col-1",
+        "rule": "Ningun archivo fuera de tokens/ escribe un color literal. Todo color sale de un token semantico; los --flow-* de referencia solo se consumen dentro de tokens/.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "col-2",
+        "rule": "Todo par texto/superficie del sistema alcanza 4.5:1, en claro y en oscuro. Un fondo semitransparente se compone sobre la superficie que declara el par antes de medir.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "col-3",
+        "rule": "Todo token semantico tiene contrapartida en dark.css, o es alias de uno que la tiene. Una excepcion deliberada se declara aqui, no se deja implicita.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "col-4",
+        "rule": "El rojo de marca no aparece como color de serie de datos ni como decoracion: solo accion, estado vivo, foco y enlaces. Maximo un CTA de acento por vista.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "col-5",
+        "rule": "Danger no es el rojo de marca. Son dos rojos distintos y no se sustituyen.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "Ofrecer una paleta abierta: si un color no tiene nombre semantico, no existe para el sistema."
+  ],
+  "reference": {
+    "src": "tokens/colors.css",
+    "states": "guidelines/color.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

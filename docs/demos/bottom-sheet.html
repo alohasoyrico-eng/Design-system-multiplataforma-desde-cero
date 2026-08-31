@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, Menu, Field, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, DatePicker, FileUpload, OTPInput, PasscodeKeypad, Card, Badge, Chip, Avatar, Table, Skeleton, EmptyState, Accordion, Sparkline, Bars, PaymentCard, TransactionRow, MapCanvas, StatTile, Donut, RoleMatrix, Tabs, Stepper, Breadcrumb, Pagination, SegmentedControl, Spinner, Progress, Tooltip, Dialog, Toast, ToastStack, Drawer, BottomSheet, BiometricPrompt } = NS;
+function Demo(){
+const [o,setO]=React.useState(true);
+return <div style={{position:'relative',height:330,maxWidth:390,border:'1px solid var(--border-default)',borderRadius:24,overflow:'hidden',background:'var(--surface-sunken)'}}>
+  <div style={{padding:16}}><Button variant="secondary" size="sm" onClick={()=>setO(true)}>Abrir sheet</Button></div>
+  <BottomSheet open={o} onClose={()=>setO(false)} fixed={false} title="Pemex Reforma">
+    <div style={{display:'flex',flexDirection:'column',gap:12}}>
+      <div style={{fontFamily:'var(--font-mono)',fontSize:24,fontWeight:600}}>−$820.50</div>
+      <div style={{display:'flex',gap:8}}><Badge tone="success" icon="check">Aplicado</Badge><Badge>Combustible</Badge></div>
+    </div>
+  </BottomSheet>
+</div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

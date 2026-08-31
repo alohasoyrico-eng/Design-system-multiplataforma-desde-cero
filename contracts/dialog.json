@@ -1,0 +1,108 @@
+{
+  "id": "dialog",
+  "name": "Dialog",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Modal sobre scrim difuminado que sube con resorte. Escape y clic en el scrim cierran.",
+  "api": {
+    "members": [
+      {
+        "name": "open",
+        "kind": "prop",
+        "type": "boolean",
+        "required": true
+      },
+      {
+        "name": "onClose",
+        "kind": "event",
+        "type": "() => void",
+        "required": true
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'danger' | 'success'",
+        "variantAxis": true
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Cuerpo."
+      },
+      {
+        "name": "actions",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Pie alineado a la derecha, normalmente Buttons."
+      },
+      {
+        "name": "width",
+        "kind": "prop",
+        "type": "number",
+        "default": 440
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "overlay-shell"
+    ],
+    "criteria": [
+      {
+        "id": "dl-1",
+        "rule": "role=dialog con aria-modal y aria-labelledby apuntando al título.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dl-5",
+        "rule": "Una acción destructiva no queda como acción por defecto del teclado.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "overlay-shell"
+    ],
+    "primitives": [
+      "button",
+      "icon-button"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-card",
+    "--shadow-overlay",
+    "--radius-xl",
+    "--ease-spring"
+  ],
+  "nonGoals": [
+    "Confirmaciones de bajo riesgo: eso es un Toast con deshacer, no un modal."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "components/Dialog.jsx",
+    "demo": "docs/demos/dialog.html"
+  }
+}

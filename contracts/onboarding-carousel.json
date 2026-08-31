@@ -1,0 +1,110 @@
+{
+  "id": "onboarding-carousel",
+  "name": "OnboardingCarousel",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Bienvenida a pantalla completa: ilustracion, titulo, descripcion, puntos de paginacion y CTA que cambia en la ultima diapositiva.",
+  "api": {
+    "members": [
+      {
+        "name": "slides",
+        "kind": "prop",
+        "type": "Array<{ title: string; description?: string; illustration?: React.ReactNode; icon?: string }>",
+        "required": true
+      },
+      {
+        "name": "index",
+        "kind": "prop",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "onIndexChange",
+        "kind": "event",
+        "type": "(index: number) => void"
+      },
+      {
+        "name": "onSkip",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "onDone",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "skipLabel",
+        "kind": "prop",
+        "type": "string",
+        "default": "Omitir"
+      },
+      {
+        "name": "doneLabel",
+        "kind": "prop",
+        "type": "string",
+        "default": "Empezar"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "onb-1",
+        "rule": "Se puede avanzar sin gesto: el CTA lo hace y los puntos son operables. Un carrusel que solo responde al swipe excluye al teclado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "onb-2",
+        "rule": "Los puntos dicen la posicion en texto: 'paso 2 de 4', no tres circulos mudos.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "onb-3",
+        "rule": "Omitir esta disponible en todas las diapositivas: nadie queda obligado a ver el recorrido completo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "onb-4",
+        "rule": "El CTA cambia a doneLabel solo en la ultima.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "onb-5",
+        "rule": "La ilustracion es decorativa y esta oculta al lector; su color sale de tokens (--illustration-*), no de un array en el componente.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--illustration-1",
+    "--text-on-accent",
+    "--surface-canvas",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No avanza solo por tiempo.",
+    "No pide datos: es una bienvenida, no un wizard."
+  ],
+  "reference": {
+    "src": "components/OnboardingCarousel.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

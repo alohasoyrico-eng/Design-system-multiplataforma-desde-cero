@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font:var(--type-overline);text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin:28px 0 10px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Select, Field, Flag } = NS;
+
+const UNIDADES = [
+  {value:'sedan',label:'Sedán'},
+  {value:'van',label:'Van'},
+  {value:'moto',label:'Moto'},
+  {value:'pickup',label:'Pickup'},
+];
+const CIUDADES = ['Ciudad de México','Guadalajara','Monterrey','Querétaro','Puebla'];
+const CATEGORIAS = [
+  {value:'gas',label:'Gasolina'},
+  {value:'peaje',label:'Peaje'},
+  {value:'taller',label:'Taller'},
+  {value:'lavado',label:'Lavado'},
+];
+const PLACAS = [
+  {value:'u1',label:'JMX-214-B · Nissan Versa'},
+  {value:'u2',label:'KLP-882-A · Chevrolet Aveo'},
+  {value:'u3',label:'TRC-501-C · Toyota Hilux'},
+];
+const PAISES = [
+  {value:'AR',label:'Argentina',hint:'+54'},
+  {value:'BR',label:'Brasil',hint:'+55'},
+  {value:'CL',label:'Chile',hint:'+56'},
+  {value:'CO',label:'Colombia',hint:'+57'},
+  {value:'MX',label:'México',hint:'+52'},
+  {value:'PE',label:'Perú',hint:'+51'},
+  {value:'ES',label:'España',hint:'+34'},
+  {value:'US',label:'Estados Unidos',hint:'+1'},
+];
+
+function pais(o, st){
+  if (st && st.trigger) return <Flag country={o.value} size={20} />;
+  return <span style={{flex:1,minWidth:0,display:'flex',alignItems:'baseline',gap:6}}>
+    <span style={{alignSelf:'center',display:'flex'}}><Flag country={o.value} size={20} /></span>
+    <span style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{o.label}</span>
+    <span style={{font:'var(--type-caption)',color:'var(--text-muted)',flexShrink:0}}>{o.hint}</span>
+  </span>;
+}
+
+function Demo(){
+  const [u,setU] = React.useState('sedan');
+  const [c,setC] = React.useState('Monterrey');
+  const [cat,setCat] = React.useState(['gas','peaje']);
+  const [p,setP] = React.useState('u3');
+  const [pais_,setPais] = React.useState('MX');
+  return <div style={{maxWidth:420,display:'flex',flexDirection:'column'}}>
+    <h3>Lista cerrada</h3>
+    <Field label="Tipo de unidad" htmlFor="s1">
+      <Select id="s1" icon="local_taxi" options={UNIDADES} value={u} onChange={setU} />
+    </Field>
+
+    <h3>searchable · filtra por escritura</h3>
+    <Field label="Ciudad de operación" htmlFor="s2" help="Filtra la lista; no acepta valores fuera de ella.">
+      <Select id="s2" searchable options={CIUDADES} value={c} onChange={setC} placeholder="Busca ciudad…" />
+    </Field>
+
+    <h3>multiple</h3>
+    <Field label="Categorías de gasto" htmlFor="s3" help="La tarjeta solo autoriza estas categorías.">
+      <Select id="s3" multiple searchable options={CATEGORIAS} value={cat} onChange={setCat} placeholder="Selecciona…" />
+    </Field>
+
+    <h3>creatable · admite un valor nuevo</h3>
+    <Field label="Unidad" htmlFor="s4" help="Si la placa no está dada de alta, se puede capturar.">
+      <Select id="s4" creatable icon="local_shipping" options={PLACAS} value={p} onChange={setP} placeholder="Filtra por placa o modelo…" />
+    </Field>
+
+    <h3>renderOption · el selector de país ya no es un componente</h3>
+    <Field label="País" htmlFor="s5" help="Define el código telefónico y la moneda.">
+      <Select id="s5" searchable options={PAISES} value={pais_} onChange={setPais} renderOption={pais} placeholder="Elige país" />
+    </Field>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Select ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

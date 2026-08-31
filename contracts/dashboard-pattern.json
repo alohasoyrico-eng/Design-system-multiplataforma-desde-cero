@@ -1,0 +1,73 @@
+{
+  "id": "dashboard-pattern",
+  "name": "Dashboard / analytics",
+  "layer": "patterns",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "KPIs arriba, una grafica principal, apoyo secundario y tabla de actividad. Un solo CTA de acento por vista.",
+  "implements": [
+    "stattile",
+    "flow-chart",
+    "table",
+    "datepicker"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "dsh-p1",
+        "rule": "Un solo CTA de acento en toda la vista. Dos acentos en un dashboard no jerarquizan nada.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "dsh-p2",
+        "rule": "El rango de fechas es uno y gobierna todo lo que se ve: dos controles de tiempo en la misma pantalla producen lecturas contradictorias.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "dsh-p3",
+        "rule": "Cada KPI dice contra que compara en su propio texto. Un delta sin referencia no se puede interpretar.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "dsh-p4",
+        "rule": "Al cargar, los huecos se rellenan con Skeleton del tamano final y el contenedor lleva aria-busy: la pagina no salta al llegar el dato.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dsh-p5",
+        "rule": "La barra de herramientas del header envuelve en vez de desbordar: sus hijos encogen y ninguno impone su ancho.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "stattile",
+      "flow-chart",
+      "table",
+      "datepicker",
+      "tabs",
+      "skeleton"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No define que metricas importan.",
+    "No es un constructor de informes."
+  ],
+  "reference": {
+    "demo": "ui_kits/dashboards/overview.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

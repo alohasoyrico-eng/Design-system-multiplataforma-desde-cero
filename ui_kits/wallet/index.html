@@ -1,0 +1,172 @@
+<!-- @dsCard group="Drivers App" viewport="1000x900" subtitle="Wallet con tarjetas + movimientos, detalle con quick actions y BottomSheet de movimiento" name="Wallet" -->
+<!-- @startingPoint section="Templates" subtitle="Wallet movil: tarjetas, movimientos, detalle con quick actions" viewport="1000x900" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Wallet</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="../ios-frame.jsx"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--flow-ink-700);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, PaymentCard, TransactionRow, BottomSheet, SegmentedControl, Badge, Switch, Card } = NS;
+const Device = window.IOSDevice;
+
+const CARDS = [
+  {id:'c1', holder:'Diego Vera', last4:'4821', variant:'ink', label:'Flota', expires:'12/28', balance:'$8,412.50'},
+  {id:'c2', holder:'Diego Vera', last4:'0937', variant:'sand', label:'Personal', expires:'03/27', balance:'$1,120.00'},
+];
+const TXS = [
+  {id:'t1', day:'Hoy', category:'fuel', title:'Pemex Reforma', subtitle:'14:32 · Combustible', amount:-820.50, card:'c1', liters:'42.3 L', station:'Av. Reforma 222'},
+  {id:'t2', day:'Hoy', category:'charge', title:'Electrolinera Polanco', subtitle:'09:10 · Carga EV', amount:-214.00, card:'c1', liters:'38 kWh', station:'Masaryk 111'},
+  {id:'t3', day:'Ayer', category:'income', title:'Deposito semanal', subtitle:'Transferencia', amount:3720.00, card:'c1'},
+  {id:'t4', day:'Ayer', category:'toll', title:'Caseta Tepotzotlan', subtitle:'07:44 · Peaje', amount:-118.00, card:'c1', pending:true},
+  {id:'t5', day:'Ayer', category:'food', title:'Oxxo Roma Norte', subtitle:'13:02 · Alimentos', amount:-86.00, card:'c2'},
+];
+
+function QuickAction({icon,label,onClick,active}){
+  return <button onClick={onClick} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',gap:6,border:'none',background:'transparent',cursor:'pointer',fontFamily:'inherit',padding:0}}>
+    <span style={{width:52,height:52,borderRadius:'50%',background:active?'var(--surface-accent-subtle)':'var(--surface-card)',boxShadow:'var(--shadow-rest)',display:'inline-flex',alignItems:'center',justifyContent:'center',transition:'transform var(--dur-fast) var(--ease-spring), background var(--dur-fast) var(--ease-out)'}}
+      onMouseEnter={(e)=>e.currentTarget.style.transform='scale(1.08)'}
+      onMouseLeave={(e)=>e.currentTarget.style.transform='none'}>
+      <span className={'flow-icon'+(active?' flow-icon--fill':'')} aria-hidden="true" style={{fontSize:23,color:active?'var(--text-accent)':'var(--text-primary)'}}>{icon}</span>
+    </span>
+    <span style={{fontSize:11,fontWeight:600,color:active?'var(--text-accent)':'var(--text-secondary)'}}>{label}</span>
+  </button>;
+}
+
+function TxGroups({txs,onTx}){
+  const days = [];
+  txs.forEach(t=>{ if(!days.includes(t.day)) days.push(t.day); });
+  return <>{days.map(d=><div key={d}>
+    <div style={{fontSize:11,fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)',margin:'14px 4px 4px'}}>{d}</div>
+    {txs.filter(t=>t.day===d).map(t=><TransactionRow key={t.id} category={t.category} title={t.title} subtitle={t.subtitle} amount={t.amount} pending={t.pending} onClick={()=>onTx(t)} />)}
+  </div>)}</>;
+}
+
+// ---- Screen 1: Wallet ----
+function WalletScreen({goDetail}){
+  const [seg,setSeg] = React.useState('c1');
+  const [hide,setHide] = React.useState(false);
+  const [tx,setTx] = React.useState(null);
+  const card = CARDS.find(c=>c.id===seg);
+  const txs = TXS.filter(t=>t.card===seg);
+  return <div style={{position:'relative',display:'flex',flexDirection:'column',height:'100%',background:'var(--surface-canvas)'}}>
+    <div style={{padding:'14px 20px 0',display:'flex',flexDirection:'column',gap:14,flex:1,overflowY:'auto'}}>
+      <div style={{display:'flex',alignItems:'center'}}>
+        <div>
+          <div style={{fontSize:12.5,color:'var(--text-muted)'}}>Saldo disponible</div>
+          <div style={{fontFamily:'var(--font-mono)',fontSize:26,fontWeight:600,letterSpacing:'-0.01em'}}>{hide?'••••••':card.balance}</div>
+        </div>
+        <IconButton icon={hide?'visibility':'visibility_off'} ariaLabel={hide?'Mostrar saldo':'Ocultar saldo'} size="sm" style={{marginLeft:8}} onClick={()=>setHide(!hide)} />
+        <IconButton icon="notifications" ariaLabel="Notificaciones" variant="tonal" size="sm" badge style={{marginLeft:'auto'}} />
+      </div>
+      <SegmentedControl value={seg} onChange={setSeg} items={[{value:'c1',label:'Flota',icon:'local_taxi'},{value:'c2',label:'Personal',icon:'person'}]} />
+      <div style={{display:'flex',justifyContent:'center'}} onClick={()=>goDetail(card.id)}>
+        <PaymentCard holder={card.holder} last4={card.last4} variant={card.variant} label={card.label} expires={card.expires} width={300} onClick={()=>goDetail(card.id)} />
+      </div>
+      <div style={{display:'flex',gap:6}}>
+        <QuickAction icon="north_east" label="Enviar" onClick={()=>{}} />
+        <QuickAction icon="south_west" label="Recibir" onClick={()=>{}} />
+        <QuickAction icon="credit_card" label="Detalle" onClick={()=>goDetail(card.id)} />
+        <QuickAction icon="more_horiz" label="Mas" onClick={()=>{}} />
+      </div>
+      <div>
+        <div style={{display:'flex',alignItems:'baseline'}}>
+          <div style={{fontSize:15,fontWeight:700}}>Ultimos movimientos</div>
+          <a href="#" style={{marginLeft:'auto',fontSize:12.5,fontWeight:600}}>Ver todos</a>
+        </div>
+        <TxGroups txs={txs} onTx={setTx} />
+      </div>
+    </div>
+    <TxSheet tx={tx} onClose={()=>setTx(null)} />
+  </div>;
+}
+
+// ---- Movement detail sheet ----
+function TxSheet({tx,onClose}){
+  if(!tx) return null;
+  const neg = tx.amount<0;
+  return <BottomSheet open={!!tx} onClose={onClose} fixed={false} title={tx.title}>
+    <div style={{display:'flex',flexDirection:'column',gap:16}}>
+      <div style={{fontFamily:'var(--font-mono)',fontSize:30,fontWeight:600}}>{(neg?'−':'+')+'$'+Math.abs(tx.amount).toLocaleString('es-MX',{minimumFractionDigits:2})}</div>
+      <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+        {tx.pending ? <Badge tone="warning" icon="schedule">Pendiente</Badge> : <Badge tone="success" icon="check">Aplicado</Badge>}
+        <Badge>{tx.subtitle}</Badge>
+      </div>
+      <Card padding={16}>
+        <div style={{display:'flex',flexDirection:'column',gap:10,fontSize:13}}>
+          {tx.station && <div style={{display:'flex'}}><span style={{color:'var(--text-muted)'}}>Lugar</span><span style={{marginLeft:'auto',fontWeight:600}}>{tx.station}</span></div>}
+          {tx.liters && <div style={{display:'flex'}}><span style={{color:'var(--text-muted)'}}>Consumo</span><span style={{marginLeft:'auto',fontFamily:'var(--font-mono)',fontWeight:600}}>{tx.liters}</span></div>}
+          <div style={{display:'flex'}}><span style={{color:'var(--text-muted)'}}>Tarjeta</span><span style={{marginLeft:'auto',fontFamily:'var(--font-mono)',fontWeight:600}}>•••• {CARDS.find(c=>c.id===tx.card).last4}</span></div>
+        </div>
+      </Card>
+      <Button variant="secondary" icon="flag" fullWidth>Disputar este cargo</Button>
+    </div>
+  </BottomSheet>;
+}
+
+// ---- Screen 2: Card detail ----
+function DetailScreen({cardId,goBack}){
+  const card = CARDS.find(c=>c.id===cardId) || CARDS[0];
+  const [frozen,setFrozen] = React.useState(false);
+  const [showNip,setShowNip] = React.useState(false);
+  const [tx,setTx] = React.useState(null);
+  const txs = TXS.filter(t=>t.card===card.id);
+  return <div style={{position:'relative',display:'flex',flexDirection:'column',height:'100%',background:'var(--surface-canvas)'}}>
+    <div style={{padding:'14px 20px 0',display:'flex',flexDirection:'column',gap:14,flex:1,overflowY:'auto'}}>
+      <div style={{display:'flex',alignItems:'center',gap:10}}>
+        <IconButton icon="arrow_back" ariaLabel="Volver" size="sm" onClick={goBack} />
+        <div style={{fontSize:16,fontWeight:700}}>Tarjeta {card.label}</div>
+        {frozen && <Badge tone="info" icon="ac_unit" style={{marginLeft:'auto'}}>Congelada</Badge>}
+      </div>
+      <div style={{display:'flex',justifyContent:'center'}}>
+        <PaymentCard holder={card.holder} last4={card.last4} variant={card.variant} label={card.label} expires={card.expires} width={300} frozen={frozen} />
+      </div>
+      <div style={{display:'flex',gap:6}}>
+        <QuickAction icon="ac_unit" label={frozen?'Descongelar':'Congelar'} active={frozen} onClick={()=>setFrozen(!frozen)} />
+        <QuickAction icon="pin" label="Ver NIP" onClick={()=>setShowNip(true)} />
+        <QuickAction icon="speed" label="Limites" onClick={()=>{}} />
+        <QuickAction icon="password" label="CVV" onClick={()=>{}} />
+      </div>
+      <div>
+        <div style={{fontSize:15,fontWeight:700}}>Movimientos de esta tarjeta</div>
+        <TxGroups txs={txs} onTx={setTx} />
+      </div>
+    </div>
+    <TxSheet tx={tx} onClose={()=>setTx(null)} />
+    <BottomSheet open={showNip} onClose={()=>setShowNip(false)} fixed={false} title="NIP de la tarjeta">
+      <div style={{display:'flex',flexDirection:'column',gap:14,alignItems:'center',paddingBottom:8}}>
+        <div style={{fontSize:12.5,color:'var(--text-muted)',textAlign:'center'}}>Visible 10 segundos. No lo compartas con nadie.</div>
+        <div style={{fontFamily:'var(--font-mono)',fontSize:36,fontWeight:600,letterSpacing:'0.3em',background:'var(--surface-sunken)',borderRadius:16,padding:'12px 28px 12px 34px'}}>492<span style={{filter:'blur(6px)'}}>7</span></div>
+        <Button variant="ghost" size="sm" onClick={()=>setShowNip(false)}>Cerrar</Button>
+      </div>
+    </BottomSheet>
+  </div>;
+}
+
+function PhoneA(){
+  return <Device title=""><WalletScreen goDetail={()=>{}} /></Device>;
+}
+function PhoneB(){
+  return <Device title=""><DetailScreen cardId="c1" goBack={()=>{}} /></Device>;
+}
+function App(){
+  // interactive single-flow option: left phone navigates to detail in right context anyway; keep both visible for review
+  const [detail,setDetail] = React.useState(null);
+  return <>
+    <div>
+      <div style={{color:'#fff',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Wallet · tarjetas + movimientos</div>
+      <Device title=""><WalletScreen goDetail={setDetail} /></Device>
+    </div>
+    <div>
+      <div style={{color:'#fff',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Detalle de tarjeta · quick actions</div>
+      <Device title=""><DetailScreen cardId={detail||'c1'} goBack={()=>setDetail(null)} /></Device>
+    </div>
+  </>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'#fff',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

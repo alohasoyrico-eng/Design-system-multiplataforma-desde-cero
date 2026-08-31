@@ -1,0 +1,100 @@
+<!-- @dsCard group="Internal Tools" viewport="1360x860" subtitle="Cola de tickets con hilo de conversacion, cliente y acciones rapidas" name="Internal Tools · Tickets" -->
+<!-- @startingPoint section="Templates" subtitle="Tickets de soporte: cola filtrable + detalle con hilo" viewport="1360x860" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Tickets</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" src="./shell.jsx"></script>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Table, Badge, Avatar, Tabs, Drawer, ChatThread, Button, IconButton, Menu, Toast, ToastStack, Card } = NS;
+const { Shell, Guard, useRole } = window.FlowIT;
+
+const PRIORITY_TONE = {alta:'danger',media:'warning',baja:'neutral'};
+const STATUS_TONE = {abierto:'accent','en progreso':'info','esperando cliente':'warning',cerrado:'neutral'};
+
+const TICKETS = [
+  {id:'T-1042', subject:'No se refleja el pago de esta semana', who:'Ana Sosa', channel:'chat', priority:'alta', status:'abierto', assignee:'Marta Vidal', updated:'hace 12 min',
+    thread:[{role:'user',text:'Hice 14 viajes esta semana pero mi resumen muestra solo 9. ¿Pueden revisar?',timestamp:'09:14'},
+      {role:'agent',text:'Claro Ana, dame un momento para revisar tu historial de viajes contra el corte de pago.',timestamp:'09:16'},
+      {role:'agent',text:'Encontré el problema: 5 viajes quedaron en un corte anterior por un error de sincronización. Los agrego a tu próximo depósito.',timestamp:'09:22'}]},
+  {id:'T-1041', subject:'Solicita factura de comisión', who:'Transportes Vidal SA', channel:'email', priority:'media', status:'en progreso', assignee:'Diego Ruiz', updated:'hace 1 h',
+    thread:[{role:'user',text:'Necesitamos la factura de comisión de junio para nuestra contabilidad.',timestamp:'ayer'},{role:'agent',text:'La genero y te la envío a este correo en un par de horas.',timestamp:'ayer'}]},
+  {id:'T-1038', subject:'App no detecta ubicación', who:'Luis Prieto', channel:'telefono', priority:'alta', status:'esperando cliente', assignee:'Marta Vidal', updated:'hace 3 h',
+    thread:[{role:'agent',text:'Pedimos que actualices los permisos de ubicación a "Siempre" en ajustes del teléfono. ¿Puedes confirmarnos si ya quedó?',timestamp:'11:02'}]},
+  {id:'T-1035', subject:'Duda sobre bono de fin de semana', who:'Rosa Duarte', channel:'chat', priority:'baja', status:'cerrado', assignee:'Diego Ruiz', updated:'ayer',
+    thread:[{role:'user',text:'¿El bono de fin de semana aplica también a viajes con tarjeta?',timestamp:'ayer'},{role:'agent',text:'Sí, aplica a todos los métodos de pago dentro del horario del bono.',timestamp:'ayer'}]},
+  {id:'T-1033', subject:'No puede agregar tarjeta nueva', who:'Marco Gil', channel:'chat', priority:'media', status:'abierto', assignee:'Sin asignar', updated:'hace 40 min',
+    thread:[{role:'user',text:'Intento agregar mi tarjeta y me marca "número inválido" aunque la escribo bien.',timestamp:'10:20'}]},
+  {id:'T-1030', subject:'Cobro duplicado en viaje', who:'Elena Ruz', channel:'email', priority:'alta', status:'en progreso', assignee:'Marta Vidal', updated:'hace 2 h',
+    thread:[{role:'user',text:'Me cobraron dos veces el viaje del martes por la tarde.',timestamp:'09:40'},{role:'agent',text:'Confirmado el duplicado, ya inicié el reembolso de una de las cargas.',timestamp:'10:05'}]},
+  {id:'T-1028', subject:'Cambio de unidad no se refleja', who:'KTR Flotillas', channel:'email', priority:'media', status:'cerrado', assignee:'Diego Ruiz', updated:'hace 2 días', thread:[{role:'agent',text:'Listo, ya actualizamos la unidad asignada en el sistema.',timestamp:'lunes'}]},
+  {id:'T-1025', subject:'Pregunta sobre cobertura de seguro', who:'Pablo Mena', channel:'telefono', priority:'baja', status:'esperando cliente', assignee:'Sin asignar', updated:'hace 5 h', thread:[{role:'agent',text:'Te compartimos la póliza por correo, avísanos si tienes dudas.',timestamp:'08:30'}]},
+];
+
+function TicketDetail({t, onClose, onStatusChange}){
+  const [reply,setReply] = React.useState('');
+  return <Drawer open={!!t} onClose={onClose} title={t ? t.id+' · '+t.subject : ''} width={520}
+    footer={t && <React.Fragment>
+      <Button variant="secondary" onClick={()=>onStatusChange(t.id,'esperando cliente')}>Esperar cliente</Button>
+      <Button variant="accent" onClick={()=>onStatusChange(t.id,'cerrado')}>Cerrar ticket</Button>
+    </React.Fragment>}>
+    {t && <div style={{display:'flex',flexDirection:'column',gap:16,height:'100%'}}>
+      <div style={{display:'flex',alignItems:'center',gap:12}}>
+        <Avatar name={t.who} size="sm" />
+        <div style={{flex:1}}>
+          <div style={{fontSize:14,fontWeight:700}}>{t.who}</div>
+          <div style={{fontSize:12,color:'var(--text-muted)'}}>Canal: {t.channel} · Asignado a {t.assignee}</div>
+        </div>
+        <Badge tone={PRIORITY_TONE[t.priority]}>{t.priority}</Badge>
+        <Badge tone={STATUS_TONE[t.status]}>{t.status}</Badge>
+      </div>
+      <ChatThread messages={t.thread.map((m,i)=>({id:i,...m}))} style={{flex:1,minHeight:240}} />
+      <div style={{display:'flex',gap:8,flex:'none'}}>
+        <input value={reply} onChange={(e)=>setReply(e.target.value)} placeholder="Escribe una respuesta…"
+          style={{flex:1,minHeight:44,borderRadius:'var(--radius-md)',border:'1px solid var(--border-default)',padding:'0 14px',fontFamily:'inherit',fontSize:13.5,outline:'none'}} />
+        <IconButton icon="send" ariaLabel="Enviar" variant="accent" onClick={()=>setReply('')} />
+      </div>
+    </div>}
+  </Drawer>;
+}
+
+function App(){
+  const [role, setRole] = useRole();
+  const [tickets, setTickets] = React.useState(TICKETS);
+  const [open, setOpen] = React.useState(null);
+  const [toast, setToast] = React.useState(null);
+  const notify = (m)=>{ setToast(m); setTimeout(()=>setToast(null),3000); };
+  const onStatusChange = (id, status)=>{
+    setTickets(ts=>ts.map(t=>t.id===id?{...t,status}:t));
+    setOpen(null);
+    notify(status==='cerrado' ? 'Ticket '+id+' cerrado.' : 'Ticket '+id+' marcado como esperando cliente.');
+  };
+  return <Shell active="tickets" role={role} setRole={setRole}>
+    <Guard allowed={['admin','agente']} role={role}>
+      <div style={{display:'flex',alignItems:'baseline',gap:14,marginBottom:20}}>
+        <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:0}}>Tickets</h1>
+        <span style={{fontSize:13,color:'var(--text-muted)'}}>{tickets.filter(t=>t.status!=='cerrado').length} abiertos de {tickets.length}</span>
+      </div>
+      <Table rowKey="id" onRowClick={setOpen} columns={[
+        {key:'id', label:'ID', mono:true, width:80},
+        {key:'subject', label:'Asunto', render:(r)=><span style={{fontWeight:600}}>{r.subject}</span>},
+        {key:'who', label:'Cliente'},
+        {key:'channel', label:'Canal'},
+        {key:'priority', label:'Prioridad', render:(r)=><Badge tone={PRIORITY_TONE[r.priority]}>{r.priority}</Badge>},
+        {key:'status', label:'Estado', render:(r)=><Badge tone={STATUS_TONE[r.status]}>{r.status}</Badge>},
+        {key:'assignee', label:'Asignado'},
+        {key:'updated', label:'Actualizado', align:'right'},
+      ]} rows={tickets} />
+      <TicketDetail t={open} onClose={()=>setOpen(null)} onStatusChange={onStatusChange} />
+      {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+    </Guard>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(window.FlowIT ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

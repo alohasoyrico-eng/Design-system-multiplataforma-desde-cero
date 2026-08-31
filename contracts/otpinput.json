@@ -1,0 +1,117 @@
+{
+  "id": "otpinput",
+  "name": "OTPInput",
+  "layer": "components",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Codigo de un solo uso en N casillas. Un unico input real detras con autocomplete one-time-code; las casillas pintan el valor.",
+  "api": {
+    "members": [
+      {
+        "name": "length",
+        "kind": "prop",
+        "type": "number",
+        "default": 6
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "onComplete",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "invalid",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "autoFocus",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "otp-1",
+        "rule": "Un solo control real con autocomplete='one-time-code' y teclado numerico: el codigo del SMS se rellena de una vez. N inputs separados rompen ese autorrelleno.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "otp-2",
+        "rule": "Las casillas son decorativas y estan ocultas al lector; el nombre accesible dice cuantos digitos se esperan.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "otp-3",
+        "rule": "Pegar el codigo completo funciona, y todo lo que no sea digito se descarta sin bloquear la escritura.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "otp-4",
+        "rule": "invalid sacude el grupo una vez y lo dice: la sacudida sola no informa a quien no la ve.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "otp-5",
+        "rule": "No compone ControlShell y es deliberado: una carcasa es por control, no por caracter. La desviacion esta declarada en architecture.json.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": false
+  },
+  "tokens": [
+    "--type-data",
+    "--border-focus",
+    "--border-strong",
+    "--status-danger",
+    "--radius-md",
+    "--focus-ring"
+  ],
+  "nonGoals": [
+    "No cuenta atras ni reenvia el codigo: eso es de la pantalla.",
+    "No es PasscodeKeypad: ahi el teclado es en pantalla."
+  ],
+  "reference": {
+    "src": "components/OTPInput.jsx",
+    "states": "docs/cards/fintech.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

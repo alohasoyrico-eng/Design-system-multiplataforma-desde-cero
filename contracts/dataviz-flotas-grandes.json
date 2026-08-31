@@ -1,0 +1,75 @@
+{
+  "id": "dataviz-flotas-grandes",
+  "name": "Data viz para flotas grandes",
+  "layer": "patterns",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "domain": "mobility",
+  "summary": "Como elegir grafica con miles de unidades y decenas de entidades, y como evitar el mar de barras. Es una guia de decision, no una composicion.",
+  "implements": [
+    "treemap",
+    "smallmultiples",
+    "scatter",
+    "pareto",
+    "bullet"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "flt-p1",
+        "rule": "Con mas de veinte categorias no se usan barras: Treemap si lo que importa es el peso relativo, Pareto si importa donde esta el 80%.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "flt-p2",
+        "rule": "Para comparar la forma de muchas series va SmallMultiples con escala compartida, nunca varias lineas en el mismo eje.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "flt-p3",
+        "rule": "Real contra objetivo por entidad va en BulletChart, no en dos barras juntas.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "flt-p4",
+        "rule": "Toda grafica con miles de puntos declara que hace con los que no caben: agrega, muestrea o recorta, y lo dice.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "flt-p5",
+        "rule": "Ninguna decision de esta guia se toma por el gusto visual: cada eleccion responde a una pregunta que el lector va a hacerle al grafico.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "treemap",
+      "smallmultiples",
+      "scatter",
+      "pareto",
+      "bullet",
+      "flow-chart"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No es un componente: no se importa.",
+    "No cubre mapas: eso es MapCanvas."
+  ],
+  "reference": {
+    "demo": "docs/demos/fleet-charts.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

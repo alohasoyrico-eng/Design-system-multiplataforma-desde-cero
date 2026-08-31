@@ -1,0 +1,60 @@
+{
+  "id": "base",
+  "name": "Criterios base",
+  "layer": "foundations",
+  "summary": "Criterios que hereda todo item publicado. Se expanden al generar: no se copian a mano.",
+  "tokens": [
+    "--focus-ring",
+    "--dur-fast",
+    "--ease-out"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "base-1",
+        "rule": "Ningun valor de color, radio, sombra o duracion escrito a mano: todo sale de un token semantico. Rompe esto y se rompe el modo oscuro.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "base-2",
+        "rule": "Foco visible en todo elemento operable, con --focus-ring.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "base-3",
+        "rule": "Target de 44px minimo en cualquier cosa que se toque.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "base-4",
+        "rule": "Texto a 4.5:1 minimo contra su superficie, en claro y en oscuro.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "base-5",
+        "rule": "El estado final del render no depende de que corra un frame de animacion. En un contenedor throttleado (iframe en segundo plano, pestana oculta, preview) el componente debe verse completo: nada que dependa de requestAnimationFrame para dejar de estar en su frame cero.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "base-6",
+        "rule": "prefers-reduced-motion elimina desplazamiento y resorte sin eliminar el cambio de estado.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "base-7",
+        "rule": "Cifras, placas e IDs en --type-data; el resto en la familia de texto.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No es un item de docs: es la lista que heredan los demas via conformance.inherits: ['base']."
+  ]
+}

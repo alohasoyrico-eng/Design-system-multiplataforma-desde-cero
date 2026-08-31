@@ -1,0 +1,205 @@
+{
+  "id": "chart-kanban",
+  "name": "KanbanBoard",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "beta",
+  "domain": null,
+  "summary": "Tablero por etapa. El board pone columnas, movimiento, teclado y el shell del detalle; la pantalla dibuja la tarjeta con renderCard y, si quiere, la cabecera con renderColumnHeader.",
+  "$why": "Dos pantallas de Growth (Internal Tools) lo esquivan y dibujan su propio kanban a mano. La causa no fue falta de adopcion: el componente no daba lo que la pantalla necesitaba. Este contrato es la respecificacion acordada antes de reconstruirlo. Reconstruido: el board dejo de dibujar la tarjeta (renderCard), el arrastre tiene equivalente por teclado (Shift+flecha) y el rechazo se anuncia en vez de simularse.",
+  "api": {
+    "types": [
+      {
+        "name": "KanbanColumn",
+        "members": [
+          [
+            "id",
+            "string"
+          ],
+          [
+            "label",
+            "string"
+          ],
+          [
+            "color",
+            "string?"
+          ],
+          [
+            "limit",
+            "number?"
+          ]
+        ]
+      }
+    ],
+    "generics": [
+      {
+        "param": "T",
+        "default": "any",
+        "describes": "La tarjeta"
+      }
+    ],
+    "members": [
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "KanbanColumn[]",
+        "required": true
+      },
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "T[]",
+        "required": true
+      },
+      {
+        "name": "columnKey",
+        "kind": "prop",
+        "type": "string",
+        "default": "columnId",
+        "note": "Campo del item que dice en que columna vive"
+      },
+      {
+        "name": "itemKey",
+        "kind": "prop",
+        "type": "string",
+        "default": "id"
+      },
+      {
+        "name": "renderCard",
+        "kind": "renderProp",
+        "type": "(item: T, state: { dragging: boolean }) => React.ReactNode",
+        "required": true,
+        "note": "La pantalla dibuja su tarjeta: riesgo, dias en etapa, dueno, valor. El board no conoce esos campos."
+      },
+      {
+        "name": "renderColumnHeader",
+        "kind": "renderProp",
+        "type": "(column: Column, state: { count: number; atLimit: boolean; isOver: boolean }) => React.ReactNode",
+        "note": "El hueco simetrico a renderCard. Si se da, la pantalla dibuja la cabecera; el nombre accesible de la columna lo sigue poniendo el board."
+      },
+      {
+        "name": "columnStyle",
+        "kind": "prop",
+        "type": "React.CSSProperties | ((column: Column, state: { atLimit: boolean; isOver: boolean; isReject: boolean }) => React.CSSProperties)",
+        "note": "Ajusta la caja de la columna. Se mezcla al final y no puede quitar el borde de rechazo, que se recalcula en cada render."
+      },
+      {
+        "name": "onMove",
+        "kind": "event",
+        "type": "(itemKey: string, toColumn: string) => void",
+        "required": true,
+        "note": "Un solo evento para arrastre y avance: la pantalla decide si acepta"
+      },
+      {
+        "name": "onAdvance",
+        "kind": "event",
+        "type": "(itemKey: string) => void",
+        "note": "Avanzar a la siguiente columna sin arrastrar"
+      },
+      {
+        "name": "abandonColumn",
+        "kind": "prop",
+        "type": "{ id: string; label: string; reasonKey?: string }",
+        "note": "Columna de salida: se pinta al final y no participa del avance"
+      },
+      {
+        "name": "renderDetail",
+        "kind": "renderProp",
+        "type": "(item: T) => React.ReactNode",
+        "note": "Contenido del panel; el shell del Drawer lo pone el board"
+      },
+      {
+        "name": "detailKey",
+        "kind": "prop",
+        "type": "string",
+        "note": "Item abierto en el panel; controlado"
+      },
+      {
+        "name": "onDetailChange",
+        "kind": "event",
+        "type": "(itemKey: string | null) => void"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "base"
+    ],
+    "criteria": [
+      {
+        "id": "kb-1",
+        "rule": "El arrastre tiene equivalente por teclado: mover con flechas mas Enter, o la accion de avanzar. Un tablero solo-raton excluye.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "kb-2",
+        "rule": "La tarjeta es enfocable y anuncia su columna: 'Rutas Cobalto, columna Prospecto, 3 de 5'.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "kb-3",
+        "rule": "La columna anuncia su cuenta y su limite si lo tiene.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "kb-4",
+        "rule": "El drop invalido no mueve la tarjeta y lo dice: el board no decide reglas de negocio, pero no finge que movio.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "kb-5",
+        "rule": "La columna de abandono se distingue de las de flujo y no ofrece avanzar.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "kb-6",
+        "rule": "El panel de detalle hereda OverlayShell: foco atrapado y devuelto a la tarjeta que lo abrio.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "kb-7",
+        "rule": "Con scroll horizontal, la columna arrastrada no se pierde: el tablero desplaza al acercarse al borde.",
+        "level": "should",
+        "verify": "manual"
+      },
+      {
+        "id": "kb-9",
+        "rule": "renderColumnHeader y columnStyle no pueden romper la lectura por audio: el nombre accesible de la columna —su etiqueta, el numero de tarjetas y su limite— lo pone el board, no la pantalla.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "overlay-shell"
+    ],
+    "primitives": [
+      "badge",
+      "icon-button"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No decide si un movimiento es valido: eso es del contenedor via onMove.",
+    "No calcula dias en etapa ni riesgo: la pantalla los pasa en su tarjeta.",
+    "No es un Gantt: sin fechas ni dependencias."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "components/KanbanBoard.jsx"
+  },
+  "$adoption": "growth.html (Internal Tools) lo consume: columnas, movimiento, avanzar y panel de detalle. Pendiente decidir si la columna tambien lleva hueco de render."
+}

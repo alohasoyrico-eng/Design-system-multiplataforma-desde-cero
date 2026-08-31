@@ -1,0 +1,118 @@
+/* Flow · Colors — Canvas. El modo oscuro vive en tokens/dark.css */
+:root {
+  /* ---- Base palette ---- */
+  --flow-red-700: #CC1F04;   /* hover del CTA de acento */
+  --flow-red-600: #DE2409;   /* fondo del CTA de acento: 4.81:1 con blanco */
+  --flow-red-500: #FF3617;   /* brand accent */
+  --flow-red-400: #FF6A52;
+  --flow-red-100: #FFDAD2;
+  --flow-red-50:  #FFEDE9;
+
+  --flow-ink-900: #17171A;
+  --flow-ink-700: #3B3A3E;
+  --flow-ink-500: #6B6A6E;
+  --flow-ink-300: #B5B1AA;
+
+  --flow-sand-25:  #FAF9F7;
+  --flow-sand-50:  #F3F1ED;
+  --flow-sand-100: #EEEBE6;
+  --flow-sand-200: #E0DDD7;
+
+  --flow-green-700: #0C7A47;  /* texto de exito sobre su fondo: 4.83:1 */
+  --flow-green-600: #0E8A50;
+  --flow-green-500: #12B76A;
+  --flow-green-50:  #E4F7EE;
+  --flow-amber-700: #995B00;  /* texto de aviso sobre su fondo: 4.83:1 */
+  --flow-amber-600: #B26A00;
+  --flow-amber-500: #E8930C;
+  --flow-amber-50:  #FCF0DC;
+  --flow-blue-600:  #175CD3;
+  --flow-blue-500:  #2E7CF6;
+  --flow-blue-50:   #E7F0FE;
+
+  /* ---- Semantic: surfaces ---- */
+  --surface-canvas: var(--flow-sand-25);
+  --surface-card: #FFFFFF;
+  --surface-sunken: var(--flow-sand-50);
+  --surface-inverse: var(--flow-ink-900);
+  --surface-accent-subtle: var(--flow-red-50);
+
+  /* ---- Semantic: text ---- */
+  --text-primary: var(--flow-ink-900);
+  --text-secondary: #55534E;
+  --text-muted: #6B6862;   /* 3.40:1 antes: incumplia base-4 en las tres superficies */
+  --text-on-accent: #FFFFFF;
+  --text-on-inverse: #F4F3F1;
+  --text-accent: #C22800;  /* el rojo de marca no es color de texto: 4.42:1 */
+  --text-link: #C22800;
+
+  /* ---- Semantic: borders ---- */
+  --border-subtle: var(--flow-sand-100);
+  --border-default: var(--flow-sand-200);
+  --border-strong: var(--flow-ink-300);
+  --border-focus: var(--flow-red-500);
+
+  /* ---- Semantic: actions ---- */
+  --action-primary: var(--flow-ink-900);
+  --action-primary-hover: #000000;
+  --action-accent: var(--flow-red-600);
+  --action-accent-hover: var(--flow-red-700);
+
+  /* ---- Semantic: status ---- */
+  --status-success: var(--flow-green-500);
+  --status-success-text: var(--flow-green-700);
+  --status-success-bg: var(--flow-green-50);
+  --status-warning: var(--flow-amber-500);
+  --status-warning-text: var(--flow-amber-700);
+  --status-warning-bg: var(--flow-amber-50);
+  --status-danger: #D92D20;
+  --status-danger-text: #B42318;
+  --status-danger-bg: #FEECEA;
+  --status-info: var(--flow-blue-500);
+  --status-info-text: var(--flow-blue-600);
+  --status-info-bg: var(--flow-blue-50);
+  --status-live: var(--flow-red-500);
+
+  /* ---- Focus ring ---- */
+  --focus-ring: 0 0 0 3px rgba(255, 54, 23, 0.28);
+
+  color-scheme: light;
+}
+
+/* ---- Identidad de avatar ----
+   Color determinista por nombre. Son valores propios y no alias de la paleta de
+   dataviz: la identidad de una persona no es una serie de datos. Los seis pasan
+   4.5:1 con las iniciales en blanco; los originales daban entre 2.44 y 4.52. */
+:root {
+  --avatar-1: #DF2F14;
+  --avatar-2: #0D864D;
+  --avatar-3: #2A71E0;
+  --avatar-4: #A46808;
+  --avatar-5: #7859F4;
+  --avatar-6: #0D8476;
+  --avatar-offline: var(--flow-ink-300);
+}
+
+/* ---- Ilustracion ----
+   Fondos de los marcadores de posicion de OnboardingCarousel. Estaban como un
+   array de hex dentro del componente, o sea invisibles a cualquier chequeo. */
+:root {
+  --illustration-1: var(--flow-red-500);
+  --illustration-2: #2A71E0;
+  --illustration-3: #0D864D;
+  --illustration-4: #7859F4;
+  --illustration-5: #A46808;
+  --illustration-6: #0D8476;
+}
+
+/* ---- Tarjeta fisica (PaymentCard) ----
+   Color de artefacto, no de interfaz: una tarjeta roja sigue siendo roja en modo
+   oscuro. Por eso estos no tienen contrapartida en dark.css y estan declarados
+   como excepcion en platforms/check-color.mjs. Viven aqui, y no como hex dentro
+   del componente, para que se puedan ver y auditar. */
+:root {
+  --card-fg-on-ink: #F4F3F1;
+  --card-fg-on-accent: #FFFFFF;
+  --card-dim-on-ink: rgba(244, 243, 241, 0.55);
+  --card-dim-on-accent: rgba(255, 255, 255, 0.65);
+}

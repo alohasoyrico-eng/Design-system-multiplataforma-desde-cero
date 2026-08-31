@@ -1,0 +1,85 @@
+{
+  "id": "settings-t",
+  "name": "Settings",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Ajustes con tabs por seccion, filas de switch y select, cambio de modo funcional y zona peligrosa al final.",
+  "content": {
+    "surface": "Configuracion de la cuenta",
+    "product": "cross",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light",
+      "dark"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "secciones",
+        "fills": "Tabs por area"
+      },
+      {
+        "name": "filas",
+        "fills": "Switch y Select con su linea de explicacion"
+      },
+      {
+        "name": "peligrosa",
+        "fills": "Zona separada al final con confirmacion en Dialog"
+      }
+    ]
+  },
+  "composition": {
+    "patterns": [
+      "settings-pattern"
+    ],
+    "components": [
+      "tabs",
+      "switch",
+      "select",
+      "dialog",
+      "field"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "st-1",
+        "rule": "El cambio de modo se aplica de verdad y persiste: un ajuste de ejemplo que no hace nada ensena a desconfiar de los demas.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "st-2",
+        "rule": "Cada fila lleva su explicacion, no solo su nombre.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "st-3",
+        "rule": "La zona peligrosa esta separada visualmente y cada accion confirma.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "st-4",
+        "rule": "Toda etiqueta esta asociada a su control.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/settings/index.html"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "card",
+  "name": "Card",
+  "layer": "components",
+  "function": [
+    "layout"
+  ],
+  "status": "stable",
+  "summary": "La superficie contenedora del sistema: blanca, radio 20, sombra de reposo. Interactiva se eleva 3px al hover.",
+  "api": {
+    "members": [
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'default' | 'accent'",
+        "default": "default",
+        "variantAxis": true
+      },
+      {
+        "name": "accent",
+        "kind": "prop",
+        "type": "string",
+        "default": "var(--action-accent)"
+      },
+      {
+        "name": "interactive",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "selected",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "padding",
+        "kind": "prop",
+        "type": "string | number",
+        "default": "var(--pad-card)"
+      },
+      {
+        "name": "onClick",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "crd-1",
+        "rule": "Con interactive o onClick es un elemento operable con foco y teclado, no un div con onClick. Una tarjeta que solo responde al raton excluye a quien tabula.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "crd-2",
+        "rule": "Sin interactive no entra al orden de tabulacion ni cambia con el hover.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "crd-3",
+        "rule": "selected se lee sin color: borde o superficie, no solo matiz.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "crd-4",
+        "rule": "El radio de lo que anida dentro es menor que el de la tarjeta, para que el interior no se salga de la curva.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "crd-5",
+        "rule": "La elevacion al hover no depende de que corra la transicion para que la tarjeta sea legible.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--radius-lg",
+    "--shadow-rest",
+    "--shadow-raised",
+    "--lift-hover",
+    "--pad-card"
+  ],
+  "nonGoals": [
+    "No define su contenido.",
+    "No es un boton: si toda la tarjeta es una accion, dilo con interactive y una sola accion."
+  ],
+  "reference": {
+    "src": "components/Card.jsx",
+    "states": "docs/cards/display.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

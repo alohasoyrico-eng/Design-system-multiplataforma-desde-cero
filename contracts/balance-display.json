@@ -1,0 +1,33 @@
+{
+  "id": "balance-display",
+  "name": "BalanceDisplay",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Display de saldo con label, valor en mono grande y toggle de visibilidad. Patron de wallet.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "bd-1",
+        "rule": "Con hidden=true no revela el valor en el DOM ni en el aria-label.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "implements": [
+    "icon-button"
+  ],
+  "domain": "fintech",
+  "nonGoals": [
+    "No calcula el saldo: recibe el valor formateado."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/BalanceDisplay.tsx"
+  }
+}

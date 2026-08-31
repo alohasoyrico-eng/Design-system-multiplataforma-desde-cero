@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, Menu, Field, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, DatePicker, FileUpload, OTPInput, PasscodeKeypad, Card, Badge, Chip, Avatar, Table, Skeleton, EmptyState, Accordion, Sparkline, Bars, PaymentCard, TransactionRow, MapCanvas, StatTile, Donut, RoleMatrix, Tabs, Stepper, Breadcrumb, Pagination, SegmentedControl, Spinner, Progress, Tooltip, Dialog, Toast, ToastStack, Drawer, BottomSheet, BiometricPrompt } = NS;
+function Demo(){
+return <Card padding={0} style={{maxWidth:480}}><EmptyState icon="local_taxi" title="Sin unidades activas" description="Cuando una unidad se conecte aparecera aqui." action={<Button variant="accent" size="sm" icon="add">Agregar unidad</Button>} /></Card>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

@@ -1,0 +1,91 @@
+<!-- @dsCard group="Dashboards" viewport="1100x820" subtitle="Alta de cuenta de flota: empresa, verificacion, equipo y primera unidad" name="Onboarding FM" -->
+<!-- @startingPoint section="Templates" subtitle="Onboarding fleet manager (desktop, 4 pasos)" viewport="1100x820" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Crea tu flota</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="../ios-frame.jsx"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, Input, Field, Select, OTPInput, Stepper, Card, Badge, Chip, Toast, ToastStack, EmptyState } = NS;
+
+function Resend(){
+  const [left,setLeft] = React.useState(42);
+  React.useEffect(()=>{ const t=setInterval(()=>setLeft(l=>l>0?l-1:0),1000); return ()=>clearInterval(t); },[]);
+  return left>0 ? <span style={{fontSize:13,color:'var(--text-muted)'}}>Reenviar en 0:{String(left).padStart(2,'0')}</span>
+    : <a href="#" onClick={(e)=>{e.preventDefault();setLeft(42);}} style={{fontSize:13,fontWeight:700}}>Reenviar codigo</a>;
+}
+
+function App(){
+  const [step,setStep] = React.useState(0);
+  const [company,setCompany] = React.useState('');
+  const [size,setSize] = React.useState('');
+  const [email,setEmail] = React.useState('');
+  const [code,setCode] = React.useState('');
+  const [invites,setInvites] = React.useState(['ana@flota.mx']);
+  const [inv,setInv] = React.useState('');
+  const [plate,setPlate] = React.useState('');
+  const [toast,setToast] = React.useState(null);
+  const notify=(m)=>{setToast(m);setTimeout(()=>setToast(null),3500);};
+
+  return <div style={{maxWidth:760,margin:'0 auto',padding:'40px 24px 64px'}}>
+    <img src="../../assets/flow-logo.png" alt="Flow" style={{height:26,marginBottom:24}} />
+    <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'0 0 28px'}}>Crea tu flota</h1>
+    <Stepper current={step} style={{marginBottom:32,width:'100%',justifyContent:'space-between'}} steps={[
+      {label:'Empresa',description:'Datos basicos'},
+      {label:'Verificacion',description:'Confirma tu correo'},
+      {label:'Equipo',description:'Invita (opcional)'},
+      {label:'Primera unidad',description:'Opcional'},
+    ]} />
+    <Card>
+      {step===0 && <div style={{display:'flex',flexDirection:'column',gap:18}}>
+        <Field label="Nombre de la empresa" htmlFor="c1" required><Input id="c1" icon="apartment" placeholder="Transportes Vidal SA" value={company} onChange={setCompany} /></Field>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+          <Field label="Tamano de flota"><Select value={size} onChange={setSize} placeholder="Selecciona…" options={[{value:'s',label:'1–10 unidades'},{value:'m',label:'11–50 unidades'},{value:'l',label:'50+ unidades'}]} /></Field>
+          <Field label="Correo de trabajo" htmlFor="c2" required><Input id="c2" type="email" icon="mail" placeholder="marta@flota.mx" value={email} onChange={setEmail} /></Field>
+        </div>
+      </div>}
+      {step===1 && <div style={{display:'flex',flexDirection:'column',gap:16,alignItems:'center',textAlign:'center',padding:'8px 0'}}>
+        <p style={{fontSize:13.5,color:'var(--text-secondary)',margin:0}}>Enviamos un codigo de activacion a <b>{email||'tu correo'}</b>.</p>
+        <OTPInput length={6} value={code} onChange={setCode} autoFocus />
+        <Resend />
+      </div>}
+      {step===2 && <div style={{display:'flex',flexDirection:'column',gap:16}}>
+        <Field label="Invita a tu equipo" htmlFor="c3" help="Recibiran un correo con su codigo. Puedes saltarlo y hacerlo despues.">
+          <div style={{display:'flex',gap:10}}>
+            <Input id="c3" type="email" icon="mail" placeholder="persona@flota.mx" value={inv} onChange={setInv} style={{flex:1}} />
+            <Button variant="secondary" icon="add" disabled={!inv.includes('@')} onClick={()=>{setInvites([...invites,inv]);setInv('');}}>Agregar</Button>
+          </div>
+        </Field>
+        <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+          {invites.map(i=><Chip key={i} label={i} onRemove={()=>setInvites(invites.filter(x=>x!==i))} />)}
+        </div>
+      </div>}
+      {step===3 && <div style={{display:'flex',flexDirection:'column',gap:16}}>
+        <Field label="Placa de tu primera unidad" htmlFor="c4" help="Opcional: el dashboard te guiara si lo saltas.">
+          <Input id="c4" mono icon="local_taxi" placeholder="JMX-214-B" value={plate} onChange={setPlate} />
+        </Field>
+        {plate.length>=5 && <Badge tone="success" icon="check">Lista para crearse con la cuenta</Badge>}
+      </div>}
+      <div style={{display:'flex',justifyContent:'space-between',marginTop:28}}>
+        <Button variant="ghost" icon="arrow_back" style={{visibility:step===0?'hidden':'visible'}} onClick={()=>setStep(step-1)}>Atras</Button>
+        <div style={{display:'flex',gap:10}}>
+          {(step===2||step===3) && <Button variant="ghost" onClick={()=>{ step===3 ? notify('Cuenta creada. Bienvenida a Flow.') : setStep(step+1); }}>Saltar</Button>}
+          <Button variant={step===3?'accent':'primary'} iconTrailing={step===3?undefined:'arrow_forward'} icon={step===3?'check':undefined}
+            disabled={(step===0 && (!company||!email.includes('@'))) || (step===1 && code.length<6)}
+            onClick={()=>{ if(step===3){ notify('Cuenta creada. Bienvenida a Flow.'); } else setStep(step+1); }}>
+            {step===3?'Crear cuenta':'Continuar'}</Button>
+        </div>
+      </div>
+    </Card>
+    <p style={{fontSize:12,color:'var(--text-muted)',textAlign:'center',marginTop:16}}>El tiempo hasta tu primera unidad activa es nuestra metrica de exito.</p>
+    {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga</div>);
+</script></body></html>

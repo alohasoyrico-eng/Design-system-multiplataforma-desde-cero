@@ -1,0 +1,100 @@
+{
+  "id": "tooltip",
+  "name": "Tooltip",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Apoyo breve sobre superficie inversa. Compone Popover con surface='none': el shell coloca, este componente pinta la burbuja.",
+  "api": {
+    "members": [
+      {
+        "name": "content",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "position",
+        "kind": "prop",
+        "type": "'top' | 'bottom' | 'left' | 'right'",
+        "default": "top"
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true,
+        "note": "Envuelve exactamente un elemento."
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "popover"
+    ],
+    "criteria": [
+      {
+        "id": "tip-1",
+        "rule": "Aparece con hover y tambien con foco de teclado: un tooltip que solo responde al raton no existe para quien tabula.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tip-2",
+        "rule": "No recibe puntero y no se puede senalar: el contenido de un tooltip nunca es interactivo. Si hay que hacer clic dentro, es un Popover.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tip-3",
+        "rule": "Escape lo cierra sin mover el foco, porque nunca lo tuvo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tip-4",
+        "rule": "El texto largo envuelve dentro de un ancho maximo en vez de salirse de la ventana. Con la colision resuelta por el shell, nowrap era una fuga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tip-5",
+        "rule": "No lleva informacion imprescindible: es apoyo. Lo que hace falta para operar va en la pantalla.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "popover"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-inverse",
+    "--text-on-inverse",
+    "--radius-sm",
+    "--shadow-float"
+  ],
+  "nonGoals": [
+    "No sustituye a una etiqueta: un IconButton necesita ariaLabel aunque lleve tooltip.",
+    "No contiene controles."
+  ],
+  "reference": {
+    "src": "components/Tooltip.jsx",
+    "demo": "docs/demos/tooltip.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

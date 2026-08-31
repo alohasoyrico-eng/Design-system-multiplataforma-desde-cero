@@ -1,0 +1,82 @@
+{
+  "id": "rutas",
+  "name": "Rutas: estaciones cercanas",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Mapa con pines de precio y hoja de detalle por estacion.",
+  "content": {
+    "surface": "Estaciones cercanas",
+    "product": "drivers-app",
+    "viewport": [
+      "mobile"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "mapa",
+        "fills": "MapCanvas con pines de precio"
+      },
+      {
+        "name": "detalle",
+        "fills": "BottomSheet con precio, distancia y servicios"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "map-canvas",
+      "bottom-sheet",
+      "card"
+    ],
+    "primitives": [
+      "badge",
+      "button",
+      "chip",
+      "icon-button"
+    ],
+    "domain": "mobility",
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ru-1",
+        "rule": "La informacion del mapa esta tambien en lista: un mapa no es accesible por si solo.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "ru-2",
+        "rule": "El pin dice el precio en texto, no solo por color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ru-3",
+        "rule": "La atribucion del proveedor de tiles esta visible: es una obligacion de licencia, no una preferencia.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ru-4",
+        "rule": "Sin permiso de ubicacion la pantalla sigue siendo util con busqueda manual.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/rutas/index.html"
+  }
+}

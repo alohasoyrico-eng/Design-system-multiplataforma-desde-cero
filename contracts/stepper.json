@@ -1,0 +1,86 @@
+{
+  "id": "stepper",
+  "name": "Stepper",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Progreso por pasos con nombre. Hecho es un check con resorte; el activo lleva la tinta.",
+  "api": {
+    "members": [
+      {
+        "name": "steps",
+        "kind": "prop",
+        "type": "Array<{ label: string; description?: string }>",
+        "required": true
+      },
+      {
+        "name": "current",
+        "kind": "prop",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "name": "orientation",
+        "kind": "prop",
+        "type": "'horizontal' | 'vertical'",
+        "default": "horizontal",
+        "variantAxis": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "stp-1",
+        "rule": "El paso actual se anuncia con aria-current y el progreso se dice en texto: 'paso 2 de 4'. Un circulo relleno no se oye.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "stp-2",
+        "rule": "Hecho, activo y pendiente se distinguen por forma —check, relleno, contorno— y no solo por color.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "stp-3",
+        "rule": "Si los pasos no son navegables, no son botones: no prometas un clic que no lleva a nada.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "stp-4",
+        "rule": "El estado final no depende del resorte del check.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--action-accent",
+    "--action-primary",
+    "--text-on-inverse",
+    "--border-default",
+    "--ease-spring"
+  ],
+  "nonGoals": [
+    "No valida el paso: eso es del formulario.",
+    "No guarda el estado."
+  ],
+  "reference": {
+    "src": "components/Stepper.jsx",
+    "states": "docs/cards/navigation.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

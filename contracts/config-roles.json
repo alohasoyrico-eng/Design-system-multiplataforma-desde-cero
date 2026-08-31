@@ -1,0 +1,77 @@
+{
+  "id": "config-roles",
+  "name": "Configuracion: roles y altas",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Matriz de permisos por rol mas alta y baja de usuarios.",
+  "content": {
+    "surface": "Administracion de la cuenta",
+    "product": "internal-tools",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "roles",
+        "fills": "RoleMatrix con filas agrupadas y roles bloqueados"
+      },
+      {
+        "name": "equipo",
+        "fills": "Table con Select searchable clearable para asignar unidad"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "role-matrix",
+      "table",
+      "select",
+      "dialog",
+      "badge"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cr-1",
+        "rule": "Cada casilla de la matriz dice permiso, rol y estado en su nombre accesible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cr-2",
+        "rule": "Un rol bloqueado no se puede editar y explica por que.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cr-3",
+        "rule": "Quitar a alguien del equipo pide confirmacion con su nombre.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "cr-4",
+        "rule": "La invitacion pendiente se distingue de la cuenta activa con texto, no solo con color de badge.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/config/index.html"
+  }
+}

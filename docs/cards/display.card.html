@@ -1,0 +1,63 @@
+<!-- @dsCard group="Components" viewport="700x600" subtitle="Card, Badge, Chip, Avatar, Table, Skeleton, EmptyState" name="Display" -->
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+function ns(){ for (const k of ['Flow','FlowDS','FlowDesignSystem','DS','DesignSystem']) if (window[k] && window[k].Badge) return window[k];
+  for (const k of Object.getOwnPropertyNames(window)) { try { const v = window[k]; if (v && typeof v === 'object' && v.Badge && v.Table) return v; } catch(e){} } return null; }
+const NS = ns(); const { Card, Badge, Chip, Avatar, Table, Skeleton, EmptyState, Button } = NS || {};
+function Demo(){
+  const [sel,setSel] = React.useState('u2');
+  const [chips,setChips] = React.useState(['Sedán']);
+  const toggle = (c)=> setChips(chips.includes(c)?chips.filter(x=>x!==c):[...chips,c]);
+  const rows = [
+    {id:'u1',plate:'JMX-214-B',driver:'Ana Sosa',trips:12,status:'ruta'},
+    {id:'u2',plate:'KTR-882-A',driver:'Luis Prieto',trips:8,status:'taller'},
+    {id:'u3',plate:'MVD-101-C',driver:'Rosa Duarte',trips:15,status:'ruta'},
+  ];
+  return <div style={{display:'flex',flexDirection:'column',gap:16,padding:20}}>
+    <div style={{display:'flex',gap:8,alignItems:'center',flexWrap:'wrap'}}>
+      <Badge tone="success" live>En ruta</Badge>
+      <Badge tone="warning" icon="build">En taller</Badge>
+      <Badge tone="danger">Sin señal</Badge>
+      <Badge tone="info">Programada</Badge>
+      <Badge tone="accent" live>Demanda alta</Badge>
+      <Badge>Inactiva</Badge>
+    </div>
+    <div style={{display:'flex',gap:8,alignItems:'center',flexWrap:'wrap'}}>
+      {['Sedán','Van','Moto'].map(c=><Chip key={c} label={c} icon="local_taxi" selected={chips.includes(c)} onClick={()=>toggle(c)} />)}
+      <Chip label="CDMX" onRemove={()=>{}} />
+      <span style={{width:12}}></span>
+      <Avatar name="Ana Sosa" status="online" />
+      <Avatar name="Luis Prieto" status="busy" />
+      <Avatar name="Rosa Duarte" size="lg" />
+      <Avatar name="M G" status="offline" size="sm" />
+    </div>
+    <Table rowKey="id" selectedKey={sel} onRowClick={(r)=>setSel(r.id)}
+      columns={[
+        {key:'plate',label:'Placa',mono:true},
+        {key:'driver',label:'Conductor'},
+        {key:'trips',label:'Viajes',align:'right',mono:true},
+        {key:'status',label:'Estado',render:(r)=> r.status==='ruta'?<Badge tone="success" live>En ruta</Badge>:<Badge tone="warning" icon="build">En taller</Badge>},
+      ]} rows={rows} dense />
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1.4fr',gap:16}}>
+      <Card padding={18}>
+        <div aria-busy="true" aria-label="Cargando conductor" style={{display:'flex',gap:12,alignItems:'center'}}>
+          <Skeleton variant="circle" />
+          <div style={{flex:1,display:'flex',flexDirection:'column',gap:8}}>
+            <Skeleton variant="title" width="70%" />
+            <Skeleton width="90%" />
+          </div>
+        </div>
+      </Card>
+      <Card padding={0}><EmptyState icon="local_taxi" title="Sin unidades activas" description="Cuando una unidad se conecte aparecerá aquí." action={<Button variant="accent" size="sm" icon="add">Agregar unidad</Button>} /></Card>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <Demo/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

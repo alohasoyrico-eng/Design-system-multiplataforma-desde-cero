@@ -1,0 +1,100 @@
+{
+  "id": "table-tree",
+  "name": "TableTree",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Tabla en arbol: filas con hijos, chevron e indentacion. Es una piel de DataGrid con tree activo, no una tabla nueva.",
+  "api": {
+    "members": [
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "TableColumn[]",
+        "required": true
+      },
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "Array<{ id: string; label: string; children?: Array<object> }>",
+        "required": true
+      },
+      {
+        "name": "rowKey",
+        "kind": "prop",
+        "type": "string",
+        "default": "id"
+      },
+      {
+        "name": "onRowClick",
+        "kind": "event",
+        "type": "(row: object) => void"
+      },
+      {
+        "name": "selectedKey",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "data-grid"
+    ],
+    "criteria": [
+      {
+        "id": "ttr-1",
+        "rule": "Una fila con hijos declara aria-expanded y el nivel con aria-level: sin eso, el arbol se ve pero no se navega por audio.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ttr-2",
+        "rule": "La indentacion no es la unica senal de jerarquia: la chevron marca que hay hijos.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ttr-3",
+        "rule": "Los hijos de una fila cerrada no estan en el orden de tabulacion.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ttr-4",
+        "rule": "Abrir y cerrar no reordena las filas hermanas ni pierde la seleccion.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "data-grid"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--border-subtle",
+    "--text-muted",
+    "--space-4"
+  ],
+  "nonGoals": [
+    "No es un Accordion: son filas de una tabla con columnas comunes, no secciones independientes."
+  ],
+  "reference": {
+    "src": "components/TableTree.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

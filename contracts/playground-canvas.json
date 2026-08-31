@@ -1,0 +1,36 @@
+{
+  "id": "playground-canvas",
+  "name": "PlaygroundCanvas",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Canvas interactivo de documentacion con selectores de variant/size/density, specimen vivo y snippet de codigo.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pc-1",
+        "rule": "Cambiar variant/size/density actualiza el specimen y el snippet.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "implements": [
+    "specimen",
+    "chip",
+    "chip-group",
+    "segmented",
+    "code-block"
+  ],
+  "nonGoals": [
+    "No tiene modo de edicion: el specimen es de solo lectura."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/PlaygroundCanvas.tsx"
+  }
+}

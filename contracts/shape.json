@@ -1,0 +1,57 @@
+{
+  "id": "shape",
+  "name": "Forma",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "Geometria muy redondeada. Seis radios y dos grosores de borde; el radio crece con la superficie, no con la importancia.",
+  "tokens": [
+    "--radius-xs",
+    "--radius-sm",
+    "--radius-md",
+    "--radius-lg",
+    "--radius-xl",
+    "--radius-pill",
+    "--border-width",
+    "--border-width-strong"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "shp-1",
+        "rule": "Los radios son estrictamente ascendentes de xs a xl. Dos pasos con el mismo valor significa que uno sobra.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "shp-2",
+        "rule": "Ningun archivo fuera de tokens/ escribe un border-radius literal.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "shp-3",
+        "rule": "--radius-pill solo donde la altura fija el radio: botones, chips, badges. En una tarjeta produce una capsula, no una tarjeta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "shp-4",
+        "rule": "El radio de un elemento anidado es menor que el de su contenedor, para que el interior no se salga de la curva.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "Un radio por componente: el radio pertenece a la superficie, no al nombre del componente."
+  ],
+  "reference": {
+    "src": "tokens/shape.css",
+    "states": "guidelines/shape.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

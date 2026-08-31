@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { CircularProgress } = NS;
+function Demo(){
+  return <div style={{display:'flex',gap:28,alignItems:'center'}}>
+    <CircularProgress value={72} showValue label="Batería" tone="success" />
+    <CircularProgress value={38} showValue label="Cuota semanal" tone="accent" />
+    <CircularProgress value={6} max={8} showValue label="Documentos" tone="warning" size={64} />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.CircularProgress ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

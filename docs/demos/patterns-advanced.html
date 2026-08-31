@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { BulkActionsTable, FilterableEditableTable, HelpCenter, Badge } = NS;
+const COLS = [
+  {key:'placa',label:'Placa',mono:true,filterable:true},
+  {key:'conductor',label:'Conductor',filterable:true,editable:true},
+  {key:'rol',label:'Rol',editable:true},
+];
+const ROWS = [
+  {id:1,placa:'JMX-214-B',conductor:'Ana Sosa',rol:'Titular'},
+  {id:2,placa:'MXN-891-A',conductor:'Luis Beltrán',rol:'Suplente'},
+  {id:3,placa:'QRO-455-D',conductor:'Marta Ruiz',rol:'Titular'},
+];
+const ARTICLES = [
+  {id:'1',category:'Primeros pasos',title:'Cómo dar de alta una unidad',content:'Ve a Flota → Nueva unidad. Captura placa, modelo y póliza; la unidad queda activa al validar los documentos.',keywords:['alta','unidad','flota']},
+  {id:'2',category:'Primeros pasos',title:'Vincular un conductor',content:'Desde el detalle de la unidad, elige Asignar conductor y selecciona un perfil verificado.',keywords:['conductor','asignar']},
+  {id:'3',category:'Tarjetas',title:'Pausar una tarjeta',content:'En Wallet, abre la tarjeta y usa Pausar. Los cargos se rechazan de inmediato y puedes reactivarla cuando quieras.',keywords:['tarjeta','pausar','bloquear']},
+  {id:'4',category:'Tarjetas',title:'Límites por categoría',content:'Cada tarjeta acepta límites por categoría de gasto (gasolina, peajes, mantenimiento). Configúralos desde el detalle.',keywords:['límites','categorías']},
+];
+const LIST = [
+  {id:'bulk-actions-pattern', title:'Bulk Actions', C:()=><BulkActionsTable columns={[{key:'placa',label:'Placa',mono:true},{key:'conductor',label:'Conductor'},{key:'rol',label:'Rol'}]} rows={ROWS} rowKey="id"
+    actions={[{id:'export',label:'Exportar',icon:'download'},{id:'assign',label:'Asignar',icon:'person_add'},{id:'delete',label:'Eliminar',icon:'delete'}]}
+    onActionClick={(a,keys)=>console.log(a,[...keys])} />},
+  {id:'filters-inline-edit', title:'Filters + Inline Edit (doble-click en Conductor o Rol)', C:()=><FilterableEditableTable columns={COLS} rows={ROWS} rowKey="id" onUpdate={(k,f,v)=>console.log('update',k,f,v)} onFilter={(f)=>console.log('filter',f)} />},
+  {id:'help-center', title:'Help Center', C:()=><HelpCenter articles={ARTICLES} style={{minHeight:380}} />},
+];
+function Demo(){ return <Sections list={LIST} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.BulkActionsTable ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

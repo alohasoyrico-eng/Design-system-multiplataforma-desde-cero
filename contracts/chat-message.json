@@ -1,0 +1,108 @@
+{
+  "id": "chat-message",
+  "name": "ChatMessage",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Burbuja de chat. En la del agente caben respuestas ricas —tarjetas, tablas— y un chip de herramienta en uso.",
+  "api": {
+    "members": [
+      {
+        "name": "role",
+        "kind": "prop",
+        "type": "'user' | 'agent'",
+        "default": "agent",
+        "variantAxis": true
+      },
+      {
+        "name": "text",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "tool",
+        "kind": "prop",
+        "type": "{ label: string; icon?: string }",
+        "note": "Chip de herramienta en uso, encima de la burbuja."
+      },
+      {
+        "name": "streaming",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Respuesta rica dentro de la burbuja del agente."
+      },
+      {
+        "name": "timestamp",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cmg-1",
+        "rule": "El rol se dice en el arbol accesible, no solo por lado y color: alineado a la derecha no significa nada al oido.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cmg-2",
+        "rule": "streaming se anuncia como en curso y los puntos que laten paran con prefers-reduced-motion sin dejar de indicar que escribe.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cmg-3",
+        "rule": "El chip de herramienta dice que herramienta usa en texto: un icono girando no informa.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cmg-4",
+        "rule": "La burbuja no impone ancho al contenido rico: una tabla dentro no se recorta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "cmg-5",
+        "rule": "El texto del usuario nunca se interpreta como marcado.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--surface-inverse",
+    "--text-on-inverse",
+    "--radius-lg",
+    "--text-muted"
+  ],
+  "nonGoals": [
+    "No renderiza Markdown por su cuenta.",
+    "No es Toast: no desaparece."
+  ],
+  "reference": {
+    "src": "components/ChatMessage.jsx",
+    "demo": "ui_kits/agent-chat/index.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

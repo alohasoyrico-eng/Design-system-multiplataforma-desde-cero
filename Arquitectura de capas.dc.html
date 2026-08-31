@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+  body { margin: 0; background: var(--surface-canvas); }
+  a { color: var(--text-primary); }
+  a:hover { color: var(--text-accent); }
+</style>
+</helmet>
+<div data-mode="{{ theme }}" style="min-height: 100%; background: var(--surface-canvas); color: var(--text-primary); font: var(--type-body); padding: 72px 40px 120px;">
+  <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px;">
+
+    <header style="display: flex; flex-direction: column; gap: 24px;">
+      <div style="display: flex; align-items: baseline; gap: 16px; font: var(--type-overline); letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);">
+        <span>Flow · documento interno</span>
+        <span style="flex: 1; height: 1px; background: var(--border-subtle);"></span>
+        <span style="font-family: var(--font-mono);">v1 · propuesta</span>
+      </div>
+      <h1 style="font: var(--type-display); margin: 0; max-width: 20ch; text-wrap: pretty;">Arquitectura de capas</h1>
+      <p style="font: var(--type-body); font-size: 17px; line-height: 1.6; max-width: 68ch; margin: 0; color: var(--text-secondary); text-wrap: pretty;">El sistema tiene los nombres de las cinco capas pero no su cascada. Nada obliga a que un componente componga en vez de copiar, así que copia. Este documento propone el contrato que falta: qué entra en cada capa, de qué puede depender, y qué revisión lo hace fallar.</p>
+    </header>
+
+    <section style="display: flex; flex-direction: column; gap: 28px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">01</span> El síntoma es un número
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-card); padding: 20px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg);">7</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">foundations</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg);">19</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">primitives</span>
+        </div>
+        <div style="background: var(--surface-inverse); color: var(--text-on-inverse); padding: 20px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg);">75</span>
+          <span style="font: var(--type-caption); opacity: .7;">components</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg);">16</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">patterns</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg);">9</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">templates</span>
+        </div>
+      </div>
+      <p style="font: var(--type-body); max-width: 68ch; margin: 0; color: var(--text-secondary);">126 ítems en el registry y 60% cae en una sola capa. <b style="color: var(--text-primary);">«Components» no es una capa, es el default de lo que no supimos clasificar.</b> Cuando la capa media absorbe todo, deja de haber nivel al que bajar código compartido: por eso la carcasa se copia catorce veces.</p>
+      <div style="display: flex; flex-direction: column; gap: 14px; border-left: var(--border-width-strong) solid var(--border-default); padding-left: 20px;">
+        <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">Tres taxonomías superpuestas y ningún mapa entre ellas.</b> El registry clasifica por capa (<span style="font-family: var(--font-mono); font-size: 12.5px;">cat</span>), las carpetas clasifican por función (<span style="font-family: var(--font-mono); font-size: 12.5px;">actions/ display/ feedback/ forms/ navigation/</span>) y los archivos del registry clasifican por dominio (<span style="font-family: var(--font-mono); font-size: 12.5px;">registry-fintech.js</span>). Un componente nuevo tiene tres respuestas posibles a «dónde va» y ninguna es la misma.</p>
+        <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">La regla actual de «primitive» es el tamaño, no la dependencia.</b> Por eso <span style="font-family: var(--font-mono); font-size: 12.5px;">Timeline</span>, <span style="font-family: var(--font-mono); font-size: 12.5px;">StatusView</span> y <span style="font-family: var(--font-mono); font-size: 12.5px;">TabBar</span> son primitives mientras <span style="font-family: var(--font-mono); font-size: 12.5px;">Textarea</span> y <span style="font-family: var(--font-mono); font-size: 12.5px;">Select</span> son components, con la misma anatomía que <span style="font-family: var(--font-mono); font-size: 12.5px;">Input</span>, que sí es primitive. Y explica el agujero de fondo: si primitive significa «chiquito y visible», las primitivas de comportamiento —que no se ven— nunca se construyen.</p>
+        <p style="margin: 0; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">El bundle plano borra las fronteras en runtime.</b> Con todo en <span style="font-family: var(--font-mono); font-size: 12.5px;">_ds_bundle.js</span> cualquier cosa puede llamar a cualquier cosa, y ninguna violación de capa puede fallar en ningún momento.</p>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 28px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">02</span> El contrato
+      </h2>
+      <p style="font: var(--type-body); max-width: 68ch; margin: 0; color: var(--text-secondary);">Una capa sirve si su criterio de entrada se puede verificar sin discutir. El criterio no es el tamaño ni la importancia: es <b style="color: var(--text-primary);">de qué le está permitido depender</b>.</p>
+
+      <div style="display: grid; gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 1px; background: var(--border-default);">
+          <div style="background: var(--surface-sunken); padding: 12px 18px; font: var(--type-overline); text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted);">Capa</div>
+          <div style="background: var(--surface-sunken); padding: 12px 18px; font: var(--type-overline); text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted);">Entra si</div>
+          <div style="background: var(--surface-sunken); padding: 12px 18px; font: var(--type-overline); text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted);">Prohibido</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 1px; background: var(--border-default);">
+          <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Foundations</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">depende de: nada</span>
+          </div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Es una decisión que se puede expresar sin JSX y consumir desde Angular o Flutter. Color, tipo, espacio, forma, motion, iconografía, a11y.</div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Cualquier archivo <span style="font-family: var(--font-mono); font-size: 12.5px;">.jsx</span>. Si necesita React, no es foundation.</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 1px; background: var(--border-default);">
+          <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Primitives</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">depende de: foundations, shells</span>
+          </div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">No importa nada del sistema salvo tokens y shells: es hoja del grafo. Dueña de una sola carcasa (un control, un botón, una insignia) y de sus estados.</div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Importar un component. Saber del dominio. Posicionarse en la página.</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 1px; background: var(--border-default);">
+          <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Components</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">depende de: primitives</span>
+          </div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Compone primitives y <b style="color: var(--text-primary);">exporta un componente con contrato de props</b>. Se renderiza aislado, solo con props. Su API es genérica: el dominio no decide la capa — es un campo (<span style="font-family: var(--font-mono); font-size: 12.5px;">domain</span>), como la función.</div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Redibujar una carcasa que ya existe abajo. Fetch, rutas, copy de producto. Importar un pattern.</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 1px; background: var(--border-default);">
+          <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Patterns</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">depende de: components</span>
+          </div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">No tiene una sola API.</b> Es una receta: regla de uso más composición de referencia, con estado a lo largo de varios pasos o archivos. CRUD, wizard, búsqueda, settings. Si exporta un componente con props, no es pattern.</div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Traer bloque <span style="font-family: var(--font-mono); font-size: 12.5px;">api</span>. Ser una pantalla con contenido final. Ser solo prosa sin implementación de referencia.</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 190px 1fr 1fr; gap: 1px; background: var(--border-default);">
+          <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font: var(--type-title-sm);">Templates</span>
+            <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">depende de: patterns</span>
+          </div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Nombra una pantalla de producto real y trae contenido final. Se copia para empezar, no se importa.</div>
+          <div style="background: var(--surface-card); padding: 18px; font: var(--type-body); color: var(--text-secondary);">Exportarse como librería. Que alguien lo importe en producción.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 20px; align-items: flex-start; background: var(--surface-card); border: var(--border-width-strong) solid var(--border-default); padding: 22px 24px;">
+        <span style="font: var(--type-overline); text-transform: uppercase; letter-spacing: .08em; color: var(--text-accent); white-space: nowrap; padding-top: 3px;">La corrección</span>
+        <p style="margin: 0; font: var(--type-body); color: var(--text-secondary); max-width: 72ch;">La función (<span style="font-family: var(--font-mono); font-size: 12.5px;">forms</span>, <span style="font-family: var(--font-mono); font-size: 12.5px;">display</span>, <span style="font-family: var(--font-mono); font-size: 12.5px;">feedback</span>) deja de ser carpeta y pasa a ser etiqueta del registry. <b style="color: var(--text-primary);">Un solo eje en el sistema de archivos —la capa—; el resto es metadata.</b> Así «dónde va esto» tiene una respuesta, y la docs sigue agrupando por función porque eso sí le sirve al que busca.</p>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 28px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">03</span> Las tres reglas que deben poder fallar
+      </h2>
+      <p style="font: var(--type-body); max-width: 68ch; margin: 0; color: var(--text-secondary);">Un diagrama de capas no es arquitectura. Una revisión que truena sí. Las tres son verificables sobre el repo:</p>
+      <div style="display: flex; flex-direction: column; gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-card); padding: 20px 22px; display: flex; gap: 20px; align-items: flex-start;">
+          <span style="font: var(--type-data); color: var(--text-accent); white-space: nowrap;">R1</span>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font: var(--type-body-strong);">Las dependencias solo van hacia abajo</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">Ningún archivo importa de su propia capa ni de una superior. Rompe el bundle plano en cinco entradas por capa; si primitives importa de components, no compila.</span>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 22px; display: flex; gap: 20px; align-items: flex-start;">
+          <span style="font: var(--type-data); color: var(--text-accent); white-space: nowrap;">R2</span>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font: var(--type-body-strong);">Una variante no es un ítem</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">Un ítem del registry = un archivo. Hoy hay 8 entradas fantasma (Card ×6, Table ×2) y 9 archivos que deberían ser prop o pattern (5 <span style="font-family: var(--font-mono); font-size: 12.5px;">Input*</span>, 4 <span style="font-family: var(--font-mono); font-size: 12.5px;">Select*</span>). Registrar variantes como ítems es lo que invita a implementarlas como archivos.</span>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 22px; display: flex; gap: 20px; align-items: flex-start;">
+          <span style="font: var(--type-data); color: var(--text-accent); white-space: nowrap;">R3</span>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <span style="font: var(--type-body-strong);">Una carcasa, un dueño</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">Fuera de primitives, ningún archivo declara borde+foco+radio de control, backdrop fijo, ni sus propios <span style="font-family: var(--font-mono); font-size: 12.5px;">@keyframes</span>. Hoy: 26 archivos declaran carcasa de control, 4 declaran backdrop, 6 declaran keyframes propios con nombres distintos para la misma animación.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 28px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">04</span> Lo que falta: seis shells
+      </h2>
+      <p style="font: var(--type-body); max-width: 68ch; margin: 0; color: var(--text-secondary);">Son primitivas sin pixel propio: comportamiento y carcasa, cero dominio. No se publican como ítems de docs —nadie las usa directo— pero son el nivel al que baja todo lo que hoy está copiado.</p>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-card); padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">ControlShell</span>
+          <span style="font: var(--type-caption); color: var(--text-secondary);">Borde, altura, padding, foco, disabled, invalid, adornos izquierda/derecha. Lo componen los 14 controles.</span>
+          <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">elimina ~26 copias de borde</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">Popover</span>
+          <span style="font: var(--type-caption); color: var(--text-secondary);">Anclaje, colisión con el viewport, click-outside, Escape, portal. Hoy cada select lo reimplementa y ninguno usa portal.</span>
+          <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">7 copias</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">Listbox</span>
+          <span style="font: var(--type-caption); color: var(--text-secondary);">Índice activo, ArrowUp/Down/Home/End, typeahead, filtrado, selección simple o múltiple, <span style="font-family: var(--font-mono);">aria-activedescendant</span>.</span>
+          <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">7 copias</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">OverlayShell</span>
+          <span style="font: var(--type-caption); color: var(--text-secondary);">Backdrop, scroll lock, foco atrapado y devuelto, Escape, capas apiladas, una sola familia de keyframes.</span>
+          <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">4 copias · arregla el focus trap ausente</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">ToggleControl</span>
+          <span style="font: var(--type-caption); color: var(--text-secondary);">Target de 44px, label clickeable, indeterminate, grupo con nombre. Checkbox, Radio y Switch son su piel.</span>
+          <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">3 copias</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">DataGrid</span>
+          <span style="font: var(--type-caption); color: var(--text-secondary);">Columnas, header sticky, zebra por token, selección, orden, celda editable. Las cinco tablas dejan de ser cinco tablas.</span>
+          <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">5 copias</span>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 28px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">05</span> Reclasificación
+      </h2>
+      <p style="font: var(--type-body); max-width: 68ch; margin: 0; color: var(--text-secondary);">Aplicando el contrato al inventario, la capa media se desinfla y patterns crece hasta su tamaño real. Los movimientos que importan:</p>
+      <div style="display: flex; flex-direction: column; gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-card); padding: 18px 22px; display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-muted);">primitives → components</span>
+          <span style="font: var(--type-body); color: var(--text-secondary);"><span style="font-family: var(--font-mono); font-size: 12.5px;">Timeline · StatusView · TabBar · CircularProgress</span> — componen varias primitivas; entraron por ser visualmente simples.</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 22px; display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-muted);">components → primitives</span>
+          <span style="font: var(--type-body); color: var(--text-secondary);"><span style="font-family: var(--font-mono); font-size: 12.5px;">Textarea · Select · Field</span> — misma anatomía que Input, que ya era primitive. La familia de controles vive completa en una sola capa.</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 22px; display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-accent);">components → patterns</span>
+          <span style="font: var(--type-body); color: var(--text-secondary);"><b style="color: var(--text-primary);">El movimiento grande, ~22 ítems.</b> <span style="font-family: var(--font-mono); font-size: 12.5px;">PaymentCard · TransactionRow · BiometricPrompt · OTPInput · PasscodeKeypad · RoleMatrix · MapCanvas · KanbanBoard · BulkActionsTable · FilterableEditableTable · TableTree · TableTimeline · GanttChart · HelpCenter · NotificationCenter · ChatMessage · ChatThread · ChatComposer · StatTile · OnboardingCarousel</span> — todos conocen el dominio. Un <span style="font-family: var(--font-mono); font-size: 12.5px;">registry-fintech.js</span> no es una categoría: es la capa de patterns mal etiquetada.</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 22px; display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-muted);">se colapsan a props</span>
+          <span style="font: var(--type-body); color: var(--text-secondary);"><span style="font-family: var(--font-mono); font-size: 12.5px;">Card ×6 · Table ×2</span> vuelven a ser un ítem con su variante documentada adentro. <span style="font-family: var(--font-mono); font-size: 12.5px;">4 Select* </span> y <span style="font-family: var(--font-mono); font-size: 12.5px;">5 Input*</span> se resuelven con el refactor de control, no con archivos nuevos.</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 22px; display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-muted);">patterns → guidelines</span>
+          <span style="font: var(--type-body); color: var(--text-secondary);">«Guía: data viz para flotas grandes» es prosa, no pattern. Los patterns «Planned» sin implementación van al mismo lugar hasta que existan.</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px 22px; display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-data); font-size: 12px; color: var(--text-muted);">doble registro, a propósito</span>
+          <span style="font: var(--type-body); color: var(--text-secondary);"><span style="font-family: var(--font-mono); font-size: 12.5px;">GlobalSearch</span> está hoy como component y como pattern. Eso queda —pero declarado: el component es el widget, el pattern es cuándo usar cada forma. Con un campo <span style="font-family: var(--font-mono); font-size: 12.5px;">implements</span> que los une en vez de dos entradas sueltas.</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">7</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">foundations</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">20<span style="font-size: 13px; color: var(--text-muted);"> +6</span></span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">primitives + shells</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">56</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">components</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">8</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">patterns</span>
+        </div>
+        <div style="background: var(--surface-card); padding: 18px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font: var(--type-data-lg); font-size: 22px;">15</span>
+          <span style="font: var(--type-caption); color: var(--text-muted);">templates</span>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 28px;">
+      <h2 style="font: var(--type-title); margin: 0; display: flex; align-items: center; gap: 12px;">
+        <span style="font: var(--type-data); color: var(--text-muted);">06</span> Orden de migración
+      </h2>
+      <div style="display: flex; flex-direction: column; gap: 1px; background: var(--border-default); border: var(--border-width-strong) solid var(--border-default);">
+        <div style="background: var(--surface-card); padding: 20px 22px; display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">Fase 1</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font: var(--type-body-strong);">Carpetas por capa <span style="font: var(--type-caption); font-family: var(--font-mono); color: var(--text-muted);">hecha</span></span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">82 archivos a <span style="font-family: var(--font-mono); font-size: 12.5px;">primitives/</span>, <span style="font-family: var(--font-mono); font-size: 12.5px;">primitives/shells/</span> y <span style="font-family: var(--font-mono); font-size: 12.5px;">components/</span>; los templates se quedan en <span style="font-family: var(--font-mono); font-size: 12.5px;">ui_kits/</span> porque se copian, no se importan. La capa ya no se declara: se lee de la carpeta.</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">No fue mecánico. La carpeta obliga a que un archivo tenga una sola capa, y tres no la tenían: <span style="font-family: var(--font-mono); font-size: 12.5px;">Charts.jsx</span> traía Sparkline (primitive) y Bars (component) en el mismo archivo, y <span style="font-family: var(--font-mono); font-size: 12.5px;">FlowChart</span> estaba en components con seis componentes importándola de lado. Sparkline y Bars quedaron separados; FlowChart bajó a primitive, que es lo que era: hoja del grafo, sin imports del sistema, una sola carcasa. Las seis violaciones de R1 se fueron sin tocar una regla.</span>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 22px; display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">Fase 2</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font: var(--type-body-strong);">Los seis shells, uno por vez</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">Orden por dolor: ControlShell → Popover+Listbox → OverlayShell → ToggleControl → DataGrid. Cada uno reconstruye sus consumidores y deja adaptadores para no tocar los kits.</span>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 22px; display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">Fase 3</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font: var(--type-body-strong);">Registry y docs</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">126 entradas → ~96 ítems reales, cinco archivos por capa, variantes adentro del ítem, campo <span style="font-family: var(--font-mono); font-size: 12.5px;">implements</span> entre pattern y component. La navegación de la docs pasa a ser la cascada.</span>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); padding: 20px 22px; display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: start;">
+          <span style="font: var(--type-body-strong); font-family: var(--font-mono);">Fase 4</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font: var(--type-body-strong);">La revisión que truena</span>
+            <span style="font: var(--type-body); color: var(--text-secondary);">R1/R2/R3 como script sobre el repo, corriendo en el handoff a Claude Code. Sin esto las tres fases anteriores se degradan en dos semanas: la deriva no se arregla ordenando, se arregla haciéndola imposible.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="border-top: var(--border-width-strong) solid var(--border-default); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; font: var(--type-caption); color: var(--text-muted);">
+      <span>Flow · arquitectura de capas · contrato vigente</span>
+      <span style="font-family: var(--font-mono);">106 ítems · 12 chequeos</span>
+    </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;brutal&quot;,&quot;canvas&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;brutal&quot;,&quot;tsType&quot;:&quot;'brutal'|'canvas'|'dark'&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.theme ?? 'brutal' };
+  }
+}
+</script>
+</body>
+</html>

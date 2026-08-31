@@ -1,0 +1,337 @@
+<!-- @dsCard group="Fleet Dashboard" viewport="1280x800" subtitle="4 módulos: Dashboard, Unidades (CRUD), Conductores (drawer), Reportes (charts)" name="Fleet Dashboard" -->
+<!-- @startingPoint section="Templates" subtitle="Dashboard de flota: analytics, CRUD, conductores, reportes" viewport="1280x800" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Fleet</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow;
+const { Button, IconButton, Input, Select, Tabs, Table, Badge, Chip, Avatar, Card, Dialog, Toast, ToastStack, Breadcrumb, EmptyState, Tooltip, Progress, Menu, Drawer, Accordion, Pagination, Sparkline, Bars, FileUpload, DatePicker, Skeleton, NotificationCenter } = NS || {};
+
+const NOTIFS = [
+  {id:'n1',tone:'warning',title:'KTR-882-A: consumo 38% sobre promedio',desc:'Revisar antes de la siguiente ruta',time:'hace 2 h',read:false},
+  {id:'n2',tone:'danger',title:'Tag de peaje por vencer',desc:'PLQ-472-D · vence en 5 dias',time:'hoy',read:false},
+  {id:'n3',tone:'success',title:'Servicio completado',desc:'MVD-101-C salio de taller',time:'ayer',read:true},
+];
+
+const UNITS = [
+  {id:'u1',plate:'JMX-214-B',driver:'Ana Sosa',type:'Sedán',trips:12,km:184,status:'ruta',fuel:72},
+  {id:'u2',plate:'KTR-882-A',driver:'Luis Prieto',type:'Van',trips:8,km:96,status:'taller',fuel:45},
+  {id:'u3',plate:'MVD-101-C',driver:'Rosa Duarte',type:'Sedán',trips:15,km:221,status:'ruta',fuel:88},
+  {id:'u4',plate:'PLQ-472-D',driver:'Marco Gil',type:'Moto',trips:21,km:88,status:'ruta',fuel:61},
+  {id:'u5',plate:'QRS-330-E',driver:'Elena Ruz',type:'Van',trips:5,km:64,status:'inactiva',fuel:100},
+  {id:'u6',plate:'TWN-559-F',driver:'Pablo Mena',type:'Sedán',trips:11,km:157,status:'ruta',fuel:39},
+];
+const DRIVERS = [
+  {id:'d1',name:'Ana Sosa',rating:4.96,trips:1240,unit:'JMX-214-B',docs:3,status:'ruta',since:'2024'},
+  {id:'d2',name:'Luis Prieto',rating:4.88,trips:860,unit:'KTR-882-A',docs:4,status:'taller',since:'2023'},
+  {id:'d3',name:'Rosa Duarte',rating:4.99,trips:2105,unit:'MVD-101-C',docs:4,status:'ruta',since:'2022'},
+  {id:'d4',name:'Marco Gil',rating:4.72,trips:430,unit:'PLQ-472-D',docs:2,status:'ruta',since:'2025'},
+  {id:'d5',name:'Elena Ruz',rating:4.91,trips:1580,unit:'QRS-330-E',docs:4,status:'inactiva',since:'2023'},
+  {id:'d6',name:'Pablo Mena',rating:4.85,trips:920,unit:'TWN-559-F',docs:3,status:'ruta',since:'2024'},
+];
+const STATUS = {
+  ruta: <Badge tone="success" live>En ruta</Badge>,
+  taller: <Badge tone="warning" icon="build">En taller</Badge>,
+  inactiva: <Badge>Inactiva</Badge>,
+};
+
+function Sidebar({page,setPage}){
+  const items=[['dashboard','space_dashboard','Dashboard'],['unidades','local_taxi','Unidades'],['conductores','group','Conductores'],['reportes','monitoring','Reportes'],['ajustes','settings','Ajustes']];
+  return <nav aria-label="Principal" style={{width:220,flex:'none',background:'var(--surface-card)',borderRight:'1px solid var(--border-subtle)',display:'flex',flexDirection:'column',padding:'20px 12px',gap:4,boxSizing:'border-box'}}>
+    <img src="../../assets/flow-logo.png" alt="Flow" style={{height:24,alignSelf:'flex-start',margin:'4px 10px 20px'}} />
+    {items.map(([k,ic,label])=>{
+      const active = page===k;
+      return <button key={k} onClick={()=>{ if(k==='ajustes'){ window.location.href='../settings/index.html'; return;} setPage(k);}} style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',border:'none',textAlign:'left',cursor:'pointer',borderRadius:14,fontFamily:'inherit',fontSize:13.5,fontWeight:active?700:500,background:active?'var(--surface-accent-subtle)':'transparent',color:active?'var(--text-accent)':'var(--text-secondary)',transition:'background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out)'}}
+        onMouseEnter={(e)=>{if(!active)e.currentTarget.style.background='var(--surface-sunken)'}}
+        onMouseLeave={(e)=>{if(!active)e.currentTarget.style.background='transparent'}}>
+        <span className={'flow-icon'+(active?' flow-icon--fill':'')} aria-hidden="true" style={{fontSize:20}}>{ic}</span>{label}
+      </button>;
+    })}
+    <div style={{marginTop:'auto',display:'flex',alignItems:'center',gap:10,padding:'10px 10px'}}>
+      <Avatar name="Marta Vidal" status="online" />
+      <div style={{minWidth:0,flex:1}}>
+        <div style={{fontSize:13,fontWeight:600}}>Marta Vidal</div>
+        <div style={{fontSize:11,color:'var(--text-muted)'}}>Fleet admin</div>
+      </div>
+      <ThemeToggle />
+    </div>
+  </nav>;
+}
+
+function ThemeToggle(){
+  const [dark,setDark] = React.useState(false);
+  React.useEffect(()=>{
+    const saved = localStorage.getItem('flow-theme');
+    const isDark = saved === 'dark';
+    setDark(isDark);
+    document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light');
+  },[]);
+  const toggle = ()=>{
+    const next = !dark; setDark(next);
+    document.documentElement.setAttribute('data-mode', next ? 'dark' : 'light');
+    localStorage.setItem('flow-theme', next ? 'dark' : 'light');
+  };
+  // Era un boton a mano de 32px: el sistema ya tiene IconButton, que pone el
+  // objetivo de 44, el foco y el hover sin repetirlos aqui.
+  return <IconButton icon={dark?'light_mode':'dark_mode'} ariaLabel="Cambiar modo" variant="ghost" size="sm" onClick={toggle} />;
+}
+
+function KPI({label,value,delta,tone,spark}){
+  return <Card padding={20} style={{flex:1}}>
+    <div style={{font:'var(--type-overline)',letterSpacing:'var(--tracking-overline)',textTransform:'uppercase',color:'var(--text-muted)'}}>{label}</div>
+    <div style={{display:'flex',alignItems:'flex-end',gap:12}}>
+      <div style={{font:'var(--type-data-lg)',marginTop:6}}>{value}</div>
+      {spark && <Sparkline values={spark} width={90} height={34} showDot={false} color={tone==='down'?'var(--status-warning)':'var(--action-accent)'} style={{marginLeft:'auto'}} />}
+    </div>
+    {delta && <div style={{fontSize:12,fontWeight:600,marginTop:4,color:tone==='up'?'var(--status-success-text)':'var(--status-danger-text)',display:'flex',alignItems:'center',gap:2}}>
+      <span className="flow-icon" style={{fontSize:14}} aria-hidden="true">{tone==='up'?'trending_up':'trending_down'}</span>{delta}
+    </div>}
+  </Card>;
+}
+
+function PageHeader({crumbs,title,actions}){
+  return <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:24}}>
+    <div>
+      <Breadcrumb items={crumbs} />
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'6px 0 0'}}>{title}</h1>
+    </div>
+    <div style={{marginLeft:'auto',display:'flex',gap:10,alignItems:'center'}}>{actions}</div>
+  </div>;
+}
+
+// ============ DASHBOARD ============
+function DashboardPage(){
+  return <>
+    <PageHeader crumbs={[{label:'Flota'},{label:'Dashboard'}]} title="Buenos días, Marta"
+      actions={<><NotificationCenter items={NOTIFS} onItemClick={()=>{}} onMarkAllRead={()=>{}} /><Button variant="accent" icon="add">Agregar unidad</Button></>} />
+    <div style={{display:'flex',gap:16,marginBottom:20}}>
+      <KPI label="Activas" value="128" delta="+4 vs ayer" tone="up" spark={[98,104,112,109,118,124,128]} />
+      <KPI label="Viajes hoy" value="412" delta="+12%" tone="up" spark={[290,340,310,365,388,395,412]} />
+      <KPI label="Ingresos hoy" value="$48.2k" delta="+8%" tone="up" spark={[31,38,35,41,44,46,48]} />
+      <KPI label="Alertas" value="3" delta="−2 vs ayer" tone="up" />
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1.5fr 1fr',gap:16}}>
+      <Card>
+        <div style={{display:'flex',alignItems:'center',marginBottom:16}}>
+          <div style={{font:'var(--type-title-sm)'}}>Viajes por día</div>
+          <Menu align="right" style={{marginLeft:'auto'}} trigger={<IconButton icon="more_vert" ariaLabel="Opciones del gráfico" size="sm" />}
+            items={[{label:'Exportar CSV',icon:'download'},{label:'Ver detalle',icon:'open_in_full'}]} />
+        </div>
+        <Bars height={190} data={[{label:'Lun',value:288},{label:'Mar',value:342},{label:'Mié',value:315},{label:'Jue',value:371},{label:'Vie',value:412},{label:'Sáb',value:389},{label:'Dom',value:214}]} />
+      </Card>
+      <Card>
+        <div style={{font:'var(--type-title-sm)',marginBottom:14}}>Actividad reciente</div>
+        <div style={{display:'flex',flexDirection:'column',gap:14}}>
+          {[['Rosa Duarte terminó un viaje','hace 2 min','check_circle','var(--status-success-text)'],
+            ['KTR-882-A entró a taller','hace 18 min','build','var(--status-warning-text)'],
+            ['Marco Gil se conectó','hace 34 min','bolt','var(--text-accent)'],
+            ['Nueva unidad TWN-559-F creada','hace 1 h','add_circle','var(--text-muted)']].map(([t,ts,ic,c],i)=>
+            <div key={i} style={{display:'flex',gap:12,alignItems:'center'}}>
+              <span className="flow-icon" aria-hidden="true" style={{fontSize:20,color:c,flex:'none'}}>{ic}</span>
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontSize:13,fontWeight:500}}>{t}</div>
+                <div style={{fontSize:11.5,color:'var(--text-muted)'}}>{ts}</div>
+              </div>
+            </div>)}
+        </div>
+      </Card>
+    </div>
+  </>;
+}
+
+// ============ UNIDADES (CRUD) ============
+function DetailPanel({unit,onClose,onDelete}){
+  if(!unit) return null;
+  return <aside aria-label={'Detalle '+unit.plate} style={{width:320,flex:'none',background:'var(--surface-card)',borderLeft:'1px solid var(--border-subtle)',padding:24,boxSizing:'border-box',display:'flex',flexDirection:'column',gap:16,animation:'flowIn var(--dur-base) var(--ease-out)'}}>
+    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+      <div style={{fontFamily:'var(--font-mono)',fontSize:18,fontWeight:600}}>{unit.plate}</div>
+      <IconButton icon="close" ariaLabel="Cerrar detalle" size="sm" onClick={onClose} />
+    </div>
+    {STATUS[unit.status]}
+    <div style={{display:'flex',alignItems:'center',gap:10}}>
+      <Avatar name={unit.driver} status={unit.status==='ruta'?'busy':'offline'} />
+      <div>
+        <div style={{fontSize:13.5,fontWeight:600}}>{unit.driver}</div>
+        <div style={{fontSize:12,color:'var(--text-muted)'}}>{unit.type} · hoy {unit.trips} viajes</div>
+      </div>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+      <Card padding={14}><div style={{fontSize:11,color:'var(--text-muted)',fontWeight:600}}>KM HOY</div><div style={{fontFamily:'var(--font-mono)',fontSize:20,fontWeight:600}}>{unit.km}</div></Card>
+      <Card padding={14}><div style={{fontSize:11,color:'var(--text-muted)',fontWeight:600}}>VIAJES</div><div style={{fontFamily:'var(--font-mono)',fontSize:20,fontWeight:600}}>{unit.trips}</div></Card>
+    </div>
+    <Progress label="Combustible" value={unit.fuel} showValue tone={unit.fuel<40?'warning':'accent'} />
+    <div style={{marginTop:'auto',display:'flex',gap:8}}>
+      <Button variant="secondary" icon="edit" style={{flex:1}}>Editar</Button>
+      <Button variant="danger" icon="delete" onClick={onDelete}>Eliminar</Button>
+    </div>
+  </aside>;
+}
+
+function UnitsPage({notify}){
+  const [tab,setTab] = React.useState('todas');
+  const [q,setQ] = React.useState('');
+  const [sel,setSel] = React.useState(null);
+  const [confirm,setConfirm] = React.useState(false);
+  const [units,setUnits] = React.useState(UNITS);
+  const filtered = units.filter(u => (tab==='todas'||u.status===tab) && (q==='' || (u.plate+u.driver).toLowerCase().includes(q.toLowerCase())));
+  const selected = units.find(u=>u.id===sel);
+  const doDelete = () => { setUnits(units.filter(u=>u.id!==sel)); setConfirm(false); setSel(null); notify('Unidad eliminada.'); };
+  return <div style={{display:'flex',gap:0,margin:'0 -32px -32px',minHeight:'calc(100vh - 140px)'}}>
+    <div style={{flex:1,padding:'0 32px 32px'}}>
+      <PageHeader crumbs={[{label:'Flota'},{label:'Unidades'}]} title="Unidades"
+        actions={<Button variant="accent" icon="add">Agregar unidad</Button>} />
+      <div style={{display:'flex',alignItems:'center',gap:14,marginBottom:16,flexWrap:'wrap'}}>
+        <Tabs value={tab} onChange={setTab} items={[
+          {value:'todas',label:'Todas',count:units.length},
+          {value:'ruta',label:'En ruta',icon:'navigation',count:units.filter(u=>u.status==='ruta').length},
+          {value:'taller',label:'Taller',count:units.filter(u=>u.status==='taller').length},
+          {value:'inactiva',label:'Inactivas'},
+        ]} />
+        <div style={{marginLeft:'auto',width:260}}><Input icon="search" placeholder="Buscar placa o conductor…" value={q} onChange={setQ} size="sm" /></div>
+      </div>
+      {filtered.length===0
+        ? <Card padding={0}><EmptyState icon="search_off" title="Sin resultados" description={'Nada coincide con "'+q+'". Revisa la placa o el nombre.'} action={<Button variant="secondary" size="sm" onClick={()=>setQ('')}>Limpiar búsqueda</Button>} /></Card>
+        : <Table rowKey="id" selectedKey={sel} onRowClick={(r)=>setSel(r.id===sel?null:r.id)}
+            columns={[
+              {key:'plate',label:'Placa',mono:true},
+              {key:'driver',label:'Conductor',render:(r)=><span style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.driver} size="sm" />{r.driver}</span>},
+              {key:'type',label:'Tipo'},
+              {key:'trips',label:'Viajes',align:'right',mono:true},
+              {key:'km',label:'Km',align:'right',mono:true},
+              {key:'status',label:'Estado',render:(r)=>STATUS[r.status]},
+            ]} rows={filtered} />}
+    </div>
+    <DetailPanel unit={selected} onClose={()=>setSel(null)} onDelete={()=>setConfirm(true)} />
+    <Dialog open={confirm} onClose={()=>setConfirm(false)} tone="danger" title="¿Eliminar unidad?"
+      description={selected ? selected.plate+' se desvinculará de '+selected.driver+'. Esta acción no se puede deshacer.' : ''}
+      actions={<>
+        <Button variant="ghost" onClick={()=>setConfirm(false)}>Cancelar</Button>
+        <Button variant="danger" onClick={doDelete}>Eliminar</Button>
+      </>} />
+  </div>;
+}
+
+// ============ CONDUCTORES ============
+function DriversPage({notify}){
+  const [q,setQ] = React.useState('');
+  const [page,setPage] = React.useState(1);
+  const [sel,setSel] = React.useState(null);
+  const [docs,setDocs] = React.useState([{name:'licencia-conducir.pdf',size:684000}]);
+  const filtered = DRIVERS.filter(d => q==='' || d.name.toLowerCase().includes(q.toLowerCase()));
+  const drv = DRIVERS.find(d=>d.id===sel);
+  return <>
+    <PageHeader crumbs={[{label:'Flota'},{label:'Conductores'}]} title="Conductores"
+      actions={<><div style={{width:260}}><Input icon="search" placeholder="Buscar conductor…" value={q} onChange={setQ} size="sm" /></div><Button variant="accent" icon="person_add">Invitar</Button></>} />
+    <Table rowKey="id" selectedKey={sel} onRowClick={(r)=>setSel(r.id)}
+      columns={[
+        {key:'name',label:'Conductor',render:(r)=><span style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.name} size="sm" status={r.status==='ruta'?'busy':'offline'} />{r.name}</span>},
+        {key:'rating',label:'Rating',align:'right',mono:true,render:(r)=><span style={{display:'inline-flex',alignItems:'center',gap:4}}><span className="flow-icon flow-icon--fill" style={{fontSize:14,color:'var(--status-warning)'}} aria-hidden="true">star</span>{r.rating.toFixed(2)}</span>},
+        {key:'trips',label:'Viajes',align:'right',mono:true,render:(r)=>r.trips.toLocaleString()},
+        {key:'unit',label:'Unidad',mono:true},
+        {key:'docs',label:'Documentos',render:(r)=> r.docs===4 ? <Badge tone="success" icon="check">Completos</Badge> : <Badge tone="warning" icon="schedule">{r.docs} de 4</Badge>},
+        {key:'status',label:'Estado',render:(r)=>STATUS[r.status]},
+        {key:'menu',label:'',align:'right',render:(r)=><Menu align="right" trigger={<IconButton icon="more_vert" ariaLabel={'Acciones '+r.name} size="sm" />}
+          items={[{label:'Ver perfil',icon:'person',onClick:()=>setSel(r.id)},{label:'Reasignar unidad',icon:'swap_horiz'},'divider',{label:'Dar de baja',icon:'person_off',danger:true}]} />},
+      ]} rows={filtered} />
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginTop:16}}>
+      <span style={{fontSize:12.5,color:'var(--text-muted)'}}>{filtered.length} conductores · página {page} de 8</span>
+      <Pagination page={page} pages={8} onChange={setPage} />
+    </div>
+    <Drawer open={!!drv} onClose={()=>setSel(null)} title={drv?drv.name:''} width={420}
+      footer={<><Button variant="ghost" onClick={()=>setSel(null)}>Cerrar</Button><Button variant="primary" onClick={()=>{setSel(null);notify('Cambios guardados.');}}>Guardar</Button></>}>
+      {drv && <div style={{display:'flex',flexDirection:'column',gap:18}}>
+        <div style={{display:'flex',alignItems:'center',gap:14}}>
+          <Avatar name={drv.name} size="xl" status={drv.status==='ruta'?'busy':'offline'} />
+          <div>
+            {STATUS[drv.status]}
+            <div style={{fontSize:12.5,color:'var(--text-muted)',marginTop:6}}>Desde {drv.since} · unidad <span style={{fontFamily:'var(--font-mono)'}}>{drv.unit}</span></div>
+          </div>
+        </div>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:10}}>
+          <Card padding={14}><div style={{fontSize:10.5,color:'var(--text-muted)',fontWeight:600,letterSpacing:'.06em'}}>RATING</div><div style={{fontFamily:'var(--font-mono)',fontSize:19,fontWeight:600}}>{drv.rating.toFixed(2)}</div></Card>
+          <Card padding={14}><div style={{fontSize:10.5,color:'var(--text-muted)',fontWeight:600,letterSpacing:'.06em'}}>VIAJES</div><div style={{fontFamily:'var(--font-mono)',fontSize:19,fontWeight:600}}>{drv.trips.toLocaleString()}</div></Card>
+          <Card padding={14}><div style={{fontSize:10.5,color:'var(--text-muted)',fontWeight:600,letterSpacing:'.06em'}}>DOCS</div><div style={{fontFamily:'var(--font-mono)',fontSize:19,fontWeight:600}}>{drv.docs}/4</div></Card>
+        </div>
+        <Accordion defaultOpen="docs" items={[
+          {id:'docs', title:'Documentos', icon:'description', meta:drv.docs+' de 4',
+            content:<div style={{display:'flex',flexDirection:'column',gap:12}}>
+              <Progress label="Verificación" value={drv.docs} max={4} showValue />
+              <FileUpload files={docs} onChange={setDocs} accept=".pdf,image/*" label="Sube un documento" hint="PDF o foto · máx 10 MB" />
+            </div>},
+          {id:'hist', title:'Historial de viajes', icon:'history', content:'128 viajes este mes. Último: hoy 14:32, Roma Norte → Polanco.'},
+          {id:'pagos', title:'Pagos', icon:'payments', content:'Depósito semanal a cuenta terminación 4821. Próximo corte: viernes.'},
+        ]} />
+      </div>}
+    </Drawer>
+  </>;
+}
+
+// ============ REPORTES ============
+function ReportsPage(){
+  const [range,setRange] = React.useState('7d');
+  const [from,setFrom] = React.useState('2026-07-01');
+  const [loading,setLoading] = React.useState(false);
+  const reload = (v)=>{ setRange(v); setLoading(true); setTimeout(()=>setLoading(false), 700); };
+  return <>
+    <PageHeader crumbs={[{label:'Flota'},{label:'Reportes'}]} title="Reportes"
+      actions={<Menu align="right" trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
+        items={[{label:'CSV',icon:'table'},{label:'PDF',icon:'picture_as_pdf'},{label:'Enviar por correo',icon:'mail'}]} />} />
+    <div style={{display:'flex',gap:14,alignItems:'center',marginBottom:20,flexWrap:'wrap'}}>
+      <Tabs value={range} onChange={reload} items={[
+        {value:'7d',label:'7 días'},{value:'30d',label:'30 días'},{value:'90d',label:'Trimestre'},
+      ]} />
+      <div style={{width:190,marginLeft:'auto'}}><DatePicker value={from} onChange={setFrom} /></div>
+    </div>
+    {loading
+      ? <div aria-busy="true" aria-label="Cargando reportes" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+          <Card><Skeleton variant="title" width="40%" /><Skeleton variant="card" height={200} style={{marginTop:14}} /></Card>
+          <Card><Skeleton variant="title" width="40%" /><Skeleton variant="card" height={200} style={{marginTop:14}} /></Card>
+        </div>
+      : <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+        <Card>
+          <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Ingresos por día</div>
+          <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:14}}>Total del periodo: <span style={{fontFamily:'var(--font-mono)',fontWeight:600,color:'var(--text-primary)'}}>$7,627</span></div>
+          <Bars height={200} format={(v)=>'$'+v} data={[{label:'Lun',value:820},{label:'Mar',value:1140},{label:'Mié',value:960},{label:'Jue',value:1310},{label:'Vie',value:1482},{label:'Sáb',value:1275},{label:'Dom',value:640}]} />
+        </Card>
+        <Card>
+          <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Viajes por tipo de unidad</div>
+          <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:14}}>412 viajes en el periodo</div>
+          <Bars height={200} color="var(--surface-inverse)" data={[{label:'Sedán',value:218},{label:'Van',value:104},{label:'Moto',value:90}]} />
+        </Card>
+        <Card style={{gridColumn:'1 / -1'}}>
+          <div style={{display:'flex',alignItems:'center',gap:24,flexWrap:'wrap'}}>
+            {[['Tendencia de viajes',[290,340,310,365,388,395,412],'var(--action-accent)'],
+              ['Km recorridos',[610,720,684,790,812,795,810],'var(--flow-ink-700)'],
+              ['Cancelaciones',[18,14,16,11,9,12,8],'var(--status-warning)']].map(([t,vals,c],i)=>
+              <div key={i} style={{flex:1,minWidth:200}}>
+                <div style={{font:'var(--type-overline)',letterSpacing:'var(--tracking-overline)',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:6}}>{t}</div>
+                <Sparkline values={vals} width={220} height={48} color={c} />
+              </div>)}
+          </div>
+        </Card>
+      </div>}
+  </>;
+}
+
+function App(){
+  const [page,setPage] = React.useState('dashboard');
+  const [toast,setToast] = React.useState(null);
+  const notify = (m)=>{ setToast(m); setTimeout(()=>setToast(null),4000); };
+  return <div style={{display:'flex',height:'100vh',overflow:'hidden'}}>
+    <Sidebar page={page} setPage={setPage} />
+    <main style={{flex:1,overflowY:'auto',padding:32,boxSizing:'border-box'}} data-screen-label={page}>
+      {page==='dashboard' && <DashboardPage />}
+      {page==='unidades' && <UnitsPage notify={notify} />}
+      {page==='conductores' && <DriversPage notify={notify} />}
+      {page==='reportes' && <ReportsPage />}
+    </main>
+    {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga en unos segundos</div>);
+</script></body></html>

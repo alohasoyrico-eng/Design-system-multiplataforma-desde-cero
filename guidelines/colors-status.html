@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x150" subtitle="Estados: success, warning, danger (≠ rojo marca), info" name="Status" -->
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;font-family:var(--font-body);color:var(--text-primary);background:transparent}</style>
+<div style="display:flex;gap:12px;padding:16px">
+  <div style="flex:1;background:var(--status-success-bg);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <span style="width:10px;height:10px;border-radius:50%;background:var(--status-success)"></span>
+    <div style="font-size:12px;font-weight:600;color:var(--status-success-text)">Success</div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--status-success-text)">#12B76A</div>
+  </div>
+  <div style="flex:1;background:var(--status-warning-bg);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <span style="width:10px;height:10px;border-radius:50%;background:var(--status-warning)"></span>
+    <div style="font-size:12px;font-weight:600;color:var(--status-warning-text)">Warning</div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--status-warning-text)">#E8930C</div>
+  </div>
+  <div style="flex:1;background:var(--status-danger-bg);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <span style="width:10px;height:10px;border-radius:50%;background:var(--status-danger)"></span>
+    <div style="font-size:12px;font-weight:600;color:var(--status-danger-text)">Danger</div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--status-danger-text)">#D92D20</div>
+  </div>
+  <div style="flex:1;background:var(--status-info-bg);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <span style="width:10px;height:10px;border-radius:50%;background:var(--status-info)"></span>
+    <div style="font-size:12px;font-weight:600;color:var(--status-info-text)">Info</div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--status-info-text)">#2E7CF6</div>
+  </div>
+  <div style="flex:1;background:var(--surface-accent-subtle);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px">
+    <span style="width:10px;height:10px;border-radius:50%;background:var(--status-live);animation:p 1.6s ease-in-out infinite"></span>
+    <div style="font-size:12px;font-weight:600;color:var(--text-accent)">Live</div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-accent)">pulso 1.6s</div>
+  </div>
+</div>
+<style>@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.4);opacity:.5}}</style>

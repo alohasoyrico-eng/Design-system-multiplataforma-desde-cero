@@ -1,0 +1,160 @@
+<!-- @dsCard group="Dashboards" viewport="1280x820" subtitle="Roles y permisos (RoleMatrix), alta/baja de conductores y vehiculos" name="Configuracion" -->
+<!-- @startingPoint section="Templates" subtitle="Configuracion: roles y permisos, altas y bajas" viewport="1280x820" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Configuracion</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, Input, Field, Tabs, Table, Badge, Avatar, Card, Dialog, Toast, ToastStack, Breadcrumb, RoleMatrix, Menu, Select, Textarea } = NS;
+
+const DRIVERS = [
+  {id:'d1',name:'Ana Sosa',unit:'JMX-214-B',role:'driver',status:'activo'},
+  {id:'d2',name:'Luis Prieto',unit:'KTR-882-A',role:'driver',status:'activo'},
+  {id:'d3',name:'Rosa Duarte',unit:'MVD-101-C',role:'driver',status:'activo'},
+  {id:'d4',name:'Elena Ruz',unit:'—',role:'ops',status:'invitado'},
+];
+const VEHICLES = [
+  {id:'v1',plate:'JMX-214-B',type:'Sedan',year:'2024',status:'activo'},
+  {id:'v2',plate:'KTR-882-A',type:'Van',year:'2022',status:'activo'},
+  {id:'v3',plate:'QRS-330-E',type:'Van',year:'2021',status:'archivado'},
+];
+
+function ThemeToggle(){
+  const [dark,setDark] = React.useState(false);
+  React.useEffect(()=>{
+    const saved = localStorage.getItem('flow-theme');
+    const isDark = saved === 'dark';
+    setDark(isDark);
+    document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light');
+  },[]);
+  const toggle = ()=>{
+    const next = !dark; setDark(next);
+    document.documentElement.setAttribute('data-mode', next ? 'dark' : 'light');
+    localStorage.setItem('flow-theme', next ? 'dark' : 'light');
+  };
+  // Era un boton a mano de 32px repetido en siete plantillas: IconButton pone el
+  // objetivo de 44, el foco y el hover sin repetirlos aqui.
+  return <IconButton icon={dark?'light_mode':'dark_mode'} ariaLabel="Cambiar modo" variant="ghost" size="sm" onClick={toggle} />;
+}
+
+function App(){
+  const [tab,setTab] = React.useState('roles');
+  const [vals,setVals] = React.useState({
+    verFlota:{admin:true,ops:true,finanzas:true,driver:true},
+    editarUnidades:{admin:true,ops:true},
+    eliminarUnidades:{admin:true},
+    verFinanzas:{admin:true,finanzas:true},
+    exportar:{admin:true,ops:true,finanzas:true},
+    invitar:{admin:true,ops:true},
+    editarRoles:{admin:true},
+    congelarTarjetas:{admin:true,ops:true},
+    verMovimientos:{admin:true,ops:true,finanzas:true,driver:true},
+  });
+  const [confirm,setConfirm] = React.useState(null); // {type,label}
+  const [invite,setInvite] = React.useState(false);
+  const [email,setEmail] = React.useState('');
+  const [role,setRole] = React.useState('driver');
+  const [reason,setReason] = React.useState('');
+  const [toast,setToast] = React.useState(null);
+  const notify = (m)=>{ setToast(m); setTimeout(()=>setToast(null),3500); };
+
+  return <div style={{maxWidth:1080,margin:'0 auto',padding:'32px 28px 64px'}}>
+    <div style={{display:'flex',alignItems:'center'}}>
+      <Breadcrumb items={[{label:'Flota'},{label:'Configuracion'}]} />
+      <ThemeToggle />
+    </div>
+    <div style={{display:'flex',alignItems:'center',gap:16,margin:'6px 0 20px'}}>
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:0}}>Configuracion</h1>
+      <a href="../dashboards/overview.html" style={{marginLeft:'auto',fontSize:13,fontWeight:600,display:'inline-flex',alignItems:'center',gap:4}}><span className="flow-icon" aria-hidden="true" style={{fontSize:16}}>arrow_back</span>Dashboards</a>
+    </div>
+    <Tabs variant="underline" value={tab} onChange={setTab} items={[
+      {value:'roles',label:'Roles y permisos'},
+      {value:'equipo',label:'Conductores y equipo',count:DRIVERS.length},
+      {value:'vehiculos',label:'Vehiculos',count:VEHICLES.length},
+    ]} style={{marginBottom:24,display:'inline-flex'}} />
+
+    {tab==='roles' && <div style={{display:'flex',flexDirection:'column',gap:14}}>
+      <div style={{display:'flex',alignItems:'center',gap:12}}>
+        <p style={{fontSize:13.5,color:'var(--text-secondary)',margin:0,maxWidth:560,lineHeight:1.6}}>El rol <b>Admin</b> esta bloqueado. Cada cambio queda en la bitacora de seguridad.</p>
+        <Button variant="secondary" size="sm" icon="add" style={{marginLeft:'auto'}}>Nuevo rol</Button>
+      </div>
+      <RoleMatrix
+        roles={[{id:'admin',label:'Admin',locked:true},{id:'ops',label:'Operaciones'},{id:'finanzas',label:'Finanzas'},{id:'driver',label:'Driver'}]}
+        permissions={[
+          {id:'verFlota',label:'Ver unidades y viajes',group:'Flota'},
+          {id:'editarUnidades',label:'Editar unidades',group:'Flota'},
+          {id:'eliminarUnidades',label:'Eliminar / archivar unidades',group:'Flota'},
+          {id:'congelarTarjetas',label:'Congelar tarjetas',group:'Tarjetas'},
+          {id:'verMovimientos',label:'Ver movimientos',group:'Tarjetas'},
+          {id:'verFinanzas',label:'Ver dashboard de finanzas',group:'Finanzas'},
+          {id:'exportar',label:'Exportar reportes',group:'Finanzas'},
+          {id:'invitar',label:'Invitar miembros',group:'Equipo'},
+          {id:'editarRoles',label:'Editar roles y permisos',group:'Equipo'},
+        ]}
+        values={vals}
+        onChange={(next,pid,rid)=>{ setVals(next); notify('Permiso actualizado. Registrado en bitacora.'); }} />
+    </div>}
+
+    {tab==='equipo' && <div style={{display:'flex',flexDirection:'column',gap:14}}>
+      <div style={{display:'flex',gap:12}}>
+        <div style={{width:280}}><Input icon="search" placeholder="Buscar…" size="sm" value="" onChange={()=>{}} /></div>
+        <Button variant="accent" icon="person_add" style={{marginLeft:'auto'}} onClick={()=>setInvite(true)}>Invitar</Button>
+      </div>
+      <Table rowKey="id" columns={[
+        {key:'name',label:'Miembro',render:(r)=><span style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.name} size="sm" />{r.name}</span>},
+        {key:'role',label:'Rol',render:(r)=><Badge tone={r.role==='ops'?'info':'neutral'}>{r.role==='ops'?'Operaciones':'Driver'}</Badge>},
+        {key:'unit',label:'Unidad',mono:true,render:(r)=><Select searchable clearable value={r.unit==='—'?undefined:r.unit} onChange={()=>notify('Unidad reasignada.')} icon="local_taxi" placeholder="Sin asignar"
+          options={VEHICLES.map(v=>({value:v.plate,label:v.plate}))} style={{minWidth:150}} />},
+        {key:'status',label:'Estado',render:(r)=> r.status==='activo'?<Badge tone="success">Activo</Badge>:<Badge tone="warning" icon="schedule">Invitacion enviada</Badge>},
+        {key:'m',label:'',align:'right',render:(r)=><Menu align="right" trigger={<IconButton icon="more_vert" ariaLabel={'Acciones '+r.name} size="sm" />}
+          items={[{label:'Editar rol',icon:'badge'},{label:'Reasignar unidad',icon:'swap_horiz'},'divider',{label:'Dar de baja',icon:'person_off',danger:true,onClick:()=>setConfirm({type:'driver',label:r.name})}]} />},
+      ]} rows={DRIVERS} />
+    </div>}
+
+    {tab==='vehiculos' && <div style={{display:'flex',flexDirection:'column',gap:14}}>
+      <div style={{display:'flex',gap:12}}>
+        <div style={{width:280}}><Input icon="search" placeholder="Buscar placa…" size="sm" value="" onChange={()=>{}} /></div>
+        <a href="../wizard/index.html" style={{marginLeft:'auto',textDecoration:'none'}}><Button variant="accent" icon="add">Alta de unidad</Button></a>
+      </div>
+      <Table rowKey="id" columns={[
+        {key:'plate',label:'Placa',mono:true},{key:'type',label:'Tipo'},{key:'year',label:'Ano',mono:true},
+        {key:'status',label:'Estado',render:(r)=> r.status==='activo'?<Badge tone="success">Activo</Badge>:<Badge>Archivado</Badge>},
+        {key:'m',label:'',align:'right',render:(r)=><Menu align="right" trigger={<IconButton icon="more_vert" ariaLabel={'Acciones '+r.plate} size="sm" />}
+          items={[{label:'Editar',icon:'edit'},{label:'Ver historial',icon:'history'},'divider',{label:'Dar de baja',icon:'archive',danger:true,onClick:()=>setConfirm({type:'vehicle',label:r.plate})}]} />},
+      ]} rows={VEHICLES} />
+      <p style={{fontSize:12.5,color:'var(--text-muted)',margin:0}}>Las bajas archivan la unidad con su historial — nunca se borra.</p>
+    </div>}
+
+    <Dialog open={!!confirm} onClose={()=>setConfirm(null)} tone="danger"
+      title={confirm ? (confirm.type==='driver' ? 'Dar de baja a '+confirm.label+'?' : 'Dar de baja '+confirm.label+'?') : ''}
+      description="Se archiva con su historial y pierde acceso. Puedes reactivar despues."
+      actions={<>
+        <Button variant="ghost" onClick={()=>setConfirm(null)}>Cancelar</Button>
+        <Button variant="danger" onClick={()=>{setConfirm(null);setReason('');notify('Baja registrada con motivo.');}}>Dar de baja</Button>
+      </>}>
+      <Field label="Motivo de la baja" htmlFor="rz" required help="Alimenta el analisis de rotacion.">
+        <Textarea id="rz" rows={2} value={reason} onChange={setReason} placeholder="Ej. renuncia voluntaria, fin de contrato…" />
+      </Field>
+    </Dialog>
+
+    <Dialog open={invite} onClose={()=>setInvite(false)} title="Invitar al equipo" description="Recibira un correo con su codigo de activacion."
+      actions={<>
+        <Button variant="ghost" onClick={()=>setInvite(false)}>Cancelar</Button>
+        <Button variant="accent" disabled={!email.includes('@')} onClick={()=>{setInvite(false);setEmail('');notify('Invitacion enviada a '+email+'.');}}>Enviar invitacion</Button>
+      </>}>
+      <div style={{display:'flex',flexDirection:'column',gap:14}}>
+        <Field label="Correo" htmlFor="iv"><Input id="iv" type="email" icon="mail" placeholder="persona@flota.mx" value={email} onChange={setEmail} /></Field>
+        <Field label="Rol"><Select value={role} onChange={setRole} options={[{value:'driver',label:'Driver'},{value:'ops',label:'Operaciones'},{value:'finanzas',label:'Finanzas'}]} /></Field>
+      </div>
+    </Dialog>
+    {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga</div>);
+</script></body></html>

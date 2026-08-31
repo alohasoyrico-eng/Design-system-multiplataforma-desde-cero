@@ -1,0 +1,114 @@
+{
+  "id": "treemap",
+  "name": "Treemap",
+  "layer": "components",
+  "function": [
+    "dataviz"
+  ],
+  "status": "stable",
+  "summary": "Tamano igual a valor y color igual a desvio contra presupuesto. El doble encoding es la decision propia.",
+  "api": {
+    "members": [
+      {
+        "name": "nodes",
+        "kind": "prop",
+        "type": "Array<{ label: string; value: number; deviation?: number }>",
+        "required": true
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "default": 280
+      },
+      {
+        "name": "format",
+        "kind": "prop",
+        "type": "(value: number) => string"
+      },
+      {
+        "name": "onDrill",
+        "kind": "event",
+        "type": "(node: object) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tmp-v1",
+        "rule": "Sin datos no dibuja ejes ni rejilla vacia: muestra un estado vacio con texto. Un lienzo con ejes y cero series parece un error de carga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tmp-v2",
+        "rule": "Con un solo dato, o con todos los valores iguales, no divide por cero ni deja la escala en Infinity: la escala se degrada a un rango minimo legible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tmp-v3",
+        "rule": "El color sale de la paleta de dataviz y el rojo de marca solo marca la serie enfatizada, nunca una categoria mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tmp-v4",
+        "rule": "La cifra exacta esta disponible en texto, no solo en la geometria: una grafica sin numero legible no se puede citar ni leer en voz alta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tmp-1",
+        "rule": "El color codifica desvio y no categoria, y la leyenda lo dice: sin eso el lector asume que cada color es una cosa distinta.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tmp-2",
+        "rule": "Un nodo demasiado pequeno para su etiqueta no la recorta a la mitad: la oculta y la deja en el tooltip.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tmp-3",
+        "rule": "Con onDrill los nodos son operables por teclado, no solo por clic.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "deps": {
+    "external": [
+      {
+        "name": "echarts",
+        "loader": "cdn-lazy"
+      }
+    ]
+  },
+  "tokens": [
+    "--viz-ramp-1",
+    "--viz-ramp-6",
+    "--status-success",
+    "--status-danger"
+  ],
+  "nonGoals": [
+    "No muestra jerarquia de mas de un nivel sin drill.",
+    "No compara series temporales."
+  ],
+  "reference": {
+    "src": "components/Treemap.jsx",
+    "states": "docs/cards/fleet-charts.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

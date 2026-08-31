@@ -1,0 +1,49 @@
+{
+  "id": "chip-group",
+  "name": "ChipGroup",
+  "layer": "primitives",
+  "function": [
+    "layout"
+  ],
+  "status": "stable",
+  "summary": "Contenedor visual para agrupar Chips con borde comun y gap interno.",
+  "api": {
+    "members": [
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cg-1",
+        "rule": "Los Chips hijos no muestran su propio borde individual cuando estan dentro del grupo.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--border-subtle",
+    "--radius-pill",
+    "--surface-card"
+  ],
+  "nonGoals": [
+    "No maneja seleccion: eso es responsabilidad de cada Chip."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/ChipGroup.tsx"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "auth-pattern",
+  "name": "Autenticacion basica",
+  "layer": "patterns",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Ingreso, registro y recuperacion: un campo por linea, errores por campo y estado de carga en el boton.",
+  "implements": [
+    "field",
+    "input",
+    "button"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "aut-p1",
+        "rule": "El error de credenciales no dice cual de los dos campos falla: revelarlo confirma que un correo existe.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "aut-p2",
+        "rule": "El error se anuncia al aparecer y el foco va al primer campo con problema.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "aut-p3",
+        "rule": "La contrasena se puede revelar con el ojo de Input, y el navegador puede autorrellenar: sin autocomplete, el gestor de contrasenas no funciona.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "aut-p4",
+        "rule": "El boton queda deshabilitado mientras envia: dos clics no producen dos intentos.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "aut-p5",
+        "rule": "Recuperar contrasena responde lo mismo exista o no la cuenta.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "field",
+      "input",
+      "button",
+      "statusview"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No implementa la sesion ni el token.",
+    "No cubre el segundo factor: eso es auth-otp."
+  ],
+  "reference": {
+    "demo": "ui_kits/auth/index.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

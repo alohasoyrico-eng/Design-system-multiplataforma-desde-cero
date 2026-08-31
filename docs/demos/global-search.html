@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Flow · Búsqueda global</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)}
+.wrap{padding:20px;display:flex;flex-direction:column;gap:10px}
+.demo-label{font-size:11px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em;margin:0}
+.note{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.55;max-width:62ch}
+.stage{background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px;box-shadow:var(--shadow-rest)}
+</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow || {};
+const { GlobalSearch, Button, Badge } = NS;
+const ITEM = new URLSearchParams(location.search).get('item');
+
+const DATA = [
+  { id:'u1', group:'Unidades', icon:'local_shipping', label:'ABC-123', mono:true, meta:'Freightliner Cascadia · Transportes Vidal' },
+  { id:'u2', group:'Unidades', icon:'local_shipping', label:'ABC-871', mono:true, meta:'Kenworth T680 · Logistica Nacional' },
+  { id:'u3', group:'Unidades', icon:'local_shipping', label:'XPD-445', mono:true, meta:'Volvo VNL · Transportes Vidal' },
+  { id:'c1', group:'Conductores', icon:'person', label:'Juan Perez', meta:'Transportes Vidal · Lic. B vigente' },
+  { id:'c2', group:'Conductores', icon:'person', label:'Juan Perez Ramos', meta:'Logistica Nacional · Lic. A vigente' },
+  { id:'c3', group:'Conductores', icon:'person', label:'Marta Solis', meta:'Express Rapido · Lic. B vence en 40 dias' },
+  { id:'v1', group:'Viajes', icon:'route', label:'VJ-90412', mono:true, meta:'CDMX → Queretaro · hoy 08:20' },
+  { id:'v2', group:'Viajes', icon:'route', label:'VJ-90388', mono:true, meta:'Monterrey → Saltillo · ayer' },
+  { id:'e1', group:'Estaciones', icon:'local_gas_station', label:'Pemex Tlalpan 1420', meta:'Diesel $24.10 · 3.2 km' },
+  { id:'t1', group:'Transacciones', icon:'payments', label:'$4,820.00', mono:true, meta:'Diesel · ABC-123 · 12 ago' },
+];
+
+const RECENTS = [
+  { id:'u1', icon:'local_shipping', label:'ABC-123', mono:true, meta:'Unidad' },
+  { id:'c3', icon:'person', label:'Marta Solis', meta:'Conductor' },
+  { id:'v1', icon:'route', label:'VJ-90412', mono:true, meta:'Viaje' },
+];
+
+const ORDER = ['Unidades', 'Conductores', 'Viajes', 'Estaciones', 'Transacciones'];
+
+// Simula latencia de red para que se vea el estado de carga
+function useSearch(query, minChars) {
+  const [results, setResults] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  React.useEffect(() => {
+    if (query.length < minChars) { setResults([]); setLoading(false); return; }
+    setLoading(true);
+    const t = setTimeout(() => {
+      const q = query.toLowerCase();
+      setResults(DATA.filter(d => d.label.toLowerCase().includes(q) || (d.meta||'').toLowerCase().includes(q)));
+      setLoading(false);
+    }, 260);
+    return () => clearTimeout(t);
+  }, [query, minChars]);
+  return { results, loading };
+}
+
+function Palette() {
+  const [open, setOpen] = React.useState(false);
+  const [q, setQ] = React.useState('');
+  const [recents, setRecents] = React.useState(RECENTS);
+  const [picked, setPicked] = React.useState(null);
+  const { results, loading } = useSearch(q, 1);
+  return <div className="stage">
+    <div style={{display:'flex',alignItems:'center',gap:14,flexWrap:'wrap'}}>
+      <Button icon="search" variant="secondary" onClick={()=>setOpen(true)}>Buscar</Button>
+      <span style={{fontSize:12.5,color:'var(--text-secondary)',display:'flex',alignItems:'center',gap:6,whiteSpace:'nowrap'}}>
+        o pulsa <kbd style={{fontFamily:'var(--font-mono)',fontSize:11,border:'1px solid var(--border-subtle)',borderRadius:4,padding:'2px 6px'}}>⌘K</kbd>
+      </span>
+      {picked && <span style={{fontSize:12.5,color:'var(--text-secondary)'}}>
+        Abriste <strong style={{color:'var(--text-primary)',fontFamily:picked.mono?'var(--font-mono)':'inherit'}}>{picked.label}</strong>
+      </span>}
+    </div>
+    <GlobalSearch mode="palette" open={open} onOpenChange={setOpen}
+      value={q} onValueChange={setQ}
+      results={results} loading={loading}
+      groupOrder={ORDER} recents={recents}
+      onClearRecents={()=>setRecents([])}
+      onSelect={(item)=>{ setPicked(item); setQ(''); }} />
+  </div>;
+}
+
+function Inline() {
+  const [open, setOpen] = React.useState(false);
+  const [q, setQ] = React.useState('');
+  const [picked, setPicked] = React.useState(null);
+  const { results, loading } = useSearch(q, 1);
+  return <div className="stage">
+    <div style={{display:'flex',alignItems:'center',gap:16}}>
+      <div style={{flex:1,maxWidth:420}}>
+        <GlobalSearch mode="inline" open={open} onOpenChange={setOpen}
+          value={q} onValueChange={setQ}
+          results={results} loading={loading} groupOrder={ORDER}
+          placeholder="Busca unidades, conductores…"
+          onSelect={(item)=>{ setPicked(item); setQ(''); }} />
+      </div>
+      {picked && <span style={{fontSize:12.5,color:'var(--text-secondary)'}}>
+        Abriste <strong style={{color:'var(--text-primary)',fontFamily:picked.mono?'var(--font-mono)':'inherit'}}>{picked.label}</strong>
+      </span>}
+    </div>
+  </div>;
+}
+
+function App() {
+  const showP = !ITEM || ITEM === 'palette' || ITEM === 'global-search';
+  const showI = !ITEM || ITEM === 'inline';
+  return <div className="wrap">
+    {showP && <>
+      <p className="demo-label">palette — overlay ⌘K</p>
+      <p className="note">Escribe «juan» para ver dos homonimos desambiguados por flota, o «ABC» para placas en mono. Sin consulta muestra recientes. ↑↓ navega, ↵ abre, esc cierra.</p>
+      <Palette />
+    </>}
+    {showI && <>
+      <p className="demo-label">inline — dropdown bajo el input</p>
+      <p className="note">La misma busqueda anclada a un input del TopBar. Sin overlay ni atajo: la busqueda es una funcion visible de la pagina.</p>
+      <Inline />
+    </>}
+  </div>;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  NS.GlobalSearch ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

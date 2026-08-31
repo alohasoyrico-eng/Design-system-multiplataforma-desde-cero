@@ -1,0 +1,158 @@
+{
+  "id": "map-canvas",
+  "name": "MapCanvas",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Mapa de tiles OpenStreetMap con pines de precio y ruta punteada opcional.",
+  "api": {
+    "types": [
+      {
+        "name": "MapPin",
+        "members": [
+          [
+            "id",
+            "string"
+          ],
+          [
+            "lat",
+            "number"
+          ],
+          [
+            "lng",
+            "number"
+          ],
+          [
+            "label",
+            "string"
+          ],
+          [
+            "icon",
+            "string?"
+          ],
+          [
+            "ariaLabel",
+            "string?"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "center",
+        "kind": "prop",
+        "type": "{ lat: number; lng: number }",
+        "required": true
+      },
+      {
+        "name": "zoom",
+        "kind": "prop",
+        "type": "number",
+        "default": 13
+      },
+      {
+        "name": "pins",
+        "kind": "prop",
+        "type": "MapPin[]"
+      },
+      {
+        "name": "selectedId",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onPinClick",
+        "kind": "event",
+        "type": "(pin: MapPin) => void"
+      },
+      {
+        "name": "route",
+        "kind": "prop",
+        "type": "Array<{ lat: number; lng: number }>"
+      },
+      {
+        "name": "dark",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "No se deriva del tema: el set de tiles es una decisión de datos, no de token."
+      },
+      {
+        "name": "width",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "string | number",
+        "required": true
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "mc-1",
+        "rule": "La atribución de OpenStreetMap es visible sobre cualquier tile.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mc-2",
+        "rule": "Cada pin es enfocable por teclado y trae ariaLabel con lugar y valor.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "mc-3",
+        "rule": "Hay una alternativa no cartográfica al mapa: lista de la misma información.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "mc-4",
+        "rule": "Los pines no se solapan de forma ilegible con zoom bajo.",
+        "level": "should",
+        "verify": "manual"
+      },
+      {
+        "id": "mc-5",
+        "rule": "Tile que no carga deja fondo --surface-sunken, no blanco roto.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": true
+  },
+  "deps": {
+    "network": [
+      {
+        "host": "tile.openstreetmap.org",
+        "purpose": "Tiles base",
+        "attribution": "© OpenStreetMap — obligatoria por licencia"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--action-accent",
+    "--radius-lg"
+  ],
+  "nonGoals": [
+    "No es un SDK de mapas: sin clustering, sin geocoding, sin capas. Si el producto necesita eso, el destino monta su librería y solo conserva el estilo de pin y ruta."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "components/MapCanvas.jsx",
+    "demo": "docs/demos/map-canvas.html"
+  }
+}

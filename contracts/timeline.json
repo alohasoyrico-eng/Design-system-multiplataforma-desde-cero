@@ -1,0 +1,101 @@
+{
+  "id": "timeline",
+  "name": "Timeline",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Historial vertical de un registro, con estado por evento. mode cambia la presentacion de los mismos datos: 'steps' con icono y conector, 'events' como cronologia compacta.",
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<{ title: string; timestamp?: string; status?: 'done' | 'active' | 'pending' | 'error'; description?: string }>",
+        "required": true
+      },
+      {
+        "name": "mode",
+        "kind": "prop",
+        "type": "'steps' | 'events'",
+        "default": "steps",
+        "variantAxis": true,
+        "note": "Absorbe TableTimeline. 'events' dice el estado en texto y alinea la fecha a la derecha."
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tml-1",
+        "rule": "El estado de cada evento se dice con texto, no solo con el color del punto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tml-2",
+        "rule": "Es una lista para el lector, en orden, y la linea que une los puntos esta oculta.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tml-3",
+        "rule": "Las marcas de tiempo van en la familia de dato y con el mismo formato en toda la lista.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tml-4",
+        "rule": "Un solo evento no dibuja linea suelta por encima ni por debajo.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tml-5",
+        "rule": "En mode='events' el estado se escribe con palabra propia, no se deduce del color del punto. Era lo unico que TableTimeline hacia y Timeline no.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--status-success",
+    "--action-accent",
+    "--status-danger",
+    "--text-muted",
+    "--type-data",
+    "--border-subtle"
+  ],
+  "nonGoals": [
+    "No tiene eje proporcional al tiempo. TableTimeline decia tenerlo y calculaba la posicion sin llegar a dibujarla nunca: por eso se absorbio en vez de fusionar dos comportamientos.",
+    "No pagina."
+  ],
+  "reference": {
+    "src": "components/Timeline.jsx",
+    "demo": "docs/demos/timeline.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  },
+  "supersedes": [
+    "table-timeline"
+  ],
+  "modes": [
+    {
+      "value": "steps",
+      "note": "El recorrido de un registro: icono de estado, conector entre pasos, el activo con glow."
+    },
+    {
+      "value": "events",
+      "note": "Cronologia: punto compacto, estado en texto y fecha en la familia de dato."
+    }
+  ]
+}

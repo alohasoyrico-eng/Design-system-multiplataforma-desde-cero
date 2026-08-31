@@ -1,0 +1,176 @@
+{
+  "id": "table",
+  "name": "Table",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Tabla de datos con filas seleccionables, orden por columna y fila de detalle opcional.",
+  "supersedes": [
+    "table-dense",
+    "table-expandable"
+  ],
+  "api": {
+    "generics": [
+      {
+        "param": "T",
+        "default": "any",
+        "describes": "La fila"
+      }
+    ],
+    "types": [
+      {
+        "name": "TableColumn",
+        "generic": true,
+        "members": [
+          [
+            "key",
+            "string"
+          ],
+          [
+            "label",
+            "string"
+          ],
+          [
+            "width",
+            "number | string"
+          ],
+          [
+            "align",
+            "'left' | 'right' | 'center'"
+          ],
+          [
+            "mono",
+            "boolean"
+          ],
+          [
+            "sortable",
+            "boolean"
+          ],
+          [
+            "sortValue",
+            "(row: T) => string | number"
+          ],
+          [
+            "render",
+            "(row: T) => React.ReactNode"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "TableColumn<T>[]",
+        "required": true
+      },
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "T[]",
+        "required": true
+      },
+      {
+        "name": "rowKey",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onRowClick",
+        "kind": "event",
+        "type": "(row: T) => void"
+      },
+      {
+        "name": "selectedKey",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "dense",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "variantAxis": true
+      },
+      {
+        "name": "renderDetail",
+        "kind": "renderProp",
+        "type": "(row: T) => React.ReactNode",
+        "note": "Activa chevron y fila de detalle."
+      },
+      {
+        "name": "defaultSort",
+        "kind": "prop",
+        "type": "{ key: string; dir: 1 | -1 }"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "value": "default",
+      "use": "Lectura y navegación."
+    },
+    {
+      "value": "dense",
+      "use": "Más de 20 filas visibles; back-office."
+    }
+  ],
+  "conformance": {
+    "inherits": [
+      "data-grid"
+    ],
+    "criteria": [
+      {
+        "id": "tb-1",
+        "rule": "El zebra sale de --surface-sunken, nunca de un rgba a mano.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tb-2",
+        "rule": "Si la fila es clickeable es un elemento enfocable con rol de botón o enlace, no un div con onClick.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tb-3",
+        "rule": "El header ordenable anuncia aria-sort.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tb-4",
+        "rule": "Cifras, placas e IDs en --type-data.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "data-grid"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--type-data",
+    "--surface-sunken",
+    "--border-subtle"
+  ],
+  "nonGoals": [
+    "Edición en celda, selección masiva, árbol y timeline: agregan estado y flujo de trabajo sobre la grid, así que son patterns (filterable-editable-table, bulk-actions-table, table-tree, table-timeline), no variantes.",
+    "Virtualización: la decide el codebase destino según su volumen real."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "components/Table.jsx",
+    "states": "docs/cards/display.card.html",
+    "demo": "docs/demos/table.html"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "id": "dashboards-6",
+  "name": "Dashboards de flota (6)",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Seis dashboards con el mismo esqueleto: overview, combustible, mantenimiento, electromovilidad, peaje y finanzas. Comparten header, rango de fechas y rejilla.",
+  "content": {
+    "surface": "Analitica de Fleet Manager",
+    "product": "fleet-dashboard",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light",
+      "dark"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "header",
+        "fills": "Titulo, Tabs de periodo, DatePicker mode=range y menu de exportar"
+      },
+      {
+        "name": "kpis",
+        "fills": "Cuatro StatTile con delta contra periodo anterior"
+      },
+      {
+        "name": "principal",
+        "fills": "La grafica que responde la pregunta de la pantalla"
+      },
+      {
+        "name": "apoyo",
+        "fills": "Dos graficas secundarias o una tabla"
+      }
+    ]
+  },
+  "composition": {
+    "patterns": [
+      "dashboard-pattern"
+    ],
+    "components": [
+      "stattile",
+      "flow-chart",
+      "datepicker",
+      "tabs",
+      "menu",
+      "table"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "d6-1",
+        "rule": "Los seis comparten el mismo esqueleto de header y rejilla: si uno se desvia, deja de ser una familia y hay que justificarlo.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "d6-2",
+        "rule": "Un solo CTA de acento por vista, y en estas pantallas suele ser exportar.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "d6-3",
+        "rule": "La barra de herramientas envuelve a 1280px y por debajo, sin barra de scroll horizontal espuria.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "d6-4",
+        "rule": "El rango de fechas gobierna todo lo que se ve en la pantalla, y es uno solo.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "d6-5",
+        "rule": "Cada grafica declara que hace cuando no hay datos para el periodo elegido.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/dashboards/overview.html"
+  }
+}

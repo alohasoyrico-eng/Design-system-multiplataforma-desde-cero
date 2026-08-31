@@ -1,0 +1,33 @@
+{
+  "id": "guidance-card",
+  "name": "GuidanceCard",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Card de guidance do/don't con tono semantico, specimen opcional y lista de reglas.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "gc-1",
+        "rule": "El tono (success/danger) es distinguible por la franja de 3px ademas del color.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "implements": [
+    "card",
+    "specimen"
+  ],
+  "nonGoals": [
+    "No tiene estado de aprobacion: es referencia estatica."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/GuidanceCard.tsx"
+  }
+}

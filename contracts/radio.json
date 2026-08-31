@@ -1,0 +1,114 @@
+{
+  "id": "radio",
+  "name": "Radio",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Opcion excluyente sobre ToggleControl, con linea secundaria opcional bajo la etiqueta.",
+  "api": {
+    "members": [
+      {
+        "name": "name",
+        "kind": "prop",
+        "type": "string",
+        "note": "Une el grupo. Sin el, las flechas no recorren nada."
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "checked",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "disabled",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "toggle-control"
+    ],
+    "criteria": [
+      {
+        "id": "rdo-1",
+        "rule": "Con name compartido, las flechas recorren el grupo y solo el seleccionado entra al orden de tabulacion. Es el comportamiento nativo y no se reimplementa.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "rdo-2",
+        "rule": "La descripcion queda referenciada por aria-describedby: si solo se ve, no informa a quien navega por audio.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "rdo-3",
+        "rule": "El objetivo incluye la etiqueta y la descripcion completas, no solo el circulo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "rdo-4",
+        "rule": "Con prefers-reduced-motion el punto aparece sin resorte.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "toggle-control"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--action-primary",
+    "--border-default",
+    "--text-secondary",
+    "--ease-spring"
+  ],
+  "nonGoals": [
+    "No se desmarca: para eso hay una opcion 'ninguna'.",
+    "No sustituye a Select con muchas opciones: mas de cinco radios son una lista."
+  ],
+  "reference": {
+    "src": "primitives/Radio.jsx",
+    "states": "docs/cards/forms.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

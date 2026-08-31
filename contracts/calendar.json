@@ -1,0 +1,86 @@
+{
+  "id": "calendar",
+  "name": "Calendar",
+  "layer": "primitives",
+  "function": [
+    "forms"
+  ],
+  "status": "beta",
+  "summary": "Calendario mensual con seleccion simple, rango y navegacion. Usado dentro de DatePicker.",
+  "api": {
+    "members": [
+      {
+        "name": "selected",
+        "kind": "prop",
+        "type": "string[]",
+        "default": "[]"
+      },
+      {
+        "name": "rangeStart",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "rangeEnd",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onSelect",
+        "kind": "event",
+        "type": "(date: string) => void"
+      },
+      {
+        "name": "onClear",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "onToday",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "hint",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cal-1",
+        "rule": "Hit target de cada dia es >= 44px.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "cal-2",
+        "rule": "Navegacion por teclado con flechas entre dias.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-accent-subtle",
+    "--text-accent",
+    "--radius-pill",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No muestra multiples meses a la vez."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/Calendar.tsx"
+  }
+}

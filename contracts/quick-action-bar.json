@@ -1,0 +1,33 @@
+{
+  "id": "quick-action-bar",
+  "name": "QuickActionBar",
+  "layer": "patterns",
+  "function": [
+    "actions"
+  ],
+  "status": "stable",
+  "summary": "Barra horizontal de acciones rapidas (QuickAction). Contenedor flex con scroll horizontal.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "qab-1",
+        "rule": "Scroll horizontal cuando los items exceden el ancho.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "implements": [
+    "quick-action"
+  ],
+  "domain": "fintech",
+  "nonGoals": [
+    "No limita la cantidad de acciones: la priorización es responsabilidad del consumidor."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/QuickActionBar.tsx"
+  }
+}

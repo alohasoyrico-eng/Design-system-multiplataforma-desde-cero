@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Flow · Demos Index</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { font-family: var(--font-body); background: var(--surface-canvas); padding: 32px; margin: 0; }
+  h1 { margin: 0 0 32px 0; font-size: 32px; font-weight: 800; color: var(--text-primary); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 24px; text-decoration: none; color: inherit; transition: all var(--dur-fast) var(--ease-out); cursor: pointer; }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-float); border-color: var(--border-focus); }
+  .card h3 { margin: 0 0 8px 0; font-size: 16px; font-weight: 700; color: var(--text-primary); }
+  .card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .badge { display: inline-block; background: var(--surface-accent-subtle); color: var(--text-accent); padding: 4px 8px; border-radius: var(--radius-sm); font-size: 11px; font-weight: 600; margin-top: 12px; text-transform: uppercase; letter-spacing: var(--tracking-overline); }
+  .section { margin-top: 48px; }
+  h2 { margin: 0 0 24px 0; font-size: 20px; font-weight: 700; color: var(--text-primary); }
+</style></head><body>
+<h1>Flow Design System · Demos</h1>
+
+<div class="section">
+  <h2>Componentes Base</h2>
+  <div class="grid">
+    <a href="button.html" class="card">
+      <h3>Button</h3>
+      <p>Botones en variantes primary, secondary, ghost, accent, danger.</p>
+    </a>
+    <a href="input.html" class="card">
+      <h3>Input</h3>
+      <p>Campos de texto, estados, validación.</p>
+    </a>
+    <a href="select.html" class="card">
+      <h3>Select</h3>
+      <p>Dropdown básico con opciones.</p>
+    </a>
+    <a href="checkbox-radio.html" class="card">
+      <h3>Checkbox & Radio</h3>
+      <p>Controles de selección.</p>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Formularios Extendidos</h2>
+  <div class="grid">
+    <a href="forms-extended.html" class="card">
+      <h3>Forms Extended</h3>
+      <p>InputAmount, InputPhone, Input revealable, correo y fecha por composición.</p>
+      <span class="badge">Nuevo</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Tablas</h2>
+  <div class="grid">
+    <a href="table.html" class="card">
+      <h3>Table</h3>
+      <p>Tabla base con sorting, rows clicables.</p>
+    </a>
+    <a href="tables-extended.html" class="card">
+      <h3>Tables Extended</h3>
+      <p>TableDense, TableExpandable, TableTree, TableTimeline, BulkActionsTable.</p>
+      <span class="badge">Nuevo</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Tarjetas</h2>
+  <div class="grid">
+    <a href="card.html" class="card">
+      <h3>Card</h3>
+      <p>Tarjeta base, interactive, selected.</p>
+    </a>
+    <a href="cards-extended.html" class="card">
+      <h3>Cards Extended</h3>
+      <p>CardMedia, CardMinimal, CardElevated, CardGhost, CardInteractive, CardStats, CardCompact.</p>
+      <span class="badge">Nuevo</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Visualización de Datos</h2>
+  <div class="grid">
+    <a href="charts.html" class="card">
+      <h3>Charts</h3>
+      <p>Donut, Treemap, Pareto, Scatter, SmallMultiples, BulletChart.</p>
+    </a>
+    <a href="charts-extended.html" class="card">
+      <h3>Charts Extended</h3>
+      <p>ChartGantt, ChartWaterfall, ChartPolar, ChartKanban.</p>
+      <span class="badge">Nuevo</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Patrones Avanzados</h2>
+  <div class="grid">
+    <a href="patterns-advanced.html" class="card">
+      <h3>Advanced Patterns</h3>
+      <p>FilterableEditableTable, HelpCenter, Bulk Actions flow.</p>
+      <span class="badge">Nuevo</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Otros Componentes</h2>
+  <div class="grid">
+    <a href="badge.html" class="card">
+      <h3>Badge</h3>
+      <p>Badges de estado y etiquetas.</p>
+    </a>
+    <a href="chip.html" class="card">
+      <h3>Chip</h3>
+      <p>Chips removibles, closeable.</p>
+    </a>
+    <a href="avatar.html" class="card">
+      <h3>Avatar</h3>
+      <p>Avatares de usuario.</p>
+    </a>
+    <a href="spinner-progress.html" class="card">
+      <h3>Spinner & Progress</h3>
+      <p>Indicadores de carga.</p>
+    </a>
+    <a href="skeleton.html" class="card">
+      <h3>Skeleton</h3>
+      <p>Placeholder loading.</p>
+    </a>
+    <a href="emptystate.html" class="card">
+      <h3>Empty State</h3>
+      <p>Estados vacíos descriptivos.</p>
+    </a>
+    <a href="dialog.html" class="card">
+      <h3>Dialog</h3>
+      <p>Modales y confirmaciones.</p>
+    </a>
+    <a href="drawer.html" class="card">
+      <h3>Drawer</h3>
+      <p>Paneles laterales.</p>
+    </a>
+    <a href="toast.html" class="card">
+      <h3>Toast</h3>
+      <p>Notificaciones emergentes.</p>
+    </a>
+    <a href="tooltip.html" class="card">
+      <h3>Tooltip</h3>
+      <p>Información contextual.</p>
+    </a>
+    <a href="tabs.html" class="card">
+      <h3>Tabs</h3>
+      <p>Navegación por tabs.</p>
+    </a>
+    <a href="breadcrumb-pagination.html" class="card">
+      <h3>Breadcrumb & Pagination</h3>
+      <p>Navegación y paginación.</p>
+    </a>
+  </div>
+</div>
+
+</body></html>

@@ -1,0 +1,91 @@
+{
+  "id": "pagination",
+  "name": "Pagination",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Cambio de pagina con colapso por elipsis. La actual es una pastilla en tinta inversa y las cifras van en mono.",
+  "api": {
+    "members": [
+      {
+        "name": "page",
+        "kind": "prop",
+        "type": "number",
+        "default": 1
+      },
+      {
+        "name": "pages",
+        "kind": "prop",
+        "type": "number",
+        "default": 1
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(page: number) => void"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pag-1",
+        "rule": "Es una navegacion con nombre; la pagina actual lleva aria-current y su boton queda deshabilitado o inerte. Pulsar la actual no recarga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pag-2",
+        "rule": "Anterior y siguiente se deshabilitan en los extremos, con estado real y no solo atenuados.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pag-3",
+        "rule": "Cada boton mide --hit-target-min: son cifras pequenas y objetivos grandes.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pag-4",
+        "rule": "La elipsis no es un boton ni entra al orden de tabulacion: es un hueco, no un salto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pag-5",
+        "rule": "El ancho no salta al cambiar de pagina: con elipsis, el numero de huecos se mantiene mientras se pueda.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-inverse",
+    "--text-on-inverse",
+    "--border-default",
+    "--type-data",
+    "--radius-pill",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No carga datos: emite el numero de pagina.",
+    "No hace scroll infinito: son cosas distintas y no se mezclan."
+  ],
+  "reference": {
+    "src": "components/Pagination.jsx",
+    "states": "docs/cards/navigation.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

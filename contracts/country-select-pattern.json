@@ -1,0 +1,72 @@
+{
+  "id": "country-select-pattern",
+  "name": "Selector de pais",
+  "layer": "patterns",
+  "function": [
+    "forms"
+  ],
+  "status": "stable",
+  "summary": "Pais con bandera y codigo telefonico, compuesto con Select searchable, renderOption y Flag. Existe como receta porque la lista de paises es dato del producto, no del sistema.",
+  "implements": [
+    "select",
+    "flag",
+    "input-phone"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pai-p1",
+        "rule": "La bandera acompana al nombre y nunca lo sustituye: nadie busca 'la bandera verde y roja'.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "pai-p2",
+        "rule": "Se busca por nombre, por codigo ISO y por lada: los tres son formas legitimas de saber el pais.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "pai-p3",
+        "rule": "El pais y el telefono son dos controles: la lada se muestra en InputPhone como prefijo y se sincroniza con el pais elegido.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "pai-p4",
+        "rule": "Nunca con emoji de bandera: su dibujo depende del sistema operativo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "pai-p5",
+        "rule": "La receta no crea un componente SelectCountry. Ese componente existio y se absorbio: si vuelve, es una variante y R2 la rechaza.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "select",
+      "flag",
+      "input-phone"
+    ],
+    "allowDeviation": true
+  },
+  "documentsAbsorption": [
+    "select-country"
+  ],
+  "nonGoals": [
+    "No trae la lista de paises: es dato del producto.",
+    "No valida el telefono por pais."
+  ],
+  "reference": {
+    "demo": "docs/demos/select.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "id": "fleet-dashboard-t",
+  "name": "Fleet Dashboard",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Pantalla de inicio del Fleet Manager: KPIs de flota, consumo por periodo y actividad reciente.",
+  "content": {
+    "surface": "Inicio de Fleet Manager",
+    "product": "fleet-dashboard",
+    "viewport": [
+      "desktop"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "shell",
+        "fills": "Sidebar colapsable + TopBar variante standard"
+      },
+      {
+        "name": "kpis",
+        "fills": "Cuatro StatTile: unidades activas, consumo del mes, alertas, saldo"
+      },
+      {
+        "name": "principal",
+        "fills": "FlowChart type=line con consumo de 12 meses"
+      },
+      {
+        "name": "secundario",
+        "fills": "FlowChart type=donut por tipo de combustible"
+      },
+      {
+        "name": "actividad",
+        "fills": "Table con las últimas transacciones, columna de monto en mono"
+      }
+    ]
+  },
+  "composition": {
+    "patterns": [
+      "stat-tile",
+      "transaction-row"
+    ],
+    "components": [
+      "flow-chart",
+      "table",
+      "global-search"
+    ],
+    "primitives": [
+      "button",
+      "badge",
+      "avatar"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "fd-1",
+        "rule": "Un solo CTA accent en toda la vista.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "fd-2",
+        "rule": "Ningún valor de flota sin unidad ni periodo.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "fd-3",
+        "rule": "La rejilla aguanta 1280px sin scroll horizontal.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/fleet-dashboard/index.html"
+  }
+}

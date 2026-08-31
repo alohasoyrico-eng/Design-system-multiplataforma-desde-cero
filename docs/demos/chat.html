@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { ChatMessage, ChatComposer, ChatThread, Card } = NS;
+const MSGS = [
+  {id:1,role:'user',text:'¿Cuánto gastó la flota CDMX esta semana?',timestamp:'10:02'},
+  {id:2,role:'agent',text:'La flota CDMX gastó $48,200 esta semana: 72% combustible, 18% peajes y 10% mantenimiento. Es 6% menos que la semana pasada.',tool:{label:'Consultando gastos',icon:'payments',status:'done'},timestamp:'10:02'},
+  {id:3,role:'user',text:'¿Y qué unidad gastó más?',timestamp:'10:03'},
+  {id:4,role:'agent',text:'JMX-214-B, con $4,180 — principalmente por dos cargas',streaming:true,tool:{label:'Analizando unidades',icon:'directions_car',status:'running'},timestamp:'10:03'},
+];
+const LIST = [
+  {id:'chat-message', title:'ChatMessage', C:()=><div style={{display:'flex',flexDirection:'column',gap:14}}>
+    <ChatMessage role="user" text="¿Cuánto gastó la flota CDMX esta semana?" timestamp="10:02" />
+    <ChatMessage role="agent" text="La flota CDMX gastó $48,200 esta semana: 72% combustible, 18% peajes y 10% mantenimiento." tool={{label:'Consultando gastos',icon:'payments',status:'done'}} timestamp="10:02" />
+    <ChatMessage role="agent" text="Analizando las unidades con mayor gasto" streaming tool={{label:'Analizando unidades',icon:'directions_car',status:'running'}} />
+  </div>},
+  {id:'chat-composer', title:'ChatComposer', C:function(){ const [v,setV]=React.useState('');
+    return <ChatComposer value={v} onChange={setV} onSend={()=>setV('')} suggestions={['Gasto de la semana','Unidades en taller','Renovaciones próximas']} />; }},
+  {id:'chat-thread', title:'ChatThread', C:()=><Card padding={0} style={{height:360,display:'flex',flexDirection:'column',overflow:'hidden'}}><ChatThread messages={MSGS} style={{flex:1}} /></Card>},
+];
+function Demo(){ return <Sections list={LIST} style={{display:'flex',flexDirection:'column',maxWidth:560}} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.ChatMessage ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

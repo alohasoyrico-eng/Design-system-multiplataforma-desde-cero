@@ -1,0 +1,33 @@
+{
+  "id": "transaction-group",
+  "name": "TransactionGroup",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Agrupacion de transacciones por fecha con label de seccion y lista de TransactionRow.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tg-1",
+        "rule": "El label de fecha usa --type-label-sm uppercase mono.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "implements": [
+    "transaction-row"
+  ],
+  "domain": "fintech",
+  "nonGoals": [
+    "No hace fetch de transacciones: recibe los datos ya agrupados."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/TransactionGroup.tsx"
+  }
+}

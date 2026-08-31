@@ -1,0 +1,471 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "flow": {
+    "color": {
+      "red": {
+        "50": {
+          "$type": "color",
+          "$value": "#FFEDE9"
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#FFDAD2"
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#FF6A52"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#FF3617",
+          "$description": "Brand accent — action & live status only"
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#E62D10"
+        }
+      },
+      "ink": {
+        "300": {
+          "$type": "color",
+          "$value": "#B5B1AA"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#6B6A6E"
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#3B3A3E"
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#17171A"
+        }
+      },
+      "sand": {
+        "25": {
+          "$type": "color",
+          "$value": "#FAF9F7"
+        },
+        "50": {
+          "$type": "color",
+          "$value": "#F3F1ED"
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#EEEBE6"
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#E0DDD7"
+        }
+      },
+      "green": {
+        "50": {
+          "$type": "color",
+          "$value": "#E4F7EE"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#12B76A"
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#0E8A50"
+        }
+      },
+      "amber": {
+        "50": {
+          "$type": "color",
+          "$value": "#FCF0DC"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#E8930C"
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#B26A00"
+        }
+      },
+      "blue": {
+        "50": {
+          "$type": "color",
+          "$value": "#E7F0FE"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#2E7CF6"
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#175CD3"
+        }
+      },
+      "danger": {
+        "50": {
+          "$type": "color",
+          "$value": "#FEECEA"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#D92D20"
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#B42318"
+        }
+      }
+    },
+    "semantic": {
+      "light": {
+        "surface": {
+          "canvas": {
+            "$type": "color",
+            "$value": "{flow.color.sand.25}"
+          },
+          "card": {
+            "$type": "color",
+            "$value": "#FFFFFF"
+          },
+          "sunken": {
+            "$type": "color",
+            "$value": "{flow.color.sand.50}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{flow.color.ink.900}"
+          },
+          "accentSubtle": {
+            "$type": "color",
+            "$value": "{flow.color.red.50}"
+          }
+        },
+        "text": {
+          "primary": {
+            "$type": "color",
+            "$value": "{flow.color.ink.900}"
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "#55534E"
+          },
+          "muted": {
+            "$type": "color",
+            "$value": "#8A8781"
+          },
+          "onAccent": {
+            "$type": "color",
+            "$value": "#FFFFFF"
+          },
+          "accent": {
+            "$type": "color",
+            "$value": "{flow.color.red.600}"
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{flow.color.sand.100}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{flow.color.sand.200}"
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "{flow.color.ink.300}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{flow.color.red.500}"
+          }
+        },
+        "action": {
+          "primary": {
+            "$type": "color",
+            "$value": "{flow.color.ink.900}"
+          },
+          "primaryHover": {
+            "$type": "color",
+            "$value": "#000000"
+          },
+          "accent": {
+            "$type": "color",
+            "$value": "{flow.color.red.500}"
+          },
+          "accentHover": {
+            "$type": "color",
+            "$value": "{flow.color.red.600}"
+          }
+        }
+      },
+      "dark": {
+        "surface": {
+          "canvas": {
+            "$type": "color",
+            "$value": "#131315"
+          },
+          "card": {
+            "$type": "color",
+            "$value": "#1C1C1F"
+          },
+          "sunken": {
+            "$type": "color",
+            "$value": "#18181B"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "#F4F3F1"
+          },
+          "accentSubtle": {
+            "$type": "color",
+            "$value": "rgba(255,54,23,0.14)"
+          }
+        },
+        "text": {
+          "primary": {
+            "$type": "color",
+            "$value": "#F4F3F1"
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "#B9B7B2"
+          },
+          "muted": {
+            "$type": "color",
+            "$value": "#7C7A76"
+          },
+          "onAccent": {
+            "$type": "color",
+            "$value": "#FFFFFF"
+          },
+          "accent": {
+            "$type": "color",
+            "$value": "#FF6A52"
+          }
+        },
+        "border": {
+          "subtle": {
+            "$type": "color",
+            "$value": "#26262A"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "#313136"
+          },
+          "strong": {
+            "$type": "color",
+            "$value": "#4A4A50"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{flow.color.red.400}"
+          }
+        },
+        "action": {
+          "primary": {
+            "$type": "color",
+            "$value": "#F4F3F1"
+          },
+          "primaryHover": {
+            "$type": "color",
+            "$value": "#FFFFFF"
+          },
+          "accent": {
+            "$type": "color",
+            "$value": "{flow.color.red.500}"
+          },
+          "accentHover": {
+            "$type": "color",
+            "$value": "#FF4A2E"
+          }
+        }
+      }
+    },
+    "font": {
+      "display": {
+        "$type": "fontFamily",
+        "$value": [
+          "Sora",
+          "Helvetica Neue",
+          "sans-serif"
+        ]
+      },
+      "body": {
+        "$type": "fontFamily",
+        "$value": [
+          "Sora",
+          "Helvetica Neue",
+          "sans-serif"
+        ]
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": [
+          "JetBrains Mono",
+          "ui-monospace",
+          "monospace"
+        ]
+      }
+    },
+    "fontSize": {
+      "displayXl": {
+        "$type": "dimension",
+        "$value": "56px"
+      },
+      "display": {
+        "$type": "dimension",
+        "$value": "40px"
+      },
+      "titleLg": {
+        "$type": "dimension",
+        "$value": "28px"
+      },
+      "title": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "titleSm": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "body": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "caption": {
+        "$type": "dimension",
+        "$value": "12px"
+      },
+      "overline": {
+        "$type": "dimension",
+        "$value": "11px"
+      },
+      "data": {
+        "$type": "dimension",
+        "$value": "13px"
+      },
+      "dataLg": {
+        "$type": "dimension",
+        "$value": "26px"
+      }
+    },
+    "space": {
+      "1": {
+        "$type": "dimension",
+        "$value": "4px"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "8px"
+      },
+      "3": {
+        "$type": "dimension",
+        "$value": "12px"
+      },
+      "4": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "5": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "8": {
+        "$type": "dimension",
+        "$value": "32px"
+      },
+      "10": {
+        "$type": "dimension",
+        "$value": "40px"
+      },
+      "12": {
+        "$type": "dimension",
+        "$value": "48px"
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "64px"
+      }
+    },
+    "radius": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "8px"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "12px"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "28px"
+      },
+      "pill": {
+        "$type": "dimension",
+        "$value": "999px"
+      }
+    },
+    "duration": {
+      "instant": {
+        "$type": "duration",
+        "$value": "100ms"
+      },
+      "fast": {
+        "$type": "duration",
+        "$value": "160ms"
+      },
+      "base": {
+        "$type": "duration",
+        "$value": "240ms"
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": "400ms"
+      }
+    },
+    "easing": {
+      "spring": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.34,
+          1.56,
+          0.64,
+          1
+        ]
+      },
+      "out": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.22,
+          1,
+          0.36,
+          1
+        ]
+      },
+      "inOut": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.65,
+          0,
+          0.35,
+          1
+        ]
+      }
+    }
+  }
+}

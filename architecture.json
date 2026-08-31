@@ -1,0 +1,905 @@
+{
+  "$comment": "Contrato de capas legible por maquina. Fuente de verdad de check-layers.mjs. Ver 'Arquitectura de capas.dc.html' para el porque y contracts/_schema.json para la forma de cada item.",
+  "version": 1,
+  "layers": [
+    {
+      "id": "foundations",
+      "order": 0,
+      "dependsOn": [],
+      "entry": "Decision expresable sin JSX y consumible desde Angular o Flutter.",
+      "forbids": [
+        "Cualquier archivo .jsx"
+      ]
+    },
+    {
+      "id": "primitives",
+      "order": 1,
+      "dependsOn": [
+        "foundations"
+      ],
+      "sameLayerAllowed": "primitives/shells",
+      "entry": "No importa nada del sistema salvo tokens y shells. Hoja del grafo. Duena de una sola carcasa.",
+      "forbids": [
+        "Importar un component",
+        "Conocer el dominio",
+        "Posicionarse en la pagina"
+      ]
+    },
+    {
+      "id": "components",
+      "order": 2,
+      "dependsOn": [
+        "foundations",
+        "primitives"
+      ],
+      "entry": "Compone primitives y exporta un componente con contrato de props. Su API es generica: el dominio no decide la capa.",
+      "forbids": [
+        "Redibujar una carcasa que ya existe abajo",
+        "Fetch, rutas, copy de producto",
+        "Importar un pattern"
+      ]
+    },
+    {
+      "id": "patterns",
+      "order": 3,
+      "dependsOn": [
+        "foundations",
+        "primitives",
+        "components"
+      ],
+      "entry": "No tiene una sola API: es una receta. Regla de uso mas composicion de referencia, con estado a lo largo de varios pasos o archivos. Si exporta un componente con props, no es pattern.",
+      "forbids": [
+        "Traer bloque api",
+        "Ser una pantalla con contenido final",
+        "Ser solo prosa sin implementacion de referencia"
+      ]
+    },
+    {
+      "id": "templates",
+      "order": 4,
+      "dependsOn": [
+        "foundations",
+        "primitives",
+        "components",
+        "patterns"
+      ],
+      "entry": "Nombra una pantalla de producto real y trae contenido final. Se copia, no se importa.",
+      "forbids": [
+        "Exportarse como libreria",
+        "Que alguien lo importe en produccion"
+      ]
+    }
+  ],
+  "rules": {
+    "R1": {
+      "name": "Las dependencias solo van hacia abajo",
+      "severity": "block",
+      "note": "Una dependencia externa (ECharts, tiles) no cuenta: R1 solo mira el grafo del sistema. Misma capa solo se permite si uno de los dos lados es un shell: la carpeta primitives/shells/ esta por debajo de primitives, asi que DataGrid puede componer Checkbox y Select puede componer Listbox."
+    },
+    "R2": {
+      "name": "Una variante no es un item",
+      "severity": "block",
+      "note": "Un item = un archivo. Nada en supersedes puede tener archivo, entrada de registry, ni mencion en texto de otro item."
+    },
+    "R3": {
+      "name": "Una carcasa, un dueno",
+      "severity": "block",
+      "note": "Fuera de los shells, ningun archivo declara borde+foco+radio de control, backdrop fijo, ni @keyframes propios. Los keyframes del sistema viven en tokens/motion.css, que es foundations (mot-5). Las dos ultimas carcasas propias se resolvieron componiendo: BulkActionsTable pasa sus acciones a Button y su cerrar a IconButton; FilterableEditableTable pasa sus filtros a Input, que compone ControlShell. El ratchet llego a cero, asi que R3 pasa de warn-ratchet a block.",
+      "knownOffenders": {
+        "controlCarcass": []
+      }
+    },
+    "R4": {
+      "name": "La composicion no se filtra a la API",
+      "severity": "block",
+      "note": "Ningun nombre declarado en composition puede aparecer como miembro de api."
+    },
+    "P6": {
+      "name": "La capa declarada coincide con la recomputada",
+      "severity": "block",
+      "note": "La capa se deriva del artefacto: exporta componente con api = component; sin api = pattern; hoja del grafo = primitive. Un criterio que el chequeo no puede recomputar no se puede sostener."
+    },
+    "R5": {
+      "name": "Todo item tiene contrato y el contrato valida",
+      "severity": "block",
+      "note": "La reja final: platforms/check-contracts.mjs comprueba que cada item de architecture.json apunta a un contrato existente, que la capa del contrato coincide con la del item, y que el contrato cumple el allOf de _schema.json, que NO es uniforme entre capas. Tambien recomputa R4 desde el propio contrato: ninguna prop publica repite un nombre de composition. Cobertura como ratchet: puede subir, nunca bajar."
+    }
+  },
+  "shells": [
+    "control-shell",
+    "data-grid",
+    "listbox",
+    "overlay-shell",
+    "popover",
+    "toggle-control"
+  ],
+  "fileLayers": {
+    "ui_kits/agent-chat/index.html": "templates",
+    "ui_kits/mailings/base-layout.html": "templates",
+    "ui_kits/mailings/bienvenida.html": "templates",
+    "ui_kits/mailings/invitacion-equipo.html": "templates",
+    "ui_kits/mailings/resumen-semanal.html": "templates",
+    "ui_kits/mailings/transaccional-recibo.html": "templates",
+    "ui_kits/mailings/alerta-seguridad.html": "templates",
+    "ui_kits/onboarding-driver/index.html": "templates",
+    "ui_kits/wallet/index.html": "templates",
+    "ui_kits/rutas/index.html": "templates",
+    "ui_kits/config/index.html": "templates",
+    "ui_kits/auth-otp/index.html": "templates",
+    "ui_kits/fleet-dashboard/index.html": "templates",
+    "ui_kits/internal-tools/index.html": "templates",
+    "ui_kits/internal-tools/shell.jsx": "templates",
+    "ui_kits/internal-tools/tickets.html": "templates",
+    "ui_kits/internal-tools/accounts.html": "templates",
+    "ui_kits/internal-tools/pricing.html": "templates",
+    "ui_kits/internal-tools/cases.html": "templates",
+    "ui_kits/internal-tools/backoffice.html": "templates",
+    "ui_kits/internal-tools/growth.html": "templates"
+  },
+  "items": [
+    {
+      "id": "color",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/color.json"
+    },
+    {
+      "id": "typography",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/typography.json"
+    },
+    {
+      "id": "spacing",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/spacing.json"
+    },
+    {
+      "id": "shape",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/shape.json"
+    },
+    {
+      "id": "motion",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/motion.json"
+    },
+    {
+      "id": "icons",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/icons.json"
+    },
+    {
+      "id": "a11y",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/a11y.json"
+    },
+    {
+      "id": "flag",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Flag.jsx",
+      "contract": "contracts/flag.json"
+    },
+    {
+      "id": "button",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Button.jsx",
+      "contract": "contracts/button.json"
+    },
+    {
+      "id": "icon-button",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/IconButton.jsx",
+      "contract": "contracts/icon-button.json"
+    },
+    {
+      "id": "input",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Input.jsx",
+      "contract": "contracts/input.json"
+    },
+    {
+      "id": "switch",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Switch.jsx",
+      "contract": "contracts/switch.json"
+    },
+    {
+      "id": "slider",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Slider.jsx",
+      "contract": "contracts/slider.json"
+    },
+    {
+      "id": "badge",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Badge.jsx",
+      "contract": "contracts/badge.json"
+    },
+    {
+      "id": "chip",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Chip.jsx",
+      "contract": "contracts/chip.json"
+    },
+    {
+      "id": "avatar",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Avatar.jsx",
+      "contract": "contracts/avatar.json"
+    },
+    {
+      "id": "skeleton",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Skeleton.jsx",
+      "contract": "contracts/skeleton.json"
+    },
+    {
+      "id": "checkbox",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Checkbox.jsx",
+      "contract": "contracts/checkbox.json"
+    },
+    {
+      "id": "radio",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Radio.jsx",
+      "contract": "contracts/radio.json"
+    },
+    {
+      "id": "spinner",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Spinner.jsx",
+      "contract": "contracts/spinner.json"
+    },
+    {
+      "id": "progress",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Progress.jsx",
+      "contract": "contracts/progress.json"
+    },
+    {
+      "id": "divider",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Divider.jsx",
+      "contract": "contracts/divider.json"
+    },
+    {
+      "id": "field",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Field.jsx",
+      "contract": "contracts/field.json"
+    },
+    {
+      "id": "textarea",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Textarea.jsx",
+      "contract": "contracts/textarea.json"
+    },
+    {
+      "id": "select",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Select.jsx",
+      "contract": "contracts/select.json"
+    },
+    {
+      "id": "sparkline",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/Sparkline.jsx",
+      "contract": "contracts/sparkline.json"
+    },
+    {
+      "id": "tabbar",
+      "layer": "components",
+      "domain": null,
+      "src": "components/TabBar.jsx",
+      "contract": "contracts/tabbar.json"
+    },
+    {
+      "id": "circular-progress",
+      "layer": "components",
+      "domain": null,
+      "src": "components/CircularProgress.jsx",
+      "contract": "contracts/circular-progress.json"
+    },
+    {
+      "id": "timeline",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Timeline.jsx",
+      "contract": "contracts/timeline.json"
+    },
+    {
+      "id": "status-view",
+      "layer": "components",
+      "domain": null,
+      "src": "components/StatusView.jsx",
+      "contract": "contracts/status-view.json"
+    },
+    {
+      "id": "flow-chart",
+      "layer": "primitives",
+      "domain": null,
+      "src": "primitives/FlowChart.jsx",
+      "contract": "contracts/flow-chart.json"
+    },
+    {
+      "id": "global-search",
+      "layer": "components",
+      "domain": null,
+      "src": "components/GlobalSearch.jsx",
+      "contract": "contracts/global-search.json"
+    },
+    {
+      "id": "sidebar",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Sidebar.jsx",
+      "contract": "contracts/sidebar.json"
+    },
+    {
+      "id": "topbar",
+      "layer": "components",
+      "domain": null,
+      "src": "components/TopBar.jsx",
+      "contract": "contracts/topbar.json"
+    },
+    {
+      "id": "input-amount",
+      "layer": "components",
+      "domain": null,
+      "src": "components/InputAmount.jsx",
+      "contract": "contracts/input-amount.json"
+    },
+    {
+      "id": "input-phone",
+      "layer": "components",
+      "domain": null,
+      "src": "components/InputPhone.jsx",
+      "contract": "contracts/input-phone.json"
+    },
+    {
+      "id": "card-media",
+      "layer": "components",
+      "domain": null,
+      "src": "components/CardMedia.jsx",
+      "contract": "contracts/card-media.json"
+    },
+    {
+      "id": "datepicker",
+      "layer": "components",
+      "domain": null,
+      "src": "components/DatePicker.jsx",
+      "contract": "contracts/datepicker.json"
+    },
+    {
+      "id": "fileupload",
+      "layer": "components",
+      "domain": null,
+      "src": "components/FileUpload.jsx",
+      "contract": "contracts/fileupload.json"
+    },
+    {
+      "id": "card",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Card.jsx",
+      "contract": "contracts/card.json"
+    },
+    {
+      "id": "table",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Table.jsx",
+      "contract": "contracts/table.json"
+    },
+    {
+      "id": "emptystate",
+      "layer": "components",
+      "domain": null,
+      "src": "components/EmptyState.jsx",
+      "contract": "contracts/emptystate.json"
+    },
+    {
+      "id": "accordion",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Accordion.jsx",
+      "contract": "contracts/accordion.json"
+    },
+    {
+      "id": "tabs",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Tabs.jsx",
+      "contract": "contracts/tabs.json"
+    },
+    {
+      "id": "stepper",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Stepper.jsx",
+      "contract": "contracts/stepper.json"
+    },
+    {
+      "id": "dialog",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Dialog.jsx",
+      "contract": "contracts/dialog.json"
+    },
+    {
+      "id": "drawer",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Drawer.jsx",
+      "contract": "contracts/drawer.json"
+    },
+    {
+      "id": "toast",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Toast.jsx",
+      "contract": "contracts/toast.json"
+    },
+    {
+      "id": "tooltip",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Tooltip.jsx",
+      "contract": "contracts/tooltip.json"
+    },
+    {
+      "id": "menu",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Menu.jsx",
+      "contract": "contracts/menu.json"
+    },
+    {
+      "id": "breadcrumb",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Breadcrumb.jsx",
+      "contract": "contracts/breadcrumb.json"
+    },
+    {
+      "id": "pagination",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Pagination.jsx",
+      "contract": "contracts/pagination.json"
+    },
+    {
+      "id": "bottom-sheet",
+      "layer": "components",
+      "domain": null,
+      "src": "components/BottomSheet.jsx",
+      "contract": "contracts/bottom-sheet.json"
+    },
+    {
+      "id": "segmented",
+      "layer": "components",
+      "domain": null,
+      "src": "components/SegmentedControl.jsx",
+      "contract": "contracts/segmented.json"
+    },
+    {
+      "id": "onboarding-carousel",
+      "layer": "components",
+      "domain": null,
+      "src": "components/OnboardingCarousel.jsx",
+      "contract": "contracts/onboarding-carousel.json"
+    },
+    {
+      "id": "table-tree",
+      "layer": "components",
+      "domain": null,
+      "src": "components/TableTree.jsx",
+      "contract": "contracts/table-tree.json"
+    },
+    {
+      "id": "chart-gantt",
+      "layer": "components",
+      "domain": null,
+      "src": "components/GanttChart.jsx",
+      "contract": "contracts/chart-gantt.json"
+    },
+    {
+      "id": "chart-kanban",
+      "layer": "components",
+      "domain": null,
+      "src": "components/KanbanBoard.jsx",
+      "contract": "contracts/chart-kanban.json"
+    },
+    {
+      "id": "bars",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Bars.jsx",
+      "contract": "contracts/bars.json"
+    },
+    {
+      "id": "biometric",
+      "layer": "components",
+      "domain": "fintech",
+      "src": "components/BiometricPrompt.jsx",
+      "contract": "contracts/biometric.json"
+    },
+    {
+      "id": "payment-card",
+      "layer": "components",
+      "domain": "fintech",
+      "src": "components/PaymentCard.jsx",
+      "contract": "contracts/payment-card.json"
+    },
+    {
+      "id": "transaction-row",
+      "layer": "components",
+      "domain": "fintech",
+      "src": "components/TransactionRow.jsx",
+      "contract": "contracts/transaction-row.json"
+    },
+    {
+      "id": "map-canvas",
+      "layer": "components",
+      "domain": "mobility",
+      "src": "components/MapCanvas.jsx",
+      "contract": "contracts/map-canvas.json"
+    },
+    {
+      "id": "role-matrix",
+      "layer": "components",
+      "domain": null,
+      "src": "components/RoleMatrix.jsx",
+      "contract": "contracts/role-matrix.json"
+    },
+    {
+      "id": "treemap",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Treemap.jsx",
+      "contract": "contracts/treemap.json"
+    },
+    {
+      "id": "pareto",
+      "layer": "components",
+      "domain": null,
+      "src": "components/ParetoChart.jsx",
+      "contract": "contracts/pareto.json"
+    },
+    {
+      "id": "scatter",
+      "layer": "components",
+      "domain": null,
+      "src": "components/ScatterPlot.jsx",
+      "contract": "contracts/scatter.json"
+    },
+    {
+      "id": "smallmultiples",
+      "layer": "components",
+      "domain": null,
+      "src": "components/SmallMultiples.jsx",
+      "contract": "contracts/smallmultiples.json"
+    },
+    {
+      "id": "bullet",
+      "layer": "components",
+      "domain": null,
+      "src": "components/BulletChart.jsx",
+      "contract": "contracts/bullet.json"
+    },
+    {
+      "id": "chat-message",
+      "layer": "components",
+      "domain": null,
+      "src": "components/ChatMessage.jsx",
+      "contract": "contracts/chat-message.json"
+    },
+    {
+      "id": "chat-composer",
+      "layer": "components",
+      "domain": null,
+      "src": "components/ChatComposer.jsx",
+      "contract": "contracts/chat-composer.json"
+    },
+    {
+      "id": "chat-thread",
+      "layer": "components",
+      "domain": null,
+      "src": "components/ChatThread.jsx",
+      "contract": "contracts/chat-thread.json"
+    },
+    {
+      "id": "notification-center",
+      "layer": "components",
+      "domain": null,
+      "src": "components/NotificationCenter.jsx",
+      "contract": "contracts/notification-center.json"
+    },
+    {
+      "id": "donut",
+      "layer": "components",
+      "domain": null,
+      "src": "components/Donut.jsx",
+      "contract": "contracts/donut.json"
+    },
+    {
+      "id": "help-center",
+      "layer": "components",
+      "domain": null,
+      "src": "components/HelpCenter.jsx",
+      "contract": "contracts/help-center.json"
+    },
+    {
+      "id": "otpinput",
+      "layer": "components",
+      "domain": "fintech",
+      "src": "components/OTPInput.jsx",
+      "contract": "contracts/otpinput.json"
+    },
+    {
+      "id": "passcodekeypad",
+      "layer": "components",
+      "domain": "fintech",
+      "src": "components/PasscodeKeypad.jsx",
+      "contract": "contracts/passcodekeypad.json"
+    },
+    {
+      "id": "stattile",
+      "layer": "components",
+      "domain": null,
+      "src": "components/StatTile.jsx",
+      "contract": "contracts/stattile.json"
+    },
+    {
+      "id": "bulk-actions-pattern",
+      "layer": "components",
+      "domain": null,
+      "src": "components/BulkActionsTable.jsx",
+      "contract": "contracts/bulk-actions-pattern.json"
+    },
+    {
+      "id": "filters-inline-edit",
+      "layer": "components",
+      "domain": null,
+      "src": "components/FilterableEditableTable.jsx",
+      "contract": "contracts/filters-inline-edit.json"
+    },
+    {
+      "id": "dataviz-flotas-grandes",
+      "layer": "patterns",
+      "domain": "mobility",
+      "src": null,
+      "contract": "contracts/dataviz-flotas-grandes.json"
+    },
+    {
+      "id": "country-select-pattern",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/country-select-pattern.json"
+    },
+    {
+      "id": "search-pattern",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/search-pattern.json"
+    },
+    {
+      "id": "crud",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/crud.json"
+    },
+    {
+      "id": "wizard-pattern",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/wizard-pattern.json"
+    },
+    {
+      "id": "dashboard-pattern",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/dashboard-pattern.json"
+    },
+    {
+      "id": "settings-pattern",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/settings-pattern.json"
+    },
+    {
+      "id": "auth-pattern",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/auth-pattern.json"
+    },
+    {
+      "id": "agent-chat-template",
+      "layer": "templates",
+      "domain": null,
+      "src": "ui_kits/agent-chat/index.html",
+      "contract": "contracts/agent-chat-template.json"
+    },
+    {
+      "id": "mailings-templates",
+      "layer": "templates",
+      "domain": null,
+      "src": "ui_kits/mailings/base-layout.html",
+      "contract": "contracts/mailings-templates.json"
+    },
+    {
+      "id": "fleet-dashboard-t",
+      "layer": "templates",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/fleet-dashboard-t.json"
+    },
+    {
+      "id": "drivers-app-t",
+      "layer": "templates",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/drivers-app-t.json"
+    },
+    {
+      "id": "auth-t",
+      "layer": "templates",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/auth-t.json"
+    },
+    {
+      "id": "settings-t",
+      "layer": "templates",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/settings-t.json"
+    },
+    {
+      "id": "wizard-t",
+      "layer": "templates",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/wizard-t.json"
+    },
+    {
+      "id": "dashboards-6",
+      "layer": "templates",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/dashboards-6.json"
+    },
+    {
+      "id": "onboarding-fm",
+      "layer": "templates",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/onboarding-fm.json"
+    },
+    {
+      "id": "onboarding-driver",
+      "layer": "templates",
+      "domain": null,
+      "src": "ui_kits/onboarding-driver/index.html",
+      "contract": "contracts/onboarding-driver.json"
+    },
+    {
+      "id": "wallet",
+      "layer": "templates",
+      "domain": "fintech",
+      "src": "ui_kits/wallet/index.html",
+      "contract": "contracts/wallet.json"
+    },
+    {
+      "id": "card-detail",
+      "layer": "templates",
+      "domain": "fintech",
+      "src": "ui_kits/wallet/index.html",
+      "contract": "contracts/card-detail.json"
+    },
+    {
+      "id": "rutas",
+      "layer": "templates",
+      "domain": "mobility",
+      "src": "ui_kits/rutas/index.html",
+      "contract": "contracts/rutas.json"
+    },
+    {
+      "id": "config-roles",
+      "layer": "templates",
+      "domain": null,
+      "src": "ui_kits/config/index.html",
+      "contract": "contracts/config-roles.json"
+    },
+    {
+      "id": "auth-otp",
+      "layer": "templates",
+      "domain": "fintech",
+      "src": "ui_kits/auth-otp/index.html",
+      "contract": "contracts/auth-otp.json"
+    },
+    {
+      "id": "internal-tools-t",
+      "layer": "templates",
+      "domain": null,
+      "src": "ui_kits/internal-tools/index.html",
+      "contract": "contracts/internal-tools-t.json"
+    }
+  ],
+  "contractCoverage": {
+    "items": 104,
+    "shells": 6,
+    "written": 104,
+    "files": 114,
+    "$comment": "written se recomputa contando items con contract enlazado, no incrementando a mano. files incluye los 6 shells, que no son items de docs."
+  },
+  "targetPaths": {
+    "$comment": "Mapeo de capa a ruta en el codebase destino. El dev lo ajusta una vez; check-layers.mjs --target lo usa para R1 sobre el grafo real de imports.",
+    "primitives": "src/ui/primitives",
+    "components": "src/ui/components",
+    "patterns": "src/ui/patterns",
+    "templates": "src/screens"
+  },
+  "adoption": {
+    "$comment": "El gate del codebase destino se acota por esto: un item entra a la reja cuando alguien lo adopta. Arranca vacio y crece con la implementacion.",
+    "adopted": []
+  },
+  "pendingWork": {
+    "note": "Los ~13 controles del sistema componen ControlShell. Combobox no se migro: era una variante de Select searchable y se absorbio. DateRangePicker tampoco: era el mode range de DatePicker y se absorbio. Las dos carcasas que quedan (SmallMultiples, BulkActionsTable) no son controles de formulario.",
+    "kanbanAdoption": "Decidido: KanbanBoard se queda y va a escalar. Su API cierra con los dos huecos simetricos a renderCard —renderColumnHeader y columnStyle— y con el criterio kb-9: personalizar la cabecera no puede romper el nombre accesible de la columna, que lo sigue poniendo el board.",
+    "otpinputDeviation": "OTPInput no compone ControlShell y es deliberado: tiene un solo control (un input oculto con autocomplete one-time-code) y N casillas aria-hidden que pintan el valor. ControlShell es una carcasa por control, no una por caracter. Su infraccion real de R3 eran los @keyframes propios, ya resueltos al mover el movimiento a foundations.",
+    "fileuploadDeviation": "Decidido: FileUpload no compone ControlShell y la desviacion es correcta. La carcasa es un campo de una linea con adornos en los extremos; una zona de arrastre no lo es. Declarado en su contrato como criterio upl-6 y con allowDeviation:false, porque desviarse mas seria otra cosa.",
+    "passcodeKeypadVerificado": "Medido en docs/demos/otp-input.html: 10 teclas de 72px con nombre accesible, Borrar nombrado, progreso anunciado como '2 de 6 digitos' y el valor nunca legible en el DOM. La nota anterior decia que no tenia demo y era falsa: se habia medido la card equivocada.",
+    "bundleGenerador": "platforms/build-bundle.mjs regenera el bundle entero desde las fuentes: 79 secciones, 83 exports, ninguna seccion copiada. Ningun archivo del sistema esta en JSX. El generador se niega a emitir JSX y tambien a emitir un archivo que exporte un nombre no declarado en EXTRA, porque ese export desaparecia del namespace en silencio.",
+    "tableTimelineAbsorbido": "TableTimeline se absorbio como Timeline mode='events'. Al medirlo antes de decidir: no componia DataGrid, no tenia columnas pese al nombre, y su unica justificacion —un eje proporcional al tiempo— era codigo muerto: calculaba la posicion de cada fecha y nunca la usaba en el render."
+  },
+  "domainField": {
+    "$comment": "El dominio dejo de ser capa. Es campo, igual que function: la docs agrupa por el sin que decida la cascada.",
+    "values": [
+      "fintech",
+      "mobility",
+      null
+    ]
+  },
+  "$fileLayersNote": "Fase 1 hecha: la capa se recomputa de la carpeta (primitives/, components/, patterns/, templates/) y primitives/shells/ es la excepcion declarada de misma-capa. Aqui solo quedan los templates, que viven en ui_kits/ porque se copian, no se importan: la carpeta los nombra por producto y no por capa."
+}

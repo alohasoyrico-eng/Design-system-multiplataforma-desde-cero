@@ -1,0 +1,135 @@
+<!-- @dsCard group="Dashboards" viewport="1280x800" subtitle="Ingreso vs costo, margen por unidad y proyeccion" name="Finanzas" -->
+<!-- @startingPoint section="Dashboards" subtitle="Ingreso vs costo, margen por unidad y proyeccion" viewport="1280x800" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Finanzas</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, StatTile, Bars, Sparkline, FlowChart, Treemap, ParetoChart, Donut, Table, Badge, Card, Tabs, Breadcrumb, Avatar, Tooltip, Menu, Progress, DatePicker } = NS;
+
+
+function ThemeToggle(){
+  const [dark,setDark] = React.useState(false);
+  React.useEffect(()=>{
+    const saved = localStorage.getItem('flow-theme');
+    const isDark = saved === 'dark';
+    setDark(isDark);
+    document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light');
+  },[]);
+  const toggle = ()=>{
+    const next = !dark; setDark(next);
+    document.documentElement.setAttribute('data-mode', next ? 'dark' : 'light');
+    localStorage.setItem('flow-theme', next ? 'dark' : 'light');
+  };
+  // Era un boton a mano de 32px repetido en siete plantillas: IconButton pone el
+  // objetivo de 44, el foco y el hover sin repetirlos aqui.
+  return <IconButton icon={dark?'light_mode':'dark_mode'} ariaLabel="Cambiar modo" variant="ghost" size="sm" onClick={toggle} />;
+}
+
+function Shell({children}){
+  return <div style={{display:'flex',height:'100vh',overflow:'hidden'}}>
+    <nav aria-label="Dashboards" style={{width:230,flex:'none',background:'var(--surface-card)',borderRight:'1px solid var(--border-subtle)',display:'flex',flexDirection:'column',padding:'20px 12px',gap:4,boxSizing:'border-box'}}>
+      <a href="../fleet-dashboard/index.html" style={{display:'inline-flex',alignItems:'center',minHeight:'var(--hit-target-min)',margin:'4px 10px 14px'}}><img src="../../assets/flow-logo.png" alt="Flow" style={{height:24}} /></a>
+      <div style={{fontSize:10.5,fontWeight:700,letterSpacing:'.08em',color:'var(--text-muted)',padding:'0 14px 6px'}}>DASHBOARDS</div>
+      <a href="./overview.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>space_dashboard</span>Overview</a>
+      <a href="./combustible.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>local_gas_station</span>Combustible</a>
+      <a href="./mantenimiento.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>build</span>Mantenimiento</a>
+      <a href="./electro.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>bolt</span>Electromovilidad</a>
+      <a href="./peaje.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>toll</span>Peaje</a>
+      <a href="#" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:701-1,background:'var(--surface-accent-subtle)',color:'var(--text-accent)'}}>
+   <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:20}}>payments</span>Finanzas</a>
+      <a href="../config/index.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:500,color:'var(--text-secondary)',marginTop:'auto'}}>
+        <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>settings</span>Configuracion</a>
+      <div style={{display:'flex',alignItems:'center',gap:10,padding:'10px 10px'}}>
+        <Avatar name="Marta Vidal" status="online" />
+        <div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:600}}>Marta Vidal</div><div style={{fontSize:11,color:'var(--text-muted)'}}>Fleet admin</div></div>
+        <ThemeToggle />
+      </div>
+    </nav>
+    <main style={{flex:1,overflowY:'auto',padding:32,boxSizing:'border-box'}} data-screen-label="finanzas">{children}</main>
+  </div>;
+}
+
+function Header({title,children}){
+  const [range,setRange] = React.useState('30d');
+  const [custom,setCustom] = React.useState({});
+  return <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:24,flexWrap:'wrap'}}>
+    <div>
+      <Breadcrumb items={[{label:'Dashboards'},{label:'Finanzas'}]} />
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'6px 0 0'}}>{title}</h1>
+    </div>
+    <div style={{marginLeft:'auto',display:'flex',gap:12,alignItems:'center',flexWrap:'wrap',minWidth:0}}>
+      <Tabs value={range} onChange={setRange} items={[{value:'7d',label:'7 dias'},{value:'30d',label:'30 dias'},{value:'90d',label:'Trimestre'}]} />
+      <div style={{flex:'1 1 200px',minWidth:140,maxWidth:240}}><DatePicker mode="range" value={custom} onChange={setCustom} placeholder="Rango personalizado" /></div>
+      {children}
+      <Menu align="right" trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
+        items={[{label:'CSV',icon:'table'},{label:'PDF',icon:'picture_as_pdf'},{label:'Enviar por correo',icon:'mail'}]} />
+    </div>
+  </div>;
+}
+
+function App(){
+  return <Shell>
+    <Header title="Finanzas" />
+    
+    <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginBottom:18}}>
+      <StatTile label="Ingreso del mes" value="$612k" delta="+11%" trend="up" icon="trending_up" tone="var(--status-success-text)" />
+      <StatTile label="Costo operativo" value="$248k" delta="−4%" trend="up" icon="payments" />
+      <StatTile label="Margen" value="59.5%" delta="+2.1 pts" trend="up" icon="percent" />
+      <StatTile label="Proyeccion trimestre" value="$1.9M" delta="on track" trend="flat" icon="query_stats" />
+    </div>
+    <Card style={{marginBottom:16}}>
+      <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Gasto por region con drill-down</div>
+      <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:12}}>Tamaño = gasto · color = desvio vs presupuesto · click para entrar a la region</div>
+      <Treemap width={1150} height={260} format={(v)=>'$'+v+'k'} nodes={[
+        {id:'cdmx',label:'CDMX',value:812,deviation:0.14,children:[{id:'norte',label:'Norte',value:420,deviation:0.22},{id:'sur',label:'Sur',value:392,deviation:0.05}]},
+        {id:'gdl',label:'Guadalajara',value:340,deviation:-0.08},
+        {id:'mty',label:'Monterrey',value:298,deviation:0.31},
+        {id:'pue',label:'Puebla',value:120,deviation:-0.12},
+      ]} />
+    </Card>
+    <Card style={{marginBottom:16}}>
+      <div style={{font:'var(--type-title-sm)',marginBottom:4}}>El 20% de unidades que concentra el gasto</div>
+      <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:12}}>Pareto — enfoca la revision en las barras accent</div>
+      <ParetoChart height={220} format={(v)=>'$'+v+'k'} data={[{label:'MVD-101',value:24},{label:'JMX-214',value:19},{label:'KTR-882',value:16},{label:'PLQ-472',value:8},{label:'QRS-330',value:6},{label:'TWN-559',value:5},{label:'XCV-100',value:3},{label:'BNM-220',value:2}]} />
+    </Card>
+    <div style={{display:'grid',gridTemplateColumns:'1.5fr 1fr',gap:16,marginBottom:16}}>
+      <Card>
+        <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Ingreso vs costo (6 meses)</div>
+        <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:12}}>Linea con guia sincronizada al pasar el mouse</div>
+        <FlowChart type="line" height={190} format={(v)=>'$'+v+'k'} labels={['Feb','Mar','Abr','May','Jun','Jul']}
+          series={[{label:'Ingreso',values:[540,571,558,590,601,612],color:'var(--flow-red-500)'},{label:'Costo',values:[262,255,270,259,258,248],color:'var(--flow-ink-900)'}]}
+          ariaLabel="El ingreso crece y el costo baja: el margen se abre en 6 meses" />
+      </Card>
+      <Card>
+        <div style={{font:'var(--type-title-sm)',marginBottom:14}}>Estructura de costos</div>
+        <Donut size={150} centerValue="$248k" centerLabel="Total" segments={[{label:'Combustible',value:182},{label:'Peaje',value:41},{label:'Mantenimiento',value:25}]} />
+      </Card>
+    </div>
+    <Card padding={0}>
+      <div style={{font:'var(--type-title-sm)',padding:'18px 20px 4px'}}>Margen por unidad (top y bottom)</div>
+      <Table rowKey="unit" dense defaultSort={{key:'pct',dir:-1}} style={{border:'none',boxShadow:'none'}} columns={[
+        {key:'unit',label:'Unidad',mono:true,sortable:true},{key:'driver',label:'Conductor',sortable:true},{key:'rev',label:'Ingreso',align:'right',mono:true,sortable:true,sortValue:(r)=>parseFloat(r.rev.replace(/[$,]/g,''))},{key:'cost',label:'Costo',align:'right',mono:true,sortable:true,sortValue:(r)=>parseFloat(r.cost.replace(/[$,]/g,''))},
+        {key:'m',label:'Margen',align:'right',sortable:true,sortValue:(r)=>r.pct,render:(r)=><span style={{fontFamily:'var(--font-mono)',fontWeight:600,color:r.pct>=55?'var(--status-success-text)':'var(--status-danger-text)'}}>{r.pct}%</span>},
+      ]} rows={[
+        {unit:'MVD-101-C',driver:'Rosa Duarte',rev:'$8,410',cost:'$2,930',pct:65},
+        {unit:'JMX-214-B',driver:'Ana Sosa',rev:'$7,850',cost:'$2,990',pct:62},
+        {unit:'PLQ-472-D',driver:'Marco Gil',rev:'$5,120',cost:'$1,470',pct:71},
+        {unit:'KTR-882-A',driver:'Luis Prieto',rev:'$6,020',cost:'$3,480',pct:42},
+      ]} />
+    </Card>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga</div>);
+</script></body></html>

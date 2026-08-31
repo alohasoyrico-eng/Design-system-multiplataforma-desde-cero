@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Flow · FlowChart</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)}
+.wrap{padding:18px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(360px,1fr))}
+.bar{padding:14px 18px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card{background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px 18px;box-shadow:var(--shadow-rest);min-width:0}
+.card h3{margin:0;font-size:13.5px;font-weight:700;color:var(--text-primary)}
+.card p{margin:2px 0 10px;font-size:12px;color:var(--text-secondary);line-height:1.5}
+.wide{grid-column:1/-1}
+</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.Flow || {};
+const { FlowChart, SegmentedControl, Chip } = NS;
+const ITEM = new URLSearchParams(location.search).get('item');
+
+const MES = ['Ene','Feb','Mar','Abr','May','Jun'];
+const money = (v) => '$' + Number(v).toLocaleString('es-MX');
+const litros = (v) => Number(v).toLocaleString('es-MX') + ' L';
+const pct = (v) => v + '%';
+
+function Panel({ title, note, wide, children }) {
+  return <div className={'card' + (wide ? ' wide' : '')}>
+    <h3>{title}</h3><p>{note}</p>{children}
+  </div>;
+}
+
+const CHARTS = [
+  { id:'area', title:'area — tendencia', note:'Dos series, la enfatizada en --viz-accent. Hover sincroniza el tooltip.',
+    props:{ type:'area', labels:MES, legend:true, highlight:'Diesel', format:money,
+      series:[{label:'Diesel',values:[420,455,398,512,486,540]},{label:'Gasolina',values:[180,172,195,210,198,205]}] } },
+  { id:'bar', title:'bar — comparativa', note:'Barras agrupadas con valores visibles.',
+    props:{ type:'bar', labels:MES, legend:true, showValues:false, format:litros,
+      series:[{label:'Ruta norte',values:[1200,1450,1380,1620,1510,1700]},{label:'Ruta sur',values:[980,1020,1150,1080,1240,1190]}] } },
+  { id:'stacked100', title:'stacked100 — composición', note:'La mezcla importa, el total no. Tooltip en % y valor.',
+    props:{ type:'stacked100', labels:MES, legend:true, format:litros,
+      series:[{label:'Diesel',values:[620,640,590,700,680,720]},{label:'Gasolina',values:[240,220,260,280,250,260]},{label:'Eléctrico',values:[60,90,120,140,180,220]}] } },
+  { id:'donut', title:'donut — reparto', note:'Cinco categorías como máximo; leyenda a la derecha.',
+    props:{ type:'donut', legend:true, format:money,
+      series:[{data:[{label:'Combustible',value:48200},{label:'Mantenimiento',value:19400},{label:'Peaje',value:12800},{label:'Seguros',value:8600},{label:'Otros',value:4100}]}] } },
+  { id:'scatter', title:'scatter — correlación', note:'Consumo vs. kilómetros por unidad, dos flotas.',
+    props:{ type:'scatter', format:(v)=>Number(v).toLocaleString('es-MX'),
+      series:[
+        {label:'Transportes Vidal',values:[[1200,410],[1450,455],[1380,430],[1620,510],[1510,486],[1700,540],[980,320]]},
+        {label:'Logística Nacional',values:[[1100,390],[1300,470],[1250,405],[1550,530],[1420,500],[1650,575]]}] } },
+  { id:'heatmap', title:'heatmap — densidad', note:'Cargas por día y franja horaria. Rampa secuencial, no categórica.',
+    props:{ type:'heatmap', format:(v)=>v+' cargas',
+      matrix:{ cols:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'], rows:['06–10','10–14','14–18','18–22'],
+        values:[[0,0,12],[1,0,18],[2,0,15],[3,0,22],[4,0,28],[5,0,9],[6,0,4],
+                [0,1,20],[1,1,24],[2,1,22],[3,1,26],[4,1,34],[5,1,14],[6,1,6],
+                [0,2,16],[1,2,19],[2,2,21],[3,2,24],[4,2,30],[5,2,11],[6,2,5],
+                [0,3,8],[1,3,10],[2,3,9],[3,3,12],[4,3,18],[5,3,7],[6,3,3]] } } },
+  { id:'waterfall', title:'waterfall — cómo se llegó ahí', note:'Verde suma, rojo resta, gris los totales.',
+    props:{ type:'waterfall', labels:['Presupuesto','Combustible','Mantenim.','Peaje','Ahorro rutas','Real'], totals:[0,5], format:money,
+      series:[{label:'Variación',values:[120000,-48200,-19400,-12800,8600,0]}] } },
+  { id:'pareto', title:'pareto — pocas causas', note:'Barras por frecuencia + acumulado en accent.',
+    props:{ type:'pareto', labels:['Llanta','Frenos','Aceite','Batería','Luces','Otros'], legend:true, format:(v)=>v+' inc.',
+      series:[{label:'Incidencias',values:[64,38,26,14,9,5]}] } },
+  { id:'radar', title:'radar — perfil', note:'Dos flotas comparadas en cinco ejes.',
+    props:{ type:'radar', max:100, indicators:['Puntualidad','Consumo','Mantenim.','Seguridad','Ocupación'],
+      series:[{label:'Vidal',values:[88,72,90,84,76]},{label:'Nacional',values:[74,86,68,79,92]}] } },
+  { id:'gauge', title:'gauge — valor contra límite', note:'Pasa a --viz-negative arriba del 85%.',
+    props:{ type:'gauge', target:78, max:100, format:pct, height:220 } },
+  { id:'funnel', title:'funnel — caída por etapa', note:'Alta de conductores, cinco pasos.',
+    props:{ type:'funnel', format:(v)=>v+' conductores',
+      series:[{data:[{label:'Registro',value:1420},{label:'Documentos',value:1090},{label:'Validación',value:870},{label:'Tarjeta',value:740},{label:'Primer viaje',value:612}]}] } },
+  { id:'boxplot', title:'boxplot — dispersión', note:'Consumo por ruta: mediana, cuartiles y rango.',
+    props:{ type:'boxplot', labels:['Norte','Sur','Centro','Bajío'], format:litros,
+      series:[{values:[[280,340,390,430,510],[240,300,330,380,440],[300,360,410,470,560],[260,320,365,410,480]]}] } },
+];
+
+function App() {
+  const [theme, setTheme] = React.useState('light');
+  const [loading, setLoading] = React.useState(false);
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-mode', theme === 'light' ? '' : theme);
+    if (theme === 'light') document.documentElement.removeAttribute('data-mode');
+  }, [theme]);
+
+  const list = ITEM ? CHARTS.filter(c => c.id === ITEM) : CHARTS;
+
+  return <>
+    <div className="bar">
+      {SegmentedControl && <SegmentedControl
+        value={theme} onChange={setTheme}
+        style={{maxWidth:320}}
+        items={[{value:'light',label:'Claro'},{value:'dark',label:'Oscuro'}]} />}
+      <button onClick={()=>{ setLoading(true); setTimeout(()=>setLoading(false), 1400); }}
+        style={{minHeight:36,padding:'0 14px',borderRadius:999,border:'1px solid var(--border-default)',background:'var(--surface-card)',color:'var(--text-primary)',fontFamily:'inherit',fontSize:12.5,fontWeight:600,cursor:'pointer'}}>
+        Simular carga
+      </button>
+      <span style={{fontSize:12,color:'var(--text-secondary)'}}>Los mismos charts en claro y oscuro — sin configuración.</span>
+    </div>
+    <div className="wrap">
+      {list.map(c => <Panel key={c.id} title={c.title} note={c.note} wide={list.length>1 && (c.id==='waterfall'||c.id==='heatmap')}>
+        <FlowChart {...c.props} loading={loading} height={c.props.height || 260} ariaLabel={c.title} />
+      </Panel>)}
+    </div>
+  </>;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  NS.FlowChart ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado</div>);
+</script></body></html>

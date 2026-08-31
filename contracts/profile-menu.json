@@ -1,0 +1,32 @@
+{
+  "id": "profile-menu",
+  "name": "ProfileMenu",
+  "layer": "patterns",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Menu de perfil con avatar, nombre, rol y lista de acciones con iconos.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "pm-1",
+        "rule": "Cada item de accion tiene hit target >= 44px.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "implements": [
+    "avatar"
+  ],
+  "nonGoals": [
+    "No tiene dropdown: se renderiza inline en un panel o sidebar."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/ProfileMenu.tsx"
+  }
+}

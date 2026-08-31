@@ -1,0 +1,65 @@
+{
+  "id": "search-pattern",
+  "name": "Busqueda global",
+  "layer": "patterns",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Ir a una entidad conocida: paleta con atajo, campo en linea o pagina de resultados. La forma la elige el trabajo, no el gusto.",
+  "implements": [
+    "global-search"
+  ],
+  "conformance": {
+    "criteria": [
+      {
+        "id": "bsq-p1",
+        "rule": "Paleta para ir rapido a algo que ya se conoce; campo en linea para filtrar lo que esta en pantalla; pagina de resultados para explorar. Mezclar los tres en la misma pantalla confunde.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "bsq-p2",
+        "rule": "El atajo de teclado se anuncia en la interfaz y no choca con los del navegador.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "bsq-p3",
+        "rule": "Los resultados se agrupan por tipo de entidad y cada uno dice cual es: sin eso, una placa y un nombre se confunden.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "bsq-p4",
+        "rule": "Al cerrar sin elegir, el foco vuelve exactamente donde estaba.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "bsq-p5",
+        "rule": "La busqueda vacia muestra recientes, no un panel en blanco.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "global-search"
+    ],
+    "allowDeviation": true
+  },
+  "nonGoals": [
+    "No define el ranking de resultados.",
+    "No es un filtro de tabla."
+  ],
+  "reference": {
+    "demo": "docs/demos/global-search.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

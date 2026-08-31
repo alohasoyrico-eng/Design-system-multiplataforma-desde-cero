@@ -1,0 +1,94 @@
+<!-- @dsCard group="Fleet Dashboard" viewport="960x780" subtitle="Alta de unidad en 3 pasos con Stepper" name="Wizard" -->
+<!-- @startingPoint section="Templates" subtitle="Formulario multi-paso: alta de unidad" viewport="960x780" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Nueva unidad</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+function ns(){ for (const k of ['Flow','FlowDS','FlowDesignSystem','DS','DesignSystem']) if (window[k] && window[k].Button) return window[k];
+  for (const k of Object.getOwnPropertyNames(window)) { try { const v = window[k]; if (v && typeof v === 'object' && v.Button && v.Badge) return v; } catch(e){} } return null; }
+const NS = ns();
+const { Button, Input, Field, Select, Radio, DatePicker, Stepper, Card, Badge, Avatar, Toast, ToastStack, Breadcrumb } = NS || {};
+
+const DRIVERS = [
+  {value:'ana',label:'Ana Sosa',desc:'4.96 · 1,240 viajes · Sedán'},
+  {value:'luis',label:'Luis Prieto',desc:'4.88 · 860 viajes · Van'},
+  {value:'rosa',label:'Rosa Duarte',desc:'4.99 · 2,105 viajes · Sedán'},
+];
+
+function App(){
+  const [step,setStep] = React.useState(0);
+  const [plate,setPlate] = React.useState('');
+  const [type,setType] = React.useState('');
+  const [date,setDate] = React.useState('2026-07-10');
+  const [driver,setDriver] = React.useState('');
+  const [err,setErr] = React.useState(null);
+  const [toast,setToast] = React.useState(null);
+
+  const next = () => {
+    if(step===0 && (plate.trim().length<5 || !type)){ setErr('Completa placa (mín. 5 caracteres) y tipo.'); return; }
+    if(step===1 && !driver){ setErr('Elige un conductor para continuar.'); return; }
+    setErr(null);
+    if(step===2){ setToast('Unidad '+plate.toUpperCase()+' creada y asignada.'); setTimeout(()=>setToast(null),4000); setStep(0); setPlate(''); setType(''); setDriver(''); return; }
+    setStep(step+1);
+  };
+  const drv = DRIVERS.find(d=>d.value===driver);
+
+  return <div style={{maxWidth:720,margin:'0 auto',padding:'36px 24px 64px',color:'var(--text-primary)'}}>
+    <Breadcrumb items={[{label:'Flota'},{label:'Unidades'},{label:'Nueva unidad'}]} />
+    <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'8px 0 28px'}}>Nueva unidad</h1>
+    <Stepper current={step} steps={[
+      {label:'Vehículo',description:'Placa y tipo'},
+      {label:'Conductor',description:'Asignación'},
+      {label:'Confirmación',description:'Revisa y envía'},
+    ]} style={{marginBottom:32,width:'100%',justifyContent:'space-between'}} />
+
+    <Card>
+      {step===0 && <div style={{display:'flex',flexDirection:'column',gap:18}}>
+        <Field label="Placa" htmlFor="plate" required error={err} help={!err?'Como aparece en la tarjeta de circulación.':undefined}>
+          <Input id="plate" mono placeholder="JMX-214-B" value={plate} onChange={setPlate} invalid={!!err && plate.trim().length<5} />
+        </Field>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+          <Field label="Tipo de unidad" required><Select icon="local_taxi" placeholder="Selecciona…" value={type} onChange={setType} invalid={!!err && !type} options={[{value:'sedan',label:'Sedán'},{value:'van',label:'Van'},{value:'moto',label:'Moto'}]} /></Field>
+          <Field label="Inicio de operación"><DatePicker value={date} onChange={setDate} min="2026-07-08" /></Field>
+        </div>
+      </div>}
+
+      {step===1 && <div style={{display:'flex',flexDirection:'column',gap:6}}>
+        <div style={{fontSize:13,fontWeight:600,marginBottom:8}}>Conductor asignado <span aria-hidden="true" style={{color:'var(--text-accent)'}}>*</span></div>
+        {DRIVERS.map(d=>
+          <label key={d.value} style={{display:'flex',alignItems:'center',gap:12,padding:'12px 14px',borderRadius:16,cursor:'pointer',border:driver===d.value?'1.5px solid var(--border-focus)':'1px solid var(--border-subtle)',background:driver===d.value?'var(--surface-accent-subtle)':'transparent',transition:'all var(--dur-fast) var(--ease-out)'}}>
+            <Radio name="driver" value={d.value} checked={driver===d.value} onChange={setDriver} />
+            <Avatar name={d.label} />
+            <span style={{display:'flex',flexDirection:'column'}}>
+              <span style={{fontSize:14,fontWeight:600}}>{d.label}</span>
+              <span style={{fontSize:12,color:'var(--text-muted)'}}>{d.desc}</span>
+            </span>
+          </label>)}
+        {err && <div role="alert" style={{fontSize:12,color:'var(--status-danger-text)',marginTop:6}}>{err}</div>}
+      </div>}
+
+      {step===2 && <div style={{display:'flex',flexDirection:'column',gap:16}}>
+        <Badge tone="info" icon="fact_check">Revisa antes de enviar</Badge>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
+          <div><div style={{fontSize:11,fontWeight:600,color:'var(--text-muted)',textTransform:'uppercase',letterSpacing:'.08em'}}>Placa</div><div style={{fontFamily:'var(--font-mono)',fontSize:18,fontWeight:600,marginTop:2}}>{plate.toUpperCase()||'—'}</div></div>
+          <div><div style={{fontSize:11,fontWeight:600,color:'var(--text-muted)',textTransform:'uppercase',letterSpacing:'.08em'}}>Tipo</div><div style={{fontSize:15,fontWeight:600,marginTop:2}}>{ {sedan:'Sedán',van:'Van',moto:'Moto'}[type]||'—' }</div></div>
+          <div><div style={{fontSize:11,fontWeight:600,color:'var(--text-muted)',textTransform:'uppercase',letterSpacing:'.08em'}}>Inicio</div><div style={{fontFamily:'var(--font-mono)',fontSize:15,fontWeight:500,marginTop:2}}>{date}</div></div>
+          <div><div style={{fontSize:11,fontWeight:600,color:'var(--text-muted)',textTransform:'uppercase',letterSpacing:'.08em'}}>Conductor</div><div style={{display:'flex',alignItems:'center',gap:8,marginTop:4}}>{drv && <Avatar name={drv.label} size="sm" />}<span style={{fontSize:15,fontWeight:600}}>{drv?drv.label:'—'}</span></div></div>
+        </div>
+      </div>}
+
+      <div style={{display:'flex',justifyContent:'space-between',marginTop:28}}>
+        <Button variant="ghost" icon="arrow_back" onClick={()=>{setErr(null);setStep(Math.max(0,step-1));}} style={{visibility:step===0?'hidden':'visible'}}>Atrás</Button>
+        <Button variant={step===2?'accent':'primary'} iconTrailing={step===2?undefined:'arrow_forward'} icon={step===2?'check':undefined} onClick={next}>{step===2?'Crear unidad':'Continuar'}</Button>
+      </div>
+    </Card>
+    {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga en unos segundos</div>);
+</script></body></html>

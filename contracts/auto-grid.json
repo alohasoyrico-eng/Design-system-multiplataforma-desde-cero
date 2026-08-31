@@ -1,0 +1,58 @@
+{
+  "id": "auto-grid",
+  "name": "AutoGrid",
+  "layer": "primitives",
+  "function": [
+    "layout"
+  ],
+  "status": "stable",
+  "summary": "Grid responsivo auto-fit. Recibe un ancho minimo y genera columnas automaticas.",
+  "api": {
+    "members": [
+      {
+        "name": "minWidth",
+        "kind": "prop",
+        "type": "string",
+        "default": "'320px'"
+      },
+      {
+        "name": "gap",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ag-1",
+        "rule": "Nunca fuerza scroll horizontal en el body. Si el minWidth excede el viewport, colapsa a 1 columna.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--gap-stack"
+  ],
+  "nonGoals": [
+    "No maneja masonry ni columnas de altura desigual."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "primitives/AutoGrid.tsx"
+  }
+}

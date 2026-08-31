@@ -1,0 +1,124 @@
+{
+  "id": "tabs",
+  "name": "Tabs",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Cambio de vista dentro de una pantalla. El indicador viaja con resorte; pill sobre carril hundido, underline con barra de acento.",
+  "api": {
+    "types": [
+      {
+        "name": "TabItem",
+        "members": [
+          [
+            "value",
+            "string"
+          ],
+          [
+            "label",
+            "string"
+          ],
+          [
+            "icon",
+            "string?"
+          ],
+          [
+            "count",
+            "number?"
+          ]
+        ]
+      }
+    ],
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "TabItem[]",
+        "required": true
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(value: string) => void"
+      },
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'pill' | 'underline'",
+        "default": "pill",
+        "variantAxis": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "tab-1",
+        "rule": "Es una tablist: cada pestana es role=tab con aria-selected, y las flechas izquierda y derecha recorren el grupo. Solo la activa entra al orden de tabulacion.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tab-2",
+        "rule": "Cada pestana mide --hit-target-min de alto.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tab-3",
+        "rule": "La pestana activa se distingue sin color: peso tipografico y el indicador, no solo el matiz.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "tab-4",
+        "rule": "El indicador final no depende del resorte: en una pestana oculta aparece bajo la activa, no en la primera.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "tab-5",
+        "rule": "El contador de un item va en la familia de dato y no cambia el alto de la pestana al aparecer.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--surface-card",
+    "--action-accent",
+    "--text-primary",
+    "--text-secondary",
+    "--radius-pill",
+    "--type-data",
+    "--ease-spring",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No navega entre paginas: para eso hay enlaces. Tabs cambia de vista sin cambiar de direccion.",
+    "Mas de cinco o seis pestanas son un Select, no una tablist."
+  ],
+  "reference": {
+    "src": "components/Tabs.jsx",
+    "states": "docs/cards/navigation.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

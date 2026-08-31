@@ -1,0 +1,72 @@
+{
+  "id": "mailings-templates",
+  "name": "Mailings",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Seis correos operativos sobre un layout base: recibo, resumen semanal, alerta de seguridad, invitacion al equipo y bienvenida.",
+  "content": {
+    "surface": "Correo transaccional",
+    "product": "cross",
+    "viewport": [
+      "mobile",
+      "desktop"
+    ],
+    "theme": [
+      "light"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "base",
+        "fills": "Layout de tablas con cabecera de marca y pie legal"
+      },
+      {
+        "name": "cuerpo",
+        "fills": "El contenido del correo, una columna"
+      }
+    ]
+  },
+  "composition": {
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ml-1",
+        "rule": "HTML de tablas con estilos en linea: no comparten el runtime de componentes ni sus tokens CSS, porque el correo no los resuelve.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ml-2",
+        "rule": "Legible sin imagenes y sin CSS: el contenido va en el texto, no en la maqueta.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "ml-3",
+        "rule": "Un solo CTA por correo, como enlace con area de toque suficiente.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "ml-4",
+        "rule": "Los colores van escritos en hexadecimal a proposito: es la unica parte del sistema donde eso es correcto, y esta declarado.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable.",
+    "No usa los componentes del sistema: es la unica capa que no puede."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/mailings/base-layout.html"
+  }
+}

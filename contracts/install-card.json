@@ -1,0 +1,34 @@
+{
+  "id": "install-card",
+  "name": "InstallCard",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Card inverse con nombre de plataforma, badge de status y CodeBlock con comando de instalacion.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ic2-1",
+        "rule": "El comando es copiable via CodeBlock.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "implements": [
+    "card",
+    "code-block",
+    "badge"
+  ],
+  "nonGoals": [
+    "No ejecuta el comando: solo lo muestra."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/InstallCard.tsx"
+  }
+}

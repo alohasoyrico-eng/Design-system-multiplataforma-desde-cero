@@ -1,0 +1,120 @@
+<!-- @dsCard group="Dashboards" viewport="1280x800" subtitle="Casetas, cruces, tags y disputas de la flotilla" name="Peaje" -->
+<!-- @startingPoint section="Dashboards" subtitle="Casetas, cruces, tags y disputas de la flotilla" viewport="1280x800" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Flow · Peaje</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-canvas)} a{color:var(--text-link);}</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, StatTile, Bars, Sparkline, Donut, Table, Badge, Card, Tabs, Breadcrumb, Avatar, Tooltip, Menu, Progress, DatePicker } = NS;
+
+
+function ThemeToggle(){
+  const [dark,setDark] = React.useState(false);
+  React.useEffect(()=>{
+    const saved = localStorage.getItem('flow-theme');
+    const isDark = saved === 'dark';
+    setDark(isDark);
+    document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light');
+  },[]);
+  const toggle = ()=>{
+    const next = !dark; setDark(next);
+    document.documentElement.setAttribute('data-mode', next ? 'dark' : 'light');
+    localStorage.setItem('flow-theme', next ? 'dark' : 'light');
+  };
+  // Era un boton a mano de 32px repetido en siete plantillas: IconButton pone el
+  // objetivo de 44, el foco y el hover sin repetirlos aqui.
+  return <IconButton icon={dark?'light_mode':'dark_mode'} ariaLabel="Cambiar modo" variant="ghost" size="sm" onClick={toggle} />;
+}
+
+function Shell({children}){
+  return <div style={{display:'flex',height:'100vh',overflow:'hidden'}}>
+    <nav aria-label="Dashboards" style={{width:230,flex:'none',background:'var(--surface-card)',borderRight:'1px solid var(--border-subtle)',display:'flex',flexDirection:'column',padding:'20px 12px',gap:4,boxSizing:'border-box'}}>
+      <a href="../fleet-dashboard/index.html" style={{display:'inline-flex',alignItems:'center',minHeight:'var(--hit-target-min)',margin:'4px 10px 14px'}}><img src="../../assets/flow-logo.png" alt="Flow" style={{height:24}} /></a>
+      <div style={{fontSize:10.5,fontWeight:700,letterSpacing:'.08em',color:'var(--text-muted)',padding:'0 14px 6px'}}>DASHBOARDS</div>
+      <a href="./overview.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>space_dashboard</span>Overview</a>
+      <a href="./combustible.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>local_gas_station</span>Combustible</a>
+      <a href="./mantenimiento.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>build</span>Mantenimiento</a>
+      <a href="./electro.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>bolt</span>Electromovilidad</a>
+      <a href="#" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:701-1,background:'var(--surface-accent-subtle)',color:'var(--text-accent)'}}>
+   <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:20}}>toll</span>Peaje</a>
+      <a href="./finanzas.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:501-1,background:'transparent',color:'var(--text-secondary)'}}>
+   <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>payments</span>Finanzas</a>
+      <a href="../config/index.html" style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:500,color:'var(--text-secondary)',marginTop:'auto'}}>
+        <span className="flow-icon" aria-hidden="true" style={{fontSize:20}}>settings</span>Configuracion</a>
+      <div style={{display:'flex',alignItems:'center',gap:10,padding:'10px 10px'}}>
+        <Avatar name="Marta Vidal" status="online" />
+        <div style={{flex:1,minWidth:0}}><div style={{fontSize:13,fontWeight:600}}>Marta Vidal</div><div style={{fontSize:11,color:'var(--text-muted)'}}>Fleet admin</div></div>
+        <ThemeToggle />
+      </div>
+    </nav>
+    <main style={{flex:1,overflowY:'auto',padding:32,boxSizing:'border-box'}} data-screen-label="peaje">{children}</main>
+  </div>;
+}
+
+function Header({title,children}){
+  const [range,setRange] = React.useState('30d');
+  const [custom,setCustom] = React.useState({});
+  return <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:24,flexWrap:'wrap'}}>
+    <div>
+      <Breadcrumb items={[{label:'Dashboards'},{label:'Peaje'}]} />
+      <h1 style={{font:'var(--type-title-lg)',letterSpacing:'var(--tracking-tight)',margin:'6px 0 0'}}>{title}</h1>
+    </div>
+    <div style={{marginLeft:'auto',display:'flex',gap:12,alignItems:'center',flexWrap:'wrap',minWidth:0}}>
+      <Tabs value={range} onChange={setRange} items={[{value:'7d',label:'7 dias'},{value:'30d',label:'30 dias'},{value:'90d',label:'Trimestre'}]} />
+      <div style={{flex:'1 1 200px',minWidth:140,maxWidth:240}}><DatePicker mode="range" value={custom} onChange={setCustom} placeholder="Rango personalizado" /></div>
+      {children}
+      <Menu align="right" trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
+        items={[{label:'CSV',icon:'table'},{label:'PDF',icon:'picture_as_pdf'},{label:'Enviar por correo',icon:'mail'}]} />
+    </div>
+  </div>;
+}
+
+function App(){
+  return <Shell>
+    <Header title="Peaje" />
+    
+    <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginBottom:18}}>
+      <StatTile label="Gasto en peaje (mes)" value="$41,080" delta="+6%" trend="down" icon="toll" />
+      <StatTile label="Cruces" value="1,204" delta="+9%" trend="flat" icon="swap_horiz" />
+      <StatTile label="Tags por vencer (30 d)" value="7" icon="sell" tone="var(--status-warning-text)" />
+      <StatTile label="Disputas abiertas" value="2" delta="−1" trend="up" icon="flag" />
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1.5fr 1fr',gap:16,marginBottom:16}}>
+      <Card>
+        <div style={{font:'var(--type-title-sm)',marginBottom:14}}>Gasto por caseta</div>
+        <Bars height={180} data={[{label:'Tepotzotlan',value:12.4},{label:'San Marcos',value:8.9},{label:'Ecatepec',value:7.2},{label:'Chalco',value:6.8},{label:'Otras',value:5.8}]} format={(v)=>'$'+v+'k'} />
+      </Card>
+      <Card padding={0}>
+        <div style={{font:'var(--type-title-sm)',padding:'18px 20px 8px'}}>Tags por vencer</div>
+        <Table rowKey="unit" dense style={{border:'none',boxShadow:'none'}} columns={[
+          {key:'unit',label:'Unidad',mono:true},
+          {key:'days',label:'Vence',render:(r)=> r.days<=7 ? <Badge tone="warning" icon="schedule">{r.days} dias</Badge> : <Badge>{r.days} dias</Badge>},
+          {key:'a',label:'',align:'right',render:()=><Button variant="ghost" size="sm">Renovar</Button>},
+        ]} rows={[{unit:'PLQ-472-D',days:5},{unit:'JMX-214-B',days:12},{unit:'QRS-330-E',days:21},{unit:'TWN-559-F',days:26}]} />
+      </Card>
+    </div>
+    <Card padding={0}>
+      <div style={{font:'var(--type-title-sm)',padding:'18px 20px 4px'}}>Cruces recientes</div>
+      <Table rowKey="id" dense style={{border:'none',boxShadow:'none'}} columns={[
+        {key:'unit',label:'Unidad',mono:true},{key:'caseta',label:'Caseta'},{key:'amount',label:'Importe',align:'right',mono:true},{key:'time',label:'Cuando'},
+        {key:'st',label:'Estado',render:(r)=> r.disputed ? <Badge tone="danger" icon="flag">En disputa</Badge> : <Badge tone="success" icon="check">Aplicado</Badge>},
+      ]} rows={[
+        {id:1,unit:'JMX-214-B',caseta:'Tepotzotlan',amount:'$118.00',time:'hoy 07:44'},
+        {id:2,unit:'MVD-101-C',caseta:'San Marcos',amount:'$96.00',time:'hoy 06:10'},
+        {id:3,unit:'KTR-882-A',caseta:'Tepotzotlan',amount:'$236.00',time:'ayer 22:03',disputed:true},
+      ]} />
+    </Card>
+  </Shell>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12}}>bundle no cargado — recarga</div>);
+</script></body></html>

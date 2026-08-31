@@ -1,0 +1,115 @@
+{
+  "id": "drawer",
+  "name": "Drawer",
+  "layer": "components",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Panel lateral sobre velo difuminado, para detalle y formularios secundarios. Compone OverlayShell: el foco, el scroll y Escape los resuelve el shell.",
+  "api": {
+    "members": [
+      {
+        "name": "open",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "onClose",
+        "kind": "event",
+        "type": "() => void"
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "footer",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Fila de acciones fijada abajo, alineada a la derecha."
+      },
+      {
+        "name": "width",
+        "kind": "prop",
+        "type": "number",
+        "default": 420
+      },
+      {
+        "name": "side",
+        "kind": "prop",
+        "type": "'right' | 'left'",
+        "default": "right",
+        "variantAxis": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "overlay-shell"
+    ],
+    "criteria": [
+      {
+        "id": "drw-1",
+        "rule": "El titulo nombra el panel: el dialogo lo referencia con aria-labelledby. Un panel sin nombre se anuncia como 'dialogo' y nada mas.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "drw-2",
+        "rule": "El pie queda fijo y visible con el cuerpo desplazado: las acciones no se pierden al final del scroll.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "drw-3",
+        "rule": "El cuerpo desplaza dentro del panel, no la pagina detras.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "drw-4",
+        "rule": "side no cambia la estructura ni el orden del DOM: solo el borde de entrada y el origen de la animacion.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "shells": [
+      "overlay-shell"
+    ],
+    "allowDeviation": true
+  },
+  "tokens": [
+    "--surface-card",
+    "--shadow-overlay",
+    "--radius-xl",
+    "--ease-spring"
+  ],
+  "nonGoals": [
+    "No pide confirmacion: para una decision de si o no esta Dialog.",
+    "No es navegacion lateral: eso es Sidebar."
+  ],
+  "reference": {
+    "src": "components/Drawer.jsx",
+    "states": "docs/cards/overlays.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

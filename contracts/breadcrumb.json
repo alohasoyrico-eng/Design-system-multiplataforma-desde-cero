@@ -1,0 +1,72 @@
+{
+  "id": "breadcrumb",
+  "name": "Breadcrumb",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Ruta jerarquica hasta donde estas. El ultimo item es el sitio actual y no es un enlace.",
+  "api": {
+    "members": [
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "Array<{ label: string; href?: string }>",
+        "required": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "brc-1",
+        "rule": "Es una navegacion con nombre y el ultimo item lleva aria-current y no es enlace: un enlace al sitio donde ya estas no lleva a ninguna parte.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "brc-2",
+        "rule": "El separador esta oculto al lector: la barra no se lee.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "brc-3",
+        "rule": "Con una ruta larga colapsa por el medio y conserva el primero y el actual.",
+        "level": "should",
+        "verify": "visual"
+      },
+      {
+        "id": "brc-4",
+        "rule": "Cada enlace mide --hit-target-min de alto.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--text-secondary",
+    "--text-primary",
+    "--text-muted",
+    "--hit-target-min"
+  ],
+  "nonGoals": [
+    "No es Tabs: dice donde estas, no cambia de vista.",
+    "No es el titulo de la pagina."
+  ],
+  "reference": {
+    "src": "components/Breadcrumb.jsx",
+    "states": "docs/cards/navigation.card.html"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

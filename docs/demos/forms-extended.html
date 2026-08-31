@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:32px 0 12px}h3:first-child{margin-top:0}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const only = new URLSearchParams(location.search).get('item');
+function Sections({list, style}){
+  const vis = list.filter(s=>!only || s.id===only);
+  return <div style={style||{display:'flex',flexDirection:'column',maxWidth:860}}>{vis.map(s=><React.Fragment key={s.id}>{!only && s.title ? <h3>{s.title}</h3> : null}<s.C/></React.Fragment>)}</div>;
+}
+const { InputAmount, InputPhone, Input, Field, DatePicker } = NS;
+const LIST = [
+  {id:'input-amount', title:'InputAmount', C:function(){ const [v,setV]=React.useState(2450);
+    return <Field label="Monto" htmlFor="fa" help="Se descuenta del saldo de la flota.">
+      <InputAmount id="fa" currency="$" value={v} onChange={setV} />
+    </Field>; }},
+  {id:'input-phone', title:'InputPhone', C:function(){ const [v,setV]=React.useState('');
+    return <Field label="Teléfono" htmlFor="fp">
+      <InputPhone id="fp" prefix="+52" value={v} onChange={setV} />
+    </Field>; }},
+  {id:'input-reveal', title:'Input · revealable — absorbió InputPassword', C:function(){ const [v,setV]=React.useState('');
+    return <Field label="Contraseña" htmlFor="fw" help="Mínimo 8 caracteres.">
+      <Input id="fw" revealable value={v} onChange={setV} placeholder="Contraseña segura" />
+    </Field>; }},
+  {id:'input-email', title:'Correo — Input type=email, la validación es del contenedor', C:function(){ const [v,setV]=React.useState('');
+    const bad = v !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    return <Field label="Correo" htmlFor="fe" error={bad ? 'Revisa el formato del correo.' : undefined}>
+      <Input id="fe" type="email" icon="mail" value={v} onChange={setV} placeholder="tu@email.com" invalid={bad} />
+    </Field>; }},
+  {id:'input-date', title:'Fecha — DatePicker, el único calendario de Flow', C:function(){ const [v,setV]=React.useState('');
+    return <Field label="Fecha de alta" htmlFor="fd">
+      <DatePicker id="fd" value={v} onChange={setV} />
+    </Field>; }},
+];
+function Demo(){ return <Sections list={LIST} style={{display:'flex',flexDirection:'column',maxWidth:420}} />; }
+ReactDOM.createRoot(document.getElementById('root')).render(NS.InputAmount && NS.Field ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

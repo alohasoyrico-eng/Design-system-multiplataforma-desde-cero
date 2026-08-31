@@ -1,0 +1,60 @@
+{
+  "id": "section-bar",
+  "name": "SectionBar",
+  "layer": "components",
+  "function": [
+    "navigation"
+  ],
+  "status": "stable",
+  "summary": "Barra sticky de 52px para tabs y controles debajo del hero. Blur y opacidad parcial.",
+  "api": {
+    "members": [
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "trailing",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "sticky",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "sb-1",
+        "rule": "Con sticky=true se pega a top: 72px (debajo de TopBar) con z-index 30.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--border-subtle",
+    "--content-max"
+  ],
+  "nonGoals": [
+    "No contiene logica de tabs: los Tabs se pasan como children."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "components/SectionBar.tsx"
+  }
+}

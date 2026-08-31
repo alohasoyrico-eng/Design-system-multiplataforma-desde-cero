@@ -1,0 +1,32 @@
+{
+  "id": "proposal-card",
+  "name": "ProposalCard",
+  "layer": "patterns",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Comparacion before/after de propuestas MIEL con paneles semanticos y footer de acciones.",
+  "conformance": {
+    "criteria": [
+      {
+        "id": "prc-1",
+        "rule": "Los paneles usan tonos semanticos: danger para before, success para after.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "implements": [
+    "card"
+  ],
+  "nonGoals": [
+    "No maneja estado de aprobacion: eso es logica de negocio."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "patterns/ProposalCard.tsx"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "id": "drivers-app-t",
+  "name": "Drivers App",
+  "layer": "templates",
+  "status": "stable",
+  "summary": "Movil de 390 en modo oscuro: turno con switch, solicitud de viaje en acento, ganancias y barra inferior.",
+  "content": {
+    "surface": "App del conductor",
+    "product": "drivers-app",
+    "viewport": [
+      "mobile"
+    ],
+    "theme": [
+      "dark"
+    ],
+    "copy": "final",
+    "slots": [
+      {
+        "name": "estado",
+        "fills": "Switch de turno con confirmacion inmediata"
+      },
+      {
+        "name": "solicitud",
+        "fills": "Tarjeta de viaje entrante con el unico CTA de acento"
+      },
+      {
+        "name": "ganancias",
+        "fills": "StatTile de hoy y de la semana, cifras en mono"
+      },
+      {
+        "name": "nav",
+        "fills": "TabBar de cuatro destinos"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "tabbar",
+      "stattile",
+      "card",
+      "switch",
+      "bottom-sheet",
+      "toast"
+    ],
+    "primitives": [
+      "button",
+      "badge",
+      "avatar",
+      "icon-button",
+      "progress"
+    ],
+    "allowDeviation": true
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "da-1",
+        "rule": "Arranca en modo oscuro y se queda: es una app que se usa conduciendo de noche, no una preferencia.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "da-2",
+        "rule": "El CTA de aceptar viaje es el unico acento de la pantalla y el objetivo mas grande.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "da-3",
+        "rule": "Todo lo operable se alcanza con el pulgar: nada critico en la mitad superior de la pantalla.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "da-4",
+        "rule": "El switch de turno confirma el cambio; un turno que no se sabe si se activo es un fallo de negocio.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "da-5",
+        "rule": "Las cifras de ganancias van en mono y con periodo explicito.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No se importa: se copia como punto de partida. No tiene contrato de props porque no es una unidad reutilizable."
+  ],
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "reference": {
+    "src": "ui_kits/drivers-app/index.html"
+  }
+}

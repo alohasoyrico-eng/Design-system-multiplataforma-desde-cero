@@ -1,0 +1,89 @@
+{
+  "id": "skeleton",
+  "name": "Skeleton",
+  "layer": "primitives",
+  "function": [
+    "feedback"
+  ],
+  "status": "stable",
+  "summary": "Hueco con brillo mientras llega el dato. Ocupa la caja del contenido final para que nada salte al resolverse.",
+  "api": {
+    "members": [
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'text' | 'title' | 'circle' | 'card' | 'pill'",
+        "default": "text",
+        "variantAxis": true
+      },
+      {
+        "name": "width",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "skl-1",
+        "rule": "Ocupa la caja del contenido que sustituye. Si al llegar el dato la pagina salta, el skeleton estaba mal dimensionado y hace mas dano que un espacio vacio.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "skl-2",
+        "rule": "El skeleton esta oculto al lector de pantalla: diez skeletons no son diez mensajes de carga. Esa mitad es del componente y se verifica automatica.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "skl-3",
+        "rule": "Con prefers-reduced-motion el brillo se detiene y queda la superficie plana: sigue leyendose como hueco.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "skl-4",
+        "rule": "Visible completo sin que corra un frame: en una pestana oculta el skeleton se ve como superficie, no como caja vacia.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "skl-5",
+        "rule": "La otra mitad es del consumidor y sin ella el criterio anterior deja la pantalla muda: el contenedor que intercambia el contenido lleva aria-busy mientras espera. Un skeleton correctamente oculto dentro de un contenedor que no anuncia nada es un hueco silencioso. Al escribir este contrato habia 3 consumidores de Skeleton en el sistema y ninguno lo cumplia.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-sunken",
+    "--radius-sm",
+    "--radius-pill",
+    "--radius-lg"
+  ],
+  "nonGoals": [
+    "No es un spinner: el skeleton dice que sabemos la forma de lo que viene. Si no la sabemos, va Spinner.",
+    "No es un estado vacio: eso es EmptyState y significa que no hay nada, no que falta por llegar.",
+    "No anuncia la espera por su cuenta: si cada skeleton hablara, una tarjeta con seis diria seis veces lo mismo."
+  ],
+  "reference": {
+    "src": "primitives/Skeleton.jsx"
+  },
+  "platforms": {
+    "web": "reference",
+    "angular": "reference",
+    "flutter": "reference"
+  }
+}

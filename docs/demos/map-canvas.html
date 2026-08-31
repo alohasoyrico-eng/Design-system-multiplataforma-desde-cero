@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>window.FLOW_ASSET_BASE='../../';</script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-body);background:transparent;padding:20px;box-sizing:border-box}</style></head><body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const NS = window.Flow || {};
+const { Button, IconButton, Menu, Field, Input, Textarea, Select, Checkbox, Radio, Switch, Slider, DatePicker, FileUpload, OTPInput, PasscodeKeypad, Card, Badge, Chip, Avatar, Table, Skeleton, EmptyState, Accordion, Sparkline, Bars, PaymentCard, TransactionRow, MapCanvas, StatTile, Donut, RoleMatrix, Tabs, Stepper, Breadcrumb, Pagination, SegmentedControl, Spinner, Progress, Tooltip, Dialog, Toast, ToastStack, Drawer, BottomSheet, BiometricPrompt } = NS;
+function Demo(){
+const [sel,setSel]=React.useState('s2');
+return <MapCanvas center={{lat:19.4310,lng:-99.1530}} zoom={13} height={300} selectedId={sel} onPinClick={(p)=>setSel(p.id)}
+  pins={[{id:'s1',lat:19.4426,lng:-99.1680,label:'$23.4',icon:'local_gas_station'},{id:'s2',lat:19.4290,lng:-99.1420,label:'$22.9',icon:'local_gas_station'},{id:'s3',lat:19.4190,lng:-99.1610,label:'$4.2/kWh',icon:'bolt'}]}
+  route={[{lat:19.4326,lng:-99.1500},{lat:19.4310,lng:-99.1460},{lat:19.4290,lng:-99.1420}]} />;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(NS.Button ? <Demo/> : <div style={{fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+</script></body></html>

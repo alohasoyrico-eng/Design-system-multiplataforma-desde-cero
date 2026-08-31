@@ -1,0 +1,83 @@
+{
+  "id": "code-block",
+  "name": "CodeBlock",
+  "layer": "components",
+  "function": [
+    "display"
+  ],
+  "status": "stable",
+  "summary": "Bloque de codigo con superficie inversa, filename, copy y syntax children.",
+  "api": {
+    "members": [
+      {
+        "name": "code",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "filename",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "heading",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "trailing",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      },
+      {
+        "name": "copyable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Spans con tokens de syntax para highlighting."
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "cb-1",
+        "rule": "Copy escribe al clipboard y muestra feedback de 2s.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "cb-2",
+        "rule": "Overflow horizontal scrollea dentro del bloque, no la pagina.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-inverse",
+    "--text-on-inverse",
+    "--font-mono",
+    "--type-data",
+    "--radius-lg"
+  ],
+  "nonGoals": [
+    "No tiene syntax highlighting automatico: los tokens vienen como children."
+  ],
+  "platforms": {
+    "web": "adopted"
+  },
+  "reference": {
+    "src": "components/CodeBlock.tsx"
+  }
+}
