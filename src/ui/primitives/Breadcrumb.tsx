@@ -3,6 +3,8 @@ import css from './Breadcrumb.module.css'
 export interface BreadcrumbItem {
   label: string
   href?: string
+  /** Reemplaza el label visible con un icono (el label queda como aria-label). */
+  icon?: string
 }
 
 export interface BreadcrumbProps {
@@ -20,10 +22,10 @@ export function Breadcrumb({ items = [], variant = 'default', homeIcon = 'home' 
         {items.map((item, i) => {
           const isFirst = i === 0
           const isLast = i === items.length - 1
-          const showIcon = isSubtle && isFirst
+          const showIcon = item.icon || (isSubtle && isFirst)
 
           const content = showIcon
-            ? <span className={`flow-icon ${css.homeIcon}`} aria-hidden="true">{homeIcon}</span>
+            ? <span className={`flow-icon ${css.homeIcon}`} aria-hidden="true">{item.icon || homeIcon}</span>
             : item.label
 
           return (

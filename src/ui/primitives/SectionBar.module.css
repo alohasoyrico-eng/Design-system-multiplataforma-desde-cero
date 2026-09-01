@@ -15,6 +15,26 @@
   top: var(--height-bar);
 }
 
+.root[data-contained] {
+  display: block;
+  padding: 0;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-10);
+}
+
+@media (max-width: 576px) {
+  .inner {
+    padding: 0 var(--space-4);
+  }
+}
+
 .spacer {
   flex: 1;
 }

@@ -8,6 +8,6 @@
     "declarationDir": "dist-lib/types",
     "allowImportingTsExtensions": false
   },
-  "include": ["src/ui", "src/growth", "src/vite-env.d.ts"],
+  "include": ["src/ui", "src/growth", "src/hooks", "src/vite-env.d.ts"],
   "exclude": ["src/ui/**/__tests__", "src/growth/**/__tests__"]
 }

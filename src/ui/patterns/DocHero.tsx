@@ -16,21 +16,32 @@ export interface DocHeroProps {
   style?: CSSProperties
 }
 
+/* Soft hyphen: permite que nombres camelCase largos (QrScanner,
+   PlaygroundCanvas) quiebren en el límite de palabra al achicarse. */
+const SHY = '­'
+
+function splitCamel(str: string) {
+  return str.replace(/([a-z])([A-Z])/g, `$1${SHY}$2`)
+}
+
 export function DocHero({ name, summary, platforms = [], a11yLevel, style }: DocHeroProps) {
+  const hasPills = platforms.length > 0 || a11yLevel
   return (
     <section className={css.root} style={style}>
       <div className={css.main}>
-        <h1 className={css.headline}>{name}</h1>
+        <h1 className={css.headline}>{splitCamel(name)}</h1>
         <p className={css.desc}>{summary}</p>
       </div>
-      <div className={css.meta}>
-        <div className={css.pills}>
-          {platforms.map(p => (
-            <StatusPill key={p.label} label={p.label} tone={p.tone} />
-          ))}
-          {a11yLevel && <Badge tone="info">{a11yLevel}</Badge>}
+      {hasPills && (
+        <div className={css.meta}>
+          <div className={css.pills}>
+            {platforms.map(p => (
+              <StatusPill key={p.label} label={p.label} tone={p.tone} />
+            ))}
+            {a11yLevel && <Badge tone="info">{a11yLevel}</Badge>}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   )
 }
