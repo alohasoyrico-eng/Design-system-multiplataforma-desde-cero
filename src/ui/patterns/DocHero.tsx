@@ -30,18 +30,18 @@ export function DocHero({ name, summary, platforms = [], a11yLevel, style }: Doc
     <section className={css.root} style={style}>
       <div className={css.main}>
         <h1 className={css.headline}>{splitCamel(name)}</h1>
-        <p className={css.desc}>{summary}</p>
       </div>
-      {hasPills && (
-        <div className={css.meta}>
+      <div className={css.meta}>
+        <p className={css.desc}>{summary}</p>
+        {hasPills && (
           <div className={css.pills}>
             {platforms.map(p => (
               <StatusPill key={p.label} label={p.label} tone={p.tone} />
             ))}
             {a11yLevel && <Badge tone="info">{a11yLevel}</Badge>}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   )
 }

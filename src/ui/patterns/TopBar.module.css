@@ -15,13 +15,45 @@
 }
 
 .root[data-surface="glass"] {
-  height: 64px;
-  background: color-mix(in srgb, var(--surface-card) 68%, transparent);
-  backdrop-filter: blur(20px) saturate(1.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  position: relative;
+  height: 72px;
+  background: color-mix(in srgb, var(--surface-card) 65%, transparent);
+  backdrop-filter: saturate(1.2);
+  -webkit-backdrop-filter: saturate(1.2);
   border-bottom-color: var(--alpha-black-5);
   --inline-search-bg: var(--alpha-black-5);
   --inline-search-border: var(--border-subtle);
+}
+
+/* Grano sutil sobre el vidrio */
+.root[data-surface="glass"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+}
+
+/* En glass la nav se centra al viewport, no al espacio sobrante */
+.root[data-surface="glass"] .inner {
+  position: relative;
+}
+
+.root[data-surface="glass"] .navWrap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.root[data-surface="glass"] .navLink {
+  font-weight: 400;
+}
+
+.root[data-surface="glass"] .navLink[data-active] {
+  font-weight: 800;
 }
 
 .root[data-sticky] {
@@ -142,6 +174,15 @@
 .root[data-surface="inverse"] .versionBadge {
   border-color: var(--alpha-white-5);
   color: var(--alpha-white-70);
+}
+
+.root[data-surface="inverse"] button[data-variant="ghost"] {
+  color: var(--alpha-white-70);
+}
+
+.root[data-surface="inverse"] button[data-variant="ghost"]:hover:not(:disabled) {
+  background: var(--alpha-white-10);
+  color: var(--text-on-inverse);
 }
 
 /* ── Breadcrumb (minimal variant) ── */
