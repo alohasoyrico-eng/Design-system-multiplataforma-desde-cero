@@ -150,6 +150,39 @@ describe('Architecture — layer imports', () => {
   const primitivesTsx = walk(join(UI, 'primitives'), '.tsx')
   const componentsTsx = walk(join(UI, 'components'), '.tsx')
 
+  it('nobody outside growth/adapters imports an analytics SDK — the adapter is the only door', () => {
+    const allSrc = [
+      ...walk(join(ROOT, 'ui'), '.tsx'),
+      ...walk(join(ROOT, 'ui'), '.ts'),
+      ...walk(join(ROOT, 'pages'), '.tsx'),
+      ...walk(join(ROOT, 'layout'), '.tsx'),
+      ...walk(join(ROOT, 'app'), '.tsx'),
+      ...walk(join(ROOT, 'growth'), '.tsx'),
+      ...walk(join(ROOT, 'growth'), '.ts'),
+    ].filter(f => !f.includes('/adapters/'))
+    const hits = grepFiles(
+      allSrc,
+      /from\s+['"](mixpanel|firebase|amplitude|posthog|@segment|@amplitude|@mixpanel)/,
+    )
+    expect(
+      hits,
+      `SDKs de analytics solo dentro de growth/adapters/ — bypasear el adapter mata la portabilidad:\n${formatHits(hits)}`,
+    ).toHaveLength(0)
+  })
+
+  it('the cascade never imports growth — measurement is wired at product level', () => {
+    const allUi = [
+      ...walk(join(UI, 'primitives'), '.tsx'),
+      ...walk(join(UI, 'components'), '.tsx'),
+      ...walk(join(UI, 'patterns'), '.tsx'),
+    ]
+    const hits = grepFiles(allUi, /from\s+['"].*\/growth/)
+    expect(
+      hits,
+      `La cascada no trackea sola — growth se conecta en templates/producto:\n${formatHits(hits)}`,
+    ).toHaveLength(0)
+  })
+
   it('primitives never import from components', () => {
     const hits = grepFiles(
       primitivesTsx,

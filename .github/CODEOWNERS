@@ -1,0 +1,11 @@
+# Governance de Flow — GitHub exige review del owner para tocar estos archivos.
+
+# El diccionario de eventos lo governa research: proponer es libre (status:
+# proposed), aprobar (status: approved) requiere su review.
+# NOTA: crear el team "research" en la org y darle read access al repo;
+# mientras no exista, GitHub ignora la regla (la marca en rojo en el editor).
+/src/growth/events.json @alohasoyrico-eng/research
+
+# El contrato del adapter es la frontera de portabilidad — cambios al tipo
+# GrowthAdapter afectan a todos los productos instrumentados.
+/src/growth/types.ts @alohasoyrico-eng/research

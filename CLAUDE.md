@@ -387,6 +387,36 @@ Cada componente con estilos propios tiene un `.module.css` al lado del `.tsx`.
 
 ---
 
+## Foundation: Growth (medición y experimentos)
+
+Vive en `src/growth/`. Es agnóstico de proveedor: Mixpanel/Amplitude/PostHog se conectan
+implementando `GrowthAdapter` — Flow no depende de ningún SDK de analytics.
+
+**Governance (dueño: research):**
+- Todo evento vive en `src/growth/events.json` antes de dispararse. Nombre `objeto_accion`
+  en snake_case, props snake_case, con `description`, `status` y `surfaces`.
+- Solo research cambia `status`: `proposed → approved`. `useTrack` avisa en consola (dev)
+  si el evento no existe o no está aprobado. Los tests validan el schema del diccionario.
+
+**Regla arquitectónica (con compliance test):**
+- **La cascada nunca trackea sola.** Ningún primitive, component ni pattern importa de
+  `growth/` — el tracking y los experimentos se cablean en templates y productos:
+
+```tsx
+// En la raíz del producto:
+<FlowGrowthProvider adapter={mixpanelAdapter}>...</FlowGrowthProvider>
+
+// En un template:
+const track = useTrack()
+<Button onClick={() => { addUnit(); track('unit_added', { source: 'manual' }) }}>…
+
+// Experimento sobre una variante de pieza:
+const variant = useExperiment('cta_color', 'primary')
+<Button variant={variant === 'b' ? 'accent' : 'primary'}>…
+```
+
+---
+
 ## Verificación
 
 ```bash

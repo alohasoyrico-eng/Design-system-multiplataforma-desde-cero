@@ -1,9 +1,16 @@
 {
-  "name": "@flow/react",
-  "private": true,
+  "name": "@alohasoyrico-eng/flow-react",
   "version": "0.1.0",
   "type": "module",
   "description": "Flow Design System — componentes React, tokens y patrones multiplataforma",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
   "main": "./dist-lib/index.js",
   "module": "./dist-lib/index.js",
   "types": "./dist-lib/types/ui/lib.d.ts",

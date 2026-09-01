@@ -28,6 +28,7 @@ if (!existsSync(docsRoot)) {
 /** Pares [origen relativo al DS, destino relativo a docs]. */
 const targets = [
   ['src/data/items.json', 'src/data/items.json'],
+  ['src/growth/events.json', 'src/data/growth-events.json'],
   ['src/tokens/ref', 'src/tokens/ref'],
 ]
 

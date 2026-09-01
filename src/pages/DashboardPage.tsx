@@ -27,16 +27,22 @@ import { MapCanvas } from '../ui/components/MapCanvas'
 import { ChartLegend } from '../ui/primitives/ChartLegend'
 import { PageHeader } from '../ui/patterns/PageHeader'
 import { DOMAIN } from '../data/domain-colors'
+import { useTrack } from '../growth'
 import css from './DashboardPage.module.css'
 
 const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
 const searchTooltip = `Buscar (${isMac ? '⌘K' : 'Ctrl+K'})`
+
+const RANGE_DAYS: Record<string, number> = { '7d': 7, '30d': 30, '90d': 90 }
 
 function DashboardHeader({ title, crumbs, cta }: { title: string; crumbs: string[]; cta?: ReactNode }) {
   const [range, setRange] = useState('30d')
   const [custom, setCustom] = useState('')
   const { data: notifs = [] } = useNotifications()
   const openSearch = useOpenSearch()
+  const track = useTrack()
+  const exportReport = (format: string) =>
+    track('report_exported', { format, range_days: RANGE_DAYS[range] ?? 0 })
   return (
     <PageHeader
       title={title}
@@ -65,9 +71,9 @@ function DashboardHeader({ title, crumbs, cta }: { title: string; crumbs: string
             align="right"
             trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
             items={[
-              { label: 'CSV', icon: 'table' },
-              { label: 'PDF', icon: 'picture_as_pdf' },
-              { label: 'Enviar por correo', icon: 'mail' },
+              { label: 'CSV', icon: 'table', onClick: () => exportReport('csv') },
+              { label: 'PDF', icon: 'picture_as_pdf', onClick: () => exportReport('pdf') },
+              { label: 'Enviar por correo', icon: 'mail', onClick: () => exportReport('email') },
             ]}
           />
         </>

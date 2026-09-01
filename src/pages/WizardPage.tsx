@@ -7,6 +7,7 @@ import { Field } from '../ui/primitives/Field'
 import { Wizard, WizardSummary, WizardSummarySection, WizardSummaryRow } from '../ui/patterns/Wizard'
 import { PageHeader } from '../ui/patterns/PageHeader'
 import { useNotify } from '../app/NotifyContext'
+import { useTrack } from '../growth'
 
 const STEPS = [
   { label: 'Vehículo', description: 'Datos de la unidad' },
@@ -58,6 +59,7 @@ const YEARS = Array.from({ length: 10 }, (_, i) => {
 
 export function WizardPage() {
   const navigate = useNavigate()
+  const track = useTrack()
   const notify = useNotify()
   const [step, setStep] = useState(0)
   const [data, setData] = useState<FormData>(EMPTY)
@@ -102,6 +104,7 @@ export function WizardPage() {
   const handleSubmit = () => {
     setSubmitting(true)
     setTimeout(() => {
+      track('unit_added', { source: 'wizard' })
       notify(`Unidad ${data.plate} registrada correctamente`)
       navigate({ to: '/unidades' })
     }, 1500)

@@ -19,16 +19,41 @@ Abre `localhost:5173`. Vas a ver un sidebar con más de 20 pantallas funcionando
 
 ### React
 
-Flow aún no se publica en npm; se instala directo desde el repo (el build de librería corre solo al instalar):
+Flow se publica en GitHub Packages (binarios precompilados). Una sola vez por proyecto, crea un `.npmrc`:
+
+```
+@alohasoyrico-eng:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+(`GITHUB_TOKEN` es un personal access token con permiso `read:packages` — cualquiera del equipo lo genera en GitHub → Settings → Developer settings.)
+
+```bash
+npm install @alohasoyrico-eng/flow-react
+```
+
+```tsx
+import { Button, Card, StatTile } from '@alohasoyrico-eng/flow-react'
+import '@alohasoyrico-eng/flow-react/styles.css'
+```
+
+<details>
+<summary>Alternativa sin registry: instalar desde git</summary>
 
 ```bash
 npm install github:alohasoyrico-eng/Design-system-multiplataforma-desde-cero
 ```
 
-```tsx
-import { Button, Card, StatTile } from '@flow/react'
-import '@flow/react/styles.css'
+Funciona igual, pero el build de librería corre en tu máquina al instalar (hook `prepare`).
+</details>
+
+**Para publicar una versión nueva** (mantenedores): sube `version` en `package.json`, luego
+
+```bash
+git tag v0.1.1 && git push --tags
 ```
+
+El workflow `publish.yml` corre los gates y publica solo.
 
 Dos cosas más en tu `index.html` para que la tipografía e iconos carguen:
 
@@ -43,7 +68,7 @@ Dos cosas más en tu `index.html` para que la tipografía e iconos carguen:
 Y copia la fuente de marca (self-hosted) a tu carpeta pública:
 
 ```bash
-cp node_modules/@flow/react/public/fonts/*.woff2 public/fonts/
+cp node_modules/@alohasoyrico-eng/flow-react/public/fonts/*.woff2 public/fonts/
 ```
 
 `react` y `react-dom` (>=19) son peer dependencies: los pone tu proyecto. `echarts`, `react-intl` y `flag-icons` vienen incluidos.
@@ -73,7 +98,7 @@ FlowTheme(
 Los 180 contratos que alimentan la documentación también se exportan del paquete:
 
 ```ts
-import contracts from '@flow/react/contracts'
+import contracts from '@alohasoyrico-eng/flow-react/contracts'
 ```
 
 ## Qué hay en la caja
@@ -178,6 +203,31 @@ Tres densidades que ajustan spacing, radios, sizing y tipografía:
 ```
 
 La referencia completa está en `CLAUDE.md`.
+
+## Growth: medición y experimentos
+
+Flow trae un foundation de growth agnóstico de proveedor — Mixpanel, Firebase o lo que exista en 5 años son adapters de ~15 líneas, nunca una dependencia:
+
+```tsx
+import { FlowGrowthProvider, useTrack, consoleAdapter } from '@alohasoyrico-eng/flow-react'
+
+// En la raíz (consoleAdapter para dev; tu adapter real en prod):
+<FlowGrowthProvider adapter={consoleAdapter}>...</FlowGrowthProvider>
+
+// En un template — por hook:
+const track = useTrack()
+track('report_exported', { format: 'csv', range_days: 30 })
+```
+
+O declarativo — cualquier pieza se vuelve medible sin tocarla:
+
+```tsx
+<div data-growth-event="unit_added" data-growth-source="manual">
+  <Button icon="add">Agregar unidad</Button>
+</div>
+```
+
+**Governance (research):** todo evento vive en `src/growth/events.json` antes de dispararse (`proposed` → `approved`, CODEOWNERS exige su review). Dispara un evento no aprobado y la consola te lo dice en dev. Los experimentos usan `useExperiment(id, fallback)`. La regla de arquitectura: **la cascada nunca trackea sola** — primitives, components y patterns no saben que growth existe (hay compliance test); el tracking se cablea en templates y productos. Diccionario navegable en el sitio de docs (`/growth`).
 
 ## Iconos
 

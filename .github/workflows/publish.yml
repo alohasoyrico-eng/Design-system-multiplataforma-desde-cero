@@ -1,0 +1,35 @@
+name: Publish
+
+# Publica @alohasoyrico-eng/flow-react a GitHub Packages al pushear un tag vX.Y.Z.
+# El consumidor instala binarios ya compilados — sin `prepare` en su máquina.
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+      - run: npm ci          # prepare → build:lib
+      - run: npm run typecheck
+      - run: npm run test
+      - name: Verify tag matches package version
+        run: |
+          PKG_V=$(node -p "require('./package.json').version")
+          TAG_V=${GITHUB_REF_NAME#v}
+          if [ "$PKG_V" != "$TAG_V" ]; then
+            echo "Tag $GITHUB_REF_NAME no coincide con package.json ($PKG_V)"; exit 1
+          fi
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

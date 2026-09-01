@@ -8,10 +8,16 @@ import { Menu } from '../ui/components/Menu'
 import { Bars } from '../ui/components/Bars'
 import { DatePicker } from '../ui/components/DatePicker'
 import { PageHeader } from '../ui/patterns/PageHeader'
+import { useTrack } from '../growth'
 import css from './ReportsPage.module.css'
+
+const RANGE_DAYS: Record<string, number> = { '7d': 7, '30d': 30, '90d': 90 }
 
 export function ReportsPage() {
   const [range, setRange] = useState('7d')
+  const track = useTrack()
+  const exportReport = (format: string) =>
+    track('report_exported', { format, range_days: RANGE_DAYS[range] ?? 0 })
   const [from, setFrom] = useState('2026-07-01')
   const [loading, setLoading] = useState(false)
 
@@ -31,9 +37,9 @@ export function ReportsPage() {
             align="right"
             trigger={<Button variant="secondary" icon="download" iconTrailing="expand_more">Exportar</Button>}
             items={[
-              { label: 'CSV', icon: 'table' },
-              { label: 'PDF', icon: 'picture_as_pdf' },
-              { label: 'Enviar por correo', icon: 'mail' },
+              { label: 'CSV', icon: 'table', onClick: () => exportReport('csv') },
+              { label: 'PDF', icon: 'picture_as_pdf', onClick: () => exportReport('pdf') },
+              { label: 'Enviar por correo', icon: 'mail', onClick: () => exportReport('email') },
             ]}
           />
         }

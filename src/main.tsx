@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { FlowIntlProvider } from './i18n'
+import { FlowGrowthProvider, consoleAdapter } from './growth'
 import './styles.css'
 import App from './App'
 
@@ -15,7 +16,11 @@ async function boot() {
     <StrictMode>
       <FlowIntlProvider locale="es">
         <QueryClientProvider client={queryClient}>
-          <App />
+          {/* Instrumentación de referencia: en un producto real, aquí va
+              el adapter del proveedor (Mixpanel, Firebase…). */}
+          <FlowGrowthProvider adapter={consoleAdapter}>
+            <App />
+          </FlowGrowthProvider>
         </QueryClientProvider>
       </FlowIntlProvider>
     </StrictMode>,

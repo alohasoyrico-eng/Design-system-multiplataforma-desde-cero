@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Checkbox } from '../ui/primitives/Checkbox'
 import { Toast, ToastStack } from '../ui/primitives/Toast'
 import { AuthForm, type AuthMode, type AuthSubmitData } from '../ui/patterns/AuthForm'
+import { useTrack } from '../growth'
 import css from './AuthPage.module.css'
 
 export function AuthPage() {
@@ -9,6 +10,7 @@ export function AuthPage() {
   const [remember, setRemember] = useState(true)
   const [loading, setLoading] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  const track = useTrack()
   const timers = useRef<number[]>([])
 
   useEffect(() => () => timers.current.forEach(clearTimeout), [])
@@ -31,6 +33,7 @@ export function AuthPage() {
         : 'Cuenta creada. Revisa tu correo.'
     after(900, () => {
       setLoading(false)
+      if (data.mode !== 'recover') track('auth_completed', { method: data.mode })
       setToast(msg)
       after(msg.length > 60 ? 5000 : 3500, () => setToast(null))
     })
