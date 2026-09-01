@@ -1446,6 +1446,24 @@
         "r": false,
         "rw": "",
         "note": "Color del borde en la variante elevated"
+      },
+      {
+        "n": "surface",
+        "k": "prop",
+        "t": "'elevated' | 'outlined' | 'inverse'",
+        "d": "'elevated'",
+        "r": false,
+        "rw": "",
+        "note": "Estilo de superficie: shadow, border, o fondo inverse"
+      },
+      {
+        "n": "hover",
+        "k": "prop",
+        "t": "'lift' | 'fill' | 'none'",
+        "d": "'none'",
+        "r": false,
+        "rw": "",
+        "note": "Efecto hover: translate+shadow, cambio de bg, o ninguno"
       }
     ],
     "dos": [
@@ -2574,6 +2592,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "size",
+        "k": "prop",
+        "t": "'md' | 'sm'",
+        "d": "'md'",
+        "r": false,
+        "rw": "",
+        "note": "sm: 24px height, mono font, border container, uppercase"
       }
     ],
     "dos": [
@@ -5928,6 +5955,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "variant",
+        "k": "prop",
+        "t": "'default' | 'ghost'",
+        "d": "'default'",
+        "r": false,
+        "rw": "",
+        "note": "ghost: transparent bg, sin border individual — para uso dentro de ChipGroup"
       }
     ],
     "dos": [
