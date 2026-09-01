@@ -352,6 +352,7 @@ Si el repo de docs vive en otra ruta: `FLOW_DOCS_PATH=/ruta npm run sync:docs`.
 | Data | TanStack Query |
 | Charts | ECharts (via FlowChart) |
 | Icons | Material Symbols |
+| Flags | flag-icons (via el primitive Flag) |
 | Testing | Vitest · Testing Library (101 archivos, 708 tests, 30 compliance) |
 | Build | Vite |
 | Mobile | Flutter · Dart |
