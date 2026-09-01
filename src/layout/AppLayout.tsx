@@ -5,7 +5,7 @@ import { GlobalSearch, type SearchResult } from '../ui/patterns/GlobalSearch'
 import { FleetSidebar } from './FleetSidebar'
 import { NotifyProvider } from '../app/NotifyContext'
 import { SearchProvider } from '../app/SearchContext'
-import { SidebarProvider } from '../app/SidebarContext'
+import { SidebarProvider } from '../ui/patterns/sidebar-context'
 import css from './AppLayout.module.css'
 
 const SEARCH_SUGGESTIONS = ['combustible', 'mantenimiento', 'KTR-882', 'Marta Vidal']

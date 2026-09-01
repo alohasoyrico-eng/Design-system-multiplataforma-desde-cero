@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "rootDir": "src",
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "dist-lib/types",
+    "allowImportingTsExtensions": false
+  },
+  "include": ["src/ui", "src/vite-env.d.ts"],
+  "exclude": ["src/ui/**/__tests__"]
+}

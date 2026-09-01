@@ -1,6 +1,7 @@
 node_modules
 mcp-server/node_modules
 dist
+dist-lib
 dist-ssr
 generated
 *.local

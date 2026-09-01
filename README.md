@@ -15,15 +15,76 @@ npm run dev
 
 Abre `localhost:5173`. Vas a ver un sidebar con más de 20 pantallas funcionando — dashboards con gráficas reales, tablas editables, un mapa con pins, un chat, un wizard paso a paso, una wallet móvil, herramientas internas tipo CRM, documentación de componentes, y más.
 
+## Úsalo en tu producto
+
+### React
+
+Flow aún no se publica en npm; se instala directo desde el repo (el build de librería corre solo al instalar):
+
+```bash
+npm install github:alohasoyrico-eng/Design-system-multiplataforma-desde-cero
+```
+
+```tsx
+import { Button, Card, StatTile } from '@flow/react'
+import '@flow/react/styles.css'
+```
+
+Dos cosas más en tu `index.html` para que la tipografía e iconos carguen:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0&display=swap" rel="stylesheet" />
+```
+
+Y copia la fuente de marca (self-hosted) a tu carpeta pública:
+
+```bash
+cp node_modules/@flow/react/public/fonts/*.woff2 public/fonts/
+```
+
+`react` y `react-dom` (>=19) son peer dependencies: los pone tu proyecto. `echarts`, `react-intl` y `flag-icons` vienen incluidos.
+
+### Flutter
+
+```yaml
+# pubspec.yaml
+dependencies:
+  flow_ds:
+    git:
+      url: git@github.com:alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git
+      path: flutter
+```
+
+```dart
+import 'package:flow_ds/flow_ds.dart';
+
+FlowTheme(
+  scheme: FlowScheme.light,
+  child: FlowButton(label: 'Agregar', variant: FlowButtonVariant.accent),
+)
+```
+
+### Contratos (para tooling y agentes)
+
+Los 180 contratos que alimentan la documentación también se exportan del paquete:
+
+```ts
+import contracts from '@flow/react/contracts'
+```
+
 ## Qué hay en la caja
 
-**121 piezas React** + **93 widgets Flutter** con paridad completa, organizadas en cuatro niveles:
+**121 piezas React** + **93 widgets Flutter**, organizadas en cuatro niveles:
 
-### Primitives (44)
+### Primitives (49)
 
 Los ladrillos. Cada una hace una sola cosa bien.
 
-`AutoGrid` `Avatar` `Badge` `Breadcrumb` `Button` `Calendar` `ChartLegend` `ChatMessage` `Checkbox` `Chip` `ChipGroup` `CircularProgress` `DetailRow` `Divider` `EmptyState` `Field` `Flag` `FlowChart` `FlowLogo` `IconButton` `InlineCode` `Input` `LimitBar` `PageFrame` `Pagination` `Progress` `Radio` `SectionBar` `SectionHeader` `Select` `SheetBody` `Skeleton` `Slider` `Sparkline` `Specimen` `Spinner` `StatusPill` `StatusView` `Stepper` `Switch` `TabBar` `Textarea` `Timeline` `Toast`
+`AutoGrid` `Avatar` `Badge` `Breadcrumb` `Button` `Calendar` `ChartLegend` `ChatMessage` `Checkbox` `Chip` `ChipGroup` `CircularProgress` `ControlShell` `DetailRow` `Divider` `EmptyState` `Field` `Flag` `FlowChart` `FlowLogo` `IconButton` `InlineCode` `Input` `LimitBar` `Listbox` `OverlayShell` `PageFrame` `Pagination` `Popover` `Progress` `Radio` `SectionBar` `SectionHeader` `Select` `SheetBody` `Skeleton` `Slider` `Sparkline` `Specimen` `Spinner` `StatusPill` `StatusView` `Stepper` `Switch` `TabBar` `Textarea` `Timeline` `Toast` `ToggleControl`
 
 ### Components (41)
 
@@ -47,7 +108,7 @@ Resuelven tareas recurrentes de negocio.
 
 Pantallas completas funcionando:
 
-**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, 142 páginas de documentación)
+**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 180 contratos)
 
 **Internal Tools (CRM)** — `Resumen` · `Cuentas` · `Casos` · `Tickets` · `Pricing` · `Growth` · `Backoffice`
 
@@ -82,7 +143,7 @@ Flow usa tokens semánticos en vez de hex. El modo oscuro funciona solo:
 ```
 
 ```html
-<div data-theme="dark"><!-- todo lo de adentro se pone oscuro --></div>
+<div data-mode="dark"><!-- todo lo de adentro se pone oscuro --></div>
 ```
 
 ### Tokens más usados
@@ -160,7 +221,7 @@ import 'package:flow_ds/flow_ds.dart';
 FlowButton(label: 'Agregar', variant: FlowButtonVariant.accent, icon: Icons.add)
 ```
 
-Los tokens (`FlowTokens`) y el theme (`FlowTheme`) se aplican con `FlowTheme.light()` o `FlowTheme.dark()`.
+El theme se provee con el widget `FlowTheme` y un esquema: `FlowTheme(scheme: FlowScheme.light, child: ...)` — o `FlowScheme.dark` para modo oscuro. Los widgets lo leen con `FlowTheme.of(context)`.
 
 ---
 
@@ -207,10 +268,30 @@ Las reglas completas y la receta detallada están en `CLAUDE.md`.
 ## Verificación
 
 ```bash
-npm run typecheck   # TypeScript — cero errores
-npm run test        # 708 tests — todos pasan
-npm run build       # build de producción
+npm run typecheck    # TypeScript — cero errores
+npm run test         # 708 tests — todos pasan
+npm run build        # build de la app demo
+npm run build:lib    # build del paquete consumible (dist-lib/)
 ```
+
+Flutter tiene sus propios gates:
+
+```bash
+cd flutter && flutter analyze && flutter test
+```
+
+CI (GitHub Actions) corre todo esto en cada push y PR — web y Flutter.
+
+## Sincronización con el repo de docs
+
+El sitio de documentación ([flow-docs](https://github.com/alohasoyrico-eng/Docs-para-design-system-multiplataforma-desde-cero)) consume los contratos y tokens de este repo. La copia nunca se hace a mano:
+
+```bash
+npm run sync:docs          # copia items.json + tokens a ../flow-docs
+npm run sync:docs:check    # detecta drift sin copiar (exit 1 si hay)
+```
+
+Si el repo de docs vive en otra ruta: `FLOW_DOCS_PATH=/ruta npm run sync:docs`.
 
 ## Stack
 
@@ -272,11 +353,12 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 Si eres un agente trabajando **dentro** de este repo:
 
 1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas de arquitectura, la receta para crear componentes, y la referencia completa de tokens.
-2. Antes de crear un archivo, decide su capa (primitive / component / pattern).
-3. Busca si ya existe una pieza que haga lo que necesitas — hay 121.
-4. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).
-5. Corre `npm run typecheck` después de cada cambio.
-6. Agrega cada pieza nueva al `index.ts` de su capa y crea su test.
-7. Si el cambio toca Flutter, mantén paridad: cada widget React tiene su equivalente en `flutter/lib/src/`.
+2. La fuente de verdad de cada pieza es su contrato en `src/data/items.json` (180 entries: API, tokens, when/notWhen, a11y, plataformas). Si cambias la API de una pieza, actualiza su contrato y corre `npm run sync:docs`.
+3. Antes de crear un archivo, decide su capa (primitive / component / pattern).
+4. Busca si ya existe una pieza que haga lo que necesitas — hay 121.
+5. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).
+6. Corre `npm run typecheck` después de cada cambio.
+7. Agrega cada pieza nueva al `index.ts` de su capa y crea su test.
+8. Si el cambio toca Flutter, mantén paridad: cada widget React tiene su equivalente en `flutter/lib/src/`.
 
 Si trabajas desde **otro repo**, conecta el MCP server (sección anterior).

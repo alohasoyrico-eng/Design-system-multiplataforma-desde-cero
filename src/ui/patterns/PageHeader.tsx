@@ -1,6 +1,6 @@
 import type { ReactNode, CSSProperties } from 'react'
 import { Breadcrumb } from '../primitives/Breadcrumb'
-import { useSidebarToggle } from '../../app/SidebarContext'
+import { useSidebarToggle } from './sidebar-context'
 import css from './PageHeader.module.css'
 
 export interface PageHeaderProps {

@@ -192,7 +192,11 @@ describe('Architecture — layer imports', () => {
       patternsTsx,
       /from\s+['"]\.\/(?!.*\.module\.css)/,
       /\.module\.css|\.css/
-    ).filter(h => !h.text.includes('.module.css') && !h.text.includes('.css\''))
+    )
+      .filter(h => !h.text.includes('.module.css') && !h.text.includes('.css\''))
+      // Archivos kebab-case son wiring interno del layer (contextos, helpers),
+      // no patterns: solo un import de otro Pattern (PascalCase) viola R1.
+      .filter(h => /from\s+['"]\.\/[A-Z]/.test(h.text))
     expect(hits, `Same-layer pattern imports (R1 violation):\n${formatHits(hits)}`).toHaveLength(0)
   })
 })

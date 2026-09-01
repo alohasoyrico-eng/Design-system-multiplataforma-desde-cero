@@ -1,28 +1,54 @@
 {
-  "name": "flow-app",
+  "name": "@flow/react",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "description": "Flow Design System — componentes React, tokens y patrones multiplataforma",
+  "main": "./dist-lib/index.js",
+  "module": "./dist-lib/index.js",
+  "types": "./dist-lib/types/ui/lib.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-lib/types/ui/lib.d.ts",
+      "import": "./dist-lib/index.js"
+    },
+    "./styles.css": "./dist-lib/flow.css",
+    "./fonts/*": "./public/fonts/*",
+    "./contracts": "./src/data/items.json"
+  },
+  "files": [
+    "dist-lib",
+    "public/fonts",
+    "src/data/items.json"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
     "lint": "oxlint",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "tokens:build": "node sd.config.js"
+    "tokens:build": "node sd.config.js",
+    "sync:docs": "node scripts/sync-docs.mjs",
+    "sync:docs:check": "node scripts/sync-docs.mjs --check",
+    "prepare": "npm run build:lib"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.101.4",
-    "@tanstack/react-router": "^1.170.29",
     "echarts": "^6.1.0",
     "flag-icons": "^7.5.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
     "react-intl": "^10.1.23"
   },
   "devDependencies": {
+    "@tanstack/react-query": "^5.101.4",
+    "@tanstack/react-router": "^1.170.29",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.5",
