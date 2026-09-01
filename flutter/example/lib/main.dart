@@ -48,7 +48,7 @@ class _TemplateChooser extends StatelessWidget {
               Text(
                 'Pantallas de referencia del design system',
                 style: TextStyle(
-                  fontSize: FlowFontSize.body,
+                  fontSize: FlowFontSize.bodyMd,
                   color: scheme.textSecondary,
                 ),
               ),
@@ -132,7 +132,7 @@ class _TemplateCard extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: FlowFontSize.titleSm,
+                    fontSize: FlowFontSize.titleMd,
                     fontWeight: FontWeight.w600,
                     color: scheme.textPrimary,
                   ),
@@ -140,7 +140,7 @@ class _TemplateCard extends StatelessWidget {
                 Text(
                   description,
                   style: TextStyle(
-                    fontSize: FlowFontSize.caption,
+                    fontSize: FlowFontSize.bodySm,
                     color: scheme.textSecondary,
                   ),
                 ),

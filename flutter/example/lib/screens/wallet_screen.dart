@@ -59,7 +59,9 @@ const _heroDarkScheme = FlowScheme(
   textSecondary: Color(0xB3FFFFFF),
   textMuted: Color(0x80FFFFFF),
   textOnAccent: Color(0xFFFFFFFF),
+  textOnInverse: Color(0xFF17171A),
   textAccent: Color(0xFFFF6A52),
+  textLink: Color(0xFF8ABCFF),
   borderSubtle: Color(0x1AFFFFFF),
   borderDefault: Color(0x33FFFFFF),
   borderStrong: Color(0x4DFFFFFF),
@@ -79,7 +81,9 @@ const _heroFuelScheme = FlowScheme(
   textSecondary: Color(0xFF3B3A3E),
   textMuted: Color(0xFF6B6A6E),
   textOnAccent: Color(0xFFFFFFFF),
+  textOnInverse: Color(0xFFF4F3F1),
   textAccent: Color(0xFFE62D10),
+  textLink: Color(0xFF0060DF),
   borderSubtle: Color(0x14000000),
   borderDefault: Color(0x26000000),
   borderStrong: Color(0x40000000),
@@ -204,7 +208,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   Text(
                                     'Hola, Ricardo',
                                     style: TextStyle(
-                                      fontSize: FlowFontSize.titleSm,
+                                      fontSize: FlowFontSize.titleMd,
                                       fontWeight: FontWeight.w600,
                                       color: heroScheme.textPrimary,
                                     ),
@@ -295,7 +299,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       Padding(
                         padding: const EdgeInsets.all(FlowSpace.s6),
                         child: Center(
-                          child: Text('Sin movimientos', style: TextStyle(color: scheme.textMuted, fontSize: FlowFontSize.body)),
+                          child: Text('Sin movimientos', style: TextStyle(color: scheme.textMuted, fontSize: FlowFontSize.bodyMd)),
                         ),
                       ),
                     InkWell(
@@ -306,7 +310,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           child: Text(
                             'Ver todo',
                             style: TextStyle(
-                              fontSize: FlowFontSize.caption,
+                              fontSize: FlowFontSize.bodySm,
                               fontWeight: FontWeight.w600,
                               color: scheme.textSecondary,
                               decoration: TextDecoration.underline,
@@ -334,7 +338,7 @@ class _WalletScreenState extends State<WalletScreen> {
             child: Text(
               'BENEFICIOS',
               style: TextStyle(
-                fontSize: FlowFontSize.caption,
+                fontSize: FlowFontSize.bodySm,
                 fontWeight: FontWeight.w700,
                 color: scheme.textMuted,
                 letterSpacing: 0.8,
@@ -404,7 +408,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         final heroScheme = FlowTheme.of(ctx);
                         return Row(
                           children: [
-                            Text('Tarjetas', style: TextStyle(fontSize: FlowFontSize.title, fontWeight: FontWeight.w700, color: heroScheme.textPrimary)),
+                            Text('Tarjetas', style: TextStyle(fontSize: FlowFontSize.titleLg, fontWeight: FontWeight.w700, color: heroScheme.textPrimary)),
                             const Spacer(),
                             FlowIconButton(icon: Symbols.notifications_rounded, ariaLabel: 'Notificaciones', variant: FlowIconButtonVariant.ghost, size: FlowIconButtonSize.sm, badge: true, onPressed: () {}),
                           ],
@@ -868,7 +872,7 @@ class _AddCardButton extends StatelessWidget {
   const _AddCardButton({required this.lightText});
   @override
   Widget build(BuildContext context) {
-    final fg = lightText ? Colors.white : FlowColors.ink900;
+    final fg = lightText ? Colors.white : FlowColors.grey900;
     return CustomPaint(
       painter: _DashedBorderPainter(
         color: fg.withValues(alpha: 0.3),
@@ -1006,17 +1010,17 @@ class _StationListItem extends StatelessWidget {
                 width: 40, height: 40,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: station.kind == 'ev' ? FlowColors.green50 : FlowColors.amber50,
+                  color: station.kind == 'ev' ? FlowColors.green50 : FlowColors.orange50,
                 ),
-                child: Icon(station.icon, size: 20, color: station.kind == 'ev' ? FlowColors.green600 : FlowColors.amber600),
+                child: Icon(station.icon, size: 20, color: station.kind == 'ev' ? FlowColors.green600 : FlowColors.orange600),
               ),
               const SizedBox(width: FlowSpace.s3),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(station.name, style: TextStyle(fontSize: FlowFontSize.body, fontWeight: FontWeight.w500, color: scheme.textPrimary)),
-                    Text('${station.dist} · ${station.eta}', style: TextStyle(fontSize: FlowFontSize.caption, color: scheme.textMuted)),
+                    Text(station.name, style: TextStyle(fontSize: FlowFontSize.bodyMd, fontWeight: FontWeight.w500, color: scheme.textPrimary)),
+                    Text('${station.dist} · ${station.eta}', style: TextStyle(fontSize: FlowFontSize.bodySm, color: scheme.textMuted)),
                   ],
                 ),
               ),

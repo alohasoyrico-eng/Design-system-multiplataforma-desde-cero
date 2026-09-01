@@ -189,22 +189,22 @@ class _StationListItem extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: station.kind == 'ev' ? FlowColors.green50 : FlowColors.amber50,
+                  color: station.kind == 'ev' ? FlowColors.green50 : FlowColors.orange50,
                   borderRadius: BorderRadius.circular(FlowRadius.sm),
                 ),
-                child: Icon(station.icon, size: 20, color: station.kind == 'ev' ? FlowColors.green600 : FlowColors.amber600),
+                child: Icon(station.icon, size: 20, color: station.kind == 'ev' ? FlowColors.green600 : FlowColors.orange600),
               ),
               const SizedBox(width: FlowSpace.s3),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(station.name, style: TextStyle(fontSize: FlowFontSize.body, fontWeight: FontWeight.w500, color: scheme.textPrimary)),
-                    Text('${station.dist} · ${station.eta}', style: TextStyle(fontSize: FlowFontSize.caption, color: scheme.textMuted)),
+                    Text(station.name, style: TextStyle(fontSize: FlowFontSize.bodyMd, fontWeight: FontWeight.w500, color: scheme.textPrimary)),
+                    Text('${station.dist} · ${station.eta}', style: TextStyle(fontSize: FlowFontSize.bodySm, color: scheme.textMuted)),
                   ],
                 ),
               ),
-              Text(station.prices[0][1], style: TextStyle(fontSize: FlowFontSize.body, fontWeight: FontWeight.w600, color: scheme.textPrimary, fontFeatures: const [FontFeature.tabularFigures()])),
+              Text(station.prices[0][1], style: TextStyle(fontSize: FlowFontSize.bodyMd, fontWeight: FontWeight.w600, color: scheme.textPrimary, fontFeatures: const [FontFeature.tabularFigures()])),
             ],
           ),
         ),

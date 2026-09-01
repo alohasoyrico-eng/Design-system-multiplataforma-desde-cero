@@ -76,7 +76,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Text(
               'Activa tu tarjeta Flow en unos minutos. Solo necesitas tu correo, tu teléfono y tu tarjeta.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: FlowFontSize.body, color: scheme.textSecondary),
+              style: TextStyle(fontSize: FlowFontSize.bodyMd, color: scheme.textSecondary),
             ),
             const Spacer(),
             FlowButton(label: 'Comenzar', variant: FlowButtonVariant.accent, size: FlowButtonSize.lg, fullWidth: true, onPressed: _next),
@@ -242,8 +242,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Notificaciones push', style: TextStyle(fontSize: FlowFontSize.body, fontWeight: FontWeight.w500, color: scheme.textPrimary)),
-                          Text('Cargos en tiempo real', style: TextStyle(fontSize: FlowFontSize.caption, color: scheme.textMuted)),
+                          Text('Notificaciones push', style: TextStyle(fontSize: FlowFontSize.bodyMd, fontWeight: FontWeight.w500, color: scheme.textPrimary)),
+                          Text('Cargos en tiempo real', style: TextStyle(fontSize: FlowFontSize.bodySm, color: scheme.textMuted)),
                         ],
                       ),
                     ),
@@ -312,14 +312,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             const SizedBox(width: FlowSpace.s3),
-            Text('$stepNum/7', style: TextStyle(fontSize: FlowFontSize.caption, color: scheme.textMuted)),
+            Text('$stepNum/7', style: TextStyle(fontSize: FlowFontSize.bodySm, color: scheme.textMuted)),
           ],
         ),
         const SizedBox(height: FlowSpace.s6),
-        Text(title, style: TextStyle(fontSize: FlowFontSize.title, fontWeight: FontWeight.w700, color: scheme.textPrimary)),
+        Text(title, style: TextStyle(fontSize: FlowFontSize.titleLg, fontWeight: FontWeight.w700, color: scheme.textPrimary)),
         if (subtitle != null) ...[
           const SizedBox(height: FlowSpace.s2),
-          Text(subtitle, style: TextStyle(fontSize: FlowFontSize.body, color: scheme.textSecondary)),
+          Text(subtitle, style: TextStyle(fontSize: FlowFontSize.bodyMd, color: scheme.textSecondary)),
         ],
         const SizedBox(height: FlowSpace.s6),
         Expanded(child: child),
@@ -398,14 +398,14 @@ class _ResendTimerState extends State<_ResendTimer> {
     if (_left > 0) {
       return Text(
         'Reenviar en 0:${_left.toString().padLeft(2, '0')}',
-        style: TextStyle(fontSize: FlowFontSize.caption, color: scheme.textMuted),
+        style: TextStyle(fontSize: FlowFontSize.bodySm, color: scheme.textMuted),
       );
     }
     return GestureDetector(
       onTap: () => setState(() { _left = 42; _startTimer(); }),
       child: Text(
         'Reenviar código',
-        style: TextStyle(fontSize: FlowFontSize.caption, fontWeight: FontWeight.w600, color: scheme.textAccent),
+        style: TextStyle(fontSize: FlowFontSize.bodySm, fontWeight: FontWeight.w600, color: scheme.textAccent),
       ),
     );
   }
