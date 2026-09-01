@@ -180,8 +180,8 @@ class _Keypad extends StatelessWidget {
                   return _KeypadButton(
                     onTap: onBiometric,
                     scheme: scheme,
-                    child: Icon(biometricIcon, color: scheme.textPrimary, size: 24),
                     label: 'Usar biométrico',
+                    child: Icon(biometricIcon, color: scheme.textPrimary, size: 24),
                   );
                 }
                 return const SizedBox(width: 80, height: FlowSize.bar);
@@ -190,8 +190,8 @@ class _Keypad extends StatelessWidget {
                 return _KeypadButton(
                   onTap: onDelete,
                   scheme: scheme,
-                  child: Icon(Symbols.backspace_rounded, color: scheme.textPrimary, size: 22),
                   label: 'Borrar',
+                  child: Icon(Symbols.backspace_rounded, color: scheme.textPrimary, size: 22),
                 );
               }
               return _KeypadButton(
@@ -200,6 +200,7 @@ class _Keypad extends StatelessWidget {
                   onDigit(key);
                 },
                 scheme: scheme,
+                label: key,
                 child: Text(
                   key,
                   style: TextStyle(
@@ -208,7 +209,6 @@ class _Keypad extends StatelessWidget {
                     color: scheme.textPrimary,
                   ),
                 ),
-                label: key,
               );
             }).toList(),
           ),

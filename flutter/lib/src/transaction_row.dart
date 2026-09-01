@@ -124,7 +124,7 @@ class FlowTransactionRow extends StatelessWidget {
                   ),
                 ),
                 if (pending)
-                  Text(
+                  const Text(
                     'Pendiente',
                     style: TextStyle(
                       fontSize: FlowFontSize.bodySm,

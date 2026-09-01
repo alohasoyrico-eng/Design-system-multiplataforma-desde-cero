@@ -38,7 +38,7 @@ class FlowField extends StatelessWidget {
             ),
             if (required) ...[
               const SizedBox(width: 2),
-              Text('*', style: TextStyle(color: FlowColors.danger500, fontSize: FlowFontSize.bodySm)),
+              const Text('*', style: TextStyle(color: FlowColors.danger500, fontSize: FlowFontSize.bodySm)),
             ],
           ],
         ),
@@ -48,7 +48,7 @@ class FlowField extends StatelessWidget {
           const SizedBox(height: FlowSpace.s1),
           Text(
             error!,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: FlowFontSize.bodySm,
               color: FlowColors.danger500,
             ),

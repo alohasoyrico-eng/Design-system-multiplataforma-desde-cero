@@ -144,7 +144,7 @@ class FlowSettingsDangerZone extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: FlowFontSize.titleLg,
               fontWeight: FontWeight.w600,
               color: FlowColors.danger500,

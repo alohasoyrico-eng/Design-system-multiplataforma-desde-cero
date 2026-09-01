@@ -4,18 +4,9 @@ Un design system multiplataforma listo para armar interfaces — dashboards, for
 
 Piensa en Flow como una caja de LEGO para pantallas: cada pieza encaja con las demás, se ve bien en claro y en oscuro, y funciona en React (web/desktop) y Flutter (móvil).
 
-## Vélo corriendo en 30 segundos
+## Empieza aquí: tu primera pantalla con Flow
 
-```bash
-git clone git@github.com:alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git
-cd Design-system-multiplataforma-desde-cero
-npm install
-npm run dev
-```
-
-Abre `localhost:5173`. Vas a ver un sidebar con más de 20 pantallas funcionando — dashboards con gráficas reales, tablas editables, un mapa con pins, un chat, un wizard paso a paso, una wallet móvil, herramientas internas tipo CRM, documentación de componentes, y más.
-
-## Úsalo en tu producto
+Este es el camino de cualquier colaborador que construye producto: instalar el paquete y ver algo renderizado antes de escribir la primera línea propia.
 
 ### React
 
@@ -32,10 +23,23 @@ Flow se publica en GitHub Packages (binarios precompilados). Una sola vez por pr
 npm install @alohasoyrico-eng/flow-react
 ```
 
+Tu primera pantalla (en un proyecto Vite + React):
+
 ```tsx
+// src/main.tsx
+import { createRoot } from 'react-dom/client'
 import { Button, Card, StatTile } from '@alohasoyrico-eng/flow-react'
 import '@alohasoyrico-eng/flow-react/styles.css'
+
+createRoot(document.getElementById('root')!).render(
+  <Card>
+    <StatTile label="Unidades activas" value="128" icon="local_taxi" />
+    <Button variant="primary" icon="add">Agregar unidad</Button>
+  </Card>,
+)
 ```
+
+`npm run dev` y ya estás viendo Flow renderizado. A partir de aquí: el catálogo completo vive en el sitio de docs y cada pieza se importa igual que estas tres.
 
 <details>
 <summary>Alternativa sin registry: instalar desde git</summary>
@@ -46,14 +50,6 @@ npm install github:alohasoyrico-eng/Design-system-multiplataforma-desde-cero
 
 Funciona igual, pero el build de librería corre en tu máquina al instalar (hook `prepare`).
 </details>
-
-**Para publicar una versión nueva** (mantenedores): sube `version` en `package.json`, luego
-
-```bash
-git tag v0.1.1 && git push --tags
-```
-
-El workflow `publish.yml` corre los gates y publica solo.
 
 Dos cosas más en tu `index.html` para que la tipografía e iconos carguen:
 
@@ -80,7 +76,7 @@ cp node_modules/@alohasoyrico-eng/flow-react/public/fonts/*.woff2 public/fonts/
 dependencies:
   flow_ds:
     git:
-      url: git@github.com:alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git
+      url: https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git
       path: flutter
 ```
 
@@ -95,7 +91,7 @@ FlowTheme(
 
 ### Contratos (para tooling y agentes)
 
-Los 180 contratos que alimentan la documentación también se exportan del paquete:
+Los 181 contratos que alimentan la documentación también se exportan del paquete:
 
 ```ts
 import contracts from '@alohasoyrico-eng/flow-react/contracts'
@@ -129,11 +125,11 @@ Resuelven tareas recurrentes de negocio.
 
 `AnatomyView` · `AuthForm` · `BalanceDisplay` · `BiometricPrompt` · `BulkActionsTable` · `DocFooter` · `DocHero` · `DownloadCard` · `FilterableEditableTable` · `GlobalSearch` · `GuidanceCard` · `InputAmount` · `InputPhone` · `InstallCard` · `NavCard` · `NipReveal` · `OnboardingCarousel` · `PageHeader` · `PasscodeKeypad` · `PaymentCard` · `PlaygroundCanvas` · `ProfileMenu` · `ProposalCard` · `RoleMatrix` · `RouteBanner` · `Settings` · `StateGrid` · `TopBar` · `TransactionGroup` · `TransactionRow` · `Wizard`
 
-### Templates (22 páginas)
+### Templates
 
-Pantallas completas funcionando:
+Pantallas completas funcionando en la app demo:
 
-**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 180 contratos)
+**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 181 contratos)
 
 **Internal Tools (CRM)** — `Resumen` · `Cuentas` · `Casos` · `Tickets` · `Pricing` · `Growth` · `Backoffice`
 
@@ -144,8 +140,7 @@ Pantallas completas funcionando:
 Importa, pasa props, listo. VS Code te autocompleta todo:
 
 ```tsx
-import { Button } from './ui/primitives'
-import { Card, StatTile } from './ui/components'
+import { Button, Card, StatTile } from '@alohasoyrico-eng/flow-react'
 
 <Card>
   <StatTile label="Unidades activas" value="128" icon="local_taxi" />
@@ -315,6 +310,27 @@ npm run test
 
 Las reglas completas y la receta detallada están en `CLAUDE.md`.
 
+## Para mantenedores (equipo de diseño)
+
+Clonar y correr el repo es la ruta de quien **mantiene el sistema**, no la de quien construye producto:
+
+```bash
+git clone git@github.com:alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git
+cd Design-system-multiplataforma-desde-cero
+npm install
+npm run dev
+```
+
+Abre `localhost:5173` — la app demo con todas las pantallas (dashboards, wallet móvil, internal tools, Component Detail). El sitio de documentación vive en [su propio repo](https://github.com/alohasoyrico-eng/Docs-para-design-system-multiplataforma-desde-cero) y **lo gobierna el equipo de diseño exclusivamente**: consume este paquete y recibe los contratos vía `npm run sync:docs`.
+
+**Publicar una versión nueva:** sube `version` en `package.json`, luego
+
+```bash
+git tag v0.1.1 && git push --tags
+```
+
+El workflow `publish.yml` corre los gates y publica a GitHub Packages solo.
+
 ## Verificación
 
 ```bash
@@ -405,7 +421,7 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 Si eres un agente trabajando **dentro** de este repo:
 
 1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas de arquitectura, la receta para crear componentes, y la referencia completa de tokens.
-2. La fuente de verdad de cada pieza es su contrato en `src/data/items.json` (180 entries: API, tokens, when/notWhen, a11y, plataformas). Si cambias la API de una pieza, actualiza su contrato y corre `npm run sync:docs`.
+2. La fuente de verdad de cada pieza es su contrato en `src/data/items.json` (181 entries: API, tokens, when/notWhen, a11y, plataformas). Si cambias la API de una pieza, actualiza su contrato y corre `npm run sync:docs`.
 3. Antes de crear un archivo, decide su capa (primitive / component / pattern).
 4. Busca si ya existe una pieza que haga lo que necesitas — hay 121.
 5. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).

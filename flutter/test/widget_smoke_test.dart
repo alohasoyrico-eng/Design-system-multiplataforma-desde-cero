@@ -101,10 +101,10 @@ void main() {
     });
 
     testWidgets('los widgets montan también en dark', (tester) async {
-      await tester.pumpWidget(MaterialApp(
+      await tester.pumpWidget(const MaterialApp(
         home: FlowTheme(
           scheme: FlowScheme.dark,
-          child: const Scaffold(
+          child: Scaffold(
             body: FlowButton(label: 'Dark'),
           ),
         ),

@@ -129,7 +129,7 @@ class _ScatterPainter extends CustomPainter {
       gridPaint,
     );
     canvas.drawLine(
-      Offset(pad, 0),
+      const Offset(pad, 0),
       Offset(pad, size.height - pad),
       gridPaint,
     );

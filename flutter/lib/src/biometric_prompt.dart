@@ -116,7 +116,7 @@ class _ErrorStatus extends StatelessWidget {
       label: text,
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: FlowFontSize.bodyMd,
           color: FlowColors.danger500,
           fontWeight: FontWeight.w500,

@@ -197,11 +197,11 @@ class FlowPaymentCard extends StatelessWidget {
                         ),
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Symbols.ac_unit_rounded, size: 32, color: Colors.white),
-                              const SizedBox(height: FlowSpace.s1),
+                              Icon(Symbols.ac_unit_rounded, size: 32, color: Colors.white),
+                              SizedBox(height: FlowSpace.s1),
                               Text(
                                 'CONGELADA',
                                 style: TextStyle(

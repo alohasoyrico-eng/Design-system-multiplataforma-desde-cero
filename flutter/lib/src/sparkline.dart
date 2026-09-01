@@ -53,7 +53,7 @@ class _SparklinePainter extends CustomPainter {
     final minV = values.reduce(min);
     final maxV = values.reduce(max);
     final range = maxV - minV;
-    final pad = 4.0;
+    const pad = 4.0;
 
     final points = <Offset>[];
     for (int i = 0; i < values.length; i++) {
