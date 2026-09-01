@@ -32,12 +32,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   String? _phoneError;
   String? _cardError;
   void _next() {
-    final vals = _Step.values;
+    const vals = _Step.values;
     final idx = vals.indexOf(_step);
     if (idx < vals.length - 1) setState(() => _step = vals[idx + 1]);
   }
   void _back() {
-    final vals = _Step.values;
+    const vals = _Step.values;
     final idx = vals.indexOf(_step);
     if (idx > 0) setState(() => _step = vals[idx - 1]);
   }

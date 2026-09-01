@@ -94,18 +94,18 @@ const _heroFuelScheme = FlowScheme(
   actionAccentHover: Color(0xFFE62D10),
 );
 // ─── Rutas data ──────────────────────────────────────────────────────
-final _me = LatLng(19.4326, -99.1500);
+const _me = LatLng(19.4326, -99.1500);
 final _stations = [
-  _Station(id: 's1', kind: 'gas', lat: 19.4426, lon: -99.1680, priceLabel: '\$23.4', icon: Symbols.local_gas_station_rounded, name: 'Pemex Polanco', dist: '1.8 km', eta: '6 min', prices: const [['Magna', '\$23.40'], ['Premium', '\$25.10'], ['Diésel', '\$24.80']], services: const ['Tienda', 'Aire y agua', 'Baños'], open: '24 h'),
-  _Station(id: 's2', kind: 'gas', lat: 19.4290, lon: -99.1420, priceLabel: '\$22.9', icon: Symbols.local_gas_station_rounded, name: 'G500 Roma Norte', dist: '0.9 km', eta: '4 min', prices: const [['Magna', '\$22.90'], ['Premium', '\$24.70']], services: const ['Tienda', 'Baños'], open: '6:00–23:00'),
-  _Station(id: 's3', kind: 'ev', lat: 19.4190, lon: -99.1610, priceLabel: '\$4.2/kWh', icon: Symbols.bolt_rounded, name: 'Electrolinera Condesa', dist: '1.4 km', eta: '5 min', prices: const [['Carga rápida (150 kW)', '\$4.20/kWh'], ['Carga normal (22 kW)', '\$3.10/kWh']], services: const ['4 conectores CCS', 'Café'], open: '24 h'),
-  _Station(id: 's4', kind: 'ev', lat: 19.4400, lon: -99.1400, priceLabel: '\$3.9/kWh', icon: Symbols.bolt_rounded, name: 'EV Point Anzures', dist: '2.1 km', eta: '8 min', prices: const [['Carga rápida (100 kW)', '\$3.90/kWh']], services: const ['2 conectores CCS'], open: '24 h'),
+  const _Station(id: 's1', kind: 'gas', lat: 19.4426, lon: -99.1680, priceLabel: '\$23.4', icon: Symbols.local_gas_station_rounded, name: 'Pemex Polanco', dist: '1.8 km', eta: '6 min', prices: [['Magna', '\$23.40'], ['Premium', '\$25.10'], ['Diésel', '\$24.80']], services: ['Tienda', 'Aire y agua', 'Baños'], open: '24 h'),
+  const _Station(id: 's2', kind: 'gas', lat: 19.4290, lon: -99.1420, priceLabel: '\$22.9', icon: Symbols.local_gas_station_rounded, name: 'G500 Roma Norte', dist: '0.9 km', eta: '4 min', prices: [['Magna', '\$22.90'], ['Premium', '\$24.70']], services: ['Tienda', 'Baños'], open: '6:00–23:00'),
+  const _Station(id: 's3', kind: 'ev', lat: 19.4190, lon: -99.1610, priceLabel: '\$4.2/kWh', icon: Symbols.bolt_rounded, name: 'Electrolinera Condesa', dist: '1.4 km', eta: '5 min', prices: [['Carga rápida (150 kW)', '\$4.20/kWh'], ['Carga normal (22 kW)', '\$3.10/kWh']], services: ['4 conectores CCS', 'Café'], open: '24 h'),
+  const _Station(id: 's4', kind: 'ev', lat: 19.4400, lon: -99.1400, priceLabel: '\$3.9/kWh', icon: Symbols.bolt_rounded, name: 'EV Point Anzures', dist: '2.1 km', eta: '8 min', prices: [['Carga rápida (100 kW)', '\$3.90/kWh']], services: ['2 conectores CCS'], open: '24 h'),
 ];
 final _routes = {
-  's1': [_me, LatLng(19.4360, -99.1560), LatLng(19.4400, -99.1640), LatLng(19.4426, -99.1680)],
-  's2': [_me, LatLng(19.4310, -99.1460), LatLng(19.4290, -99.1420)],
-  's3': [_me, LatLng(19.4270, -99.1550), LatLng(19.4220, -99.1590), LatLng(19.4190, -99.1610)],
-  's4': [_me, LatLng(19.4370, -99.1450), LatLng(19.4400, -99.1400)],
+  's1': [_me, const LatLng(19.4360, -99.1560), const LatLng(19.4400, -99.1640), const LatLng(19.4426, -99.1680)],
+  's2': [_me, const LatLng(19.4310, -99.1460), const LatLng(19.4290, -99.1420)],
+  's3': [_me, const LatLng(19.4270, -99.1550), const LatLng(19.4220, -99.1590), const LatLng(19.4190, -99.1610)],
+  's4': [_me, const LatLng(19.4370, -99.1450), const LatLng(19.4400, -99.1400)],
 };
 // ─── Screen ──────────────────────────────────────────────────────────
 class WalletScreen extends StatefulWidget {
@@ -320,8 +320,8 @@ class _WalletScreenState extends State<WalletScreen> {
                       ),
                     ),
                   ] else
-                    Padding(
-                      padding: const EdgeInsets.all(FlowSpace.s6),
+                    const Padding(
+                      padding: EdgeInsets.all(FlowSpace.s6),
                       child: FlowStatusView(
                         icon: Symbols.credit_card_off_rounded,
                         title: 'Sin movimientos',
@@ -738,12 +738,12 @@ class _WalletScreenState extends State<WalletScreen> {
     FlowBottomSheet.show(
       context: context,
       title: 'Mi perfil',
-      builder: (_) => FlowProfileMenu(
+      builder: (_) => const FlowProfileMenu(
         name: 'Ricardo Morales',
         avatarName: 'Ricardo M.',
         role: 'Conductor · Flota Norte',
-        badge: const FlowBadge(tone: FlowBadgeTone.success, label: 'Verificado'),
-        items: const [
+        badge: FlowBadge(tone: FlowBadgeTone.success, label: 'Verificado'),
+        items: [
           FlowProfileMenuItem(icon: Symbols.credit_card_rounded, label: 'Mis tarjetas'),
           FlowProfileMenuItem(icon: Symbols.receipt_long_rounded, label: 'Estados de cuenta'),
           FlowProfileMenuItem(icon: Symbols.notifications_rounded, label: 'Notificaciones'),

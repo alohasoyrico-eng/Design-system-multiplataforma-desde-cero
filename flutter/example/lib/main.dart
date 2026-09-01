@@ -15,9 +15,9 @@ class FlowExampleApp extends StatelessWidget {
       title: 'Flow DS Templates',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: FlowFontFamily.body),
-      home: FlowTheme(
+      home: const FlowTheme(
         scheme: FlowScheme.light,
-        child: const _TemplateChooser(),
+        child: _TemplateChooser(),
       ),
     );
   }
