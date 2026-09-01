@@ -381,7 +381,7 @@ Si el repo de docs vive en otra ruta: `FLOW_DOCS_PATH=/ruta npm run sync:docs`.
 
 Si trabajas en un proyecto que consume Flow y usas un agente de IA (Claude Code, Cursor, etc.), puedes conectar el servidor MCP para que tu agente consulte las piezas, tokens y reglas sin salir de tu repo.
 
-### 1. Prepara el servidor (una vez)
+### 1. Prepara el servidor (una vez — requiere este repo clonado en tu máquina)
 
 ```bash
 cd mcp-server
