@@ -719,7 +719,7 @@ class _WalletScreenState extends State<WalletScreen> {
           ),
           FlowButton(
             label: 'Cómo llegar · ${station.eta}',
-            variant: FlowButtonVariant.accent,
+            variant: FlowButtonVariant.primary,
             size: FlowButtonSize.lg,
             icon: Symbols.navigation_rounded,
             fullWidth: true,

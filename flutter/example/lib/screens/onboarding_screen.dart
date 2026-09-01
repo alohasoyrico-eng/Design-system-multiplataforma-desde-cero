@@ -79,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               style: TextStyle(fontSize: FlowFontSize.bodyMd, color: scheme.textSecondary),
             ),
             const Spacer(),
-            FlowButton(label: 'Comenzar', variant: FlowButtonVariant.accent, size: FlowButtonSize.lg, fullWidth: true, onPressed: _next),
+            FlowButton(label: 'Comenzar', variant: FlowButtonVariant.primary, size: FlowButtonSize.lg, fullWidth: true, onPressed: _next),
             const SizedBox(height: FlowSpace.s4),
           ],
         );

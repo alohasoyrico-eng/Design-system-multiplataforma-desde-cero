@@ -125,7 +125,7 @@ Estos son los nombres estándar. Úsalos tal cual — no inventes sinónimos.
 
 | Prop | Tipo | Para qué |
 |---|---|---|
-| `variant` | string union | Variación visual. Ej: `'primary' \| 'accent' \| 'secondary' \| 'ghost' \| 'danger'` |
+| `variant` | string union | Variación visual. Ej: `'primary' \| 'secondary' \| 'ghost' \| 'danger'` |
 | `size` | `'sm' \| 'md' \| 'lg'` | Tamaño. Default `'md'` |
 | `tone` | `'default' \| 'success' \| 'warning' \| 'danger' \| 'info'` | Color semántico (Badge, StatTile) |
 | `icon` | `string` | Nombre del icono Material Symbol. Va a la izquierda |
@@ -216,7 +216,7 @@ Usa estos tokens en los estilos. Nunca valores crudos.
 | `--text-primary` | Texto principal: títulos, body, valores |
 | `--text-secondary` | Texto secundario: descripciones, subtítulos |
 | `--text-muted` | Texto terciario: placeholders, hints, metadata |
-| `--text-on-accent` | Texto sobre fondo de acento (botón accent) |
+| `--text-on-accent` | Texto sobre fondo de acento azul |
 | `--text-on-inverse` | Texto sobre fondo inverse |
 | `--text-accent` | Texto con color de acento azul (labels activos) |
 | `--text-link` | Links. Azul acento |
@@ -245,12 +245,12 @@ Usa estos tokens en los estilos. Nunca valores crudos.
 |---|---|---|
 | `--flow-grey-*` | Neutros (cool slate) | 50–900 |
 | `--flow-red-*` | Rojo marca Edenred #F72717 (identidad, NO CTAs) | 50–900 |
-| `--flow-blue-*` | Azul acento #0060df (CTAs, links, foco, info) | 50–900 |
+| `--flow-blue-*` | Azul acento #0060df (links, foco, info) | 50–900 |
 | `--flow-green-*` | Éxito | 50–900 |
 | `--flow-orange-*` | Advertencia | 50–900 |
 | `--flow-danger-*` | Error/peligro (rojo funcional, NO marca) | 50–700 |
 
-El rojo de marca NO se usa para CTAs ni acciones — produce falso affordance con `--status-danger`. Los CTAs usan azul (`--action-accent`).
+El rojo NO se usa para CTAs ni acciones: el de marca es identidad y el funcional (`--status-danger`) es solo para estados. Las acciones usan `--action-primary` (tinta); el azul (`--action-accent`) queda para links, foco e info. No existe variante `accent` en Button — se eliminó.
 
 ### Overlay alpha
 
@@ -316,7 +316,7 @@ Valores sub-4px (1px, 2px, 3px) se mantienen como literal cuando son ajuste visu
 ### Sombras
 
 `--shadow-rest` → `--shadow-raised` → `--shadow-float` → `--shadow-overlay` (de menos a más elevación).
-`--shadow-accent-glow` para botones accent en hover.
+`--shadow-accent-glow` para resaltar elementos con acento azul en hover.
 
 ### Tipografía
 
@@ -372,7 +372,7 @@ Cada componente con estilos propios tiene un `.module.css` al lado del `.tsx`.
 1. **Solo tokens.** `color: var(--text-primary)`, nunca `color: #0F172A`.
 2. **Variantes con data attributes**, no con clases extra:
    ```css
-   .root[data-variant="accent"] { background: var(--flow-red-500); }
+   .root[data-variant="primary"] { background: var(--action-primary); }
    .root[data-size="sm"] { padding: var(--space-2); }
    ```
 3. **Hover y estados con pseudo-clases CSS**, no con JS handlers:
@@ -412,7 +412,7 @@ const track = useTrack()
 
 // Experimento sobre una variante de pieza:
 const variant = useExperiment('cta_color', 'primary')
-<Button variant={variant === 'b' ? 'accent' : 'primary'}>…
+<Button variant={variant === 'b' ? 'secondary' : 'primary'}>…
 ```
 
 ---

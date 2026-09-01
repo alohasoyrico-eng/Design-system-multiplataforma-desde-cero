@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'flow_tokens.dart';
 import 'flow_theme.dart';
 
-enum FlowButtonVariant { primary, accent, secondary, ghost, danger }
+enum FlowButtonVariant { primary, secondary, ghost, danger }
 enum FlowButtonSize { sm, md, lg }
 
 class FlowButton extends StatelessWidget {
@@ -40,9 +40,6 @@ class FlowButton extends StatelessWidget {
       case FlowButtonVariant.primary:
         bg = scheme.actionPrimary;
         fg = scheme.surfaceCanvas;
-      case FlowButtonVariant.accent:
-        bg = scheme.actionAccent;
-        fg = scheme.textOnAccent;
       case FlowButtonVariant.secondary:
         bg = scheme.surfaceCard;
         fg = scheme.textPrimary;

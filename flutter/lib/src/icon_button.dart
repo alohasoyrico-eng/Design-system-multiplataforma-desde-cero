@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'flow_tokens.dart';
 import 'flow_theme.dart';
 
-enum FlowIconButtonVariant { ghost, tonal, primary, accent }
+enum FlowIconButtonVariant { ghost, tonal, primary }
 enum FlowIconButtonSize { sm, md, lg }
 
 class FlowIconButton extends StatelessWidget {
@@ -48,9 +48,6 @@ class FlowIconButton extends StatelessWidget {
       case FlowIconButtonVariant.primary:
         bg = scheme.actionPrimary;
         fg = scheme.surfaceCanvas;
-      case FlowIconButtonVariant.accent:
-        bg = scheme.actionAccent;
-        fg = scheme.textOnAccent;
     }
 
     return Semantics(

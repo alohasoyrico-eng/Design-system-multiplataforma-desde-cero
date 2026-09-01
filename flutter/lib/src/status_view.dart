@@ -82,7 +82,7 @@ class FlowStatusView extends StatelessWidget {
               const SizedBox(height: FlowSpace.s6),
               FlowButton(
                 label: actionLabel!,
-                variant: FlowButtonVariant.accent,
+                variant: FlowButtonVariant.primary,
                 onPressed: onAction,
               ),
             ],

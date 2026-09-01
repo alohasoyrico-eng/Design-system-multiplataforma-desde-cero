@@ -64,7 +64,7 @@ class _FlowNipRevealState extends State<FlowNipReveal> {
             ],
             FlowButton(
               label: 'Mostrar NIP',
-              variant: FlowButtonVariant.accent,
+              variant: FlowButtonVariant.primary,
               onPressed: _show,
             ),
           ],

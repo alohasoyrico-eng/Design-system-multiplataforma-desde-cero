@@ -89,7 +89,7 @@ import 'package:flow_ds/flow_ds.dart';
 
 FlowTheme(
   scheme: FlowScheme.light,
-  child: FlowButton(label: 'Agregar', variant: FlowButtonVariant.accent),
+  child: FlowButton(label: 'Agregar', variant: FlowButtonVariant.primary),
 )
 ```
 
@@ -149,7 +149,7 @@ import { Card, StatTile } from './ui/components'
 
 <Card>
   <StatTile label="Unidades activas" value="128" icon="local_taxi" />
-  <Button variant="accent" icon="add">Agregar unidad</Button>
+  <Button variant="primary" icon="add">Agregar unidad</Button>
 </Card>
 ```
 
@@ -268,7 +268,7 @@ flutter pub get
 ```dart
 import 'package:flow_ds/flow_ds.dart';
 
-FlowButton(label: 'Agregar', variant: FlowButtonVariant.accent, icon: Icons.add)
+FlowButton(label: 'Agregar', variant: FlowButtonVariant.primary, icon: Icons.add)
 ```
 
 El theme se provee con el widget `FlowTheme` y un esquema: `FlowTheme(scheme: FlowScheme.light, child: ...)` — o `FlowScheme.dark` para modo oscuro. Los widgets lo leen con `FlowTheme.of(context)`.
@@ -353,6 +353,7 @@ Si el repo de docs vive en otra ruta: `FLOW_DOCS_PATH=/ruta npm run sync:docs`.
 | Charts | ECharts (via FlowChart) |
 | Icons | Material Symbols |
 | Flags | flag-icons (via el primitive Flag) |
+| i18n | react-intl — strings con default en español; catálogo de locales planeado |
 | Testing | Vitest · Testing Library (101 archivos, 708 tests, 30 compliance) |
 | Build | Vite |
 | Mobile | Flutter · Dart |

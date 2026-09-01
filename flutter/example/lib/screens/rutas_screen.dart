@@ -147,7 +147,7 @@ class _RutasScreenState extends State<RutasScreen> {
                   const SizedBox(height: FlowSpace.s4),
                   FlowButton(
                     label: 'Cómo llegar · ${station.eta}',
-                    variant: FlowButtonVariant.accent,
+                    variant: FlowButtonVariant.primary,
                     size: FlowButtonSize.lg,
                     icon: Symbols.navigation_rounded,
                     fullWidth: true,
