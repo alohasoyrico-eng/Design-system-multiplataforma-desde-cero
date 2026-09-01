@@ -339,8 +339,8 @@ Jerarquía tipográfica:
 | `--type-headline-lg` | 3 · Título de página | 700 28px/1.25 | Edenred Bold |
 | `--type-title-lg` | 4 · Título de sección | 700 20px/1.3 | Edenred Bold |
 | `--type-title-md` | 5 · Título de card | 400 16px/1.4 | Edenred Regular |
-| `--type-body-md` | Body default | 400 14px/1.55 | Ubuntu |
-| `--type-body-md-strong` | Body enfatizado | 600 14px/1.55 | Ubuntu |
+| `--type-body-md` | Body default | 400 16px/1.55 | Ubuntu |
+| `--type-body-md-strong` | Body enfatizado | 600 16px/1.55 | Ubuntu |
 | `--type-body-sm` | Metadata/hints | 400 12px/1.5 | Ubuntu |
 | `--type-label-sm` | Labels/status | 700 11px/1.3 | Ubuntu |
 | `--type-data` | Datos tabulares | 300 13px/1.5 | IBM Plex Mono |

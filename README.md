@@ -13,39 +13,45 @@ npm install
 npm run dev
 ```
 
-Abre `localhost:5173`. Vas a ver un sidebar con 13 pantallas funcionando — dashboards con gráficas reales, tablas editables, un mapa con pins, un chat, un wizard paso a paso, una wallet móvil, y más.
+Abre `localhost:5173`. Vas a ver un sidebar con más de 20 pantallas funcionando — dashboards con gráficas reales, tablas editables, un mapa con pins, un chat, un wizard paso a paso, una wallet móvil, herramientas internas tipo CRM, documentación de componentes, y más.
 
 ## Qué hay en la caja
 
-**92 piezas React** + **93 widgets Flutter** con paridad completa, organizadas en cuatro niveles:
+**121 piezas React** + **93 widgets Flutter** con paridad completa, organizadas en cuatro niveles:
 
-### Primitives (24)
+### Primitives (44)
 
 Los ladrillos. Cada una hace una sola cosa bien.
 
-`Avatar` `Badge` `Button` `ChartLegend` `ChatMessage` `Checkbox` `Chip` `DetailRow` `Divider` `Field` `Flag` `FlowChart` `IconButton` `Input` `Progress` `Radio` `SectionHeader` `Select` `Skeleton` `Slider` `Sparkline` `Spinner` `Switch` `Textarea`
+`AutoGrid` `Avatar` `Badge` `Breadcrumb` `Button` `Calendar` `ChartLegend` `ChatMessage` `Checkbox` `Chip` `ChipGroup` `CircularProgress` `DetailRow` `Divider` `EmptyState` `Field` `Flag` `FlowChart` `FlowLogo` `IconButton` `InlineCode` `Input` `LimitBar` `PageFrame` `Pagination` `Progress` `Radio` `SectionBar` `SectionHeader` `Select` `SheetBody` `Skeleton` `Slider` `Sparkline` `Specimen` `Spinner` `StatusPill` `StatusView` `Stepper` `Switch` `TabBar` `Textarea` `Timeline` `Toast`
 
-### Components (49)
+### Components (41)
 
 Combinan primitives para resolver necesidades de interfaz.
 
-**Layout y navegación** — `Accordion` `BottomSheet` `Breadcrumb` `Card` `CardMedia` `Dialog` `Drawer` `Menu` `NavBar` `Pagination` `PeekSheet` `RouteBanner` `SegmentedControl` `SheetBody` `Sidebar` `Stepper` `TabBar` `Table` `TableTree` `Tabs` `Timeline` `Toast` `Tooltip` `TopBar`
+**Layout y navegación** — `Accordion` `BottomSheet` `Card` `CardCarousel` `CardMedia` `CodeBlock` `DataGrid` `Dialog` `Drawer` `Menu` `NavBar` `PeekSheet` `QuickAction` `QuickActionBar` `SectionRule` `SegmentedControl` `Sidebar` `Table` `TableTree` `Tabs` `Tooltip`
 
-**Formularios y entrada** — `ChatComposer` `DatePicker` `FileUpload` `FilterBar` `GlobalSearch` `KanbanBoard` `OTPInput`
+**Formularios y entrada** — `ChatComposer` `DatePicker` `DateRangePicker` `FileUpload` `FilterBar` `KanbanBoard` `OTPInput`
 
-**Dataviz** — `Bars` `BulletChart` `CircularProgress` `Donut` `GanttChart` `LimitBar` `MapCanvas` `ParetoChart` `ScatterPlot` `SmallMultiples` `StatTile` `Treemap`
+**Dataviz** — `Bars` `BulletChart` `ChatThread` `Donut` `GanttChart` `MapCanvas` `ParetoChart` `ScatterPlot` `SmallMultiples` `StatTile` `Treemap`
 
-**Comunicación** — `ChatThread` `EmptyState` `HelpCenter` `NotificationCenter` `QuickAction` `StatusView`
+**Comunicación** — `HelpCenter` `NotificationCenter`
 
-### Patterns (19)
+### Patterns (31)
 
 Resuelven tareas recurrentes de negocio.
 
-`AuthForm` · `BalanceDisplay` · `BiometricPrompt` · `BulkActionsTable` · `CardCarousel` · `FilterableEditableTable` · `InputAmount` · `InputPhone` · `NipReveal` · `OnboardingCarousel` · `PasscodeKeypad` · `PaymentCard` · `ProfileMenu` · `QuickActionBar` · `RoleMatrix` · `Settings` · `TransactionGroup` · `TransactionRow` · `Wizard`
+`AnatomyView` · `AuthForm` · `BalanceDisplay` · `BiometricPrompt` · `BulkActionsTable` · `DocFooter` · `DocHero` · `DownloadCard` · `FilterableEditableTable` · `GlobalSearch` · `GuidanceCard` · `InputAmount` · `InputPhone` · `InstallCard` · `NavCard` · `NipReveal` · `OnboardingCarousel` · `PageHeader` · `PasscodeKeypad` · `PaymentCard` · `PlaygroundCanvas` · `ProfileMenu` · `ProposalCard` · `RoleMatrix` · `RouteBanner` · `Settings` · `StateGrid` · `TopBar` · `TransactionGroup` · `TransactionRow` · `Wizard`
 
-### Templates (13 páginas)
+### Templates (22 páginas)
 
-Pantallas completas funcionando: `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase`
+Pantallas completas funcionando:
+
+**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, 142 páginas de documentación)
+
+**Internal Tools (CRM)** — `Resumen` · `Cuentas` · `Casos` · `Tickets` · `Pricing` · `Growth` · `Backoffice`
+
+**Mobile** — `Wallet App` (4 tabs) · `Drivers App` · `Onboarding Driver` · `Auth OTP` · `Rutas`
 
 ## Cómo se usa una pieza
 
@@ -88,7 +94,7 @@ Flow usa tokens semánticos en vez de hex. El modo oscuro funciona solo:
 | `--surface-sunken` | `--text-muted` | `--border-strong` | `--status-danger` |
 | `--surface-inverse` | `--text-accent` | `--border-focus` | `--status-info` |
 
-### Sistema de tokens (16 archivos, 3 capas)
+### Sistema de tokens (20 archivos, 3 capas)
 
 Los tokens siguen una cadena `ref → sys → comp`:
 
@@ -96,9 +102,9 @@ Los tokens siguen una cadena `ref → sys → comp`:
 ref (valores crudos)  →  sys (decisiones de UI)  →  comp (overrides por componente)
 ```
 
-**Ref** (`src/tokens/ref/`): escala cruda platform-agnostic — `spacing` · `radius` · `sizing` · `typography`
+**Ref** (`src/tokens/ref/`): escala cruda platform-agnostic — `colors` · `elevation` · `iconography` · `motion` · `radius` · `sizing` · `spacing` · `typography`
 
-**Sys** (`src/tokens/`): aliases semánticos + density — `colors` · `dark` · `typography` · `spacing` · `shape` · `elevation` · `motion` · `dataviz` · `fonts` · `iconography` · `a11y` · `products`
+**Sys** (`src/tokens/`): aliases semánticos + density — `a11y` · `colors` · `dark` · `dataviz` · `elevation` · `fonts` · `iconography` · `motion` · `products` · `shape` · `spacing` · `typography`
 
 ### Density
 
@@ -163,15 +169,16 @@ Los tokens (`FlowTokens`) y el theme (`FlowTheme`) se aplican con `FlowTheme.lig
 Las piezas solo pueden usar piezas más simples que ellas:
 
 ```
-tokens       →  colores, tamaños, tiempos (sin JSX)
-shells       →  carcasas internas (borde, foco, backdrop)
-primitives   →  controles atómicos (Button, Input, Badge...)
-components   →  combinan primitives (Card, Table, Dialog...)
-patterns     →  resuelven tareas de negocio (AuthForm, Settings...)
-templates    →  pantallas completas (se copian, no se importan)
+foundations  →  tokens: colores, tamaños, tiempos, forma, motion (sin JSX)
+primitives  →  controles atómicos (Button, Input, Badge...)
+components  →  combinan primitives (Card, Table, Dialog...)
+patterns    →  resuelven tareas de negocio (AuthForm, PaymentCard, TopBar...)
+templates   →  pantallas completas (se copian, no se importan)
 ```
 
 Un `Card` (component) puede usar `Button` (primitive). Pero un `Button` no puede usar `Card`. Si necesitas que dos piezas del mismo nivel compartan algo, baja eso compartido al nivel de abajo.
+
+30 compliance tests verifican estas reglas mecánicamente — no se puede hacer merge si un primitive importa de components o un CSS module declara sus propios `@keyframes`.
 
 ### Para crear una pieza nueva
 
@@ -201,7 +208,7 @@ Las reglas completas y la receta detallada están en `CLAUDE.md`.
 
 ```bash
 npm run typecheck   # TypeScript — cero errores
-npm run test        # 670 tests — todos pasan
+npm run test        # 708 tests — todos pasan
 npm run build       # build de producción
 ```
 
@@ -214,10 +221,10 @@ npm run build       # build de producción
 | Data | TanStack Query |
 | Charts | ECharts (via FlowChart) |
 | Icons | Material Symbols |
-| Testing | Vitest · Testing Library (99 archivos, 670 tests) |
+| Testing | Vitest · Testing Library (101 archivos, 708 tests, 30 compliance) |
 | Build | Vite |
 | Mobile | Flutter · Dart |
-| Styling | Tokens semánticos — sin Tailwind |
+| Styling | Tokens semánticos ref→sys→comp — sin Tailwind |
 
 ---
 
@@ -266,7 +273,7 @@ Si eres un agente trabajando **dentro** de este repo:
 
 1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas de arquitectura, la receta para crear componentes, y la referencia completa de tokens.
 2. Antes de crear un archivo, decide su capa (primitive / component / pattern).
-3. Busca si ya existe una pieza que haga lo que necesitas — hay 92.
+3. Busca si ya existe una pieza que haga lo que necesitas — hay 121.
 4. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).
 5. Corre `npm run typecheck` después de cada cambio.
 6. Agrega cada pieza nueva al `index.ts` de su capa y crea su test.

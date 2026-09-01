@@ -162,11 +162,17 @@ abstract final class FlowFontSize {
   static const double headlineLg = 28;
   static const double titleLg = 20;
   static const double titleMd = 16;
-  static const double bodyMd = 14;
+  static const double bodyLg = 20;
+  static const double bodyMd = 16;
+  static const double bodyMdStrong = 16;
   static const double bodySm = 12;
   static const double labelSm = 11;
+  static const double dataXs = 11;
+  static const double dataSm = 12;
   static const double data = 13;
+  static const double dataMd = 20;
   static const double dataLg = 26;
+  static const double dataXl = 28;
 }
 
 abstract final class FlowSpace {
