@@ -102,12 +102,12 @@ button.root:hover:not(:disabled) {
 
 /* ── ghost variant ── */
 
-.root[data-variant='ghost'] {
+.root[data-variant='ghost']:not([data-selected]) {
   background: transparent;
   border-color: transparent;
 }
 
-.root[data-variant='ghost']:hover:not(:disabled) {
+.root[data-variant='ghost']:not([data-selected]):hover:not(:disabled) {
   background: var(--alpha-black-5);
 }
 

@@ -2,8 +2,10 @@
 /**
  * Sincroniza la fuente de verdad del DS hacia el repo de docs:
  *   - src/data/items.json          (contratos)
- *   - src/tokens/ref/*.css         (capa ref completa)
- *   - src/tokens/*.css             (capa sys)
+ *   - src/growth/events.json       (diccionario de eventos)
+ *
+ * Los tokens y componentes YA NO se sincronizan: docs los consume del
+ * paquete @alohasoyrico-eng/flow-react (npm update para traer lo nuevo).
  *
  * Uso:
  *   npm run sync:docs           # copia
@@ -29,16 +31,7 @@ if (!existsSync(docsRoot)) {
 const targets = [
   ['src/data/items.json', 'src/data/items.json'],
   ['src/growth/events.json', 'src/data/growth-events.json'],
-  ['src/tokens/ref', 'src/tokens/ref'],
 ]
-
-// La capa sys se sincroniza archivo por archivo: docs tiene algunos css
-// propios (fonts con paths distintos, a11y) que no deben pisarse a ciegas.
-const sysFiles = readdirSync(join(root, 'src/tokens')).filter(f => f.endsWith('.css'))
-const docsOwned = new Set(['fonts.css', 'a11y.css'])
-for (const f of sysFiles) {
-  if (!docsOwned.has(f)) targets.push([`src/tokens/${f}`, `src/tokens/${f}`])
-}
 
 function* filesUnder(path) {
   if (statSync(path).isFile()) { yield path; return }

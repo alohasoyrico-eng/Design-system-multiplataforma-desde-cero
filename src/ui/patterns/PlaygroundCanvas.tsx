@@ -38,7 +38,7 @@ export function PlaygroundCanvas({
 }: PlaygroundCanvasProps) {
   const [variant, setVariant] = useState(variants[0]?.value ?? '')
   const [size, setSize] = useState(sizes.includes('md') ? 'md' : sizes[0] ?? 'md')
-  const [density, setDensity] = useState(densities[0] ?? 'default')
+  const [density, setDensity] = useState(densities.includes('default') ? 'default' : densities[0] ?? 'default')
   const [spec, setSpec] = useState(false)
   const [dark, setDark] = useState(false)
 
