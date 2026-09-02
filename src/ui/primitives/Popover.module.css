@@ -9,22 +9,79 @@
 
 .drop {
   position: absolute;
-  top: 100%;
-  margin-top: var(--space-2);
+  --popover-offset: var(--space-2);
   z-index: 999;
   min-width: 180px;
+  animation: flowScaleIn var(--dur-fast) var(--ease-out);
+}
+
+.drop[data-surface='card'] {
   background: var(--surface-card);
   border: var(--border-width) solid var(--border-subtle);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-float);
   padding: var(--space-2);
-  animation: flowScaleIn var(--dur-fast) var(--ease-out);
 }
 
-.drop[data-align='left'] {
+.drop:not([data-interactive]) {
+  pointer-events: none;
+}
+
+/* ── Lados (ancla = trigger) ── */
+
+.drop[data-side='bottom'] {
+  top: 100%;
+  margin-top: var(--popover-offset);
+}
+
+.drop[data-side='top'] {
+  bottom: 100%;
+  margin-bottom: var(--popover-offset);
+}
+
+.drop[data-side='left'] {
+  right: 100%;
+  margin-right: var(--popover-offset);
+  top: 0;
+}
+
+.drop[data-side='right'] {
+  left: 100%;
+  margin-left: var(--popover-offset);
+  top: 0;
+}
+
+/* ── Alineación en el eje cruzado ── */
+
+.drop[data-side='bottom'][data-cross='start'],
+.drop[data-side='top'][data-cross='start'] {
   left: 0;
 }
 
-.drop[data-align='right'] {
+.drop[data-side='bottom'][data-cross='end'],
+.drop[data-side='top'][data-cross='end'] {
   right: 0;
+}
+
+.drop[data-side='bottom'][data-cross='center'],
+.drop[data-side='top'][data-cross='center'] {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.drop[data-side='left'][data-cross='start'],
+.drop[data-side='right'][data-cross='start'] {
+  top: 0;
+}
+
+.drop[data-side='left'][data-cross='end'],
+.drop[data-side='right'][data-cross='end'] {
+  top: auto;
+  bottom: 0;
+}
+
+.drop[data-side='left'][data-cross='center'],
+.drop[data-side='right'][data-cross='center'] {
+  top: 50%;
+  transform: translateY(-50%);
 }

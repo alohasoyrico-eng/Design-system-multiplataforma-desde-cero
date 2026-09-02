@@ -54,13 +54,69 @@ describe('Popover', () => {
     expect(onOpenChange).toHaveBeenCalledWith(true)
   })
 
-  it('sets data-align attribute on dropdown', () => {
+  it('align="right" legado mapea a bottom-end', () => {
     const { container } = render(
       <Popover trigger={<button>Trigger</button>} open align="right">
         <div>Aligned</div>
       </Popover>,
     )
-    const drop = container.querySelector('[data-align="right"]')
-    expect(drop).toBeInTheDocument()
+    expect(container.querySelector('[data-side="bottom"][data-cross="end"]')).toBeInTheDocument()
+  })
+})
+
+describe('Popover — posicionamiento y piel', () => {
+  it('placement top-center marca lado y eje cruzado', () => {
+    const { container } = render(
+      <Popover trigger={<button>T</button>} open placement="top-center"><div>P</div></Popover>,
+    )
+    expect(container.querySelector('[data-side="top"][data-cross="center"]')).toBeInTheDocument()
+  })
+
+  it('surface none no lleva la piel de card', () => {
+    const { container } = render(
+      <Popover trigger={<button>T</button>} open surface="none"><div>P</div></Popover>,
+    )
+    expect(container.querySelector('[data-surface="none"]')).toBeInTheDocument()
+  })
+
+  it('interactive=false hace el panel no señalable', () => {
+    const { container } = render(
+      <Popover trigger={<button>T</button>} open interactive={false}><div>P</div></Popover>,
+    )
+    const drop = container.querySelector('[data-surface]') as HTMLElement
+    expect(drop.hasAttribute('data-interactive')).toBe(false)
+  })
+
+  it('minWidth aplica al panel', () => {
+    const { container } = render(
+      <Popover trigger={<button>T</button>} open minWidth={320}><div>P</div></Popover>,
+    )
+    expect((container.querySelector('[data-surface]') as HTMLElement).style.minWidth).toBe('320px')
+  })
+
+  it('anchorRef posiciona fixed junto al ancla externa', () => {
+    const anchor = document.createElement('div')
+    document.body.appendChild(anchor)
+    anchor.getBoundingClientRect = () => ({ top: 100, bottom: 120, left: 40, right: 240, width: 200, height: 20 } as DOMRect)
+    const ref = { current: anchor }
+    const { container } = render(
+      <Popover open anchorRef={ref} matchAnchorWidth><div>P</div></Popover>,
+    )
+    const drop = container.querySelector('[data-surface]') as HTMLElement
+    expect(drop.style.position).toBe('fixed')
+    expect(drop.style.width).toBe('200px')
+    document.body.removeChild(anchor)
+  })
+
+  it('al cerrar con Escape, el foco regresa a returnFocusRef', async () => {
+    const user = userEvent.setup()
+    const back = document.createElement('button')
+    document.body.appendChild(back)
+    render(
+      <Popover trigger={<button>T</button>} open returnFocusRef={{ current: back }}><div>P</div></Popover>,
+    )
+    await user.keyboard('{Escape}')
+    expect(document.activeElement).toBe(back)
+    document.body.removeChild(back)
   })
 })

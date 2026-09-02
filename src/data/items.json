@@ -8772,10 +8772,10 @@
         "n": "matchAnchorWidth",
         "k": "prop",
         "t": "boolean",
-        "d": "true",
+        "d": "false",
         "r": false,
         "rw": "",
-        "note": ""
+        "note": "true para dropdowns tipo Select"
       },
       {
         "n": "minWidth",
@@ -8830,6 +8830,15 @@
         "r": true,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "align",
+        "k": "prop",
+        "t": "'left'|'right'",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Deprecado — usa placement"
       }
     ],
     "dos": [],

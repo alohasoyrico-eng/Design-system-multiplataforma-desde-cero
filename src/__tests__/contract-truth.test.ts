@@ -26,9 +26,6 @@ const PENDING_PHANTOM_PROPS = new Set([
   // Lote A1 (Toast, Drawer, Dialog, Accordion, FileUpload, Input, Select) ✓ resuelto.
   'DatePicker.disabled', 'DatePicker.id', 'DatePicker.invalid',
   'DatePicker.max', 'DatePicker.min', 'DatePicker.mode', 'DatePicker.presets',
-  'Popover.anchorRef', 'Popover.interactive', 'Popover.matchAnchorWidth',
-  'Popover.minWidth', 'Popover.offset', 'Popover.placement',
-  'Popover.returnFocusRef', 'Popover.surface',
 ])
 
 interface Contract {
