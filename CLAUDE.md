@@ -417,6 +417,25 @@ const variant = useExperiment('cta_color', 'primary')
 
 ---
 
+## Contratos: escala de madurez por plataforma
+
+`src/data/items.json` es la fuente de verdad. Cada pieza declara su estado por
+plataforma con la escala oficial — no existen otros valores:
+
+| Estatus | Significa |
+|---|---|
+| `stable` | Implementado y confiable en esa plataforma |
+| `beta` | Implementado, API puede moverse |
+| `planned` | Comprometido, sin código aún |
+| `spec` | Receta aplicable: guía de dominio sin implementación propia |
+| `n/a` | No aplica en esa plataforma |
+| `deprecated` | En retiro — no construir sobre esto |
+
+`contract-truth.test.ts` lo hace mecánico: `stable`/`beta` **exige** código real
+en esa plataforma (archivo web / widget Flutter), toda variante y member
+declarado debe existir en el código, y los `src` y tokens referenciados deben
+existir. Un contrato que promete lo que el código no cumple rompe CI.
+
 ## Verificación
 
 ```bash

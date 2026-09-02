@@ -22,24 +22,19 @@ const ROOT = join(__dirname, '..')
  * de aquí exige arreglar contrato o código — agregar nuevas está prohibido.
  */
 const PENDING_PHANTOM_PROPS = new Set([
-  'Accordion.multiple', 'Bars.highlightMax',
-  'Card.accent', 'Card.selected', 'Card.variant',
+  // Grupo A firmado 2026-09-01: el contrato es la spec — implementar.
+  'Accordion.multiple',
   'DatePicker.disabled', 'DatePicker.id', 'DatePicker.invalid',
   'DatePicker.max', 'DatePicker.min', 'DatePicker.mode', 'DatePicker.presets',
   'Dialog.width', 'Drawer.side',
   'FileUpload.disabled', 'FileUpload.multiple',
   'GlobalSearch.emptyHint', 'GlobalSearch.minChars', 'GlobalSearch.shortcut',
-  'Input.invalid', 'Input.suffix', 'Listbox.onSelect',
-  'MapCanvas.dark', 'MapCanvas.height', 'MapCanvas.selectedId', 'MapCanvas.width',
-  'NotificationCenter.align', 'PaymentCard.width',
+  'Input.invalid', 'Input.suffix',
   'Popover.anchorRef', 'Popover.interactive', 'Popover.matchAnchorWidth',
   'Popover.minWidth', 'Popover.offset', 'Popover.placement',
   'Popover.returnFocusRef', 'Popover.surface',
-  'Progress.size', 'ScatterPlot.width',
-  'Select.emptyLabel', 'Select.id', 'Select.size',
+  'Select.id',
   'Toast.actionLabel', 'Toast.onAction',
-  'ToggleControl.indeterminate', 'ToggleControl.type',
-  'TopBar.onSettings', 'Treemap.width',
 ])
 
 interface Contract {
@@ -148,6 +143,41 @@ describe('Contract truth — items.json vs código', () => {
     }
     const resolved = [...PENDING_PHANTOM_PROPS].filter(p => !stillPhantom.has(p))
     expect(resolved, `Ya resueltas — quítalas de PENDING_PHANTOM_PROPS:\n${resolved.join('\n')}`).toHaveLength(0)
+  })
+
+  it('el vocabulario de plataforma es la escala oficial', () => {
+    const SCALE = new Set(['stable', 'beta', 'planned', 'spec', 'n/a', 'deprecated', ''])
+    const bad: string[] = []
+    for (const c of contracts) {
+      for (const [plat, status] of Object.entries((c as { platforms?: Record<string, string> }).platforms ?? {})) {
+        if (!SCALE.has(status)) bad.push(`${c.name}.${plat}: "${status}"`)
+      }
+    }
+    expect(bad, `Estatus fuera de la escala stable|beta|planned|spec|n/a|deprecated:\n${bad.join('\n')}`).toHaveLength(0)
+  })
+
+  it('stable/beta exige código en esa plataforma — spec es para recetas', () => {
+    const flutterClasses = new Set<string>()
+    const flutterDir = join(ROOT, '..', 'flutter', 'lib', 'src')
+    for (const f of readdirSync(flutterDir)) {
+      const s = readFileSync(join(flutterDir, f), 'utf8')
+      for (const m of s.matchAll(/class (Flow\w+)/g)) flutterClasses.add(m[1]!)
+    }
+    const hasWeb = (c: Contract) => {
+      const srcs = Array.isArray(c.src) ? c.src : c.src ? [c.src] : []
+      return srcs.some(s => existsSync(join(ROOT, 'ui', s)) || existsSync(join(ROOT, s)))
+    }
+    const viol: string[] = []
+    for (const c of contracts) {
+      const platforms = (c as { platforms?: Record<string, string> }).platforms ?? {}
+      for (const [plat, status] of Object.entries(platforms)) {
+        if (status !== 'stable' && status !== 'beta') continue
+        if (plat === 'web' && !hasWeb(c)) viol.push(`${c.name}: web=${status} sin código`)
+        if (plat === 'flutter' && !flutterClasses.has('Flow' + c.name.replace(/[^\w]/g, '')))
+          viol.push(`${c.name}: flutter=${status} sin widget`)
+      }
+    }
+    expect(viol, `Plataforma prometida sin implementación:\n${viol.join('\n')}`).toHaveLength(0)
   })
 
   it('todo token referenciado en un contrato existe', () => {
