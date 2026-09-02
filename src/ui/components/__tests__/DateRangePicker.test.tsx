@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import { renderWithIntl } from '../../../test-utils'
-import { DateRangePicker } from '../DateRangePicker'
+import { DateRangePicker } from '../DatePicker'
 
 describe('DateRangePicker', () => {
   it('renders placeholder when no value', () => {

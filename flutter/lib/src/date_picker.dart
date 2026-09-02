@@ -3,9 +3,15 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'flow_tokens.dart';
 import 'flow_theme.dart';
 
+enum FlowDatePickerMode { single, range }
+
 class FlowDatePicker extends StatelessWidget {
   final DateTime? value;
   final ValueChanged<DateTime>? onChange;
+  /// El único calendario del sistema: una fecha o un rango.
+  final FlowDatePickerMode mode;
+  final DateTimeRange? rangeValue;
+  final ValueChanged<DateTimeRange>? onRangeChange;
   final String? label;
   final String placeholder;
   final DateTime? firstDate;
@@ -16,12 +22,35 @@ class FlowDatePicker extends StatelessWidget {
     super.key,
     this.value,
     this.onChange,
+    this.mode = FlowDatePickerMode.single,
+    this.rangeValue,
+    this.onRangeChange,
     this.label,
     this.placeholder = 'Select date',
     this.firstDate,
     this.lastDate,
     this.disabled = false,
   });
+
+  ThemeData _pickerTheme(BuildContext ctx, FlowScheme scheme) =>
+      Theme.of(ctx).copyWith(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: scheme.actionAccent,
+          surface: scheme.surfaceCard,
+        ),
+      );
+
+  Future<void> _pickRange(BuildContext context) async {
+    final scheme = FlowTheme.maybeOf(context) ?? FlowScheme.light;
+    final result = await showDateRangePicker(
+      context: context,
+      initialDateRange: rangeValue,
+      firstDate: firstDate ?? DateTime(2000),
+      lastDate: lastDate ?? DateTime(2100),
+      builder: (ctx, child) => Theme(data: _pickerTheme(ctx, scheme), child: child!),
+    );
+    if (result != null) onRangeChange?.call(result);
+  }
 
   Future<void> _pick(BuildContext context) async {
     final scheme = FlowTheme.maybeOf(context) ?? FlowScheme.light;
@@ -31,25 +60,21 @@ class FlowDatePicker extends StatelessWidget {
       initialDate: value ?? now,
       firstDate: firstDate ?? DateTime(2000),
       lastDate: lastDate ?? DateTime(2100),
-      builder: (ctx, child) => Theme(
-        data: Theme.of(ctx).copyWith(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: scheme.actionAccent,
-            surface: scheme.surfaceCard,
-          ),
-        ),
-        child: child!,
-      ),
+      builder: (ctx, child) => Theme(data: _pickerTheme(ctx, scheme), child: child!),
     );
     if (result != null) onChange?.call(result);
   }
 
+  String _fmt(DateTime d) =>
+      '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}/${d.year}';
+
   @override
   Widget build(BuildContext context) {
     final scheme = FlowTheme.maybeOf(context) ?? FlowScheme.light;
-    final formatted = value != null
-        ? '${value!.day.toString().padLeft(2, '0')}/${value!.month.toString().padLeft(2, '0')}/${value!.year}'
-        : null;
+    final isRange = mode == FlowDatePickerMode.range;
+    final formatted = isRange
+        ? (rangeValue != null ? '${_fmt(rangeValue!.start)} – ${_fmt(rangeValue!.end)}' : null)
+        : (value != null ? _fmt(value!) : null);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +93,7 @@ class FlowDatePicker extends StatelessWidget {
             ),
           ),
         GestureDetector(
-          onTap: disabled ? null : () => _pick(context),
+          onTap: disabled ? null : () => isRange ? _pickRange(context) : _pick(context),
           child: Container(
             height: 44,
             padding: const EdgeInsets.symmetric(horizontal: FlowSpace.s3),
@@ -91,7 +116,7 @@ class FlowDatePicker extends StatelessWidget {
                   ),
                 ),
                 Icon(
-                  Symbols.calendar_today_rounded,
+                  isRange ? Symbols.date_range_rounded : Symbols.calendar_today_rounded,
                   size: 18,
                   color: scheme.textMuted,
                 ),

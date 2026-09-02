@@ -21,12 +21,10 @@ const ROOT = join(__dirname, '..')
  * (¿se borra del contrato o se implementa?). Congeladas: quitar una entrada
  * de aquí exige arreglar contrato o código — agregar nuevas está prohibido.
  */
-const PENDING_PHANTOM_PROPS = new Set([
-  // Grupo A firmado 2026-09-01: el contrato es la spec — implementar.
-  // Lote A1 (Toast, Drawer, Dialog, Accordion, FileUpload, Input, Select) ✓ resuelto.
-  'DatePicker.disabled', 'DatePicker.id', 'DatePicker.invalid',
-  'DatePicker.max', 'DatePicker.min', 'DatePicker.mode', 'DatePicker.presets',
-])
+/* Vacía desde 2026-09-01 (lotes A1-A4 completados). Si un contrato vuelve a
+   prometer una prop inexistente, el fix es implementar o corregir el contrato —
+   nunca agregar entradas aquí sin decisión del equipo de diseño. */
+const PENDING_PHANTOM_PROPS = new Set<string>([])
 
 interface Contract {
   name: string

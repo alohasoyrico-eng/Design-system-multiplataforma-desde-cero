@@ -6,6 +6,10 @@ export interface CalendarProps {
   selected?: string[]
   rangeStart?: string
   rangeEnd?: string
+  /** Fecha mínima seleccionable (ISO). */
+  min?: string
+  /** Fecha máxima seleccionable (ISO). */
+  max?: string
   onSelect?: (date: string) => void
   onClear?: () => void
   onToday?: () => void
@@ -32,6 +36,8 @@ export function Calendar({
   selected = [],
   rangeStart,
   rangeEnd,
+  min,
+  max,
   onSelect,
   onClear,
   onToday,
@@ -89,6 +95,7 @@ export function Calendar({
           const isToday = dateStr === todayStr
           const isSelected = selectedSet.has(dateStr)
           const inRange = rangeStart && rangeEnd && dateStr > rangeStart && dateStr < rangeEnd
+          const outOfBounds = Boolean((min && dateStr < min) || (max && dateStr > max))
           return (
             <button
               key={`d-${i}`}
@@ -97,6 +104,7 @@ export function Calendar({
               data-selected={isSelected || undefined}
               data-in-range={inRange || undefined}
               data-today={isToday || undefined}
+              disabled={outOfBounds}
               onClick={() => onSelect?.(dateStr)}
             >
               {day}

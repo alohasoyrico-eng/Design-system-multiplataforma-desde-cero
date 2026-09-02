@@ -168,3 +168,9 @@
 .footerBtn[data-accent]:hover {
   color: var(--flow-blue-600);
 }
+
+.day:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}

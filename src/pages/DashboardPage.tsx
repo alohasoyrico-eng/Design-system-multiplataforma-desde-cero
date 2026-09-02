@@ -9,7 +9,7 @@ import { Tabs } from '../ui/components/Tabs'
 import { Menu } from '../ui/components/Menu'
 import { Badge } from '../ui/primitives/Badge'
 import { Button } from '../ui/primitives/Button'
-import { DateRangePicker } from '../ui/components/DateRangePicker'
+import { DatePicker } from '../ui/components/DatePicker'
 import { Sparkline } from '../ui/primitives/Sparkline'
 import { IconButton } from '../ui/primitives/IconButton'
 import { NotificationCenter } from '../ui/components/NotificationCenter'
@@ -61,7 +61,7 @@ function DashboardHeader({ title, crumbs, cta }: { title: string; crumbs: string
             { value: '30d', label: '30 dias' },
             { value: '90d', label: 'Trimestre' },
           ]} />
-          <DateRangePicker value={custom} onChange={setCustom} placeholder="Rango personalizado" />
+          <DatePicker mode="range" value={custom} onChange={setCustom} placeholder="Rango personalizado" />
         </>
       }
       actions={
