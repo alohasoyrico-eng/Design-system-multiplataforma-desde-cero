@@ -23,18 +23,13 @@ const ROOT = join(__dirname, '..')
  */
 const PENDING_PHANTOM_PROPS = new Set([
   // Grupo A firmado 2026-09-01: el contrato es la spec — implementar.
-  'Accordion.multiple',
+  // Lote A1 (Toast, Drawer, Dialog, Accordion, FileUpload, Input, Select) ✓ resuelto.
   'DatePicker.disabled', 'DatePicker.id', 'DatePicker.invalid',
   'DatePicker.max', 'DatePicker.min', 'DatePicker.mode', 'DatePicker.presets',
-  'Dialog.width', 'Drawer.side',
-  'FileUpload.disabled', 'FileUpload.multiple',
   'GlobalSearch.emptyHint', 'GlobalSearch.minChars', 'GlobalSearch.shortcut',
-  'Input.invalid', 'Input.suffix',
   'Popover.anchorRef', 'Popover.interactive', 'Popover.matchAnchorWidth',
   'Popover.minWidth', 'Popover.offset', 'Popover.placement',
   'Popover.returnFocusRef', 'Popover.surface',
-  'Select.id',
-  'Toast.actionLabel', 'Toast.onAction',
 ])
 
 interface Contract {

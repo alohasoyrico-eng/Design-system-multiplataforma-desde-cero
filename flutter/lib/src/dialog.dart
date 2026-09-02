@@ -10,6 +10,8 @@ class FlowDialog extends StatelessWidget {
   final String? description;
   final Widget? actions;
   final FlowDialogTone tone;
+  /// Ancho del modal. Default el max-width del shell.
+  final double? width;
   final Widget? child;
 
   const FlowDialog({
@@ -18,6 +20,7 @@ class FlowDialog extends StatelessWidget {
     this.description,
     this.actions,
     this.tone = FlowDialogTone.normal,
+    this.width,
     this.child,
   });
 
@@ -42,8 +45,8 @@ class FlowDialog extends StatelessWidget {
     final scheme = FlowTheme.maybeOf(context) ?? FlowScheme.light;
 
     return Container(
-      width: 420,
-      constraints: const BoxConstraints(maxWidth: 420),
+      width: width ?? 420,
+      constraints: BoxConstraints(maxWidth: width ?? 420),
       decoration: BoxDecoration(
         color: scheme.surfaceCard,
         borderRadius: BorderRadius.circular(FlowRadius.xl),

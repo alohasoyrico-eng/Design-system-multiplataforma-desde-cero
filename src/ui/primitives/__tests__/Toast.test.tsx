@@ -39,3 +39,17 @@ describe('ToastStack', () => {
     expect(container.firstChild).toHaveAttribute('aria-live', 'polite')
   })
 })
+
+describe('Toast — acción inline', () => {
+  it('renderiza el botón de acción y dispara onAction', async () => {
+    const onAction = vi.fn()
+    render(<Toast message="Unidad eliminada" actionLabel="Deshacer" onAction={onAction} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Deshacer' }))
+    expect(onAction).toHaveBeenCalledOnce()
+  })
+
+  it('sin onAction no renderiza acción aunque haya label', () => {
+    render(<Toast message="X" actionLabel="Deshacer" />)
+    expect(screen.queryByRole('button', { name: 'Deshacer' })).toBeNull()
+  })
+})

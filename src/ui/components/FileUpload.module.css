@@ -84,3 +84,8 @@
   cursor: pointer;
   color: var(--text-muted);
 }
+
+.root[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}

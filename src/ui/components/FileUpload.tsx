@@ -14,6 +14,9 @@ export interface FileUploadProps {
   accept?: string
   label?: string
   hint?: string
+  /** Varios archivos (default). Con false, uno nuevo reemplaza al anterior. */
+  multiple?: boolean
+  disabled?: boolean
 }
 
 function formatSize(bytes: number): string {
@@ -22,24 +25,24 @@ function formatSize(bytes: number): string {
   return (bytes / 1048576).toFixed(1) + ' MB'
 }
 
-export function FileUpload({ files = [], onChange, accept, label, hint }: FileUploadProps) {
+export function FileUpload({ files = [], onChange, accept, label, hint, multiple = true, disabled = false }: FileUploadProps) {
   const intl = useIntl()
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragOver, setDragOver] = useState(false)
 
   const addFiles = (fileList: FileList | null) => {
-    if (!fileList) return
+    if (!fileList || disabled) return
     const newFiles: UploadedFile[] = Array.from(fileList).map((f) => ({ name: f.name, size: f.size, file: f }))
-    onChange?.([...files, ...newFiles])
+    onChange?.(multiple ? [...files, ...newFiles] : newFiles.slice(0, 1))
   }
 
   return (
-    <div className={css.root}>
+    <div className={css.root} data-disabled={disabled || undefined}>
       <div
         className={css.dropzone}
         data-drag-over={dragOver || undefined}
-        onClick={() => inputRef.current?.click()}
-        onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+        onClick={() => { if (!disabled) inputRef.current?.click() }}
+        onDragOver={(e) => { e.preventDefault(); if (!disabled) setDragOver(true) }}
         onDragLeave={() => setDragOver(false)}
         onDrop={(e) => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files) }}
       >
@@ -47,7 +50,7 @@ export function FileUpload({ files = [], onChange, accept, label, hint }: FileUp
         {label && <div className={css.dropzoneLabel}>{label}</div>}
         {hint && <div className={css.dropzoneHint}>{hint}</div>}
       </div>
-      <input ref={inputRef} type="file" accept={accept} multiple onChange={(e) => addFiles(e.target.files)} style={{ display: 'none' }} />
+      <input ref={inputRef} type="file" accept={accept} multiple={multiple} disabled={disabled} onChange={(e) => addFiles(e.target.files)} style={{ display: 'none' }} />
       {files.length > 0 && (
         <div className={css.fileList}>
           {files.map((f, i) => (

@@ -46,3 +46,19 @@ describe('FileUpload', () => {
     expect(container.querySelectorAll('[class*="fileItem"]')).toHaveLength(0)
   })
 })
+
+describe('FileUpload — multiple y disabled', () => {
+  it('multiple=false reemplaza en vez de acumular', () => {
+    const onChange = vi.fn()
+    const files = [{ name: 'a.pdf', size: 100 }]
+    const { container } = renderWithIntl(<FileUpload files={files} onChange={onChange} multiple={false} />)
+    const input = container.querySelector('input[type="file"]') as HTMLInputElement
+    expect(input.multiple).toBe(false)
+  })
+
+  it('disabled bloquea el input y marca el root', () => {
+    const { container } = renderWithIntl(<FileUpload disabled />)
+    expect((container.querySelector('input[type="file"]') as HTMLInputElement).disabled).toBe(true)
+    expect(container.querySelector('[data-disabled]')).not.toBeNull()
+  })
+})

@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import { useState, type ReactNode, type CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
 import { ControlShell } from './ControlShell'
 import css from './Input.module.css'
@@ -14,6 +14,8 @@ export interface InputProps {
   error?: boolean
   type?: string
   revealable?: boolean
+  /** Adorno al final del control (unidad, contador, icono). */
+  trailing?: ReactNode
   mono?: boolean
   style?: CSSProperties
   id?: string
@@ -30,6 +32,7 @@ export function Input({
   error,
   type = 'text',
   revealable,
+  trailing,
   mono,
   style,
   ...rest
@@ -59,7 +62,7 @@ export function Input({
       disabled={disabled}
       error={error}
       leading={icon && <span className="flow-icon flow-icon--md" aria-hidden="true">{icon}</span>}
-      trailing={reveal}
+      trailing={reveal ?? trailing}
       style={style}
     >
       <input

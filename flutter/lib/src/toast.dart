@@ -8,12 +8,17 @@ class FlowToast extends StatelessWidget {
   final String message;
   final FlowToastTone tone;
   final IconData? icon;
+  /// Accion inline (p. ej. "Deshacer"). Requiere [onAction].
+  final String? actionLabel;
+  final VoidCallback? onAction;
   final VoidCallback? onClose;
   const FlowToast({
     super.key,
     required this.message,
     this.tone = FlowToastTone.info,
     this.icon,
+    this.actionLabel,
+    this.onAction,
     this.onClose,
   });
   IconData get _defaultIcon {
@@ -71,6 +76,21 @@ class FlowToast extends StatelessWidget {
               ),
             ),
           ),
+          if (actionLabel != null && onAction != null) ...[
+            const SizedBox(width: FlowSpace.s2),
+            GestureDetector(
+              onTap: onAction,
+              child: Text(
+                actionLabel!,
+                style: TextStyle(
+                  fontSize: FlowFontSize.bodyMd,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.underline,
+                  color: fg,
+                ),
+              ),
+            ),
+          ],
           if (onClose != null) ...[
             const SizedBox(width: FlowSpace.s2),
             GestureDetector(

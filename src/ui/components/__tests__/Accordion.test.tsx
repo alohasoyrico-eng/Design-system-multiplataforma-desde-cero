@@ -55,3 +55,24 @@ describe('Accordion', () => {
     expect(triggers[0]).toHaveAttribute('aria-expanded', 'true')
   })
 })
+
+describe('Accordion — multiple', () => {
+  const items = [
+    { id: 'a', title: 'Uno', content: 'contenido-a' },
+    { id: 'b', title: 'Dos', content: 'contenido-b' },
+  ]
+
+  it('exclusivo por default: abrir uno cierra el otro', async () => {
+    render(<Accordion items={items} defaultOpen="a" />)
+    await userEvent.click(screen.getByRole('button', { name: /Dos/ }))
+    expect(screen.queryByText('contenido-a')).toBeNull()
+    expect(screen.getByText('contenido-b')).toBeInTheDocument()
+  })
+
+  it('con multiple, ambos pueden estar abiertos', async () => {
+    render(<Accordion items={items} defaultOpen="a" multiple />)
+    await userEvent.click(screen.getByRole('button', { name: /Dos/ }))
+    expect(screen.getByText('contenido-a')).toBeInTheDocument()
+    expect(screen.getByText('contenido-b')).toBeInTheDocument()
+  })
+})

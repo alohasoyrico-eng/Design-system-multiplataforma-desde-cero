@@ -22,11 +22,14 @@ class FlowAccordionItem {
 class FlowAccordion extends StatefulWidget {
   final List<FlowAccordionItem> items;
   final String? defaultOpen;
+  /// Permite varios paneles abiertos a la vez. Default false (exclusivo).
+  final bool multiple;
 
   const FlowAccordion({
     super.key,
     this.items = const [],
     this.defaultOpen,
+    this.multiple = false,
   });
 
   @override
@@ -34,12 +37,20 @@ class FlowAccordion extends StatefulWidget {
 }
 
 class _FlowAccordionState extends State<FlowAccordion> {
-  late String? _openId;
+  late final Set<String> _openIds = {
+    if (widget.defaultOpen != null) widget.defaultOpen!,
+  };
 
-  @override
-  void initState() {
-    super.initState();
-    _openId = widget.defaultOpen;
+  void _toggle(String id) {
+    setState(() {
+      final isOpen = _openIds.contains(id);
+      if (widget.multiple) {
+        isOpen ? _openIds.remove(id) : _openIds.add(id);
+      } else {
+        _openIds.clear();
+        if (!isOpen) _openIds.add(id);
+      }
+    });
   }
 
   @override
@@ -58,13 +69,13 @@ class _FlowAccordionState extends State<FlowAccordion> {
   }
 
   Widget _buildItem(FlowAccordionItem item, FlowScheme scheme) {
-    final isOpen = _openId == item.id;
+    final isOpen = _openIds.contains(item.id);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         GestureDetector(
-          onTap: () => setState(() => _openId = isOpen ? null : item.id),
+          onTap: () => _toggle(item.id),
           child: Container(
             padding: const EdgeInsets.symmetric(
               horizontal: FlowSpace.s4,

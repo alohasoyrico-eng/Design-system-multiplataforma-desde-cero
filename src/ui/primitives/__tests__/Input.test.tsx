@@ -44,3 +44,16 @@ describe('Input', () => {
     expect(screen.getByPlaceholderText('ID')).toHaveAttribute('data-mono')
   })
 })
+
+describe('Input — trailing', () => {
+  it('renderiza el adorno trailing', () => {
+    renderWithIntl(<Input value="120" trailing={<span>km</span>} />)
+    expect(screen.getByText('km')).toBeInTheDocument()
+  })
+
+  it('revealable tiene prioridad sobre trailing', () => {
+    renderWithIntl(<Input value="x" revealable trailing={<span>km</span>} />)
+    expect(screen.queryByText('km')).toBeNull()
+    expect(screen.getByRole('button', { name: 'Mostrar' })).toBeInTheDocument()
+  })
+})

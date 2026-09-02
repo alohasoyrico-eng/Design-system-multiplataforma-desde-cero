@@ -10,6 +10,8 @@ class FlowInput extends StatelessWidget {
   final bool error;
   final bool disabled;
   final bool mono;
+  /// Adorno al final del control (unidad, contador, icono).
+  final Widget? trailing;
   final TextInputType? keyboardType;
 
   const FlowInput({
@@ -21,6 +23,7 @@ class FlowInput extends StatelessWidget {
     this.error = false,
     this.disabled = false,
     this.mono = false,
+    this.trailing,
     this.keyboardType,
   });
 
@@ -68,6 +71,10 @@ class FlowInput extends StatelessWidget {
                 ),
               ),
             ),
+            if (trailing != null) ...[
+              const SizedBox(width: FlowSpace.s2),
+              trailing!,
+            ],
           ],
         ),
       ),

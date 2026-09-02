@@ -43,3 +43,11 @@ describe('Dialog', () => {
     expect(screen.getByText('Custom content')).toBeInTheDocument()
   })
 })
+
+describe('Dialog — width', () => {
+  it('aplica el ancho pedido al contenedor', () => {
+    const { container } = render(<Dialog open title="Confirmar" width={560} />)
+    const sized = container.querySelector('[style*="width"]') as HTMLElement
+    expect(sized.style.width).toBe('560px')
+  })
+})

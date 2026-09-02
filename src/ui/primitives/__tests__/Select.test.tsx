@@ -47,3 +47,10 @@ describe('Select', () => {
     expect(screen.getByText('Alpha')).toBeInTheDocument()
   })
 })
+
+describe('Select — id para Field', () => {
+  it('coloca el id en el combobox focusable', () => {
+    renderWithIntl(<Select id="pais" options={['MX', 'CO']} />)
+    expect(screen.getByRole('combobox')).toHaveAttribute('id', 'pais')
+  })
+})

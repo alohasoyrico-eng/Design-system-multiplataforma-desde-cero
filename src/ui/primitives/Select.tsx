@@ -25,6 +25,8 @@ export interface SelectProps {
   icon?: string
   disabled?: boolean
   invalid?: boolean
+  /** Id del control focusable — permite asociar <Field htmlFor>. */
+  id?: string
   style?: CSSProperties
 }
 
@@ -44,6 +46,7 @@ export function Select({
   icon,
   disabled,
   invalid,
+  id,
   style,
 }: SelectProps) {
   const intl = useIntl()
@@ -125,6 +128,7 @@ export function Select({
       style={style}
     >
       <span
+        id={id}
         className={css.trigger}
         role="combobox"
         aria-expanded={open}

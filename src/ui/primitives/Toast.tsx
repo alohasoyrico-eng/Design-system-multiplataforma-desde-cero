@@ -6,6 +6,9 @@ export type ToastTone = 'success' | 'warning' | 'danger' | 'info'
 export interface ToastProps {
   message: string
   tone?: ToastTone
+  /** Acción inline (p. ej. “Deshacer”). Requiere onAction. */
+  actionLabel?: string
+  onAction?: () => void
   onDismiss?: () => void
 }
 
@@ -20,7 +23,7 @@ const TONES: Record<ToastTone, { icon: string; color: string }> = {
   info: { icon: 'info', color: 'var(--status-info-text)' },
 }
 
-export function Toast({ message, tone = 'success', onDismiss }: ToastProps) {
+export function Toast({ message, tone = 'success', actionLabel, onAction, onDismiss }: ToastProps) {
   const t = TONES[tone]
   return (
     <div role="alert" className={css.root}>
@@ -28,6 +31,11 @@ export function Toast({ message, tone = 'success', onDismiss }: ToastProps) {
         {t.icon}
       </span>
       <span className={css.message}>{message}</span>
+      {actionLabel && onAction && (
+        <button onClick={onAction} className={css.action}>
+          {actionLabel}
+        </button>
+      )}
       {onDismiss && (
         <button onClick={onDismiss} aria-label="Cerrar" className={css.dismiss}>
           <span className="flow-icon flow-icon--md" aria-hidden="true">close</span>
