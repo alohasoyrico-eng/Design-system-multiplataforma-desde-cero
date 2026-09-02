@@ -37,6 +37,12 @@ export interface GlobalSearchProps {
   placeholder?: string
   emptyTitle?: string
   emptyDescription?: string
+  /** Qué escribir cuando no hay resultados (descripción del estado vacío). */
+  emptyHint?: string
+  /** Caracteres mínimos antes de buscar. Default 1. */
+  minChars?: number
+  /** Registra ⌘K/Ctrl+K (solo palette). Default true. */
+  shortcut?: boolean
   noResultsTitle?: (query: string) => string
   style?: CSSProperties
 }
@@ -57,6 +63,9 @@ export function GlobalSearch({
   placeholder,
   emptyTitle,
   emptyDescription,
+  emptyHint,
+  minChars = 1,
+  shortcut = true,
   noResultsTitle,
   style,
 }: GlobalSearchProps) {
@@ -67,7 +76,6 @@ export function GlobalSearch({
   const listRef = useRef<HTMLDivElement>(null)
   const rootRef = useRef<HTMLDivElement>(null)
 
-  const minChars = 1
   const showRecents = value.length < minChars && recents.length > 0
   const items = showRecents ? recents : results
 
@@ -94,6 +102,7 @@ export function GlobalSearch({
   useEffect(() => { setActiveIndex(0) }, [value, showRecents])
 
   useEffect(() => {
+    if (!shortcut) return
     const onKey = (e: globalThis.KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
@@ -107,7 +116,7 @@ export function GlobalSearch({
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [mode, open, onOpenChange])
+  }, [mode, open, onOpenChange, shortcut])
 
   useEffect(() => {
     if (mode === 'palette' && open && inputRef.current) inputRef.current.focus()
@@ -220,7 +229,9 @@ export function GlobalSearch({
         title={value.length >= minChars
           ? (noResultsTitle ? noResultsTitle(value) : `Sin resultados para "${value}"`)
           : (emptyTitle ?? 'Busca en toda la plataforma')}
-        description={emptyDescription ?? 'Prueba con una placa, un nombre o un ID de viaje.'}
+        description={value.length >= minChars
+          ? (emptyHint ?? emptyDescription ?? 'Prueba con una placa, un nombre o un ID de viaje.')
+          : (emptyDescription ?? 'Prueba con una placa, un nombre o un ID de viaje.')}
       />
     )
   } else {
