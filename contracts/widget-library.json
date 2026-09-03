@@ -82,8 +82,7 @@
       "overlay-shell",
       "toggle-control",
       "icon-button"
-    ],
-    "$note": "El repo lo compone sobre su BottomSheet (que ya envuelve overlay-shell): divergencia declarada, conformance heredada."
+    ]
   },
   "nonGoals": [
     "No conoce los widgets: recibe definiciones y emite intenciones."
