@@ -18,7 +18,7 @@
       {
         "name": "tone",
         "kind": "prop",
-        "type": "'success' | 'warning' | 'danger' | 'info'",
+        "type": "'success' | 'warning' | 'danger' | 'info' | 'neutral'",
         "default": "'success'"
       },
       {
