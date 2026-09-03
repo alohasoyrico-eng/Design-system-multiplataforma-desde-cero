@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react'
 import { Outlet, useNavigate } from '@tanstack/react-router'
 import { Toast, ToastStack } from '../ui/primitives/Toast'
-import { GlobalSearch, type SearchResult } from '../ui/patterns/GlobalSearch'
+import { GlobalSearch, type SearchResult } from '../ui/components/GlobalSearch'
 import { FleetSidebar } from './FleetSidebar'
 import { NotifyProvider } from '../app/NotifyContext'
 import { SearchProvider } from '../app/SearchContext'

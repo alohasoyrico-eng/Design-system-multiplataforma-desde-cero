@@ -8,7 +8,7 @@ import { Button } from '../ui/primitives/Button'
 import { Badge } from '../ui/primitives/Badge'
 import { Chip } from '../ui/primitives/Chip'
 import { OTPInput } from '../ui/components/OTPInput'
-import { OnboardingCarousel } from '../ui/patterns/OnboardingCarousel'
+import { OnboardingCarousel } from '../ui/components/OnboardingCarousel'
 import { StatusView } from '../ui/primitives/StatusView'
 import css from './OnboardingPage.module.css'
 

@@ -341,7 +341,7 @@
   },
   "global-search": {
     "name": "GlobalSearch",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Búsqueda de entidades con resultados agrupados, teclado y resaltado. Modo palette (⌘K) o inline.",
     "fn": [
@@ -352,7 +352,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/GlobalSearch.tsx",
+    "src": "components/GlobalSearch.tsx",
     "platforms": {},
     "anatomy": "Input con icono search + limpiar/⌘K. Lista agrupada por tipo con overline por grupo, icono, label (mono para placas/IDs), meta de desambiguación y ↵ en la fila activa. Pie con ayudas de teclado en palette.",
     "tokens": [],
@@ -679,7 +679,7 @@
   },
   "topbar": {
     "name": "TopBar",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Header de app de 56px con seis variantes: standard, minimal, admin, multientidad, movil y fullscreen.",
     "fn": [
@@ -690,7 +690,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/TopBar.tsx",
+    "src": "components/TopBar.tsx",
     "platforms": {},
     "anatomy": "",
     "tokens": [],
@@ -886,7 +886,7 @@
   },
   "input-amount": {
     "name": "InputAmount",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Control de monto: prefijo de moneda, separadores de la locale y alineación derecha. Sin label — eso es Field.",
     "fn": [
@@ -897,7 +897,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/InputAmount.tsx",
+    "src": "components/InputAmount.tsx",
     "platforms": {},
     "anatomy": "",
     "tokens": [],
@@ -1000,7 +1000,7 @@
   },
   "input-phone": {
     "name": "InputPhone",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Control telefónico: lada como prefijo fijo y agrupación 3-3-4. El país se elige con Select, no aquí.",
     "fn": [
@@ -1011,7 +1011,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/InputPhone.tsx",
+    "src": "components/InputPhone.tsx",
     "platforms": {},
     "anatomy": "Lada como prefijo fijo en mono a la izquierda de la carcasa; los dígitos se agrupan 2-4-4 sobre el input. El valor que sale son dígitos limpios, sin la máscara.",
     "tokens": [],
@@ -2698,7 +2698,7 @@
   },
   "onboarding-carousel": {
     "name": "OnboardingCarousel",
-    "layer": "patterns",
+    "layer": "components",
     "status": "beta",
     "summary": "Carrusel de bienvenida con dots, swipe y salto al final.",
     "fn": [
@@ -2709,7 +2709,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/OnboardingCarousel.tsx",
+    "src": "components/OnboardingCarousel.tsx",
     "platforms": {},
     "anatomy": "Slides a pantalla completa con ilustración o glifo, título y descripción; paginación por dots abajo y swipe horizontal. «Omitir» siempre visible, «Empezar» en el último.",
     "tokens": [],
@@ -3189,7 +3189,7 @@
   },
   "biometric": {
     "name": "BiometricPrompt",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Verificación con Face ID o huella: idle/scanning/success/error y fallback a passcode siempre presente.",
     "fn": [
@@ -3200,7 +3200,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/BiometricPrompt.tsx",
+    "src": "components/BiometricPrompt.tsx",
     "platforms": {},
     "anatomy": "Hoja centrada con círculo de 84px: glifo <code>ar_on_you</code> para rostro o <code>fingerprint</code> para huella. Cuatro estados —idle, scanning, success, error— que cambian fondo del círculo y color del glifo. El fallback a passcode va como acción secundaria, siempre presente.",
     "tokens": [],
@@ -3294,7 +3294,7 @@
   },
   "payment-card": {
     "name": "PaymentCard",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "La tarjeta Flow visual en proporción real 1.586, con estado congelado. Nunca muestra el PAN completo.",
     "fn": [
@@ -3305,7 +3305,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/PaymentCard.tsx",
+    "src": "components/PaymentCard.tsx",
     "platforms": {},
     "anatomy": "Proporción real 1.586 en cualquier ancho. Tres variantes de superficie —ink, accent, sand— con el logo de Flow resuelto vía <code>window.FLOW_ASSET_BASE</code>. Número en <code>--type-data</code> agrupado, titular y expiración abajo. <code>frozen</code> pone un velo con blur y el texto «Congelada».",
     "tokens": [],
@@ -3436,7 +3436,7 @@
   },
   "transaction-row": {
     "name": "TransactionRow",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Fila de movimiento con categoría, comercio y monto en mono.",
     "fn": [
@@ -3447,7 +3447,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/TransactionRow.tsx",
+    "src": "components/TransactionRow.tsx",
     "platforms": {},
     "anatomy": "Icono de categoría en círculo, comercio y meta en dos líneas, y monto firmado en <code>--type-data</code> a la derecha. <code>pending</code> baja la opacidad y agrega la etiqueta.",
     "tokens": [],
@@ -3644,7 +3644,7 @@
   },
   "role-matrix": {
     "name": "RoleMatrix",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Matriz permisos × roles sobre DataGrid, con filas de grupo y celdas de toggle.",
     "fn": [
@@ -3655,7 +3655,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/RoleMatrix.tsx",
+    "src": "components/RoleMatrix.tsx",
     "platforms": {},
     "anatomy": "<b>DataGrid</b> en densidad compacta: permisos en filas, roles en columnas, y un toggle de 26px por celda. Los grupos de permisos son filas de grupo del propio grid. Los roles bloqueados llevan candado y quedan deshabilitados.",
     "tokens": [],
@@ -4742,7 +4742,7 @@
   },
   "passcodekeypad": {
     "name": "PasscodeKeypad",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Teclado numérico de passcode con puntos de progreso y borrado.",
     "fn": [
@@ -4753,7 +4753,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/PasscodeKeypad.tsx",
+    "src": "components/PasscodeKeypad.tsx",
     "platforms": {},
     "anatomy": "Teclado numérico de 3×4 con puntos de progreso arriba y acción biométrica opcional en la esquina. Los puntos se llenan al escribir y sacuden al fallar.",
     "tokens": [],
@@ -4943,7 +4943,7 @@
   },
   "bulk-actions-pattern": {
     "name": "BulkActionsTable",
-    "layer": "patterns",
+    "layer": "components",
     "status": "beta",
     "summary": "Selección múltiple con toolbar de acciones sobre DataGrid.",
     "fn": [
@@ -4954,7 +4954,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/BulkActionsTable.tsx",
+    "src": "components/BulkActionsTable.tsx",
     "platforms": {},
     "anatomy": "Toolbar que aparece con la primera selección, pegada arriba de un <b>DataGrid</b> con columna de selección y zebra. La cuenta de seleccionados es <code>aria-live</code>; las acciones destructivas van al final.",
     "tokens": [],
@@ -5030,7 +5030,7 @@
   },
   "filters-inline-edit": {
     "name": "FilterableEditableTable",
-    "layer": "patterns",
+    "layer": "components",
     "status": "beta",
     "summary": "Filtros por columna y edición en celda sobre DataGrid.",
     "fn": [
@@ -5041,7 +5041,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/FilterableEditableTable.tsx",
+    "src": "components/FilterableEditableTable.tsx",
     "platforms": {},
     "anatomy": "Barra de filtros por columna sobre un <b>DataGrid</b> con celdas editables. Doble clic entra a edición; Enter guarda y Escape cancela sin perder el foco de la tabla.",
     "tokens": [],
@@ -8547,7 +8547,7 @@
   },
   "settings-t": {
     "name": "Settings",
-    "layer": "patterns",
+    "layer": "templates",
     "status": "",
     "summary": "Ajustes con tabs, filas de switches/selects, toggle de tema funcional y zona peligrosa.",
     "fn": [],
@@ -8580,7 +8580,7 @@
   },
   "wizard-t": {
     "name": "Wizard",
-    "layer": "patterns",
+    "layer": "templates",
     "status": "",
     "summary": "Alta de unidad en 3 pasos: vehiculo → conductor → confirmacion, con validacion por paso.",
     "fn": [],
@@ -11999,7 +11999,7 @@
   },
   "route-banner": {
     "name": "RouteBanner",
-    "layer": "patterns",
+    "layer": "components",
     "status": "stable",
     "summary": "Banner de ruta activa con icono, titulo, subtitulo y cierre. Flota sobre el mapa.",
     "fn": [
@@ -12010,7 +12010,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/RouteBanner.tsx",
+    "src": "components/RouteBanner.tsx",
     "platforms": {
       "web": "stable"
     },

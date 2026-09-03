@@ -1,4 +1,4 @@
-import { TopBar } from '../ui/patterns/TopBar'
+import { TopBar } from '../ui/components/TopBar'
 import { IconButton } from '../ui/primitives/IconButton'
 import { Badge } from '../ui/primitives/Badge'
 import { FlowLogo } from '../ui/primitives/FlowLogo'

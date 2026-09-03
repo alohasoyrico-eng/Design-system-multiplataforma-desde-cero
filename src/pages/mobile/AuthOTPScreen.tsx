@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import css from './AuthOTPScreen.module.css'
 import { PhoneFrame } from './PhoneFrame'
-import { BiometricPrompt } from '../../ui/patterns/BiometricPrompt'
-import { PasscodeKeypad } from '../../ui/patterns/PasscodeKeypad'
+import { BiometricPrompt } from '../../ui/components/BiometricPrompt'
+import { PasscodeKeypad } from '../../ui/components/PasscodeKeypad'
 import { Button } from '../../ui/primitives/Button'
 
 type Mode = 'bio' | 'pin' | 'done'

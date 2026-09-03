@@ -20,7 +20,7 @@ import { KanbanBoard } from '../ui/components/KanbanBoard'
 import css from './PrimitivesShowcasePage.module.css'
 import { CardMedia } from '../ui/components/CardMedia'
 import { StatusView } from '../ui/primitives/StatusView'
-import { OnboardingCarousel } from '../ui/patterns/OnboardingCarousel'
+import { OnboardingCarousel } from '../ui/components/OnboardingCarousel'
 import { Button } from '../ui/primitives/Button'
 import { IconButton } from '../ui/primitives/IconButton'
 
