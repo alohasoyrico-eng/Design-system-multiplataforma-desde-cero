@@ -67,3 +67,10 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toBeDisabled()
   })
 })
+
+describe('Button · variant link (D3)', () => {
+  it('acepta variant link y lo declara en data-variant', () => {
+    render(<Button variant="link">Ver todo</Button>)
+    expect(screen.getByRole('button', { name: 'Ver todo' })).toHaveAttribute('data-variant', 'link')
+  })
+})

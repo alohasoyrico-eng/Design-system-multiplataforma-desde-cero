@@ -49,3 +49,50 @@ describe('BottomSheet', () => {
     expect(onClose).toHaveBeenCalledOnce()
   })
 })
+
+describe('BottomSheet · fullscreen (absorbe FlowFullscreenSheet)', () => {
+  it('en fullscreen hay flecha atrás que cae en onClose si no hay onBack', async () => {
+    const onClose = vi.fn()
+    render(
+      <BottomSheet open onClose={onClose} title="Detalle" fullscreen>
+          contenido
+        </BottomSheet>
+      
+    )
+    await userEvent.click(screen.getByRole('button', { name: 'Volver' }))
+    expect(onClose).toHaveBeenCalled()
+  })
+
+  it('onBack tiene prioridad y las headerActions se renderizan', async () => {
+    const onBack = vi.fn()
+    const onClose = vi.fn()
+    render(
+      <BottomSheet
+          open
+          onClose={onClose}
+          onBack={onBack}
+          fullscreen
+          title="Detalle"
+          headerActions={<button>Guardar</button>}
+        >
+          contenido
+        </BottomSheet>
+      
+    )
+    await userEvent.click(screen.getByRole('button', { name: 'Volver' }))
+    expect(onBack).toHaveBeenCalled()
+    expect(onClose).not.toHaveBeenCalled()
+    expect(screen.getByRole('button', { name: 'Guardar' })).toBeInTheDocument()
+  })
+
+  it('sin fullscreen conserva el asa y no hay cabecera de navegación', () => {
+    render(
+      <BottomSheet open title="Detalle">
+          contenido
+        </BottomSheet>
+      
+    )
+    expect(screen.getByRole('button', { name: 'Cerrar' })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Volver' })).toBeNull()
+  })
+})

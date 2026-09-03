@@ -1,7 +1,7 @@
 import type { ReactNode, CSSProperties, MouseEventHandler } from 'react'
 import css from './Button.module.css'
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'link'
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
 export interface ButtonProps {

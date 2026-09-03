@@ -85,3 +85,11 @@
   font-size: var(--icon-md);
   animation: flowSpin 0.8s linear infinite;
 }
+
+.root[data-variant='link'] {
+  background: transparent;
+  color: var(--text-link);
+}
+.root[data-variant='link']:hover:not(:disabled) {
+  text-decoration: underline;
+}

@@ -2599,6 +2599,33 @@
         "r": false,
         "rw": "",
         "note": "false = absolute (marcos)"
+      },
+      {
+        "n": "fullscreen",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
+        "r": false,
+        "rw": "",
+        "note": "Absorbe FlowFullscreenSheet: pantalla completa con cabecera de navegación"
+      },
+      {
+        "n": "onBack",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Flecha atrás en fullscreen; cae en onClose"
+      },
+      {
+        "n": "headerActions",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Acciones a la derecha de la cabecera en fullscreen"
       }
     ],
     "dos": [
@@ -5255,7 +5282,7 @@
       {
         "n": "variant",
         "k": "prop",
-        "t": "'primary'|'accent'|'secondary'|'ghost'|'danger'",
+        "t": "'primary' | 'secondary' | 'ghost' | 'danger' | 'link'",
         "d": "'primary'",
         "r": false,
         "rw": "",
