@@ -7,13 +7,12 @@
 <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 <script>window.FLOW_ASSET_BASE='../../';</script>
 <script src="../../_ds_bundle.js"></script>
-<script type="text/babel" src="../ios-frame.jsx"></script>
 <style>body{margin:0;font-family:var(--font-body);background:var(--surface-inverse)} a{color:var(--text-link);}</style>
 </head><body><div id="root"></div>
 <script type="text/babel" data-presets="react">
 const NS = window.Flow || {};
 const { Button, Input, Field, OTPInput, PasscodeKeypad, BiometricPrompt, Checkbox, Toast, ToastStack, Badge } = NS;
-const Device = window.IOSDevice;
+const Phone = ({children}) => <div style={{width:390,height:800,borderRadius:'var(--radius-xl)',overflow:'hidden',background:'var(--surface-canvas)',boxShadow:'var(--shadow-overlay)',flex:'none'}}>{children}</div>;
 
 function Resend(){
   const [left,setLeft] = React.useState(42);
@@ -81,7 +80,7 @@ function MobileAuth(){
   const [pin,setPin] = React.useState('');
   const [pinErr,setPinErr] = React.useState(false);
   const [bioState,setBioState] = React.useState('idle');
-  return <Device title="" dark>
+  return <Phone>
     <div style={{display:'flex',flexDirection:'column',height:'100%',background:'var(--surface-inverse)',padding:'18px 22px 28px',boxSizing:'border-box'}}>
       <img src="../../assets/flow-logo.png" alt="Flow" style={{height:22,alignSelf:'center',marginTop:12,filter:'invert(1)'}} />
       {mode==='bio' && <div style={{margin:'auto 0',display:'flex',flexDirection:'column',alignItems:'center',gap:16}}>
@@ -105,7 +104,7 @@ function MobileAuth(){
         <Button variant="accent" onClick={()=>{setMode('bio');setBioState('idle');setPin('');}}>Reiniciar demo</Button>
       </div>}
     </div>
-  </Device>;
+  </Phone>;
 }
 
 function App(){
@@ -120,5 +119,5 @@ function App(){
     </div>
   </div>;
 }
-ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'var(--text-on-inverse)',fontFamily:'monospace',fontSize:12,padding:20}}>cargando…</div>);
+ReactDOM.createRoot(document.getElementById('root')).render(NS && NS.Button ? <App/> : <div style={{color:'var(--text-on-inverse)',fontFamily:'monospace',fontSize:12,padding:20}}>cargando…</div>);
 </script></body></html>

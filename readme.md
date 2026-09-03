@@ -57,7 +57,7 @@ Fuente del logo: `assets/flow-logo.png` (proporcionado por el usuario). No exist
 - `guidelines/` — specimen cards de foundations.
 - `ui_kits/` — templates/patterns:
   - Desktop: `fleet-dashboard/` (4 módulos), `dashboards/` (6: overview, combustible, mantenimiento, electro, peaje, finanzas — con Treemap/Pareto/Scatter/SmallMultiples/Bullet y FlowChart para flotas grandes), `config/` (roles y permisos + altas/bajas), `auth/`, `auth-otp/` (login + OTP + biométricos), `onboarding-fm/`, `agent-chat/` (asistente conversacional), `settings/`, `wizard/`.
-  - Mobile (marco iPhone via `ui_kits/ios-frame.jsx`): `drivers-app/`, `onboarding-driver/` (2 journeys), `wallet/` (tarjetas + movimientos + detalle con quick actions), `rutas/` (mapa OSM de estaciones).
+  - Mobile (pantalla directa, viewport 390×800): `drivers-app/`, `onboarding-driver/` (2 journeys), `wallet/` (tarjetas + movimientos + detalle con quick actions), `rutas/` (mapa OSM de estaciones).
   - Internal Tools (CRM, shell propia): `internal-tools/` — Resumen (KPIs + colas por rol), Tickets (cola + hilo), Cuentas (flotas/conductores, tabs con Timeline de actividad), Pricing (reglas + envío a aprobación), Casos (fraude/disputas, investigación con Timeline y resolución), Back-office (aprobación de documentos), Growth · Onboarding (kanban del embudo de activación de conductores, de registro a primer viaje, con riesgo de abandono). Roles (`Admin`, `Agente de soporte`, `Pricing/Finanzas`, `Ops/Back-office`, `Growth/Producto`) filtran nav y gatean módulos con `EmptyState`.
   - Email: `mailings/` — HTML de tablas (no DC) para recibo, resumen semanal, alerta OTP, invitación y bienvenida. Ver su README para restricciones.
 - `assets/` — logo.

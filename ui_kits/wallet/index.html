@@ -7,13 +7,12 @@
 <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 <script>window.FLOW_ASSET_BASE='../../';</script>
 <script src="../../_ds_bundle.js"></script>
-<script type="text/babel" src="../ios-frame.jsx"></script>
 <style>body{margin:0;font-family:var(--font-body);background:var(--surface-inverse);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
 </head><body><div id="root"></div>
 <script type="text/babel" data-presets="react">
 const NS = window.Flow || {};
 const { Button, IconButton, PaymentCard, TransactionRow, BottomSheet, SegmentedControl, Badge, Switch, Card } = NS;
-const Device = window.IOSDevice;
+const Phone = ({children}) => <div style={{width:390,height:800,borderRadius:'var(--radius-xl)',overflow:'hidden',background:'var(--surface-canvas)',boxShadow:'var(--shadow-overlay)',flex:'none'}}>{children}</div>;
 
 const CARDS = [
   {id:'c1', holder:'Diego Vera', last4:'4821', variant:'ink', label:'Flota', expires:'12/28', balance:'$8,412.50'},
@@ -149,10 +148,10 @@ function DetailScreen({cardId,goBack}){
 }
 
 function PhoneA(){
-  return <Device title=""><WalletScreen goDetail={()=>{}} /></Device>;
+  return <Phone><WalletScreen goDetail={()=>{}} /></Phone>;
 }
 function PhoneB(){
-  return <Device title=""><DetailScreen cardId="c1" goBack={()=>{}} /></Device>;
+  return <Phone><DetailScreen cardId="c1" goBack={()=>{}} /></Phone>;
 }
 function App(){
   // interactive single-flow option: left phone navigates to detail in right context anyway; keep both visible for review
@@ -160,13 +159,13 @@ function App(){
   return <>
     <div>
       <div style={{color:'var(--text-on-inverse)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Wallet · tarjetas + movimientos</div>
-      <Device title=""><WalletScreen goDetail={setDetail} /></Device>
+      <Phone><WalletScreen goDetail={setDetail} /></Phone>
     </div>
     <div>
       <div style={{color:'var(--text-on-inverse)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Detalle de tarjeta · quick actions</div>
-      <Device title=""><DetailScreen cardId={detail||'c1'} goBack={()=>setDetail(null)} /></Device>
+      <Phone><DetailScreen cardId={detail||'c1'} goBack={()=>setDetail(null)} /></Phone>
     </div>
   </>;
 }
-ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'var(--text-on-inverse)',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+ReactDOM.createRoot(document.getElementById('root')).render(NS && NS.Button ? <App/> : <div style={{color:'var(--text-on-inverse)',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
 </script></body></html>

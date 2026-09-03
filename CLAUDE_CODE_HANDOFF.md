@@ -153,6 +153,6 @@ Tres productos (Drivers App móvil, Fleet Manager dashboard, Internal Tools CRM)
 ## Notas de implementación
 
 - **PaymentCard**: define `window.FLOW_ASSET_BASE` con la ruta a la raíz del DS para que cargue el logo.
-- **Marco móvil**: los kits móviles usan `ui_kits/ios-frame.jsx` solo para el demo; no es parte del DS a portar.
+- **Marco móvil**: no hay. Los kits móviles renderizan la pantalla directa (viewport 390×800 declarado en su `@dsCard`), igual que `drivers-app`.
 - **Mailings** (`ui_kits/mailings/`): HTML de tablas para email, con sus propias restricciones (ver su README) — no comparten el runtime de componentes.
 - Un dev que no estuvo en esta conversación debería poder implementar Flow con este documento + `readme.md` + `SKILL.md` + los `.d.ts`. Si algo falta, empieza por `docs/index.html`.

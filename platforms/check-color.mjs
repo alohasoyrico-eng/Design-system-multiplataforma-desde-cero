@@ -33,11 +33,6 @@ const EXCEPCIONES = [
     solo: 'func',
   },
   {
-    archivo: 'ui_kits/ios-frame.jsx',
-    motivo: 'Marco de iPhone solo para demos moviles; el handoff lo declara fuera del DS a portar. ' +
-      'Dibuja un artefacto fisico — biseles, isla dinamica, barra de estado — cuyos colores no son de interfaz.',
-  },
-  {
     carpeta: 'ui_kits/mailings/',
     motivo: 'HTML de email: Gmail y Outlook no soportan custom properties, asi que el hex es el medio, no una deriva. ' +
       'Los valores replican los tokens a mano — su README documenta la restriccion y el mapeo.',
