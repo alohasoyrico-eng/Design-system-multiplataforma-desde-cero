@@ -1,7 +1,7 @@
 {
   "id": "timeline",
   "name": "Timeline",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "display"
   ],
@@ -77,7 +77,7 @@
     "No pagina."
   ],
   "reference": {
-    "src": "components/Timeline.jsx",
+    "src": "primitives/Timeline.jsx",
     "demo": "docs/demos/timeline.html"
   },
   "platforms": {

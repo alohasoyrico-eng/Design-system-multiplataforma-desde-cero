@@ -1,7 +1,7 @@
 {
   "id": "tabbar",
   "name": "TabBar",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "navigation"
   ],
@@ -80,7 +80,7 @@
     "No lleva mas de un nivel."
   ],
   "reference": {
-    "src": "components/TabBar.jsx",
+    "src": "primitives/TabBar.jsx",
     "states": "docs/cards/mobile-nav.card.html"
   },
   "platforms": {

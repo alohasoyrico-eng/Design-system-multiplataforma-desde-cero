@@ -1,7 +1,7 @@
 {
   "id": "quick-action-bar",
   "name": "QuickActionBar",
-  "layer": "patterns",
+  "layer": "components",
   "function": [
     "actions"
   ],
@@ -29,5 +29,8 @@
   },
   "reference": {
     "src": "patterns/QuickActionBar.tsx"
+  },
+  "api": {
+    "members": []
   }
 }

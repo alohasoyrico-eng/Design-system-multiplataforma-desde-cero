@@ -1,7 +1,7 @@
 {
   "id": "card-carousel",
   "name": "CardCarousel",
-  "layer": "patterns",
+  "layer": "components",
   "function": [
     "display"
   ],
@@ -31,5 +31,8 @@
   },
   "reference": {
     "src": "patterns/CardCarousel.tsx"
+  },
+  "api": {
+    "members": []
   }
 }

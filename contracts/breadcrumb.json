@@ -1,7 +1,7 @@
 {
   "id": "breadcrumb",
   "name": "Breadcrumb",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "navigation"
   ],
@@ -61,7 +61,7 @@
     "No es el titulo de la pagina."
   ],
   "reference": {
-    "src": "components/Breadcrumb.jsx",
+    "src": "primitives/Breadcrumb.jsx",
     "states": "docs/cards/navigation.card.html"
   },
   "platforms": {

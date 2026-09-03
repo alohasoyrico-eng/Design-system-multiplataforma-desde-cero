@@ -321,30 +321,30 @@
     },
     {
       "id": "tabbar",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/TabBar.jsx",
+      "src": "primitives/TabBar.jsx",
       "contract": "contracts/tabbar.json"
     },
     {
       "id": "circular-progress",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/CircularProgress.jsx",
+      "src": "primitives/CircularProgress.jsx",
       "contract": "contracts/circular-progress.json"
     },
     {
       "id": "timeline",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/Timeline.jsx",
+      "src": "primitives/Timeline.jsx",
       "contract": "contracts/timeline.json"
     },
     {
       "id": "status-view",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/StatusView.jsx",
+      "src": "primitives/StatusView.jsx",
       "contract": "contracts/status-view.json"
     },
     {
@@ -503,9 +503,9 @@
     },
     {
       "id": "emptystate",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/EmptyState.jsx",
+      "src": "primitives/EmptyState.jsx",
       "contract": "contracts/emptystate.json"
     },
     {
@@ -524,9 +524,9 @@
     },
     {
       "id": "stepper",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/Stepper.jsx",
+      "src": "primitives/Stepper.jsx",
       "contract": "contracts/stepper.json"
     },
     {
@@ -545,9 +545,9 @@
     },
     {
       "id": "toast",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/Toast.jsx",
+      "src": "primitives/Toast.jsx",
       "contract": "contracts/toast.json"
     },
     {
@@ -566,16 +566,16 @@
     },
     {
       "id": "breadcrumb",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/Breadcrumb.jsx",
+      "src": "primitives/Breadcrumb.jsx",
       "contract": "contracts/breadcrumb.json"
     },
     {
       "id": "pagination",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/Pagination.jsx",
+      "src": "primitives/Pagination.jsx",
       "contract": "contracts/pagination.json"
     },
     {
@@ -699,9 +699,9 @@
     },
     {
       "id": "chat-message",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
-      "src": "components/ChatMessage.jsx",
+      "src": "primitives/ChatMessage.jsx",
       "contract": "contracts/chat-message.json"
     },
     {
@@ -790,7 +790,7 @@
     },
     {
       "id": "limit-bar",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
       "src": null,
       "contract": "contracts/limit-bar.json"
@@ -825,7 +825,7 @@
     },
     {
       "id": "section-bar",
-      "layer": "components",
+      "layer": "primitives",
       "domain": null,
       "src": null,
       "contract": "contracts/section-bar.json"
@@ -909,7 +909,7 @@
     },
     {
       "id": "card-carousel",
-      "layer": "patterns",
+      "layer": "components",
       "domain": null,
       "src": null,
       "contract": "contracts/card-carousel.json"
@@ -993,7 +993,7 @@
     },
     {
       "id": "quick-action-bar",
-      "layer": "patterns",
+      "layer": "components",
       "domain": "fintech",
       "src": null,
       "contract": "contracts/quick-action-bar.json"

@@ -1,7 +1,7 @@
 {
   "id": "emptystate",
   "name": "EmptyState",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "feedback"
   ],
@@ -70,7 +70,7 @@
     "No es un error: si algo fallo, dilo con StatusView."
   ],
   "reference": {
-    "src": "components/EmptyState.jsx",
+    "src": "primitives/EmptyState.jsx",
     "states": "docs/cards/states.card.html"
   },
   "platforms": {

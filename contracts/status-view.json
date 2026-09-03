@@ -1,7 +1,7 @@
 {
   "id": "status-view",
   "name": "StatusView",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "feedback"
   ],
@@ -95,7 +95,7 @@
     "No reintenta por su cuenta."
   ],
   "reference": {
-    "src": "components/StatusView.jsx",
+    "src": "primitives/StatusView.jsx",
     "demo": "docs/demos/status-view.html"
   },
   "platforms": {

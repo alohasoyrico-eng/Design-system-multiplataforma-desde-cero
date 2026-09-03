@@ -1,7 +1,7 @@
 {
   "id": "circular-progress",
   "name": "CircularProgress",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "feedback"
   ],
@@ -99,7 +99,7 @@
     "No sustituye a Progress cuando hay ancho: la barra se compara mejor entre filas."
   ],
   "reference": {
-    "src": "components/CircularProgress.jsx"
+    "src": "primitives/CircularProgress.jsx"
   },
   "platforms": {
     "web": "reference",

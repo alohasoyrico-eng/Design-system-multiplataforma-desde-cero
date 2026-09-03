@@ -1,7 +1,7 @@
 {
   "id": "section-bar",
   "name": "SectionBar",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "navigation"
   ],
@@ -55,6 +55,6 @@
     "web": "adopted"
   },
   "reference": {
-    "src": "components/SectionBar.tsx"
+    "src": "primitives/SectionBar.tsx"
   }
 }

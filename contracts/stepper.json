@@ -1,7 +1,7 @@
 {
   "id": "stepper",
   "name": "Stepper",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "navigation"
   ],
@@ -75,7 +75,7 @@
     "No guarda el estado."
   ],
   "reference": {
-    "src": "components/Stepper.jsx",
+    "src": "primitives/Stepper.jsx",
     "states": "docs/cards/navigation.card.html"
   },
   "platforms": {

@@ -1,7 +1,7 @@
 {
   "id": "limit-bar",
   "name": "LimitBar",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "display"
   ],
@@ -63,6 +63,6 @@
     "web": "adopted"
   },
   "reference": {
-    "src": "components/LimitBar.tsx"
+    "src": "primitives/LimitBar.tsx"
   }
 }

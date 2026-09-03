@@ -1,7 +1,7 @@
 {
   "id": "pagination",
   "name": "Pagination",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "navigation"
   ],
@@ -80,7 +80,7 @@
     "No hace scroll infinito: son cosas distintas y no se mezclan."
   ],
   "reference": {
-    "src": "components/Pagination.jsx",
+    "src": "primitives/Pagination.jsx",
     "states": "docs/cards/navigation.card.html"
   },
   "platforms": {

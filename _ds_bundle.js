@@ -2124,7 +2124,7 @@ function Skeleton({ variant = 'text', width, height, style }) {
 F.Skeleton = Skeleton;
 })();
 
-// ---- components/EmptyState.jsx ----
+// ---- primitives/EmptyState.jsx ----
 (function(){
 
 function EmptyState({ icon = 'inbox', title, description, action, style }) {
@@ -2788,7 +2788,7 @@ function RoleMatrix({ roles = [], permissions = [], values = {}, onChange, style
 F.RoleMatrix = RoleMatrix;
 })();
 
-// ---- components/ChatMessage.jsx ----
+// ---- primitives/ChatMessage.jsx ----
 (function(){
 
 /** One message bubble. role: 'user' | 'agent'. tool: optional {label, icon, status:'running'|'done'} chip shown above agent text. */
@@ -2925,7 +2925,7 @@ function Tabs({ items = [], value, onChange, variant = 'pill', style }) {
 F.Tabs = Tabs;
 })();
 
-// ---- components/Stepper.jsx ----
+// ---- primitives/Stepper.jsx ----
 (function(){
 
 /** steps: [{label, description?}] · current: 0-based index */
@@ -2978,7 +2978,7 @@ function Stepper({ steps = [], current = 0, orientation = 'horizontal', style })
 F.Stepper = Stepper;
 })();
 
-// ---- components/Breadcrumb.jsx ----
+// ---- primitives/Breadcrumb.jsx ----
 (function(){
 
 /** items: [{label, href?, onClick?}] — last item is the current page */
@@ -3010,7 +3010,7 @@ function Breadcrumb({ items = [], style }) {
 F.Breadcrumb = Breadcrumb;
 })();
 
-// ---- components/Pagination.jsx ----
+// ---- primitives/Pagination.jsx ----
 (function(){
 
 function Pagination({ page = 1, pages = 1, onChange, style }) {
@@ -3209,7 +3209,7 @@ function Dialog({ open = false, onClose, title, description, children, actions, 
 F.Dialog = Dialog;
 })();
 
-// ---- components/Toast.jsx ----
+// ---- primitives/Toast.jsx ----
 (function(){
 
 const TONES = {
@@ -3251,6 +3251,7 @@ function ToastStack({ children, style }) {
 }
 
 F.Toast = Toast;
+F.ToastStack = ToastStack;
 })();
 
 // ---- components/Drawer.jsx ----
@@ -4255,7 +4256,7 @@ function HelpCenter({
 F.HelpCenter = HelpCenter;
 })();
 
-// ---- components/TabBar.jsx ----
+// ---- primitives/TabBar.jsx ----
 (function(){
 
 /** Bottom tab bar for mobile shells. items: [{id, icon, label, badge?}] */
@@ -4333,7 +4334,7 @@ function Divider({ orientation = 'horizontal', label, style }) {
 F.Divider = Divider;
 })();
 
-// ---- components/CircularProgress.jsx ----
+// ---- primitives/CircularProgress.jsx ----
 (function(){
 
 /** Circular determinate progress/gauge. Compact alternative to Progress for dashboard tiles and connection states. */
@@ -4362,7 +4363,7 @@ function CircularProgress({ value = 0, max = 100, size = 56, strokeWidth = 5, la
 F.CircularProgress = CircularProgress;
 })();
 
-// ---- components/Timeline.jsx ----
+// ---- primitives/Timeline.jsx ----
 (function(){
 
 const STATUS = {
@@ -4497,7 +4498,7 @@ function OnboardingCarousel({ slides = [], index = 0, onIndexChange, onSkip, onD
 F.OnboardingCarousel = OnboardingCarousel;
 })();
 
-// ---- components/StatusView.jsx ----
+// ---- primitives/StatusView.jsx ----
 (function(){
 
 const CONFIG = {

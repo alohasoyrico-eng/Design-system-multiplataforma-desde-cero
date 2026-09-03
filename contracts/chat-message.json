@@ -1,7 +1,7 @@
 {
   "id": "chat-message",
   "name": "ChatMessage",
-  "layer": "components",
+  "layer": "primitives",
   "function": [
     "display"
   ],
@@ -97,7 +97,7 @@
     "No es Toast: no desaparece."
   ],
   "reference": {
-    "src": "components/ChatMessage.jsx",
+    "src": "primitives/ChatMessage.jsx",
     "demo": "ui_kits/agent-chat/index.html"
   },
   "platforms": {

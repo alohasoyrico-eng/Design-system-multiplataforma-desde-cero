@@ -14,7 +14,6 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 {"id":"anatomy-view","cat":"patterns","layer":"patterns","name":"AnatomyView","subtitle":"Descomposicion de un componente en sus partes constitutivas con specimen anotado y leyenda numerada.","status":"planned"},
 {"id":"balance-display","cat":"patterns","layer":"patterns","name":"BalanceDisplay","subtitle":"Display de saldo con label, valor en mono grande y toggle de visibilidad. Patron de wallet.","status":"planned","domain":"fintech"},
-{"id":"card-carousel","cat":"patterns","layer":"patterns","name":"CardCarousel","subtitle":"Carrusel horizontal de cards con scroll snap, dots de navegacion y control de indice.","status":"planned"},
 {"id":"doc-footer","cat":"patterns","layer":"patterns","name":"DocFooter","subtitle":"Footer de pagina de documentacion con metadata (last updated, version) y links de accion.","status":"planned"},
 {"id":"doc-hero","cat":"patterns","layer":"patterns","name":"DocHero","subtitle":"Hero de pagina de documentacion con headline clamp responsivo, descripcion, pills de plataforma y badge a11y.","status":"planned"},
 {"id":"download-card","cat":"patterns","layer":"patterns","name":"DownloadCard","subtitle":"Card outlined con icono, nombre de archivo y accion de descarga.","status":"planned"},
@@ -26,7 +25,6 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 {"id":"playground-canvas","cat":"patterns","layer":"patterns","name":"PlaygroundCanvas","subtitle":"Canvas interactivo de documentacion con selectores de variant/size/density, specimen vivo y snippet de codigo.","status":"planned"},
 {"id":"profile-menu","cat":"patterns","layer":"patterns","name":"ProfileMenu","subtitle":"Menu de perfil con avatar, nombre, rol y lista de acciones con iconos.","status":"planned"},
 {"id":"proposal-card","cat":"patterns","layer":"patterns","name":"ProposalCard","subtitle":"Comparacion before/after de propuestas MIEL con paneles semanticos y footer de acciones.","status":"planned"},
-{"id":"quick-action-bar","cat":"patterns","layer":"patterns","name":"QuickActionBar","subtitle":"Barra horizontal de acciones rapidas (QuickAction). Contenedor flex con scroll horizontal.","status":"planned","domain":"fintech"},
 {"id":"state-grid","cat":"patterns","layer":"patterns","name":"StateGrid","subtitle":"Grid de estados visuales de un componente (hover, focus, disabled, loading) con specimen y label por celda.","status":"planned"},
 {"id":"transaction-group","cat":"patterns","layer":"patterns","name":"TransactionGroup","subtitle":"Agrupacion de transacciones por fecha con label de seccion y lista de TransactionRow.","status":"planned","domain":"fintech"},
 ]);
