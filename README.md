@@ -127,7 +127,7 @@ FlowTheme(
 
 ### Contratos (para tooling y agentes)
 
-Los 181 contratos que alimentan la documentación también se exportan del paquete:
+Los 182 contratos que alimentan la documentación también se exportan del paquete:
 
 ```ts
 import contracts from '@alohasoyrico-eng/flow-react/contracts'
@@ -165,7 +165,7 @@ Resuelven tareas recurrentes de negocio.
 
 Pantallas completas funcionando en la app demo:
 
-**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 181 contratos)
+**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 182 contratos)
 
 **Internal Tools (CRM)** — `Resumen` · `Cuentas` · `Casos` · `Tickets` · `Pricing` · `Growth` · `Backoffice`
 

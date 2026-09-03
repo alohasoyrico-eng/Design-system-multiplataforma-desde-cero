@@ -226,7 +226,7 @@
     ],
     "dos": [
       "active con glow rojo para el paso en curso",
-      "Maximo ~6-8 eventos visibles; para logs largos usa TableTimeline"
+      "Maximo ~6-8 eventos visibles; para logs largos o filtrables usa Table"
     ],
     "donts": [
       "Usarlo para listas sin progresion temporal — ahi va una lista simple"
@@ -492,6 +492,42 @@
         "r": false,
         "rw": "",
         "note": "Qué escribir cuando no hay resultados"
+      },
+      {
+        "n": "suggestions",
+        "k": "prop",
+        "t": "string[]",
+        "d": "[]",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "emptyTitle",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "emptyDescription",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "noResultsTitle",
+        "k": "prop",
+        "t": "(query: string) => string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -514,7 +550,7 @@
     ],
     "notWhen": [
       "La consulta necesita filtros, orden o paginado — página de resultados",
-      "Elegir un valor para un formulario — Combobox o Select · WithInput"
+      "Elegir un valor para un formulario — Select searchable"
     ],
     "a11y": [
       "role combobox en el input; listbox/option en la lista",
@@ -773,6 +809,60 @@
         "k": "slot",
         "t": "ReactNode",
         "d": "null",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "leading",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "trailing",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "surface",
+        "k": "prop",
+        "t": "'card' | 'inverse' | 'glass'",
+        "d": "'card'",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "navSize",
+        "k": "prop",
+        "t": "'md' | 'sm'",
+        "d": "'md'",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "sticky",
+        "k": "prop",
+        "t": "boolean",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "version",
+        "k": "prop",
+        "t": "string",
+        "d": "",
         "r": false,
         "rw": "",
         "note": ""
@@ -1079,6 +1169,15 @@
         "n": "onClick",
         "k": "event",
         "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "media",
+        "k": "slot",
+        "t": "ReactNode",
         "d": "",
         "r": false,
         "rw": "",
@@ -1518,31 +1617,22 @@
         "note": "Fila resaltada"
       },
       {
-        "n": "dense",
+        "n": "sortable",
         "k": "prop",
         "t": "boolean",
-        "d": "false",
+        "d": "true",
         "r": false,
         "rw": "",
-        "note": "Padding 10 vs 14"
+        "note": ""
       },
       {
-        "n": "defaultSort",
+        "n": "density",
         "k": "prop",
-        "t": "{ key: string; dir: 1 | -1 }",
-        "d": "",
+        "t": "Density",
+        "d": "'default'",
         "r": false,
         "rw": "",
-        "note": "Orden inicial"
-      },
-      {
-        "n": "renderDetail",
-        "k": "renderProp",
-        "t": "(row) => ReactNode",
-        "d": "",
-        "r": false,
-        "rw": "",
-        "note": "Activa filas expandibles"
+        "note": ""
       }
     ],
     "dos": [
@@ -2335,6 +2425,24 @@
         "r": false,
         "rw": "",
         "note": "El último es la página actual"
+      },
+      {
+        "n": "variant",
+        "k": "prop",
+        "t": "'default' | 'subtle'",
+        "d": "'default'",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "homeIcon",
+        "k": "prop",
+        "t": "string",
+        "d": "'home'",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -3265,6 +3373,42 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "icon",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "balance",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "hidden",
+        "k": "prop",
+        "t": "boolean",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onToggleHidden",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -3456,6 +3600,24 @@
         "r": false,
         "rw": "",
         "note": "Punteada"
+      },
+      {
+        "n": "selectedPin",
+        "k": "prop",
+        "t": "string | null",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "routeColor",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -3808,6 +3970,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "color",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -3965,6 +4136,15 @@
         "n": "format",
         "k": "renderProp",
         "t": "(v)=>string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "color",
+        "k": "prop",
+        "t": "string",
         "d": "",
         "r": false,
         "rw": "",
@@ -5450,6 +5630,15 @@
         "r": false,
         "rw": "",
         "note": "Ojo de revelar. Es prestacion del control, no un componente aparte"
+      },
+      {
+        "n": "filled",
+        "k": "prop",
+        "t": "boolean",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -5743,6 +5932,15 @@
         "r": false,
         "rw": "",
         "note": "Glifo"
+      },
+      {
+        "n": "as",
+        "k": "prop",
+        "t": "'span' | 'kbd'",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -5850,6 +6048,24 @@
         "r": false,
         "rw": "",
         "note": "ghost: transparent bg, sin border individual — para uso dentro de ChipGroup"
+      },
+      {
+        "n": "size",
+        "k": "prop",
+        "t": "'sm' | 'md'",
+        "d": "'md'",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "mono",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -6102,6 +6318,15 @@
         "k": "prop",
         "t": "boolean",
         "d": "false",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "description",
+        "k": "prop",
+        "t": "string",
+        "d": "",
         "r": false,
         "rw": "",
         "note": ""
@@ -6541,6 +6766,24 @@
         "r": false,
         "rw": "",
         "note": "Sustituye help, role=alert"
+      },
+      {
+        "n": "valid",
+        "k": "prop",
+        "t": "boolean",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "validMessage",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -7184,6 +7427,24 @@
         "r": false,
         "rw": "",
         "note": "Color por dato; gana sobre palette"
+      },
+      {
+        "n": "color",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "thresholds",
+        "k": "prop",
+        "t": "[number, string][]",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -7287,7 +7548,7 @@
       "Listar solo los países donde opera el producto"
     ],
     "donts": [
-      "Un componente SelectCountry: se vuelve dueño de una lista que cambia por producto",
+      "Un componente SelectCountry (por eso se absorbió en Select): se vuelve dueño de una lista que cambia por producto",
       "Tratar país como idioma o moneda",
       "195 países cuando el producto opera en 8"
     ],
@@ -8947,6 +9208,15 @@
         "r": false,
         "rw": "",
         "note": "Deprecado — usa placement"
+      },
+      {
+        "n": "trigger",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [],
@@ -9116,6 +9386,60 @@
         "r": true,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "rowKey",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "selectedKey",
+        "k": "prop",
+        "t": "string | number",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onRowClick",
+        "k": "event",
+        "t": "(row: T) => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "sortable",
+        "k": "prop",
+        "t": "boolean",
+        "d": "true",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "density",
+        "k": "prop",
+        "t": "Density",
+        "d": "'default'",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "zebraToken",
+        "k": "prop",
+        "t": "string",
+        "d": "'var(--surface-sunken)'",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [],
@@ -9126,7 +9450,7 @@
     "nonGoals": [
       "No virtualiza.",
       "No trae filtros: el filtrado es del contenedor.",
-      "No es una linea de tiempo: TableTimeline no tiene columnas ni filas, es otra cosa con nombre de tabla."
+      "No es una linea de tiempo: para cronologia usa Timeline mode=\"events\"."
     ]
   },
   "listbox": {
@@ -9179,6 +9503,33 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "onChange",
+        "k": "event",
+        "t": "(item: T) => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "renderItem",
+        "k": "renderProp",
+        "t": "(item: T, state: { selected: boolean; active: boolean }) => ReactNode",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "id",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [],
@@ -9227,6 +9578,33 @@
         "n": "checked",
         "k": "prop",
         "t": "boolean",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onChange",
+        "k": "event",
+        "t": "(checked: boolean) => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "disabled",
+        "k": "prop",
+        "t": "boolean",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "label",
+        "k": "prop",
+        "t": "string",
         "d": "",
         "r": false,
         "rw": "",
@@ -11183,6 +11561,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "variant",
+        "k": "prop",
+        "t": "'default' | 'inline'",
+        "d": "'default'",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [],
@@ -11254,6 +11641,15 @@
         "k": "prop",
         "t": "React.CSSProperties",
         "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "contained",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
         "r": false,
         "rw": "",
         "note": ""

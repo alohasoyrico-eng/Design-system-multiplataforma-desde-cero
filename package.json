@@ -45,6 +45,7 @@
     "tokens:build": "node sd.config.js",
     "sync:docs": "node scripts/sync-docs.mjs",
     "sync:docs:check": "node scripts/sync-docs.mjs --check",
+    "check:catalog": "node scripts/check-catalog.mjs",
     "prepack": "npm run build:lib",
     "prepare": "node scripts/prepare.mjs"
   },
