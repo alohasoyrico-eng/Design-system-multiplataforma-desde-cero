@@ -12,10 +12,10 @@
       {
         "name": "variant",
         "kind": "prop",
-        "type": "'primary' | 'accent' | 'secondary' | 'ghost' | 'danger'",
+        "type": "'primary' | 'accent' | 'secondary' | 'ghost' | 'danger' | 'link'",
         "default": "primary",
         "variantAxis": true,
-        "note": "primary es tinta; accent es el rojo de marca, maximo uno por vista."
+        "note": "primary es tinta; accent es el rojo de marca, maximo uno por vista. link: accion con aspecto de enlace (D3, demanda de eOne); conserva la altura de su size — un enlace visual sigue siendo un objetivo tactil."
       },
       {
         "name": "size",
