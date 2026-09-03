@@ -31,6 +31,13 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "level",
+        "kind": "prop",
+        "type": "2 | 3 | 4",
+        "default": "2",
+        "note": "Nivel del heading real que emite el titulo."
       }
     ]
   },
@@ -41,6 +48,12 @@
         "rule": "Display usa --font-display con tracking negativo y clamp responsivo.",
         "level": "must",
         "verify": "visual"
+      },
+      {
+        "id": "sh-2",
+        "rule": "El titulo es un heading real (h2 por defecto, nivel configurable): un span rompe el outline del documento.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

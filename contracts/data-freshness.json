@@ -1,0 +1,92 @@
+{
+  "id": "data-freshness",
+  "name": "DataFreshness",
+  "layer": "components",
+  "status": "stable",
+  "summary": "La barra de frescura del dato: cuando se actualizo, con que cadencia llega, cuando refresca y el boton de actualizar. Cualquier producto con ingesta la necesita y ninguno la disena bien.",
+  "api": {
+    "members": [
+      {
+        "name": "updatedLabel",
+        "kind": "prop",
+        "type": "string",
+        "required": true,
+        "note": "Texto ya formateado («datos al miercoles 12:40»): el formato de fechas es del producto, no del sistema."
+      },
+      {
+        "name": "cadence",
+        "kind": "prop",
+        "type": "string",
+        "note": "«ingesta a dia vencido»"
+      },
+      {
+        "name": "nextRefresh",
+        "kind": "prop",
+        "type": "string",
+        "note": "«proximo refresco en 15 min»"
+      },
+      {
+        "name": "onRefresh",
+        "kind": "event",
+        "type": "() => void",
+        "note": "Sin el, la barra es solo lectura: no hay boton."
+      },
+      {
+        "name": "refreshing",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "false",
+        "note": "Carga en el boton y lo bloquea: sin doble disparo."
+      },
+      {
+        "name": "refreshLabel",
+        "kind": "prop",
+        "type": "string",
+        "default": "i18n common.refresh"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "df-1",
+        "rule": "Los metadatos se encadenan con el separador de la casa ( · ) y van en el rol tipografico de dato (mono).",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "df-2",
+        "rule": "Con refreshing activo el boton muestra carga y queda bloqueado: no hay doble disparo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "df-3",
+        "rule": "El cambio de updatedLabel se anuncia en vivo (aria-live polite): quien no ve la barra tambien se entera del refresco.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "df-4",
+        "rule": "Sin onRefresh no se renderiza boton: solo lectura.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "primitives": [
+      "button"
+    ]
+  },
+  "nonGoals": [
+    "No calcula ni programa refrescos: recibe textos y un evento.",
+    "No formatea fechas: eso es i18n del producto."
+  ],
+  "reference": {
+    "src": "components/DataFreshness.tsx"
+  }
+}

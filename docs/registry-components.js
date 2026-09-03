@@ -65,3 +65,11 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 {"id":"wizard","cat":"components","layer":"components","name":"Wizard","subtitle":"Marco del formulario multi-paso: Stepper arriba, un paso por cuerpo y botonera Volver / Siguiente / Confirmar con estado de carga. WizardSummary, WizardSummarySection y WizardSummaryRow arman el resumen editable del paso final.","status":"planned"},
 ]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"active-filters","cat":"components","layer":"components","name":"ActiveFilters","subtitle":"Chips de filtros activos con quitar por dimension, periodo fijo y limpiar todo.","status":"planned"},
+]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"data-freshness","cat":"components","layer":"components","name":"DataFreshness","subtitle":"Frescura del dato: actualizado, cadencia, proximo refresco y actualizar.","status":"planned"},
+]);

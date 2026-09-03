@@ -1,0 +1,98 @@
+{
+  "id": "active-filters",
+  "name": "ActiveFilters",
+  "layer": "components",
+  "status": "stable",
+  "summary": "La barra de filtros activos: chips por dimension con quitar individual, chip de periodo no removible y limpiar todo. FilterBar es el contenedor de entrada; esto es el contrato de salida.",
+  "api": {
+    "types": [
+      {
+        "name": "ActiveFilter",
+        "shape": "{ id: string; dimension: string; label: string }"
+      }
+    ],
+    "members": [
+      {
+        "name": "filters",
+        "kind": "prop",
+        "type": "ActiveFilter[]",
+        "required": true,
+        "note": "Los filtros vivos. Con lista vacia y sin periodo, el componente no renderiza nada."
+      },
+      {
+        "name": "period",
+        "kind": "prop",
+        "type": "string",
+        "note": "El periodo activo como chip fijo: informa, no se quita desde aqui."
+      },
+      {
+        "name": "onRemove",
+        "kind": "event",
+        "type": "(id: string) => void",
+        "required": true
+      },
+      {
+        "name": "onClearAll",
+        "kind": "event",
+        "type": "() => void",
+        "note": "Limpiar todo. Solo se ofrece cuando hay 2 o mas filtros."
+      },
+      {
+        "name": "clearLabel",
+        "kind": "prop",
+        "type": "string",
+        "default": "i18n common.clearFilters",
+        "note": "Override del texto de limpiar."
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "af-1",
+        "rule": "Cada chip nombra dimension y valor, y su boton de quitar tiene nombre accesible que los incluye.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "af-2",
+        "rule": "El chip de periodo no ofrece quitar: el periodo se cambia donde se elige, no desde la salida.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "af-3",
+        "rule": "Limpiar todo aparece solo con 2 o mas filtros: con uno, quitar el chip ya es limpiar todo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "af-4",
+        "rule": "Sin filtros y sin periodo no se renderiza nada: la barra no reserva sitio vacio.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "af-5",
+        "rule": "La barra es una region con nombre accesible; los chips son una lista.",
+        "level": "should",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "primitives": [
+      "chip"
+    ]
+  },
+  "nonGoals": [
+    "No construye filtros: eso es FilterBar con sus controles.",
+    "No persiste combinaciones: eso es saved-views."
+  ],
+  "reference": {
+    "src": "components/ActiveFilters.tsx"
+  }
+}

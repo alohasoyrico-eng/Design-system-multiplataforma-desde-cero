@@ -1013,6 +1013,20 @@
       "contract": "contracts/wizard.json"
     },
     {
+      "id": "active-filters",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/active-filters.json"
+    },
+    {
+      "id": "data-freshness",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/data-freshness.json"
+    },
+    {
       "id": "state-grid",
       "layer": "patterns",
       "domain": null,
@@ -1140,10 +1154,10 @@
     }
   ],
   "contractCoverage": {
-    "items": 143,
+    "items": 145,
     "shells": 6,
-    "written": 143,
-    "files": 149,
+    "written": 145,
+    "files": 151,
     "$comment": "written se recomputa contando items con contract enlazado, no incrementando a mano. files = contratos de item + los 6 shells; _base y _schema no cuentan."
   },
   "targetPaths": {
