@@ -1,7 +1,7 @@
 import { useState, useMemo, type CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
 import { Input } from '../primitives/Input'
-import { DataGrid, type GridColumn } from '../components/DataGrid'
+import { DataGrid, type GridColumn } from '../primitives/DataGrid'
 import css from './FilterableEditableTable.module.css'
 
 export interface FilterableColumn extends GridColumn {

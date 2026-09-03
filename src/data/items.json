@@ -7643,7 +7643,7 @@
   },
   "wizard": {
     "name": "Wizard",
-    "layer": "patterns",
+    "layer": "components",
     "status": "",
     "summary": "Marco del formulario multi-paso: Stepper arriba, un paso por cuerpo y botonera Volver / Siguiente / Confirmar con estado de carga. WizardSummary, WizardSummarySection y WizardSummaryRow arman el resumen editable del paso final.",
     "fn": [
@@ -7654,7 +7654,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "patterns/Wizard.tsx",
+    "src": "components/Wizard.tsx",
     "platforms": {},
     "anatomy": "",
     "tokens": [],
@@ -9337,7 +9337,7 @@
   },
   "data-grid": {
     "name": "DataGrid",
-    "layer": "components",
+    "layer": "primitives",
     "status": "beta",
     "summary": "La mecanica de una tabla: columnas, header sticky, zebra por token, seleccion, orden y celda editable.",
     "fn": [
@@ -9355,7 +9355,7 @@
       "bulk-actions-pattern",
       "filters-inline-edit"
     ],
-    "src": "components/DataGrid.tsx",
+    "src": "primitives/DataGrid.tsx",
     "platforms": {
       "web": "beta",
       "angular": "n/a",

@@ -1,5 +1,5 @@
 import { useState, type CSSProperties, type ReactNode } from 'react'
-import { DataGrid, type GridColumn } from '../components/DataGrid'
+import { DataGrid, type GridColumn } from '../primitives/DataGrid'
 import { Button } from '../primitives/Button'
 import { IconButton } from '../primitives/IconButton'
 import { Checkbox } from '../primitives/Checkbox'

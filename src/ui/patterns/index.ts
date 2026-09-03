@@ -16,4 +16,3 @@ export { ProfileMenu, type ProfileMenuProps, type ProfileMenuItem } from './Prof
 export { Settings, type SettingsProps } from './Settings'
 export { StateGrid, type StateGridProps, type StateGridItem } from './StateGrid'
 export { TransactionGroup, type TransactionGroupProps } from './TransactionGroup'
-export { Wizard, type WizardProps } from './Wizard'

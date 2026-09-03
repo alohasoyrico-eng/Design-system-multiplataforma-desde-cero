@@ -46,6 +46,7 @@
     "sync:docs": "node scripts/sync-docs.mjs",
     "sync:docs:check": "node scripts/sync-docs.mjs --check",
     "check:catalog": "node scripts/check-catalog.mjs",
+    "check:inventory": "node scripts/check-inventory-sync.mjs",
     "prepack": "npm run build:lib",
     "prepare": "node scripts/prepare.mjs"
   },
