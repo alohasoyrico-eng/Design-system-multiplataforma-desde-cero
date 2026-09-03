@@ -528,7 +528,7 @@
     "name": "Sidebar",
     "layer": "components",
     "status": "",
-    "summary": "Nav lateral de shell desktop: secciones colapsables, item activo en acento y modo 60px solo-iconos con tooltip.",
+    "summary": "Nav lateral de shell desktop: secciones colapsables, item activo en acento y modo 60px solo-iconos con tooltip. SidebarProvider y useSidebarToggle acompañan el estado colapsado desde el shell.",
     "fn": [
       "navigation"
     ],
@@ -1109,7 +1109,7 @@
     "name": "DatePicker",
     "layer": "components",
     "status": "beta",
-    "summary": "El único calendario del sistema. mode=\"single\" habla en ISO; mode=\"range\" en {from,to} con atajos de 7/30/90 días. Lunes primero, teclado de rejilla.",
+    "summary": "El único calendario del sistema. mode=\"single\" habla en ISO; mode=\"range\" en {from,to} con atajos de 7/30/90 días. Lunes primero, teclado de rejilla. DateRangePicker sobrevive solo como alias deprecado de mode=\"range\"; no implementarlo aparte.",
     "fn": [
       "forms"
     ],
@@ -7380,6 +7380,114 @@
     ],
     "nonGoals": []
   },
+  "wizard": {
+    "name": "Wizard",
+    "layer": "patterns",
+    "status": "",
+    "summary": "Marco del formulario multi-paso: Stepper arriba, un paso por cuerpo y botonera Volver / Siguiente / Confirmar con estado de carga. WizardSummary, WizardSummarySection y WizardSummaryRow arman el resumen editable del paso final.",
+    "fn": [
+      "forms"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": false,
+    "stubNote": "",
+    "shellOf": [],
+    "src": "patterns/Wizard.tsx",
+    "platforms": {},
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [
+      {
+        "n": "steps",
+        "k": "prop",
+        "t": "StepperStep[]",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "Los pasos del Stepper"
+      },
+      {
+        "n": "current",
+        "k": "prop",
+        "t": "number",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "Paso activo"
+      },
+      {
+        "n": "onBack",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onNext",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onSubmit",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Solo se ofrece en el ultimo paso"
+      },
+      {
+        "n": "submitting",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
+        "r": false,
+        "rw": "",
+        "note": "Carga en el boton de confirmar y bloquea Volver"
+      },
+      {
+        "n": "nextLabel",
+        "k": "prop",
+        "t": "string",
+        "d": "i18n common.next",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "submitLabel",
+        "k": "prop",
+        "t": "string",
+        "d": "i18n common.confirm",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "children",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "El contenido del paso actual"
+      }
+    ],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
   "wizard-pattern": {
     "name": "Formulario multi-paso (Wizard)",
     "layer": "patterns",
@@ -7671,7 +7779,7 @@
     "name": "Tipografia",
     "layer": "foundations",
     "status": "",
-    "summary": "Sora para todo lo humano, JetBrains Mono para todo lo que es dato: placas, KPIs, montos, IDs.",
+    "summary": "Edenred para display y titulares, Ubuntu para el body, IBM Plex Mono para todo lo que es dato: placas, KPIs, montos, IDs.",
     "fn": [],
     "domain": "",
     "shell": false,
@@ -7717,7 +7825,7 @@
     ],
     "members": [],
     "dos": [
-      "KPIs, placas y montos siempre en mono",
+      "KPIs, placas y montos siempre en mono (IBM Plex Mono)",
       "Sentence case en todo, incluidos botones",
       "Maximo 2 pesos por bloque de UI"
     ],
