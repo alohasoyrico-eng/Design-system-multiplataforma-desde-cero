@@ -99,7 +99,7 @@ Cuatro reglas, y las tres primeras se pueden reventar:
 - **R1 — las dependencias solo van hacia abajo.** Ningun archivo importa de una capa superior; de su propia capa, solo shells. Una dependencia externa (ECharts, tiles de mapa) no cuenta: R1 mira el grafo del sistema. **Bloquea.**
 - **R2 — una variante no es un item.** Un item, un archivo. Nada declarado en `supersedes` puede sobrevivir: ni archivo, ni entrada de registry, **ni mencion en un texto que lo recomiende**. Esa ultima es la que se cuela: no es una ruta rota, es una frase que dice «usa X» sobre algo que ya no existe. **Bloquea.**
 - **R3 — una carcasa, un dueno.** Fuera de `shells/`, nadie declara borde+foco+radio de control, backdrop fijo ni `@keyframes` propios. Llego a cero y **bloquea**.
-- **R4 — la composicion no se filtra a la API.** Ninguna prop publica repite un nombre de `composition`. Es lo que se violo para llegar a `SelectCountry`: una decision interna se volvio nombre publico. **Bloquea.**
+- **R4 — la composicion no se filtra a la API.** Ninguna prop publica repite un nombre de `composition`. Es lo que se violo para llegar a `SelectCountry` (luego absorbido por `select`): una decision interna se volvio nombre publico. **Bloquea.**
 
 ### Los contratos son el entregable, no el codigo
 

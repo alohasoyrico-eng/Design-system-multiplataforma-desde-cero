@@ -8,4 +8,4 @@ Historial vertical con estado por evento. `active` resalta el paso en curso (glo
 ]} />
 ```
 
-Para logs tabulares con filtros usa `TableTimeline`; este es para lectura lineal del detalle de un solo registro (viaje, ticket, sincronización).
+Para logs tabulares con filtros usa `Table`; este es para lectura lineal del detalle de un solo registro (viaje, ticket, sincronización).

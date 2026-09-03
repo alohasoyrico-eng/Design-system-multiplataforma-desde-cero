@@ -37,7 +37,7 @@ const LIST = [
     return <ScatterPlot points={units.map(u=>({id:u.id,x:u.km,y:u.costoKm,label:u.plate}))} xLabel="Km recorridos" yLabel="Costo/km" xThreshold={3000} yThreshold={3} width={600} height={280} selectedId={sel} onSelect={setSel} />; }},
   {id:'smallmultiples', title:'Small Multiples (click = seleccionar)', C:function(){ const [sel,setSel]=React.useState(null);
     return <SmallMultiples items={regions} isOutlier={(it)=>Math.max(...it.values) > 55} format={(v)=>v+' viajes'} selectedId={sel} onSelect={setSel} />; }},
-  {id:'heatmap', title:'Heatmap', C:()=><FlowChart type="heatmap" format={(v)=>v+' viajes'} height={280}
+  {id:'heatmap', title:'FlowChart · heatmap', C:()=><FlowChart type="heatmap" format={(v)=>v+' viajes'} height={280}
     matrix={{rows:['Lun','Mar','Mie','Jue','Vie','Sab'], cols:['6h','9h','12h','15h','18h','21h'],
       values:[[12,28,22,30,45,20],[10,25,20,29,42,18],[14,30,25,32,48,22],[15,31,27,33,50,25],[18,35,30,38,60,30],[8,15,20,22,55,40]]
         .flatMap((row,r)=>row.map((v,c)=>[c,r,v]))}}

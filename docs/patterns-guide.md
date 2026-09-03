@@ -49,13 +49,13 @@ Este documento organiza los **patrones avanzados** del sistema Flow: composicion
 ## 2. PATRONES DE DATOS (TABLES)
 
 ### 2.1 List densa (operativo)
-**Tabla**: TableDense
+**Tabla**: `Table dense`
 **Uso**: dashboards en tiempo real, KPIs, monitoreo
 **Densidad**: 8px padding, 12px font
 **Interacción**: hover subtle, sin expandables
 
 ### 2.2 List expandible (detalles)
-**Tabla**: TableExpandable
+**Tabla**: `Table renderDetail`
 **Uso**: listados de órdenes, transacciones, reportes
 **Densidad**: 14px padding (estándar)
 **Interacción**: click en fila → detail row con más info
@@ -67,7 +67,7 @@ Este documento organiza los **patrones avanzados** del sistema Flow: composicion
 **Interacción**: chevron de expansión con nesting visual (offset 24px/nivel)
 
 ### 2.4 Timeline (eventos/hitos)
-**Tabla**: TableTimeline
+**Tabla**: `Timeline mode="events"`
 **Uso**: historial de estados, milestones, changelog
 **Densidad**: vertical, 24px gap
 **Interacción**: punto en línea con color de estado, hover scale
@@ -141,11 +141,11 @@ Uso: roadmaps, planificación de proyectos
 Estructura: nombre tarea (120px) + barra horizontal + progreso
 Duración: visualización proporcional en 100%
 
-### 4.2 Waterfall Chart (acumulativo)
+### 4.2 Waterfall — `FlowChart type="waterfall"` (acumulativo)
 Uso: descomposición de cambios, presupuestos, análisis
 Estructura: barras verticales positivo/negativo, línea base central
 
-### 4.3 Polar Chart (multidimensional)
+### 4.3 Radar — `FlowChart type="radar"` (multidimensional)
 Uso: perfiles, habilidades, comparativas 360
 Estructura: polígono con ejes radiales, leyenda abajo
 Datos: [label, value, color]
@@ -202,7 +202,7 @@ Estructura:
 ## 6. GUÍA DE COMPOSICIÓN
 
 ### Densidades estándar
-- **Compacta** (UI operativa): 8px padding, 12px font → TableDense
+- **Compacta** (UI operativa): 8px padding, 12px font → `Table dense`
 - **Estándar** (CRUD): 14px padding, 13–14px font → Table, Card
 - **Espaciada** (hero/editorial): 24–32px padding, 16px+ font → CardMedia, HelpCenter
 
@@ -240,9 +240,9 @@ Header: Logo + User menu
 Sidebar: Nav principal (Flota, Reportes, Configuración)
 Content:
   - Sección 1: Stats cards (CardStats) → 4 columnas
-  - Sección 2: Tabla densa de vehículos (TableDense) con filtros top
+  - Sección 2: Tabla densa de vehículos (`Table dense`) con filtros top
   - Sección 3: Gráfico (FlowChart type="line", o GanttChart si es timeline)
-  - Sección 4: Timeline de eventos recientes (TableTimeline)
+  - Sección 4: Timeline de eventos recientes (`Timeline mode="events"`)
 ```
 
 ### Ejemplo: Onboarding de conductor

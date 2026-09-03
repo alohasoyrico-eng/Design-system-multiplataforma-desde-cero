@@ -46,7 +46,7 @@ function Demo(){
       <SmallMultiples items={regions} isOutlier={(it)=>Math.max(...it.values) > 55} format={(v)=>v+' viajes'} />
     </Card>
     <Card>
-      <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Heatmap — demanda por dia y hora</div>
+      <div style={{font:'var(--type-title-sm)',marginBottom:4}}>FlowChart · heatmap — demanda por dia y hora</div>
       <FlowChart type="heatmap" height={280} format={(v)=>v+' viajes'}
         matrix={{rows:['Lun','Mar','Mie','Jue','Vie','Sab'], cols:['6h','9h','12h','15h','18h','21h'],
           values:[[12,28,22,30,45,20],[10,25,20,29,42,18],[14,30,25,32,48,22],[15,31,27,33,50,25],[18,35,30,38,60,30],[8,15,20,22,55,40]]

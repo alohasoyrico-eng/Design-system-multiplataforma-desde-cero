@@ -144,15 +144,31 @@ function checkR2(items, contracts, files) {
   if (!absorbed.length) { notes.push('R2: ningun contrato declara supersedes todavia'); return; }
   const ids = new Set(items.map((i) => i.id));
   const camel = (id) => id.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+  // El nombre en prosa no siempre es la camelizacion del id: hay mayusculas
+  // internas que el id no trae, y separadores (foo-bar como "Foo Bar"). Primera
+  // letra de cada segmento en mayuscula, el resto sin distinguir caja, y hasta
+  // tres caracteres de separacion entre segmentos.
+  const seg = (s) => s.charAt(0).toUpperCase() + s.slice(1).split('').map((c) => (/[a-z]/.test(c) ? '[' + c + c.toUpperCase() + ']' : c)).join('');
+  const nameBody = (id) => id.split('-').map(seg).join('[^A-Za-z0-9]{0,3}');
 
   for (const { id, by } of absorbed) {
     if (ids.has(id)) fail('R2', 'docs/registry-*.js', 'el item "' + id + '" sigue registrado y ' + by + ' declara haberlo absorbido');
     const name = camel(id);
+    const body = nameBody(id);
+    const stem = camel(by) + '.'; // Select. → Select.jsx, Select.d.ts, Select.prompt.md
     for (const abs of files) {
       const p = rel(abs);
       if (p.startsWith('contracts/') || p === 'SKILL.md' || p === 'readme.md') continue; // documentan la absorcion a proposito
-      if (!new RegExp('(^|[^A-Za-z])' + name + '($|[^A-Za-z])').test(readFileSync(abs, 'utf8'))) continue;
-      fail('R2', p, 'menciona "' + name + '", absorbido por ' + by);
+      if (/^docs\/registry-/.test(p)) continue; // el registry se escanea por strings, con sus excepciones declaradas
+      if (p.split('/').pop().startsWith(stem)) continue; // los archivos del absorbedor llevan su mapa de migracion
+      const lineas = readFileSync(abs, 'utf8').split('\n');
+      for (let i = 0; i < lineas.length; i++) {
+        if (/absorb|supersed/i.test(lineas[i])) continue; // la linea documenta la absorcion, no recomienda al muerto
+        if (new RegExp('(^|[^A-Za-z])' + body + '($|[^A-Za-z])').test(lineas[i])) {
+          fail('R2', p + ':' + (i + 1), 'menciona "' + name + '", absorbido por ' + by);
+          break;
+        }
+      }
     }
     // menciones en el texto del registry: el caso que un chequeo de rutas no ve.
     // Un item puede documentar la absorcion a proposito, pero tiene que declararlo
@@ -160,7 +176,8 @@ function checkR2(items, contracts, files) {
     for (const it of items) {
       if (it.id === by || (it.documentsAbsorption || []).includes(id)) continue;
       for (const s of strings(it)) {
-        if (new RegExp('(^|[^A-Za-z\'])' + name + '($|[^A-Za-z\'])').test(s.value)) {
+        if (/absorb|supersed/i.test(s.value)) continue;
+        if (new RegExp('(^|[^A-Za-z\'])' + body + '($|[^A-Za-z\'])').test(s.value)) {
           fail('R2', 'registry:' + it.id + '.' + s.path, 'recomienda "' + name + '", que ya no existe');
         }
       }
