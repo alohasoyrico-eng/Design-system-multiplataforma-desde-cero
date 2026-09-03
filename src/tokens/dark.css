@@ -11,6 +11,7 @@
 
   --text-primary: var(--flow-grey-100);
   --text-secondary: var(--flow-grey-400);
+  --brand: var(--flow-red-500);       /* la marca es la marca, tambien de noche */
   --text-muted: var(--flow-grey-400);  /* grey-500 daba 3.54:1 sobre card; medido: 6.57:1 */
   --text-on-accent: var(--ref-white);
   --text-on-inverse: var(--flow-grey-900);

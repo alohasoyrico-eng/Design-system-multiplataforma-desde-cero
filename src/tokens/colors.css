@@ -92,6 +92,9 @@
   /* ---- Semantic: actions ---- */
   --action-primary: var(--flow-grey-900);
   --action-primary-hover: var(--ref-black);
+  /* Rol de marca: el rojo Edenred con nombre semantico — eOne lo escribia a
+     mano (#F72717) porque el sistema no lo exponia. La marca no cambia de modo. */
+  --brand: var(--flow-red-500);
   --action-accent: var(--flow-blue-500);
   --action-accent-hover: var(--flow-blue-600);
 

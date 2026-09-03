@@ -1034,6 +1034,10 @@
               "$value": "{flow.ref.color.grey.900}"
             }
           }
+        },
+        "brand": {
+          "$value": "{flow.brand.red.500}",
+          "$type": "color"
         }
       },
       "dark": {
@@ -1291,6 +1295,10 @@
               "$value": "{flow.ref.color.grey.300}"
             }
           }
+        },
+        "brand": {
+          "$value": "{flow.brand.red.500}",
+          "$type": "color"
         }
       },
       "space": {

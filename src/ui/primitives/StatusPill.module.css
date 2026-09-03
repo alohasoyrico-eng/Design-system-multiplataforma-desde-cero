@@ -34,3 +34,7 @@
 .root[data-tone="info"] .dot {
   background: var(--status-info);
 }
+
+.root[data-tone="neutral"] .dot {
+  background: var(--text-muted);
+}

@@ -11074,7 +11074,7 @@
       {
         "n": "tone",
         "k": "prop",
-        "t": "'success' | 'warning' | 'danger' | 'info'",
+        "t": "'success' | 'warning' | 'danger' | 'info' | 'neutral'",
         "d": "'success'",
         "r": false,
         "rw": "",
@@ -12981,6 +12981,36 @@
     "shell": false,
     "stub": true,
     "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (ReportFrame / Viewer / Stage de eOne).",
+    "shellOf": [],
+    "src": "",
+    "platforms": {
+      "web": "n/a",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
+  "fullscreen-sheet": {
+    "name": "Fullscreen sheet",
+    "layer": "components",
+    "status": "beta",
+    "summary": "Panel a pantalla completa que entra deslizando desde abajo (flow-slide-up). El Flow viejo lo tenia (FlowFullscreenSheet) y el nuevo lo perdio; eOne lo usa y su CSS importa el keyframe a la carta (riesgo R4 del inventario).",
+    "fn": [
+      "overlay"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": true,
+    "stubNote": "Pieza perdida en la migracion Flow 1.x→3.0, detectada cruzando el inventario de eOne contra el catalogo. Ni PeekSheet ni BottomSheet la cubren: esto es superficie completa. Contrato en la referencia antes de construir; debe componer OverlayShell.",
     "shellOf": [],
     "src": "",
     "platforms": {

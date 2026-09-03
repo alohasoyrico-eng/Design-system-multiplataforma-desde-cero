@@ -3,7 +3,7 @@ import css from './StatusPill.module.css'
 
 export interface StatusPillProps {
   label: string
-  tone?: 'success' | 'warning' | 'danger' | 'info'
+  tone?: 'success' | 'warning' | 'danger' | 'info' | 'neutral'
   style?: CSSProperties
 }
 
