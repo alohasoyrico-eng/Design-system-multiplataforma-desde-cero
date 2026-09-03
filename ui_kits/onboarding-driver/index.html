@@ -123,7 +123,7 @@ function JourneyA(){
       <StepHeader step={7} total={7} onBack={back} title="Avisos que importan" subtitle="Te avisamos de cada cargo, deposito y alerta de seguridad." />
       <div style={{background:'var(--surface-card)',borderRadius:'var(--radius-lg)',padding:20,boxShadow:'var(--shadow-rest)',display:'flex',flexDirection:'column',gap:16}}>
         <div style={{display:'flex',alignItems:'center',gap:12}}>
-          <span className="flow-icon" aria-hidden="true" style={{fontSize:22,color:'var(--text-accent)'}}>notifications_active</span>
+          <span className="flow-symbol" aria-hidden="true" style={{fontSize:22,color:'var(--text-accent)'}}>notifications_active</span>
           <div style={{flex:1}}>
             <div style={{fontSize:14,fontWeight:600}}>Notificaciones push</div>
             <div style={{fontSize:12,color:'var(--text-muted)'}}>Cargos en tiempo real</div>
@@ -146,7 +146,7 @@ function JourneyA(){
     {step==='done' && <Screen>
       <div style={{margin:'auto',textAlign:'center',display:'flex',flexDirection:'column',alignItems:'center',gap:14}}>
         <span style={{width:84,height:84,borderRadius:'50%',background:'var(--status-success-bg)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}>
-          <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:44,color:'var(--status-success-text)',animation:'flowScaleIn var(--dur-base) var(--ease-spring)'}}>check_circle</span>
+          <span className="flow-symbol flow-symbol--fill" aria-hidden="true" style={{fontSize:44,color:'var(--status-success-text)',animation:'flowScaleIn var(--dur-base) var(--ease-spring)'}}>check_circle</span>
         </span>
         <h1 style={{font:'var(--type-title-lg)',margin:0}}>Tarjeta activada</h1>
         <p style={{fontSize:13.5,color:'var(--text-secondary)',lineHeight:1.6,margin:0,maxWidth:250}}>Tu tarjeta •••• {card.replace(/\s/g,'').slice(-4)||'4821'} esta lista para usarse.</p>
@@ -199,7 +199,7 @@ function JourneyB(){
     {scr==='done' && <Screen>
       <div style={{margin:'auto',textAlign:'center',display:'flex',flexDirection:'column',alignItems:'center',gap:14}}>
         <span style={{width:84,height:84,borderRadius:'50%',background:'var(--status-success-bg)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}>
-          <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:44,color:'var(--status-success-text)',animation:'flowScaleIn var(--dur-base) var(--ease-spring)'}}>check_circle</span>
+          <span className="flow-symbol flow-symbol--fill" aria-hidden="true" style={{fontSize:44,color:'var(--status-success-text)',animation:'flowScaleIn var(--dur-base) var(--ease-spring)'}}>check_circle</span>
         </span>
         <h1 style={{font:'var(--type-title-lg)',margin:0}}>Tarjeta agregada</h1>
         <Button variant="accent" size="lg" onClick={()=>{setScr('wallet');setCard('');}}>Ver mis tarjetas</Button>

@@ -26,7 +26,7 @@ export function StatusView({ status = 'loading', title, description, primaryActi
         style: { position: 'absolute', inset: -4, borderRadius: '50%', border: '2.5px solid var(--action-accent)', borderTopColor: 'transparent', animation: 'flowSpin 1s linear infinite' },
       }),
       React.createElement('span', {
-        className: 'flow-icon' + (status === 'success' || status === 'error' ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+        className: 'flow-symbol' + (status === 'success' || status === 'error' ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
         style: {
           fontSize: 40, color: cfg.color,
           animation: status === 'loading' ? 'flowSpin 1.4s linear infinite' : (status === 'success' ? 'flowScaleIn var(--dur-base) var(--ease-spring)' : 'none'),

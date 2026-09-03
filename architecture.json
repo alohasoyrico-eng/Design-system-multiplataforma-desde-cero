@@ -355,6 +355,83 @@
       "contract": "contracts/flow-chart.json"
     },
     {
+      "id": "auto-grid",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/auto-grid.json"
+    },
+    {
+      "id": "calendar",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/calendar.json"
+    },
+    {
+      "id": "chart-legend",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/chart-legend.json"
+    },
+    {
+      "id": "chip-group",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/chip-group.json"
+    },
+    {
+      "id": "detail-row",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/detail-row.json"
+    },
+    {
+      "id": "flow-logo",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/flow-logo.json"
+    },
+    {
+      "id": "inline-code",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/inline-code.json"
+    },
+    {
+      "id": "page-frame",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/page-frame.json"
+    },
+    {
+      "id": "section-header",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/section-header.json"
+    },
+    {
+      "id": "specimen",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/specimen.json"
+    },
+    {
+      "id": "status-pill",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/status-pill.json"
+    },
+    {
       "id": "global-search",
       "layer": "components",
       "domain": null,
@@ -698,6 +775,69 @@
       "contract": "contracts/filters-inline-edit.json"
     },
     {
+      "id": "code-block",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/code-block.json"
+    },
+    {
+      "id": "filter-bar",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/filter-bar.json"
+    },
+    {
+      "id": "limit-bar",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/limit-bar.json"
+    },
+    {
+      "id": "nav-bar",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/nav-bar.json"
+    },
+    {
+      "id": "peek-sheet",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/peek-sheet.json"
+    },
+    {
+      "id": "quick-action",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/quick-action.json"
+    },
+    {
+      "id": "route-banner",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/route-banner.json"
+    },
+    {
+      "id": "section-bar",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/section-bar.json"
+    },
+    {
+      "id": "section-rule",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/section-rule.json"
+    },
+    {
       "id": "dataviz-flotas-grandes",
       "layer": "patterns",
       "domain": "mobility",
@@ -752,6 +892,125 @@
       "domain": null,
       "src": null,
       "contract": "contracts/auth-pattern.json"
+    },
+    {
+      "id": "anatomy-view",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/anatomy-view.json"
+    },
+    {
+      "id": "balance-display",
+      "layer": "patterns",
+      "domain": "fintech",
+      "src": null,
+      "contract": "contracts/balance-display.json"
+    },
+    {
+      "id": "card-carousel",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/card-carousel.json"
+    },
+    {
+      "id": "doc-footer",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/doc-footer.json"
+    },
+    {
+      "id": "doc-hero",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/doc-hero.json"
+    },
+    {
+      "id": "download-card",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/download-card.json"
+    },
+    {
+      "id": "guidance-card",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/guidance-card.json"
+    },
+    {
+      "id": "install-card",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/install-card.json"
+    },
+    {
+      "id": "nav-card",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/nav-card.json"
+    },
+    {
+      "id": "nip-reveal",
+      "layer": "patterns",
+      "domain": "fintech",
+      "src": null,
+      "contract": "contracts/nip-reveal.json"
+    },
+    {
+      "id": "page-header",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/page-header.json"
+    },
+    {
+      "id": "playground-canvas",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/playground-canvas.json"
+    },
+    {
+      "id": "profile-menu",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/profile-menu.json"
+    },
+    {
+      "id": "proposal-card",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/proposal-card.json"
+    },
+    {
+      "id": "quick-action-bar",
+      "layer": "patterns",
+      "domain": "fintech",
+      "src": null,
+      "contract": "contracts/quick-action-bar.json"
+    },
+    {
+      "id": "state-grid",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/state-grid.json"
+    },
+    {
+      "id": "transaction-group",
+      "layer": "patterns",
+      "domain": "fintech",
+      "src": null,
+      "contract": "contracts/transaction-group.json"
     },
     {
       "id": "agent-chat-template",
@@ -867,11 +1126,11 @@
     }
   ],
   "contractCoverage": {
-    "items": 104,
+    "items": 141,
     "shells": 6,
-    "written": 104,
-    "files": 114,
-    "$comment": "written se recomputa contando items con contract enlazado, no incrementando a mano. files incluye los 6 shells, que no son items de docs."
+    "written": 141,
+    "files": 147,
+    "$comment": "written se recomputa contando items con contract enlazado, no incrementando a mano. files = contratos de item + los 6 shells; _base y _schema no cuentan."
   },
   "targetPaths": {
     "$comment": "Mapeo de capa a ruta en el codebase destino. El dev lo ajusta una vez; check-layers.mjs --target lo usa para R1 sobre el grafo real de imports.",

@@ -22,6 +22,6 @@ export function Breadcrumb({ items = [], style }) {
               onMouseEnter: (e) => { e.currentTarget.style.color = 'var(--text-accent)'; e.currentTarget.style.background = 'var(--surface-sunken)'; },
               onMouseLeave: (e) => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'transparent'; },
             }, it.label),
-          !last && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 16, color: 'var(--flow-ink-300)' } }, 'chevron_right'));
+          !last && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16, color: 'var(--flow-ink-300)' } }, 'chevron_right'));
       })));
 }

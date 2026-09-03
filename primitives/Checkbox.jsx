@@ -15,7 +15,7 @@ export function Checkbox({ checked = false, onChange, label, disabled = false, i
         transition: 'all var(--dur-fast) var(--ease-spring)',
       },
     }, (s.checked || s.indeterminate) && React.createElement('span', {
-      className: 'flow-icon',
+      className: 'flow-symbol',
       style: { fontSize: 16, color: 'var(--text-on-inverse)', fontVariationSettings: "'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 20", animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' },
     }, s.indeterminate ? 'remove' : 'check')),
   });

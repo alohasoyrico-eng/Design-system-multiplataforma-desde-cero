@@ -10,7 +10,7 @@ export function BulletChart({ rows = [], format, style }) {
       gap: 6, minHeight: 100, color: 'var(--text-muted)', font: 'var(--type-caption)',
     },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
     'Sin datos para este periodo');
   const gmax = Math.max(...rows.map(r => r.max || Math.max(r.value, r.target) * 1.2), 1);
   return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: 14, fontFamily: 'var(--font-body)', ...style } },

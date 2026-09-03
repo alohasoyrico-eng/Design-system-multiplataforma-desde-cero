@@ -51,7 +51,7 @@ function ThemeToggle(){
       const active = t.id===theme;
       return <button key={t.id} onClick={()=>pick(t.id)} aria-label={t.label} aria-pressed={active} title={t.label}
         style={{width:'var(--hit-target-min)',height:'var(--hit-target-min)',border:'none',background:active?'var(--surface-sunken)':'transparent',borderRadius:'var(--radius-sm)',cursor:'pointer',color:active?'var(--text-primary)':'var(--text-muted)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}>
-        <span className="flow-icon" aria-hidden="true" style={{fontSize:16}}>{t.icon}</span>
+        <span className="flow-symbol" aria-hidden="true" style={{fontSize:16}}>{t.icon}</span>
       </button>;
     })}
   </div>;
@@ -73,7 +73,7 @@ function Shell({active, role, setRole, children}){
       {visibleNav.map(n=>{
         const isActive = n.id===active;
         return <a key={n.id} href={n.href} style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',textDecoration:'none',borderRadius:14,fontSize:13.5,fontWeight:isActive?700:500,background:isActive?'var(--surface-accent-subtle)':'transparent',color:isActive?'var(--text-accent)':'var(--text-secondary)'}}>
-          <span className={'flow-icon'+(isActive?' flow-icon--fill':'')} aria-hidden="true" style={{fontSize:20}}>{n.icon}</span>{n.label}
+          <span className={'flow-symbol'+(isActive?' flow-symbol--fill':'')} aria-hidden="true" style={{fontSize:20}}>{n.icon}</span>{n.label}
         </a>;
       })}
       <div style={{marginTop:'auto',display:'flex',flexDirection:'column',gap:10}}>

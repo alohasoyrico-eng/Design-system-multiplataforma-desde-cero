@@ -20,7 +20,7 @@ export function RoleMatrix({ roles = [], permissions = [], values = {}, onChange
     label: React.createElement(React.Fragment, null,
       r.label,
       r.locked && React.createElement('span', {
-        className: 'flow-icon', 'aria-hidden': true,
+        className: 'flow-symbol', 'aria-hidden': true,
         style: { fontSize: 13, verticalAlign: -2, marginLeft: 4 },
       }, 'lock')),
     render: (p) => {
@@ -39,7 +39,7 @@ export function RoleMatrix({ roles = [], permissions = [], values = {}, onChange
           transition: 'all var(--dur-fast) var(--ease-spring)',
         },
       }, on ? React.createElement('span', {
-        className: 'flow-icon', 'aria-hidden': true,
+        className: 'flow-symbol', 'aria-hidden': true,
         style: { fontSize: 16, color: 'var(--text-on-inverse)', animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' },
       }, 'check') : null);
     },

@@ -49,7 +49,7 @@ function Sidebar({page,setPage}){
       return <button key={k} onClick={()=>{ if(k==='ajustes'){ window.location.href='../settings/index.html'; return;} setPage(k);}} style={{display:'flex',alignItems:'center',gap:12,minHeight:44,padding:'0 14px',border:'none',textAlign:'left',cursor:'pointer',borderRadius:14,fontFamily:'inherit',fontSize:13.5,fontWeight:active?700:500,background:active?'var(--surface-accent-subtle)':'transparent',color:active?'var(--text-accent)':'var(--text-secondary)',transition:'background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out)'}}
         onMouseEnter={(e)=>{if(!active)e.currentTarget.style.background='var(--surface-sunken)'}}
         onMouseLeave={(e)=>{if(!active)e.currentTarget.style.background='transparent'}}>
-        <span className={'flow-icon'+(active?' flow-icon--fill':'')} aria-hidden="true" style={{fontSize:20}}>{ic}</span>{label}
+        <span className={'flow-symbol'+(active?' flow-symbol--fill':'')} aria-hidden="true" style={{fontSize:20}}>{ic}</span>{label}
       </button>;
     })}
     <div style={{marginTop:'auto',display:'flex',alignItems:'center',gap:10,padding:'10px 10px'}}>
@@ -89,7 +89,7 @@ function KPI({label,value,delta,tone,spark}){
       {spark && <Sparkline values={spark} width={90} height={34} showDot={false} color={tone==='down'?'var(--status-warning)':'var(--action-accent)'} style={{marginLeft:'auto'}} />}
     </div>
     {delta && <div style={{fontSize:12,fontWeight:600,marginTop:4,color:tone==='up'?'var(--status-success-text)':'var(--status-danger-text)',display:'flex',alignItems:'center',gap:2}}>
-      <span className="flow-icon" style={{fontSize:14}} aria-hidden="true">{tone==='up'?'trending_up':'trending_down'}</span>{delta}
+      <span className="flow-symbol" style={{fontSize:14}} aria-hidden="true">{tone==='up'?'trending_up':'trending_down'}</span>{delta}
     </div>}
   </Card>;
 }
@@ -132,7 +132,7 @@ function DashboardPage(){
             ['Marco Gil se conectó','hace 34 min','bolt','var(--text-accent)'],
             ['Nueva unidad TWN-559-F creada','hace 1 h','add_circle','var(--text-muted)']].map(([t,ts,ic,c],i)=>
             <div key={i} style={{display:'flex',gap:12,alignItems:'center'}}>
-              <span className="flow-icon" aria-hidden="true" style={{fontSize:20,color:c,flex:'none'}}>{ic}</span>
+              <span className="flow-symbol" aria-hidden="true" style={{fontSize:20,color:c,flex:'none'}}>{ic}</span>
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:13,fontWeight:500}}>{t}</div>
                 <div style={{fontSize:11.5,color:'var(--text-muted)'}}>{ts}</div>
@@ -230,7 +230,7 @@ function DriversPage({notify}){
     <Table rowKey="id" selectedKey={sel} onRowClick={(r)=>setSel(r.id)}
       columns={[
         {key:'name',label:'Conductor',render:(r)=><span style={{display:'flex',alignItems:'center',gap:8}}><Avatar name={r.name} size="sm" status={r.status==='ruta'?'busy':'offline'} />{r.name}</span>},
-        {key:'rating',label:'Rating',align:'right',mono:true,render:(r)=><span style={{display:'inline-flex',alignItems:'center',gap:4}}><span className="flow-icon flow-icon--fill" style={{fontSize:14,color:'var(--status-warning)'}} aria-hidden="true">star</span>{r.rating.toFixed(2)}</span>},
+        {key:'rating',label:'Rating',align:'right',mono:true,render:(r)=><span style={{display:'inline-flex',alignItems:'center',gap:4}}><span className="flow-symbol flow-symbol--fill" style={{fontSize:14,color:'var(--status-warning)'}} aria-hidden="true">star</span>{r.rating.toFixed(2)}</span>},
         {key:'trips',label:'Viajes',align:'right',mono:true,render:(r)=>r.trips.toLocaleString()},
         {key:'unit',label:'Unidad',mono:true},
         {key:'docs',label:'Documentos',render:(r)=> r.docs===4 ? <Badge tone="success" icon="check">Completos</Badge> : <Badge tone="warning" icon="schedule">{r.docs} de 4</Badge>},

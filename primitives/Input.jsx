@@ -19,7 +19,7 @@ export function Input({
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
       color: 'var(--text-muted)',
     },
-  }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20 } }, shown ? 'visibility_off' : 'visibility'));
+  }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20 } }, shown ? 'visibility_off' : 'visibility'));
 
   return React.createElement(ControlShell, {
     size, invalid, disabled, leading: icon, trailing: reveal || suffix, style,

@@ -29,7 +29,7 @@ export function TransactionRow({ category = 'transfer', title, subtitle, amount 
     React.createElement('span', {
       'aria-hidden': true,
       style: { width: 42, height: 42, borderRadius: 14, background: bg, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: 'none' },
-    }, React.createElement('span', { className: 'flow-icon', style: { fontSize: 21, color: fg } }, ic)),
+    }, React.createElement('span', { className: 'flow-symbol', style: { fontSize: 21, color: fg } }, ic)),
     React.createElement('span', { style: { flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1 } },
       React.createElement('span', { style: { fontSize: 14, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, title),
       subtitle && React.createElement('span', { style: { fontSize: 12, color: 'var(--text-muted)' } }, subtitle)),

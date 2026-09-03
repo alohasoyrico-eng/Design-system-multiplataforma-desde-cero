@@ -712,7 +712,7 @@ export function FlowChart({
       style: { textAlign: 'center', color: 'var(--text-secondary)', fontSize: 13 },
     },
       React.createElement('span', {
-        className: 'flow-icon', 'aria-hidden': true,
+        className: 'flow-symbol', 'aria-hidden': true,
         style: { fontSize: 26, color: 'var(--text-muted)', display: 'block', marginBottom: 4 },
       }, failed ? 'cloud_off' : 'bar_chart'),
       failed ? 'La grafica no pudo cargar' : emptyLabel));

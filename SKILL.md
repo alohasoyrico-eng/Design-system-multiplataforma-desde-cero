@@ -24,7 +24,7 @@ Contrato legible por máquina en `architecture.json`, revisión en `platforms/ch
 - **Motion**: resorte (`--ease-spring`) para lo que se toca; `--ease-out` para lo que aparece; 100–400ms; respeta `prefers-reduced-motion`.
 - **A11y**: foco visible (`--focus-ring`) siempre; hit targets ≥44px; texto ≥4.5:1; `ariaLabel` obligatorio en IconButton; sentence case.
 - **Datos en mono** (JetBrains Mono): placas, IDs, KPIs, montos.
-- **Iconos**: Material Symbols Rounded únicamente (clase `.flow-icon`; `--fill` para activo). Nada de emoji ni SVG a mano.
+- **Iconos**: Material Symbols Rounded únicamente (clase `.flow-symbol`; `--fill` para activo). Nada de emoji ni SVG a mano.
 - **Superficies planas**: sin gradientes; jerarquía por superficie + sombra suave.
 
 ## Inventario de componentes

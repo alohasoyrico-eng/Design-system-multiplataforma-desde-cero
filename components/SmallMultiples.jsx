@@ -10,7 +10,7 @@ export function SmallMultiples({ items = [], height = 46, columns = 4, isOutlier
       gap: 6, minHeight: 120, color: 'var(--text-muted)', font: 'var(--type-caption)',
     },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
     'Sin datos para este periodo');
   const all = items.flatMap(it => it.values);
   const min = Math.min(...all), max = Math.max(...all);
@@ -41,7 +41,7 @@ export function SmallMultiples({ items = [], height = 46, columns = 4, isOutlier
     },
       React.createElement('div', { style: { display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 } },
         React.createElement('span', { style: { fontSize: 12, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, it.label),
-        out && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 14, color: 'var(--status-danger-text)', marginLeft: 'auto' } }, 'priority_high'),
+        out && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14, color: 'var(--status-danger-text)', marginLeft: 'auto' } }, 'priority_high'),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 11.5, fontWeight: 600, color: out ? 'var(--status-danger-text)' : 'var(--text-secondary)', marginLeft: out ? 4 : 'auto' } }, format ? format(last) : last)),
       spark(it.values, out ? 'var(--flow-red-500)' : 'var(--flow-ink-500)'));
   }));

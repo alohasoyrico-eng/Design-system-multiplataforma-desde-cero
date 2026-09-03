@@ -25,7 +25,7 @@ export function TabBar({ items = [], activeId, onChange, style }) {
     },
       React.createElement('span', { style: { position: 'relative', display: 'inline-flex' } },
         React.createElement('span', {
-          className: 'flow-icon' + (active ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+          className: 'flow-symbol' + (active ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
           style: { fontSize: 24, display: 'block', transform: active ? 'scale(1.12)' : 'none', transition: 'transform var(--dur-fast) var(--ease-spring)' },
         }, it.icon),
         it.badge && React.createElement('span', {

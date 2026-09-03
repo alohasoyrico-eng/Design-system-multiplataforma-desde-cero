@@ -33,7 +33,7 @@ export function Button({
   if (V.glow && hover && !disabled) shadows.push('var(--shadow-accent-glow)');
 
   const iconEl = (name) => React.createElement('span', {
-    className: 'flow-icon', 'aria-hidden': true,
+    className: 'flow-symbol', 'aria-hidden': true,
     style: { fontSize: s.icon, lineHeight: 1 },
   }, name);
 

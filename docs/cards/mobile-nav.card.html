@@ -27,7 +27,7 @@ function TabBarDemo(){
   const s = screens[tab];
   return <Phone>
     <div style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:10,padding:20}}>
-      <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:40,color:'var(--text-accent)'}}>{s.icon}</span>
+      <span className="flow-symbol flow-symbol--fill" aria-hidden="true" style={{fontSize:40,color:'var(--text-accent)'}}>{s.icon}</span>
       <div style={{fontSize:18,fontWeight:700}}>{s.title}</div>
       <div style={{fontSize:13,color:'var(--text-muted)',textAlign:'center'}}>{s.desc}</div>
     </div>

@@ -60,7 +60,7 @@ export function Tabs({ items = [], value, onChange, variant = 'pill', style }) {
           transition: 'color var(--dur-fast) var(--ease-out)',
         },
       },
-        t.icon && React.createElement('span', { className: 'flow-icon' + (active ? ' flow-icon--fill' : ''), 'aria-hidden': true, style: { fontSize: 18 } }, t.icon),
+        t.icon && React.createElement('span', { className: 'flow-symbol' + (active ? ' flow-symbol--fill' : ''), 'aria-hidden': true, style: { fontSize: 18 } }, t.icon),
         t.label,
         t.count != null && React.createElement('span', {
           style: { fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, background: active ? 'var(--surface-accent-subtle)' : 'var(--border-subtle)', color: active ? 'var(--text-accent)' : 'var(--text-muted)', borderRadius: 999, padding: '1px 7px' },

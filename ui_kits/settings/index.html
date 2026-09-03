@@ -16,7 +16,7 @@ const { Button, Input, Field, Select, Switch, Tabs, Card, Badge, Avatar, Dialog,
 
 function Row({icon,title,description,control,last}){
   return <div style={{display:'flex',alignItems:'center',gap:14,padding:'16px 0',borderBottom:last?'none':'1px solid var(--border-subtle)'}}>
-    {icon && <span className="flow-icon" aria-hidden="true" style={{fontSize:22,color:'var(--text-muted)',flex:'none'}}>{icon}</span>}
+    {icon && <span className="flow-symbol" aria-hidden="true" style={{fontSize:22,color:'var(--text-muted)',flex:'none'}}>{icon}</span>}
     <div style={{flex:1,minWidth:0}}>
       <div style={{fontSize:14,fontWeight:600}}>{title}</div>
       {description && <div style={{fontSize:12.5,color:'var(--text-muted)',marginTop:2}}>{description}</div>}

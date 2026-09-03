@@ -9,7 +9,7 @@ function DefaultIllustration({ icon, index }) {
   },
     React.createElement('div', {
       style: { width: 108, height: 108, borderRadius: '50%', background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 12px 28px ' + color + '40' },
-    }, React.createElement('span', { className: 'flow-icon flow-icon--fill', 'aria-hidden': true, style: { fontSize: 52, color: 'var(--text-on-accent)' } }, icon || 'auto_awesome')));
+    }, React.createElement('span', { className: 'flow-symbol flow-symbol--fill', 'aria-hidden': true, style: { fontSize: 52, color: 'var(--text-on-accent)' } }, icon || 'auto_awesome')));
 }
 
 /** Onboarding slides with illustration, dot pagination, and swipe. slides: [{icon?, illustration?(node), title, description}] */

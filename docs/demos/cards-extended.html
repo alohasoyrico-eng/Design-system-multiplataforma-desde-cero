@@ -29,7 +29,7 @@ const LIST = [
   {id:'card-interactive', title:'Card · Interactive', C:()=><div style={{maxWidth:320}}>
     <Card interactive onClick={()=>{}}>
       <div style={{display:'flex',gap:12,alignItems:'center'}}>
-        <span className="flow-icon" aria-hidden="true" style={{fontSize:24,color:'var(--text-accent)'}}>directions_car</span>
+        <span className="flow-symbol" aria-hidden="true" style={{fontSize:24,color:'var(--text-accent)'}}>directions_car</span>
         <div><div style={{fontWeight:700,fontFamily:'var(--font-mono)'}}>JMX-214-B</div><div style={{fontSize:13,color:'var(--text-secondary)'}}>Nissan Versa · Ana Sosa</div></div>
       </div>
     </Card>
@@ -38,7 +38,7 @@ const LIST = [
     {[['****4102','Activa','success'],['****8830','Pausada','warning'],['****2214',null,null]].map(([n,b,t])=>
       <Card key={n} interactive padding={10} onClick={()=>{}}>
         <div style={{display:'flex',gap:10,alignItems:'center'}}>
-          <span className="flow-icon" aria-hidden="true" style={{fontSize:20,color:'var(--text-muted)'}}>credit_card</span>
+          <span className="flow-symbol" aria-hidden="true" style={{fontSize:20,color:'var(--text-muted)'}}>credit_card</span>
           <span style={{flex:1,fontSize:13.5,fontWeight:600}}>Tarjeta {n}</span>
           {b && <Badge tone={t}>{b}</Badge>}
         </div>
@@ -46,7 +46,7 @@ const LIST = [
   </div>},
   {id:'card-media', title:'Card · Media', C:()=><div style={{maxWidth:320}}><CardMedia image="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=60" title="Programa de conductores" description="Beneficios, seguros y combustible con la tarjeta Flow." /></div>},
   {id:'card-elevated', title:'Card · Elevated', C:()=><div style={{maxWidth:320}}><Card variant="elevated"><div style={{fontWeight:700,marginBottom:4}}>Recomendado</div><div style={{fontSize:13,color:'var(--text-secondary)'}}>Activa el débito automático y evita cortes de servicio.</div></Card></div>},
-  {id:'card-minimal', title:'Card · Minimal', C:()=><div style={{maxWidth:320}}><Card variant="minimal"><div style={{display:'flex',gap:10,alignItems:'flex-start'}}><span className="flow-icon" aria-hidden="true" style={{fontSize:20,color:'var(--text-muted)'}}>info</span><div><div style={{fontWeight:700,marginBottom:2}}>Sin comisiones</div><div style={{fontSize:13,color:'var(--text-secondary)'}}>Las recargas entre cuentas Flow no tienen costo.</div></div></div></Card></div>},
+  {id:'card-minimal', title:'Card · Minimal', C:()=><div style={{maxWidth:320}}><Card variant="minimal"><div style={{display:'flex',gap:10,alignItems:'flex-start'}}><span className="flow-symbol" aria-hidden="true" style={{fontSize:20,color:'var(--text-muted)'}}>info</span><div><div style={{fontWeight:700,marginBottom:2}}>Sin comisiones</div><div style={{fontSize:13,color:'var(--text-secondary)'}}>Las recargas entre cuentas Flow no tienen costo.</div></div></div></Card></div>},
   {id:'card-ghost', title:'Card · Ghost', C:()=><div style={{background:'var(--surface-inverse)',borderRadius:'var(--radius-lg)',padding:20,maxWidth:320}}>
     <Card variant="ghost"><div style={{color:'var(--text-on-inverse)',fontSize:13}}>Card · Ghost sobre fondo oscuro (overlays y mapas).</div></Card>
   </div>},

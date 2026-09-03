@@ -82,6 +82,15 @@ for (const it of arq.items || []) {
   if (c.layer !== it.layer) F(n, 'capa discordante: el contrato dice ' + c.layer + ' y architecture.json dice ' + it.layer);
 }
 
+// La otra direccion — la que dejo pasar 37 huerfanos: todo contrato pertenece
+// a un item declarado o a un shell. Un contrato sin item existe para el esquema
+// pero no para las capas, la adopcion ni R2.
+const registrados = new Set([...(arq.items || []).map((i) => i.id), ...(arq.shells || [])]);
+for (const n of archivos) {
+  const id = n.replace('.json', '');
+  if (!registrados.has(id)) F(n, 'contrato huerfano: ningun item ni shell con id "' + id + '" en architecture.json');
+}
+
 const total = (arq.items || []).length;
 const conContrato = (arq.items || []).filter((i) => i.contract).length;
 

@@ -27,7 +27,7 @@ export function FileUpload({ files = [], onChange, label = 'Arrastra archivos o 
         transition: 'all var(--dur-fast) var(--ease-spring)',
       },
     },
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 30, color: drag ? 'var(--text-accent)' : 'var(--text-muted)', transition: 'color var(--dur-fast) var(--ease-out)' } }, 'upload_file'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 30, color: drag ? 'var(--text-accent)' : 'var(--text-muted)', transition: 'color var(--dur-fast) var(--ease-out)' } }, 'upload_file'),
       React.createElement('span', { style: { fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' } }, label),
       hint && React.createElement('span', { style: { fontSize: 12, color: 'var(--text-muted)' } }, hint),
       React.createElement('input', { ref: inputRef, type: 'file', accept, multiple, disabled, onChange: (e) => add(e.target.files), style: { display: 'none' } })),
@@ -36,12 +36,12 @@ export function FileUpload({ files = [], onChange, label = 'Arrastra archivos o 
         key: f.name + i,
         style: { display: 'flex', alignItems: 'center', gap: 10, background: 'var(--surface-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '10px 14px', animation: 'flowIn var(--dur-fast) var(--ease-out)' },
       },
-        React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, 'draft'),
+        React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, 'draft'),
         React.createElement('span', { style: { flex: 1, fontSize: 13, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, f.name),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-muted)' } }, fmt(f.size)),
         React.createElement('button', {
           type: 'button', 'aria-label': 'Quitar ' + f.name,
           onClick: () => onChange && onChange(files.filter((_, j) => j !== i)),
           style: { border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--text-muted)', display: 'inline-flex', padding: 4, borderRadius: '50%' },
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))))));
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))))));
 }

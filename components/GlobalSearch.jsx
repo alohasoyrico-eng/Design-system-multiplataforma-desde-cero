@@ -135,7 +135,7 @@ export function GlobalSearch({
   const searchField = React.createElement('div', {
     style: { display: 'flex', alignItems: 'center', gap: 10, padding: mode === 'palette' ? '14px 16px' : '0 12px', borderBottom: mode === 'palette' ? '1px solid var(--border-subtle)' : 'none', flex: mode === 'palette' ? 'none' : 1, minWidth: 0 },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)', flex: 'none' } }, 'search'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)', flex: 'none' } }, 'search'),
     React.createElement('input', {
       ref: inputRef,
       type: 'text',
@@ -160,7 +160,7 @@ export function GlobalSearch({
           type: 'button', onClick: () => { onValueChange && onValueChange(''); inputRef.current && inputRef.current.focus(); },
           'aria-label': 'Limpiar búsqueda',
           style: { border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex', padding: 4, minWidth: 'var(--hit-target-min)', minHeight: 'var(--hit-target-min)', alignItems: 'center', justifyContent: 'center', flex: 'none' },
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))
       : (mode === 'palette' && shortcut && React.createElement('kbd', {
           'aria-hidden': true,
           style: { fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-muted)', border: '1px solid var(--border-subtle)', borderRadius: 4, padding: '2px 6px', flex: 'none' },
@@ -181,7 +181,7 @@ export function GlobalSearch({
     body = React.createElement('div', {
       style: { padding: '28px 20px', textAlign: 'center' },
     },
-      React.createElement('div', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-muted)' } }, value.length >= minChars ? 'search_off' : 'search'),
+      React.createElement('div', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-muted)' } }, value.length >= minChars ? 'search_off' : 'search'),
       React.createElement('p', { style: { margin: '8px 0 2px', fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' } },
         value.length >= minChars ? 'Sin resultados para «' + value + '»' : 'Busca en toda la plataforma'),
       React.createElement('p', { style: { margin: 0, fontSize: 12.5, color: 'var(--text-secondary)', lineHeight: 1.5 } }, emptyHint));
@@ -217,7 +217,7 @@ export function GlobalSearch({
             },
           },
             r.icon && React.createElement('span', {
-              className: 'flow-icon', 'aria-hidden': true,
+              className: 'flow-symbol', 'aria-hidden': true,
               style: { fontSize: 20, color: active ? 'var(--text-primary)' : 'var(--text-muted)', flex: 'none' },
             }, r.icon),
             React.createElement('div', { style: { flex: 1, minWidth: 0 } },
@@ -233,7 +233,7 @@ export function GlobalSearch({
               }, r.meta)),
             r.trailing && React.createElement('div', { style: { flex: 'none' } }, r.trailing),
             active && React.createElement('span', {
-              className: 'flow-icon', 'aria-hidden': true,
+              className: 'flow-symbol', 'aria-hidden': true,
               style: { fontSize: 16, color: 'var(--text-muted)', flex: 'none' },
             }, 'keyboard_return'));
         }))));

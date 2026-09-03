@@ -87,7 +87,7 @@ export function DatePicker({
     },
     onMouseEnter: (e) => { e.currentTarget.style.background = 'var(--surface-sunken)'; },
     onMouseLeave: (e) => { e.currentTarget.style.background = 'transparent'; },
-  }, React.createElement('span', { className: 'flow-icon', style: { fontSize: 20 }, 'aria-hidden': true }, dir < 0 ? 'chevron_left' : 'chevron_right'));
+  }, React.createElement('span', { className: 'flow-symbol', style: { fontSize: 20 }, 'aria-hidden': true }, dir < 0 ? 'chevron_left' : 'chevron_right'));
 
   return React.createElement(React.Fragment, null,
     React.createElement(ControlShell, {

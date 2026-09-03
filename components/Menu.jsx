@@ -72,6 +72,6 @@ export function Menu({ trigger, items = [], align = 'left', style }) {
               transition: 'background var(--dur-instant) var(--ease-out)',
             },
           },
-            it.icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18, color: it.danger ? 'inherit' : 'var(--text-muted)' } }, it.icon),
+            it.icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18, color: it.danger ? 'inherit' : 'var(--text-muted)' } }, it.icon),
             it.label)))));
 }

@@ -22,7 +22,7 @@ export function Dialog({ open = false, onClose, title, description, children, ac
       React.createElement('div', { style: { display: 'flex', alignItems: 'flex-start', gap: 14 } },
         toneIcon && React.createElement('span', {
           style: { width: 44, height: 44, borderRadius: '50%', background: toneIcon[2], display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: 'none' },
-        }, React.createElement('span', { className: 'flow-icon flow-icon--fill', 'aria-hidden': true, style: { fontSize: 24, color: toneIcon[1] } }, toneIcon[0])),
+        }, React.createElement('span', { className: 'flow-symbol flow-symbol--fill', 'aria-hidden': true, style: { fontSize: 24, color: toneIcon[1] } }, toneIcon[0])),
         React.createElement('div', { style: { flex: 1, minWidth: 0 } },
           title && React.createElement('div', { id: titleId, style: { fontSize: 18, fontWeight: 700, letterSpacing: 'var(--tracking-tight)' } }, title),
           description && React.createElement('div', { style: { fontSize: 13.5, color: 'var(--text-secondary)', lineHeight: 1.55, marginTop: 6 } }, description)),
@@ -31,7 +31,7 @@ export function Dialog({ open = false, onClose, title, description, children, ac
           style: { width: 'var(--hit-target-min)', height: 'var(--hit-target-min)', flex: 'none', border: 'none', background: 'transparent', borderRadius: '50%', cursor: 'pointer', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: 'background var(--dur-instant) var(--ease-out)', margin: '-6px -6px 0 0' },
           onMouseEnter: (e) => e.currentTarget.style.background = 'var(--surface-sunken)',
           onMouseLeave: (e) => e.currentTarget.style.background = 'transparent',
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20 } }, 'close'))),
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20 } }, 'close'))),
       children && React.createElement('div', { style: { marginTop: 18 } }, children),
       actions && React.createElement('div', { style: { display: 'flex', justifyContent: 'flex-end', gap: 10, marginTop: 24 } }, actions)));
 }

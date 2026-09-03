@@ -28,7 +28,7 @@ export function Stepper({ steps = [], current = 0, orientation = 'horizontal', s
         transform: active ? 'scale(1.1)' : 'scale(1)',
         transition: 'all var(--dur-base) var(--ease-spring)',
       },
-    }, done ? React.createElement('span', { className: 'flow-icon', style: { fontSize: 16, animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' } }, 'check') : i + 1);
+    }, done ? React.createElement('span', { className: 'flow-symbol', style: { fontSize: 16, animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' } }, 'check') : i + 1);
     const text = React.createElement('span', { style: { display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 } },
       React.createElement('span', { style: { fontSize: 13, fontWeight: active ? 700 : 500, color: active || done ? 'var(--text-primary)' : 'var(--text-muted)', whiteSpace: 'nowrap' } }, s.label),
       s.description && React.createElement('span', { style: { fontSize: 11.5, color: 'var(--text-muted)' } }, s.description));

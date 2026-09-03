@@ -70,7 +70,7 @@ export function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14,
             boxShadow: sel ? 'var(--shadow-accent-glow)' : 'var(--shadow-raised)', whiteSpace: 'nowrap',
           },
         },
-          p.icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15 } }, p.icon),
+          p.icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15 } }, p.icon),
           p.label),
         React.createElement('span', {
           'aria-hidden': true,

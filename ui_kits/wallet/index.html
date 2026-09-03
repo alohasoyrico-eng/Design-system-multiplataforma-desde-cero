@@ -32,7 +32,7 @@ function QuickAction({icon,label,onClick,active}){
     <span style={{width:52,height:52,borderRadius:'50%',background:active?'var(--surface-accent-subtle)':'var(--surface-card)',boxShadow:'var(--shadow-rest)',display:'inline-flex',alignItems:'center',justifyContent:'center',transition:'transform var(--dur-fast) var(--ease-spring), background var(--dur-fast) var(--ease-out)'}}
       onMouseEnter={(e)=>e.currentTarget.style.transform='scale(1.08)'}
       onMouseLeave={(e)=>e.currentTarget.style.transform='none'}>
-      <span className={'flow-icon'+(active?' flow-icon--fill':'')} aria-hidden="true" style={{fontSize:23,color:active?'var(--text-accent)':'var(--text-primary)'}}>{icon}</span>
+      <span className={'flow-symbol'+(active?' flow-symbol--fill':'')} aria-hidden="true" style={{fontSize:23,color:active?'var(--text-accent)':'var(--text-primary)'}}>{icon}</span>
     </span>
     <span style={{fontSize:11,fontWeight:600,color:active?'var(--text-accent)':'var(--text-secondary)'}}>{label}</span>
   </button>;

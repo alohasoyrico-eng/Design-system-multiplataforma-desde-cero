@@ -115,7 +115,7 @@ export function HelpCenter({
                     transition: 'color var(--dur-fast) var(--ease-out)',
                   }
                 },
-                  React.createElement('span', { className: 'flow-icon', style: { fontSize: 14, transform: isExpanded ? 'rotate(90deg)' : 'none', transition: 'transform var(--dur-fast) var(--ease-spring)' } }, 'chevron_right'),
+                  React.createElement('span', { className: 'flow-symbol', style: { fontSize: 14, transform: isExpanded ? 'rotate(90deg)' : 'none', transition: 'transform var(--dur-fast) var(--ease-spring)' } }, 'chevron_right'),
                   cat
                 ),
                 isExpanded && React.createElement('div', {

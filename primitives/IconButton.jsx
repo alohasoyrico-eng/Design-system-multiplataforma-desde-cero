@@ -41,7 +41,7 @@ export function IconButton({
     },
   },
     React.createElement('span', {
-      className: 'flow-icon' + (selected ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+      className: 'flow-symbol' + (selected ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
       style: { fontSize: s.icon },
     }, icon),
     badge && React.createElement('span', {

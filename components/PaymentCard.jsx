@@ -28,7 +28,7 @@ export function PaymentCard({ holder = '', last4 = '0000', variant = 'ink', froz
       label && React.createElement('span', { style: { marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: V.dim } }, label)),
     React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 10, marginTop: 'auto', marginBottom: 8 } },
       React.createElement('span', { 'aria-hidden': true, style: { width: Math.round(width * 0.115), height: Math.round(width * 0.085), borderRadius: 6, background: variant === 'sand' ? 'var(--flow-sand-200)' : 'rgba(255,255,255,.25)', display: 'inline-block' } }),
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: Math.round(width * 0.07), color: V.dim } }, 'contactless')),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: Math.round(width * 0.07), color: V.dim } }, 'contactless')),
     React.createElement('div', { style: { display: 'flex', alignItems: 'baseline', gap: 10 } },
       React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: Math.round(width * 0.052), fontWeight: 500, letterSpacing: '.08em', whiteSpace: 'nowrap' } }, '•••• ' + last4),
       expires && React.createElement('span', { style: { marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: Math.round(width * 0.038), color: V.dim } }, expires)),
@@ -40,6 +40,6 @@ export function PaymentCard({ holder = '', last4 = '0000', variant = 'ink', froz
         animation: 'flowScaleIn var(--dur-base) var(--ease-out)',
       },
     },
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 26, color: 'var(--card-fg-on-accent)', textShadow: '0 1px 6px rgba(0,0,0,.3)' } }, 'ac_unit'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 26, color: 'var(--card-fg-on-accent)', textShadow: '0 1px 6px rgba(0,0,0,.3)' } }, 'ac_unit'),
       React.createElement('span', { style: { fontSize: 14, fontWeight: 700, color: 'var(--card-fg-on-accent)', textShadow: '0 1px 6px rgba(0,0,0,.3)' } }, 'Congelada')));
 }

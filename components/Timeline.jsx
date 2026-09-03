@@ -56,7 +56,7 @@ export function Timeline({ items = [], mode = 'steps', style }) {
               color: it.status === 'pending' ? 'var(--text-muted)' : 'var(--text-on-accent)',
               boxShadow: it.status === 'active' ? 'var(--shadow-accent-glow)' : 'none',
             },
-          }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15 } }, it.icon || st.icon)),
+          }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15 } }, it.icon || st.icon)),
           !last && React.createElement('span', { style: { width: 2, flex: 1, minHeight: 24, background: 'var(--border-subtle)', marginTop: 2 } })),
         React.createElement('div', { style: { paddingBottom: last ? 0 : 22, flex: 1 } },
           React.createElement('div', { style: { display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'baseline' } },

@@ -22,7 +22,7 @@ export const ControlShell = React.forwardRef(function ControlShell({
   },
     leading && (typeof leading === 'string'
       ? React.createElement('span', {
-          key: 'lead', className: 'flow-icon', 'aria-hidden': true,
+          key: 'lead', className: 'flow-symbol', 'aria-hidden': true,
           // La fila estira a sus hijos para que el control ocupe todo el alto y
           // el target sea real. Un glifo estirado no se centra: se apoya arriba,
           // en su line-height, y queda mas alto que la etiqueta. Se centra solo.

@@ -32,10 +32,10 @@ export function Accordion({ items = [], defaultOpen, multiple = false, style }) 
           transition: 'background var(--dur-instant) var(--ease-out)',
         },
       },
-        it.icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, it.icon),
+        it.icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, it.icon),
         React.createElement('span', { style: { flex: 1 } }, it.title),
         it.meta && React.createElement('span', { style: { fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' } }, it.meta),
-        React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22, color: 'var(--text-muted)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform var(--dur-base) var(--ease-spring)' } }, 'expand_more')),
+        React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22, color: 'var(--text-muted)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform var(--dur-base) var(--ease-spring)' } }, 'expand_more')),
       React.createElement('div', {
         id: panelId, role: 'region', 'aria-labelledby': cabId,
         style: { display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows var(--dur-base) var(--ease-out)' },

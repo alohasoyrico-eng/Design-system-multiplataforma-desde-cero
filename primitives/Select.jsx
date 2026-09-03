@@ -57,7 +57,7 @@ export function Select({
           font: 'var(--type-body)', color: 'var(--text-accent)',
         },
       },
-        React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'add'),
+        React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'add'),
         React.createElement('span', null, 'Usar «' + q.trim() + '»'))
     : null;
 
@@ -119,9 +119,9 @@ export function Select({
             border: 'none', borderRadius: 'var(--radius-pill)',
             background: 'transparent', color: 'var(--text-muted)', cursor: 'pointer', padding: 0,
           },
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 16 } }, 'close')),
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16 } }, 'close')),
         React.createElement('span', {
-          className: 'flow-icon', 'aria-hidden': true,
+          className: 'flow-symbol', 'aria-hidden': true,
           style: {
             fontSize: 22, flexShrink: 0, color: 'var(--text-muted)',
             transform: open ? 'rotate(180deg)' : 'none',

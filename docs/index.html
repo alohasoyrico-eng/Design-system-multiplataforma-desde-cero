@@ -57,7 +57,7 @@ function Section({title,children}){
 function BulletList({items,icon,color}){
   return <ul style={{listStyle:'none',margin:0,padding:0,display:'flex',flexDirection:'column',gap:8}}>
     {(items||[]).map((it,i)=><li key={i} style={{display:'flex',gap:10,alignItems:'flex-start',fontSize:13.5,lineHeight:1.6,color:'var(--text-secondary)'}}>
-      <span className="flow-icon" aria-hidden="true" style={{fontSize:17,color:color||'var(--text-muted)',marginTop:2,flex:'none'}}>{icon||'arrow_right'}</span>
+      <span className="flow-symbol" aria-hidden="true" style={{fontSize:17,color:color||'var(--text-muted)',marginTop:2,flex:'none'}}>{icon||'arrow_right'}</span>
       <span dangerouslySetInnerHTML={{__html:it}} />
     </li>)}
   </ul>;
@@ -89,7 +89,7 @@ function Demo({src,h}){
   return <div style={{background:'var(--surface-card)',border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)',overflow:'hidden',boxShadow:'var(--shadow-rest)',marginBottom:8}}>
     <iframe src={src} title="Demo" style={{width:'100%',height:h||360,border:'none',display:'block'}} />
     <div style={{display:'flex',justifyContent:'flex-end',padding:'8px 14px',borderTop:'1px solid var(--border-subtle)'}}>
-      <a href={src} target="_blank" style={{fontSize:12,fontWeight:600,display:'inline-flex',alignItems:'center',gap:4}}>Abrir demo <span className="flow-icon" style={{fontSize:14}} aria-hidden="true">open_in_new</span></a>
+      <a href={src} target="_blank" style={{fontSize:12,fontWeight:600,display:'inline-flex',alignItems:'center',gap:4}}>Abrir demo <span className="flow-symbol" style={{fontSize:14}} aria-hidden="true">open_in_new</span></a>
     </div>
   </div>;
 }
@@ -137,7 +137,7 @@ function ContentTab({item}){
     {c.examples && <Section title="Ejemplos">
       <div style={{display:'flex',flexDirection:'column',gap:8}}>
         {c.examples.map((e,i)=><div key={i} style={{display:'flex',gap:12,alignItems:'center',background:'var(--surface-card)',border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-md)',padding:'10px 16px'}}>
-          <span className="flow-icon" aria-hidden="true" style={{fontSize:18,flex:'none',color:e[0]==='si'?'var(--status-success-text)':'var(--status-danger-text)'}}>{e[0]==='si'?'check_circle':'cancel'}</span>
+          <span className="flow-symbol" aria-hidden="true" style={{fontSize:18,flex:'none',color:e[0]==='si'?'var(--status-success-text)':'var(--status-danger-text)'}}>{e[0]==='si'?'check_circle':'cancel'}</span>
           <span style={{fontSize:13.5}}>{e[1]}</span>
           {e[2] && <span style={{fontSize:12,color:'var(--text-muted)',marginLeft:'auto',textAlign:'right'}}>{e[2]}</span>}
         </div>)}
@@ -185,7 +185,7 @@ function ItemPage({item}){
       {item.platforms && <span style={{fontSize:12,color:'var(--text-muted)'}}>{item.platforms}</span>}
     </div>
     {(item.product || item.plannedNote) && <div style={{display:'flex',alignItems:'flex-start',gap:8,margin:'0 0 14px',padding:'10px 14px',background:'var(--surface-sunken)',borderRadius:'var(--radius-md)',fontSize:12.5,color:'var(--text-secondary)',maxWidth:640}}>
-      <span className="flow-icon" aria-hidden="true" style={{fontSize:16,color:'var(--text-muted)',flexShrink:0}}>flag</span>
+      <span className="flow-symbol" aria-hidden="true" style={{fontSize:16,color:'var(--text-muted)',flexShrink:0}}>flag</span>
       <span>{item.product && <b style={{color:'var(--text-primary)'}}>Destino: {PRODUCTS[item.product]||item.product}. </b>}{item.plannedNote}</span>
     </div>}
     <p style={{fontSize:14.5,lineHeight:1.65,color:'var(--text-secondary)',margin:'0 0 20px',maxWidth:640}}>{item.subtitle}</p>
@@ -193,7 +193,7 @@ function ItemPage({item}){
       <Tabs value={tab} onChange={setTab} items={tabs} />
     </div>
     <div style={{fontSize:12,color:'var(--text-muted)',margin:'10px 2px 22px'}}>
-      <span className="flow-icon" aria-hidden="true" style={{fontSize:14,verticalAlign:-2,marginRight:4}}>group</span>
+      <span className="flow-symbol" aria-hidden="true" style={{fontSize:14,verticalAlign:-2,marginRight:4}}>group</span>
       Para: {AUDIENCE[tab]}
     </div>
     {tab==='design' && <DesignTab item={item} />}
@@ -220,7 +220,7 @@ function HomePage(){
           <div style={{background:'var(--surface-card)',border:'1px solid var(--border-subtle)',borderRadius:'var(--radius-lg)',padding:22,cursor:'pointer',transition:'transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-out)'}}
             onMouseEnter={(e)=>{e.currentTarget.style.transform='translateY(-3px)';e.currentTarget.style.boxShadow='var(--shadow-float)'}}
             onMouseLeave={(e)=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow='none'}}>
-            <span className="flow-icon" aria-hidden="true" style={{fontSize:26,color:'var(--text-accent)'}}>{icon}</span>
+            <span className="flow-symbol" aria-hidden="true" style={{fontSize:26,color:'var(--text-accent)'}}>{icon}</span>
             <div style={{fontSize:15,fontWeight:700,margin:'10px 0 2px'}}>{label}</div>
             <div style={{fontSize:12.5,color:'var(--text-muted)'}}>{counts[id]||0} ítems</div>
           </div>
@@ -247,7 +247,7 @@ function App(){
         <button onClick={toggleDark} aria-label="Cambiar tema" style={{marginLeft:'auto',width:32,height:32,border:'none',background:'transparent',borderRadius:'50%',cursor:'pointer',color:'var(--text-muted)',display:'inline-flex',alignItems:'center',justifyContent:'center'}}
           onMouseEnter={(e)=>e.currentTarget.style.background='var(--surface-sunken)'}
           onMouseLeave={(e)=>e.currentTarget.style.background='transparent'}>
-          <span className="flow-icon" aria-hidden="true" style={{fontSize:18}}>{dark?'light_mode':'dark_mode'}</span>
+          <span className="flow-symbol" aria-hidden="true" style={{fontSize:18}}>{dark?'light_mode':'dark_mode'}</span>
         </button>
       </div>
       <div style={{padding:'0 14px 10px'}}>{Input && <Input icon="search" placeholder="Buscar…" value={q} onChange={setQ} size="sm" />}</div>
@@ -257,7 +257,7 @@ function App(){
           if(items.length===0) return null;
           return <div key={cid} style={{marginBottom:14}}>
             <div style={{display:'flex',alignItems:'center',gap:8,padding:'10px 10px 6px',fontSize:11,fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--text-muted)'}}>
-              <span className="flow-icon" aria-hidden="true" style={{fontSize:15}}>{icon}</span>{label}
+              <span className="flow-symbol" aria-hidden="true" style={{fontSize:15}}>{icon}</span>{label}
             </div>
             {items.map(i=>{
               const active = item && item.id===i.id && item.cat===cid;

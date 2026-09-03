@@ -31,7 +31,7 @@ export function NotificationCenter({ items = [], onItemClick, onMarkAllRead, ali
       onMouseEnter: (e) => e.currentTarget.style.transform = 'scale(1.06)',
       onMouseLeave: (e) => e.currentTarget.style.transform = 'none',
     },
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20 } }, 'notifications'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20 } }, 'notifications'),
       unread > 0 && React.createElement('span', {
         'aria-hidden': true,
         style: {
@@ -70,7 +70,7 @@ export function NotificationCenter({ items = [], onItemClick, onMarkAllRead, ali
               onMouseLeave: (e) => e.currentTarget.style.background = it.read ? 'transparent' : 'var(--surface-accent-subtle)',
             },
               React.createElement('span', { 'aria-hidden': true, style: { width: 34, height: 34, borderRadius: '50%', background: bg, flex: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' } },
-                React.createElement('span', { className: 'flow-icon', style: { fontSize: 17, color: fg } }, icon)),
+                React.createElement('span', { className: 'flow-symbol', style: { fontSize: 17, color: fg } }, icon)),
               React.createElement('span', { style: { flex: 1, minWidth: 0 } },
                 React.createElement('div', { style: { fontSize: 13, fontWeight: it.read ? 500 : 700, color: 'var(--text-primary)' } }, it.title),
                 it.desc && React.createElement('div', { style: { fontSize: 12, color: 'var(--text-secondary)', marginTop: 1 } }, it.desc),

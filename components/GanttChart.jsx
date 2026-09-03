@@ -11,7 +11,7 @@ export function GanttChart({
       gap: 6, minHeight: 120, color: 'var(--text-muted)', font: 'var(--type-caption)',
     },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
     'Sin datos para este periodo');
   const dates = tasks.flatMap(t => [new Date(t.start), new Date(t.end)]);
   const minDate = dates.length > 0 ? new Date(Math.min(...dates)) : new Date();

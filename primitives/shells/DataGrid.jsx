@@ -141,7 +141,7 @@ export function DataGrid({
               },
                 c.label,
                 React.createElement('span', {
-                  className: 'flow-icon', 'aria-hidden': true,
+                  className: 'flow-symbol', 'aria-hidden': true,
                   style: {
                     fontSize: 14, opacity: active ? 1 : 0.35,
                     transform: active && sort.dir === -1 ? 'rotate(180deg)' : 'none',
@@ -219,7 +219,7 @@ export function DataGrid({
                       transform: (tree ? expanded.has(k) : isOpen) ? 'rotate(90deg)' : 'none',
                       transition: 'transform var(--dur-fast) var(--ease-spring)',
                     },
-                  }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'))) : null,
+                  }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'))) : null,
                 columns.map((c, ci) => {
                   const editing = editable && c.editable && edit && edit.key === k && edit.col === c.key;
                   return React.createElement('td', {
@@ -255,7 +255,7 @@ export function DataGrid({
                     },
                       c.render ? c.render(row) : row[c.key],
                       editable && c.editable && hovered && React.createElement('span', {
-                        className: 'flow-icon', 'aria-hidden': true,
+                        className: 'flow-symbol', 'aria-hidden': true,
                         style: { fontSize: 14, color: 'var(--text-muted)', opacity: 0.6, flexShrink: 0 },
                       }, 'edit')));
                 }));

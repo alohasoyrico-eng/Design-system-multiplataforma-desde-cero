@@ -59,14 +59,16 @@ La cascada no es solo una regla de imports: es el orden en que se construye. Nad
 
 1. **foundations** (7 ítems) — tokens. Sin JSX. Es lo único que puede tener valores absolutos.
 2. **shells** (6: `control-shell`, `popover`, `listbox`, `toggle-control`, `overlay-shell`, `data-grid`) — antes que cualquier control. Son los seis que concentran borde, foco, backdrop y keyframes; si un control se escribe antes que su carcasa, la redibuja, y eso es lo que R3 persigue después a un coste mucho mayor.
-3. **primitives** (20) y luego **components** (56) — cada control compone su shell.
-4. **patterns** (8) y **templates** (15) — al final. Los templates se copian, no se importan.
+3. **primitives** (31) y luego **components** (62) — cada control compone su shell.
+4. **patterns** (25) y **templates** (16) — al final. Los templates se copian, no se importan.
+
+De los 141 ítems, 37 están en estado `planned` (registrados 2026-09-03): tienen contrato y entrada en el registry, pero aún no tienen build de referencia aquí. En `docs/` llevan el badge Planned.
 
 **Antes de la anchura, una rebanada vertical.** Elige una pantalla y llévala de tokens a pantalla montada. Prueba el sistema de punta a punta y descubre lo que falta cuando cuesta poco cambiarlo. `fleet-dashboard-t` es la mejor candidata: es la única plantilla con contrato escrito.
 
 ## Los contratos están completos
 
-**Los 103 ítems tienen contrato**, más los 6 shells y `_base`: 109 archivos en `contracts/`. Las cinco capas están cerradas. Al añadir un ítem nuevo, su contrato se escribe *antes* del componente y va en el mismo PR — `check-contracts.mjs` lo bloquea si falta.
+**Los 141 ítems tienen contrato**, más los 6 shells y `_base`: 148 archivos en `contracts/` (149 con `_schema`). Las cinco capas están cerradas. Al añadir un ítem nuevo, su contrato se escribe *antes* del componente y va en el mismo PR — `check-contracts.mjs` lo bloquea si falta.
 
 No todos los criterios están verificados. Cada uno declara cómo se comprueba: `automated` corre en el gate, `visual` necesita ojo, y `manual` describe un flujo con estado a lo largo de varias pantallas —volver un paso del wizard sin perder lo escrito, que el error de credenciales no revele qué campo falla— que no se puede medir en un instante. La mayoría de los criterios de `patterns` y `templates` son `manual` y siguen sin verificar: están escritos como especificación, no como hecho comprobado.
 

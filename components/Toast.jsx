@@ -19,7 +19,7 @@ export function Toast({ tone = 'neutral', message, actionLabel, onAction, onDism
       animation: 'flowIn var(--dur-base) var(--ease-spring)', ...style,
     },
   },
-    React.createElement('span', { className: 'flow-icon flow-icon--fill', 'aria-hidden': true, style: { fontSize: 20, color: t.color, flex: 'none' } }, t.icon),
+    React.createElement('span', { className: 'flow-symbol flow-symbol--fill', 'aria-hidden': true, style: { fontSize: 20, color: t.color, flex: 'none' } }, t.icon),
     React.createElement('span', { style: { flex: 1, lineHeight: 1.45 } }, message),
     actionLabel && React.createElement('button', {
       type: 'button', onClick: onAction,
@@ -28,7 +28,7 @@ export function Toast({ tone = 'neutral', message, actionLabel, onAction, onDism
     onDismiss && React.createElement('button', {
       type: 'button', 'aria-label': 'Cerrar aviso', onClick: onDismiss,
       style: { border: 'none', background: 'transparent', color: 'inherit', opacity: 0.6, cursor: 'pointer', display: 'inline-flex', padding: 4, borderRadius: '50%' },
-    }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'close')));
+    }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'close')));
 }
 
 /** Fixed-position stack, bottom center. */

@@ -45,5 +45,5 @@ export function ChatComposer({ value = '', onChange, onSend, placeholder = 'Preg
         },
         onMouseEnter: (e) => { if (value.trim()) e.currentTarget.style.transform = 'scale(1.08)'; },
         onMouseLeave: (e) => { e.currentTarget.style.transform = 'none'; },
-      }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 19 } }, 'arrow_upward'))));
+      }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 19 } }, 'arrow_upward'))));
 }

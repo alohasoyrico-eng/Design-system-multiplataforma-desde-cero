@@ -43,7 +43,7 @@ Fuente del logo: `assets/flow-logo.png` (proporcionado por el usuario). No exist
 
 ## ICONOGRAFÍA
 
-- **Sistema**: [Material Symbols Rounded](https://fonts.google.com/icons) vía Google Fonts (variable: FILL, wght, GRAD, opsz). Cargado desde `tokens/fonts.css`; clase helper `.flow-icon` (outline) y `.flow-icon--fill` (relleno = estado activo/seleccionado).
+- **Sistema**: [Material Symbols Rounded](https://fonts.google.com/icons) vía Google Fonts (variable: FILL, wght, GRAD, opsz). Cargado desde `tokens/fonts.css`; clase helper `.flow-symbol` (outline) y `.flow-symbol--fill` (relleno = estado activo/seleccionado).
 - **Uso**: outline por defecto; fill para el ítem activo de navegación y estados seleccionados. Peso 400, opsz 24. Tamaños: 18 (inline), 20 (controles), 24 (nav), 32+ (empty states).
 - **Nunca**: SVGs dibujados a mano, emoji como iconos, mezclar familias.
 - **Logo**: `assets/flow-logo.png` (negro sobre claro; `filter: invert(1)` sobre oscuro). No hay variante isotipo — usar wordmark completo o el nombre en Sora 800.

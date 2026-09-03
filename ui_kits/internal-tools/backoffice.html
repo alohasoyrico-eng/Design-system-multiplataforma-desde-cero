@@ -44,7 +44,7 @@ function DocDetail({d, onClose, onDecision, result}){
           </div>
           <div style={{fontSize:12,color:'var(--text-muted)'}}>Enviado {d.submitted}</div>
           <Card style={{display:'flex',alignItems:'center',gap:12,padding:16}}>
-            <span className="flow-icon" aria-hidden="true" style={{fontSize:28,color:'var(--text-muted)'}}>draft</span>
+            <span className="flow-symbol" aria-hidden="true" style={{fontSize:28,color:'var(--text-muted)'}}>draft</span>
             <div style={{flex:1,minWidth:0}}>
               <div style={{fontSize:13,fontWeight:600,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{d.file}</div>
               <div style={{fontSize:11.5,color:'var(--text-muted)'}}>{d.doc}</div>

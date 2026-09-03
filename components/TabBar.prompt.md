@@ -1,4 +1,4 @@
-Nav inferior fija de móvil, 4-5 items máx. Icono outline por defecto, `flow-icon--fill` + escala 1.12 en el activo. `badge` numérico (contador, tope "9+") o `true` (punto) para notificaciones.
+Nav inferior fija de móvil, 4-5 items máx. Icono outline por defecto, `flow-symbol--fill` + escala 1.12 en el activo. `badge` numérico (contador, tope "9+") o `true` (punto) para notificaciones.
 
 ```jsx
 <TabBar activeId={tab} onChange={setTab} items={[

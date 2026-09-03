@@ -48,7 +48,7 @@ function App(){
       </div>
       {routing && st && <div style={{position:'absolute',top:64,left:14,right:14,zIndex:5,animation:'flowIn var(--dur-base) var(--ease-spring)'}}>
         <Card padding={14} style={{display:'flex',alignItems:'center',gap:12,boxShadow:'var(--shadow-float)'}}>
-          <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:22,color:'var(--text-accent)'}}>navigation</span>
+          <span className="flow-symbol flow-symbol--fill" aria-hidden="true" style={{fontSize:22,color:'var(--text-accent)'}}>navigation</span>
           <div style={{flex:1}}>
             <div style={{fontSize:13.5,fontWeight:700}}>Hacia {st.name}</div>
             <div style={{fontSize:12,color:'var(--text-muted)'}}>{st.dist} · llegas en {st.eta}</div>

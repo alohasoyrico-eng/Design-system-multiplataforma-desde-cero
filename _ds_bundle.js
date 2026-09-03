@@ -41,7 +41,7 @@ function Button({
   if (V.glow && hover && !disabled) shadows.push('var(--shadow-accent-glow)');
 
   const iconEl = (name) => React.createElement('span', {
-    className: 'flow-icon', 'aria-hidden': true,
+    className: 'flow-symbol', 'aria-hidden': true,
     style: { fontSize: s.icon, lineHeight: 1 },
   }, name);
 
@@ -126,7 +126,7 @@ function IconButton({
     },
   },
     React.createElement('span', {
-      className: 'flow-icon' + (selected ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+      className: 'flow-symbol' + (selected ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
       style: { fontSize: s.icon },
     }, icon),
     badge && React.createElement('span', {
@@ -212,7 +212,7 @@ function Menu({ trigger, items = [], align = 'left', style }) {
               transition: 'background var(--dur-instant) var(--ease-out)',
             },
           },
-            it.icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18, color: it.danger ? 'inherit' : 'var(--text-muted)' } }, it.icon),
+            it.icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18, color: it.danger ? 'inherit' : 'var(--text-muted)' } }, it.icon),
             it.label)))));
 }
 
@@ -244,7 +244,7 @@ const ControlShell = React.forwardRef(function ControlShell({
   },
     leading && (typeof leading === 'string'
       ? React.createElement('span', {
-          key: 'lead', className: 'flow-icon', 'aria-hidden': true,
+          key: 'lead', className: 'flow-symbol', 'aria-hidden': true,
           // La fila estira a sus hijos para que el control ocupe todo el alto y
           // el target sea real. Un glifo estirado no se centra: se apoya arriba,
           // en su line-height, y queda mas alto que la etiqueta. Se centra solo.
@@ -586,7 +586,7 @@ const Listbox = React.forwardRef(function Listbox({
               background: sel ? 'var(--action-primary)' : 'transparent',
               color: 'var(--text-on-inverse)', fontSize: 14,
             },
-          }, sel ? React.createElement('span', { className: 'flow-icon', style: { fontSize: 14 } }, 'check') : null),
+          }, sel ? React.createElement('span', { className: 'flow-symbol', style: { fontSize: 14 } }, 'check') : null),
           renderItem ? renderItem(o, { active: act, selected: sel })
             : React.createElement('span', { style: { flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, o.label),
           // hint se pinta, no solo se filtra: un dato por el que se puede buscar y
@@ -594,7 +594,7 @@ const Listbox = React.forwardRef(function Listbox({
           !renderItem && o.hint && React.createElement('span', {
             style: { font: 'var(--type-data)', fontSize: 11.5, color: act || sel ? 'var(--text-accent)' : 'var(--text-muted)', flexShrink: 0 },
           }, o.hint),
-          !multiple && sel && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18, flexShrink: 0 } }, 'check')
+          !multiple && sel && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18, flexShrink: 0 } }, 'check')
         );
       })
     ))
@@ -949,7 +949,7 @@ function DataGrid({
               },
                 c.label,
                 React.createElement('span', {
-                  className: 'flow-icon', 'aria-hidden': true,
+                  className: 'flow-symbol', 'aria-hidden': true,
                   style: {
                     fontSize: 14, opacity: active ? 1 : 0.35,
                     transform: active && sort.dir === -1 ? 'rotate(180deg)' : 'none',
@@ -1027,7 +1027,7 @@ function DataGrid({
                       transform: (tree ? expanded.has(k) : isOpen) ? 'rotate(90deg)' : 'none',
                       transition: 'transform var(--dur-fast) var(--ease-spring)',
                     },
-                  }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'))) : null,
+                  }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'))) : null,
                 columns.map((c, ci) => {
                   const editing = editable && c.editable && edit && edit.key === k && edit.col === c.key;
                   return React.createElement('td', {
@@ -1063,7 +1063,7 @@ function DataGrid({
                     },
                       c.render ? c.render(row) : row[c.key],
                       editable && c.editable && hovered && React.createElement('span', {
-                        className: 'flow-icon', 'aria-hidden': true,
+                        className: 'flow-symbol', 'aria-hidden': true,
                         style: { fontSize: 14, color: 'var(--text-muted)', opacity: 0.6, flexShrink: 0 },
                       }, 'edit')));
                 }));
@@ -1128,7 +1128,7 @@ function Field({ label, htmlFor, required = false, help, error, children, style 
         display: 'flex', alignItems: 'center', gap: 4,
       },
     },
-      error && React.createElement('span', { className: 'flow-icon', style: { fontSize: 14 }, 'aria-hidden': true }, 'error'),
+      error && React.createElement('span', { className: 'flow-symbol', style: { fontSize: 14 }, 'aria-hidden': true }, 'error'),
       error || help)
   );
 }
@@ -1157,7 +1157,7 @@ function Input({
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
       color: 'var(--text-muted)',
     },
-  }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20 } }, shown ? 'visibility_off' : 'visibility'));
+  }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20 } }, shown ? 'visibility_off' : 'visibility'));
 
   return React.createElement(F.ControlShell, {
     size, invalid, disabled, leading: icon, trailing: reveal || suffix, style,
@@ -1265,7 +1265,7 @@ function Select({
           font: 'var(--type-body)', color: 'var(--text-accent)',
         },
       },
-        React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'add'),
+        React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'add'),
         React.createElement('span', null, 'Usar «' + q.trim() + '»'))
     : null;
 
@@ -1327,9 +1327,9 @@ function Select({
             border: 'none', borderRadius: 'var(--radius-pill)',
             background: 'transparent', color: 'var(--text-muted)', cursor: 'pointer', padding: 0,
           },
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 16 } }, 'close')),
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16 } }, 'close')),
         React.createElement('span', {
-          className: 'flow-icon', 'aria-hidden': true,
+          className: 'flow-symbol', 'aria-hidden': true,
           style: {
             fontSize: 22, flexShrink: 0, color: 'var(--text-muted)',
             transform: open ? 'rotate(180deg)' : 'none',
@@ -1369,7 +1369,7 @@ function Checkbox({ checked = false, onChange, label, disabled = false, indeterm
         transition: 'all var(--dur-fast) var(--ease-spring)',
       },
     }, (s.checked || s.indeterminate) && React.createElement('span', {
-      className: 'flow-icon',
+      className: 'flow-symbol',
       style: { fontSize: 16, color: 'var(--text-on-inverse)', fontVariationSettings: "'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 20", animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' },
     }, s.indeterminate ? 'remove' : 'check')),
   });
@@ -1568,7 +1568,7 @@ function DatePicker({
     },
     onMouseEnter: (e) => { e.currentTarget.style.background = 'var(--surface-sunken)'; },
     onMouseLeave: (e) => { e.currentTarget.style.background = 'transparent'; },
-  }, React.createElement('span', { className: 'flow-icon', style: { fontSize: 20 }, 'aria-hidden': true }, dir < 0 ? 'chevron_left' : 'chevron_right'));
+  }, React.createElement('span', { className: 'flow-symbol', style: { fontSize: 20 }, 'aria-hidden': true }, dir < 0 ? 'chevron_left' : 'chevron_right'));
 
   return React.createElement(React.Fragment, null,
     React.createElement(F.ControlShell, {
@@ -1692,7 +1692,7 @@ function FileUpload({ files = [], onChange, label = 'Arrastra archivos o haz cli
         transition: 'all var(--dur-fast) var(--ease-spring)',
       },
     },
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 30, color: drag ? 'var(--text-accent)' : 'var(--text-muted)', transition: 'color var(--dur-fast) var(--ease-out)' } }, 'upload_file'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 30, color: drag ? 'var(--text-accent)' : 'var(--text-muted)', transition: 'color var(--dur-fast) var(--ease-out)' } }, 'upload_file'),
       React.createElement('span', { style: { fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' } }, label),
       hint && React.createElement('span', { style: { fontSize: 12, color: 'var(--text-muted)' } }, hint),
       React.createElement('input', { ref: inputRef, type: 'file', accept, multiple, disabled, onChange: (e) => add(e.target.files), style: { display: 'none' } })),
@@ -1701,14 +1701,14 @@ function FileUpload({ files = [], onChange, label = 'Arrastra archivos o haz cli
         key: f.name + i,
         style: { display: 'flex', alignItems: 'center', gap: 10, background: 'var(--surface-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '10px 14px', animation: 'flowIn var(--dur-fast) var(--ease-out)' },
       },
-        React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, 'draft'),
+        React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, 'draft'),
         React.createElement('span', { style: { flex: 1, fontSize: 13, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, f.name),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-muted)' } }, fmt(f.size)),
         React.createElement('button', {
           type: 'button', 'aria-label': 'Quitar ' + f.name,
           onClick: () => onChange && onChange(files.filter((_, j) => j !== i)),
           style: { border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--text-muted)', display: 'inline-flex', padding: 4, borderRadius: '50%' },
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))))));
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))))));
 }
 
 F.FileUpload = FileUpload;
@@ -1806,9 +1806,9 @@ function PasscodeKeypad({ length = 6, value = '', onChange, onComplete, invalid 
       }))),
     React.createElement('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(3, 72px)', gap: '14px 22px', justifyItems: 'center' } },
       ...[1,2,3,4,5,6,7,8,9].map(n => key(String(n), () => press(String(n)), String(n))),
-      biometricIcon ? key(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-accent)' } }, biometricIcon), onBiometric, 'Usar biometrico') : React.createElement('span', null),
+      biometricIcon ? key(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-accent)' } }, biometricIcon), onBiometric, 'Usar biometrico') : React.createElement('span', null),
       key('0', () => press('0'), '0'),
-      key(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 24 } }, 'backspace'), () => press('back'), 'Borrar')));
+      key(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 24 } }, 'backspace'), () => press('back'), 'Borrar')));
 }
 
 F.PasscodeKeypad = PasscodeKeypad;
@@ -1862,7 +1862,7 @@ function ChatComposer({ value = '', onChange, onSend, placeholder = 'Pregunta so
         },
         onMouseEnter: (e) => { if (value.trim()) e.currentTarget.style.transform = 'scale(1.08)'; },
         onMouseLeave: (e) => { e.currentTarget.style.transform = 'none'; },
-      }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 19 } }, 'arrow_upward'))));
+      }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 19 } }, 'arrow_upward'))));
 }
 
 F.ChatComposer = ChatComposer;
@@ -1933,7 +1933,7 @@ function Badge({ tone = 'neutral', live = false, icon, children, style }) {
     },
   },
     live && React.createElement('span', { 'aria-hidden': true, style: { width: 7, height: 7, borderRadius: '50%', background: 'currentColor', animation: 'flowPulse 1.6s ease-in-out infinite' } }),
-    icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 14 } }, icon),
+    icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14 } }, icon),
     children);
 }
 
@@ -1964,7 +1964,7 @@ function Chip({ label, selected = false, onClick, onRemove, icon, disabled = fal
     transition: 'background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-spring)',
   };
   const glifo = icon && React.createElement('span', {
-    className: 'flow-icon' + (selected ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+    className: 'flow-symbol' + (selected ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
     style: { fontSize: 16, flexShrink: 0 },
   }, icon);
 
@@ -1979,7 +1979,7 @@ function Chip({ label, selected = false, onClick, onRemove, icon, disabled = fal
       borderRadius: 'var(--radius-pill)', cursor: disabled ? 'not-allowed' : 'pointer',
       padding: 0, opacity: 0.7,
     },
-  }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 16 } }, 'close'));
+  }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16 } }, 'close'));
 
   if (!onRemove) {
     return React.createElement(clickable ? 'button' : 'span', {
@@ -2139,7 +2139,7 @@ function EmptyState({ icon = 'inbox', title, description, action, style }) {
         width: 64, height: 64, borderRadius: '50%', background: 'var(--surface-sunken)',
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4,
       },
-    }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 30, color: 'var(--text-muted)' } }, icon)),
+    }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 30, color: 'var(--text-muted)' } }, icon)),
     title && React.createElement('div', { style: { fontSize: 16, fontWeight: 700, color: 'var(--text-primary)' } }, title),
     description && React.createElement('div', { style: { fontSize: 13, color: 'var(--text-muted)', maxWidth: 340, lineHeight: 1.55 } }, description),
     action && React.createElement('div', { style: { marginTop: 10 } }, action));
@@ -2183,10 +2183,10 @@ function Accordion({ items = [], defaultOpen, multiple = false, style }) {
           transition: 'background var(--dur-instant) var(--ease-out)',
         },
       },
-        it.icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, it.icon),
+        it.icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)' } }, it.icon),
         React.createElement('span', { style: { flex: 1 } }, it.title),
         it.meta && React.createElement('span', { style: { fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' } }, it.meta),
-        React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22, color: 'var(--text-muted)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform var(--dur-base) var(--ease-spring)' } }, 'expand_more')),
+        React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22, color: 'var(--text-muted)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform var(--dur-base) var(--ease-spring)' } }, 'expand_more')),
       React.createElement('div', {
         id: panelId, role: 'region', 'aria-labelledby': cabId,
         style: { display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows var(--dur-base) var(--ease-out)' },
@@ -2337,7 +2337,7 @@ function SmallMultiples({ items = [], height = 46, columns = 4, isOutlier, forma
       gap: 6, minHeight: 120, color: 'var(--text-muted)', font: 'var(--type-caption)',
     },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
     'Sin datos para este periodo');
   const all = items.flatMap(it => it.values);
   const min = Math.min(...all), max = Math.max(...all);
@@ -2368,7 +2368,7 @@ function SmallMultiples({ items = [], height = 46, columns = 4, isOutlier, forma
     },
       React.createElement('div', { style: { display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 } },
         React.createElement('span', { style: { fontSize: 12, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, it.label),
-        out && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 14, color: 'var(--status-danger-text)', marginLeft: 'auto' } }, 'priority_high'),
+        out && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14, color: 'var(--status-danger-text)', marginLeft: 'auto' } }, 'priority_high'),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 11.5, fontWeight: 600, color: out ? 'var(--status-danger-text)' : 'var(--text-secondary)', marginLeft: out ? 4 : 'auto' } }, format ? format(last) : last)),
       spark(it.values, out ? 'var(--flow-red-500)' : 'var(--flow-ink-500)'));
   }));
@@ -2390,7 +2390,7 @@ function BulletChart({ rows = [], format, style }) {
       gap: 6, minHeight: 100, color: 'var(--text-muted)', font: 'var(--type-caption)',
     },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
     'Sin datos para este periodo');
   const gmax = Math.max(...rows.map(r => r.max || Math.max(r.value, r.target) * 1.2), 1);
   return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: 14, fontFamily: 'var(--font-body)', ...style } },
@@ -2479,7 +2479,7 @@ function PaymentCard({ holder = '', last4 = '0000', variant = 'ink', frozen = fa
       label && React.createElement('span', { style: { marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: V.dim } }, label)),
     React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 10, marginTop: 'auto', marginBottom: 8 } },
       React.createElement('span', { 'aria-hidden': true, style: { width: Math.round(width * 0.115), height: Math.round(width * 0.085), borderRadius: 6, background: variant === 'sand' ? 'var(--flow-sand-200)' : 'rgba(255,255,255,.25)', display: 'inline-block' } }),
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: Math.round(width * 0.07), color: V.dim } }, 'contactless')),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: Math.round(width * 0.07), color: V.dim } }, 'contactless')),
     React.createElement('div', { style: { display: 'flex', alignItems: 'baseline', gap: 10 } },
       React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: Math.round(width * 0.052), fontWeight: 500, letterSpacing: '.08em', whiteSpace: 'nowrap' } }, '•••• ' + last4),
       expires && React.createElement('span', { style: { marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: Math.round(width * 0.038), color: V.dim } }, expires)),
@@ -2491,7 +2491,7 @@ function PaymentCard({ holder = '', last4 = '0000', variant = 'ink', frozen = fa
         animation: 'flowScaleIn var(--dur-base) var(--ease-out)',
       },
     },
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 26, color: 'var(--card-fg-on-accent)', textShadow: '0 1px 6px rgba(0,0,0,.3)' } }, 'ac_unit'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 26, color: 'var(--card-fg-on-accent)', textShadow: '0 1px 6px rgba(0,0,0,.3)' } }, 'ac_unit'),
       React.createElement('span', { style: { fontSize: 14, fontWeight: 700, color: 'var(--card-fg-on-accent)', textShadow: '0 1px 6px rgba(0,0,0,.3)' } }, 'Congelada')));
 }
 
@@ -2530,7 +2530,7 @@ function TransactionRow({ category = 'transfer', title, subtitle, amount = 0, cu
     React.createElement('span', {
       'aria-hidden': true,
       style: { width: 42, height: 42, borderRadius: 14, background: bg, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: 'none' },
-    }, React.createElement('span', { className: 'flow-icon', style: { fontSize: 21, color: fg } }, ic)),
+    }, React.createElement('span', { className: 'flow-symbol', style: { fontSize: 21, color: fg } }, ic)),
     React.createElement('span', { style: { flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1 } },
       React.createElement('span', { style: { fontSize: 14, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, title),
       subtitle && React.createElement('span', { style: { fontSize: 12, color: 'var(--text-muted)' } }, subtitle)),
@@ -2615,7 +2615,7 @@ function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14, width 
             boxShadow: sel ? 'var(--shadow-accent-glow)' : 'var(--shadow-raised)', whiteSpace: 'nowrap',
           },
         },
-          p.icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15 } }, p.icon),
+          p.icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15 } }, p.icon),
           p.label),
         React.createElement('span', {
           'aria-hidden': true,
@@ -2648,11 +2648,11 @@ function StatTile({ label, value, delta, trend, icon, tone, style }) {
     },
   },
     React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
-      icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18, color: tone || 'var(--text-muted)' } }, icon),
+      icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18, color: tone || 'var(--text-muted)' } }, icon),
       React.createElement('span', { style: { fontSize: 11, fontWeight: 600, letterSpacing: 'var(--tracking-overline)', textTransform: 'uppercase', color: 'var(--text-muted)' } }, label)),
     React.createElement('div', { style: { fontFamily: 'var(--font-mono)', fontSize: 24, fontWeight: 600, marginTop: 8, letterSpacing: '-0.01em' } }, value),
     delta && React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 3, fontSize: 12, fontWeight: 600, marginTop: 4, color: deltaColor } },
-      trend && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 14 } }, trend === 'up' ? 'trending_up' : trend === 'down' ? 'trending_down' : 'trending_flat'),
+      trend && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14 } }, trend === 'up' ? 'trending_up' : trend === 'down' ? 'trending_down' : 'trending_flat'),
       delta));
 }
 
@@ -2747,7 +2747,7 @@ function RoleMatrix({ roles = [], permissions = [], values = {}, onChange, style
     label: React.createElement(React.Fragment, null,
       r.label,
       r.locked && React.createElement('span', {
-        className: 'flow-icon', 'aria-hidden': true,
+        className: 'flow-symbol', 'aria-hidden': true,
         style: { fontSize: 13, verticalAlign: -2, marginLeft: 4 },
       }, 'lock')),
     render: (p) => {
@@ -2766,7 +2766,7 @@ function RoleMatrix({ roles = [], permissions = [], values = {}, onChange, style
           transition: 'all var(--dur-fast) var(--ease-spring)',
         },
       }, on ? React.createElement('span', {
-        className: 'flow-icon', 'aria-hidden': true,
+        className: 'flow-symbol', 'aria-hidden': true,
         style: { fontSize: 16, color: 'var(--text-on-inverse)', animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' },
       }, 'check') : null);
     },
@@ -2805,8 +2805,8 @@ function ChatMessage({ role = 'agent', text, tool, streaming = false, children, 
     },
       tool.status === 'running'
         ? React.createElement('span', { 'aria-hidden': true, style: { width: 13, height: 13, border: '2px solid var(--border-strong)', borderTopColor: 'var(--action-accent)', borderRadius: '50%', animation: 'flowSpin 0.8s linear infinite' } })
-        : React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15, color: 'var(--status-success-text)' } }, 'check_circle'),
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15 } }, tool.icon || 'bolt'),
+        : React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15, color: 'var(--status-success-text)' } }, 'check_circle'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15 } }, tool.icon || 'bolt'),
       tool.label),
     React.createElement('div', {
       style: {
@@ -2914,7 +2914,7 @@ function Tabs({ items = [], value, onChange, variant = 'pill', style }) {
           transition: 'color var(--dur-fast) var(--ease-out)',
         },
       },
-        t.icon && React.createElement('span', { className: 'flow-icon' + (active ? ' flow-icon--fill' : ''), 'aria-hidden': true, style: { fontSize: 18 } }, t.icon),
+        t.icon && React.createElement('span', { className: 'flow-symbol' + (active ? ' flow-symbol--fill' : ''), 'aria-hidden': true, style: { fontSize: 18 } }, t.icon),
         t.label,
         t.count != null && React.createElement('span', {
           style: { fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, background: active ? 'var(--surface-accent-subtle)' : 'var(--border-subtle)', color: active ? 'var(--text-accent)' : 'var(--text-muted)', borderRadius: 999, padding: '1px 7px' },
@@ -2956,7 +2956,7 @@ function Stepper({ steps = [], current = 0, orientation = 'horizontal', style })
         transform: active ? 'scale(1.1)' : 'scale(1)',
         transition: 'all var(--dur-base) var(--ease-spring)',
       },
-    }, done ? React.createElement('span', { className: 'flow-icon', style: { fontSize: 16, animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' } }, 'check') : i + 1);
+    }, done ? React.createElement('span', { className: 'flow-symbol', style: { fontSize: 16, animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)' } }, 'check') : i + 1);
     const text = React.createElement('span', { style: { display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 } },
       React.createElement('span', { style: { fontSize: 13, fontWeight: active ? 700 : 500, color: active || done ? 'var(--text-primary)' : 'var(--text-muted)', whiteSpace: 'nowrap' } }, s.label),
       s.description && React.createElement('span', { style: { fontSize: 11.5, color: 'var(--text-muted)' } }, s.description));
@@ -3003,7 +3003,7 @@ function Breadcrumb({ items = [], style }) {
               onMouseEnter: (e) => { e.currentTarget.style.color = 'var(--text-accent)'; e.currentTarget.style.background = 'var(--surface-sunken)'; },
               onMouseLeave: (e) => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'transparent'; },
             }, it.label),
-          !last && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 16, color: 'var(--flow-ink-300)' } }, 'chevron_right'));
+          !last && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16, color: 'var(--flow-ink-300)' } }, 'chevron_right'));
       })));
 }
 
@@ -3037,11 +3037,11 @@ function Pagination({ page = 1, pages = 1, onChange, style }) {
     },
   }, content);
   return React.createElement('nav', { 'aria-label': 'Paginación', style: { display: 'flex', alignItems: 'center', gap: 4, ...style } },
-    btn(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_left'), { aria: 'Página anterior', disabled: page <= 1, onClick: () => go(page - 1) }),
+    btn(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_left'), { aria: 'Página anterior', disabled: page <= 1, onClick: () => go(page - 1) }),
     nums.map((n, i) => n === '…'
       ? React.createElement('span', { key: 'e' + i, style: { padding: '0 4px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: 13 } }, '…')
       : btn(n, { key: n, aria: 'Página ' + n, current: n === page, onClick: () => go(n) })),
-    btn(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'), { aria: 'Página siguiente', disabled: page >= pages, onClick: () => go(page + 1) }));
+    btn(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'), { aria: 'Página siguiente', disabled: page >= pages, onClick: () => go(page + 1) }));
 }
 
 F.Pagination = Pagination;
@@ -3080,7 +3080,7 @@ function SegmentedControl({ items = [], value, onChange, style }) {
           transition: 'color var(--dur-fast) var(--ease-out)',
         },
       },
-        t.icon && React.createElement('span', { className: 'flow-icon' + (active ? ' flow-icon--fill' : ''), 'aria-hidden': true, style: { fontSize: 17 } }, t.icon),
+        t.icon && React.createElement('span', { className: 'flow-symbol' + (active ? ' flow-symbol--fill' : ''), 'aria-hidden': true, style: { fontSize: 17 } }, t.icon),
         t.label);
     }));
 }
@@ -3192,7 +3192,7 @@ function Dialog({ open = false, onClose, title, description, children, actions, 
       React.createElement('div', { style: { display: 'flex', alignItems: 'flex-start', gap: 14 } },
         toneIcon && React.createElement('span', {
           style: { width: 44, height: 44, borderRadius: '50%', background: toneIcon[2], display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: 'none' },
-        }, React.createElement('span', { className: 'flow-icon flow-icon--fill', 'aria-hidden': true, style: { fontSize: 24, color: toneIcon[1] } }, toneIcon[0])),
+        }, React.createElement('span', { className: 'flow-symbol flow-symbol--fill', 'aria-hidden': true, style: { fontSize: 24, color: toneIcon[1] } }, toneIcon[0])),
         React.createElement('div', { style: { flex: 1, minWidth: 0 } },
           title && React.createElement('div', { id: titleId, style: { fontSize: 18, fontWeight: 700, letterSpacing: 'var(--tracking-tight)' } }, title),
           description && React.createElement('div', { style: { fontSize: 13.5, color: 'var(--text-secondary)', lineHeight: 1.55, marginTop: 6 } }, description)),
@@ -3201,7 +3201,7 @@ function Dialog({ open = false, onClose, title, description, children, actions, 
           style: { width: 'var(--hit-target-min)', height: 'var(--hit-target-min)', flex: 'none', border: 'none', background: 'transparent', borderRadius: '50%', cursor: 'pointer', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: 'background var(--dur-instant) var(--ease-out)', margin: '-6px -6px 0 0' },
           onMouseEnter: (e) => e.currentTarget.style.background = 'var(--surface-sunken)',
           onMouseLeave: (e) => e.currentTarget.style.background = 'transparent',
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20 } }, 'close'))),
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20 } }, 'close'))),
       children && React.createElement('div', { style: { marginTop: 18 } }, children),
       actions && React.createElement('div', { style: { display: 'flex', justifyContent: 'flex-end', gap: 10, marginTop: 24 } }, actions)));
 }
@@ -3231,7 +3231,7 @@ function Toast({ tone = 'neutral', message, actionLabel, onAction, onDismiss, st
       animation: 'flowIn var(--dur-base) var(--ease-spring)', ...style,
     },
   },
-    React.createElement('span', { className: 'flow-icon flow-icon--fill', 'aria-hidden': true, style: { fontSize: 20, color: t.color, flex: 'none' } }, t.icon),
+    React.createElement('span', { className: 'flow-symbol flow-symbol--fill', 'aria-hidden': true, style: { fontSize: 20, color: t.color, flex: 'none' } }, t.icon),
     React.createElement('span', { style: { flex: 1, lineHeight: 1.45 } }, message),
     actionLabel && React.createElement('button', {
       type: 'button', onClick: onAction,
@@ -3240,7 +3240,7 @@ function Toast({ tone = 'neutral', message, actionLabel, onAction, onDismiss, st
     onDismiss && React.createElement('button', {
       type: 'button', 'aria-label': 'Cerrar aviso', onClick: onDismiss,
       style: { border: 'none', background: 'transparent', color: 'inherit', opacity: 0.6, cursor: 'pointer', display: 'inline-flex', padding: 4, borderRadius: '50%' },
-    }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'close')));
+    }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'close')));
 }
 
 /** Fixed-position stack, bottom center. */
@@ -3251,7 +3251,6 @@ function ToastStack({ children, style }) {
 }
 
 F.Toast = Toast;
-F.ToastStack = ToastStack;
 })();
 
 // ---- components/Drawer.jsx ----
@@ -3282,7 +3281,7 @@ function Drawer({ open = false, onClose, title, children, footer, width = 400, s
           style: { width: 'var(--hit-target-min)', height: 'var(--hit-target-min)', border: 'none', background: 'transparent', borderRadius: '50%', cursor: 'pointer', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: 'background var(--dur-instant) var(--ease-out)' },
           onMouseEnter: (e) => e.currentTarget.style.background = 'var(--surface-sunken)',
           onMouseLeave: (e) => e.currentTarget.style.background = 'transparent',
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20 } }, 'close'))),
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20 } }, 'close'))),
       React.createElement('div', { style: { flex: 1, overflowY: 'auto', padding: '4px 24px 24px' } }, children),
       footer && React.createElement('footer', { style: { flex: 'none', padding: '14px 24px 22px', borderTop: '1px solid var(--border-subtle)', display: 'flex', justifyContent: 'flex-end', gap: 10 } }, footer)));
 }
@@ -3349,7 +3348,7 @@ function BiometricPrompt({ method = 'face', state = 'idle', title, description, 
         style: { position: 'absolute', inset: -4, borderRadius: '50%', border: '2.5px solid var(--action-accent)', borderTopColor: 'transparent', animation: 'flowSpin 1s linear infinite' },
       }),
       React.createElement('span', {
-        className: 'flow-icon' + (state === 'success' ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+        className: 'flow-symbol' + (state === 'success' ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
         style: { fontSize: 44, color: stateColor, animation: state === 'success' ? 'flowScaleIn var(--dur-base) var(--ease-spring)' : 'none', transition: 'color var(--dur-fast) var(--ease-out)' },
       }, stateIcon)),
     React.createElement('div', { style: { fontSize: 16, fontWeight: 700, marginTop: 6 } }, title || (method === 'face' ? 'Face ID' : 'Huella digital')),
@@ -3404,7 +3403,7 @@ function NotificationCenter({ items = [], onItemClick, onMarkAllRead, align = 'r
       onMouseEnter: (e) => e.currentTarget.style.transform = 'scale(1.06)',
       onMouseLeave: (e) => e.currentTarget.style.transform = 'none',
     },
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20 } }, 'notifications'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20 } }, 'notifications'),
       unread > 0 && React.createElement('span', {
         'aria-hidden': true,
         style: {
@@ -3443,7 +3442,7 @@ function NotificationCenter({ items = [], onItemClick, onMarkAllRead, align = 'r
               onMouseLeave: (e) => e.currentTarget.style.background = it.read ? 'transparent' : 'var(--surface-accent-subtle)',
             },
               React.createElement('span', { 'aria-hidden': true, style: { width: 34, height: 34, borderRadius: '50%', background: bg, flex: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' } },
-                React.createElement('span', { className: 'flow-icon', style: { fontSize: 17, color: fg } }, icon)),
+                React.createElement('span', { className: 'flow-symbol', style: { fontSize: 17, color: fg } }, icon)),
               React.createElement('span', { style: { flex: 1, minWidth: 0 } },
                 React.createElement('div', { style: { fontSize: 13, fontWeight: it.read ? 500 : 700, color: 'var(--text-primary)' } }, it.title),
                 it.desc && React.createElement('div', { style: { fontSize: 12, color: 'var(--text-secondary)', marginTop: 1 } }, it.desc),
@@ -3681,7 +3680,7 @@ function GanttChart({
       gap: 6, minHeight: 120, color: 'var(--text-muted)', font: 'var(--type-caption)',
     },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 22 } }, 'bar_chart'),
     'Sin datos para este periodo');
   const dates = tasks.flatMap(t => [new Date(t.start), new Date(t.end)]);
   const minDate = dates.length > 0 ? new Date(Math.min(...dates)) : new Date();
@@ -3930,7 +3929,7 @@ function KanbanBoard({
                 color: col.abandon ? 'var(--text-muted)' : 'var(--text-secondary)',
               },
             }, col.label),
-            R(F.Badge, { tone: atLimit ? 'warning' : 'neutral' },
+            R(Badge, { tone: atLimit ? 'warning' : 'neutral' },
               String(list.length) + (col.limit ? '/' + col.limit : ''))),
           R('div', { style: { display: 'flex', flexDirection: 'column', gap: 8, minHeight: 40 } },
             list.map((item, rowIdx) => {
@@ -3962,7 +3961,7 @@ function KanbanBoard({
                 // kb-2: la tarjeta anuncia su columna y su posicion sin pintarlas.
                 R('span', { style: SR }, ' — columna ' + col.label + ', ' + (rowIdx + 1) + ' de ' + list.length),
                 canAdvance ? R('div', { style: { position: 'absolute', top: 6, right: 6 } },
-                  R(F.IconButton, {
+                  R(IconButton, {
                     icon: 'arrow_forward', size: 'sm', variant: 'ghost',
                     ariaLabel: 'Avanzar a ' + all[colIdx + 1].label,
                     onClick: (e) => { if (e && e.stopPropagation) e.stopPropagation(); advance(k, colIdx); },
@@ -3972,7 +3971,7 @@ function KanbanBoard({
               style: { margin: 0, padding: '10px 2px', fontSize: 12.5, color: 'var(--text-muted)' },
             }, col.abandon ? 'Sin salidas' : 'Vacia') : null));
       })),
-    renderDetail && openItem ? R(F.OverlayShell, {
+    renderDetail && openItem ? R(OverlayShell, {
       open: true, onClose: () => setOpen(null), align: 'end', zIndex: 95, label: 'Detalle de la tarjeta',
     },
       R('aside', {
@@ -3990,7 +3989,7 @@ function KanbanBoard({
           },
         },
           R('span', { style: { flex: 1, fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)' } }, 'Detalle'),
-          R(F.IconButton, { icon: 'close', size: 'sm', variant: 'ghost', ariaLabel: 'Cerrar', onClick: () => setOpen(null) })),
+          R(IconButton, { icon: 'close', size: 'sm', variant: 'ghost', ariaLabel: 'Cerrar', onClick: () => setOpen(null) })),
         R('div', { style: { flex: 1, overflowY: 'auto', padding: '16px 20px 24px' } }, renderDetail(openItem)))) : null);
 }
 
@@ -4180,7 +4179,7 @@ function HelpCenter({
                     transition: 'color var(--dur-fast) var(--ease-out)',
                   }
                 },
-                  React.createElement('span', { className: 'flow-icon', style: { fontSize: 14, transform: isExpanded ? 'rotate(90deg)' : 'none', transition: 'transform var(--dur-fast) var(--ease-spring)' } }, 'chevron_right'),
+                  React.createElement('span', { className: 'flow-symbol', style: { fontSize: 14, transform: isExpanded ? 'rotate(90deg)' : 'none', transition: 'transform var(--dur-fast) var(--ease-spring)' } }, 'chevron_right'),
                   cat
                 ),
                 isExpanded && React.createElement('div', {
@@ -4284,7 +4283,7 @@ function TabBar({ items = [], activeId, onChange, style }) {
     },
       React.createElement('span', { style: { position: 'relative', display: 'inline-flex' } },
         React.createElement('span', {
-          className: 'flow-icon' + (active ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+          className: 'flow-symbol' + (active ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
           style: { fontSize: 24, display: 'block', transform: active ? 'scale(1.12)' : 'none', transition: 'transform var(--dur-fast) var(--ease-spring)' },
         }, it.icon),
         it.badge && React.createElement('span', {
@@ -4422,7 +4421,7 @@ function Timeline({ items = [], mode = 'steps', style }) {
               color: it.status === 'pending' ? 'var(--text-muted)' : 'var(--text-on-accent)',
               boxShadow: it.status === 'active' ? 'var(--shadow-accent-glow)' : 'none',
             },
-          }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15 } }, it.icon || st.icon)),
+          }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15 } }, it.icon || st.icon)),
           !last && React.createElement('span', { style: { width: 2, flex: 1, minHeight: 24, background: 'var(--border-subtle)', marginTop: 2 } })),
         React.createElement('div', { style: { paddingBottom: last ? 0 : 22, flex: 1 } },
           React.createElement('div', { style: { display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'baseline' } },
@@ -4447,7 +4446,7 @@ function DefaultIllustration({ icon, index }) {
   },
     React.createElement('div', {
       style: { width: 108, height: 108, borderRadius: '50%', background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 12px 28px ' + color + '40' },
-    }, React.createElement('span', { className: 'flow-icon flow-icon--fill', 'aria-hidden': true, style: { fontSize: 52, color: 'var(--text-on-accent)' } }, icon || 'auto_awesome')));
+    }, React.createElement('span', { className: 'flow-symbol flow-symbol--fill', 'aria-hidden': true, style: { fontSize: 52, color: 'var(--text-on-accent)' } }, icon || 'auto_awesome')));
 }
 
 /** Onboarding slides with illustration, dot pagination, and swipe. slides: [{icon?, illustration?(node), title, description}] */
@@ -4527,7 +4526,7 @@ function StatusView({ status = 'loading', title, description, primaryAction, sec
         style: { position: 'absolute', inset: -4, borderRadius: '50%', border: '2.5px solid var(--action-accent)', borderTopColor: 'transparent', animation: 'flowSpin 1s linear infinite' },
       }),
       React.createElement('span', {
-        className: 'flow-icon' + (status === 'success' || status === 'error' ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+        className: 'flow-symbol' + (status === 'success' || status === 'error' ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
         style: {
           fontSize: 40, color: cfg.color,
           animation: status === 'loading' ? 'flowSpin 1.4s linear infinite' : (status === 'success' ? 'flowScaleIn var(--dur-base) var(--ease-spring)' : 'none'),
@@ -4598,10 +4597,10 @@ function Sidebar({
           transition: 'background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out)',
         },
       },
-        h('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, flex: 'none' } }, item.icon),
+        h('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, flex: 'none' } }, item.icon),
         !collapsed && h('span', { key: 'lbl', style: { flex: 1, textAlign: 'left' } }, item.label),
         !collapsed && esSeccion && h('span', {
-          key: 'chev', className: 'flow-icon', 'aria-hidden': true,
+          key: 'chev', className: 'flow-symbol', 'aria-hidden': true,
           style: {
             fontSize: 18,
             transform: abierta ? 'rotate(180deg)' : 'none',
@@ -4701,7 +4700,7 @@ function TopBar({
 }) {
   const [showEntityMenu, setShowEntityMenu] = React.useState(false);
   const h = React.createElement;
-  const icono = (nombre, extra) => h('span', { className: 'flow-icon', 'aria-hidden': true, style: extra }, nombre);
+  const icono = (nombre, extra) => h('span', { className: 'flow-symbol', 'aria-hidden': true, style: extra }, nombre);
   const espaciador = h('div', { key: 'sp', style: { flex: 1 } });
 
   const standard = [
@@ -4996,7 +4995,7 @@ function GlobalSearch({
   const searchField = React.createElement('div', {
     style: { display: 'flex', alignItems: 'center', gap: 10, padding: mode === 'palette' ? '14px 16px' : '0 12px', borderBottom: mode === 'palette' ? '1px solid var(--border-subtle)' : 'none', flex: mode === 'palette' ? 'none' : 1, minWidth: 0 },
   },
-    React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)', flex: 'none' } }, 'search'),
+    React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, color: 'var(--text-muted)', flex: 'none' } }, 'search'),
     React.createElement('input', {
       ref: inputRef,
       type: 'text',
@@ -5021,7 +5020,7 @@ function GlobalSearch({
           type: 'button', onClick: () => { onValueChange && onValueChange(''); inputRef.current && inputRef.current.focus(); },
           'aria-label': 'Limpiar búsqueda',
           style: { border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex', padding: 4, minWidth: 'var(--hit-target-min)', minHeight: 'var(--hit-target-min)', alignItems: 'center', justifyContent: 'center', flex: 'none' },
-        }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))
+        }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'close'))
       : (mode === 'palette' && shortcut && React.createElement('kbd', {
           'aria-hidden': true,
           style: { fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-muted)', border: '1px solid var(--border-subtle)', borderRadius: 4, padding: '2px 6px', flex: 'none' },
@@ -5042,7 +5041,7 @@ function GlobalSearch({
     body = React.createElement('div', {
       style: { padding: '28px 20px', textAlign: 'center' },
     },
-      React.createElement('div', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-muted)' } }, value.length >= minChars ? 'search_off' : 'search'),
+      React.createElement('div', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-muted)' } }, value.length >= minChars ? 'search_off' : 'search'),
       React.createElement('p', { style: { margin: '8px 0 2px', fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)' } },
         value.length >= minChars ? 'Sin resultados para «' + value + '»' : 'Busca en toda la plataforma'),
       React.createElement('p', { style: { margin: 0, fontSize: 12.5, color: 'var(--text-secondary)', lineHeight: 1.5 } }, emptyHint));
@@ -5078,7 +5077,7 @@ function GlobalSearch({
             },
           },
             r.icon && React.createElement('span', {
-              className: 'flow-icon', 'aria-hidden': true,
+              className: 'flow-symbol', 'aria-hidden': true,
               style: { fontSize: 20, color: active ? 'var(--text-primary)' : 'var(--text-muted)', flex: 'none' },
             }, r.icon),
             React.createElement('div', { style: { flex: 1, minWidth: 0 } },
@@ -5094,7 +5093,7 @@ function GlobalSearch({
               }, r.meta)),
             r.trailing && React.createElement('div', { style: { flex: 'none' } }, r.trailing),
             active && React.createElement('span', {
-              className: 'flow-icon', 'aria-hidden': true,
+              className: 'flow-symbol', 'aria-hidden': true,
               style: { fontSize: 16, color: 'var(--text-muted)', flex: 'none' },
             }, 'keyboard_return'));
         }))));
@@ -5858,7 +5857,7 @@ function FlowChart({
       style: { textAlign: 'center', color: 'var(--text-secondary)', fontSize: 13 },
     },
       React.createElement('span', {
-        className: 'flow-icon', 'aria-hidden': true,
+        className: 'flow-symbol', 'aria-hidden': true,
         style: { fontSize: 26, color: 'var(--text-muted)', display: 'block', marginBottom: 4 },
       }, failed ? 'cloud_off' : 'bar_chart'),
       failed ? 'La grafica no pudo cargar' : emptyLabel));
@@ -5873,8 +5872,6 @@ function FlowChart({
 }
 
 F.FlowChart = FlowChart;
-F.loadEcharts = loadEcharts;
-F.buildOption = buildOption;
 })();
 
 // ---- primitives/Flag.jsx ----

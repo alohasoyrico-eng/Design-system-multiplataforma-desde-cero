@@ -54,10 +54,10 @@ export function Sidebar({
           transition: 'background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out)',
         },
       },
-        h('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 20, flex: 'none' } }, item.icon),
+        h('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 20, flex: 'none' } }, item.icon),
         !collapsed && h('span', { key: 'lbl', style: { flex: 1, textAlign: 'left' } }, item.label),
         !collapsed && esSeccion && h('span', {
-          key: 'chev', className: 'flow-icon', 'aria-hidden': true,
+          key: 'chev', className: 'flow-symbol', 'aria-hidden': true,
           style: {
             fontSize: 18,
             transform: abierta ? 'rotate(180deg)' : 'none',

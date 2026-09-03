@@ -20,6 +20,6 @@ export function Badge({ tone = 'neutral', live = false, icon, children, style })
     },
   },
     live && React.createElement('span', { 'aria-hidden': true, style: { width: 7, height: 7, borderRadius: '50%', background: 'currentColor', animation: 'flowPulse 1.6s ease-in-out infinite' } }),
-    icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 14 } }, icon),
+    icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14 } }, icon),
     children);
 }

@@ -24,9 +24,9 @@ export function Pagination({ page = 1, pages = 1, onChange, style }) {
     },
   }, content);
   return React.createElement('nav', { 'aria-label': 'Paginación', style: { display: 'flex', alignItems: 'center', gap: 4, ...style } },
-    btn(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_left'), { aria: 'Página anterior', disabled: page <= 1, onClick: () => go(page - 1) }),
+    btn(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_left'), { aria: 'Página anterior', disabled: page <= 1, onClick: () => go(page - 1) }),
     nums.map((n, i) => n === '…'
       ? React.createElement('span', { key: 'e' + i, style: { padding: '0 4px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: 13 } }, '…')
       : btn(n, { key: n, aria: 'Página ' + n, current: n === page, onClick: () => go(n) })),
-    btn(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'), { aria: 'Página siguiente', disabled: page >= pages, onClick: () => go(page + 1) }));
+    btn(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18 } }, 'chevron_right'), { aria: 'Página siguiente', disabled: page >= pages, onClick: () => go(page + 1) }));
 }

@@ -25,7 +25,7 @@ export function BiometricPrompt({ method = 'face', state = 'idle', title, descri
         style: { position: 'absolute', inset: -4, borderRadius: '50%', border: '2.5px solid var(--action-accent)', borderTopColor: 'transparent', animation: 'flowSpin 1s linear infinite' },
       }),
       React.createElement('span', {
-        className: 'flow-icon' + (state === 'success' ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+        className: 'flow-symbol' + (state === 'success' ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
         style: { fontSize: 44, color: stateColor, animation: state === 'success' ? 'flowScaleIn var(--dur-base) var(--ease-spring)' : 'none', transition: 'color var(--dur-fast) var(--ease-out)' },
       }, stateIcon)),
     React.createElement('div', { style: { fontSize: 16, fontWeight: 700, marginTop: 6 } }, title || (method === 'face' ? 'Face ID' : 'Huella digital')),

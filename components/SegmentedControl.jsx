@@ -30,7 +30,7 @@ export function SegmentedControl({ items = [], value, onChange, style }) {
           transition: 'color var(--dur-fast) var(--ease-out)',
         },
       },
-        t.icon && React.createElement('span', { className: 'flow-icon' + (active ? ' flow-icon--fill' : ''), 'aria-hidden': true, style: { fontSize: 17 } }, t.icon),
+        t.icon && React.createElement('span', { className: 'flow-symbol' + (active ? ' flow-symbol--fill' : ''), 'aria-hidden': true, style: { fontSize: 17 } }, t.icon),
         t.label);
     }));
 }

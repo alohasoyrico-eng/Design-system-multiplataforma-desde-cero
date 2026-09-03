@@ -10,10 +10,10 @@ export function StatTile({ label, value, delta, trend, icon, tone, style }) {
     },
   },
     React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
-      icon && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18, color: tone || 'var(--text-muted)' } }, icon),
+      icon && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18, color: tone || 'var(--text-muted)' } }, icon),
       React.createElement('span', { style: { fontSize: 11, fontWeight: 600, letterSpacing: 'var(--tracking-overline)', textTransform: 'uppercase', color: 'var(--text-muted)' } }, label)),
     React.createElement('div', { style: { fontFamily: 'var(--font-mono)', fontSize: 24, fontWeight: 600, marginTop: 8, letterSpacing: '-0.01em' } }, value),
     delta && React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 3, fontSize: 12, fontWeight: 600, marginTop: 4, color: deltaColor } },
-      trend && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 14 } }, trend === 'up' ? 'trending_up' : trend === 'down' ? 'trending_down' : 'trending_flat'),
+      trend && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14 } }, trend === 'up' ? 'trending_up' : trend === 'down' ? 'trending_down' : 'trending_flat'),
       delta));
 }

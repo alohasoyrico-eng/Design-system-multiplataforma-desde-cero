@@ -42,7 +42,7 @@ export function Field({ label, htmlFor, required = false, help, error, children,
         display: 'flex', alignItems: 'center', gap: 4,
       },
     },
-      error && React.createElement('span', { className: 'flow-icon', style: { fontSize: 14 }, 'aria-hidden': true }, 'error'),
+      error && React.createElement('span', { className: 'flow-symbol', style: { fontSize: 14 }, 'aria-hidden': true }, 'error'),
       error || help)
   );
 }

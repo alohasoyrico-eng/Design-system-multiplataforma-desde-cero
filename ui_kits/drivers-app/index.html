@@ -22,7 +22,7 @@ function RideRequest({onAccept,onSkip}){
   },[]);
   return <div style={{background:'var(--action-accent)',borderRadius:'var(--radius-xl)',padding:22,color:'#fff',boxShadow:'var(--shadow-accent-glow)',animation:'flowIn var(--dur-base) var(--ease-spring)'}}>
     <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:14}}>
-      <span className="flow-icon flow-icon--fill" aria-hidden="true" style={{fontSize:20}}>bolt</span>
+      <span className="flow-symbol flow-symbol--fill" aria-hidden="true" style={{fontSize:20}}>bolt</span>
       <span style={{fontSize:13,fontWeight:700,letterSpacing:'0.04em'}}>NUEVO VIAJE · +1.8×</span>
       <span style={{marginLeft:'auto',fontFamily:'var(--font-mono)',fontSize:14,fontWeight:600,background:'rgba(0,0,0,.22)',borderRadius:999,padding:'2px 10px'}}>{left}s</span>
     </div>
@@ -81,7 +81,7 @@ function App(){
       </Card>
       <Card padding={18}>
         <div style={{display:'flex',alignItems:'center',gap:12}}>
-          <span className="flow-icon" aria-hidden="true" style={{fontSize:22,color:'var(--status-warning-text)'}}>warning</span>
+          <span className="flow-symbol" aria-hidden="true" style={{fontSize:22,color:'var(--status-warning-text)'}}>warning</span>
           <div style={{flex:1}}>
             <div style={{fontSize:13.5,fontWeight:600}}>Verificación de tarjeta de circulación</div>
             <div style={{fontSize:12,color:'var(--text-muted)'}}>Vence en 12 días. Súbela para evitar pausas.</div>

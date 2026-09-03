@@ -14,8 +14,8 @@ export function ChatMessage({ role = 'agent', text, tool, streaming = false, chi
     },
       tool.status === 'running'
         ? React.createElement('span', { 'aria-hidden': true, style: { width: 13, height: 13, border: '2px solid var(--border-strong)', borderTopColor: 'var(--action-accent)', borderRadius: '50%', animation: 'flowSpin 0.8s linear infinite' } })
-        : React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15, color: 'var(--status-success-text)' } }, 'check_circle'),
-      React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 15 } }, tool.icon || 'bolt'),
+        : React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15, color: 'var(--status-success-text)' } }, 'check_circle'),
+      React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 15 } }, tool.icon || 'bolt'),
       tool.label),
     React.createElement('div', {
       style: {

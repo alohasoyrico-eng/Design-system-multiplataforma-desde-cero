@@ -40,7 +40,7 @@ export function PasscodeKeypad({ length = 6, value = '', onChange, onComplete, i
       }))),
     React.createElement('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(3, 72px)', gap: '14px 22px', justifyItems: 'center' } },
       ...[1,2,3,4,5,6,7,8,9].map(n => key(String(n), () => press(String(n)), String(n))),
-      biometricIcon ? key(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-accent)' } }, biometricIcon), onBiometric, 'Usar biometrico') : React.createElement('span', null),
+      biometricIcon ? key(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 28, color: 'var(--text-accent)' } }, biometricIcon), onBiometric, 'Usar biometrico') : React.createElement('span', null),
       key('0', () => press('0'), '0'),
-      key(React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 24 } }, 'backspace'), () => press('back'), 'Borrar')));
+      key(React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 24 } }, 'backspace'), () => press('back'), 'Borrar')));
 }

@@ -21,7 +21,7 @@ export function Chip({ label, selected = false, onClick, onRemove, icon, disable
     transition: 'background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-spring)',
   };
   const glifo = icon && React.createElement('span', {
-    className: 'flow-icon' + (selected ? ' flow-icon--fill' : ''), 'aria-hidden': true,
+    className: 'flow-symbol' + (selected ? ' flow-symbol--fill' : ''), 'aria-hidden': true,
     style: { fontSize: 16, flexShrink: 0 },
   }, icon);
 
@@ -36,7 +36,7 @@ export function Chip({ label, selected = false, onClick, onRemove, icon, disable
       borderRadius: 'var(--radius-pill)', cursor: disabled ? 'not-allowed' : 'pointer',
       padding: 0, opacity: 0.7,
     },
-  }, React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 16 } }, 'close'));
+  }, React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16 } }, 'close'));
 
   if (!onRemove) {
     return React.createElement(clickable ? 'button' : 'span', {

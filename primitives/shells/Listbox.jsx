@@ -121,7 +121,7 @@ export const Listbox = React.forwardRef(function Listbox({
               background: sel ? 'var(--action-primary)' : 'transparent',
               color: 'var(--text-on-inverse)', fontSize: 14,
             },
-          }, sel ? React.createElement('span', { className: 'flow-icon', style: { fontSize: 14 } }, 'check') : null),
+          }, sel ? React.createElement('span', { className: 'flow-symbol', style: { fontSize: 14 } }, 'check') : null),
           renderItem ? renderItem(o, { active: act, selected: sel })
             : React.createElement('span', { style: { flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, o.label),
           // hint se pinta, no solo se filtra: un dato por el que se puede buscar y
@@ -129,7 +129,7 @@ export const Listbox = React.forwardRef(function Listbox({
           !renderItem && o.hint && React.createElement('span', {
             style: { font: 'var(--type-data)', fontSize: 11.5, color: act || sel ? 'var(--text-accent)' : 'var(--text-muted)', flexShrink: 0 },
           }, o.hint),
-          !multiple && sel && React.createElement('span', { className: 'flow-icon', 'aria-hidden': true, style: { fontSize: 18, flexShrink: 0 } }, 'check')
+          !multiple && sel && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 18, flexShrink: 0 } }, 'check')
         );
       })
     ))

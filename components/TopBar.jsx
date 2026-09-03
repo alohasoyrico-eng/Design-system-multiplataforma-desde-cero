@@ -29,7 +29,7 @@ export function TopBar({
 }) {
   const [showEntityMenu, setShowEntityMenu] = React.useState(false);
   const h = React.createElement;
-  const icono = (nombre, extra) => h('span', { className: 'flow-icon', 'aria-hidden': true, style: extra }, nombre);
+  const icono = (nombre, extra) => h('span', { className: 'flow-symbol', 'aria-hidden': true, style: extra }, nombre);
   const espaciador = h('div', { key: 'sp', style: { flex: 1 } });
 
   const standard = [
