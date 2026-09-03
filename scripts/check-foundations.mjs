@@ -170,7 +170,7 @@ for (const [k, v] of Object.entries(declsOf(read('typography.css')))) {
   if (!(hasSize && hasFam)) warn('typ-2', `${k} no parece un shorthand completo (familia + tamano + linea): ${v}`);
 }
 for (const k of ['--font-display', '--font-body', '--font-mono']) {
-  const fam = (light[k] || '').split(',')[0].replace(/['"]/g, '').trim();
+  const fam = resolve(light[k] || '', light).split(',')[0].replace(/['"]/g, '').trim();
   if (fam && !read('fonts.css').includes(fam))
     fail('typ-3', `la familia ${fam} de ${k} no esta declarada en tokens/fonts.css`);
 }

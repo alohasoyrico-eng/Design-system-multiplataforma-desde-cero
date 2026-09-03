@@ -1,5 +1,9 @@
 /* Flow · Ref · Typography — raw type scale, platform-agnostic */
 :root {
+  --ref-font-display: 'Edenred', 'Helvetica Neue', sans-serif;
+  --ref-font-body: 'Ubuntu', 'Helvetica Neue', sans-serif;
+  --ref-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
   /* Font sizes */
   --ref-type-size-11: 11px;
   --ref-type-size-12: 12px;

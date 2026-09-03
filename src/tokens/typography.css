@@ -1,8 +1,8 @@
 /* Flow · Sys · Typography — semantic type tokens over ref/typography.css + density overrides */
 :root {
-  --font-display: 'Edenred', 'Helvetica Neue', sans-serif;
-  --font-body: 'Ubuntu', 'Helvetica Neue', sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: var(--ref-font-display);
+  --font-body: var(--ref-font-body);
+  --font-mono: var(--ref-font-mono);
 
   /* Display — Edenred Bold */
   --type-display-lg: var(--ref-type-wt-bold) var(--ref-type-size-48)/var(--ref-type-lh-100) var(--font-display);

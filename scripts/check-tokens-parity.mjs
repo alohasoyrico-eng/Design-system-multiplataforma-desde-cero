@@ -5,9 +5,10 @@
  *   - la verdad actual: src/tokens/*.css (+ ref/), escritos a mano
  *   - la salida del diccionario: generated/tokens/css/*.css
  *
- * Hoy NO corre en CI: la deriva es deuda conocida y este script existe para
- * medirla y verla bajar a cero durante el cableo. Cuando llegue a cero, se
- * promueve a CI y el diccionario pasa a ser la única fuente.
+ * Llego a cero el 2026-09-03 (arranco en 527) y desde entonces ES la reja:
+ * corre en CI y bloquea cualquier edicion de un lado sin el otro. El paso
+ * final del cableo — generar src/tokens desde el diccionario — es seguro
+ * mientras esto se mantenga en cero.
  *
  *   node scripts/check-tokens-parity.mjs [--json] [--verbose]
  */
@@ -16,7 +17,7 @@ import { resolve as rp, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = rp(dirname(fileURLToPath(import.meta.url)), '..')
-const strip = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '')
+const strip = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/@media[^{]*\{[\s\S]*?\}\s*\}/g, '') // los bloques @media (reduced-motion) no son la escala base
 
 // Declaraciones por bloque selector de primer nivel.
 function bloques(css) {
@@ -37,18 +38,17 @@ function bloques(css) {
 }
 
 function leerModo(files, modo) {
-  const map = {}
+  // Dos pasadas: primero la base (bloques claros), luego los overrides dark.
+  // El orden de los archivos no puede decidir quien pisa a quien.
+  const base = {}, darkOv = {}
   for (const f of files) {
     if (!existsSync(f)) continue
     for (const b of bloques(readFileSync(f, 'utf8'))) {
-      const esDark = /data-mode="dark"/.test(b.sel)
-      const esDensidad = /data-density/.test(b.sel)
-      const esMedia = /@media|prefers/.test(b.sel)
-      if (esDensidad || esMedia) continue
-      if (modo === 'dark' ? true : !esDark) Object.assign(map, esDark && modo === 'light' ? {} : b.decls)
+      if (/data-density|data-product/.test(b.sel) || /@media|prefers/.test(b.sel)) continue
+      Object.assign(/data-mode="dark"/.test(b.sel) ? darkOv : base, b.decls)
     }
   }
-  return map
+  return modo === 'dark' ? { ...base, ...darkOv } : base
 }
 
 const srcDir = join(root, 'src/tokens')
@@ -64,7 +64,7 @@ const resolver = (v, map, guard = 0) => {
   const next = v.replace(/var\((--[\w-]+)[^)]*\)/g, (all, n) => map[n] ?? all)
   return next === v ? v : resolver(next, map, guard + 1)
 }
-const norm = (v) => String(v).trim().toLowerCase().replace(/\s+/g, ' ').replace(/,\s/g, ',').replace(/0\./g, '.')
+const norm = (v) => String(v).trim().toLowerCase().replace(/['"]/g, '').replace(/\s+/g, ' ').replace(/,\s/g, ',').replace(/0\./g, '.') // comillas: CSS-equivalentes
 
 const informe = {}
 for (const modo of ['light', 'dark']) {
@@ -100,5 +100,10 @@ if (process.argv.includes('--json')) {
   }
   const total = informe.light.distintas.length + informe.dark.distintas.length +
     informe.light.soloMano.length + informe.dark.soloMano.length
-  console.log(`\nparidad pendiente (distintas + solo-a-mano): ${total}. El cableo termina cuando esto llega a 0.`)
+  console.log(total === 0
+    ? `\nparidad: diccionario y CSS dicen exactamente lo mismo (${informe.light.iguales} tokens por modo).`
+    : `\nparidad rota: ${total} pendientes. El diccionario y src/tokens deben editarse juntos.`)
 }
+process.exit((informe.light.distintas.length + informe.dark.distintas.length +
+  informe.light.soloMano.length + informe.dark.soloMano.length +
+  informe.light.soloDiccionario.length + informe.dark.soloDiccionario.length) ? 1 : 0)
