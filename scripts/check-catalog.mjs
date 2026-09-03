@@ -37,7 +37,7 @@ const ABSORBIDOS = [
   'SelectMultiple', 'SelectCountry', 'SelectCombo', 'SelectWithInput', 'Combobox',
   'TableDense', 'TableExpandable', 'TableTimeline',
   'LineChart', 'StackedBars100', 'WaterfallChart', 'PolarChart',
-  'InputPassword', 'InputEmail', 'InputDate',
+  'InputPassword', 'InputEmail', 'InputDate', 'FullscreenSheet',
 ]
 
 const srcsDe = (v) => {
