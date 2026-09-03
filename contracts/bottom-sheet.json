@@ -46,6 +46,25 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "fullscreen",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "false",
+        "note": "Absorbe FlowFullscreenSheet (1.x): pantalla completa, sin radio superior, con cabecera de navegacion. Especificado antes del build."
+      },
+      {
+        "name": "onBack",
+        "kind": "event",
+        "type": "() => void",
+        "note": "Con fullscreen: flecha atras en la cabecera en vez de cerrar. Por defecto cae en onClose."
+      },
+      {
+        "name": "headerActions",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Acciones a la derecha de la cabecera en fullscreen."
       }
     ]
   },
@@ -105,5 +124,8 @@
     "web": "reference",
     "angular": "reference",
     "flutter": "reference"
-  }
+  },
+  "supersedes": [
+    "fullscreen-sheet"
+  ]
 }
