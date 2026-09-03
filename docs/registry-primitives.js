@@ -52,3 +52,7 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 {"id":"limit-bar","cat":"primitives","layer":"primitives","name":"LimitBar","subtitle":"Barra de progreso con label y valores current/max. Para limites de gasto o cuotas.","status":"planned"},
 {"id":"section-bar","cat":"primitives","layer":"primitives","name":"SectionBar","subtitle":"Barra sticky de 52px para tabs y controles debajo del hero. Blur y opacidad parcial.","status":"planned"},
 ]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"sheet-body","cat":"primitives","layer":"primitives","name":"SheetBody","subtitle":"Cuerpo scrolleable de un sheet u overlay: padding estandar y modo centrado.","status":"planned"},
+]);

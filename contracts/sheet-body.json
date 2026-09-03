@@ -1,0 +1,53 @@
+{
+  "id": "sheet-body",
+  "name": "SheetBody",
+  "layer": "primitives",
+  "status": "stable",
+  "summary": "Cuerpo scrolleable de un sheet u overlay: padding estandar y modo centrado.",
+  "api": {
+    "members": [
+      {
+        "name": "children",
+        "kind": "prop",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "center",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "false"
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "CSSProperties"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "sb-1",
+        "rule": "El scroll es interno: el contenido largo nunca desborda el overlay que lo contiene.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sb-2",
+        "rule": "Padding estandar de sheet en los cuatro lados; el contenido no toca el borde.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No es un overlay: lo montan BottomSheet, Drawer o Dialog."
+  ],
+  "reference": {
+    "src": "primitives/SheetBody.tsx"
+  }
+}

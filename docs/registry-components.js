@@ -61,3 +61,7 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 {"id":"card-carousel","cat":"components","layer":"components","name":"CardCarousel","subtitle":"Carrusel horizontal de cards con scroll snap, dots de navegacion y control de indice.","status":"planned"},
 {"id":"quick-action-bar","cat":"components","layer":"components","name":"QuickActionBar","subtitle":"Barra horizontal de acciones rapidas (QuickAction). Contenedor flex con scroll horizontal.","status":"planned","domain":"fintech"},
 ]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"wizard","cat":"components","layer":"components","name":"Wizard","subtitle":"Marco del formulario multi-paso: Stepper arriba, un paso por cuerpo y botonera Volver / Siguiente / Confirmar con estado de carga. WizardSummary, WizardSummarySection y WizardSummaryRow arman el resumen editable del paso final.","status":"planned"},
+]);

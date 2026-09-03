@@ -831,6 +831,13 @@
       "contract": "contracts/section-bar.json"
     },
     {
+      "id": "sheet-body",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/sheet-body.json"
+    },
+    {
       "id": "section-rule",
       "layer": "components",
       "domain": null,
@@ -999,6 +1006,13 @@
       "contract": "contracts/quick-action-bar.json"
     },
     {
+      "id": "wizard",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/wizard.json"
+    },
+    {
       "id": "state-grid",
       "layer": "patterns",
       "domain": null,
@@ -1126,10 +1140,10 @@
     }
   ],
   "contractCoverage": {
-    "items": 141,
+    "items": 143,
     "shells": 6,
-    "written": 141,
-    "files": 147,
+    "written": 143,
+    "files": 149,
     "$comment": "written se recomputa contando items con contract enlazado, no incrementando a mano. files = contratos de item + los 6 shells; _base y _schema no cuentan."
   },
   "targetPaths": {
