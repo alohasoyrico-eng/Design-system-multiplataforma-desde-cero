@@ -1,0 +1,28 @@
+/* Flow · Reset global — OPT-IN a nivel de aplicación.
+   Vive fuera de la hoja de componentes a propósito: trae selectores de
+   elemento desnudos (*, body, button…) que pisan el estilo computado de
+   cualquier otra UI en la página. Una app 100% Flow lo importa junto a
+   styles.css; una app en migración gradual (p. ej. conviviendo con
+   Flow 1.x) NO lo carga y conserva su propio reset.
+   Los componentes de Flow asumen `box-sizing: border-box` — cualquier
+   reset moderno (Tailwind preflight, normalize + border-box) lo cubre. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font: var(--type-body-md);
+  color: var(--text-primary);
+  background: var(--surface-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}

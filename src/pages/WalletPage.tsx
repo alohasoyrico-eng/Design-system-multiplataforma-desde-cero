@@ -92,7 +92,7 @@ export function WalletPage() {
                     type="button"
                     aria-label="Bloquear"
                   >
-                    <span className="flow-icon flow-icon--default" aria-hidden="true">lock</span>
+                    <span className="flow-symbol flow-symbol--default" aria-hidden="true">lock</span>
                   </button>
                 </div>
 

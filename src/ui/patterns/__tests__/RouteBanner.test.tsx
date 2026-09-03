@@ -12,13 +12,13 @@ describe('RouteBanner', () => {
 
   it('renders default navigation icon', () => {
     const { container } = render(<RouteBanner title="Test" subtitle="Sub" />)
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toHaveTextContent('navigation')
   })
 
   it('renders custom icon', () => {
     const { container } = render(<RouteBanner icon="directions" title="Test" subtitle="Sub" />)
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toHaveTextContent('directions')
   })
 

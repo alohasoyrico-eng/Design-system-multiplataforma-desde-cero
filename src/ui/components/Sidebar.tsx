@@ -66,14 +66,14 @@ export function Sidebar({
           }}
         >
           {item.icon && (
-            <span className={`flow-icon ${css.itemIcon}`} aria-hidden="true">
+            <span className={`flow-symbol ${css.itemIcon}`} aria-hidden="true">
               {item.icon}
             </span>
           )}
           {!collapsed && <span className={css.itemLabel}>{item.label}</span>}
           {!collapsed && isSection && (
             <span
-              className={`flow-icon ${css.chevron}`}
+              className={`flow-symbol ${css.chevron}`}
               aria-hidden="true"
               data-open={isOpen || undefined}
             >

@@ -5,3 +5,7 @@ export * from './components'
 export * from './patterns'
 export * from '../growth'
 export { useReveal } from '../hooks/useReveal'
+/* Los patterns usan react-intl: sin un IntlProvider en el árbol revientan.
+   Se exporta el proveedor del sistema para que el consumidor no tenga que
+   montar el suyo (aunque puede: cualquier IntlProvider de react-intl vale). */
+export { FlowIntlProvider, useFlowIntl, type FlowLocale } from '../i18n'

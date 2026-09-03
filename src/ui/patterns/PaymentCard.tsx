@@ -57,7 +57,7 @@ export function PaymentCard({
             onClick={(e) => { e.stopPropagation(); onToggleHidden() }}
             aria-label={hidden ? intl.formatMessage({ id: 'balance.show', defaultMessage: 'Mostrar saldo' }) : intl.formatMessage({ id: 'balance.hide', defaultMessage: 'Ocultar saldo' })}
           >
-            <span className="flow-icon flow-icon--sm" aria-hidden="true">
+            <span className="flow-symbol flow-symbol--sm" aria-hidden="true">
               {hidden ? 'visibility' : 'visibility_off'}
             </span>
           </button>
@@ -66,7 +66,7 @@ export function PaymentCard({
 
       <div className={css.productRow}>
         <span className={css.chip}>
-          <span className="flow-icon flow-icon--sm" aria-hidden="true">{icon ?? 'sim_card'}</span>
+          <span className="flow-symbol flow-symbol--sm" aria-hidden="true">{icon ?? 'sim_card'}</span>
         </span>
         {label && <span className={css.label}>{label}</span>}
       </div>
@@ -85,7 +85,7 @@ export function PaymentCard({
 
       {frozen && (
         <div className={css.frozenOverlay} aria-hidden="true">
-          <span className={`flow-icon ${css.frozenIcon}`}>ac_unit</span>
+          <span className={`flow-symbol ${css.frozenIcon}`}>ac_unit</span>
           <span>Congelada</span>
         </div>
       )}

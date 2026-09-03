@@ -72,7 +72,7 @@ export function Timeline({ items, mode = 'steps', style }: TimelineProps) {
           <li key={i} className={css.stepItem}>
             <div className={css.stepRail}>
               <span aria-hidden="true" className={css.stepDot} data-status={status}>
-                <span className={`flow-icon ${css.stepDotIcon}`} aria-hidden="true">
+                <span className={`flow-symbol ${css.stepDotIcon}`} aria-hidden="true">
                   {item.icon || STATUS_ICON[status]}
                 </span>
               </span>

@@ -31,7 +31,7 @@ export function SmallMultiples({
   if (!items.length) {
     return (
       <div className={css.empty} style={style}>
-        <span className={`flow-icon flow-icon--lg ${css.emptyIcon}`} aria-hidden="true">bar_chart</span>
+        <span className={`flow-symbol flow-symbol--lg ${css.emptyIcon}`} aria-hidden="true">bar_chart</span>
         Sin datos para este periodo
       </div>
     )
@@ -71,7 +71,7 @@ export function SmallMultiples({
           >
             <div className={css.header}>
               <span className={css.cardLabel}>{it.label}</span>
-              {out && <span className={`flow-icon ${css.outlierIcon}`} aria-hidden="true">priority_high</span>}
+              {out && <span className={`flow-symbol ${css.outlierIcon}`} aria-hidden="true">priority_high</span>}
               <span className={css.cardValue} data-outlier={out || undefined} style={!out ? { marginLeft: 'auto' } : undefined}>
                 {format ? format(last) : last}
               </span>

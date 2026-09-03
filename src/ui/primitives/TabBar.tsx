@@ -35,7 +35,7 @@ export function TabBar({ items, activeId, onChange, style }: TabBarProps) {
             type="button"
           >
             <span className={css.iconWrap}>
-              <span className="flow-icon" aria-hidden="true" data-active={active || undefined}>
+              <span className="flow-symbol" aria-hidden="true" data-active={active || undefined}>
                 {item.icon}
               </span>
               {item.badge !== undefined && (

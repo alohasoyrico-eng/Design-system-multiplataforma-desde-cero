@@ -16,7 +16,7 @@ export function RouteBanner({ icon = 'navigation', title, subtitle, onClose, sty
     <div className={css.root} style={style}>
       <Card padding={14}>
         <div className={css.content}>
-          <span className={`flow-icon flow-icon--fill ${css.icon}`} aria-hidden="true">
+          <span className={`flow-symbol flow-symbol--fill ${css.icon}`} aria-hidden="true">
             {icon}
           </span>
           <div className={css.info}>

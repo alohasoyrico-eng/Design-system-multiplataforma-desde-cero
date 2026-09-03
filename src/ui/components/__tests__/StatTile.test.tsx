@@ -17,7 +17,7 @@ describe('StatTile', () => {
 
   it('renders icon when provided', () => {
     const { container } = render(<StatTile label="Viajes" value="412" icon="directions_car" />)
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toHaveTextContent('directions_car')
   })
 

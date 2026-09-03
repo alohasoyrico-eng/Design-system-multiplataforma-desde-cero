@@ -20,7 +20,6 @@ export default defineConfig({
     lib: {
       entry: 'src/ui/lib-entry.ts',
       formats: ['es'],
-      fileName: 'index',
       cssFileName: 'flow',
     },
     rollupOptions: {
@@ -32,6 +31,14 @@ export default defineConfig({
         /^echarts/,
         /^flag-icons/,
       ],
+      output: {
+        // Un módulo de salida por módulo de entrada, no un index.js único.
+        // Sin esto no hay tree-shaking posible en el consumidor: importar
+        // un Divider pagaba el echarts.use() top-level de FlowChart.
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].js',
+      },
     },
   },
 })

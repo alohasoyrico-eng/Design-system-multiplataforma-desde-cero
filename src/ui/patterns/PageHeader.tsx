@@ -37,7 +37,7 @@ export function PageHeader({
             onClick={toggleSidebar}
             aria-label="Abrir navegación"
           >
-            <span className="flow-icon" aria-hidden="true">menu</span>
+            <span className="flow-symbol" aria-hidden="true">menu</span>
           </button>
         )}
         <div className={css.identity}>

@@ -164,7 +164,7 @@ export function TopBar({
           trigger={
             <button type="button" className={css.entityBtn}>
               {currentEntityObj?.label || intl.formatMessage({ id: 'common.selectEntity', defaultMessage: 'Selecciona…' })}
-              <span className="flow-icon" aria-hidden="true">expand_more</span>
+              <span className="flow-symbol" aria-hidden="true">expand_more</span>
             </button>
           }
         >

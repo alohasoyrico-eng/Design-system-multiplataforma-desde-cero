@@ -54,7 +54,7 @@ export function DocsLayout() {
       onClick={() => setSearchOpen(true)}
       aria-label="Search"
     >
-      <span className="flow-icon" aria-hidden="true">search</span>
+      <span className="flow-symbol" aria-hidden="true">search</span>
       <span className={css.searchLabel}>Search</span>
       <kbd className={css.searchKbd}>⌘K</kbd>
     </button>

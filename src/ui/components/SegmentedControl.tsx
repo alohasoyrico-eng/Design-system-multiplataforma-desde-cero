@@ -75,7 +75,7 @@ export function SegmentedControl({ items, value, onChange, size = 'md', style }:
             onClick={() => onChange?.(item.value)}
           >
             {item.icon && (
-              <span className={`flow-icon ${css.segmentIcon}`} aria-hidden="true">
+              <span className={`flow-symbol ${css.segmentIcon}`} aria-hidden="true">
                 {item.icon}
               </span>
             )}

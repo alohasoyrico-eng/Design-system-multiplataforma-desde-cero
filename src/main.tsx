@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { FlowIntlProvider } from './i18n'
 import { FlowGrowthProvider, consoleAdapter } from './growth'
+import './reset.css'
 import './styles.css'
 import App from './App'
 

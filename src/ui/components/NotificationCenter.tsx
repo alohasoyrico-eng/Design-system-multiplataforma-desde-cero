@@ -62,7 +62,7 @@ export function NotificationCenter({ items = [], onItemClick, onMarkAllRead }: N
                   data-unread={!n.read || undefined}
                   onClick={() => { onItemClick?.(n); close() }}
                 >
-                  <span className={`flow-icon flow-icon--fill ${css.notifIcon}`} style={{ color: t.color }} aria-hidden="true">{t.icon}</span>
+                  <span className={`flow-symbol flow-symbol--fill ${css.notifIcon}`} style={{ color: t.color }} aria-hidden="true">{t.icon}</span>
                   <div className={css.notifBody}>
                     <div className={css.notifTitle} data-unread={!n.read || undefined}>{n.title}</div>
                     {n.desc && <div className={css.notifDesc}>{n.desc}</div>}

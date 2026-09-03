@@ -35,7 +35,7 @@ export function Menu({ trigger, items = [], align = 'left', style }: MenuProps) 
                 data-danger={item.danger || undefined}
                 onClick={() => { item.onClick?.(); close() }}
               >
-                {item.icon && <span className={`flow-icon ${css.menuItemIcon}`} aria-hidden="true">{item.icon}</span>}
+                {item.icon && <span className={`flow-symbol ${css.menuItemIcon}`} aria-hidden="true">{item.icon}</span>}
                 {item.label}
               </button>
             )

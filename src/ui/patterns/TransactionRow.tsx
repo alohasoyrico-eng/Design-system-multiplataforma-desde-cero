@@ -51,7 +51,7 @@ export function TransactionRow({
       style={style}
     >
       <span className={css.icon} data-category={category}>
-        <span className="flow-icon" aria-hidden="true">{CATEGORY_ICONS[category]}</span>
+        <span className="flow-symbol" aria-hidden="true">{CATEGORY_ICONS[category]}</span>
       </span>
 
       <div className={css.body}>

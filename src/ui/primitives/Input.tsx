@@ -49,7 +49,7 @@ export function Input({
       onClick={() => setShown(v => !v)}
       className={css.reveal}
     >
-      <span className="flow-icon flow-icon--default" aria-hidden="true">
+      <span className="flow-symbol flow-symbol--default" aria-hidden="true">
         {shown ? 'visibility_off' : 'visibility'}
       </span>
     </button>
@@ -61,7 +61,7 @@ export function Input({
       filled={filled}
       disabled={disabled}
       error={error}
-      leading={icon && <span className="flow-icon flow-icon--md" aria-hidden="true">{icon}</span>}
+      leading={icon && <span className="flow-symbol flow-symbol--md" aria-hidden="true">{icon}</span>}
       trailing={reveal ?? trailing}
       style={style}
     >

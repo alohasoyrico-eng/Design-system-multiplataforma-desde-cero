@@ -49,7 +49,7 @@ function DocDetail({ doc, onClose, onDecision }: {
           <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>Enviado {doc.submitted}</div>
 
           <Card style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span className={`flow-icon ${css.docIcon}`} aria-hidden="true">draft</span>
+            <span className={`flow-symbol ${css.docIcon}`} aria-hidden="true">draft</span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className={css.docFile}>{doc.file}</div>
               <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-muted)' }}>{doc.doc}</div>

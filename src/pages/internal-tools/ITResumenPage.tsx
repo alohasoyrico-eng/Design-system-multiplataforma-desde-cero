@@ -19,14 +19,14 @@ function QueueCard({ icon, title, to, count, children }: {
   return (
     <Card style={{ display: 'flex', flexDirection: 'column', gap: 14, minWidth: 0 }}>
       <div className={css.queueHeader}>
-        <span className="flow-icon flow-icon--fill flow-icon--default" aria-hidden="true" style={{ color: 'var(--text-accent)' }}>{icon}</span>
+        <span className="flow-symbol flow-symbol--fill flow-symbol--default" aria-hidden="true" style={{ color: 'var(--text-accent)' }}>{icon}</span>
         <div className={css.queueTitle}>{title}</div>
         <span className={css.queueCount}>{count}</span>
       </div>
       <div className={css.queueRows}>{children}</div>
       <Link to={to} className={css.queueLink}>
         Ver todo
-        <span className="flow-icon flow-icon--sm" aria-hidden="true">arrow_forward</span>
+        <span className="flow-symbol flow-symbol--sm" aria-hidden="true">arrow_forward</span>
       </Link>
     </Card>
   )

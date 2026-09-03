@@ -103,7 +103,7 @@ describe('Tabs variant="underline"', () => {
   it('renders icon when provided', () => {
     const withIcon = [{ value: 'a', label: 'Tab', icon: 'settings' }]
     const { container } = render(<Tabs items={withIcon} value="a" variant="underline" />)
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toBeInTheDocument()
     expect(icon!.textContent).toBe('settings')
   })

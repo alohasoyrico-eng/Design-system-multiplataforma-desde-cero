@@ -20,7 +20,7 @@ export function Drawer({ open, onClose, title, width = 380, side = 'right', foot
         <div className={css.header}>
           <div className={css.title}>{title}</div>
           <button className={css.close} onClick={onClose} aria-label="Cerrar">
-            <span className="flow-icon flow-icon--default" aria-hidden="true">close</span>
+            <span className="flow-symbol flow-symbol--default" aria-hidden="true">close</span>
           </button>
         </div>
         <div className={css.body}>{children}</div>

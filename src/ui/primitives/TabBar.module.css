@@ -60,7 +60,7 @@
   transition-duration: var(--dur-instant);
 }
 
-.item[data-active] :global(.flow-icon) {
+.item[data-active] :global(.flow-symbol) {
   font-variation-settings: 'FILL' 1;
 }
 

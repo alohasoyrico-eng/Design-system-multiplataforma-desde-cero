@@ -9,9 +9,9 @@ describe('EmptyState', () => {
     expect(screen.getByText('Intenta más tarde')).toBeInTheDocument()
   })
 
-  it('renders icon with flow-icon class', () => {
+  it('renders icon with flow-symbol class', () => {
     const { container } = render(<EmptyState icon="inbox" />)
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toBeInTheDocument()
     expect(icon).toHaveTextContent('inbox')
     expect(icon).toHaveAttribute('aria-hidden', 'true')
@@ -24,7 +24,7 @@ describe('EmptyState', () => {
 
   it('omits icon when not provided', () => {
     const { container } = render(<EmptyState title="Vacío" />)
-    expect(container.querySelector('.flow-icon')).not.toBeInTheDocument()
+    expect(container.querySelector('.flow-symbol')).not.toBeInTheDocument()
   })
 
   it('omits title and description when not provided', () => {

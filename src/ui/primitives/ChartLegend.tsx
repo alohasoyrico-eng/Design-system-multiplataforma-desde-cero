@@ -21,7 +21,7 @@ export function ChartLegend({ items, direction = 'horizontal', style }: ChartLeg
       {items.map((it) => (
         <span key={it.label} className={css.item}>
           {it.icon && (
-            <span className={`flow-icon ${css.icon}`} aria-hidden="true" style={{ color: it.color }}>
+            <span className={`flow-symbol ${css.icon}`} aria-hidden="true" style={{ color: it.color }}>
               {it.icon}
             </span>
           )}

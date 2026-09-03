@@ -46,7 +46,7 @@ describe('Breadcrumb', () => {
 
   it('renders chevron separators in default variant', () => {
     const { container } = render(<Breadcrumb items={items} />)
-    const icons = container.querySelectorAll('.flow-icon')
+    const icons = container.querySelectorAll('.flow-symbol')
     expect(icons).toHaveLength(2)
     expect(icons[0].textContent).toBe('chevron_right')
   })
@@ -62,14 +62,14 @@ describe('Breadcrumb variant="subtle"', () => {
     const { container } = render(<Breadcrumb items={items} variant="subtle" />)
     const separators = container.querySelectorAll('[aria-hidden="true"]')
     const slashes = Array.from(separators).filter(el =>
-      el.textContent === '/' && !el.classList.contains('flow-icon')
+      el.textContent === '/' && !el.classList.contains('flow-symbol')
     )
     expect(slashes).toHaveLength(2)
   })
 
   it('renders home icon for first item', () => {
     const { container } = render(<Breadcrumb items={items} variant="subtle" />)
-    const homeIcon = container.querySelector('.flow-icon')
+    const homeIcon = container.querySelector('.flow-symbol')
     expect(homeIcon).toBeInTheDocument()
     expect(homeIcon!.textContent).toBe('home')
   })
@@ -85,7 +85,7 @@ describe('Breadcrumb variant="subtle"', () => {
     const { container } = render(
       <Breadcrumb items={items} variant="subtle" homeIcon="cottage" />
     )
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon!.textContent).toBe('cottage')
   })
 

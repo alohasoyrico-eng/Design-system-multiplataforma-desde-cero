@@ -18,7 +18,7 @@
 
 /* Ubuntu + IBM Plex Mono loaded via <link> in index.html */
 
-.flow-icon {
+.flow-symbol {
   font-family: 'Material Symbols Rounded';
   font-weight: normal;
   font-style: normal;
@@ -33,10 +33,10 @@
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   user-select: none;
 }
-.flow-icon--fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.flow-symbol--fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 
-.flow-icon--xs  { font-size: var(--icon-xs); }
-.flow-icon--sm  { font-size: var(--icon-sm); }
-.flow-icon--md  { font-size: var(--icon-md); }
-.flow-icon--default { font-size: var(--icon-default); }
-.flow-icon--lg  { font-size: var(--icon-lg); }
+.flow-symbol--xs  { font-size: var(--icon-xs); }
+.flow-symbol--sm  { font-size: var(--icon-sm); }
+.flow-symbol--md  { font-size: var(--icon-md); }
+.flow-symbol--default { font-size: var(--icon-default); }
+.flow-symbol--lg  { font-size: var(--icon-lg); }

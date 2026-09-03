@@ -79,7 +79,7 @@ export function AuthOTPScreen() {
         {mode === 'done' && (
           <div className={css.center}>
             <span className={css.successCircle}>
-              <span className={`flow-icon flow-icon--fill ${css.successIcon}`} aria-hidden="true" style={{ color: 'var(--status-success-text)', animation: 'flowScaleIn var(--dur-base) var(--ease-spring)' }}>
+              <span className={`flow-symbol flow-symbol--fill ${css.successIcon}`} aria-hidden="true" style={{ color: 'var(--status-success-text)', animation: 'flowScaleIn var(--dur-base) var(--ease-spring)' }}>
                 check_circle
               </span>
             </span>

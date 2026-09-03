@@ -28,7 +28,7 @@ export function Chip({
 }: ChipProps) {
   const clickable = !!onClick
   const glyph = icon && (
-    <span className={`flow-icon${selected ? ' flow-icon--fill' : ''} ${css.icon}`} aria-hidden="true">{icon}</span>
+    <span className={`flow-symbol${selected ? ' flow-symbol--fill' : ''} ${css.icon}`} aria-hidden="true">{icon}</span>
   )
 
   const remove = onRemove && (
@@ -39,7 +39,7 @@ export function Chip({
       onClick={e => { e.stopPropagation(); onRemove() }}
       className={css.remove}
     >
-      <span className="flow-icon flow-icon--sm" aria-hidden="true">close</span>
+      <span className="flow-symbol flow-symbol--sm" aria-hidden="true">close</span>
     </button>
   )
 

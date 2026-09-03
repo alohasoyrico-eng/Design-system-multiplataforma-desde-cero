@@ -77,10 +77,10 @@ export function Calendar({
         <button type="button" className={css.monthLabel}>{monthLabel}</button>
         <div className={css.nav}>
           <button type="button" className={css.navBtn} onClick={prevMonth} aria-label="Mes anterior">
-            <span className="flow-icon" aria-hidden="true">keyboard_arrow_up</span>
+            <span className="flow-symbol" aria-hidden="true">keyboard_arrow_up</span>
           </button>
           <button type="button" className={css.navBtn} onClick={nextMonth} aria-label="Mes siguiente">
-            <span className="flow-icon" aria-hidden="true">keyboard_arrow_down</span>
+            <span className="flow-symbol" aria-hidden="true">keyboard_arrow_down</span>
           </button>
         </div>
       </div>

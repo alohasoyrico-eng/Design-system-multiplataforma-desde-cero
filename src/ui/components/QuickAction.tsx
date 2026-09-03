@@ -28,7 +28,7 @@ export function QuickAction({
     >
       <span className={css.circle}>
         <span
-          className={`flow-icon${active ? ' flow-icon--fill' : ''} ${css.icon}`}
+          className={`flow-symbol${active ? ' flow-symbol--fill' : ''} ${css.icon}`}
           aria-hidden="true"
         >
           {icon}

@@ -175,7 +175,7 @@ describe('Contract truth — items.json vs código', () => {
       for (const t of c.tokens ?? []) {
         const s = String(t)
         // nombres completos al inicio de palabra; ignora wildcards de prosa
-        // (--status-*-bg) y modificadores BEM (.flow-icon--fill)
+        // (--status-*-bg) y modificadores BEM (.flow-symbol--fill)
         for (const m of s.matchAll(/(?<![\w.-])--[a-z][\w-]*[a-z0-9]/g)) {
           const token = m[0]
           if (s.includes(token + '*') || s.includes(token + '-*')) continue

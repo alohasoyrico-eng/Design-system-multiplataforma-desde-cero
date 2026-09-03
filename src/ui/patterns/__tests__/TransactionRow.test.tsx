@@ -34,7 +34,7 @@ describe('TransactionRow', () => {
 
   it('renders category icon', () => {
     const { container } = render(<TransactionRow title="Gas" category="fuel" />)
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toHaveTextContent('local_gas_station')
   })
 

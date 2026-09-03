@@ -112,15 +112,15 @@ export function Select({
     <ControlShell
       disabled={disabled}
       error={invalid}
-      leading={icon && <span className="flow-icon flow-icon--md" aria-hidden="true">{icon}</span>}
+      leading={icon && <span className="flow-symbol flow-symbol--md" aria-hidden="true">{icon}</span>}
       trailing={
         <>
           {clearable && selectedValues.length > 0 && !open && (
             <button className={css.clear} onClick={handleClear} aria-label="Limpiar" type="button">
-              <span className="flow-icon" aria-hidden="true">close</span>
+              <span className="flow-symbol" aria-hidden="true">close</span>
             </button>
           )}
-          <span className={`flow-icon ${css.chevron}`} data-open={open || undefined} aria-hidden="true">
+          <span className={`flow-symbol ${css.chevron}`} data-open={open || undefined} aria-hidden="true">
             expand_more
           </span>
         </>

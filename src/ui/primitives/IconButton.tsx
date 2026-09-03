@@ -38,7 +38,7 @@ export function IconButton({
       disabled={disabled}
       style={style}
     >
-      <span className={`flow-icon${selected ? ' flow-icon--fill' : ''} ${css.icon}`}>{icon}</span>
+      <span className={`flow-symbol${selected ? ' flow-symbol--fill' : ''} ${css.icon}`}>{icon}</span>
       {badge != null && <span className={css.badge} />}
     </button>
   )

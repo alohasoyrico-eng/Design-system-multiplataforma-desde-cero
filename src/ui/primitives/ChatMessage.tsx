@@ -39,9 +39,9 @@ export function ChatMessage({
           {tool.status === 'running' ? (
             <span className={css.toolSpinner} aria-hidden="true" />
           ) : (
-            <span className={`flow-icon ${css.toolDone}`} aria-hidden="true">check_circle</span>
+            <span className={`flow-symbol ${css.toolDone}`} aria-hidden="true">check_circle</span>
           )}
-          <span className={`flow-icon ${css.toolIcon}`} aria-hidden="true">{tool.icon || 'bolt'}</span>
+          <span className={`flow-symbol ${css.toolIcon}`} aria-hidden="true">{tool.icon || 'bolt'}</span>
           {tool.label}
         </div>
       )}

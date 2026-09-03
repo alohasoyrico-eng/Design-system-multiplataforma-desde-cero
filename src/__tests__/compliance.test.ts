@@ -336,7 +336,7 @@ describe('Hover implementation', () => {
 
 describe('Inline styles', () => {
   // FlowChart is excluded: ECharts API requires JS objects, not CSS.
-  // Icon fontSize is allowed: flow-icon size overrides are inline by design.
+  // Icon fontSize is allowed: flow-symbol size overrides are inline by design.
   const INLINE_STYLE_EXCEPTIONS = [
     'FlowChart.tsx',
     'HelpCenter.tsx',

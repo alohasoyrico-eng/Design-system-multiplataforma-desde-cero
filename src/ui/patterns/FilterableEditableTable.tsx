@@ -83,7 +83,7 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startEdit(rk, col.key, row[col.key]) } }}
           >
             {col.render ? col.render(row) : String(row[col.key] ?? '')}
-            <span className={`flow-icon ${css.editIcon}`} aria-hidden="true">edit</span>
+            <span className={`flow-symbol ${css.editIcon}`} aria-hidden="true">edit</span>
           </span>
         )
       },

@@ -244,7 +244,7 @@ export function WalletAppScreen() {
                     <PaymentCard key={c.key} holder={c.holder} last4={c.last4} variant={c.variant} label={c.label} icon={c.icon} expires={c.expires} balance={c.balance} hidden={balanceHidden} onToggleHidden={() => setBalanceHidden(!balanceHidden)} />
                   ))}
                   <button type="button" className={css.addCard} onClick={() => {}}>
-                    <span className={`flow-icon ${css.addCardIcon}`} aria-hidden="true">add</span>
+                    <span className={`flow-symbol ${css.addCardIcon}`} aria-hidden="true">add</span>
                     <span>Agregar tarjeta</span>
                   </button>
                 </CardCarousel>
@@ -299,7 +299,7 @@ export function WalletAppScreen() {
                     onClick={() => {}}
                     media={
                       <div className={css.benefitMedia} data-product={b.product} style={{ background: 'var(--product-gradient)' }}>
-                        <span className="flow-icon" aria-hidden="true">{b.icon}</span>
+                        <span className="flow-symbol" aria-hidden="true">{b.icon}</span>
                       </div>
                     }
                     style={{ flex: '0 0 180px' }}
@@ -462,7 +462,7 @@ export function WalletAppScreen() {
                       onClick={() => handlePinClick(s.id)}
                     >
                       <span className={css.stationIcon} data-kind={s.kind}>
-                        <span className="flow-icon" aria-hidden="true">{s.icon}</span>
+                        <span className="flow-symbol" aria-hidden="true">{s.icon}</span>
                       </span>
                       <div className={css.stationInfo}>
                         <span className={css.stationName}>{s.name}</span>

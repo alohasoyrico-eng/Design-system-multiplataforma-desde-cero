@@ -7,7 +7,7 @@ describe('QuickAction', () => {
   it('renders icon and label', () => {
     const { container } = render(<QuickAction icon="send" label="Enviar" />)
     expect(screen.getByText('Enviar')).toBeInTheDocument()
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toHaveTextContent('send')
   })
 

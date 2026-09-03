@@ -195,7 +195,7 @@ function OverviewView() {
         <Table
           columns={[
             { key: 'sev', label: '', render: (r: { sev: string }) => (
-              <span className="flow-icon flow-icon--fill flow-icon--md" aria-hidden="true" style={{ color: r.sev === 'alta' ? 'var(--status-danger)' : 'var(--status-warning)' }}>warning</span>
+              <span className="flow-symbol flow-symbol--fill flow-symbol--md" aria-hidden="true" style={{ color: r.sev === 'alta' ? 'var(--status-danger)' : 'var(--status-warning)' }}>warning</span>
             ) },
             { key: 'msg', label: 'Alerta' },
             { key: 'unit', label: 'Unidad', mono: true },

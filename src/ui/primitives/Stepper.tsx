@@ -30,7 +30,7 @@ export function Stepper({ steps, current = 0, orientation = 'horizontal', style 
             <li className={css.step} data-status={status} aria-current={status === 'active' ? 'step' : undefined}>
               <span className={css.indicator} data-status={status} aria-hidden="true">
                 {status === 'done' ? (
-                  <span className={`flow-icon ${css.check}`}>check</span>
+                  <span className={`flow-symbol ${css.check}`}>check</span>
                 ) : (
                   i + 1
                 )}

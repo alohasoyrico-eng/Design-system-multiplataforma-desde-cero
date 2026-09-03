@@ -33,7 +33,7 @@ describe('Stepper', () => {
   it('shows check icon for completed steps', () => {
     const { container } = render(<Stepper steps={steps} current={1} />)
     const doneIndicator = container.querySelectorAll('.indicator')[0]
-    expect(doneIndicator.querySelector('.flow-icon')).toHaveTextContent('check')
+    expect(doneIndicator.querySelector('.flow-symbol')).toHaveTextContent('check')
   })
 
   it('shows step number for pending steps', () => {

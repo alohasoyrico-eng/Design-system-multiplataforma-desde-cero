@@ -7909,8 +7909,8 @@
     "platforms": {},
     "anatomy": "",
     "tokens": [
-      ".flow-icon",
-      ".flow-icon--fill"
+      ".flow-symbol",
+      ".flow-symbol--fill"
     ],
     "variants": [
       {
@@ -7928,7 +7928,7 @@
     ],
     "members": [],
     "dos": [
-      "Clase <code>.flow-icon</code> (+ <code>--fill</code> para activo)",
+      "Clase <code>.flow-symbol</code> (+ <code>--fill</code> para activo)",
       "<code>aria-hidden</code> si hay texto al lado",
       "Logo: invert(1) sobre oscuro o rojo"
     ],

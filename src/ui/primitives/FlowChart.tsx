@@ -803,7 +803,7 @@ export function FlowChart({
     return (
       <div className={css.empty} style={{ height, ...style }} role="img" aria-label={resolvedEmptyLabel}>
         <div className={css.emptyInner}>
-          <span className={`flow-icon ${css.emptyIcon}`} aria-hidden="true">bar_chart</span>
+          <span className={`flow-symbol ${css.emptyIcon}`} aria-hidden="true">bar_chart</span>
           {resolvedEmptyLabel}
         </div>
       </div>

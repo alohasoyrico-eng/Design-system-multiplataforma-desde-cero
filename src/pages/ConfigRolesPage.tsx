@@ -87,7 +87,7 @@ export function ConfigRolesPage() {
       <div className={css.headerRow}>
         <h1 className={css.title}>Configuración</h1>
         <Link to="/" className={css.backLink}>
-          <span className="flow-icon flow-icon--sm" aria-hidden="true">arrow_back</span>
+          <span className="flow-symbol flow-symbol--sm" aria-hidden="true">arrow_back</span>
           Dashboards
         </Link>
       </div>

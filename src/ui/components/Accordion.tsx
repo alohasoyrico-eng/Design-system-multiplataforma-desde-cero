@@ -44,10 +44,10 @@ export function Accordion({ items = [], defaultOpen, multiple = false }: Accordi
               onClick={() => toggle(item.id, isOpen)}
               aria-expanded={isOpen}
             >
-              {item.icon && <span className={`flow-icon ${css.triggerIcon}`} aria-hidden="true">{item.icon}</span>}
+              {item.icon && <span className={`flow-symbol ${css.triggerIcon}`} aria-hidden="true">{item.icon}</span>}
               <span className={css.triggerTitle}>{item.title}</span>
               {item.meta && <span className={css.triggerMeta}>{item.meta}</span>}
-              <span className={`flow-icon ${css.chevron}`} data-open={isOpen || undefined} aria-hidden="true">
+              <span className={`flow-symbol ${css.chevron}`} data-open={isOpen || undefined} aria-hidden="true">
                 expand_more
               </span>
             </button>

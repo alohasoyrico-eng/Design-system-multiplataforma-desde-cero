@@ -40,7 +40,7 @@ export function FleetSidebar({ children, open, onClose }: FleetSidebarProps) {
           const active = !!matchRoute({ to })
           return (
             <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined} onClick={onClose}>
-              <span className={'flow-icon' + (active ? ' flow-icon--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
+              <span className={'flow-symbol' + (active ? ' flow-symbol--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
               {label}
             </Link>
           )
@@ -49,7 +49,7 @@ export function FleetSidebar({ children, open, onClose }: FleetSidebarProps) {
           const active = !!matchRoute({ to })
           return (
             <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined} onClick={onClose}>
-              <span className={'flow-icon' + (active ? ' flow-icon--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
+              <span className={'flow-symbol' + (active ? ' flow-symbol--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
               {label}
             </Link>
           )

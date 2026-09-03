@@ -55,7 +55,7 @@ describe('FlowChart', () => {
 
   it('renders empty state icon', () => {
     const { container } = renderWithIntl(<FlowChart ariaLabel="Chart" />)
-    const icon = container.querySelector('.flow-icon')
+    const icon = container.querySelector('.flow-symbol')
     expect(icon).toHaveTextContent('bar_chart')
     expect(icon).toHaveAttribute('aria-hidden', 'true')
   })

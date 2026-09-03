@@ -83,7 +83,7 @@ export function ChatComposer({
           data-active={canSend ? '' : undefined}
           onClick={send}
         >
-          <span className="flow-icon flow-icon--default" aria-hidden="true">arrow_upward</span>
+          <span className="flow-symbol flow-symbol--default" aria-hidden="true">arrow_upward</span>
         </button>
       </div>
     </div>

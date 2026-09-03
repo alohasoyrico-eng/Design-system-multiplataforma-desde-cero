@@ -25,7 +25,7 @@ export function Breadcrumb({ items = [], variant = 'default', homeIcon = 'home' 
           const showIcon = item.icon || (isSubtle && isFirst)
 
           const content = showIcon
-            ? <span className={`flow-icon ${css.homeIcon}`} aria-hidden="true">{item.icon || homeIcon}</span>
+            ? <span className={`flow-symbol ${css.homeIcon}`} aria-hidden="true">{item.icon || homeIcon}</span>
             : item.label
 
           return (
@@ -33,7 +33,7 @@ export function Breadcrumb({ items = [], variant = 'default', homeIcon = 'home' 
               {i > 0 && (
                 isSubtle
                   ? <span className={css.separator} aria-hidden="true">/</span>
-                  : <span className={`flow-icon ${css.separator}`} aria-hidden="true">chevron_right</span>
+                  : <span className={`flow-symbol ${css.separator}`} aria-hidden="true">chevron_right</span>
               )}
               {item.href ? (
                 <a

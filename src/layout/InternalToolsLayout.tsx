@@ -76,7 +76,7 @@ export function InternalToolsLayout() {
                   data-active={active || undefined}
                 >
                   <span
-                    className={'flow-icon' + (active ? ' flow-icon--fill' : '')}
+                    className={'flow-symbol' + (active ? ' flow-symbol--fill' : '')}
                     aria-hidden="true"
                     style={{ fontSize: 20 }}
                   >

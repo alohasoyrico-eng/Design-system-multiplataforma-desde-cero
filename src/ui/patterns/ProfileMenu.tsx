@@ -30,9 +30,9 @@ export function ProfileMenu({ name, avatarName, role, badge, items, style }: Pro
       <div className={css.items}>
         {items.map(item => (
           <button key={item.label} type="button" className={css.item} onClick={item.onClick}>
-            <span className={`flow-icon ${css.itemIcon}`} aria-hidden="true">{item.icon}</span>
+            <span className={`flow-symbol ${css.itemIcon}`} aria-hidden="true">{item.icon}</span>
             <span className={css.itemLabel}>{item.label}</span>
-            <span className={`flow-icon ${css.itemChevron}`} aria-hidden="true">chevron_right</span>
+            <span className={`flow-symbol ${css.itemChevron}`} aria-hidden="true">chevron_right</span>
           </button>
         ))}
       </div>

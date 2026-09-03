@@ -27,7 +27,7 @@ export function Checkbox({ checked, indeterminate, onChange, label, description,
         aria-hidden="true"
       >
         {(checked || indeterminate) && (
-          <span className={`flow-icon ${css.icon}`}>
+          <span className={`flow-symbol ${css.icon}`}>
             {indeterminate ? 'remove' : 'check'}
           </span>
         )}

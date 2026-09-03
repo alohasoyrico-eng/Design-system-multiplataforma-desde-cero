@@ -84,7 +84,7 @@ export function Tabs({ items = [], value, onChange, variant = 'pill', style }: T
             className={css.tab}
             onClick={() => onChange?.(item.value)}
           >
-            {item.icon && <span className={`flow-icon ${css.tabIcon}`} aria-hidden="true">{item.icon}</span>}
+            {item.icon && <span className={`flow-symbol ${css.tabIcon}`} aria-hidden="true">{item.icon}</span>}
             {item.label}
             {item.count != null && <span className={css.tabCount}>{item.count}</span>}
           </button>

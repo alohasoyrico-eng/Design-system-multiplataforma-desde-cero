@@ -43,10 +43,10 @@ export function Button({
       style={style}
       {...rest}
     >
-      {loading && <span className={`flow-icon ${css.spinner}`} aria-hidden="true">progress_activity</span>}
-      {!loading && icon && <span className={`flow-icon ${css.icon}`} aria-hidden="true">{icon}</span>}
+      {loading && <span className={`flow-symbol ${css.spinner}`} aria-hidden="true">progress_activity</span>}
+      {!loading && icon && <span className={`flow-symbol ${css.icon}`} aria-hidden="true">{icon}</span>}
       {children}
-      {iconTrailing && <span className={`flow-icon ${css.icon}`} aria-hidden="true">{iconTrailing}</span>}
+      {iconTrailing && <span className={`flow-symbol ${css.icon}`} aria-hidden="true">{iconTrailing}</span>}
     </button>
   )
 }

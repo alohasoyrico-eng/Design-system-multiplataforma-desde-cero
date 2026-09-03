@@ -1,6 +1,6 @@
 {
   "name": "@alohasoyrico-eng/flow-react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Flow Design System — componentes React, tokens y patrones multiplataforma",
   "repository": {
@@ -11,27 +11,32 @@
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
   },
-  "main": "./dist-lib/index.js",
-  "module": "./dist-lib/index.js",
+  "main": "./dist-lib/ui/lib-entry.js",
+  "module": "./dist-lib/ui/lib-entry.js",
   "types": "./dist-lib/types/ui/lib.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist-lib/types/ui/lib.d.ts",
-      "import": "./dist-lib/index.js"
+      "import": "./dist-lib/ui/lib-entry.js"
     },
     "./styles.css": "./dist-lib/flow.css",
+    "./reset.css": "./dist-lib/reset.css",
     "./fonts/*": "./public/fonts/*",
     "./contracts": "./src/data/items.json"
   },
   "files": [
     "dist-lib",
     "public/fonts",
-    "src/data/items.json"
+    "src/data/items.json",
+    "scripts/prepare.mjs"
   ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
+    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && cp src/reset.css dist-lib/reset.css",
     "lint": "oxlint",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
@@ -40,11 +45,12 @@
     "tokens:build": "node sd.config.js",
     "sync:docs": "node scripts/sync-docs.mjs",
     "sync:docs:check": "node scripts/sync-docs.mjs --check",
-    "prepare": "npm run build:lib"
+    "prepack": "npm run build:lib",
+    "prepare": "node scripts/prepare.mjs"
   },
   "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "dependencies": {
     "echarts": "^6.1.0",

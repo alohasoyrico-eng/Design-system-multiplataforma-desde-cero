@@ -86,7 +86,7 @@ export function PasscodeKeypad({
               aria-label="Usar biométrico"
               data-special
             >
-              <span className="flow-icon" aria-hidden="true">
+              <span className="flow-symbol" aria-hidden="true">
                 {biometricIcon || 'fingerprint'}
               </span>
             </button>
@@ -109,7 +109,7 @@ export function PasscodeKeypad({
           aria-label="Borrar"
           data-special
         >
-          <span className="flow-icon" aria-hidden="true">backspace</span>
+          <span className="flow-symbol" aria-hidden="true">backspace</span>
         </button>
       </div>
     </div>

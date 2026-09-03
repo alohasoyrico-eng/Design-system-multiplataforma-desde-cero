@@ -22,22 +22,6 @@
 @import "tokens/a11y.css";
 @import "tokens/dark.css";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-body {
-  font: var(--type-body-md);
-  color: var(--text-primary);
-  background: var(--surface-canvas);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-button, input, select, textarea {
-  font: inherit;
-  color: inherit;
-}
+/* El reset global (selectores de elemento: *, body, button…) vive en
+   reset.css y es opt-in del consumidor — esta hoja no puede pisar el
+   estilo de nada fuera de Flow. Ver reset.css. */

@@ -67,7 +67,43 @@ Y copia la fuente de marca (self-hosted) a tu carpeta pública:
 cp node_modules/@alohasoyrico-eng/flow-react/public/fonts/*.woff2 public/fonts/
 ```
 
-`react` y `react-dom` (>=19) son peer dependencies: los pone tu proyecto. `echarts`, `react-intl` y `flag-icons` vienen incluidos.
+`react` y `react-dom` (>=18) son peer dependencies: los pone tu proyecto. `echarts`, `react-intl` y `flag-icons` son dependencias del paquete y npm las instala solo — pero **solo pagas lo que importas**: el paquete se distribuye como un módulo por componente con `sideEffects` declarado, así que `echarts` solo entra a tu bundle si usas una gráfica y el CSS de `flag-icons` solo si usas `Flag`.
+
+#### El proveedor de i18n es obligatorio
+
+Los patterns (TopBar, Wizard, Settings, GlobalSearch…) leen sus textos de `react-intl`. Sin un provider en el árbol, el render revienta con `Could not find required intl object`. El paquete exporta el suyo:
+
+```tsx
+import { FlowIntlProvider } from '@alohasoyrico-eng/flow-react'
+
+<FlowIntlProvider locale="es">
+  <App />
+</FlowIntlProvider>
+```
+
+Si tu aplicación ya monta un `IntlProvider` de `react-intl`, también sirve.
+
+#### Reset global: opt-in
+
+`styles.css` trae tokens y componentes, **nada más**: ningún selector de elemento desnudo. El reset (`box-sizing`, `margin: 0`, `body`, `font: inherit` en controles) vive aparte y lo carga la aplicación que lo quiera:
+
+```tsx
+import '@alohasoyrico-eng/flow-react/reset.css'   // opcional
+import '@alohasoyrico-eng/flow-react/styles.css'
+```
+
+Una app 100% Flow importa los dos. Una app en **migración gradual** — conviviendo con otro design system u otro reset (Tailwind preflight, normalize) — importa solo `styles.css` y conserva el suyo: los componentes de Flow solo asumen `box-sizing: border-box`, que cualquier reset moderno ya pone. La clase de iconos es `flow-symbol`, con prefijo propio para no chocar con sistemas anteriores.
+
+#### Instalación local (sin registry)
+
+Para probar el paquete sin publicarlo, empaquétalo y instala el `.tgz`:
+
+```bash
+npm pack                      # en el repo de Flow → alohasoyrico-eng-flow-react-x.y.z.tgz
+npm install ../ruta/al.tgz    # en tu proyecto
+```
+
+Evita `file:` a la carpeta: npm no instala las dependencias de un enlace a directorio; con el `.tgz` sí.
 
 ### Flutter
 
@@ -229,7 +265,7 @@ O declarativo — cualquier pieza se vuelve medible sin tocarla:
 Material Symbols. Escribes el nombre y aparece:
 
 ```tsx
-<span className="flow-icon">dashboard</span>
+<span className="flow-symbol">dashboard</span>
 ```
 
 Catálogo: [fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols)

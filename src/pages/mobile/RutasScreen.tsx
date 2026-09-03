@@ -147,7 +147,7 @@ export function RutasScreen() {
                 onClick={() => handlePinClick(s.id)}
               >
                 <span className={css.stationIcon} data-kind={s.kind}>
-                  <span className="flow-icon" aria-hidden="true">{s.icon}</span>
+                  <span className="flow-symbol" aria-hidden="true">{s.icon}</span>
                 </span>
                 <div className={css.stationInfo}>
                   <span className={css.stationName}>{s.name}</span>

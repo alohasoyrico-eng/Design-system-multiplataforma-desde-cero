@@ -123,7 +123,7 @@ export function AgentChatPage() {
 
       <div className={css.header}>
         <div className={css.agentAvatar}>
-          <span className={`flow-icon ${css.agentAvatarIcon}`} aria-hidden="true">bolt</span>
+          <span className={`flow-symbol ${css.agentAvatarIcon}`} aria-hidden="true">bolt</span>
         </div>
         <div>
           <div className={css.agentName}>Asistente de flota</div>

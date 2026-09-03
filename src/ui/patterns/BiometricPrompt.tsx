@@ -57,7 +57,7 @@ export function BiometricPrompt({
         aria-label={`${methodLabel}${stateLabel ? ` — ${stateLabel}` : ''}`}
         disabled={state === 'scanning' || state === 'success'}
       >
-        <span className={`flow-icon ${css.icon}`} aria-hidden="true">
+        <span className={`flow-symbol ${css.icon}`} aria-hidden="true">
           {state === 'success' ? 'check_circle' : state === 'error' ? 'error' : METHOD_ICON[method]}
         </span>
       </button>

@@ -79,7 +79,7 @@ export function DriversPage() {
             mono: true,
             render: (r) => (
               <span className={css.cellRating}>
-                <span className={`flow-icon flow-icon--fill ${css.ratingIcon}`} aria-hidden="true">star</span>
+                <span className={`flow-symbol flow-symbol--fill ${css.ratingIcon}`} aria-hidden="true">star</span>
                 {(r.rating as number).toFixed(2)}
               </span>
             ),

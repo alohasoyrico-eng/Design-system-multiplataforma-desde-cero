@@ -104,7 +104,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
                       onClick={() => toggleCategory(cat)}
                     >
                       <span
-                        className={`flow-icon ${css.catChevron}`}
+                        className={`flow-symbol ${css.catChevron}`}
                         data-open={isExpanded || undefined}
                       >
                         chevron_right

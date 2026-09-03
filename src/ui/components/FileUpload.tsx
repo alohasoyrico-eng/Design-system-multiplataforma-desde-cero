@@ -46,7 +46,7 @@ export function FileUpload({ files = [], onChange, accept, label, hint, multiple
         onDragLeave={() => setDragOver(false)}
         onDrop={(e) => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files) }}
       >
-        <span className={`flow-icon ${css.dropzoneIcon}`} aria-hidden="true">cloud_upload</span>
+        <span className={`flow-symbol ${css.dropzoneIcon}`} aria-hidden="true">cloud_upload</span>
         {label && <div className={css.dropzoneLabel}>{label}</div>}
         {hint && <div className={css.dropzoneHint}>{hint}</div>}
       </div>
@@ -55,7 +55,7 @@ export function FileUpload({ files = [], onChange, accept, label, hint, multiple
         <div className={css.fileList}>
           {files.map((f, i) => (
             <div key={i} className={css.fileItem}>
-              <span className={`flow-icon ${css.fileIcon}`} aria-hidden="true">description</span>
+              <span className={`flow-symbol ${css.fileIcon}`} aria-hidden="true">description</span>
               <span className={css.fileName}>{f.name}</span>
               <span className={css.fileSize}>{formatSize(f.size)}</span>
               <button
@@ -63,7 +63,7 @@ export function FileUpload({ files = [], onChange, accept, label, hint, multiple
                 onClick={(e) => { e.stopPropagation(); onChange?.(files.filter((_, j) => j !== i)) }}
                 aria-label={intl.formatMessage({ id: 'common.remove', defaultMessage: 'Quitar {name}' }, { name: f.name })}
               >
-                <span className="flow-icon flow-icon--sm" aria-hidden="true">close</span>
+                <span className="flow-symbol flow-symbol--sm" aria-hidden="true">close</span>
               </button>
             </div>
           ))}

@@ -16,7 +16,7 @@ export function Badge({ tone = 'default', icon, live, as: Tag = 'span', children
   return (
     <Tag className={css.root} data-tone={tone} style={style}>
       {live && <span className={css.dot} />}
-      {icon && <span className={`flow-icon ${css.icon}`} aria-hidden="true">{icon}</span>}
+      {icon && <span className={`flow-symbol ${css.icon}`} aria-hidden="true">{icon}</span>}
       {children}
     </Tag>
   )

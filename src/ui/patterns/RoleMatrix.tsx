@@ -54,7 +54,7 @@ export function RoleMatrix({ roles, permissions, values, onChange, style }: Role
               <th key={r.id}>
                 {r.label}
                 {r.locked && (
-                  <span className={`flow-icon ${css.lockIcon}`} aria-hidden="true">lock</span>
+                  <span className={`flow-symbol ${css.lockIcon}`} aria-hidden="true">lock</span>
                 )}
               </th>
             ))}
@@ -87,7 +87,7 @@ export function RoleMatrix({ roles, permissions, values, onChange, style }: Role
                         onClick={() => toggle(p.id, r.id)}
                       >
                         {on && (
-                          <span className={`flow-icon ${css.checkIcon}`} aria-hidden="true">check</span>
+                          <span className={`flow-symbol ${css.checkIcon}`} aria-hidden="true">check</span>
                         )}
                       </button>
                     </td>

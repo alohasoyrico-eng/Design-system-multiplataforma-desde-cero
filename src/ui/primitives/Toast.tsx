@@ -27,7 +27,7 @@ export function Toast({ message, tone = 'success', actionLabel, onAction, onDism
   const t = TONES[tone]
   return (
     <div role="alert" className={css.root}>
-      <span className={`flow-icon flow-icon--fill ${css.icon}`} style={{ color: t.color }} aria-hidden="true">
+      <span className={`flow-symbol flow-symbol--fill ${css.icon}`} style={{ color: t.color }} aria-hidden="true">
         {t.icon}
       </span>
       <span className={css.message}>{message}</span>
@@ -38,7 +38,7 @@ export function Toast({ message, tone = 'success', actionLabel, onAction, onDism
       )}
       {onDismiss && (
         <button onClick={onDismiss} aria-label="Cerrar" className={css.dismiss}>
-          <span className="flow-icon flow-icon--md" aria-hidden="true">close</span>
+          <span className="flow-symbol flow-symbol--md" aria-hidden="true">close</span>
         </button>
       )}
     </div>

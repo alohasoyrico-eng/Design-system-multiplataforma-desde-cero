@@ -29,7 +29,7 @@ describe('ChartLegend', () => {
 
   it('does not render icon when not provided', () => {
     render(<ChartLegend items={[{ label: 'Test', color: 'red' }]} />)
-    const icons = screen.queryAllByText((_, el) => el?.classList.contains('flow-icon') ?? false)
+    const icons = screen.queryAllByText((_, el) => el?.classList.contains('flow-symbol') ?? false)
     expect(icons).toHaveLength(0)
   })
 

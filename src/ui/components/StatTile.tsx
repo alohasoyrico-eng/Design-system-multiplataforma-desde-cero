@@ -27,7 +27,7 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', s
     <div className={css.root} style={style}>
       <div className={css.header}>
         {icon && (
-          <span className={`flow-icon flow-icon--md ${css.toneIcon}`} aria-hidden="true" style={{ color: toneColor }}>
+          <span className={`flow-symbol flow-symbol--md ${css.toneIcon}`} aria-hidden="true" style={{ color: toneColor }}>
             {icon}
           </span>
         )}
@@ -49,7 +49,7 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', s
       </div>
       {delta && (
         <div className={css.delta} style={{ color: deltaColor }}>
-          <span className={`flow-icon flow-icon--xs ${css.deltaIcon}`} aria-hidden="true">{deltaIcon}</span>
+          <span className={`flow-symbol flow-symbol--xs ${css.deltaIcon}`} aria-hidden="true">{deltaIcon}</span>
           {delta}
         </div>
       )}

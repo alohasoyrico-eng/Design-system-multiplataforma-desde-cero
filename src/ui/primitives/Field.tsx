@@ -38,10 +38,10 @@ export function Field({ label, htmlFor, required, help, error, valid, validMessa
         data-state={messageState}
       >
         {messageState === 'valid' && (
-          <span className={`flow-icon ${css.validIcon}`} aria-hidden="true">check_circle</span>
+          <span className={`flow-symbol ${css.validIcon}`} aria-hidden="true">check_circle</span>
         )}
         {messageState === 'error' && (
-          <span className={`flow-icon ${css.errorIcon}`} aria-hidden="true">error</span>
+          <span className={`flow-symbol ${css.errorIcon}`} aria-hidden="true">error</span>
         )}
         {messageText}
       </div>

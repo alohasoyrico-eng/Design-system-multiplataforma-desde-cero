@@ -170,7 +170,7 @@ export function GlobalSearch({
 
   const searchField = (
     <div className={css.searchBar} data-mode={mode}>
-      <span className={`flow-icon ${css.searchIcon}`} aria-hidden="true">search</span>
+      <span className={`flow-symbol ${css.searchIcon}`} aria-hidden="true">search</span>
       <input
         ref={inputRef}
         type="text"
@@ -265,7 +265,7 @@ export function GlobalSearch({
                   onClick={() => commit(r)}
                 >
                   {r.icon && (
-                    <span className={`flow-icon ${css.optionIcon}`} aria-hidden="true" data-active={active || undefined}>
+                    <span className={`flow-symbol ${css.optionIcon}`} aria-hidden="true" data-active={active || undefined}>
                       {r.icon}
                     </span>
                   )}
@@ -277,7 +277,7 @@ export function GlobalSearch({
                   </div>
                   {r.trailing && <div className={css.optionTrailing}>{r.trailing}</div>}
                   {active && (
-                    <span className={`flow-icon ${css.optionReturn}`} aria-hidden="true">
+                    <span className={`flow-symbol ${css.optionReturn}`} aria-hidden="true">
                       keyboard_return
                     </span>
                   )}

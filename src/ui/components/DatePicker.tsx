@@ -110,7 +110,7 @@ export function DatePicker({
     <ControlShell
       disabled={disabled}
       error={invalid}
-      leading={<span className="flow-icon" aria-hidden="true">{mode === 'range' ? 'date_range' : 'calendar_today'}</span>}
+      leading={<span className="flow-symbol" aria-hidden="true">{mode === 'range' ? 'date_range' : 'calendar_today'}</span>}
     >
       <span
         id={id}

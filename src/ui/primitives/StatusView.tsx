@@ -29,7 +29,7 @@ export function StatusView({ status = 'loading', title, description, primaryActi
       <span className={css.iconWrap} data-status={status}>
         {status === 'loading' && <span className={css.spinner} aria-hidden="true" />}
         <span
-          className={`flow-icon${FILLED.has(status) ? ' flow-icon--fill' : ''} ${css.statusIcon}`}
+          className={`flow-symbol${FILLED.has(status) ? ' flow-symbol--fill' : ''} ${css.statusIcon}`}
           aria-hidden="true"
           data-status={status}
         >

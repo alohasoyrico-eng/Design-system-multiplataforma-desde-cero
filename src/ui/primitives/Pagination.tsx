@@ -24,7 +24,7 @@ export function Pagination({ page = 1, pages = 1, onChange }: PaginationProps) {
         disabled={page <= 1}
         aria-label="Anterior"
       >
-        <span className="flow-icon flow-icon--default" aria-hidden="true">chevron_left</span>
+        <span className="flow-symbol flow-symbol--default" aria-hidden="true">chevron_left</span>
       </button>
       {range().map((p, i) => {
         const isActive = p === page
@@ -49,7 +49,7 @@ export function Pagination({ page = 1, pages = 1, onChange }: PaginationProps) {
         disabled={page >= pages}
         aria-label="Siguiente"
       >
-        <span className="flow-icon flow-icon--default" aria-hidden="true">chevron_right</span>
+        <span className="flow-symbol flow-symbol--default" aria-hidden="true">chevron_right</span>
       </button>
     </nav>
   )

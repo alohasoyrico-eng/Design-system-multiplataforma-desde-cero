@@ -16,9 +16,9 @@ export function NavCard({ label, name, href, direction = 'next', style }: NavCar
         <div className={css.inner} data-direction={direction}>
           <span className={css.label}>{label}</span>
           <span className={css.name}>
-            {direction === 'prev' && <span className="flow-icon" aria-hidden="true">arrow_back</span>}
+            {direction === 'prev' && <span className="flow-symbol" aria-hidden="true">arrow_back</span>}
             {name}
-            {direction === 'next' && <span className="flow-icon" aria-hidden="true">arrow_forward</span>}
+            {direction === 'next' && <span className="flow-symbol" aria-hidden="true">arrow_forward</span>}
           </span>
         </div>
       </div>

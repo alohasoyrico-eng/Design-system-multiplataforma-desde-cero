@@ -19,7 +19,7 @@ export function GanttChart({ tasks, style }: GanttChartProps) {
   if (!tasks.length) {
     return (
       <div className={css.empty} style={style}>
-        <span className="flow-icon flow-icon--lg" aria-hidden="true">bar_chart</span>
+        <span className="flow-symbol flow-symbol--lg" aria-hidden="true">bar_chart</span>
         Sin datos para este periodo
       </div>
     )
