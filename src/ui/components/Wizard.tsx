@@ -39,7 +39,7 @@ export function Wizard({
       <div className={css.actions}>
         {current > 0 ? (
           <Button variant="ghost" icon="arrow_back" onClick={onBack} disabled={submitting}>
-            Volver
+            {intl.formatMessage({ id: 'common.back', defaultMessage: 'Volver' })}
           </Button>
         ) : (
           <span />

@@ -11,6 +11,11 @@ export interface GridColumn<T = Record<string, unknown>> {
 
 export type Density = 'default' | 'compact'
 
+export interface GridSort {
+  key: string
+  dir: 'asc' | 'desc'
+}
+
 export interface DataGridProps<T = Record<string, unknown>> {
   columns?: GridColumn<T>[]
   rows?: T[]
@@ -18,6 +23,11 @@ export interface DataGridProps<T = Record<string, unknown>> {
   selectedKey?: string | number
   onRowClick?: (row: T) => void
   sortable?: boolean
+  /** Orden controlado: con `sort` el grid NO reordena filas — el dueño ordena
+      (tambien en servidor) y el grid solo pinta el estado y emite el cambio.
+      Es la salida de la trampa de ordenar 1 140 filas en el cliente. */
+  sort?: GridSort | null
+  onSortChange?: (sort: GridSort | null) => void
   density?: Density
   zebraToken?: string
   style?: CSSProperties
@@ -30,24 +40,31 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
   selectedKey,
   onRowClick,
   sortable = true,
+  sort,
+  onSortChange,
   density = 'default',
   zebraToken = 'var(--surface-sunken)',
   style,
 }: DataGridProps<T>) {
-  const [sortCol, setSortCol] = useState<string | null>(null)
-  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+  const controlled = sort !== undefined
+  const [internalSort, setInternalSort] = useState<GridSort | null>(null)
+  const active = controlled ? sort : internalSort
+  const sortCol = active?.key ?? null
+  const sortDir = active?.dir ?? 'asc'
 
   const handleSort = useCallback(
     (key: string) => {
       if (!sortable) return
-      if (sortCol === key) setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'))
-      else { setSortCol(key); setSortDir('asc') }
+      const next: GridSort = sortCol === key ? { key, dir: sortDir === 'asc' ? 'desc' : 'asc' } : { key, dir: 'asc' }
+      if (!controlled) setInternalSort(next)
+      onSortChange?.(next)
     },
-    [sortCol, sortable],
+    [sortable, sortCol, sortDir, controlled, onSortChange],
   )
 
+  // Controlado: las filas llegan ya ordenadas por el dueño.
   let sorted = rows
-  if (sortCol) {
+  if (!controlled && sortCol) {
     sorted = [...rows].sort((a, b) => {
       const va = a[sortCol]
       const vb = b[sortCol]
@@ -66,12 +83,17 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
                 key={col.key}
                 className={css.th}
                 data-sortable={sortable || undefined}
-                onClick={() => sortable && handleSort(col.key)}
                 aria-sort={sortCol === col.key ? (sortDir === 'asc' ? 'ascending' : 'descending') : undefined}
                 style={{ textAlign: col.align || 'left' }}
               >
-                {col.label}
-                {sortCol === col.key && <span style={{ marginLeft: 4 }}>{sortDir === 'asc' ? '↑' : '↓'}</span>}
+                {sortable ? (
+                  <button type="button" className={css.thButton} onClick={() => handleSort(col.key)}>
+                    {col.label}
+                    {sortCol === col.key && <span aria-hidden="true" style={{ marginLeft: 4 }}>{sortDir === 'asc' ? '↑' : '↓'}</span>}
+                  </button>
+                ) : (
+                  col.label
+                )}
               </th>
             ))}
           </tr>

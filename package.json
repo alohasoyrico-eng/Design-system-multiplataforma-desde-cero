@@ -25,7 +25,8 @@
     "./styles.css": "./dist-lib/flow.css",
     "./reset.css": "./dist-lib/reset.css",
     "./fonts/*": "./public/fonts/*",
-    "./contracts": "./src/data/items.json"
+    "./contracts": "./src/data/items.json",
+    "./compat-eone.css": "./dist-lib/compat-eone.css"
   },
   "files": [
     "dist-lib",
@@ -36,7 +37,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && cp src/reset.css dist-lib/reset.css",
+    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && cp src/reset.css dist-lib/reset.css && cp generated/tokens/css/compat-eone.css dist-lib/compat-eone.css",
     "lint": "oxlint",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",

@@ -57,7 +57,11 @@ const manoFiles = [
   ...readdirSync(srcDir).filter((f) => f.endsWith('.css')).map((f) => join(srcDir, f)),
 ]
 const genDir = join(root, 'generated/tokens/css')
-const genFiles = existsSync(genDir) ? readdirSync(genDir).filter((f) => f.endsWith('.css')).map((f) => join(genDir, f)) : []
+// compat-eone.css emite los nombres VIEJOS de eOne a proposito: es puente de
+// migracion, no parte del par de verdad diccionario↔CSS.
+const genFiles = existsSync(genDir)
+  ? readdirSync(genDir).filter((f) => f.endsWith('.css') && f !== 'compat-eone.css').map((f) => join(genDir, f))
+  : []
 
 const resolver = (v, map, guard = 0) => {
   if (v == null || guard > 12) return v

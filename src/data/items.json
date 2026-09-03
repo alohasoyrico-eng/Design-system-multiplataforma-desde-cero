@@ -1633,6 +1633,24 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "sort",
+        "k": "prop",
+        "t": "TableSort | null",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Controlado: el dueño ordena (también en servidor); el grid solo pinta y emite"
+      },
+      {
+        "n": "onSortChange",
+        "k": "event",
+        "t": "(sort: TableSort | null) => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -9464,6 +9482,24 @@
         "k": "prop",
         "t": "string",
         "d": "'var(--surface-sunken)'",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "sort",
+        "k": "prop",
+        "t": "GridSort | null",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Controlado: el dueño ordena (también en servidor); el grid solo pinta y emite"
+      },
+      {
+        "n": "onSortChange",
+        "k": "event",
+        "t": "(sort: GridSort | null) => void",
+        "d": "",
         "r": false,
         "rw": "",
         "note": ""

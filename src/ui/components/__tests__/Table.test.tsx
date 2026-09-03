@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, it, expect, vi } from 'vitest'
 import { Table } from '../Table'
 
 const columns = [
@@ -41,5 +42,29 @@ describe('Table', () => {
   it('does not set data-density for default', () => {
     const { container } = render(<Table columns={columns} rows={rows} />)
     expect(container.firstChild).not.toHaveAttribute('data-density')
+  })
+})
+
+describe('Table · orden controlado', () => {
+  const cols = [{ key: 'n', label: 'Nombre' }]
+  const rows = [{ n: 'B' }, { n: 'A' }]
+
+  it('controlado: no reordena y emite onSortChange', async () => {
+    const onSortChange = vi.fn()
+    const { container } = render(
+      <Table columns={cols} rows={rows} sort={null} onSortChange={onSortChange} />,
+    )
+    await userEvent.click(screen.getByRole('button', { name: 'Nombre' }))
+    expect(onSortChange).toHaveBeenCalledWith({ key: 'n', dir: 'asc' })
+    const celdas = container.querySelectorAll('td')
+    expect(celdas[0]).toHaveTextContent('B')
+  })
+
+  it('sin controlar: ordena localmente y el header es un botón de teclado', async () => {
+    const { container } = render(<Table columns={cols} rows={rows} />)
+    const th = screen.getByRole('button', { name: 'Nombre' })
+    th.focus()
+    await userEvent.keyboard('{Enter}')
+    expect(container.querySelectorAll('td')[0]).toHaveTextContent('A')
   })
 })

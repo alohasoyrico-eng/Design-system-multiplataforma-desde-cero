@@ -1,6 +1,7 @@
 import type { ReactNode, CSSProperties } from 'react'
 import { IconButton } from '../primitives/IconButton'
 import { OverlayShell } from '../primitives/OverlayShell'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './BottomSheet.module.css'
 
 export interface BottomSheetProps {
@@ -32,6 +33,7 @@ export function BottomSheet({
   headerActions,
   style,
 }: BottomSheetProps) {
+  const t = useT()
   return (
     <OverlayShell open={open} onClose={onClose} alignment="bottom">
       <div
@@ -44,7 +46,7 @@ export function BottomSheet({
           <div className={css.header}>
             <IconButton
               icon="arrow_back"
-              ariaLabel="Volver"
+              ariaLabel={t('common.back', 'Volver')}
               onClick={onBack ?? onClose}
             />
             {title && <div className={css.headerTitle}>{title}</div>}
@@ -55,7 +57,7 @@ export function BottomSheet({
             <button
               className={css.handle}
               onClick={onClose}
-              aria-label="Cerrar"
+              aria-label={t('common.close', 'Cerrar')}
               type="button"
             >
               <span className={css.bar} />

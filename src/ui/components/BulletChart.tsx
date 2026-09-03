@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './BulletChart.module.css'
 import { ChartLegend } from '../primitives/ChartLegend'
 
@@ -20,6 +21,7 @@ export interface BulletChartProps {
 }
 
 export function BulletChart(props: BulletChartProps) {
+  const t = useT()
   const { rows, color, format, style } = props
   const fallback = color || 'var(--viz-1)'
   if (!rows || !rows.length) {
@@ -63,9 +65,9 @@ export function BulletChart(props: BulletChartProps) {
       })}
       <ChartLegend
         items={[
-          { label: 'Real', color: fallback, shape: 'square' },
-          { label: 'Meta', color: 'var(--text-primary)', shape: 'line' },
-          { label: 'Periodo anterior', color: 'var(--border-strong)' },
+          { label: t('chart.actual', 'Real'), color: fallback, shape: 'square' },
+          { label: t('chart.target', 'Meta'), color: 'var(--text-primary)', shape: 'line' },
+          { label: t('chart.previousPeriod', 'Periodo anterior'), color: 'var(--border-strong)' },
         ]}
       />
     </div>

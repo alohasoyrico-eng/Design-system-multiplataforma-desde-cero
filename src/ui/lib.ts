@@ -9,3 +9,6 @@ export { useReveal } from '../hooks/useReveal'
    Se exporta el proveedor del sistema para que el consumidor no tenga que
    montar el suyo (aunque puede: cualquier IntlProvider de react-intl vale). */
 export { FlowIntlProvider, useFlowIntl, type FlowLocale } from '../i18n'
+/* Puentes de migracion 1.x → 3.0 */
+export { EONE_ICON_MAP, mapEoneIcon } from '../icons/eoneIconMap'
+export { FlowModeProvider, useFlowMode, type FlowMode } from '../theme/FlowMode'
