@@ -47,6 +47,8 @@
     "sync:docs:check": "node scripts/sync-docs.mjs --check",
     "check:catalog": "node scripts/check-catalog.mjs",
     "check:inventory": "node scripts/check-inventory-sync.mjs",
+    "check:foundations": "node scripts/check-foundations.mjs",
+    "check:tokens-parity": "node scripts/check-tokens-parity.mjs",
     "prepack": "npm run build:lib",
     "prepare": "node scripts/prepare.mjs"
   },

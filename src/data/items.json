@@ -7996,7 +7996,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "tokens/colors.css",
     "platforms": {},
     "anatomy": "Dos capas: <b>paleta base</b> (red, ink, sand, semanticos) y <b>tokens semanticos</b> (surface, text, border, action, status) que son los unicos que se usan en producto. El tema oscuro Asphalt redefine los semanticos bajo <code>[data-mode=dark]</code>.",
     "tokens": [
@@ -8047,7 +8047,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "tokens/typography.css",
     "platforms": {},
     "anatomy": "Escala de 10 roles expuesta como shorthands <code>--type-*</code> listos para la propiedad <code>font:</code>. Display usa tracking -0.02em; overlines +0.08em y mayusculas.",
     "tokens": [
@@ -8119,7 +8119,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "tokens/spacing.css",
     "platforms": {},
     "anatomy": "Escala 4-64px (<code>--space-1..16</code>) + tokens de componente: <code>--pad-card</code> 24, <code>--pad-section</code> 32, <code>--gap-inline</code> 8, <code>--gap-stack</code> 16, <code>--hit-target-min</code> 44.",
     "tokens": [
@@ -8161,7 +8161,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "tokens/shape.css",
     "platforms": {},
     "anatomy": "",
     "tokens": [
@@ -8229,7 +8229,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "tokens/motion.css",
     "platforms": {},
     "anatomy": "Dos curvas con roles fijos: <code>--ease-spring</code> (0.34, 1.56, 0.64, 1) responde al tacto — hover, press, toggles, indicadores. <code>--ease-out</code> (0.22, 1, 0.36, 1) para lo que entra — menus, modales, toasts. Duraciones 100/160/240/400ms.",
     "tokens": [
@@ -8274,7 +8274,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "tokens/iconography.css",
     "platforms": {},
     "anatomy": "",
     "tokens": [
@@ -8328,7 +8328,7 @@
     "stub": false,
     "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "tokens/a11y.css",
     "platforms": {},
     "anatomy": "",
     "tokens": [

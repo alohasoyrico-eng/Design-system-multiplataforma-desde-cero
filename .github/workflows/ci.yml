@@ -21,6 +21,7 @@ jobs:
       - run: npm run check:catalog
       - run: git fetch --depth=1 origin canonical
       - run: npm run check:inventory
+      - run: npm run check:foundations
       - run: npm run test
       - run: npm run build
       - run: npm run build:lib
