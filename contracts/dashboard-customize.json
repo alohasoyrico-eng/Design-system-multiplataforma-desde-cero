@@ -1,0 +1,40 @@
+{
+  "id": "dashboard-customize",
+  "name": "Dashboard customize",
+  "layer": "patterns",
+  "status": "stable",
+  "summary": "La receta de personalizar un dashboard: cada widget en un WidgetFrame, la WidgetLibrary como overlay, y el estado (visibilidad y orden) en el dueño de la pantalla.",
+  "content": {
+    "recipe": [
+      "Un boton Personalizar en la cabecera abre la WidgetLibrary.",
+      "Cada widget del grid vive dentro de un WidgetFrame alimentado por el estado del dueño.",
+      "Ocultar no destruye: el estado del widget sobrevive a esconderlo.",
+      "Guardar la disposicion es del producto (saved-views es pariente)."
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "dc-1",
+        "rule": "Ocultar un widget no destruye su estado: al mostrarlo vuelve como estaba.",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "dc-2",
+        "rule": "El orden que muestra la biblioteca es el del dashboard, siempre.",
+        "level": "must",
+        "verify": "manual"
+      }
+    ]
+  },
+  "composition": {
+    "components": [
+      "widget-frame",
+      "widget-library"
+    ]
+  }
+}

@@ -73,3 +73,19 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 {"id":"data-freshness","cat":"components","layer":"components","name":"DataFreshness","subtitle":"Frescura del dato: actualizado, cadencia, proximo refresco y actualizar.","status":"planned"},
 ]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"saved-views","cat":"components","layer":"components","name":"SavedViews","subtitle":"Vistas guardadas: aplicar, guardar y borrar combinaciones de filtros con cupo.","status":"planned"},
+]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"document-viewer","cat":"components","layer":"components","name":"DocumentViewer","subtitle":"Marco unico de documento con expansion a pantalla completa.","status":"planned"},
+]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"widget-frame","cat":"components","layer":"components","name":"WidgetFrame","subtitle":"Marco de widget personalizable con mostrar/ocultar.","status":"planned"},
+]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"widget-library","cat":"components","layer":"components","name":"WidgetLibrary","subtitle":"Biblioteca de widgets: visibilidad y reorden accesible.","status":"planned"},
+]);

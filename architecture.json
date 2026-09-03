@@ -1027,6 +1027,34 @@
       "contract": "contracts/data-freshness.json"
     },
     {
+      "id": "saved-views",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/saved-views.json"
+    },
+    {
+      "id": "document-viewer",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/document-viewer.json"
+    },
+    {
+      "id": "widget-frame",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/widget-frame.json"
+    },
+    {
+      "id": "widget-library",
+      "layer": "components",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/widget-library.json"
+    },
+    {
       "id": "state-grid",
       "layer": "patterns",
       "domain": null,
@@ -1039,6 +1067,13 @@
       "domain": "fintech",
       "src": null,
       "contract": "contracts/transaction-group.json"
+    },
+    {
+      "id": "dashboard-customize",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/dashboard-customize.json"
     },
     {
       "id": "agent-chat-template",
@@ -1154,10 +1189,10 @@
     }
   ],
   "contractCoverage": {
-    "items": 145,
+    "items": 150,
     "shells": 6,
-    "written": 145,
-    "files": 151,
+    "written": 150,
+    "files": 156,
     "$comment": "written se recomputa contando items con contract enlazado, no incrementando a mano. files = contratos de item + los 6 shells; _base y _schema no cuentan."
   },
   "targetPaths": {

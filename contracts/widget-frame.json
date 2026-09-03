@@ -1,0 +1,66 @@
+{
+  "id": "widget-frame",
+  "name": "WidgetFrame",
+  "layer": "components",
+  "status": "stable",
+  "summary": "El marco de un widget personalizable: titulo, cuerpo, y en modo personalizacion el control de mostrar/ocultar. Oculto y sin personalizar, no renderiza.",
+  "api": {
+    "members": [
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true
+      },
+      {
+        "name": "hidden",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "false"
+      },
+      {
+        "name": "customizing",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "false",
+        "note": "Muestra el cromo de personalizacion; un widget oculto se pinta atenuado en vez de desaparecer."
+      },
+      {
+        "name": "onToggle",
+        "kind": "event",
+        "type": "() => void"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "wf-1",
+        "rule": "hidden sin customizing: nada en el arbol. hidden con customizing: atenuado y con el control de mostrar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "wf-2",
+        "rule": "El control de mostrar/ocultar nombra al widget.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No guarda la configuracion: el estado vive en el dueño del dashboard."
+  ],
+  "reference": {
+    "src": "components/WidgetFrame.tsx"
+  }
+}

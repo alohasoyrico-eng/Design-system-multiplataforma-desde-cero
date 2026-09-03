@@ -1,0 +1,80 @@
+{
+  "id": "document-viewer",
+  "name": "DocumentViewer",
+  "layer": "components",
+  "status": "stable",
+  "summary": "Visor de documento con marco unico: cabecera con titulo y acciones, cuerpo del producto, y expansion a pantalla completa sobre la carcasa de overlay.",
+  "api": {
+    "members": [
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "required": true,
+        "note": "El documento lo pinta el producto (iframe, imagen, render de PDF)."
+      },
+      {
+        "name": "actions",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Descargar, compartir… viven en la cabecera del marco."
+      },
+      {
+        "name": "expandable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "true"
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number | string",
+        "note": "Alto del marco en linea; el expandido ocupa la pantalla."
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "dv-1",
+        "rule": "Expandir abre overlay del sistema con el mismo titulo y las mismas acciones; cerrar devuelve el foco al control de expandir.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dv-2",
+        "rule": "El control de expandir tiene nombre accesible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dv-3",
+        "rule": "El marco es la unica cromatica: el documento no gana bordes ni sombras propias del visor.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "composition": {
+    "primitives": [
+      "overlay-shell",
+      "icon-button"
+    ]
+  },
+  "nonGoals": [
+    "No renderiza formatos: el documento es del producto.",
+    "No pagina PDFs ni hace zoom: eso es un visor de verdad, no el marco."
+  ],
+  "reference": {
+    "src": "components/DocumentViewer.tsx"
+  }
+}

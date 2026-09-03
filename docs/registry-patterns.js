@@ -28,3 +28,7 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 {"id":"state-grid","cat":"patterns","layer":"patterns","name":"StateGrid","subtitle":"Grid de estados visuales de un componente (hover, focus, disabled, loading) con specimen y label por celda.","status":"planned"},
 {"id":"transaction-group","cat":"patterns","layer":"patterns","name":"TransactionGroup","subtitle":"Agrupacion de transacciones por fecha con label de seccion y lista de TransactionRow.","status":"planned","domain":"fintech"},
 ]);
+
+window.FlowDocs.items.push.apply(window.FlowDocs.items, [
+{"id":"dashboard-customize","cat":"patterns","layer":"patterns","name":"Dashboard customize","subtitle":"Receta de personalizacion del dashboard con estado en el dueño.","status":"planned"},
+]);

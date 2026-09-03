@@ -1,0 +1,100 @@
+{
+  "id": "saved-views",
+  "name": "SavedViews",
+  "layer": "components",
+  "status": "stable",
+  "summary": "Guardar combinaciones de filtros con nombre, aplicarlas y borrarlas. Cupo declarado (12 por defecto): un producto analitico vive de volver a la misma vista.",
+  "api": {
+    "types": [
+      {
+        "name": "SavedView",
+        "shape": "{ id: string; name: string }"
+      }
+    ],
+    "members": [
+      {
+        "name": "views",
+        "kind": "prop",
+        "type": "SavedView[]",
+        "required": true
+      },
+      {
+        "name": "activeId",
+        "kind": "prop",
+        "type": "string | null",
+        "note": "La vista aplicada se marca con aria-current."
+      },
+      {
+        "name": "onApply",
+        "kind": "event",
+        "type": "(id: string) => void",
+        "required": true
+      },
+      {
+        "name": "onSave",
+        "kind": "event",
+        "type": "(name: string) => void",
+        "required": true,
+        "note": "Guarda la combinacion actual con el nombre capturado."
+      },
+      {
+        "name": "onDelete",
+        "kind": "event",
+        "type": "(id: string) => void",
+        "required": true
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "number",
+        "default": "12"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "sv-1",
+        "rule": "Aplicar es el clic en el nombre; borrar es un control aparte con nombre accesible que incluye la vista. Borrar jamas aplica.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sv-2",
+        "rule": "Al cupo, guardar queda deshabilitado y el contador (n/max) lo explica.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sv-3",
+        "rule": "Guardar exige nombre no vacio; Enter en el campo guarda y limpia.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sv-4",
+        "rule": "La vista activa se marca con aria-current.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "primitives": [
+      "popover",
+      "button",
+      "icon-button",
+      "input"
+    ]
+  },
+  "nonGoals": [
+    "No serializa ni persiste las vistas: el dueño guarda donde sepa.",
+    "No captura los filtros: recibe nombres, emite intenciones."
+  ],
+  "reference": {
+    "src": "components/SavedViews.tsx"
+  }
+}

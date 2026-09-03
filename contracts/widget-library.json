@@ -1,0 +1,94 @@
+{
+  "id": "widget-library",
+  "name": "WidgetLibrary",
+  "layer": "components",
+  "status": "stable",
+  "summary": "La biblioteca de widgets del dashboard: lista con mostrar/ocultar y reorden accesible por botones. Es un overlay del sistema.",
+  "api": {
+    "types": [
+      {
+        "name": "WidgetDef",
+        "shape": "{ id: string; title: string; visible: boolean }"
+      }
+    ],
+    "members": [
+      {
+        "name": "open",
+        "kind": "prop",
+        "type": "boolean",
+        "required": true
+      },
+      {
+        "name": "onClose",
+        "kind": "event",
+        "type": "() => void",
+        "required": true
+      },
+      {
+        "name": "widgets",
+        "kind": "prop",
+        "type": "WidgetDef[]",
+        "required": true,
+        "note": "En el orden del dashboard."
+      },
+      {
+        "name": "onToggle",
+        "kind": "event",
+        "type": "(id: string) => void",
+        "required": true
+      },
+      {
+        "name": "onMove",
+        "kind": "event",
+        "type": "(id: string, dir: -1 | 1) => void",
+        "required": true,
+        "note": "Reorden accesible: botones subir/bajar, no arrastre."
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "default": "i18n dashboard.customize"
+      }
+    ]
+  },
+  "conformance": {
+    "inherits": [
+      "_base"
+    ],
+    "criteria": [
+      {
+        "id": "wl-1",
+        "rule": "Reordenar es por botones subir/bajar con nombre accesible que incluye el widget; el primero no sube y el ultimo no baja.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "wl-2",
+        "rule": "Cada mostrar/ocultar nombra su widget.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "wl-3",
+        "rule": "Es un overlay del sistema: foco atrapado y devuelto, Escape cierra (heredado de la carcasa).",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "composition": {
+    "primitives": [
+      "overlay-shell",
+      "toggle-control",
+      "icon-button"
+    ],
+    "$note": "El repo lo compone sobre su BottomSheet (que ya envuelve overlay-shell): divergencia declarada, conformance heredada."
+  },
+  "nonGoals": [
+    "No conoce los widgets: recibe definiciones y emite intenciones."
+  ],
+  "reference": {
+    "src": "components/WidgetLibrary.tsx"
+  }
+}
