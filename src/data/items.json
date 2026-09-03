@@ -9969,7 +9969,7 @@
     "name": "Session recovery",
     "layer": "patterns",
     "status": "stable",
-    "summary": "Silent refresh, then a re-auth prompt that returns the driver to the exact step.",
+    "summary": "Silent refresh, then a re-auth prompt that returns the driver to the exact step. La UI de la caducidad viene de eOne: tiempo restante vivo en el trigger, banner a 5 minutos, renovar sin perder el paso.",
     "fn": [
       "flow"
     ],
@@ -10659,7 +10659,7 @@
     "name": "Statement export",
     "layer": "patterns",
     "status": "beta",
-    "summary": "Range, format and delivery, with the generation queued rather than blocking.",
+    "summary": "Range, format and delivery, with the generation queued rather than blocking. Incluye la lámina ejecutiva exportable con marca (US-028); ProposalCard es pariente.",
     "fn": [
       "flow"
     ],
@@ -12848,5 +12848,155 @@
     "nonGoals": [
       "No define funnels ni dashboards: define el vocabulario y el conducto. El análisis vive en la herramienta del proveedor"
     ]
+  },
+  "saved-views": {
+    "name": "Saved views",
+    "layer": "patterns",
+    "status": "beta",
+    "summary": "Guardar combinaciones de filtros con nombre (12 espacios), aplicarlas y borrarlas. Todo producto analítico lo pide.",
+    "fn": [
+      "data"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": true,
+    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (SavedViews de eOne).",
+    "shellOf": [],
+    "src": "",
+    "platforms": {
+      "web": "n/a",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
+  "dashboard-customize": {
+    "name": "Dashboard customize",
+    "layer": "patterns",
+    "status": "beta",
+    "summary": "Personalizar el dashboard: mostrar, ocultar y reordenar widgets desde una biblioteca. dashboard-pattern compone; esto personaliza.",
+    "fn": [
+      "data"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": true,
+    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (WidgetFrame + WidgetLibrary, US-009).",
+    "shellOf": [],
+    "src": "",
+    "platforms": {
+      "web": "n/a",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
+  "data-freshness": {
+    "name": "Data freshness",
+    "layer": "components",
+    "status": "beta",
+    "summary": "La barra de frescura del dato: «datos al miércoles 12:40 · ingesta a día vencido · próximo refresco en 15 min · Actualizar». Cualquier producto con ingesta la necesita y ninguno la diseña bien.",
+    "fn": [
+      "data"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": true,
+    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (FreshnessBar y su ciclo de refresco).",
+    "shellOf": [],
+    "src": "",
+    "platforms": {
+      "web": "n/a",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
+  "active-filters": {
+    "name": "Active filters",
+    "layer": "components",
+    "status": "beta",
+    "summary": "Chips de filtros activos con periodo, limpiar por dimensión o todo, anclada al shell. FilterBar es el contenedor de entrada; esto es el contrato de salida.",
+    "fn": [
+      "data"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": true,
+    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (ActiveFiltersBar de eOne).",
+    "shellOf": [],
+    "src": "",
+    "platforms": {
+      "web": "n/a",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
+  "document-viewer": {
+    "name": "Document viewer",
+    "layer": "patterns",
+    "status": "beta",
+    "summary": "Visor de documento con marco único, apertura y pantalla completa.",
+    "fn": [
+      "display"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": true,
+    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (ReportFrame / Viewer / Stage de eOne).",
+    "shellOf": [],
+    "src": "",
+    "platforms": {
+      "web": "n/a",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
   }
 }
