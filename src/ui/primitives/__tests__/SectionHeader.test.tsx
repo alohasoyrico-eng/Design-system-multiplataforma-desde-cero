@@ -19,10 +19,15 @@ describe('SectionHeader', () => {
 
   it('does not render trailing when not provided', () => {
     const { container } = render(<SectionHeader>Titulo</SectionHeader>)
-    // The trailing span should not exist
-    const spans = container.querySelectorAll('span')
-    // Only the title span should exist
-    expect(spans).toHaveLength(1)
+    expect(container.querySelectorAll('span')).toHaveLength(0)
+  })
+
+  // sh-2: el titulo es un heading real — el span que lo sustituyo rompia el outline
+  it('emite un heading real, h2 por defecto y nivel configurable', () => {
+    const { container, rerender } = render(<SectionHeader>Titulo</SectionHeader>)
+    expect(container.querySelector('h2')).toHaveTextContent('Titulo')
+    rerender(<SectionHeader level={3}>Titulo</SectionHeader>)
+    expect(container.querySelector('h3')).toHaveTextContent('Titulo')
   })
 
   it('sets data-size attribute', () => {

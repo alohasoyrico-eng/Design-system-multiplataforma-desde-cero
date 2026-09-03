@@ -53,3 +53,26 @@ describe('Field', () => {
     expect(container.firstChild).toHaveAttribute('data-error')
   })
 })
+
+describe('Field · conformance fld-2/fld-4', () => {
+  it('el control queda referenciado al mensaje y marcado invalido con error', () => {
+    render(
+      <Field label="Correo" htmlFor="mail" error="No es un correo válido">
+        <input id="mail" />
+      </Field>,
+    )
+    const input = screen.getByLabelText('Correo')
+    expect(input).toHaveAttribute('aria-describedby', 'mail-msg')
+    expect(input).toHaveAttribute('aria-invalid', 'true')
+    expect(screen.getByRole('alert')).toHaveTextContent('No es un correo válido')
+  })
+
+  it('requerido viaja al control como aria-required', () => {
+    render(
+      <Field label="Nombre" htmlFor="n" required>
+        <input id="n" />
+      </Field>,
+    )
+    expect(screen.getByLabelText(/Nombre/)).toHaveAttribute('aria-required', 'true')
+  })
+})

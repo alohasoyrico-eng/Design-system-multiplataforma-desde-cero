@@ -57,3 +57,38 @@ describe('Menu', () => {
     expect(container.querySelector('[role="separator"]')).toBeInTheDocument()
   })
 })
+
+describe('Menu · conformance mnu-1/mnu-2 y disparador', () => {
+  const items = [
+    { label: 'Editar' },
+    'divider' as const,
+    { label: 'Duplicar', disabled: true },
+    { label: 'Borrar', danger: true },
+  ]
+
+  it('el disparador anuncia haspopup y expanded', async () => {
+    render(<Menu trigger={<button>Acciones</button>} items={items} />)
+    const trigger = screen.getByRole('button', { name: 'Acciones' })
+    expect(trigger).toHaveAttribute('aria-haspopup', 'menu')
+    expect(trigger).toHaveAttribute('aria-expanded', 'false')
+    await userEvent.click(trigger)
+    expect(trigger).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  it('el foco entra al primer item usable al abrir', async () => {
+    render(<Menu trigger={<button>Acciones</button>} items={items} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Acciones' }))
+    expect(screen.getByRole('menuitem', { name: 'Editar' })).toHaveFocus()
+  })
+
+  it('las flechas recorren saltando divisores y deshabilitados', async () => {
+    render(<Menu trigger={<button>Acciones</button>} items={items} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Acciones' }))
+    await userEvent.keyboard('{ArrowDown}')
+    expect(screen.getByRole('menuitem', { name: 'Borrar' })).toHaveFocus()
+    await userEvent.keyboard('{ArrowDown}')
+    expect(screen.getByRole('menuitem', { name: 'Editar' })).toHaveFocus()
+    await userEvent.keyboard('{End}')
+    expect(screen.getByRole('menuitem', { name: 'Borrar' })).toHaveFocus()
+  })
+})

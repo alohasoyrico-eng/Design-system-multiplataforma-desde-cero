@@ -52,3 +52,5 @@ export { BulkActionsTable, type BulkActionsTableProps, type BulkAction } from '.
 export { FilterableEditableTable, type FilterableEditableTableProps, type FilterableColumn } from './FilterableEditableTable'
 export { RouteBanner, type RouteBannerProps } from './RouteBanner'
 export { Wizard, type WizardProps } from './Wizard'
+export { ActiveFilters, type ActiveFiltersProps, type ActiveFilter } from './ActiveFilters'
+export { DataFreshness, type DataFreshnessProps } from './DataFreshness'

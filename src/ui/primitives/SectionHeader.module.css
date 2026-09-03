@@ -5,6 +5,7 @@
 }
 
 .title {
+  margin: 0;
   font: var(--type-title-lg);
   color: var(--text-primary);
 }

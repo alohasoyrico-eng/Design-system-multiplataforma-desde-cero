@@ -1,4 +1,4 @@
-import { useId, type ReactNode, type CSSProperties } from 'react'
+import { Children, cloneElement, isValidElement, useId, type ReactNode, type CSSProperties } from 'react'
 import css from './Field.module.css'
 
 export interface FieldProps {
@@ -24,13 +24,26 @@ export function Field({ label, htmlFor, required, help, error, valid, validMessa
   const messageText = error ?? (valid && validMessage ? validMessage : help)
   const messageState = error ? 'error' : valid ? 'valid' : undefined
 
+  // fld-2 y fld-4: el control queda referenciado al mensaje y anuncia
+  // requerido e invalidez — la etiqueta visual no es la unica senal.
+  const described = messageText ? messageId : undefined
+  const enhanced = Children.map(children, (child) => {
+    if (!isValidElement(child)) return child
+    const prev = (child.props as Record<string, unknown>)['aria-describedby']
+    return cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+      'aria-describedby': [prev, described].filter(Boolean).join(' ') || undefined,
+      'aria-invalid': error ? true : undefined,
+      'aria-required': required ? true : undefined,
+    })
+  })
+
   return (
     <div className={css.root} data-error={error ? '' : undefined} data-valid={valid || undefined} style={style}>
       <label className={css.label} htmlFor={htmlFor}>
         {label}
         {required && <span className={css.required} aria-hidden="true"> *</span>}
       </label>
-      <div className={css.control}>{children}</div>
+      <div className={css.control}>{enhanced}</div>
       <div
         className={css.message}
         id={messageId}

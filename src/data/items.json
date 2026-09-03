@@ -2364,7 +2364,7 @@
         "d": "[]",
         "r": false,
         "rw": "",
-        "note": ""
+        "note": "{label, icon?, danger?, disabled?, onClick?}"
       },
       {
         "n": "align",
@@ -11021,6 +11021,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "level",
+        "k": "prop",
+        "t": "2 | 3 | 4",
+        "d": "2",
+        "r": false,
+        "rw": "",
+        "note": "Nivel del heading real que emite el título"
       }
     ],
     "dos": [],
@@ -12919,19 +12928,74 @@
     ],
     "domain": "",
     "shell": false,
-    "stub": true,
-    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (FreshnessBar y su ciclo de refresco).",
+    "stub": false,
+    "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "components/DataFreshness.tsx",
     "platforms": {
-      "web": "n/a",
+      "web": "beta",
       "angular": "n/a",
       "flutter": "n/a"
     },
     "anatomy": "",
     "tokens": [],
     "variants": [],
-    "members": [],
+    "members": [
+      {
+        "n": "updatedLabel",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "Texto ya formateado; el formato de fechas es del producto"
+      },
+      {
+        "n": "cadence",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "«ingesta a día vencido»"
+      },
+      {
+        "n": "nextRefresh",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "«próximo refresco en 15 min»"
+      },
+      {
+        "n": "onRefresh",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Sin él, solo lectura: no hay botón"
+      },
+      {
+        "n": "refreshing",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
+        "r": false,
+        "rw": "",
+        "note": "Carga y bloqueo: sin doble disparo"
+      },
+      {
+        "n": "refreshLabel",
+        "k": "prop",
+        "t": "string",
+        "d": "i18n common.refresh",
+        "r": false,
+        "rw": "",
+        "note": ""
+      }
+    ],
     "dos": [],
     "donts": [],
     "when": [],
@@ -12949,19 +13013,65 @@
     ],
     "domain": "",
     "shell": false,
-    "stub": true,
-    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (ActiveFiltersBar de eOne).",
+    "stub": false,
+    "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "components/ActiveFilters.tsx",
     "platforms": {
-      "web": "n/a",
+      "web": "beta",
       "angular": "n/a",
       "flutter": "n/a"
     },
     "anatomy": "",
     "tokens": [],
     "variants": [],
-    "members": [],
+    "members": [
+      {
+        "n": "filters",
+        "k": "prop",
+        "t": "ActiveFilter[]",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "{id, dimension, label}. Vacia y sin periodo: no renderiza nada"
+      },
+      {
+        "n": "period",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Chip fijo: informa, no se quita desde aqui"
+      },
+      {
+        "n": "onRemove",
+        "k": "event",
+        "t": "(id: string) => void",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onClearAll",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Solo se ofrece con 2 o mas filtros"
+      },
+      {
+        "n": "clearLabel",
+        "k": "prop",
+        "t": "string",
+        "d": "i18n common.clearFilters",
+        "r": false,
+        "rw": "",
+        "note": ""
+      }
+    ],
     "dos": [],
     "donts": [],
     "when": [],
