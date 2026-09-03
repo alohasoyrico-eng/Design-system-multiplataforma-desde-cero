@@ -12923,7 +12923,7 @@
   },
   "saved-views": {
     "name": "Saved views",
-    "layer": "patterns",
+    "layer": "components",
     "status": "beta",
     "summary": "Guardar combinaciones de filtros con nombre (12 espacios), aplicarlas y borrarlas. Todo producto analítico lo pide.",
     "fn": [
@@ -12931,19 +12931,74 @@
     ],
     "domain": "",
     "shell": false,
-    "stub": true,
-    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (SavedViews de eOne).",
+    "stub": false,
+    "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "components/SavedViews.tsx",
     "platforms": {
-      "web": "n/a",
+      "web": "beta",
       "angular": "n/a",
       "flutter": "n/a"
     },
     "anatomy": "",
     "tokens": [],
     "variants": [],
-    "members": [],
+    "members": [
+      {
+        "n": "views",
+        "k": "prop",
+        "t": "SavedView[]",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "{id, name}"
+      },
+      {
+        "n": "activeId",
+        "k": "prop",
+        "t": "string | null",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "La aplicada se marca con aria-current"
+      },
+      {
+        "n": "onApply",
+        "k": "event",
+        "t": "(id: string) => void",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onSave",
+        "k": "event",
+        "t": "(name: string) => void",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "Guarda la combinación actual"
+      },
+      {
+        "n": "onDelete",
+        "k": "event",
+        "t": "(id: string) => void",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "max",
+        "k": "prop",
+        "t": "number",
+        "d": "12",
+        "r": false,
+        "rw": "",
+        "note": "Al cupo, guardar se deshabilita y el contador lo explica"
+      }
+    ],
     "dos": [],
     "donts": [],
     "when": [],
@@ -12955,14 +13010,14 @@
     "name": "Dashboard customize",
     "layer": "patterns",
     "status": "beta",
-    "summary": "Personalizar el dashboard: mostrar, ocultar y reordenar widgets desde una biblioteca. dashboard-pattern compone; esto personaliza.",
+    "summary": "La receta de personalizar un dashboard: cada widget en un WidgetFrame, la WidgetLibrary como overlay y el estado (visibilidad y orden) en el dueño de la pantalla. Ocultar no destruye: al mostrar, el widget vuelve como estaba.",
     "fn": [
       "data"
     ],
     "domain": "",
     "shell": false,
-    "stub": true,
-    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (WidgetFrame + WidgetLibrary, US-009).",
+    "stub": false,
+    "stubNote": "",
     "shellOf": [],
     "src": "",
     "platforms": {
@@ -13144,7 +13199,7 @@
   },
   "document-viewer": {
     "name": "Document viewer",
-    "layer": "patterns",
+    "layer": "components",
     "status": "beta",
     "summary": "Visor de documento con marco único, apertura y pantalla completa.",
     "fn": [
@@ -13152,19 +13207,226 @@
     ],
     "domain": "",
     "shell": false,
-    "stub": true,
-    "stubNote": "Deuda 3.0 registrada en el §7 del plan de migración de eOne: la pieza existe allá al 100% y es generalizable. Sin api ni conformance todavía — el contrato se escribe en la referencia canónica antes de construirla (ReportFrame / Viewer / Stage de eOne).",
+    "stub": false,
+    "stubNote": "",
     "shellOf": [],
-    "src": "",
+    "src": "components/DocumentViewer.tsx",
     "platforms": {
-      "web": "n/a",
+      "web": "beta",
       "angular": "n/a",
       "flutter": "n/a"
     },
     "anatomy": "",
     "tokens": [],
     "variants": [],
-    "members": [],
+    "members": [
+      {
+        "n": "title",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "children",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "El documento lo pinta el producto"
+      },
+      {
+        "n": "actions",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Viven en la cabecera, también en pantalla completa"
+      },
+      {
+        "n": "expandable",
+        "k": "prop",
+        "t": "boolean",
+        "d": "true",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "height",
+        "k": "prop",
+        "t": "number | string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Del marco en línea; el expandido ocupa la pantalla"
+      }
+    ],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
+  "widget-frame": {
+    "name": "WidgetFrame",
+    "layer": "components",
+    "status": "beta",
+    "summary": "El marco de un widget personalizable: título, cuerpo y, en personalización, mostrar/ocultar. Oculto y sin personalizar, no renderiza.",
+    "fn": [
+      "data"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": false,
+    "stubNote": "",
+    "shellOf": [],
+    "src": "components/WidgetFrame.tsx",
+    "platforms": {
+      "web": "beta",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [
+      {
+        "n": "title",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "children",
+        "k": "slot",
+        "t": "ReactNode",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "hidden",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
+        "r": false,
+        "rw": "",
+        "note": "Sin customizing: nada en el árbol"
+      },
+      {
+        "n": "customizing",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
+        "r": false,
+        "rw": "",
+        "note": "Cromo de personalización; oculto se pinta atenuado"
+      },
+      {
+        "n": "onToggle",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "El control nombra al widget"
+      }
+    ],
+    "dos": [],
+    "donts": [],
+    "when": [],
+    "notWhen": [],
+    "a11y": [],
+    "nonGoals": []
+  },
+  "widget-library": {
+    "name": "WidgetLibrary",
+    "layer": "components",
+    "status": "beta",
+    "summary": "La biblioteca de widgets: visibilidad y reorden accesible por botones, como overlay del sistema.",
+    "fn": [
+      "data"
+    ],
+    "domain": "",
+    "shell": false,
+    "stub": false,
+    "stubNote": "",
+    "shellOf": [],
+    "src": "components/WidgetLibrary.tsx",
+    "platforms": {
+      "web": "beta",
+      "angular": "n/a",
+      "flutter": "n/a"
+    },
+    "anatomy": "",
+    "tokens": [],
+    "variants": [],
+    "members": [
+      {
+        "n": "open",
+        "k": "prop",
+        "t": "boolean",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onClose",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "widgets",
+        "k": "prop",
+        "t": "WidgetDef[]",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "{id, title, visible}, en el orden del dashboard"
+      },
+      {
+        "n": "onToggle",
+        "k": "event",
+        "t": "(id: string) => void",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onMove",
+        "k": "event",
+        "t": "(id: string, dir: -1 | 1) => void",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": "Subir/bajar accesible; extremos deshabilitados"
+      },
+      {
+        "n": "title",
+        "k": "prop",
+        "t": "string",
+        "d": "i18n dashboard.customize",
+        "r": false,
+        "rw": "",
+        "note": ""
+      }
+    ],
     "dos": [],
     "donts": [],
     "when": [],
