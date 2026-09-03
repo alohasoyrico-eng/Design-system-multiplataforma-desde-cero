@@ -191,6 +191,22 @@ const CARCASS = [
   { id: 'backdrop', re: /position:\s*'?fixed'?[\s\S]{0,80}inset:\s*0/, what: 'backdrop fijo (es OverlayShell)' },
   { id: 'keyframes', re: /@keyframes/, what: '@keyframes propios (van en el shell o en la hoja de tokens)' },
 ];
+// Excepciones declaradas de R3. Igual que en check-color: una excepcion sin
+// motivo escrito es un defecto sin registrar.
+const EXCEPCIONES_R3 = [
+  {
+    archivo: 'platforms/check-layers.mjs',
+    motivo: 'El escaner se describe a si mismo: el patron que busca aparece como texto de su propia regla, no como estilo.',
+  },
+  {
+    archivo: 'support.js',
+    motivo: 'Runtime del canvas de streaming (prefijo sc-): infraestructura de documentos .dc.html, no UI del sistema. Su shimmer no es una carcasa de componente.',
+  },
+  {
+    archivo: 'components/SmallMultiples.jsx',
+    motivo: 'Tile seleccionable de data-viz, no control de formulario (decidido en pendingWork). El borde --border-focus para seleccion es la misma convencion que Card.jsx; el radio del tile lo acerca a la heuristica de control sin serlo.',
+  },
+];
 function checkR3(files) {
   let count = 0;
   for (const abs of files) {
@@ -199,12 +215,13 @@ function checkR3(files) {
     // ui_kits y docs SI se revisan: un template que redibuja una carcasa es la deriva
     // que R3 existe para atrapar, no un estilo inline legitimo.
     if (/shells\//.test(p) || /^tokens\//.test(p)) continue;
+    if (EXCEPCIONES_R3.some((e) => e.archivo === p)) continue;
     const src = readFileSync(abs, 'utf8');
     for (const c of CARCASS) {
       if (c.re.test(src)) { count++; problems.push({ rule: 'R3', where: p, msg: 'declara ' + c.what, ratchet: true }); }
     }
   }
-  notes.push('R3: ' + count + ' declaraciones de carcasa fuera de los shells (ratchet: este numero solo puede bajar)');
+  notes.push('R3: ' + count + ' declaraciones de carcasa fuera de los shells (ratchet: este numero solo puede bajar). ' + EXCEPCIONES_R3.length + ' excepciones declaradas.');
 }
 
 // ---------- R4: la composicion no se filtra a la API ----------

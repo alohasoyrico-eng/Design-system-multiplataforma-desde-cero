@@ -72,11 +72,10 @@ De los 141 ítems, 37 están en estado `planned` (registrados 2026-09-03): tiene
 
 No todos los criterios están verificados. Cada uno declara cómo se comprueba: `automated` corre en el gate, `visual` necesita ojo, y `manual` describe un flujo con estado a lo largo de varias pantallas —volver un paso del wizard sin perder lo escrito, que el error de credenciales no revele qué campo falla— que no se puede medir en un instante. La mayoría de los criterios de `patterns` y `templates` son `manual` y siguen sin verificar: están escritos como especificación, no como hecho comprobado.
 
-Tres deudas conocidas y declaradas en `architecture.json > pendingWork`, para que no las redescubras como bugs:
+Estado de las deudas declaradas en `architecture.json > pendingWork`, para que no las redescubras como bugs:
 
-- **R3 está en cero y bloquea.** Ningún archivo fuera de `shells/` declara borde, foco o radio de control, backdrop fijo ni `@keyframes` propios: los 13 keyframes del sistema viven en `tokens/motion.css`. Si tu implementación reintroduce una carcasa propia, el gate la rechaza.
-- R3 es un ratchet mientras existan; cuando lleguen a cero pasa a bloquear.
-- **`KanbanBoard`** tiene un solo consumidor y le falta el hueco simétrico a `renderCard` — `renderColumnHeader` y estilo de columna. Decídelo antes de escribirlo.
+- **R3 está en cero (medido 2026-09-03).** Ningún archivo fuera de `shells/` declara borde, foco o radio de control, backdrop fijo ni `@keyframes` propios: los 13 keyframes del sistema viven en `tokens/motion.css`. Las 3 excepciones —el propio escáner, el runtime del canvas (`support.js`) y el tile seleccionable de `SmallMultiples`— están declaradas con motivo en `check-layers.mjs`. Mientras el conteo sea cero es una reja: si tu implementación reintroduce una carcasa propia, corre el ratchet hacia arriba y se trata como regresión.
+- **`KanbanBoard` cerró su API**: `renderColumnHeader` y `columnStyle`, los huecos simétricos a `renderCard`, están implementados, en su contrato y en el registry. Personalizar la cabecera no puede romper el nombre accesible de la columna: lo sigue poniendo el board (criterio kb-9).
 
 ## Arquitectura de capas — el paso obligatorio
 
