@@ -18,7 +18,7 @@ export function Pagination({ page = 1, pages = 1, onChange, style }) {
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
       fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: opts.current ? 700 : 500,
       background: opts.current ? 'var(--surface-inverse)' : 'transparent',
-      color: opts.current ? 'var(--text-on-inverse)' : opts.disabled ? 'var(--flow-ink-300)' : 'var(--text-secondary)',
+      color: opts.current ? 'var(--text-on-inverse)' : opts.disabled ? 'var(--text-disabled)' : 'var(--text-secondary)',
       cursor: opts.disabled || opts.current ? 'default' : 'pointer',
       transition: 'background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-spring)',
     },

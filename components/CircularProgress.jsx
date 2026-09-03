@@ -5,7 +5,7 @@ export function CircularProgress({ value = 0, max = 100, size = 56, strokeWidth 
   const pct = Math.max(0, Math.min(1, max > 0 ? value / max : 0));
   const r = (size - strokeWidth) / 2;
   const c = 2 * Math.PI * r;
-  const color = { accent: 'var(--action-accent)', success: 'var(--status-success)', warning: 'var(--status-warning)', ink: 'var(--flow-ink-900)' }[tone] || 'var(--action-accent)';
+  const color = { accent: 'var(--action-accent)', success: 'var(--status-success)', warning: 'var(--status-warning)', ink: 'var(--text-primary)' }[tone] || 'var(--action-accent)';
   return React.createElement('div', {
     style: { display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 6, fontFamily: 'var(--font-body)', ...style },
   },

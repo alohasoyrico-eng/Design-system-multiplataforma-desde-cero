@@ -113,7 +113,7 @@ function App(){
         <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Gasto vs precio por litro</div>
         <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:12}}>7 dias · guia sincronizada</div>
         <FlowChart type="line" height={170} labels={['Lun','Mar','Mie','Jue','Vie','Sab','Dom']}
-          series={[{label:'Gasto ($k)',values:[38,42,40,45,44,47,46],color:'var(--flow-red-500)'},{label:'$/L',values:[22.4,22.6,22.9,23.1,23.0,23.2,23.0],color:'var(--status-warning)'}]}
+          series={[{label:'Gasto ($k)',values:[38,42,40,45,44,47,46],color:'var(--viz-accent)'},{label:'$/L',values:[22.4,22.6,22.9,23.1,23.0,23.2,23.0],color:'var(--status-warning)'}]}
           ariaLabel="El gasto sube más rápido que el precio por litro: se está consumiendo más" />
       </Card>
     </div>

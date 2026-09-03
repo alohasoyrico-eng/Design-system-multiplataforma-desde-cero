@@ -73,6 +73,20 @@
   --status-info-bg: var(--flow-blue-50);
   --status-live: var(--flow-red-500);
 
+  /* ---- Sobre acento: la tarjeta de viaje y los CTAs sobre rojo no cambian de modo ---- */
+  --on-accent-solid: #FFFFFF;
+  --on-accent-dim: rgba(255, 255, 255, 0.6);
+  --on-accent-veil: rgba(0, 0, 0, 0.22);
+  --text-on-accent-secondary: rgba(255, 255, 255, 0.85);
+
+  /* ---- Velos y estados ---- */
+  --scrim: rgba(23, 23, 26, 0.4);           /* backdrop de overlays; misma decision en ambos modos */
+  --text-disabled: var(--flow-ink-300);     /* texto/glifo inactivo: paginacion, pasos pending, separadores */
+  --text-accent-on-inverse: var(--flow-red-400);  /* accion de acento sobre superficie inversa (Toast) */
+  --text-on-inverse-dim: rgba(244, 243, 241, 0.55);  /* secundario sobre superficie inversa */
+  --text-display-accent: var(--flow-red-500);   /* momento de marca en display >=18px bold */
+  --status-success-veil: rgba(18, 183, 106, 0.16);   /* halo de exito sobre cualquier superficie */
+
   /* ---- Focus ring ---- */
   --focus-ring: 0 0 0 3px rgba(255, 54, 23, 0.28);
 

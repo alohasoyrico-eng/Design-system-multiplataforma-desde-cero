@@ -19,7 +19,7 @@ export function Slider({ value = 0, onChange, min = 0, max = 100, step = 1, labe
         style: {
           position: 'absolute', left: 'calc(' + pct + '% - 11px)', width: 22, height: 22, borderRadius: '50%',
           background: 'var(--surface-card)', border: '2px solid var(--action-accent)',
-          boxShadow: focus ? 'var(--focus-ring)' : drag ? 'var(--shadow-accent-glow)' : '0 1px 3px rgba(23,23,26,.2)',
+          boxShadow: focus ? 'var(--focus-ring)' : drag ? 'var(--shadow-accent-glow)' : 'var(--shadow-thumb)',
           transform: drag ? 'scale(1.25)' : 'scale(1)', pointerEvents: 'none',
           transition: 'transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-out)',
         },

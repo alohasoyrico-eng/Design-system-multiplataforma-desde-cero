@@ -8,7 +8,7 @@
 <script>window.FLOW_ASSET_BASE='../../';</script>
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel" src="../ios-frame.jsx"></script>
-<style>body{margin:0;font-family:var(--font-body);background:var(--flow-ink-700);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-inverse);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
 </head><body><div id="root"></div>
 <script type="text/babel" data-presets="react">
 const NS = window.Flow || {};
@@ -63,7 +63,7 @@ function JourneyA(){
     {step==='welcome' && <Screen>
       <img src="../../assets/flow-logo.png" alt="Flow" style={{height:30,alignSelf:'flex-start',marginTop:16}} />
       <div style={{marginTop:'auto'}}>
-        <h1 style={{font:'var(--type-display)',letterSpacing:'var(--tracking-tight)',margin:0}}>Todo tu dia,<br/><span style={{color:'var(--flow-red-500)'}}>en movimiento.</span></h1>
+        <h1 style={{font:'var(--type-display)',letterSpacing:'var(--tracking-tight)',margin:0}}>Todo tu dia,<br/><span style={{color:'var(--text-display-accent)'}}>en movimiento.</span></h1>
         <p style={{fontSize:14,color:'var(--text-secondary)',lineHeight:1.6,margin:'14px 0 26px'}}>Activa tu tarjeta Flow en unos minutos. Solo necesitas tu correo, tu telefono y tu tarjeta.</p>
         <Button variant="accent" size="lg" fullWidth onClick={next}>Comenzar</Button>
         <div style={{textAlign:'center',marginTop:14,fontSize:13,color:'var(--text-muted)'}}>Ya tienes cuenta? <a href="#" style={{fontWeight:700}}>Entrar</a></div>
@@ -164,10 +164,10 @@ function JourneyB(){
   const fmtCard = (v)=>v.replace(/\D/g,'').slice(0,16).replace(/(.{4})/g,'$1 ').trim();
   const { TransactionRow, Card } = NS;
   return <Device title="" dark={scr==='lock'}>
-    {scr==='lock' && <Screen style={{background:'var(--flow-ink-900)'}}>
+    {scr==='lock' && <Screen style={{background:'var(--surface-inverse)'}}>
       <img src="../../assets/flow-logo.png" alt="Flow" style={{height:24,alignSelf:'center',marginTop:24,filter:'invert(1)'}} />
       <div style={{margin:'auto 0',display:'flex',flexDirection:'column',alignItems:'center',gap:20}}>
-        <div style={{color:'#F4F3F1',fontSize:16,fontWeight:600}}>Hola de nuevo, Diego</div>
+        <div style={{color:'var(--text-on-inverse)',fontSize:16,fontWeight:600}}>Hola de nuevo, Diego</div>
         <div onClick={()=>{ setBioState('scanning'); setTimeout(()=>{setBioState('success'); setTimeout(()=>setScr('wallet'),700);},1100); }} style={{cursor:'pointer'}}>
           <BiometricPrompt method="fingerprint" state={bioState} title="Toca para entrar" description={bioState==='success'?'Bienvenido.':'Huella o passcode.'} onFallback={()=>setScr('wallet')} />
         </div>
@@ -211,14 +211,14 @@ function JourneyB(){
 function App(){
   return <>
     <div>
-      <div style={{color:'#fff',fontFamily:'var(--font-body)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px',display:'flex',alignItems:'center',gap:8}}><span style={{background:'var(--flow-red-500)',borderRadius:999,padding:'3px 10px',fontSize:11}}>A</span> Usuario nuevo · alta completa</div>
+      <div style={{color:'var(--text-on-inverse)',fontFamily:'var(--font-body)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px',display:'flex',alignItems:'center',gap:8}}><span style={{background:'var(--status-live)',borderRadius:999,padding:'3px 10px',fontSize:11}}>A</span> Usuario nuevo · alta completa</div>
       <JourneyA />
     </div>
     <div>
-      <div style={{color:'#fff',fontFamily:'var(--font-body)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px',display:'flex',alignItems:'center',gap:8}}><span style={{background:'var(--flow-ink-900)',borderRadius:999,padding:'3px 10px',fontSize:11,border:'1px solid rgba(255,255,255,.3)'}}>B</span> Usuario recurrente · multi-tarjeta</div>
+      <div style={{color:'var(--text-on-inverse)',fontFamily:'var(--font-body)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px',display:'flex',alignItems:'center',gap:8}}><span style={{background:'var(--surface-inverse)',borderRadius:999,padding:'3px 10px',fontSize:11,border:'1px solid var(--text-on-inverse-dim)'}}>B</span> Usuario recurrente · multi-tarjeta</div>
       <JourneyB />
     </div>
   </>;
 }
-ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'#fff',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'var(--text-on-inverse)',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
 </script></body></html>

@@ -3,7 +3,7 @@ import React from 'react';
 const STATUS = {
   done: { color: 'var(--status-success)', icon: 'check' },
   active: { color: 'var(--action-accent)', icon: 'radio_button_checked' },
-  pending: { color: 'var(--flow-ink-300)', icon: 'radio_button_unchecked' },
+  pending: { color: 'var(--text-disabled)', icon: 'radio_button_unchecked' },
   error: { color: 'var(--status-danger)', icon: 'close' },
 };
 

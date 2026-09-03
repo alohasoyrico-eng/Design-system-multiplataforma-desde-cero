@@ -120,7 +120,7 @@ export function OverlayShell({
       position: fixed ? 'fixed' : 'absolute', inset: 0,
       zIndex: zIndex + depth * 10,
       display: 'flex',
-      background: 'rgba(23,23,26,.4)', backdropFilter: 'blur(4px)',
+      background: 'var(--scrim)', backdropFilter: 'blur(4px)',
       animation: 'flowOvFade var(--dur-base) var(--ease-out)',
     }, cfg.style, backdropStyle),
   }, panel);

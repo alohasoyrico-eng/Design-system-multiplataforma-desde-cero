@@ -20,19 +20,19 @@ function RideRequest({onAccept,onSkip}){
     const t = setInterval(()=>setLeft(l=>l>0?l-1:0),1000);
     return ()=>clearInterval(t);
   },[]);
-  return <div style={{background:'var(--action-accent)',borderRadius:'var(--radius-xl)',padding:22,color:'#fff',boxShadow:'var(--shadow-accent-glow)',animation:'flowIn var(--dur-base) var(--ease-spring)'}}>
+  return <div style={{background:'var(--action-accent)',borderRadius:'var(--radius-xl)',padding:22,color:'var(--text-on-accent)',boxShadow:'var(--shadow-accent-glow)',animation:'flowIn var(--dur-base) var(--ease-spring)'}}>
     <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:14}}>
       <span className="flow-symbol flow-symbol--fill" aria-hidden="true" style={{fontSize:20}}>bolt</span>
       <span style={{fontSize:13,fontWeight:700,letterSpacing:'0.04em'}}>NUEVO VIAJE · +1.8×</span>
-      <span style={{marginLeft:'auto',fontFamily:'var(--font-mono)',fontSize:14,fontWeight:600,background:'rgba(0,0,0,.22)',borderRadius:999,padding:'2px 10px'}}>{left}s</span>
+      <span style={{marginLeft:'auto',fontFamily:'var(--font-mono)',fontSize:14,fontWeight:600,background:'var(--on-accent-veil)',borderRadius:999,padding:'2px 10px'}}>{left}s</span>
     </div>
     <div style={{display:'flex',flexDirection:'column',gap:8,marginBottom:16}}>
-      <div style={{display:'flex',gap:10,alignItems:'center'}}><span style={{width:8,height:8,borderRadius:'50%',background:'#fff',flex:'none'}}></span><span style={{fontSize:14,fontWeight:600}}>Av. Reforma 222</span></div>
-      <div style={{display:'flex',gap:10,alignItems:'center'}}><span style={{width:8,height:8,borderRadius:2,background:'rgba(255,255,255,.6)',flex:'none'}}></span><span style={{fontSize:14,color:'rgba(255,255,255,.85)'}}>Roma Norte · 4.2 km</span></div>
+      <div style={{display:'flex',gap:10,alignItems:'center'}}><span style={{width:8,height:8,borderRadius:'50%',background:'var(--text-on-accent)',flex:'none'}}></span><span style={{fontSize:14,fontWeight:600}}>Av. Reforma 222</span></div>
+      <div style={{display:'flex',gap:10,alignItems:'center'}}><span style={{width:8,height:8,borderRadius:2,background:'var(--on-accent-dim)',flex:'none'}}></span><span style={{fontSize:14,color:'var(--text-on-accent-secondary)'}}>Roma Norte · 4.2 km</span></div>
     </div>
     <div style={{display:'flex',gap:10}}>
-      <button onClick={onSkip} style={{flex:1,minHeight:48,border:'none',borderRadius:999,background:'rgba(0,0,0,.22)',color:'#fff',fontFamily:'inherit',fontSize:14,fontWeight:600,cursor:'pointer'}}>Pasar</button>
-      <button onClick={onAccept} style={{flex:2,minHeight:48,border:'none',borderRadius:999,background:'#fff',color:'var(--flow-red-600)',fontFamily:'inherit',fontSize:14,fontWeight:800,cursor:'pointer',transition:'transform var(--dur-fast) var(--ease-spring)'}}
+      <button onClick={onSkip} style={{flex:1,minHeight:48,border:'none',borderRadius:999,background:'var(--on-accent-veil)',color:'var(--text-on-accent)',fontFamily:'inherit',fontSize:14,fontWeight:600,cursor:'pointer'}}>Pasar</button>
+      <button onClick={onAccept} style={{flex:2,minHeight:48,border:'none',borderRadius:999,background:'var(--on-accent-solid)',color:'var(--action-accent)',fontFamily:'inherit',fontSize:14,fontWeight:800,cursor:'pointer',transition:'transform var(--dur-fast) var(--ease-spring)'}}
         onMouseEnter={(e)=>e.currentTarget.style.transform='scale(1.03)'}
         onMouseLeave={(e)=>e.currentTarget.style.transform='none'}>Aceptar · $86</button>
     </div>
@@ -99,5 +99,5 @@ function App(){
     {toast && <ToastStack><Toast tone="success" message={toast} onDismiss={()=>setToast(null)} /></ToastStack>}
   </div>;
 }
-ReactDOM.createRoot(document.getElementById('root')).render(NS ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12,color:'#ccc'}}>bundle no cargado — recarga en unos segundos</div>);
+ReactDOM.createRoot(document.getElementById('root')).render(NS ? <App/> : <div style={{padding:20,fontFamily:'monospace',fontSize:12,color:'var(--text-on-inverse)'}}>bundle no cargado — recarga en unos segundos</div>);
 </script></body></html>

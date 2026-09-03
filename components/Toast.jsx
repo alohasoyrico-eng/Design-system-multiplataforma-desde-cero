@@ -23,7 +23,7 @@ export function Toast({ tone = 'neutral', message, actionLabel, onAction, onDism
     React.createElement('span', { style: { flex: 1, lineHeight: 1.45 } }, message),
     actionLabel && React.createElement('button', {
       type: 'button', onClick: onAction,
-      style: { border: 'none', background: 'transparent', color: 'var(--flow-red-400)', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', padding: '6px 8px', borderRadius: 8, whiteSpace: 'nowrap' },
+      style: { border: 'none', background: 'transparent', color: 'var(--text-accent-on-inverse)', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', padding: '6px 8px', borderRadius: 8, whiteSpace: 'nowrap' },
     }, actionLabel),
     onDismiss && React.createElement('button', {
       type: 'button', 'aria-label': 'Cerrar aviso', onClick: onDismiss,

@@ -25,14 +25,14 @@ export function BulletChart({ rows = [], format, style }) {
           prevPct != null && React.createElement('span', { 'aria-hidden': true, style: { position: 'absolute', left: 0, top: '35%', bottom: '35%', width: prevPct + '%', background: 'var(--border-strong)', opacity: 0.4, borderRadius: 4 } }),
           React.createElement('span', {
             'aria-hidden': true,
-            style: { position: 'absolute', left: 0, top: 3, bottom: 3, width: pct + '%', borderRadius: 5, background: over ? 'var(--status-danger)' : 'var(--flow-red-500)', transition: 'width var(--dur-slow) var(--ease-out)' },
+            style: { position: 'absolute', left: 0, top: 3, bottom: 3, width: pct + '%', borderRadius: 5, background: over ? 'var(--status-danger)' : 'var(--viz-accent)', transition: 'width var(--dur-slow) var(--ease-out)' },
           }),
-          React.createElement('span', { 'aria-hidden': true, style: { position: 'absolute', left: tPct + '%', top: -2, bottom: -2, width: 2.5, background: 'var(--flow-ink-900)' } })),
+          React.createElement('span', { 'aria-hidden': true, style: { position: 'absolute', left: tPct + '%', top: -2, bottom: -2, width: 2.5, background: 'var(--text-primary)' } })),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, color: over ? 'var(--status-danger-text)' : 'var(--text-primary)', minWidth: 60, textAlign: 'right' } },
           format ? format(r.value) : r.value));
     }),
     React.createElement('div', { style: { display: 'flex', gap: 16, fontSize: 11, color: 'var(--text-muted)', marginTop: 2 } },
-      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 10, height: 10, borderRadius: 3, background: 'var(--flow-red-500)' } }), 'Real'),
-      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 2.5, height: 12, background: 'var(--flow-ink-900)' } }), 'Meta'),
+      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 10, height: 10, borderRadius: 3, background: 'var(--viz-accent)' } }), 'Real'),
+      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 2.5, height: 12, background: 'var(--text-primary)' } }), 'Meta'),
       React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 10, height: 6, borderRadius: 3, background: 'var(--border-strong)', opacity: 0.5 } }), 'Periodo anterior')));
 }

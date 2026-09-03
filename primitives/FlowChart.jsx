@@ -215,7 +215,7 @@ export function buildOption(type, props, tk) {
       backgroundColor: tk.tipBg,
       borderWidth: 0,
       padding: [9, 12],
-      extraCssText: 'border-radius:' + (10) + 'px;box-shadow:0 8px 24px rgba(0,0,0,.18)',
+      extraCssText: 'border-radius:' + (10) + 'px;box-shadow:var(--shadow-float)',
       textStyle: { color: tk.tipText, fontFamily: tk.fontBody, fontSize: 12.5 },
       axisPointer: { type: 'line', lineStyle: { color: tk.axis, width: 1 } },
     },

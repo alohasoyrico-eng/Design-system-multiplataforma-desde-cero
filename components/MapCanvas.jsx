@@ -47,7 +47,7 @@ export function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14,
     },
       React.createElement('polyline', {
         points: route.map(p => px(p.lng) + ',' + py(p.lat)).join(' '),
-        fill: 'none', stroke: 'var(--flow-red-500)', strokeWidth: 4.5, strokeLinecap: 'round', strokeLinejoin: 'round',
+        fill: 'none', stroke: 'var(--viz-accent)', strokeWidth: 4.5, strokeLinecap: 'round', strokeLinejoin: 'round',
         strokeDasharray: '1 9', opacity: 0.95,
       }),
       React.createElement('circle', { cx: px(route[0].lng), cy: py(route[0].lat), r: 6, fill: 'var(--surface-inverse)', stroke: 'var(--surface-card)', strokeWidth: 2.5 })),
@@ -64,7 +64,7 @@ export function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14,
       },
         React.createElement('span', {
           style: {
-            display: 'flex', alignItems: 'center', gap: 5, background: sel ? 'var(--flow-red-500)' : 'var(--surface-card)',
+            display: 'flex', alignItems: 'center', gap: 5, background: sel ? 'var(--viz-accent)' : 'var(--surface-card)',
             color: sel ? 'var(--text-on-accent)' : 'var(--text-primary)', border: sel ? 'none' : '1px solid var(--border-default)',
             borderRadius: 999, padding: '6px 11px', fontFamily: 'var(--font-mono)', fontSize: 12.5, fontWeight: 600,
             boxShadow: sel ? 'var(--shadow-accent-glow)' : 'var(--shadow-raised)', whiteSpace: 'nowrap',
@@ -77,8 +77,8 @@ export function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14,
           style: {
             display: 'block', margin: '0 auto', width: 0, height: 0,
             borderLeft: '6px solid transparent', borderRight: '6px solid transparent',
-            borderTop: '7px solid ' + (sel ? 'var(--flow-red-500)' : 'var(--surface-card)'),
-            filter: 'drop-shadow(0 1px 1px rgba(23,23,26,.15))',
+            borderTop: '7px solid ' + (sel ? 'var(--viz-accent)' : 'var(--surface-card)'),
+            filter: 'drop-shadow(var(--shadow-pin))',
           },
         }));
     }),

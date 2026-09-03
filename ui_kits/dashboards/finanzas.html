@@ -109,7 +109,7 @@ function App(){
         <div style={{font:'var(--type-title-sm)',marginBottom:4}}>Ingreso vs costo (6 meses)</div>
         <div style={{fontSize:12,color:'var(--text-muted)',marginBottom:12}}>Linea con guia sincronizada al pasar el mouse</div>
         <FlowChart type="line" height={190} format={(v)=>'$'+v+'k'} labels={['Feb','Mar','Abr','May','Jun','Jul']}
-          series={[{label:'Ingreso',values:[540,571,558,590,601,612],color:'var(--flow-red-500)'},{label:'Costo',values:[262,255,270,259,258,248],color:'var(--flow-ink-900)'}]}
+          series={[{label:'Ingreso',values:[540,571,558,590,601,612],color:'var(--viz-accent)'},{label:'Costo',values:[262,255,270,259,258,248],color:'var(--text-primary)'}]}
           ariaLabel="El ingreso crece y el costo baja: el margen se abre en 6 meses" />
       </Card>
       <Card>

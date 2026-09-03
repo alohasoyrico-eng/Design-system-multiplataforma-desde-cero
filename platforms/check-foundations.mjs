@@ -85,6 +85,18 @@ const DARK_EXEMPT = new Set([
   // El acento oscurecido pasa 4.5:1 con blanco en ambos modos, asi que no
   // necesita valor propio en oscuro: es la misma decision para los dos.
   '--action-accent', '--action-accent-hover',
+  // Identidad de avatar: color determinista por nombre — la misma persona tiene
+  // el mismo color en ambos modos. El contraste que importa es con sus propias
+  // iniciales blancas (medido: los seis dan 4.59-4.63:1), no con la superficie.
+  '--avatar-1', '--avatar-2', '--avatar-3', '--avatar-4', '--avatar-5', '--avatar-6',
+  // Fondos de ilustracion (OnboardingCarousel): decorativos, sin texto encima
+  // que exija contraste; la marca no cambia de paleta al cambiar de modo.
+  '--illustration-1', '--illustration-2', '--illustration-3',
+  '--illustration-4', '--illustration-5', '--illustration-6',
+  // Tarjeta fisica (PaymentCard): color de artefacto, no de interfaz — una
+  // tarjeta roja sigue siendo roja en modo oscuro. Mismo motivo ya declarado
+  // en check-color.mjs y en el comentario de tokens/colors.css.
+  '--card-fg-on-ink', '--card-fg-on-accent', '--card-dim-on-ink', '--card-dim-on-accent',
 ]);
 
 const findings = [];

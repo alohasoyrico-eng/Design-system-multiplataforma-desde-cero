@@ -43,6 +43,6 @@ export function SmallMultiples({ items = [], height = 46, columns = 4, isOutlier
         React.createElement('span', { style: { fontSize: 12, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, it.label),
         out && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14, color: 'var(--status-danger-text)', marginLeft: 'auto' } }, 'priority_high'),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 11.5, fontWeight: 600, color: out ? 'var(--status-danger-text)' : 'var(--text-secondary)', marginLeft: out ? 4 : 'auto' } }, format ? format(last) : last)),
-      spark(it.values, out ? 'var(--flow-red-500)' : 'var(--flow-ink-500)'));
+      spark(it.values, out ? 'var(--viz-accent)' : 'var(--viz-7)'));
   }));
 }

@@ -8,7 +8,7 @@
 <script>window.FLOW_ASSET_BASE='../../';</script>
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel" src="../ios-frame.jsx"></script>
-<style>body{margin:0;font-family:var(--font-body);background:var(--flow-ink-700);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-inverse);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
 </head><body><div id="root"></div>
 <script type="text/babel" data-presets="react">
 const NS = window.Flow || {};
@@ -159,14 +159,14 @@ function App(){
   const [detail,setDetail] = React.useState(null);
   return <>
     <div>
-      <div style={{color:'#fff',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Wallet · tarjetas + movimientos</div>
+      <div style={{color:'var(--text-on-inverse)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Wallet · tarjetas + movimientos</div>
       <Device title=""><WalletScreen goDetail={setDetail} /></Device>
     </div>
     <div>
-      <div style={{color:'#fff',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Detalle de tarjeta · quick actions</div>
+      <div style={{color:'var(--text-on-inverse)',fontSize:13,fontWeight:700,margin:'0 0 12px 6px'}}>Detalle de tarjeta · quick actions</div>
       <Device title=""><DetailScreen cardId={detail||'c1'} goBack={()=>setDetail(null)} /></Device>
     </div>
   </>;
 }
-ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'#fff',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'var(--text-on-inverse)',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
 </script></body></html>

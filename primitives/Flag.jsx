@@ -48,7 +48,7 @@ export function Flag({
       width: size, height: size, flex: 'none', display: 'inline-block',
       borderRadius: RADIUS[shape] || RADIUS.circle,
       backgroundSize: 'cover', backgroundPosition: 'center',
-      boxShadow: ring ? 'inset 0 0 0 1px rgba(23,23,26,.12)' : 'none',
+      boxShadow: ring ? 'var(--shadow-inset-ring)' : 'none',
       ...style,
     },
   });

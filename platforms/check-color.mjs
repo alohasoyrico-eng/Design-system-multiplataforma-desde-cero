@@ -21,6 +21,28 @@ const EXCEPCIONES = [
     solo: 'hex',
   },
   {
+    archivo: 'primitives/FlowChart.jsx',
+    motivo: 'shadowColor de enfasis dentro del lienzo: el canvas de ECharts no entiende var(). ' +
+      'La sombra del tooltip (DOM) si consume var(--shadow-float).',
+    solo: 'func',
+  },
+  {
+    archivo: 'components/PaymentCard.jsx',
+    motivo: 'Color de artefacto tambien en los velos: el brillo del chip, el velo de congelado y las ' +
+      'sombras de texto sobre la tarjeta fisica no cambian con el modo.',
+    solo: 'func',
+  },
+  {
+    archivo: 'ui_kits/ios-frame.jsx',
+    motivo: 'Marco de iPhone solo para demos moviles; el handoff lo declara fuera del DS a portar. ' +
+      'Dibuja un artefacto fisico — biseles, isla dinamica, barra de estado — cuyos colores no son de interfaz.',
+  },
+  {
+    carpeta: 'ui_kits/mailings/',
+    motivo: 'HTML de email: Gmail y Outlook no soportan custom properties, asi que el hex es el medio, no una deriva. ' +
+      'Los valores replican los tokens a mano — su README documenta la restriccion y el mapeo.',
+  },
+  {
     archivo: 'components/PaymentCard.jsx',
     motivo: 'Color de artefacto: una tarjeta roja sigue siendo roja en modo oscuro. Alcanza --flow-* a proposito ' +
       'porque su color no es semantico, es fisico. Los valores viven en tokens (--card-fg-*, --card-dim-*).',
@@ -49,7 +71,7 @@ const hallazgos = [];
 for (const dir of DIRS) {
   for (const abs of archivos(dir)) {
     const rel = relative(ROOT, abs).split('\\').join('/');
-    const exc = EXCEPCIONES.filter((e) => e.archivo === rel);
+    const exc = EXCEPCIONES.filter((e) => e.archivo === rel || (e.carpeta && rel.startsWith(e.carpeta)));
     const exento = (tipo) => exc.some((e) => !e.solo || e.solo === tipo);
     const src = readFileSync(abs, 'utf8');
     src.split('\n').forEach((linea, i) => {
@@ -80,6 +102,6 @@ if (process.argv.includes('--json')) {
     console.log('\n' + tipo + ' — ' + hs.length + ' (' + MENSAJE[tipo] + ')');
     for (const h of hs) console.log('  ' + h.archivo + ':' + h.linea + '  ' + h.valor);
   }
-  console.log('\n' + hallazgos.length + ' hallazgos. Excepciones declaradas: ' + EXCEPCIONES.map((e) => e.archivo).join(', '));
+  console.log('\n' + hallazgos.length + ' hallazgos. Excepciones declaradas: ' + EXCEPCIONES.map((e) => e.archivo || e.carpeta).join(', '));
 }
 process.exit(hallazgos.length ? 1 : 0);

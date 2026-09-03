@@ -727,7 +727,7 @@ function OverlayShell({
       position: fixed ? 'fixed' : 'absolute', inset: 0,
       zIndex: zIndex + depth * 10,
       display: 'flex',
-      background: 'rgba(23,23,26,.4)', backdropFilter: 'blur(4px)',
+      background: 'var(--scrim)', backdropFilter: 'blur(4px)',
       animation: 'flowOvFade var(--dur-base) var(--ease-out)',
     }, cfg.style, backdropStyle),
   }, panel);
@@ -1417,14 +1417,14 @@ function Switch({ checked = false, onChange, label, disabled = false, style }) {
       'aria-hidden': true,
       style: {
         width: 48, height: 28, borderRadius: 999, padding: 3, boxSizing: 'border-box', display: 'flex',
-        background: s.checked ? 'var(--action-accent)' : 'var(--flow-ink-300)',
+        background: s.checked ? 'var(--action-accent)' : 'var(--border-strong)',
         boxShadow: s.focus ? 'var(--focus-ring)' : 'none',
         transition: 'background var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out)',
       },
     }, React.createElement('span', {
       style: {
         width: s.press ? 26 : 22, height: 22, borderRadius: 'var(--radius-pill)', background: 'var(--surface-card)',
-        boxShadow: '0 1px 3px rgba(23,23,26,.25)',
+        boxShadow: 'var(--shadow-thumb)',
         transform: s.checked ? 'translateX(' + (s.press ? 16 : 20) + 'px)' : 'none',
         transition: 'transform var(--dur-fast) var(--ease-spring), width var(--dur-instant) var(--ease-out)',
       },
@@ -1457,7 +1457,7 @@ function Slider({ value = 0, onChange, min = 0, max = 100, step = 1, label, form
         style: {
           position: 'absolute', left: 'calc(' + pct + '% - 11px)', width: 22, height: 22, borderRadius: '50%',
           background: 'var(--surface-card)', border: '2px solid var(--action-accent)',
-          boxShadow: focus ? 'var(--focus-ring)' : drag ? 'var(--shadow-accent-glow)' : '0 1px 3px rgba(23,23,26,.2)',
+          boxShadow: focus ? 'var(--focus-ring)' : drag ? 'var(--shadow-accent-glow)' : 'var(--shadow-thumb)',
           transform: drag ? 'scale(1.25)' : 'scale(1)', pointerEvents: 'none',
           transition: 'transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease-out)',
         },
@@ -2370,7 +2370,7 @@ function SmallMultiples({ items = [], height = 46, columns = 4, isOutlier, forma
         React.createElement('span', { style: { fontSize: 12, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' } }, it.label),
         out && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 14, color: 'var(--status-danger-text)', marginLeft: 'auto' } }, 'priority_high'),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 11.5, fontWeight: 600, color: out ? 'var(--status-danger-text)' : 'var(--text-secondary)', marginLeft: out ? 4 : 'auto' } }, format ? format(last) : last)),
-      spark(it.values, out ? 'var(--flow-red-500)' : 'var(--flow-ink-500)'));
+      spark(it.values, out ? 'var(--viz-accent)' : 'var(--viz-7)'));
   }));
 }
 
@@ -2405,15 +2405,15 @@ function BulletChart({ rows = [], format, style }) {
           prevPct != null && React.createElement('span', { 'aria-hidden': true, style: { position: 'absolute', left: 0, top: '35%', bottom: '35%', width: prevPct + '%', background: 'var(--border-strong)', opacity: 0.4, borderRadius: 4 } }),
           React.createElement('span', {
             'aria-hidden': true,
-            style: { position: 'absolute', left: 0, top: 3, bottom: 3, width: pct + '%', borderRadius: 5, background: over ? 'var(--status-danger)' : 'var(--flow-red-500)', transition: 'width var(--dur-slow) var(--ease-out)' },
+            style: { position: 'absolute', left: 0, top: 3, bottom: 3, width: pct + '%', borderRadius: 5, background: over ? 'var(--status-danger)' : 'var(--viz-accent)', transition: 'width var(--dur-slow) var(--ease-out)' },
           }),
-          React.createElement('span', { 'aria-hidden': true, style: { position: 'absolute', left: tPct + '%', top: -2, bottom: -2, width: 2.5, background: 'var(--flow-ink-900)' } })),
+          React.createElement('span', { 'aria-hidden': true, style: { position: 'absolute', left: tPct + '%', top: -2, bottom: -2, width: 2.5, background: 'var(--text-primary)' } })),
         React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, color: over ? 'var(--status-danger-text)' : 'var(--text-primary)', minWidth: 60, textAlign: 'right' } },
           format ? format(r.value) : r.value));
     }),
     React.createElement('div', { style: { display: 'flex', gap: 16, fontSize: 11, color: 'var(--text-muted)', marginTop: 2 } },
-      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 10, height: 10, borderRadius: 3, background: 'var(--flow-red-500)' } }), 'Real'),
-      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 2.5, height: 12, background: 'var(--flow-ink-900)' } }), 'Meta'),
+      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 10, height: 10, borderRadius: 3, background: 'var(--viz-accent)' } }), 'Real'),
+      React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 2.5, height: 12, background: 'var(--text-primary)' } }), 'Meta'),
       React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: 5 } }, React.createElement('span', { 'aria-hidden': true, style: { width: 10, height: 6, borderRadius: 3, background: 'var(--border-strong)', opacity: 0.5 } }), 'Periodo anterior')));
 }
 
@@ -2592,7 +2592,7 @@ function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14, width 
     },
       React.createElement('polyline', {
         points: route.map(p => px(p.lng) + ',' + py(p.lat)).join(' '),
-        fill: 'none', stroke: 'var(--flow-red-500)', strokeWidth: 4.5, strokeLinecap: 'round', strokeLinejoin: 'round',
+        fill: 'none', stroke: 'var(--viz-accent)', strokeWidth: 4.5, strokeLinecap: 'round', strokeLinejoin: 'round',
         strokeDasharray: '1 9', opacity: 0.95,
       }),
       React.createElement('circle', { cx: px(route[0].lng), cy: py(route[0].lat), r: 6, fill: 'var(--surface-inverse)', stroke: 'var(--surface-card)', strokeWidth: 2.5 })),
@@ -2609,7 +2609,7 @@ function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14, width 
       },
         React.createElement('span', {
           style: {
-            display: 'flex', alignItems: 'center', gap: 5, background: sel ? 'var(--flow-red-500)' : 'var(--surface-card)',
+            display: 'flex', alignItems: 'center', gap: 5, background: sel ? 'var(--viz-accent)' : 'var(--surface-card)',
             color: sel ? 'var(--text-on-accent)' : 'var(--text-primary)', border: sel ? 'none' : '1px solid var(--border-default)',
             borderRadius: 999, padding: '6px 11px', fontFamily: 'var(--font-mono)', fontSize: 12.5, fontWeight: 600,
             boxShadow: sel ? 'var(--shadow-accent-glow)' : 'var(--shadow-raised)', whiteSpace: 'nowrap',
@@ -2622,8 +2622,8 @@ function MapCanvas({ center = { lat: 19.4326, lng: -99.1332 }, zoom = 14, width 
           style: {
             display: 'block', margin: '0 auto', width: 0, height: 0,
             borderLeft: '6px solid transparent', borderRight: '6px solid transparent',
-            borderTop: '7px solid ' + (sel ? 'var(--flow-red-500)' : 'var(--surface-card)'),
-            filter: 'drop-shadow(0 1px 1px rgba(23,23,26,.15))',
+            borderTop: '7px solid ' + (sel ? 'var(--viz-accent)' : 'var(--surface-card)'),
+            filter: 'drop-shadow(var(--shadow-pin))',
           },
         }));
     }),
@@ -3003,7 +3003,7 @@ function Breadcrumb({ items = [], style }) {
               onMouseEnter: (e) => { e.currentTarget.style.color = 'var(--text-accent)'; e.currentTarget.style.background = 'var(--surface-sunken)'; },
               onMouseLeave: (e) => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.background = 'transparent'; },
             }, it.label),
-          !last && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16, color: 'var(--flow-ink-300)' } }, 'chevron_right'));
+          !last && React.createElement('span', { className: 'flow-symbol', 'aria-hidden': true, style: { fontSize: 16, color: 'var(--text-disabled)' } }, 'chevron_right'));
       })));
 }
 
@@ -3031,7 +3031,7 @@ function Pagination({ page = 1, pages = 1, onChange, style }) {
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
       fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: opts.current ? 700 : 500,
       background: opts.current ? 'var(--surface-inverse)' : 'transparent',
-      color: opts.current ? 'var(--text-on-inverse)' : opts.disabled ? 'var(--flow-ink-300)' : 'var(--text-secondary)',
+      color: opts.current ? 'var(--text-on-inverse)' : opts.disabled ? 'var(--text-disabled)' : 'var(--text-secondary)',
       cursor: opts.disabled || opts.current ? 'default' : 'pointer',
       transition: 'background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-spring)',
     },
@@ -3235,7 +3235,7 @@ function Toast({ tone = 'neutral', message, actionLabel, onAction, onDismiss, st
     React.createElement('span', { style: { flex: 1, lineHeight: 1.45 } }, message),
     actionLabel && React.createElement('button', {
       type: 'button', onClick: onAction,
-      style: { border: 'none', background: 'transparent', color: 'var(--flow-red-400)', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', padding: '6px 8px', borderRadius: 8, whiteSpace: 'nowrap' },
+      style: { border: 'none', background: 'transparent', color: 'var(--text-accent-on-inverse)', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', padding: '6px 8px', borderRadius: 8, whiteSpace: 'nowrap' },
     }, actionLabel),
     onDismiss && React.createElement('button', {
       type: 'button', 'aria-label': 'Cerrar aviso', onClick: onDismiss,
@@ -3407,7 +3407,7 @@ function NotificationCenter({ items = [], onItemClick, onMarkAllRead, align = 'r
       unread > 0 && React.createElement('span', {
         'aria-hidden': true,
         style: {
-          position: 'absolute', top: 5, right: 6, minWidth: 16, height: 16, borderRadius: 999, background: 'var(--flow-red-500)',
+          position: 'absolute', top: 5, right: 6, minWidth: 16, height: 16, borderRadius: 999, background: 'var(--status-live)',
           color: 'var(--text-on-accent)', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 3px',
           border: '2px solid var(--surface-card)', animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)',
         },
@@ -3447,7 +3447,7 @@ function NotificationCenter({ items = [], onItemClick, onMarkAllRead, align = 'r
                 React.createElement('div', { style: { fontSize: 13, fontWeight: it.read ? 500 : 700, color: 'var(--text-primary)' } }, it.title),
                 it.desc && React.createElement('div', { style: { fontSize: 12, color: 'var(--text-secondary)', marginTop: 1 } }, it.desc),
                 it.time && React.createElement('div', { style: { fontSize: 11, color: 'var(--text-muted)', marginTop: 3 } }, it.time)),
-              !it.read && React.createElement('span', { 'aria-hidden': true, style: { width: 8, height: 8, borderRadius: '50%', background: 'var(--flow-red-500)', flex: 'none', marginTop: 4 } }));
+              !it.read && React.createElement('span', { 'aria-hidden': true, style: { width: 8, height: 8, borderRadius: '50%', background: 'var(--status-live)', flex: 'none', marginTop: 4 } }));
           }))));
 }
 
@@ -4341,7 +4341,7 @@ function CircularProgress({ value = 0, max = 100, size = 56, strokeWidth = 5, la
   const pct = Math.max(0, Math.min(1, max > 0 ? value / max : 0));
   const r = (size - strokeWidth) / 2;
   const c = 2 * Math.PI * r;
-  const color = { accent: 'var(--action-accent)', success: 'var(--status-success)', warning: 'var(--status-warning)', ink: 'var(--flow-ink-900)' }[tone] || 'var(--action-accent)';
+  const color = { accent: 'var(--action-accent)', success: 'var(--status-success)', warning: 'var(--status-warning)', ink: 'var(--text-primary)' }[tone] || 'var(--action-accent)';
   return React.createElement('div', {
     style: { display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 6, fontFamily: 'var(--font-body)', ...style },
   },
@@ -4368,7 +4368,7 @@ F.CircularProgress = CircularProgress;
 const STATUS = {
   done: { color: 'var(--status-success)', icon: 'check' },
   active: { color: 'var(--action-accent)', icon: 'radio_button_checked' },
-  pending: { color: 'var(--flow-ink-300)', icon: 'radio_button_unchecked' },
+  pending: { color: 'var(--text-disabled)', icon: 'radio_button_unchecked' },
   error: { color: 'var(--status-danger)', icon: 'close' },
 };
 
@@ -5360,7 +5360,7 @@ function buildOption(type, props, tk) {
       backgroundColor: tk.tipBg,
       borderWidth: 0,
       padding: [9, 12],
-      extraCssText: 'border-radius:' + (10) + 'px;box-shadow:0 8px 24px rgba(0,0,0,.18)',
+      extraCssText: 'border-radius:' + (10) + 'px;box-shadow:var(--shadow-float)',
       textStyle: { color: tk.tipText, fontFamily: tk.fontBody, fontSize: 12.5 },
       axisPointer: { type: 'line', lineStyle: { color: tk.axis, width: 1 } },
     },
@@ -5925,7 +5925,7 @@ function Flag({
       width: size, height: size, flex: 'none', display: 'inline-block',
       borderRadius: RADIUS[shape] || RADIUS.circle,
       backgroundSize: 'cover', backgroundPosition: 'center',
-      boxShadow: ring ? 'inset 0 0 0 1px rgba(23,23,26,.12)' : 'none',
+      boxShadow: ring ? 'var(--shadow-inset-ring)' : 'none',
       ...style,
     },
   });

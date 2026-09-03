@@ -35,7 +35,7 @@ export function NotificationCenter({ items = [], onItemClick, onMarkAllRead, ali
       unread > 0 && React.createElement('span', {
         'aria-hidden': true,
         style: {
-          position: 'absolute', top: 5, right: 6, minWidth: 16, height: 16, borderRadius: 999, background: 'var(--flow-red-500)',
+          position: 'absolute', top: 5, right: 6, minWidth: 16, height: 16, borderRadius: 999, background: 'var(--status-live)',
           color: 'var(--text-on-accent)', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 3px',
           border: '2px solid var(--surface-card)', animation: 'flowScaleIn var(--dur-fast) var(--ease-spring)',
         },
@@ -75,6 +75,6 @@ export function NotificationCenter({ items = [], onItemClick, onMarkAllRead, ali
                 React.createElement('div', { style: { fontSize: 13, fontWeight: it.read ? 500 : 700, color: 'var(--text-primary)' } }, it.title),
                 it.desc && React.createElement('div', { style: { fontSize: 12, color: 'var(--text-secondary)', marginTop: 1 } }, it.desc),
                 it.time && React.createElement('div', { style: { fontSize: 11, color: 'var(--text-muted)', marginTop: 3 } }, it.time)),
-              !it.read && React.createElement('span', { 'aria-hidden': true, style: { width: 8, height: 8, borderRadius: '50%', background: 'var(--flow-red-500)', flex: 'none', marginTop: 4 } }));
+              !it.read && React.createElement('span', { 'aria-hidden': true, style: { width: 8, height: 8, borderRadius: '50%', background: 'var(--status-live)', flex: 'none', marginTop: 4 } }));
           }))));
 }

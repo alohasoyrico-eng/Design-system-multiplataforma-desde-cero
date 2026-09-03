@@ -8,7 +8,7 @@
 <script>window.FLOW_ASSET_BASE='../../';</script>
 <script src="../../_ds_bundle.js"></script>
 <script type="text/babel" src="../ios-frame.jsx"></script>
-<style>body{margin:0;font-family:var(--font-body);background:var(--flow-ink-700);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
+<style>body{margin:0;font-family:var(--font-body);background:var(--surface-inverse);display:flex;justify-content:center;gap:40px;padding:36px 20px;min-height:100vh;box-sizing:border-box;flex-wrap:wrap;align-items:flex-start} a{color:var(--text-link);}</style>
 </head><body><div id="root"></div>
 <script type="text/babel" data-presets="react">
 const NS = window.Flow || {};
@@ -80,5 +80,5 @@ function App(){
     </div>
   </Device>;
 }
-ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'#fff',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
+ReactDOM.createRoot(document.getElementById('root')).render(window.IOSDevice && NS.Button ? <App/> : <div style={{color:'var(--text-on-inverse)',fontFamily:'monospace',fontSize:12}}>cargando…</div>);
 </script></body></html>

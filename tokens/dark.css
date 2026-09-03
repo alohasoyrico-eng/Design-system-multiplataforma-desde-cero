@@ -16,6 +16,16 @@
   --text-on-accent: #FFFFFF;
   --text-on-inverse: #17171A;
   --text-accent: #FF6A52;
+  --text-disabled: #6E6B66;                /* continua la rampa bajo --text-muted */
+  --text-accent-on-inverse: #C22800;       /* la inversa se vuelve clara: acento del modo claro */
+  --scrim: rgba(23, 23, 26, 0.4);          /* misma decision que en claro */
+  --text-on-inverse-dim: rgba(23, 23, 26, 0.55);  /* la inversa se vuelve clara */
+  --text-display-accent: #FF6A52;          /* el rojo sube para texto sobre oscuro */
+  --status-success-veil: rgba(18, 183, 106, 0.16);
+  --on-accent-solid: #FFFFFF;              /* el acento es acento en ambos modos */
+  --on-accent-dim: rgba(255, 255, 255, 0.6);
+  --on-accent-veil: rgba(0, 0, 0, 0.22);
+  --text-on-accent-secondary: rgba(255, 255, 255, 0.85);
   --text-link: #FF6A52;
 
   --border-subtle: #26262A;
