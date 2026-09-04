@@ -21,6 +21,7 @@ export interface SelectProps {
   creatable?: boolean
   clearable?: boolean
   renderOption?: (o: SelectOption) => ReactNode
+  size?: 'sm' | 'md' | 'lg'
   placeholder?: string
   /** Label integrada compacta (filtros): viaja dentro del trigger y da el
       nombre accesible al control — 9 selects de eOne la piden (§6). */
@@ -45,6 +46,7 @@ export function Select({
   searchable,
   clearable,
   renderOption,
+  size = 'md',
   placeholder,
   insetLabel,
   icon,
@@ -114,6 +116,7 @@ export function Select({
 
   const trigger = (
     <ControlShell
+      size={size}
       disabled={disabled}
       error={invalid}
       leading={icon && <span className="flow-symbol flow-symbol--md" aria-hidden="true">{icon}</span>}

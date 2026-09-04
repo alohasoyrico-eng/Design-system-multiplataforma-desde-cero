@@ -6996,6 +6996,15 @@
     "variants": [],
     "members": [
       {
+        "n": "size",
+        "k": "prop",
+        "t": "'sm' | 'md' | 'lg'",
+        "d": "'md'",
+        "r": false,
+        "rw": "",
+        "note": "Compacto de tablas y filtros; el target de 44px no baja"
+      },
+      {
         "n": "options",
         "k": "prop",
         "t": "Array<string | SelectOption>",

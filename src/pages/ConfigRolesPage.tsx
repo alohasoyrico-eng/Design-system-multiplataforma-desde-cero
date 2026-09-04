@@ -163,6 +163,7 @@ export function ConfigRolesPage() {
                 mono: true,
                 render: (r) => (
                   <Select
+                    size="sm"
                     searchable
                     clearable
                     value={r.unit === '—' ? undefined : (r.unit as string)}
