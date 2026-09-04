@@ -248,9 +248,9 @@ server.tool(
 // Tool 3: get_tokens
 server.tool(
   'get_tokens',
-  'Get all Flow DS design tokens — colors, spacing, typography, shape, motion, elevation. Returns the raw CSS custom properties.',
+  'Get all Flow DS design tokens — colors, spacing, typography, shape, motion, elevation, dataviz, iconography, a11y, products. Returns the raw CSS custom properties.',
   {
-    category: z.enum(['all', 'colors', 'spacing', 'typography', 'shape', 'motion', 'elevation', 'dark'])
+    category: z.enum(['all', 'colors', 'spacing', 'typography', 'shape', 'motion', 'elevation', 'dark', 'dataviz', 'iconography', 'a11y', 'products'])
       .optional()
       .describe('Token category to retrieve. Defaults to "all".')
   },
@@ -265,7 +265,11 @@ server.tool(
       motion: ['motion.css'],
       elevation: ['elevation.css'],
       dark: ['dark.css'],
-      all: ['colors.css', 'spacing.css', 'typography.css', 'fonts.css', 'shape.css', 'motion.css', 'elevation.css', 'a11y.css'],
+      dataviz: ['dataviz.css'],
+      iconography: ['iconography.css'],
+      a11y: ['a11y.css'],
+      products: ['products.css'],
+      all: ['colors.css', 'spacing.css', 'typography.css', 'fonts.css', 'shape.css', 'motion.css', 'elevation.css', 'a11y.css', 'dataviz.css', 'iconography.css', 'products.css'],
     }
 
     const files = fileMap[cat] || fileMap.all
@@ -280,6 +284,25 @@ server.tool(
     }
 
     return ok(sections.join('\n\n'))
+  }
+)
+
+// Tool 3b: get_contract — la ficha completa de una pieza
+server.tool(
+  'get_contract',
+  'Get the full documented contract (ficha) for a Flow DS piece: API members with descriptions, tokens it consumes, when/notWhen guidance, platform maturity, variants. Richer than get_component_api (which parses TypeScript only). Use the kebab-case id (e.g. "icon-button", "bottom-sheet") or the component name.',
+  { id: z.string().describe('Piece id in kebab-case ("icon-button") or component name ("IconButton")') },
+  async ({ id }) => {
+    const itemsPath = path.join(FLOW_ROOT, 'src', 'data', 'items.json')
+    if (!fileExists(itemsPath)) return fail('items.json not found.')
+    const items = JSON.parse(readFile(itemsPath)) as Record<string, Record<string, unknown>>
+    const kebab = id.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+    const ficha = items[id] || items[kebab]
+    if (!ficha) {
+      const parecidos = Object.keys(items).filter((k) => k.includes(kebab.slice(0, 5))).slice(0, 8)
+      return fail(`No contract for "${id}". Similar ids: ${parecidos.join(', ') || '(none)'} — or use list_inventory.`)
+    }
+    return ok(JSON.stringify(ficha, null, 2))
   }
 )
 

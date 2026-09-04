@@ -45,6 +45,10 @@ Dos criterios que resuelven casi todas las dudas:
 
 Estos son los pasos exactos. No te saltes ninguno.
 
+### 0. Antes de todo: el contrato canónico
+
+Si la pieza es nueva o gana API, el orden es **contrato-primero**: el miembro nace en `contracts/<id>.json` de la rama `canonical`, luego en el código, luego en la ficha. Tras editar el canon: commit + push en `canonical` y `git fetch origin canonical` aquí — `check:api-drift` y `check:conformance` leen el commit, no tu carpeta.
+
 ### 1. Decide la capa
 
 ¿Es un concepto de interfaz (Table, Dialog)? → `src/ui/components/`
@@ -111,11 +115,22 @@ Abre `src/ui/components/index.ts` (o `primitives/index.ts` o `patterns/index.ts`
 export { MiComponente, type MiComponenteProps } from './MiComponente'
 ```
 
-### 6. Verifica
+### 6. Documenta la ficha
+
+Cada pieza exportada tiene su ficha en `src/data/items.json` (API con members, tokens, plataformas). `check:catalog` compara ficha ↔ barrel ↔ interfaz: una prop sin documentar o documentada de más rompe CI.
+
+### 7. Crea el test
+
+`src/ui/components/__tests__/MiComponente.test.tsx`. Si la pieza tiene contrato canónico con criterios `automated`, el test **cita el id del criterio** (`mi-1`, `sel-7`) en su describe/it — así lo cuenta `check:conformance`. Los componentes con `useIntl` se envuelven en `<IntlProvider locale="es">`.
+
+### 8. Verifica — las rejas, desnudas
 
 ```bash
-npm run typecheck   # cero errores
+npm run typecheck && npm run lint && npm test
+npm run check:catalog && npm run check:api-drift && npm run check:conformance
 ```
+
+**Sin tuberías**: `npm test | grep` tapa el exit code — vitest sale 1 con errores no manejados aunque diga "N passed". Corre cada reja sola y mira su exit.
 
 ---
 
@@ -131,7 +146,12 @@ Estos son los nombres estándar. Úsalos tal cual — no inventes sinónimos.
 | `icon` | `string` | Nombre del icono Material Symbol. Va a la izquierda |
 | `iconTrailing` | `string` | Icono a la derecha |
 | `disabled` | `boolean` | Inhabilita interacción |
+| `invalid` | `boolean` | Estado inválido. **Este es el nombre** — `error` en Input es alias deprecado que se retira en 1.0 |
 | `loading` | `boolean` | Muestra spinner |
+| `duration` | `number` | Auto-descarte en ms (Toast): el temporizador se pausa con puntero encima o foco dentro |
+| `ariaLabel` | `string` | Nombre accesible cuando no hay Field/label que etiquete (IconButton lo exige; Input lo acepta) |
+| `'aria-labelledby'` | `string` | Nombre por referencia — SettingsRow lo inyecta clonando el control |
+| `autoComplete` | `string` | Autorrelleno del navegador (email, current-password, tel): sin esto el gestor de contraseñas no funciona |
 | `style` | `CSSProperties` | Override inline. Casi todo componente lo acepta |
 | `children` | `ReactNode` | Contenido. Solo si el componente es contenedor |
 | `className` | — | **No lo uses.** Los estilos van en `.module.css` |
@@ -268,7 +288,8 @@ El rojo NO se usa para CTAs ni acciones: el de marca es identidad y el funcional
 | `--radius-md` | 16px | Inputs, selects, cards pequeños |
 | `--radius-lg` | 20px | Cards, secciones |
 | `--radius-xl` | 28px | Modals, page shells |
-| `--radius-pill` | 999px | Buttons, chips, badges |
+| `--radius-pill` | 999px | Buttons, chips, badges — y extremos redondos de barras/carets pequeños (se ajusta solo a media altura) |
+| `--radius-mark` | 3px | Marcas menores que el piso de la escala: swatches, hitos, resaltes, la cola de la burbuja del chat. No escala con densidad |
 
 ### Espaciado
 
@@ -299,7 +320,7 @@ Escala: `--space-1` (4px), `--space-2` (8px), `--space-3` (12px), `--space-4` (1
 | `--gap-inline` | 8px | Gap icon-to-label |
 | `--gap-stack` | 16px | Gap vertical entre cards/secciones |
 
-Valores sub-4px (1px, 2px, 3px) se mantienen como literal cuando son ajuste visual fino.
+Ningún `border-radius` literal fuera de tokens (`check:a11y`, shp-2): para marcas pequeñas usa `--radius-mark` o `--radius-pill`.
 
 ### Motion
 
@@ -343,23 +364,36 @@ Jerarquía tipográfica:
 | `--type-body-md-strong` | Body enfatizado | 600 16px/1.55 | Ubuntu |
 | `--type-body-sm` | Metadata/hints | 400 12px/1.5 | Ubuntu |
 | `--type-label-sm` | Labels/status | 700 11px/1.3 | Ubuntu |
+| `--type-data-xs` | Horas, metadata numérica | 300 11px/1.3 | IBM Plex Mono |
+| `--type-data-sm` | Captions numéricos | 300 12px/1.5 | IBM Plex Mono |
 | `--type-data` | Datos tabulares | 300 13px/1.5 | IBM Plex Mono |
+| `--type-data-md` | Cifras medianas | 300 20px/1.3 | IBM Plex Mono |
 | `--type-data-lg` | KPIs/balances | 300 26px/1.15 | IBM Plex Mono |
+
+Una hora, un ID o un contador es **dato**: familia `--type-data-*`, no `--type-label-*` (ntf-4 lo cazó en NotificationCenter).
 
 ### Iconos
 
-Material Symbols con clase `flow-icon`:
+Material Symbols con clase `flow-symbol` (renombrada de `flow-icon` en v0.2.0 para no chocar con Flow 1.x):
 
 ```tsx
-<span className="flow-icon" aria-hidden="true">dashboard</span>
+<span className="flow-symbol" aria-hidden="true">dashboard</span>
 ```
+
+- **Toda ligadura lleva `aria-hidden`** — el nombre accesible vive en el control (aria-label del botón, texto del label), nunca en el glifo. `check:icons` lo vigila.
+- **Escala de UI: 16/20/24 px** — clases `flow-symbol--sm/md/default/lg` y tokens `--icon-*`; todos resuelven a esos pasos. Los glifos de escena (EmptyState, StatusView) usan el tramo display 36/40/48 (`--icon-2xl/3xl/4xl`).
+- Material Symbols Rounded es **la única fuente**: ningún emoji, ningún set ajeno, ningún SVG a mano salvo dato o marca (Sparkline, CircularProgress, FlowLogo — excepciones declaradas en `check:icons`).
 
 Catálogo: busca por nombre en [fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols).
 
 ### Charts
 
 Todos los charts pasan por `FlowChart` (wrapper de ECharts en `src/ui/primitives/FlowChart.tsx`).
-Nunca uses ECharts directamente. Tipos: `bar`, `line`, `area`, `stacked`, `stacked100`, `pie`, `radar`, `heatmap`, `funnel`, `scatter`, `gauge`, `pareto`.
+Nunca uses ECharts directamente. Tipos reales del union: `line` `area` `bar` `stackedBar` `stacked100` `donut` `pie` `scatter` `heatmap` `radar` `waterfall` `pareto` `gauge` `funnel` `treemap` `boxplot`.
+
+- ECharts entra por **carga perezosa** (import() dinámico, una vez por documento); si la librería no llega, FlowChart degrada a mensaje, nunca a un hueco (fc-5). No conviertas eso en import estático.
+- Los componentes especializados (`Donut`, `BulletChart`, `ScatterPlot`, `GanttChart`, `ParetoChart`, `Treemap`, `SmallMultiples`, `Bars`) ofrecen APIs directas — y **todos muestran estado vacío con texto cuando no hay datos**, nunca una rejilla hueca.
+- Selección por teclado sobre canvas: el patrón es un **listbox paralelo** (un tab stop, flechas con aria-activedescendant, Enter selecciona) — ver ScatterPlot/Treemap. MapCanvas usa botones reales posicionados sobre el lienzo, inertes al puntero.
 
 ---
 
@@ -384,6 +418,20 @@ Cada componente con estilos propios tiene un `.module.css` al lado del `.tsx`.
 4. **Valores que dependen de runtime** (como el color computado de Avatar) van como inline style.
 5. **No uses `@keyframes`.** Las animaciones usan transiciones con tokens de motion (`--dur-*`, `--ease-*`), no keyframes.
 6. **Inline styles solo para valores runtime** (posición computada, color dinámico, width de progress) o `style={style}` pass-through. Layout, tipografía y spacing van en CSS Module con tokens. Inline `fontSize` prohibido — usar tokens de tipo.
+7. **Si algo anima, hay bloque `@media (prefers-reduced-motion: reduce)`** que lo apaga sin borrar el cambio de estado. Los loops indicadores (spinner, typing dots) son la excepción declarada: ahí el movimiento es el contenido.
+8. **Hermanos se separan con `gap`** del contenedor, no con `margin` por elemento ni selectores `:not(:last-child)` (`check:a11y`, spc-3). Un borde entre filas sí es legítimo.
+
+---
+
+## El pacto del shell: foco, Escape y Tab
+
+Tres convenciones que viven en los shells — no las reimplementes ni las rompas:
+
+- **Anillo de foco**: `tokens/a11y.css` pinta el anillo global (`:focus-visible` → `--focus-ring`) y **suprime** el del campo interior de una carcasa porque `ControlShell:focus-within` lo pinta por el control completo. Si tocas uno de los dos lados del pacto, el otro queda ciego — pasó, y ningún campo del sistema tuvo indicador de foco.
+- **Escape cierra la capa más alta y solo esa**: la capa alta (Popover/Menu) escucha en **captura** y consume con `preventDefault`; la de abajo (OverlayShell) respeta el evento consumido. Un overlay nuevo sigue esa convención o derriba todas las capas a la vez.
+- **Tab cicla dentro del diálogo**: OverlayShell atrapa Tab/Shift+Tab (último→primero y viceversa). Cualquier overlay que lo componga lo hereda gratis.
+- **APIs de scroll con guarda**: `el.scrollTo?.()`, `node.scrollIntoView?.()` — jsdom y navegadores viejos no las tienen, y un error no manejado en un handler pone vitest en exit 1 silencioso.
+- **Hooks antes de cualquier early-return.** Un estado vacío que retorna antes de un `useMemo` es error de lint (no warning) y rompió CI dos veces.
 
 ---
 
@@ -417,10 +465,16 @@ const variant = useExperiment('cta_color', 'primary')
 
 ---
 
-## Contratos: escala de madurez por plataforma
+## Contratos: la doble fuente y la escala de madurez
 
-`src/data/items.json` es la fuente de verdad. Cada pieza declara su estado por
-plataforma con la escala oficial — no existen otros valores:
+La verdad de cada pieza vive en dos documentos vigilados en triángulo:
+
+- **Contrato normativo** — `contracts/<id>.json` en la rama `canonical`: API prometida, criterios de conformance (`automated`/`visual`/`manual`), excepciones con motivo. Es quien manda.
+- **Ficha** — `src/data/items.json`: API documentada, tokens, when/notWhen, plataformas. Es lo que consume el sitio de docs y el export `@alohasoyrico-eng/flow-react/contracts`.
+
+Las rejas cierran el triángulo: `check:catalog` (ficha ↔ interfaz), `check:api-drift` (canon ↔ ficha), `check:conformance` (criterios ↔ tests). Hoy: 0 drift, 355/355 criterios citados.
+
+Cada pieza declara su estado por plataforma con la escala oficial — no existen otros valores:
 
 | Estatus | Significa |
 |---|---|
@@ -438,13 +492,21 @@ existir. Un contrato que promete lo que el código no cumple rompe CI.
 
 ## Verificación
 
+La batería que corre CI — cada reja desnuda, nunca con tubería:
+
 ```bash
-npm run typecheck   # TypeScript sin errores
-npm run test        # Vitest pasa
-npm run build       # Build de producción exitoso
+npm run typecheck && npm run lint && npm test
+npm run check:catalog      # ficha ↔ barrel ↔ interfaz
+npm run check:inventory    # inventario ↔ canónica (necesita git fetch origin canonical)
+npm run check:foundations && npm run check:targets && npm run check:color
+npm run check:icons && npm run check:a11y
+npm run check:api-drift    # canon ↔ ficha
+npm run check:conformance  # criterios citados (ratchet: solo sube)
+npm run tokens:build && npm run check:tokens-parity
+npm run build && npm run build:lib
 ```
 
-Verifica el comportamiento **midiendo el DOM montado**, no leyendo el código: un componente puede cumplir su contrato en el archivo e incumplirlo en la página.
+Verifica el comportamiento **midiendo el DOM montado**, no leyendo el código: un componente puede cumplir su contrato en el archivo e incumplirlo en la página. Y el verde local no es verde hasta que GitHub Actions lo confirme.
 
 ---
 
@@ -457,3 +519,8 @@ Verifica el comportamiento **midiendo el DOM montado**, no leyendo el código: u
 - **No exportar la interfaz de props.** Sin `export interface`, el autocompletado de VS Code no funciona desde el barrel.
 - **Usar `onMouseEnter`/`onMouseLeave` para hover.** Eso es un JS hover handler. Usa `:hover` en CSS.
 - **Poner `className` como prop.** Los estilos van en `.module.css`, no como clases externas.
+- **Correr rejas con tubería.** `npm test | grep 'Tests'` reportó "1099 passed" durante nueve commits rojos: el exit 1 vivía detrás del grep.
+- **Hooks después de un early-return.** El estado vacío va después de los hooks, siempre.
+- **Dividir entre `length - 1`.** Con un solo dato es dividir entre cero: Sparkline y SmallMultiples pintaron `NaN` en el DOM por esto.
+- **`htmlFor` sin `id`.** Un Field con `htmlFor="x"` cuyo Input no lleva `id="x"` es una etiqueta rota que se ve perfecta.
+- **Editar el canon sin `git fetch origin canonical` después.** Las rejas leen el commit, no tu carpeta.

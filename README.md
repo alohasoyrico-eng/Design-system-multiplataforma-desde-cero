@@ -503,8 +503,9 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 | Herramienta | Para qué |
 |---|---|
 | `list_inventory` | "¿Qué piezas hay?" |
-| `get_component_api("Button")` | "¿Qué props acepta Button?" |
-| `get_tokens("colors")` | "¿Cuáles son los colores?" |
+| `get_component_api("Button")` | "¿Qué props acepta Button?" (parsea el TypeScript) |
+| `get_contract("icon-button")` | La ficha completa: API con descripciones, tokens, when/notWhen, madurez por plataforma |
+| `get_tokens("colors")` | Tokens por categoría: colors, spacing, typography, shape, motion, elevation, dark, dataviz, iconography, a11y, products |
 | `get_architecture_rules` | "¿Cuáles son las reglas?" |
 | `validate_import(from, to)` | "¿Este import está bien?" |
 
