@@ -15,7 +15,7 @@ const MINIMO = 44
 
 // Excepciones declaradas: una excepcion sin motivo escrito es un defecto sin registrar.
 const EXCEPCIONES = [
-  { archivo: 'src/ui/primitives/OTPInput.module.css', motivo: 'Las casillas son pintura aria-hidden; el objetivo real es el input oculto que las cubre.' },
+  { archivo: 'src/ui/components/OTPInput.module.css', motivo: 'Las casillas son pintura aria-hidden; el objetivo real es el input oculto que las cubre.' },
   { archivo: 'src/ui/primitives/Switch.module.css', motivo: 'La pista visual mide 28x*; el objetivo es el ToggleControl de 44 que la envuelve.' },
   { archivo: 'src/ui/primitives/Checkbox.module.css', motivo: 'La caja visual es chica; el target lo pone ToggleControl con la etiqueta clickeable.' },
   { archivo: 'src/ui/primitives/Radio.module.css', motivo: 'Mismo caso que Checkbox: el circulo es pintura, el target es ToggleControl.' },

@@ -68,6 +68,7 @@ export function OTPInput({
         autoComplete="one-time-code"
         pattern="[0-9]*"
         aria-label={`Código de ${length} dígitos`}
+        aria-invalid={invalid || undefined}
         value={value}
         disabled={disabled}
         autoFocus={autoFocus}

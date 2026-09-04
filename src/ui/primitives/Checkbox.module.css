@@ -18,3 +18,12 @@
 .icon {
   font-size: var(--icon-sm);
 }
+
+/* cbx-3: con prefers-reduced-motion el check aparece sin resorte ni trazado progresivo. */
+@media (prefers-reduced-motion: reduce) {
+  .visual,
+  .icon {
+    transition: none;
+    animation: none;
+  }
+}

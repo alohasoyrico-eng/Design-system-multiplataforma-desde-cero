@@ -16,8 +16,8 @@
     transform var(--dur-fast) var(--ease-spring);
 }
 
+/* sm compacta tipografia y padding; el objetivo nunca baja de --hit-target-min (chp-1). */
 .root[data-size='sm'] {
-  min-height: 28px;
   padding: 0 var(--space-2);
   font: var(--type-body-sm);
   font-weight: 500;

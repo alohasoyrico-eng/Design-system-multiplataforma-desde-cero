@@ -69,3 +69,14 @@
   border: none;
   font-size: var(--_ios-no-zoom, 16px);
 }
+
+/* otp-4: la sacudida es refuerzo; con prefers-reduced-motion no hay resorte ni sacudida.
+   El estado lo dice aria-invalid, no el movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .box,
+  .digit,
+  .caret {
+    animation: none;
+  }
+}

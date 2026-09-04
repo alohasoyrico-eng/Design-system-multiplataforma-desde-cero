@@ -16,6 +16,7 @@ export function Checkbox({ checked, indeterminate, onChange, label, description,
   return (
     <ToggleControl
       checked={checked}
+      indeterminate={indeterminate}
       onChange={onChange}
       label={label}
       disabled={disabled}

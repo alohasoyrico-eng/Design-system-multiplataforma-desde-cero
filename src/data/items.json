@@ -9747,6 +9747,15 @@
         "note": ""
       },
       {
+        "n": "indeterminate",
+        "k": "prop",
+        "t": "boolean",
+        "d": "Estado mixto: se refleja en la propiedad del input nativo, no solo en el dibujo (cbx-1).",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "onChange",
         "k": "event",
         "t": "(checked: boolean) => void",

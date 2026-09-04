@@ -30,26 +30,45 @@ export function FileUpload({ files = [], onChange, accept, label, hint, multiple
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragOver, setDragOver] = useState(false)
 
-  const addFiles = (fileList: FileList | null) => {
+  // accept se aplica al selector del sistema y tambien se valida al soltar:
+  // arrastrar no puede meter lo que el selector no dejaria elegir.
+  const pasaAccept = (f: File) => {
+    if (!accept) return true
+    const nombre = f.name.toLowerCase()
+    const tipo = (f.type || '').toLowerCase()
+    return accept
+      .split(',')
+      .map((t) => t.trim().toLowerCase())
+      .filter(Boolean)
+      .some((t) =>
+        t.startsWith('.') ? nombre.endsWith(t) : t.endsWith('/*') ? tipo.startsWith(t.slice(0, -1)) : tipo === t,
+      )
+  }
+
+  const addFiles = (fileList: FileList | null, validar = false) => {
     if (!fileList || disabled) return
-    const newFiles: UploadedFile[] = Array.from(fileList).map((f) => ({ name: f.name, size: f.size, file: f }))
+    const aceptados = Array.from(fileList).filter((f) => !validar || pasaAccept(f))
+    if (!aceptados.length) return
+    const newFiles: UploadedFile[] = aceptados.map((f) => ({ name: f.name, size: f.size, file: f }))
     onChange?.(multiple ? [...files, ...newFiles] : newFiles.slice(0, 1))
   }
 
   return (
     <div className={css.root} data-disabled={disabled || undefined}>
-      <div
+      <button
+        type="button"
         className={css.dropzone}
         data-drag-over={dragOver || undefined}
-        onClick={() => { if (!disabled) inputRef.current?.click() }}
+        disabled={disabled}
+        onClick={() => inputRef.current?.click()}
         onDragOver={(e) => { e.preventDefault(); if (!disabled) setDragOver(true) }}
         onDragLeave={() => setDragOver(false)}
-        onDrop={(e) => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files) }}
+        onDrop={(e) => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files, true) }}
       >
         <span className={`flow-symbol ${css.dropzoneIcon}`} aria-hidden="true">cloud_upload</span>
         {label && <div className={css.dropzoneLabel}>{label}</div>}
         {hint && <div className={css.dropzoneHint}>{hint}</div>}
-      </div>
+      </button>
       <input ref={inputRef} type="file" accept={accept} multiple={multiple} disabled={disabled} onChange={(e) => addFiles(e.target.files)} style={{ display: 'none' }} />
       {files.length > 0 && (
         <div className={css.fileList}>
