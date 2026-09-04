@@ -26,3 +26,9 @@
   height: 40px;
   border-radius: var(--radius-pill);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    animation: none;
+  }
+}

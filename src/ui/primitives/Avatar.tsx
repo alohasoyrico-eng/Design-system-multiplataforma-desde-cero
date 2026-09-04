@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import css from './Avatar.module.css'
 
@@ -37,7 +38,10 @@ function initials(name: string): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
 }
 
+const STATUS_TEXT: Record<string, string> = { online: 'en línea', busy: 'ocupado', offline: 'desconectado' }
+
 export function Avatar({ name = '', size = 'md', status, src, style }: AvatarProps) {
+  const [broken, setBroken] = useState(false)
   const dim = SIZES[size]
   const bg = COLORS[hashName(name) % COLORS.length]
   const fs = dim < 32 ? 11 : dim < 48 ? 13 : 18
@@ -49,8 +53,8 @@ export function Avatar({ name = '', size = 'md', status, src, style }: AvatarPro
       className={css.root}
       style={{ '--_size': `${dim}px`, ...style } as CSSProperties}
     >
-      {src ? (
-        <img src={src} alt={name} className={css.img} />
+      {src && !broken ? (
+        <img src={src} alt={name} className={css.img} onError={() => setBroken(true)} />
       ) : (
         <div
           className={css.initials}
@@ -60,8 +64,10 @@ export function Avatar({ name = '', size = 'md', status, src, style }: AvatarPro
           {initials(name)}
         </div>
       )}
+      {status && <span className={css.srOnly}>{STATUS_TEXT[status] ?? status}</span>}
       {status && (
         <span
+          aria-hidden="true"
           className={css.status}
           style={{
             '--_status-color': STATUS_COLORS[status],

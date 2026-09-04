@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { OverlayShell } from '../primitives/OverlayShell'
 import css from './Dialog.module.css'
+import { useId } from 'react'
 
 export interface DialogProps {
   open: boolean
@@ -15,10 +16,14 @@ export interface DialogProps {
 }
 
 export function Dialog({ open, onClose, title, description, actions, tone, width, children }: DialogProps) {
+  const titleId = useId()
   return (
-    <OverlayShell open={open} onClose={onClose}>
-      <div className={css.root} style={width !== undefined ? { width, maxWidth: '90vw' } : undefined}>
-        {title && <div className={css.title} data-tone={tone || undefined}>{title}</div>}
+    <OverlayShell open={open} onClose={onClose} labelledBy={title ? titleId : undefined}>
+      <div
+        className={css.root}
+        style={width !== undefined ? { width, maxWidth: '90vw' } : undefined}
+      >
+        {title && <div id={titleId} className={css.title} data-tone={tone || undefined}>{title}</div>}
         {description && <div className={css.description}>{description}</div>}
         {children}
         {actions && <div className={css.actions}>{actions}</div>}

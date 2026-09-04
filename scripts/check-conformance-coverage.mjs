@@ -48,7 +48,9 @@ for (const it of arq.items) {
 }
 rmSync(tmp, { recursive: true, force: true })
 
-// corpus de tests del repo
+// corpus: tests del repo + los checks portados (un criterio de foundations
+// que check-foundations ejecuta esta tan verificado como uno citado por un
+// test — col-2 vive en el check, no en un .test).
 let corpus = ''
 const rec = (d) => {
   for (const n of readdirSync(d)) {
@@ -58,6 +60,11 @@ const rec = (d) => {
   }
 }
 rec(join(ROOT, 'src'))
+for (const n of readdirSync(join(ROOT, 'scripts'))) {
+  if (/^check-.*\.mjs$/.test(n) && n !== 'check-conformance-coverage.mjs') {
+    corpus += readFileSync(join(ROOT, 'scripts', n), 'utf8') + '\n'
+  }
+}
 
 const cubiertos = criterios.filter((c) => new RegExp('\\b' + c.id + '\\b').test(corpus))
 const porItem = {}

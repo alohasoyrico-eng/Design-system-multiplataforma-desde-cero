@@ -51,7 +51,7 @@
     "check:inventory": "node scripts/check-inventory-sync.mjs",
     "check:foundations": "node scripts/check-foundations.mjs",
     "check:targets": "node scripts/check-targets.mjs",
-    "check:conformance": "node scripts/check-conformance-coverage.mjs --min 45",
+    "check:conformance": "node scripts/check-conformance-coverage.mjs --min 80",
     "check:tokens-parity": "node scripts/check-tokens-parity.mjs",
     "prepack": "npm run build:lib",
     "prepare": "node scripts/prepare.mjs"

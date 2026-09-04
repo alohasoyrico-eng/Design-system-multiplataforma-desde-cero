@@ -118,6 +118,8 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
                 className={cls('row')}
                 data-selected={isSelected || undefined}
                 data-clickable={onRowClick ? '' : undefined}
+                tabIndex={onRowClick ? 0 : undefined}
+                onKeyDown={onRowClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onRowClick(row) } } : undefined}
                 onClick={() => onRowClick?.(row)}
               >
                 {columns.map((col) => (

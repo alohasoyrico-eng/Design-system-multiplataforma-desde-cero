@@ -11,7 +11,8 @@ export interface ProgressProps {
 }
 
 export function Progress({ value = 0, max = 100, label, showValue, tone = 'accent', style }: ProgressProps) {
-  const pct = Math.min(100, Math.max(0, (value / max) * 100))
+  const clamped = Math.min(Math.max(value ?? 0, 0), max)
+  const pct = Math.min(100, Math.max(0, (clamped / max) * 100))
 
   return (
     <div className={css.root} style={style}>
@@ -24,7 +25,7 @@ export function Progress({ value = 0, max = 100, label, showValue, tone = 'accen
       <div
         className={css.track}
         role="progressbar"
-        aria-valuenow={value}
+        aria-valuenow={clamped}
         aria-valuemin={0}
         aria-valuemax={max}
         aria-label={label}

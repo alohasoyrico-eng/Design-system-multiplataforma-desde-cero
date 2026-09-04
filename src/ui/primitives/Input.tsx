@@ -70,6 +70,7 @@ export function Input({
         className={css.input}
         data-mono={mono || undefined}
         value={value}
+        aria-invalid={error || undefined}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}
         disabled={disabled}

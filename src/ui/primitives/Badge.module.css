@@ -43,3 +43,9 @@
 .icon {
   font-size: var(--icon-xs);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}
