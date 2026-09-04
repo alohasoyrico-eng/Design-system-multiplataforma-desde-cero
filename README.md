@@ -105,6 +105,43 @@ npm install ../ruta/al.tgz    # en tu proyecto
 
 Evita `file:` a la carpeta: npm no instala las dependencias de un enlace a directorio; con el `.tgz` sí.
 
+#### Entornos con CSP (sin Google Fonts)
+
+Si tu red corporativa bloquea `fonts.googleapis.com`, los iconos se pintan como texto (`expand_more`). El paquete trae las tres familias self-hosted:
+
+```bash
+cp -r node_modules/@alohasoyrico-eng/flow-react/public/fonts public/
+```
+
+```html
+<link rel="stylesheet" href="/fonts/selfhost.css" />
+```
+
+Eso sustituye a los `<link>` de Google Fonts (Ubuntu, IBM Plex Mono y Material Symbols Rounded; ~3.3 MB una vez, cacheable). La fuente de marca Edenred viaja en la misma carpeta.
+
+---
+
+## Migración desde Flow 1.x (eOne)
+
+La ruta pantalla-a-pantalla, con los puentes que trae el paquete:
+
+1. **Convivencia**: importa solo `styles.css` (sin `reset.css`) — la hoja no trae selectores desnudos y la clase de iconos es `flow-symbol`, así que no pisa al 1.x. Migra pantalla por pantalla.
+2. **Variables viejas**: añade `@alohasoyrico-eng/flow-react/compat-eone.css` — las 56 custom properties que tu CSS propio consume (`--sys-energy-*`, `--ref-frame-*`, `--edenred-brand-official`…) quedan apuntando a los tokens nuevos. Retírala al terminar.
+3. **Iconos**: los nombres estilo Feather se traducen con el mapa empaquetado:
+   ```ts
+   import { mapEoneIcon } from '@alohasoyrico-eng/flow-react'
+   <Button icon={mapEoneIcon('refresh-cw')} />   // → 'refresh'
+   ```
+   Los dos nombres inválidos del 1.x también resuelven (`x`→`close`, `navigation` existe).
+4. **Theming**: `FlowThemeProvider`/`useFlowTheme` se sustituyen por `FlowModeProvider`/`useFlowMode` (administra `data-mode` en `<html>`, resuelve `system` y expone `toggle`).
+5. **Componentes renombrados o absorbidos**:
+   - `FlowButton variant="outlined"` → `variant="secondary"` (codemod de búsqueda y reemplazo); `variant="link"` ya existe.
+   - `FlowTag` → `StatusPill` (tonos `success|warning|danger|info|neutral`); el `variant=code` es `InlineCode`.
+   - `FlowKPICard` → `StatTile` · `FlowDataTable` → `Table` + `Pagination` + `ActiveFilters` · `FlowMultiSelect` → `Select multiple` · `FlowFullscreenSheet` → `BottomSheet fullscreen`.
+   - `DateRangePicker` sigue exportado como alias deprecado de `DatePicker mode="range"`.
+6. **Text (×841)**: el DS no tiene componente Text a propósito — la tipografía son roles `--type-*` consumidos con `font:`. El puente es un shim en eOne (capa de la app) que mapea variantes a roles: `caption`→`--type-data-sm`, `label-s`→`--type-label-sm`, `heading-*`→`--type-title-*`, `code`→`--type-data`.
+7. **i18n**: envuelve la app con `FlowIntlProvider` (o tu propio `IntlProvider` de react-intl).
+
 ### Flutter
 
 ```yaml
