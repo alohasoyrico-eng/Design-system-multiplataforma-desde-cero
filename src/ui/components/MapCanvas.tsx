@@ -82,10 +82,23 @@ function lerpAnim(cur: PinAnim, tgt: PinAnim): { val: PinAnim; done: boolean } {
 
 /* ── Component ─────────────────────────────────────────── */
 
+function useDataMode() {
+  // El canvas no participa del cascade de CSS: hay que redibujar cuando el
+  // atributo data-mode cambia en el html.
+  const [mode, setMode] = useState(() => document.documentElement.dataset.mode ?? '')
+  useEffect(() => {
+    const obs = new MutationObserver(() => setMode(document.documentElement.dataset.mode ?? ''))
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] })
+    return () => obs.disconnect()
+  }, [])
+  return mode
+}
+
 export function MapCanvas({
   center, zoom: zoomProp = 13, pins = [], selectedPin,
   onPinClick, route, routeColor, style,
 }: MapCanvasProps) {
+  const dataMode = useDataMode()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ w: 600, h: 400 })
@@ -144,10 +157,9 @@ export function MapCanvas({
       const originX = size.w / 2 - cx
       const originY = size.h / 2 - cy
 
-      const dark =
-        document.documentElement.dataset.mode === 'dark' ||
-        (!document.documentElement.dataset.mode &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      // El contrato del sistema es data-mode: sin el atributo, el tema es claro.
+      // Caer a prefers-color-scheme pintaba el mapa oscuro dentro de una app clara.
+      const dark = document.documentElement.dataset.mode === 'dark'
 
       /* ─ Tiles ─ */
       const tileCount = Math.pow(2, zoom)
@@ -159,13 +171,15 @@ export function MapCanvas({
       ctx.fillStyle = getTokenValue('--surface-canvas', dark ? '#1a1a2e' : '#e8e8e8')
       ctx.fillRect(0, 0, size.w, size.h)
 
-      const tileBase = dark
-        ? 'https://basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}@2x.png'
-        : 'https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png'
+      // OSM estandar, como declara el contrato del canon (deps.network con
+      // atribucion obligatoria). Carto empezo a estampar API KEY REQUIRED.
+      const tileBase = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+      // Modo oscuro sin proveedor de tiles oscuros: filtro clasico de inversion.
+      ctx.filter = dark ? 'invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9)' : 'none'
 
       for (let tx = startTX; tx <= endTX; tx++) {
         for (let ty = startTY; ty <= endTY; ty++) {
-          const key = `${dark ? 'd' : 'l'}/${zoom}/${tx}/${ty}`
+          const key = `osm/${zoom}/${tx}/${ty}`
           const src = tileBase
             .replace('{z}', String(zoom))
             .replace('{x}', String(tx))
@@ -174,6 +188,7 @@ export function MapCanvas({
           if (img) ctx.drawImage(img, originX + tx * TILE, originY + ty * TILE, TILE, TILE)
         }
       }
+      ctx.filter = 'none'
 
       /* ─ Resolve tokens ─ */
       const cardBg       = getTokenValue('--surface-card', dark ? '#131D30' : '#FFFFFF')
@@ -355,7 +370,7 @@ export function MapCanvas({
       ctx.font = `500 9px ${fontBody}`
       ctx.fillStyle = dark ? 'rgba(200,200,200,0.5)' : 'rgba(0,0,0,0.4)'
       ctx.textAlign = 'right'
-      ctx.fillText('© CARTO · © OpenStreetMap', size.w - 6, size.h - 6)
+      ctx.fillText('© OpenStreetMap contributors', size.w - 6, size.h - 6)
     }
 
     drawRef.current = drawFrame
@@ -390,7 +405,7 @@ export function MapCanvas({
       alive = false
       cancelAnimationFrame(rafRef.current)
     }
-  }, [cx, cy, zoom, size, pins, selectedPin, hoveredPin, route, routeColor, loadTile])
+  }, [cx, cy, zoom, size, pins, selectedPin, hoveredPin, route, routeColor, loadTile, dataMode])
 
   /* ── Event handlers ──────────────────────────────────── */
 
