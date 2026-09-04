@@ -19,6 +19,9 @@ export interface InputProps {
   mono?: boolean
   /** Nombre accesible cuando no hay <Field> que etiquete el control. */
   ariaLabel?: string
+  /** Autorrelleno del navegador (email, current-password, tel…): sin esto
+      el gestor de contraseñas no funciona. */
+  autoComplete?: string
   style?: CSSProperties
   id?: string
 }

@@ -102,9 +102,11 @@ export function AuthForm({
       {mode === 'signup' && (
         <Field label="Nombre" htmlFor="auth-name" required>
           <Input
+            id="auth-name"
             value={name}
             onChange={setName}
             icon="person"
+            autoComplete="name"
             placeholder="Ana Sosa"
           />
         </Field>
@@ -112,11 +114,13 @@ export function AuthForm({
 
       <Field label="Correo" htmlFor="auth-email" required error={emailErr ?? undefined}>
         <Input
+          id="auth-email"
           value={email}
           onChange={v => { setEmail(v); if (emailErr) setEmailErr(null) }}
           icon="mail"
           placeholder="ana@flota.mx"
           type="email"
+          autoComplete="email"
           error={!!emailErr}
         />
       </Field>
@@ -130,10 +134,12 @@ export function AuthForm({
           error={passErr ?? undefined}
         >
           <Input
+            id="auth-pass"
             value={pass}
             onChange={v => { setPass(v); if (passErr) setPassErr(null); if (formErr) setFormErr(null) }}
             icon="lock"
             placeholder="••••••••"
+            autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
             revealable
           />
         </Field>

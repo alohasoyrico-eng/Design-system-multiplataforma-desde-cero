@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { isValidElement, cloneElement, useId, type ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import css from './Settings.module.css'
 
@@ -9,13 +9,21 @@ export interface SettingsRowProps {
 }
 
 export function SettingsRow({ label, description, control }: SettingsRowProps) {
+  // set-p5 / st-4: la etiqueta queda asociada al control por referencia —
+  // en una pantalla de cincuenta filas, una etiqueta huerfana es invisible.
+  const labelId = useId()
+  const asociado = isValidElement(control)
+    ? cloneElement(control as React.ReactElement<Record<string, unknown>>, {
+        'aria-labelledby': (control.props as Record<string, unknown>)['aria-labelledby'] ?? labelId,
+      })
+    : control
   return (
     <div className={css.row}>
       <div className={css.rowText}>
-        <div className={css.rowLabel}>{label}</div>
+        <div id={labelId} className={css.rowLabel}>{label}</div>
         {description && <div className={css.rowDesc}>{description}</div>}
       </div>
-      <div className={css.rowControl}>{control}</div>
+      <div className={css.rowControl}>{asociado}</div>
     </div>
   )
 }

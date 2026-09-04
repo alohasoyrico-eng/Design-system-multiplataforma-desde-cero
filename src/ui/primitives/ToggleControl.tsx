@@ -8,11 +8,13 @@ export interface ToggleControlProps {
   onChange?: (checked: boolean) => void
   disabled?: boolean
   label?: string
+  /** Nombre accesible por referencia (SettingsRow y afines lo inyectan). */
+  'aria-labelledby'?: string
   children: ReactNode
   style?: CSSProperties
 }
 
-export function ToggleControl({ checked, indeterminate, onChange, disabled, label, children, style }: ToggleControlProps) {
+export function ToggleControl({ checked, indeterminate, onChange, disabled, label, 'aria-labelledby': ariaLabelledBy, children, style }: ToggleControlProps) {
   return (
     <label className={css.root} data-disabled={disabled || undefined} style={style}>
       <span className={css.visual}>
@@ -20,6 +22,7 @@ export function ToggleControl({ checked, indeterminate, onChange, disabled, labe
           type="checkbox"
           className={css.input}
           checked={checked}
+          aria-labelledby={ariaLabelledBy}
           ref={(el) => { if (el) el.indeterminate = !!indeterminate }}
           onChange={(e) => onChange?.(e.target.checked)}
           disabled={disabled}

@@ -5668,6 +5668,15 @@
         "note": ""
       },
       {
+        "n": "autoComplete",
+        "k": "prop",
+        "t": "string",
+        "d": "Autorrelleno del navegador (email, current-password, tel...): sin esto el gestor de contrasenas no funciona (aut-p3).",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "size",
         "k": "prop",
         "t": "'sm'|'md'",
@@ -13467,6 +13476,15 @@
         "r": false,
         "rw": "",
         "note": "Sin customizing: nada en el árbol"
+      },
+      {
+        "n": "loading",
+        "k": "prop",
+        "t": "boolean",
+        "d": "Mientras carga: Skeleton del tamano final y aria-busy en el marco (dsh-p4).",
+        "r": false,
+        "rw": "",
+        "note": ""
       },
       {
         "n": "customizing",

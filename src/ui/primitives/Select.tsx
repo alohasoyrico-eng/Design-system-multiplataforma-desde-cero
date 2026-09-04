@@ -31,6 +31,8 @@ export interface SelectProps {
   invalid?: boolean
   /** Id del control focusable — permite asociar <Field htmlFor>. */
   id?: string
+  /** Nombre accesible por referencia (SettingsRow y afines lo inyectan). */
+  'aria-labelledby'?: string
   style?: CSSProperties
 }
 
@@ -53,6 +55,7 @@ export function Select({
   disabled,
   invalid,
   id,
+  'aria-labelledby': ariaLabelledBy,
   style,
 }: SelectProps) {
   const intl = useIntl()
@@ -141,6 +144,7 @@ export function Select({
         className={css.trigger}
         role="combobox"
         aria-label={insetLabel}
+        aria-labelledby={ariaLabelledBy}
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-controls={open ? listboxId : undefined}

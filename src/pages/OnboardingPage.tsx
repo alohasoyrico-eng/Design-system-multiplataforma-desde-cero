@@ -115,9 +115,10 @@ export function OnboardingPage() {
   }
 
   const isLast = step === STEPS.length - 1
-  const canAdvance = step === 0 ? (!!company.trim() && email.includes('@'))
-    : step === 1 ? code.length >= 6
-    : true
+  // of-3: el paso de datos no bloquea el boton con la misma condicion que
+  // valida — pulsar explica que falta, campo por campo. Un boton muerto sin
+  // mensaje deja al usuario adivinando.
+  const canAdvance = step === 1 ? code.length >= 6 : true
 
   if (phase === 'welcome') {
     return (
