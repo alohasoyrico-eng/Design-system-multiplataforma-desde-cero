@@ -6,12 +6,14 @@
   --surface-canvas: #0C1222;
   --surface-card: #131D30;
   --surface-sunken: #0A0F1D;
+  --surface-inverse-hover: var(--flow-grey-100);
   --surface-inverse: var(--flow-grey-50);
   --surface-accent-subtle: rgba(0, 96, 223, 0.14);
 
   --text-primary: var(--flow-grey-100);
   --text-secondary: var(--flow-grey-400);
   --brand: var(--flow-red-500);       /* la marca es la marca, tambien de noche */
+  --text-disabled: var(--flow-grey-500);
   --text-muted: var(--flow-grey-400);  /* grey-500 daba 3.54:1 sobre card; medido: 6.57:1 */
   --text-on-accent: var(--ref-white);
   --text-on-inverse: var(--flow-grey-900);

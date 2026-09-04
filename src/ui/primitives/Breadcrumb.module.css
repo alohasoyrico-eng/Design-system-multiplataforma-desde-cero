@@ -19,6 +19,9 @@
 }
 
 .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit-target-min);
   font: var(--type-body-md);
   color: var(--text-link);
   text-decoration: none;

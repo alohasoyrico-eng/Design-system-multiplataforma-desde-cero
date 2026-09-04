@@ -42,5 +42,5 @@
 }
 
 .root[data-surface='inverse'][data-hover='fill']:hover {
-  background: var(--flow-grey-800);
+  background: var(--surface-inverse-hover);
 }

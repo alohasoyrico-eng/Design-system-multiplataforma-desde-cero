@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 import { OverlayShell } from '../primitives/OverlayShell'
 import css from './Drawer.module.css'
 
@@ -14,11 +14,17 @@ export interface DrawerProps {
 }
 
 export function Drawer({ open, onClose, title, width = 380, side = 'right', footer, children }: DrawerProps) {
+  const titleId = useId()
   return (
-    <OverlayShell open={open} onClose={onClose} alignment={side === 'left' ? 'start' : 'end'}>
+    <OverlayShell
+      open={open}
+      onClose={onClose}
+      alignment={side === 'left' ? 'start' : 'end'}
+      labelledBy={title ? titleId : undefined}
+    >
       <div className={css.root} style={{ width }}>
         <div className={css.header}>
-          <div className={css.title}>{title}</div>
+          <div id={titleId} className={css.title}>{title}</div>
           <button className={css.close} onClick={onClose} aria-label="Cerrar">
             <span className="flow-symbol flow-symbol--default" aria-hidden="true">close</span>
           </button>

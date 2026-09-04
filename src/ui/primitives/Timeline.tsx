@@ -26,7 +26,7 @@ const STATUS_ICON: Record<string, string> = {
 const STATUS_COLOR: Record<string, string> = {
   done: 'var(--status-success)',
   active: 'var(--action-accent)',
-  pending: 'var(--flow-grey-400)',
+  pending: 'var(--text-disabled)',
   error: 'var(--status-danger)',
 }
 

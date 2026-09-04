@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useId, useState, type ReactNode } from 'react'
 import css from './Accordion.module.css'
 
 export interface AccordionItem {
@@ -17,6 +17,7 @@ export interface AccordionProps {
 }
 
 export function Accordion({ items = [], defaultOpen, multiple = false }: AccordionProps) {
+  const uid = useId()
   const [openIds, setOpenIds] = useState<Set<string>>(
     () => new Set(defaultOpen ? [defaultOpen] : []),
   )
@@ -37,12 +38,16 @@ export function Accordion({ items = [], defaultOpen, multiple = false }: Accordi
     <div className={css.root}>
       {items.map((item) => {
         const isOpen = openIds.has(item.id)
+        const headerId = `${uid}-${item.id}-h`
+        const panelId = `${uid}-${item.id}-p`
         return (
           <div key={item.id} className={css.item}>
             <button
+              id={headerId}
               className={css.trigger}
               onClick={() => toggle(item.id, isOpen)}
               aria-expanded={isOpen}
+              aria-controls={panelId}
             >
               {item.icon && <span className={`flow-symbol ${css.triggerIcon}`} aria-hidden="true">{item.icon}</span>}
               <span className={css.triggerTitle}>{item.title}</span>
@@ -51,7 +56,11 @@ export function Accordion({ items = [], defaultOpen, multiple = false }: Accordi
                 expand_more
               </span>
             </button>
-            {isOpen && <div className={css.panel}>{item.content}</div>}
+            {isOpen && (
+              <div id={panelId} role="region" aria-labelledby={headerId} className={css.panel}>
+                {item.content}
+              </div>
+            )}
           </div>
         )
       })}

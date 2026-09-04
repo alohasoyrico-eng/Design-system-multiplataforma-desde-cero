@@ -26,7 +26,7 @@ const TONES: Record<ToastTone, { icon: string; color: string }> = {
 export function Toast({ message, tone = 'success', actionLabel, onAction, onDismiss }: ToastProps) {
   const t = TONES[tone]
   return (
-    <div role="alert" className={css.root}>
+    <div role="status" className={css.root}>
       <span className={`flow-symbol flow-symbol--fill ${css.icon}`} style={{ color: t.color }} aria-hidden="true">
         {t.icon}
       </span>

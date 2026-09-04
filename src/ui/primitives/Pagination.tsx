@@ -28,15 +28,20 @@ export function Pagination({ page = 1, pages = 1, onChange }: PaginationProps) {
       </button>
       {range().map((p, i) => {
         const isActive = p === page
-        const isEllipsis = p === '...'
+        if (p === '...') {
+          return (
+            <span key={'gap-' + i} className={css.page} data-ellipsis="" aria-hidden="true">
+              …
+            </span>
+          )
+        }
         return (
           <button
             key={String(p) + '-' + i}
             className={css.page}
             data-active={isActive || undefined}
-            data-ellipsis={isEllipsis || undefined}
-            onClick={() => typeof p === 'number' && p !== page && onChange?.(p)}
-            disabled={isActive || isEllipsis}
+            onClick={() => p !== page && onChange?.(p)}
+            disabled={isActive}
             aria-current={isActive ? 'page' : undefined}
           >
             {String(p)}

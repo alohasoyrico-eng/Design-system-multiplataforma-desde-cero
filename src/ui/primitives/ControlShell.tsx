@@ -23,6 +23,7 @@ export const ControlShell = forwardRef<HTMLDivElement, ControlShellProps>(functi
       ref={ref}
       className={css.root}
       data-control-shell=""
+      data-footer={footer ? '' : undefined}
       data-size={size}
       data-filled={filled || undefined}
       data-error={error || undefined}
@@ -34,6 +35,7 @@ export const ControlShell = forwardRef<HTMLDivElement, ControlShellProps>(functi
       {leading && <span className={css.slot}>{leading}</span>}
       <div className={css.content}>{children}</div>
       {trailing && <span className={css.slot}>{trailing}</span>}
+      {footer && <div className={css.footer}>{footer}</div>}
     </div>
   )
 })

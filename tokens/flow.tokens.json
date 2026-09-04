@@ -747,6 +747,10 @@
           "backdrop": {
             "$value": "rgba(15,23,42,0.4)",
             "$type": "color"
+          },
+          "inverseHover": {
+            "$value": "{flow.brand.grey.800}",
+            "$type": "color"
           }
         },
         "text": {
@@ -776,6 +780,10 @@
           },
           "link": {
             "$value": "{flow.ref.color.blue.500}",
+            "$type": "color"
+          },
+          "disabled": {
+            "$value": "{flow.brand.grey.400}",
             "$type": "color"
           }
         },
@@ -1065,6 +1073,10 @@
           "backdrop": {
             "$value": "rgba(0,0,0,0.5)",
             "$type": "color"
+          },
+          "inverseHover": {
+            "$value": "{flow.brand.grey.100}",
+            "$type": "color"
           }
         },
         "text": {
@@ -1094,6 +1106,10 @@
           },
           "link": {
             "$value": "{flow.ref.color.blue.300}",
+            "$type": "color"
+          },
+          "disabled": {
+            "$value": "{flow.brand.grey.500}",
             "$type": "color"
           }
         },

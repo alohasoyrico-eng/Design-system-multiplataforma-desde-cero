@@ -35,7 +35,7 @@ export function Breadcrumb({ items = [], variant = 'default', homeIcon = 'home' 
                   ? <span className={css.separator} aria-hidden="true">/</span>
                   : <span className={`flow-symbol ${css.separator}`} aria-hidden="true">chevron_right</span>
               )}
-              {item.href ? (
+              {item.href && !isLast ? (
                 <a
                   href={item.href}
                   className={css.link}
@@ -44,7 +44,12 @@ export function Breadcrumb({ items = [], variant = 'default', homeIcon = 'home' 
                   {content}
                 </a>
               ) : (
-                <span className={css.text} data-current={isLast || undefined}>
+                <span
+                  className={css.text}
+                  data-current={isLast || undefined}
+                  aria-current={isLast ? 'page' : undefined}
+                  aria-label={showIcon ? item.label : undefined}
+                >
                   {content}
                 </span>
               )}

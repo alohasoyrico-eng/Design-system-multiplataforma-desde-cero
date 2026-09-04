@@ -4,9 +4,9 @@ import { describe, it, expect, vi } from 'vitest'
 import { Toast, ToastStack } from '../Toast'
 
 describe('Toast', () => {
-  it('renders with alert role', () => {
+  it('renders with status role (polite, no roba el foco)', () => {
     render(<Toast message="Guardado" />)
-    expect(screen.getByRole('alert')).toBeInTheDocument()
+    expect(screen.getByRole('status')).toBeInTheDocument()
   })
 
   it('shows the message text', () => {

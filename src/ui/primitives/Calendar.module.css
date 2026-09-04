@@ -113,7 +113,7 @@
 }
 
 .day[data-selected]:hover {
-  background: var(--flow-blue-600);
+  background: var(--action-accent-hover);
 }
 
 .day[data-in-range] {
@@ -166,7 +166,7 @@
 }
 
 .footerBtn[data-accent]:hover {
-  color: var(--flow-blue-600);
+  color: var(--action-accent-hover);
 }
 
 .day:disabled {

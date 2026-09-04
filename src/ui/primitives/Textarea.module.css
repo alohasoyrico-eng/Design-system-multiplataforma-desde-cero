@@ -11,3 +11,8 @@
   min-width: 0;
   resize: vertical;
 }
+
+.counter {
+  font: var(--type-body-sm);
+  font-variant-numeric: tabular-nums;
+}

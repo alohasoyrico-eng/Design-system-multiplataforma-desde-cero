@@ -23,6 +23,7 @@ jobs:
       - run: npm run check:inventory
       - run: npm run check:foundations
       - run: npm run check:targets
+      - run: npm run check:color
       - run: npm run check:conformance
       - run: npm run tokens:build && npm run check:tokens-parity
       - run: npm run test

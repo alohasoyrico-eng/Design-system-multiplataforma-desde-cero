@@ -71,12 +71,14 @@
   --surface-canvas: var(--ref-canvas-light);
   --surface-card: var(--ref-white);
   --surface-sunken: var(--flow-grey-100);
+  --surface-inverse-hover: var(--flow-grey-800);
   --surface-inverse: var(--flow-grey-900);
   --surface-accent-subtle: var(--flow-blue-50);
 
   /* ---- Semantic: text ---- */
   --text-primary: var(--flow-grey-900);
   --text-secondary: var(--flow-grey-600);
+  --text-disabled: var(--flow-grey-400);
   --text-muted: var(--flow-grey-500);
   --text-on-accent: var(--ref-white);
   --text-on-inverse: var(--flow-grey-50);

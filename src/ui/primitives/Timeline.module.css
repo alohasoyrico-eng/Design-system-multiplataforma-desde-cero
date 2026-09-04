@@ -126,8 +126,8 @@
 }
 
 .eventDot[data-status='pending'] {
-  background: var(--flow-grey-400);
-  box-shadow: 0 0 0 3px var(--surface-card), 0 0 0 4px var(--flow-grey-400);
+  background: var(--text-disabled);
+  box-shadow: 0 0 0 3px var(--surface-card), 0 0 0 4px var(--text-disabled);
 }
 
 .eventDot[data-status='error'] {

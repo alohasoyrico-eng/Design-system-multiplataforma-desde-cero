@@ -29,7 +29,7 @@ export function Flag({ country, size = 20, shape = 'circle', label, ring = true,
         width: size,
         height: size,
         borderRadius: RADIUS[shape] || RADIUS.circle,
-        boxShadow: ring ? 'inset 0 0 0 1px rgba(15,23,42,.12)' : 'none',
+        boxShadow: ring ? 'inset 0 0 0 1px var(--alpha-black-12)' : 'none',
         ...style,
       }}
     />

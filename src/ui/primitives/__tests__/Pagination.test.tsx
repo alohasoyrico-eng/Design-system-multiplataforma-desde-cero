@@ -50,8 +50,8 @@ describe('Pagination', () => {
     expect(onChange).toHaveBeenCalledWith(4)
   })
 
-  it('renders ellipsis for many pages', () => {
-    render(<Pagination page={5} pages={10} />)
-    expect(screen.getAllByText('...').length).toBeGreaterThan(0)
+  it('renders ellipsis for many pages (inerte, fuera del orden de tabulacion)', () => {
+    const { container } = render(<Pagination page={5} pages={10} />)
+    expect(container.querySelectorAll('[data-ellipsis]').length).toBeGreaterThan(0)
   })
 })
