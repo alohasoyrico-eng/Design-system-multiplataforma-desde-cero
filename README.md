@@ -67,6 +67,8 @@ Y copia la fuente de marca (self-hosted) a tu carpeta pública:
 cp node_modules/@alohasoyrico-eng/flow-react/public/fonts/*.woff2 public/fonts/
 ```
 
+**Las reglas de uso** — lo que el sistema te resuelve y lo que espera de ti (tokens, overlays, formularios, antipatrones) — viven en [`docs/USUARIO.md`](docs/USUARIO.md), que viaja en el paquete para que tu agente la lea desde `node_modules`.
+
 `react` y `react-dom` (>=18) son peer dependencies: los pone tu proyecto. `echarts`, `react-intl` y `flag-icons` son dependencias del paquete y npm las instala solo — pero **solo pagas lo que importas**: el paquete se distribuye como un módulo por componente con `sideEffects` declarado, así que `echarts` solo entra a tu bundle si usas una gráfica y el CSS de `flag-icons` solo si usas `Flag`.
 
 #### El proveedor de i18n es obligatorio
@@ -505,6 +507,7 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 | `list_inventory` | "¿Qué piezas hay?" |
 | `get_component_api("Button")` | "¿Qué props acepta Button?" (parsea el TypeScript) |
 | `get_contract("icon-button")` | La ficha completa: API con descripciones, tokens, when/notWhen, madurez por plataforma |
+| `get_user_guide` | Las reglas del repo usuario: tokens, overlays, formularios, antipatrones |
 | `get_tokens("colors")` | Tokens por categoría: colors, spacing, typography, shape, motion, elevation, dark, dataviz, iconography, a11y, products |
 | `get_architecture_rules` | "¿Cuáles son las reglas?" |
 | `validate_import(from, to)` | "¿Este import está bien?" |

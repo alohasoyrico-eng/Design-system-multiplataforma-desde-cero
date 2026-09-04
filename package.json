@@ -33,7 +33,8 @@
     "dist-lib",
     "public/fonts",
     "src/data/items.json",
-    "scripts/prepare.mjs"
+    "scripts/prepare.mjs",
+    "docs/USUARIO.md"
   ],
   "scripts": {
     "dev": "vite",

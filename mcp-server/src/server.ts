@@ -306,6 +306,18 @@ server.tool(
   }
 )
 
+// Tool 3c: get_user_guide — las reglas para el repo que USA Flow
+server.tool(
+  'get_user_guide',
+  'Get the Flow DS user guide: the rules for a product repo that consumes Flow (tokens over hex, search before building, do not touch internals, overlays/forms/charts conventions, anti-patterns, deprecations). Read this before writing UI code in a consumer repo.',
+  {},
+  async () => {
+    const guidePath = path.join(FLOW_ROOT, 'docs', 'USUARIO.md')
+    if (!fileExists(guidePath)) return fail('docs/USUARIO.md not found.')
+    return ok(readFile(guidePath))
+  }
+)
+
 // Tool 4: get_architecture_rules
 server.tool(
   'get_architecture_rules',
