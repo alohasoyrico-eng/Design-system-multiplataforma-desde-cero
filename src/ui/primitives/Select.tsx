@@ -59,6 +59,7 @@ export function Select({
   const resolvedPlaceholder = placeholder ?? intl.formatMessage({ id: 'common.select', defaultMessage: 'Seleccionar…' })
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
+  const [activeIdx, setActiveIdx] = useState(-1)
   const searchRef = useRef<HTMLInputElement>(null)
   const listboxId = useId()
 
@@ -99,6 +100,7 @@ export function Select({
 
   const handleOpenChange = useCallback(
     (next: boolean) => {
+      setActiveIdx(-1)
       if (disabled) return
       setOpen(next)
       if (next && searchable) {
@@ -143,11 +145,20 @@ export function Select({
         aria-haspopup="listbox"
         aria-controls={open ? listboxId : undefined}
         tabIndex={disabled ? -1 : 0}
+        aria-activedescendant={open && activeIdx >= 0 ? `${listboxId}-opt-${activeIdx}` : undefined}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
-            e.preventDefault()
-            handleOpenChange(true)
+          if (!open) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+              e.preventDefault()
+              handleOpenChange(true)
+            }
+            return
           }
+          // sel-2: el foco se queda en el combobox; el resaltado viaja por
+          // aria-activedescendant.
+          if (e.key === 'ArrowDown') { e.preventDefault(); setActiveIdx((p) => (p + 1) % listboxItems.length) }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); setActiveIdx((p) => (p <= 0 ? listboxItems.length - 1 : p - 1)) }
+          else if (e.key === 'Enter' && activeIdx >= 0) { e.preventDefault(); handleSelect(listboxItems[activeIdx]) }
         }}
       >
         {insetLabel && <span className={css.insetLabel}>{insetLabel}:</span>}
@@ -175,6 +186,8 @@ export function Select({
       {filtered.length > 0 ? (
         <Listbox
           id={listboxId}
+          active={activeIdx}
+          onActiveChange={setActiveIdx}
           items={listboxItems}
           value={multiple ? undefined : (value as string)}
           onChange={handleSelect}

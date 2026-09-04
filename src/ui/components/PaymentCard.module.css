@@ -82,8 +82,8 @@ button.root:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: var(--hit-target-min);
+  height: var(--hit-target-min);
   border-radius: var(--radius-pill);
   border: none;
   background: var(--alpha-white-15);

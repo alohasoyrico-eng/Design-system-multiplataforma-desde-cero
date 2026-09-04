@@ -10,6 +10,10 @@ export interface ListboxItem {
 }
 
 export interface ListboxProps<T extends ListboxItem = ListboxItem> {
+  /** Modo combobox: el dueño (Select) conduce el resaltado desde su trigger y
+      este indice manda; el interno queda para uso directo. */
+  active?: number
+  onActiveChange?: (index: number) => void
   items?: T[]
   value?: string | number
   onChange?: (item: T) => void
@@ -17,8 +21,15 @@ export interface ListboxProps<T extends ListboxItem = ListboxItem> {
   id?: string
 }
 
-export function Listbox<T extends ListboxItem = ListboxItem>({ items = [], value, onChange, renderItem, id }: ListboxProps<T>) {
-  const [active, setActive] = useState(-1)
+export function Listbox<T extends ListboxItem = ListboxItem>({ items = [], value, onChange, renderItem, id, active: controlado, onActiveChange,
+}: ListboxProps<T>) {
+  const [interno, setInterno] = useState(-1)
+  const active = controlado ?? interno
+  const setActive = (v: number | ((p: number) => number)) => {
+    const next = typeof v === 'function' ? (v as (p: number) => number)(active) : v
+    if (controlado === undefined) setInterno(next)
+    onActiveChange?.(next)
+  }
   const listRef = useRef<HTMLUListElement>(null)
 
   const handleKeyDown = useCallback(
@@ -56,6 +67,7 @@ export function Listbox<T extends ListboxItem = ListboxItem>({ items = [], value
             role="option"
             aria-selected={selected}
             className={css.option}
+            id={id ? `${id}-opt-${i}` : undefined}
             data-active={i === active || undefined}
             data-selected={selected || undefined}
             onClick={() => onChange?.(item)}

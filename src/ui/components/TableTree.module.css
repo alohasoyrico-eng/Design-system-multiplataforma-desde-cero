@@ -56,8 +56,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: var(--hit-target-min);
+  height: var(--hit-target-min);
   border: none;
   background: transparent;
   color: var(--text-muted);

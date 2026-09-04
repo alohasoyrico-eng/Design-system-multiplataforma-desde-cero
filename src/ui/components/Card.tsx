@@ -13,12 +13,18 @@ export interface CardProps {
 
 export function Card({ padding, surface = 'elevated', hover, interactive, children, onClick, style }: CardProps) {
   const effectiveHover = hover ?? (interactive ? 'lift' : 'none')
+  // crd-1: una tarjeta que se clickea es un elemento operable con foco y
+  // teclado, no un div con onClick.
+  const operable = interactive || Boolean(onClick)
   return (
     <div
       className={css.root}
       data-surface={surface}
       data-hover={effectiveHover !== 'none' ? effectiveHover : undefined}
       data-interactive={interactive || undefined}
+      role={operable ? 'button' : undefined}
+      tabIndex={operable ? 0 : undefined}
+      onKeyDown={operable ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick?.(e as never) } } : undefined}
       onClick={onClick}
       style={{
         ...(padding != null ? { padding } : {}),

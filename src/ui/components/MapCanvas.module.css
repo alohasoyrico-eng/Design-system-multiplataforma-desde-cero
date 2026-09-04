@@ -27,8 +27,8 @@
 }
 
 .zoomBtn {
-  width: 28px;
-  height: 28px;
+  width: var(--hit-target-min);
+  height: var(--hit-target-min);
   border: 1px solid var(--border-default);
   background: var(--surface-card);
   cursor: pointer;

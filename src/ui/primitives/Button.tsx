@@ -28,6 +28,7 @@ export function Button({
   disabled,
   fullWidth,
   onClick,
+  ariaLabel,
   children,
   style,
   ...rest
@@ -38,6 +39,7 @@ export function Button({
       data-variant={variant}
       data-size={size}
       data-full-width={fullWidth || undefined}
+      aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled || loading}
       style={style}
