@@ -3663,6 +3663,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "tone",
+        "k": "prop",
+        "t": "'mono' | 'color'",
+        "d": "'mono'",
+        "r": false,
+        "rw": "",
+        "note": "Tiles en gris, el color es del dato; color restaura los tiles originales"
       }
     ],
     "dos": [

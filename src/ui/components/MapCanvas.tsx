@@ -19,6 +19,9 @@ export interface MapCanvasProps {
   onPinClick?: (id: string) => void
   route?: [number, number][]
   routeColor?: string
+  /** El fondo es lienzo: en mono (default) los tiles van en escala de grises y
+      el color queda reservado a pins y ruta — el matiz es del dato, no del mapa. */
+  tone?: 'mono' | 'color'
   style?: CSSProperties
 }
 
@@ -97,6 +100,7 @@ function useDataMode() {
 export function MapCanvas({
   center, zoom: zoomProp = 13, pins = [], selectedPin,
   onPinClick, route, routeColor, style,
+  tone = 'mono',
 }: MapCanvasProps) {
   const dataMode = useDataMode()
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -174,8 +178,14 @@ export function MapCanvas({
       // OSM estandar, como declara el contrato del canon (deps.network con
       // atribucion obligatoria). Carto empezo a estampar API KEY REQUIRED.
       const tileBase = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-      // Modo oscuro sin proveedor de tiles oscuros: filtro clasico de inversion.
-      ctx.filter = dark ? 'invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9)' : 'none'
+      // Los filtros viven solo en los tiles: pins y ruta conservan su color.
+      // mono: escala de grises (claro) o grises invertidos (oscuro).
+      // color: tiles originales, con la inversion clasica en oscuro.
+      const FILTROS = {
+        mono: dark ? 'grayscale(1) invert(1) brightness(0.85) contrast(0.95)' : 'grayscale(1) contrast(0.95) brightness(1.03)',
+        color: dark ? 'invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9)' : 'none',
+      }
+      ctx.filter = FILTROS[tone]
 
       for (let tx = startTX; tx <= endTX; tx++) {
         for (let ty = startTY; ty <= endTY; ty++) {
@@ -405,7 +415,7 @@ export function MapCanvas({
       alive = false
       cancelAnimationFrame(rafRef.current)
     }
-  }, [cx, cy, zoom, size, pins, selectedPin, hoveredPin, route, routeColor, loadTile, dataMode])
+  }, [cx, cy, zoom, size, pins, selectedPin, hoveredPin, route, routeColor, loadTile, dataMode, tone])
 
   /* ── Event handlers ──────────────────────────────────── */
 
