@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, useState, type ReactNode, type FocusEvent } from 'react'
 import css from './Toast.module.css'
 
 export type ToastTone = 'success' | 'warning' | 'danger' | 'info'
@@ -9,6 +9,9 @@ export interface ToastProps {
   /** Acción inline (p. ej. “Deshacer”). Requiere onAction. */
   actionLabel?: string
   onAction?: () => void
+  /** Milisegundos hasta el auto-descarte; requiere onDismiss. El temporizador
+      se pausa con el puntero encima o el foco dentro (tst-2). */
+  duration?: number
   onDismiss?: () => void
 }
 
@@ -23,10 +26,31 @@ const TONES: Record<ToastTone, { icon: string; color: string }> = {
   info: { icon: 'info', color: 'var(--status-info-text)' },
 }
 
-export function Toast({ message, tone = 'success', actionLabel, onAction, onDismiss }: ToastProps) {
+export function Toast({ message, tone = 'success', actionLabel, onAction, duration, onDismiss }: ToastProps) {
   const t = TONES[tone]
+  const [pausado, setPausado] = useState(false)
+
+  // tst-2: el temporizador no corre mientras el puntero esta encima o el foco
+  // esta dentro; al salir se reinicia completo.
+  useEffect(() => {
+    if (duration == null || !onDismiss || pausado) return
+    const timer = setTimeout(onDismiss, duration)
+    return () => clearTimeout(timer)
+  }, [duration, onDismiss, pausado])
+
+  const alPerderFoco = (e: FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setPausado(false)
+  }
+
   return (
-    <div role="status" className={css.root}>
+    <div
+      role="status"
+      className={css.root}
+      onMouseEnter={() => setPausado(true)}
+      onMouseLeave={() => setPausado(false)}
+      onFocus={() => setPausado(true)}
+      onBlur={alPerderFoco}
+    >
       <span className={`flow-symbol flow-symbol--fill ${css.icon}`} style={{ color: t.color }} aria-hidden="true">
         {t.icon}
       </span>

@@ -23,13 +23,15 @@ const SVG_PERMITIDOS = [
   { archivo: 'src/ui/primitives/CircularProgress.tsx', motivo: 'El anillo es la barra de progreso dibujada, no un glifo.' },
   { archivo: 'src/ui/primitives/FlowLogo.tsx', motivo: 'Marca, no icono: el logo no sale de una fuente de iconos.' },
   { archivo: 'src/ui/components/SmallMultiples.tsx', motivo: 'Visualizacion de dato en miniatura, misma especie que Sparkline.' },
+  { archivo: 'src/ui/components/GanttChart.tsx', motivo: 'Conectores de dependencia entre barras: dato, no icono.' },
 ]
 
-// ico-5: el canon fija los pasos 16, 20 y 24; el repo ademas usa 14 (xs),
-// 18 (md) y 28 (xl). Divergencia declarada pendiente de decision: se exige que
-// todo tamano salga de la escala --icon-*, no que la escala se recorte hoy.
+// ico-5: el canon fija los pasos 16, 20 y 24 y el repo se recorto a ellos
+// (decision 4-sep-2026: 14->16, 18->20, 28->24). Los pasos display (36/40/48)
+// son glifos de escena —EmptyState, StatusView— no iconografia de UI: especie
+// declarada aparte, no pasos extra de la escala de iconos.
 const PASOS_CANON = [16, 20, 24]
-const PASOS_EXTRA_DECLARADOS = [14, 18, 28]
+const PASOS_DISPLAY = [36, 40, 48]
 
 const EMOJI = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]/u
 const SETS_AJENOS = /from ['"](react-icons|lucide-react|@heroicons|@mui\/icons-material|@fortawesome)/
@@ -77,17 +79,20 @@ for (const abs of fuentes('src/ui', ['.tsx'])) {
   }
 }
 
-// ico-5: la escala --icon-* del repo resuelve a los pasos del canon mas los declarados
+// ico-5: la escala --icon-* del repo resuelve a los pasos del canon (o al
+// tramo display declarado). Un alias que no resuelve tambien es hallazgo.
 const icono = readFileSync(join(ROOT, 'src/tokens/iconography.css'), 'utf8')
-const refs = readFileSync(join(ROOT, 'src/tokens/ref/sizing.css'), 'utf8')
+const refs = readFileSync(join(ROOT, 'src/tokens/ref/iconography.css'), 'utf8')
 const resolver = (v) => {
   const m = refs.match(new RegExp(`${v}:\\s*(\\d+)px`))
   return m ? parseInt(m[1], 10) : null
 }
-const pasosValidos = new Set([...PASOS_CANON, ...PASOS_EXTRA_DECLARADOS])
+const pasosValidos = new Set([...PASOS_CANON, ...PASOS_DISPLAY])
 for (const m of icono.matchAll(/--icon-[\w-]+:\s*var\((--ref-icon-\d+)\)/g)) {
   const px = resolver(m[1])
-  if (px != null && !pasosValidos.has(px)) {
+  if (px == null) {
+    hallazgos.push({ regla: 'ico-5', archivo: 'src/tokens/iconography.css', detalle: `${m[1]} no existe en la escala ref` })
+  } else if (!pasosValidos.has(px)) {
     hallazgos.push({ regla: 'ico-5', archivo: 'src/tokens/iconography.css', detalle: `paso ${px}px fuera de la escala` })
   }
 }
@@ -96,10 +101,9 @@ for (const m of icono.matchAll(/--icon-[\w-]+:\s*(\d+)px/g)) {
 }
 
 if (process.argv.includes('--json')) {
-  console.log(JSON.stringify({ ok: !hallazgos.length, total: hallazgos.length, hallazgos, svgPermitidos: SVG_PERMITIDOS, pasosExtra: PASOS_EXTRA_DECLARADOS }, null, 2))
+  console.log(JSON.stringify({ ok: !hallazgos.length, total: hallazgos.length, hallazgos, svgPermitidos: SVG_PERMITIDOS, pasosDisplay: PASOS_DISPLAY }, null, 2))
 } else if (!hallazgos.length) {
-  console.log('iconos: una sola fuente, SVG solo en ' + SVG_PERMITIDOS.length + ' excepciones de dato/marca, ligaduras ocultas, escala respetada.')
-  console.log('  pasos extra declarados sobre el canon (16/20/24): ' + PASOS_EXTRA_DECLARADOS.join(', ') + 'px — pendiente de decision.')
+  console.log('iconos: una sola fuente, SVG solo en ' + SVG_PERMITIDOS.length + ' excepciones de dato/marca, ligaduras ocultas, escala 16/20/24 (+display ' + PASOS_DISPLAY.join('/') + ' para glifos de escena).')
 } else {
   for (const h of hallazgos) console.log(`  [${h.regla}] ${h.archivo}${h.linea ? ':' + h.linea : ''}  ${h.detalle}`)
   console.log('\n' + hallazgos.length + ' hallazgo(s).')

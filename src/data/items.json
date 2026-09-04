@@ -2246,6 +2246,15 @@
         "note": "Deshacer, Reintentar"
       },
       {
+        "n": "duration",
+        "k": "prop",
+        "t": "number",
+        "d": "Milisegundos hasta el auto-descarte; requiere onDismiss. Se pausa con puntero encima o foco dentro (tst-2).",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "onDismiss",
         "k": "event",
         "t": "() => void",
@@ -2952,11 +2961,11 @@
       {
         "n": "tasks",
         "k": "prop",
-        "t": "Array<{id,name,start,end,progress,color?}>",
+        "t": "Array<{id,name,start,end,progress?,color?,dependsOn?}>",
         "d": "",
         "r": false,
         "rw": "",
-        "note": "Fechas ISO"
+        "note": "Fechas ISO. dependsOn dibuja conectores; un ciclo se detecta y se declara sin colgar el render (gnt-2)."
       }
     ],
     "dos": [

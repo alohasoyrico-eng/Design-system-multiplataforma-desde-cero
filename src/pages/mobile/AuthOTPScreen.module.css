@@ -52,3 +52,12 @@
   font-weight: 700;
   color: var(--text-primary);
 }
+.linkBtn {
+  min-height: var(--hit-target-min);
+  padding: 0 var(--space-3);
+  border: none;
+  background: transparent;
+  font: var(--type-body-sm);
+  color: var(--text-accent-on-inverse, var(--text-link));
+  cursor: pointer;
+}

@@ -312,7 +312,8 @@ describe('Prop conventions', () => {
 describe('Hover implementation', () => {
   // Exceptions: Listbox (active index tracking, not visual hover),
   // Tooltip (show/hide state), Bars/SmallMultiples (chart hover index),
-  // GlobalSearch (active result tracking), Sidebar (hover state for submenu)
+  // GlobalSearch (active result tracking), Sidebar (hover state for submenu),
+  // Toast (tst-2: pausa del temporizador, comportamiento, no estilo)
   const MOUSE_EXCEPTIONS = [
     'Listbox.tsx',
     'Tooltip.tsx',
@@ -320,6 +321,7 @@ describe('Hover implementation', () => {
     'SmallMultiples.tsx',
     'GlobalSearch.tsx',
     'Sidebar.tsx',
+    'Toast.tsx',
   ]
 
   it('no onMouseEnter/Leave for visual hover (use CSS :hover)', () => {

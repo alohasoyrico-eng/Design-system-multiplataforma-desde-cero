@@ -459,16 +459,8 @@
         }
       },
       "icon": {
-        "14": {
-          "$value": 14,
-          "$type": "dimension"
-        },
         "16": {
           "$value": 16,
-          "$type": "dimension"
-        },
-        "18": {
-          "$value": 18,
           "$type": "dimension"
         },
         "20": {
@@ -477,10 +469,6 @@
         },
         "24": {
           "$value": 24,
-          "$type": "dimension"
-        },
-        "28": {
-          "$value": 28,
           "$type": "dimension"
         },
         "36": {
@@ -1417,7 +1405,7 @@
       },
       "icon": {
         "xs": {
-          "$value": "{flow.ref.icon.14}",
+          "$value": "{flow.ref.icon.16}",
           "$type": "dimension"
         },
         "sm": {
@@ -1425,7 +1413,7 @@
           "$type": "dimension"
         },
         "md": {
-          "$value": "{flow.ref.icon.18}",
+          "$value": "{flow.ref.icon.20}",
           "$type": "dimension"
         },
         "default": {
@@ -1437,7 +1425,7 @@
           "$type": "dimension"
         },
         "xl": {
-          "$value": "{flow.ref.icon.28}",
+          "$value": "{flow.ref.icon.24}",
           "$type": "dimension"
         },
         "2xl": {
