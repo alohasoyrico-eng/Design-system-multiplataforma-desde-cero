@@ -1,51 +1,20 @@
 {
-  "name": "@alohasoyrico-eng/flow-react",
-  "version": "0.3.0",
+  "name": "flow-workspace",
+  "private": true,
   "type": "module",
-  "description": "Flow Design System — componentes React, tokens y patrones multiplataforma",
-  "license": "UNLICENSED",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
-  },
-  "main": "./dist-lib/ui/lib-entry.js",
-  "module": "./dist-lib/ui/lib-entry.js",
-  "types": "./dist-lib/types/ui/lib.d.ts",
-  "sideEffects": [
-    "**/*.css"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist-lib/types/ui/lib.d.ts",
-      "import": "./dist-lib/ui/lib-entry.js"
-    },
-    "./styles.css": "./dist-lib/flow.css",
-    "./reset.css": "./dist-lib/reset.css",
-    "./fonts/*": "./public/fonts/*",
-    "./contracts": "./src/data/items.json",
-    "./compat-eone.css": "./dist-lib/compat-eone.css"
-  },
-  "files": [
-    "dist-lib",
-    "public/fonts",
-    "src/data/items.json",
-    "scripts/prepare.mjs",
-    "docs/USUARIO.md"
+  "workspaces": [
+    "packages/flow-react",
+    "apps/banco"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && cp src/reset.css dist-lib/reset.css && cp generated/tokens/css/compat-eone.css dist-lib/compat-eone.css",
+    "dev": "npm run dev -w apps/banco --",
+    "build": "npm run build -w apps/banco",
+    "build:lib": "npm run build:lib -w packages/flow-react",
+    "preview": "npm run preview -w apps/banco --",
     "lint": "oxlint",
-    "typecheck": "tsc --noEmit",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "tokens:build": "node sd.config.js",
+    "typecheck": "npm run typecheck -w packages/flow-react && npm run typecheck -w apps/banco",
+    "test": "npm run test -w packages/flow-react && npm run test -w apps/banco",
+    "tokens:build": "npm run tokens:build -w packages/flow-react",
     "sync:docs": "node scripts/sync-docs.mjs",
     "sync:docs:check": "node scripts/sync-docs.mjs --check",
     "check:catalog": "node scripts/check-catalog.mjs",
@@ -57,42 +26,9 @@
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:api-drift": "node scripts/check-api-drift.mjs",
     "check:conformance": "node scripts/check-conformance-coverage.mjs --min 353",
-    "check:tokens-parity": "node scripts/check-tokens-parity.mjs",
-    "prepack": "npm run build:lib",
-    "prepare": "node scripts/prepare.mjs"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
-  "dependencies": {
-    "echarts": "^6.1.0",
-    "flag-icons": "^7.5.0",
-    "react-intl": "^10.1.23"
+    "check:tokens-parity": "node scripts/check-tokens-parity.mjs"
   },
   "devDependencies": {
-    "@tanstack/react-query": "^5.101.4",
-    "@tanstack/react-router": "^1.170.29",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.5",
-    "@types/node": "^26.3.0",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.4",
-    "jsdom": "^29.1.1",
-    "msw": "^2.15.0",
-    "oxlint": "^1.75.0",
-    "style-dictionary": "^4.4.0",
-    "typescript": "^7.0.2",
-    "vite": "^8.2.0",
-    "vitest": "^4.1.10"
-  },
-  "msw": {
-    "workerDirectory": [
-      "public"
-    ]
+    "oxlint": "^1.75.0"
   }
 }

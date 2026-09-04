@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "node",
+      "vite/client"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@alohasoyrico-eng/flow-react": [
+        "../../packages/flow-react/src/ui/lib.ts"
+      ],
+      "@alohasoyrico-eng/flow-react/contracts": [
+        "../../packages/flow-react/src/data/items.json"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

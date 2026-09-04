@@ -51,14 +51,14 @@ Si la pieza es nueva o gana API, el orden es **contrato-primero**: el miembro na
 
 ### 1. Decide la capa
 
-¿Es un concepto de interfaz (Table, Dialog)? → `src/ui/components/`
-¿Es un concepto de negocio (PaymentCard, AuthForm)? → `src/ui/patterns/`
-¿Es un control atómico que no compone nada del sistema? → `src/ui/primitives/`
+¿Es un concepto de interfaz (Table, Dialog)? → `packages/flow-react/src/ui/components/`
+¿Es un concepto de negocio (PaymentCard, AuthForm)? → `packages/flow-react/src/ui/patterns/`
+¿Es un control atómico que no compone nada del sistema? → `packages/flow-react/src/ui/primitives/`
 
 ### 2. Crea el archivo .tsx
 
 ```
-src/ui/components/MiComponente.tsx
+packages/flow-react/src/ui/components/MiComponente.tsx
 ```
 
 Estructura mínima:
@@ -84,7 +84,7 @@ export function MiComponente({ style }: MiComponenteProps) {
 ### 3. Crea el archivo .module.css (si necesita estilos propios)
 
 ```
-src/ui/components/MiComponente.module.css
+packages/flow-react/src/ui/components/MiComponente.module.css
 ```
 
 ```css
@@ -109,7 +109,7 @@ export interface MiComponenteProps {  // ← export obligatorio
 
 ### 5. Agrega al barrel export
 
-Abre `src/ui/components/index.ts` (o `primitives/index.ts` o `patterns/index.ts` según la capa) y agrega:
+Abre `packages/flow-react/src/ui/components/index.ts` (o `primitives/index.ts` o `patterns/index.ts` según la capa) y agrega:
 
 ```tsx
 export { MiComponente, type MiComponenteProps } from './MiComponente'
@@ -117,11 +117,11 @@ export { MiComponente, type MiComponenteProps } from './MiComponente'
 
 ### 6. Documenta la ficha
 
-Cada pieza exportada tiene su ficha en `src/data/items.json` (API con members, tokens, plataformas). `check:catalog` compara ficha ↔ barrel ↔ interfaz: una prop sin documentar o documentada de más rompe CI.
+Cada pieza exportada tiene su ficha en `packages/flow-react/src/data/items.json` (API con members, tokens, plataformas). `check:catalog` compara ficha ↔ barrel ↔ interfaz: una prop sin documentar o documentada de más rompe CI.
 
 ### 7. Crea el test
 
-`src/ui/components/__tests__/MiComponente.test.tsx`. Si la pieza tiene contrato canónico con criterios `automated`, el test **cita el id del criterio** (`mi-1`, `sel-7`) en su describe/it — así lo cuenta `check:conformance`. Los componentes con `useIntl` se envuelven en `<IntlProvider locale="es">`.
+`packages/flow-react/src/ui/components/__tests__/MiComponente.test.tsx`. Si la pieza tiene contrato canónico con criterios `automated`, el test **cita el id del criterio** (`mi-1`, `sel-7`) en su describe/it — así lo cuenta `check:conformance`. Los componentes con `useIntl` se envuelven en `<IntlProvider locale="es">`.
 
 ### 8. Verifica — las rejas, desnudas
 
@@ -186,8 +186,8 @@ ref (valores crudos)  →  sys (decisiones de UI + density)  →  comp (override
 
 | Capa | Vive en | Qué contiene | Quién la toca |
 |---|---|---|---|
-| **ref** | `src/tokens/ref/` | Escala cruda: `--ref-space-100: 4px`, `--ref-radius-100: 8px`, `--ref-type-size-14: 14px` | Solo el equipo de foundations |
-| **sys** | `src/tokens/spacing.css`, `shape.css`, `typography.css` | Aliases semánticos: `--space-1: var(--ref-space-100)`. Density overrides viven aquí | Foundations + quien agregue densidades |
+| **ref** | `packages/flow-react/src/tokens/ref/` | Escala cruda: `--ref-space-100: 4px`, `--ref-radius-100: 8px`, `--ref-type-size-14: 14px` | Solo el equipo de foundations |
+| **sys** | `packages/flow-react/src/tokens/spacing.css`, `shape.css`, `typography.css` | Aliases semánticos: `--space-1: var(--ref-space-100)`. Density overrides viven aquí | Foundations + quien agregue densidades |
 | **comp** | (futuro) En el `.module.css` del componente | Override puntual: `--button-radius: var(--radius-pill)` | El dueño del componente |
 
 ### Density
@@ -388,7 +388,7 @@ Catálogo: busca por nombre en [fonts.google.com/icons](https://fonts.google.com
 
 ### Charts
 
-Todos los charts pasan por `FlowChart` (wrapper de ECharts en `src/ui/primitives/FlowChart.tsx`).
+Todos los charts pasan por `FlowChart` (wrapper de ECharts en `packages/flow-react/src/ui/primitives/FlowChart.tsx`).
 Nunca uses ECharts directamente. Tipos reales del union: `line` `area` `bar` `stackedBar` `stacked100` `donut` `pie` `scatter` `heatmap` `radar` `waterfall` `pareto` `gauge` `funnel` `treemap` `boxplot`.
 
 - ECharts entra por **carga perezosa** (import() dinámico, una vez por documento); si la librería no llega, FlowChart degrada a mensaje, nunca a un hueco (fc-5). No conviertas eso en import estático.
@@ -437,11 +437,11 @@ Tres convenciones que viven en los shells — no las reimplementes ni las rompas
 
 ## Foundation: Growth (medición y experimentos)
 
-Vive en `src/growth/`. Es agnóstico de proveedor: Mixpanel/Amplitude/PostHog se conectan
+Vive en `packages/flow-react/src/growth/`. Es agnóstico de proveedor: Mixpanel/Amplitude/PostHog se conectan
 implementando `GrowthAdapter` — Flow no depende de ningún SDK de analytics.
 
 **Governance (dueño: research):**
-- Todo evento vive en `src/growth/events.json` antes de dispararse. Nombre `objeto_accion`
+- Todo evento vive en `packages/flow-react/src/growth/events.json` antes de dispararse. Nombre `objeto_accion`
   en snake_case, props snake_case, con `description`, `status` y `surfaces`.
 - Solo research cambia `status`: `proposed → approved`. `useTrack` avisa en consola (dev)
   si el evento no existe o no está aprobado. Los tests validan el schema del diccionario.
@@ -470,7 +470,7 @@ const variant = useExperiment('cta_color', 'primary')
 La verdad de cada pieza vive en dos documentos vigilados en triángulo:
 
 - **Contrato normativo** — `contracts/<id>.json` en la rama `canonical`: API prometida, criterios de conformance (`automated`/`visual`/`manual`), excepciones con motivo. Es quien manda.
-- **Ficha** — `src/data/items.json`: API documentada, tokens, when/notWhen, plataformas. Es lo que consume el sitio de docs y el export `@alohasoyrico-eng/flow-react/contracts`.
+- **Ficha** — `packages/flow-react/src/data/items.json`: API documentada, tokens, when/notWhen, plataformas. Es lo que consume el sitio de docs y el export `@alohasoyrico-eng/flow-react/contracts`.
 
 Las rejas cierran el triángulo: `check:catalog` (ficha ↔ interfaz), `check:api-drift` (canon ↔ ficha), `check:conformance` (criterios ↔ tests). Hoy: 0 drift, 355/355 criterios citados.
 

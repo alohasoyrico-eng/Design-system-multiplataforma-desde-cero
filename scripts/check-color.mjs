@@ -13,24 +13,24 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 // Excepciones declaradas. Una excepcion sin motivo escrito es un defecto sin registrar.
 const EXCEPCIONES = [
   {
-    archivo: 'src/ui/primitives/FlowChart.tsx',
+    archivo: 'packages/flow-react/src/ui/primitives/FlowChart.tsx',
     motivo: 'Lee los tokens del DOM en runtime para pasarlos a ECharts, que no entiende var(). ' +
       'Los literales son el ultimo recurso de cada lectura y las sombras del lienzo: si el token existe, gana.',
   },
   {
-    archivo: 'src/ui/patterns/PaymentCard.tsx',
+    archivo: 'packages/flow-react/src/ui/patterns/PaymentCard.tsx',
     motivo: 'Color de artefacto: una tarjeta fisica no cambia con el modo. Los valores viven en tokens --card-*.',
   },
   {
-    archivo: 'src/ui/components/PaymentCard.tsx',
+    archivo: 'packages/flow-react/src/ui/components/PaymentCard.tsx',
     motivo: 'Color de artefacto: una tarjeta fisica no cambia con el modo. Los valores viven en tokens --card-*.',
   },
   {
-    archivo: 'src/ui/components/PaymentCard.module.css',
+    archivo: 'packages/flow-react/src/ui/components/PaymentCard.module.css',
     motivo: 'La hoja del artefacto: brillo del chip y velos de la tarjeta fisica.',
   },
   {
-    archivo: 'src/ui/components/MapCanvas.tsx',
+    archivo: 'packages/flow-react/src/ui/components/MapCanvas.tsx',
     motivo: 'Canvas: el contexto 2D no entiende var(); el componente resuelve tokens del DOM y estos literales ' +
       'son fallback de esa lectura, mas el trazo de atribucion.',
   },
@@ -54,7 +54,7 @@ function fuentes(dir, exts) {
 }
 
 const hallazgos = []
-for (const abs of [...fuentes('src/ui', ['.tsx', '.module.css'])]) {
+for (const abs of [...fuentes('packages/flow-react/src/ui', ['.tsx', '.module.css'])]) {
   const rel = relative(ROOT, abs).split('\\').join('/')
   if (EXCEPCIONES.some((e) => e.archivo === rel)) continue
   const src = readFileSync(abs, 'utf8')

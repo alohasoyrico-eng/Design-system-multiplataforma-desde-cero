@@ -254,9 +254,9 @@ Los tokens siguen una cadena `ref → sys → comp`:
 ref (valores crudos)  →  sys (decisiones de UI)  →  comp (overrides por componente)
 ```
 
-**Ref** (`src/tokens/ref/`): escala cruda platform-agnostic — `colors` · `elevation` · `iconography` · `motion` · `radius` · `sizing` · `spacing` · `typography`
+**Ref** (`packages/flow-react/src/tokens/ref/`): escala cruda platform-agnostic — `colors` · `elevation` · `iconography` · `motion` · `radius` · `sizing` · `spacing` · `typography`
 
-**Sys** (`src/tokens/`): aliases semánticos + density — `a11y` · `colors` · `dark` · `dataviz` · `elevation` · `fonts` · `iconography` · `motion` · `products` · `shape` · `spacing` · `typography`
+**Sys** (`packages/flow-react/src/tokens/`): aliases semánticos + density — `a11y` · `colors` · `dark` · `dataviz` · `elevation` · `fonts` · `iconography` · `motion` · `products` · `shape` · `spacing` · `typography`
 
 ### Density
 
@@ -293,7 +293,7 @@ O declarativo — cualquier pieza se vuelve medible sin tocarla:
 </div>
 ```
 
-**Governance (research):** todo evento vive en `src/growth/events.json` antes de dispararse (`proposed` → `approved`, CODEOWNERS exige su review). Dispara un evento no aprobado y la consola te lo dice en dev. Los experimentos usan `useExperiment(id, fallback)`. La regla de arquitectura: **la cascada nunca trackea sola** — primitives, components y patterns no saben que growth existe (hay compliance test); el tracking se cablea en templates y productos. Diccionario navegable en el sitio de docs (`/growth`).
+**Governance (research):** todo evento vive en `packages/flow-react/src/growth/events.json` antes de dispararse (`proposed` → `approved`, CODEOWNERS exige su review). Dispara un evento no aprobado y la consola te lo dice en dev. Los experimentos usan `useExperiment(id, fallback)`. La regla de arquitectura: **la cascada nunca trackea sola** — primitives, components y patterns no saben que growth existe (hay compliance test); el tracking se cablea en templates y productos. Diccionario navegable en el sitio de docs (`/growth`).
 
 ## Iconos
 
@@ -361,19 +361,19 @@ Un `Card` (component) puede usar `Button` (primitive). Pero un `Button` no puede
 
 ### Para crear una pieza nueva
 
-1. Decide en qué nivel va: ¿Control atómico? → `src/ui/primitives/`. ¿Combina controles? → `src/ui/components/`. ¿Tarea de negocio? → `src/ui/patterns/`.
+1. Decide en qué nivel va: ¿Control atómico? → `packages/flow-react/src/ui/primitives/`. ¿Combina controles? → `packages/flow-react/src/ui/components/`. ¿Tarea de negocio? → `packages/flow-react/src/ui/patterns/`.
 
 2. Crea el componente y sus estilos:
 ```
-src/ui/components/MiPieza.tsx
-src/ui/components/MiPieza.module.css
+packages/flow-react/src/ui/components/MiPieza.tsx
+packages/flow-react/src/ui/components/MiPieza.module.css
 ```
 
 3. Exporta las props con `export interface`.
 
-4. Agrega al barrel: `src/ui/components/index.ts`
+4. Agrega al barrel: `packages/flow-react/src/ui/components/index.ts`
 
-5. Crea el test: `src/ui/components/__tests__/MiPieza.test.tsx`
+5. Crea el test: `packages/flow-react/src/ui/components/__tests__/MiPieza.test.tsx`
 
 6. Verifica:
 ```bash
@@ -393,6 +393,16 @@ cd Design-system-multiplataforma-desde-cero
 npm install
 npm run dev
 ```
+
+El repo es un **workspace de npm** con la frontera física entre producto y banco:
+
+```
+packages/flow-react/   ← el paquete publicable (src/ui, tokens, contratos, docs/USUARIO.md)
+apps/banco/            ← el banco de plantillas (pages, router) — privado, jamás se publica
+scripts/               ← las rejas, transversales a ambos
+```
+
+El banco consume el paquete **por su nombre** (`@alohasoyrico-eng/flow-react`, symlink del workspace): es el primer usuario real del barrel — si a un template le falta un export, el typecheck del banco lo grita antes que cualquier adoptante.
 
 Abre `localhost:5173` — el **banco de plantillas**: las implementaciones de la capa templates del canon (dashboards, wallet móvil, internal tools, Component Detail) donde se ejercitan las piezas y corren los tests de conformance de página. Nada de esto llega al paquete: el tarball lleva solo `dist-lib`, fuentes, la ficha de contratos y la guía del usuario — verifícalo con `npm pack --dry-run`. El sitio de documentación vive en [su propio repo](https://github.com/alohasoyrico-eng/Docs-para-design-system-multiplataforma-desde-cero) y **lo gobierna el equipo de diseño exclusivamente**: consume este paquete y recibe los contratos vía `npm run sync:docs`.
 
@@ -513,7 +523,7 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 Si eres un agente trabajando **dentro** de este repo:
 
 1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas de arquitectura, la receta para crear componentes, y la referencia completa de tokens.
-2. La fuente de verdad de cada pieza es doble: su **ficha** en `src/data/items.json` (189 entries: API, tokens, when/notWhen, a11y, plataformas) y su **contrato normativo** en la rama `canonical` (`contracts/*.json`, con criterios de conformance). El orden es contrato-primero: una prop nueva nace en el contrato canónico, luego en el código, luego en la ficha — `check:catalog` y `check:conformance` cazan cada lado que falte. Tras editar el canon: commit + push en `canonical` y `git fetch origin canonical` aquí.
+2. La fuente de verdad de cada pieza es doble: su **ficha** en `packages/flow-react/src/data/items.json` (189 entries: API, tokens, when/notWhen, a11y, plataformas) y su **contrato normativo** en la rama `canonical` (`contracts/*.json`, con criterios de conformance). El orden es contrato-primero: una prop nueva nace en el contrato canónico, luego en el código, luego en la ficha — `check:catalog` y `check:conformance` cazan cada lado que falte. Tras editar el canon: commit + push en `canonical` y `git fetch origin canonical` aquí.
 3. Antes de crear un archivo, decide su capa (primitive / component / pattern).
 4. Busca si ya existe una pieza que haga lo que necesitas — hay 126.
 5. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).

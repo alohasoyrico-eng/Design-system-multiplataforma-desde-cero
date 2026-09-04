@@ -34,16 +34,16 @@ const hallazgos = []
 const rel = (p) => relative(ROOT, p).split('\\').join('/')
 
 // ── a11y-1: la regla global existe y la carcasa pinta el anillo ──
-const a11yCss = readFileSync(join(ROOT, 'src/tokens/a11y.css'), 'utf8')
+const a11yCss = readFileSync(join(ROOT, 'packages/flow-react/src/tokens/a11y.css'), 'utf8')
 if (!/:focus-visible[\s\S]*?box-shadow:\s*var\(--focus-ring\)/.test(a11yCss)) {
-  hallazgos.push({ regla: 'a11y-1', archivo: 'src/tokens/a11y.css', detalle: 'falta la regla global de foco con --focus-ring' })
+  hallazgos.push({ regla: 'a11y-1', archivo: 'packages/flow-react/src/tokens/a11y.css', detalle: 'falta la regla global de foco con --focus-ring' })
 }
-const shellCss = readFileSync(join(ROOT, 'src/ui/primitives/ControlShell.module.css'), 'utf8')
+const shellCss = readFileSync(join(ROOT, 'packages/flow-react/src/ui/primitives/ControlShell.module.css'), 'utf8')
 if (!/:focus-within[\s\S]*?box-shadow:\s*var\(--focus-ring\)/.test(shellCss)) {
-  hallazgos.push({ regla: 'a11y-1', archivo: 'src/ui/primitives/ControlShell.module.css', detalle: 'a11y.css suprime el anillo del campo interior contando con que la carcasa lo pinte' })
+  hallazgos.push({ regla: 'a11y-1', archivo: 'packages/flow-react/src/ui/primitives/ControlShell.module.css', detalle: 'a11y.css suprime el anillo del campo interior contando con que la carcasa lo pinte' })
 }
 // Ningun bloque de foco apaga el indicador sin sustituirlo en el mismo bloque.
-for (const abs of fuentes('src/ui', ['.module.css'])) {
+for (const abs of fuentes('packages/flow-react/src/ui', ['.module.css'])) {
   const css = readFileSync(abs, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
   for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     if (!/:focus/.test(m[1])) continue
@@ -55,7 +55,7 @@ for (const abs of fuentes('src/ui', ['.module.css'])) {
 }
 
 // ── a11y-6: ningun tabindex positivo ──
-for (const abs of fuentes('src/ui', ['.tsx'])) {
+for (const abs of fuentes('packages/flow-react/src/ui', ['.tsx'])) {
   readFileSync(abs, 'utf8').split('\n').forEach((linea, i) => {
     if (/tabIndex=\{?\s*[1-9]/.test(linea) || /tabindex="[1-9]/.test(linea)) {
       hallazgos.push({ regla: 'a11y-6', archivo: rel(abs), linea: i + 1, detalle: 'tabindex positivo rompe el orden visual' })
@@ -66,7 +66,7 @@ for (const abs of fuentes('src/ui', ['.tsx'])) {
 // ── spc-3: hermanos separados con gap, no con margenes por elemento ──
 // Se caza el antipatron concreto: un selector de hermanos (:not(:first/last-child)
 // o combinador +/~) cuyo bloque declara margin. Un borde entre filas es legitimo.
-for (const abs of fuentes('src/ui', ['.module.css'])) {
+for (const abs of fuentes('packages/flow-react/src/ui', ['.module.css'])) {
   const css = readFileSync(abs, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
   for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const esHermanos = /:not\(:(first|last)-child\)|[+~]\s*[.\w[]/.test(m[1])
@@ -78,7 +78,7 @@ for (const abs of fuentes('src/ui', ['.module.css'])) {
 
 // ── shp-2: ningun archivo fuera de tokens/ escribe un border-radius literal ──
 // (0 y 50% no son pasos de la escala: cuadrado y circulo son geometria, no forma.)
-for (const abs of fuentes('src/ui', ['.module.css'])) {
+for (const abs of fuentes('packages/flow-react/src/ui', ['.module.css'])) {
   const css = readFileSync(abs, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
   css.split('\n').forEach((linea, i) => {
     const m = linea.match(/border-radius:\s*([^;]+);/)
@@ -92,7 +92,7 @@ for (const abs of fuentes('src/ui', ['.module.css'])) {
 }
 
 // ── mot-5: @keyframes y curvas literales solo en tokens/ ──
-for (const abs of [...fuentes('src/ui', ['.module.css', '.tsx'])]) {
+for (const abs of [...fuentes('packages/flow-react/src/ui', ['.module.css', '.tsx'])]) {
   const src = readFileSync(abs, 'utf8')
   src.split('\n').forEach((linea, i) => {
     if (/@keyframes/.test(linea)) hallazgos.push({ regla: 'mot-5', archivo: rel(abs), linea: i + 1, detalle: '@keyframes fuera de tokens/' })
@@ -104,7 +104,7 @@ for (const abs of [...fuentes('src/ui', ['.module.css', '.tsx'])]) {
 // Excepcion: loops indicadores infinitos, donde el movimiento ES el contenido
 // (como el spinner). No tienen estado final; reduced-motion los apaga aparte.
 const LOOPS_INDICADORES = ['flowDotPulse', 'flowBlink', 'flowShimmer', 'flowSpin', 'flowPulse']
-for (const abs of fuentes('src/tokens', ['.css'])) {
+for (const abs of fuentes('packages/flow-react/src/tokens', ['.css'])) {
   const css = readFileSync(abs, 'utf8')
   for (const m of css.matchAll(/@keyframes\s+([\w-]+)\s*\{([\s\S]*?)\}\s*\}/g)) {
     if (LOOPS_INDICADORES.includes(m[1])) continue

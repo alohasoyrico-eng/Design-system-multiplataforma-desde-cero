@@ -51,7 +51,7 @@ function leerModo(files, modo) {
   return modo === 'dark' ? { ...base, ...darkOv } : base
 }
 
-const srcDir = join(root, 'src/tokens')
+const srcDir = join(root, 'packages/flow-react/src/tokens')
 const manoFiles = [
   ...readdirSync(join(srcDir, 'ref')).filter((f) => f.endsWith('.css')).map((f) => join(srcDir, 'ref', f)),
   ...readdirSync(srcDir).filter((f) => f.endsWith('.css')).map((f) => join(srcDir, f)),

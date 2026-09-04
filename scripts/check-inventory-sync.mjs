@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * check-inventory-sync — el inventario vive en dos registros del MISMO repo:
- * el catálogo de la implementación (src/data/items.json, rama main) y la
+ * el catálogo de la implementación (packages/flow-react/src/data/items.json, rama main) y la
  * referencia canónica (architecture.json, rama canonical). Ya derivaron dos
  * veces: 37 contratos sin registrar en un sentido, 41 fichas sin contrato en
  * el otro, y 29 capas discordantes. Este chequeo bloquea la tercera.
@@ -24,7 +24,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const catalogo = JSON.parse(readFileSync(resolve(root, 'src/data/items.json'), 'utf8'))
+const catalogo = JSON.parse(readFileSync(resolve(root, 'packages/flow-react/src/data/items.json'), 'utf8'))
 
 let arqRaw = null
 for (const ref of ['origin/canonical', 'canonical']) {

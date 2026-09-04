@@ -66,7 +66,8 @@ const rec = (d) => {
     else if (/\.test\.tsx?$/.test(n)) corpus += readFileSync(p, 'utf8') + '\n'
   }
 }
-rec(join(ROOT, 'src'))
+rec(join(ROOT, 'packages/flow-react/src'))
+rec(join(ROOT, 'apps/banco/src'))
 for (const n of readdirSync(join(ROOT, 'scripts'))) {
   if (/^check-.*\.mjs$/.test(n) && n !== 'check-conformance-coverage.mjs') {
     corpus += readFileSync(join(ROOT, 'scripts', n), 'utf8') + '\n'

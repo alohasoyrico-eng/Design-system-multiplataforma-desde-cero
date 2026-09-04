@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * check-catalog — el catálogo (src/data/items.json) es la interfaz de
+ * check-catalog — el catálogo (packages/flow-react/src/data/items.json) es la interfaz de
  * descubrimiento del sistema, y deriva del código porque nada lo vigilaba:
  * Wizard exportado sin ficha, la ficha de Table prometiendo props que la
  * interfaz no tiene, 42 props reales sin documentar, fichas recomendando
@@ -21,7 +21,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const items = JSON.parse(readFileSync(resolve(root, 'src/data/items.json'), 'utf8'))
+const items = JSON.parse(readFileSync(resolve(root, 'packages/flow-react/src/data/items.json'), 'utf8'))
 const asJson = process.argv.includes('--json')
 const hallazgos = []
 const F = (regla, donde, msg) => hallazgos.push({ regla, donde, msg })
@@ -45,12 +45,12 @@ const srcsDe = (v) => {
   if (!s) return []
   return (Array.isArray(s) ? s : [s]).filter((x) => /\.(tsx|ts)$/.test(x))
 }
-const rutaDe = (s) => ['src/ui/' + s, 'src/' + s].map((c) => resolve(root, c)).find((c) => existsSync(c))
+const rutaDe = (s) => ['packages/flow-react/src/ui/' + s, 'packages/flow-react/src/' + s, 'apps/banco/src/' + s].map((c) => resolve(root, c)).find((c) => existsSync(c))
 
 // ---------- C1: barrel ↔ ficha ----------
 const conSrc = new Set()
 for (const v of Object.values(items)) for (const s of srcsDe(v)) conSrc.add(s.split('/').pop().replace(/\.(tsx|ts)$/, ''))
-for (const barrel of ['src/ui/primitives/index.ts', 'src/ui/components/index.ts', 'src/ui/patterns/index.ts']) {
+for (const barrel of ['packages/flow-react/src/ui/primitives/index.ts', 'packages/flow-react/src/ui/components/index.ts', 'packages/flow-react/src/ui/patterns/index.ts']) {
   const code = readFileSync(resolve(root, barrel), 'utf8')
   for (const m of code.matchAll(/export \{ (\w+)/g)) {
     const nombre = m[1]

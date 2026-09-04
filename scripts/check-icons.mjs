@@ -19,11 +19,11 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 // Excepciones declaradas. Una excepcion sin motivo escrito es un defecto sin registrar.
 const SVG_PERMITIDOS = [
-  { archivo: 'src/ui/primitives/Sparkline.tsx', motivo: 'Dato, no icono: la linea es la visualizacion misma (excepcion del propio canon).' },
-  { archivo: 'src/ui/primitives/CircularProgress.tsx', motivo: 'El anillo es la barra de progreso dibujada, no un glifo.' },
-  { archivo: 'src/ui/primitives/FlowLogo.tsx', motivo: 'Marca, no icono: el logo no sale de una fuente de iconos.' },
-  { archivo: 'src/ui/components/SmallMultiples.tsx', motivo: 'Visualizacion de dato en miniatura, misma especie que Sparkline.' },
-  { archivo: 'src/ui/components/GanttChart.tsx', motivo: 'Conectores de dependencia entre barras: dato, no icono.' },
+  { archivo: 'packages/flow-react/src/ui/primitives/Sparkline.tsx', motivo: 'Dato, no icono: la linea es la visualizacion misma (excepcion del propio canon).' },
+  { archivo: 'packages/flow-react/src/ui/primitives/CircularProgress.tsx', motivo: 'El anillo es la barra de progreso dibujada, no un glifo.' },
+  { archivo: 'packages/flow-react/src/ui/primitives/FlowLogo.tsx', motivo: 'Marca, no icono: el logo no sale de una fuente de iconos.' },
+  { archivo: 'packages/flow-react/src/ui/components/SmallMultiples.tsx', motivo: 'Visualizacion de dato en miniatura, misma especie que Sparkline.' },
+  { archivo: 'packages/flow-react/src/ui/components/GanttChart.tsx', motivo: 'Conectores de dependencia entre barras: dato, no icono.' },
 ]
 
 // ico-5: el canon fija los pasos 16, 20 y 24 y el repo se recorto a ellos
@@ -52,7 +52,7 @@ function fuentes(dir, exts) {
 const hallazgos = []
 const rel = (p) => relative(ROOT, p).split('\\').join('/')
 
-for (const abs of fuentes('src/ui', ['.tsx'])) {
+for (const abs of fuentes('packages/flow-react/src/ui', ['.tsx'])) {
   const r = rel(abs)
   const src = readFileSync(abs, 'utf8')
 
@@ -81,8 +81,8 @@ for (const abs of fuentes('src/ui', ['.tsx'])) {
 
 // ico-5: la escala --icon-* del repo resuelve a los pasos del canon (o al
 // tramo display declarado). Un alias que no resuelve tambien es hallazgo.
-const icono = readFileSync(join(ROOT, 'src/tokens/iconography.css'), 'utf8')
-const refs = readFileSync(join(ROOT, 'src/tokens/ref/iconography.css'), 'utf8')
+const icono = readFileSync(join(ROOT, 'packages/flow-react/src/tokens/iconography.css'), 'utf8')
+const refs = readFileSync(join(ROOT, 'packages/flow-react/src/tokens/ref/iconography.css'), 'utf8')
 const resolver = (v) => {
   const m = refs.match(new RegExp(`${v}:\\s*(\\d+)px`))
   return m ? parseInt(m[1], 10) : null
@@ -91,13 +91,13 @@ const pasosValidos = new Set([...PASOS_CANON, ...PASOS_DISPLAY])
 for (const m of icono.matchAll(/--icon-[\w-]+:\s*var\((--ref-icon-\d+)\)/g)) {
   const px = resolver(m[1])
   if (px == null) {
-    hallazgos.push({ regla: 'ico-5', archivo: 'src/tokens/iconography.css', detalle: `${m[1]} no existe en la escala ref` })
+    hallazgos.push({ regla: 'ico-5', archivo: 'packages/flow-react/src/tokens/iconography.css', detalle: `${m[1]} no existe en la escala ref` })
   } else if (!pasosValidos.has(px)) {
-    hallazgos.push({ regla: 'ico-5', archivo: 'src/tokens/iconography.css', detalle: `paso ${px}px fuera de la escala` })
+    hallazgos.push({ regla: 'ico-5', archivo: 'packages/flow-react/src/tokens/iconography.css', detalle: `paso ${px}px fuera de la escala` })
   }
 }
 for (const m of icono.matchAll(/--icon-[\w-]+:\s*(\d+)px/g)) {
-  hallazgos.push({ regla: 'ico-5', archivo: 'src/tokens/iconography.css', detalle: `literal ${m[1]}px: la escala se define en ref` })
+  hallazgos.push({ regla: 'ico-5', archivo: 'packages/flow-react/src/tokens/iconography.css', detalle: `literal ${m[1]}px: la escala se define en ref` })
 }
 
 if (process.argv.includes('--json')) {

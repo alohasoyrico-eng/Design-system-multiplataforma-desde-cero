@@ -25,11 +25,11 @@ jobs:
       - run: npm run test
       - name: Verify tag matches package version
         run: |
-          PKG_V=$(node -p "require('./package.json').version")
+          PKG_V=$(node -p "require('./packages/flow-react/package.json').version")
           TAG_V=${GITHUB_REF_NAME#v}
           if [ "$PKG_V" != "$TAG_V" ]; then
             echo "Tag $GITHUB_REF_NAME no coincide con package.json ($PKG_V)"; exit 1
           fi
-      - run: npm publish
+      - run: npm publish -w packages/flow-react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

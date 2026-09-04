@@ -9,8 +9,8 @@ import * as ts from 'typescript'
 
 const FLOW_ROOT = process.env.FLOW_ROOT || path.resolve(import.meta.dirname, '..', '..')
 
-const UI_DIR = path.join(FLOW_ROOT, 'src', 'ui')
-const TOKENS_DIR = path.join(FLOW_ROOT, 'src', 'tokens')
+const UI_DIR = path.join(FLOW_ROOT, 'packages', 'flow-react', 'src', 'ui')
+const TOKENS_DIR = path.join(FLOW_ROOT, 'packages', 'flow-react', 'src', 'tokens')
 const CLAUDE_MD = path.join(FLOW_ROOT, 'CLAUDE.md')
 
 const LAYERS = ['primitives', 'components', 'patterns'] as const
@@ -293,7 +293,7 @@ server.tool(
   'Get the full documented contract (ficha) for a Flow DS piece: API members with descriptions, tokens it consumes, when/notWhen guidance, platform maturity, variants. Richer than get_component_api (which parses TypeScript only). Use the kebab-case id (e.g. "icon-button", "bottom-sheet") or the component name.',
   { id: z.string().describe('Piece id in kebab-case ("icon-button") or component name ("IconButton")') },
   async ({ id }) => {
-    const itemsPath = path.join(FLOW_ROOT, 'src', 'data', 'items.json')
+    const itemsPath = path.join(FLOW_ROOT, 'packages', 'flow-react', 'src', 'data', 'items.json')
     if (!fileExists(itemsPath)) return fail('items.json not found.')
     const items = JSON.parse(readFile(itemsPath)) as Record<string, Record<string, unknown>>
     const kebab = id.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
@@ -312,7 +312,7 @@ server.tool(
   'Get the Flow DS user guide: the rules for a product repo that consumes Flow (tokens over hex, search before building, do not touch internals, overlays/forms/charts conventions, anti-patterns, deprecations). Read this before writing UI code in a consumer repo.',
   {},
   async () => {
-    const guidePath = path.join(FLOW_ROOT, 'docs', 'USUARIO.md')
+    const guidePath = path.join(FLOW_ROOT, 'packages', 'flow-react', 'docs', 'USUARIO.md')
     if (!fileExists(guidePath)) return fail('docs/USUARIO.md not found.')
     return ok(readFile(guidePath))
   }

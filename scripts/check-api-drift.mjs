@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Flow · check-api-drift — el contrato canonico y la ficha dicen la misma API.
 //
-// La ficha (src/data/items.json) ya esta verificada contra las interfaces por
+// La ficha (packages/flow-react/src/data/items.json) ya esta verificada contra las interfaces por
 // check-catalog (C3/C4). Este chequeo cierra el triangulo: cada miembro del
 // api del contrato canonico existe en la ficha, y viceversa. Una prop que nace
 // en el codigo y no llega al canon es una promesa que la documentacion no
@@ -45,7 +45,7 @@ if (!ref) {
 }
 
 const arq = JSON.parse(readFileSync(join(tmp, 'architecture.json'), 'utf8'))
-const fichas = JSON.parse(readFileSync(join(ROOT, 'src/data/items.json'), 'utf8'))
+const fichas = JSON.parse(readFileSync(join(ROOT, 'packages/flow-react/src/data/items.json'), 'utf8'))
 
 const hallazgos = []
 let comparados = 0

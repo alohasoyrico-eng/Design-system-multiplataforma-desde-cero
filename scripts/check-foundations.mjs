@@ -8,7 +8,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const TOK = join(ROOT, 'src', 'tokens');
+const TOK = join(ROOT, 'packages', 'flow-react', 'src', 'tokens');
 const read = f => readFileSync(join(TOK, f), 'utf8');
 const readRef = () => readdirSync(join(TOK, 'ref')).filter(f => f.endsWith('.css'))
   .map(f => readFileSync(join(TOK, 'ref', f), 'utf8')).join('\n');
