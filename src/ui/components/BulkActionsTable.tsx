@@ -59,7 +59,8 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
             animation: 'flowScaleIn var(--dur-fast) var(--ease-out)',
           }}
         >
-          <Checkbox checked={allSelected} onChange={toggleAll} aria-label="Seleccionar todo" />
+          {/* blk-2: el estado parcial es indeterminate real en el input nativo. */}
+          <Checkbox checked={allSelected} indeterminate={n > 0 && !allSelected} onChange={toggleAll} aria-label="Seleccionar todo" />
           <span aria-live="polite" className={css.selectionCount}>
             {n} seleccionado{n > 1 ? 's' : ''}
           </span>

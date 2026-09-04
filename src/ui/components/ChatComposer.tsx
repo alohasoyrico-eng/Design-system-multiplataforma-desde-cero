@@ -46,7 +46,8 @@ export function ChatComposer({
 
   return (
     <div className={css.root} style={style}>
-      {suggestions.length > 0 && (
+      {/* ccm-3: las sugerencias desaparecen al escribir. */}
+      {suggestions.length > 0 && !value && (
         <div className={css.suggestions}>
           {suggestions.map((s, i) => (
             <button

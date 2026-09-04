@@ -6,9 +6,18 @@ const PALETTE = [1, 2, 3, 4, 5, 6].map((i) => `var(--illustration-${i})`)
 
 function DefaultIllustration({ icon, index }: { icon?: string; index: number }) {
   const color = PALETTE[index % PALETTE.length]
+  // onb-5: decorativa y oculta al lector; los velos se derivan del token con
+  // color-mix — pegar un alfa hex a un var() no es un color.
   return (
-    <div className={css.illustration} style={{ background: `${color}1A` }}>
-      <div className={css.illustrationInner} style={{ background: color, boxShadow: `0 12px 28px ${color}40` }}>
+    <div
+      className={css.illustration}
+      aria-hidden="true"
+      style={{ background: `color-mix(in srgb, ${color} 10%, transparent)` }}
+    >
+      <div
+        className={css.illustrationInner}
+        style={{ background: color, boxShadow: `0 12px 28px color-mix(in srgb, ${color} 25%, transparent)` }}
+      >
         <span className={`flow-symbol flow-symbol--fill ${css.heroIcon}`} aria-hidden="true">
           {icon || 'auto_awesome'}
         </span>
@@ -60,7 +69,8 @@ export function OnboardingCarousel({
         touch.current = null
       }}
     >
-      {onSkip && !last && (
+      {/* onb-3: omitir esta disponible en todas las diapositivas. */}
+      {onSkip && (
         <div className={css.skip}>
           <button type="button" className={css.skipBtn} onClick={onSkip}>
             {resolvedSkipLabel}
@@ -78,6 +88,8 @@ export function OnboardingCarousel({
       </div>
       <div className={css.bottom}>
         <div className={css.dots}>
+          {/* onb-2: la posicion se dice en texto, no con circulos mudos. */}
+          <span className={css.srOnly}>Paso {index + 1} de {slides.length}</span>
           {slides.map((_, i) => (
             <button
               key={i}

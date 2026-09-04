@@ -38,9 +38,9 @@ describe('OnboardingCarousel', () => {
     expect(screen.getByText('Omitir')).toBeInTheDocument()
   })
 
-  it('hides skip button on last slide', () => {
+  it('omitir sigue disponible en la ultima diapositiva (onb-3)', () => {
     renderWithIntl(<OnboardingCarousel slides={slides} index={2} onSkip={vi.fn()} />)
-    expect(screen.queryByText('Omitir')).not.toBeInTheDocument()
+    expect(screen.getByText('Omitir')).toBeInTheDocument()
   })
 
   it('calls onSkip when skip button clicked', async () => {

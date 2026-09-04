@@ -1,6 +1,6 @@
 .root {
   position: relative;
-  aspect-ratio: 1.82;
+  aspect-ratio: 1.586; /* pc-1: proporcion ISO de tarjeta fisica */
   width: 100%;
   border-radius: var(--radius-lg);
   padding: var(--space-5) var(--space-6);

@@ -26,11 +26,9 @@ describe('ChatThread', () => {
     expect(screen.queryByText('Sin mensajes')).not.toBeInTheDocument()
   })
 
-  it('renders container with no message children when no messages and no empty state', () => {
-    const { container } = renderWithIntl(<ChatThread messages={[]} />)
-    const root = container.firstChild as HTMLElement
-    expect(root).toBeInTheDocument()
-    expect(root.children).toHaveLength(0)
+  it('muestra su estado vacio por defecto sin emptyState (cth-3)', () => {
+    renderWithIntl(<ChatThread messages={[]} />)
+    expect(screen.getByText('Sin mensajes')).toBeInTheDocument()
   })
 
   it('sets aria-live on container', () => {

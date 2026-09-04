@@ -55,3 +55,8 @@
   color: var(--text-muted);
   font: var(--type-data);
 }
+
+.resultCount {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}

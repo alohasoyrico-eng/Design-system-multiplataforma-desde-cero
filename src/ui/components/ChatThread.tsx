@@ -1,5 +1,6 @@
 import { useRef, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { ChatMessage } from '../primitives/ChatMessage'
+import { EmptyState } from '../primitives/EmptyState'
 import css from './ChatThread.module.css'
 
 interface ToolChip {
@@ -45,7 +46,10 @@ export function ChatThread({ messages = [], emptyState, style }: ChatThreadProps
     }
   }, [messages.length, messages[messages.length - 1]?.text])
 
-  if (messages.length === 0 && emptyState) return <>{emptyState}</>
+  // cth-3: con la lista vacia muestra su estado vacio, no un hueco.
+  if (messages.length === 0) {
+    return <>{emptyState ?? <EmptyState icon="forum" title="Sin mensajes" description="Escribe abajo para empezar." />}</>
+  }
 
   return (
     <div ref={ref} className={css.root} style={style} aria-live="polite" aria-relevant="additions">

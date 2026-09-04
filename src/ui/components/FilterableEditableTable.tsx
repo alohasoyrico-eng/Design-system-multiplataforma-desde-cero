@@ -1,4 +1,4 @@
-import { useState, useMemo, type CSSProperties } from 'react'
+import { useState, useMemo, useEffect, useRef, type CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
 import { Input } from '../primitives/Input'
 import { DataGrid, type GridColumn } from '../primitives/DataGrid'
@@ -40,7 +40,18 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
 
   const dirty = Object.values(filters).some(v => v)
 
+  // fie-3: al salir de edicion (commit o Escape) el foco vuelve a la celda.
+  const rootRef = useRef<HTMLDivElement>(null)
+  const lastEdited = useRef<{ row: string; col: string } | null>(null)
+  useEffect(() => {
+    if (editing || !lastEdited.current) return
+    const { row, col } = lastEdited.current
+    lastEdited.current = null
+    rootRef.current?.querySelector<HTMLElement>(`[data-cell="${row}|${col}"]`)?.focus()
+  }, [editing])
+
   const startEdit = (rk: string, ck: string, current: unknown) => {
+    lastEdited.current = { row: rk, col: ck }
     setEditing({ row: rk, col: ck })
     setEditValue(String(current ?? ''))
   }
@@ -78,6 +89,7 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
           <span
             role="button"
             tabIndex={0}
+            data-cell={`${rk}|${col.key}`}
             className={css.editableCell}
             onClick={() => startEdit(rk, col.key, row[col.key])}
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); startEdit(rk, col.key, row[col.key]) } }}
@@ -91,7 +103,7 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
   })
 
   return (
-    <div style={style}>
+    <div ref={rootRef} style={style}>
       <div style={{
         background: 'var(--surface-card)', border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', padding: 'var(--space-3) var(--space-4)',
@@ -111,6 +123,12 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
             style={{ minWidth: 140 }}
           />
         ))}
+        {/* fie-2: el resultado del filtrado se anuncia con las filas restantes. */}
+        {dirty && (
+          <span aria-live="polite" className={css.resultCount}>
+            {filtered.length} {filtered.length === 1 ? 'fila' : 'filas'}
+          </span>
+        )}
         {dirty && (
           <button
             type="button"
