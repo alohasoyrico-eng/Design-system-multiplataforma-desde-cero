@@ -40,6 +40,13 @@
     ],
     "members": [
       {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md' | 'lg'",
+        "default": "'md'",
+        "note": "La altura y el cuerpo los pone ControlShell; sm es el compacto de tablas y filtros (demanda medida de eOne: size=sm ×3) sin bajar el target de 44px."
+      },
+      {
         "name": "options",
         "kind": "prop",
         "type": "Array<string | SelectOption>",
