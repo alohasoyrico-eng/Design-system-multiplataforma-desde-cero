@@ -32,6 +32,10 @@ for (const r of ['origin/canonical', 'canonical']) {
     break
   } catch {}
 }
+// El archive puede "salir bien" sin traer nada (refs raros, clones parciales):
+// la prueba de vida es el archivo, no el exit code.
+import { existsSync as __ex } from 'node:fs'
+if (ref && !__ex(join(tmp, 'architecture.json'))) ref = null
 if (!ref) {
   console.log('conformance: la rama canonical no esta disponible — medidor omitido (git fetch origin canonical).')
   process.exit(0)
