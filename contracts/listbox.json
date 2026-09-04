@@ -59,6 +59,17 @@
         "kind": "prop",
         "type": "string",
         "default": "Sin resultados"
+      },
+      {
+        "name": "active",
+        "kind": "prop",
+        "type": "number",
+        "note": "Modo combobox: el dueño conduce el resaltado desde su trigger y este indice manda."
+      },
+      {
+        "name": "onActiveChange",
+        "kind": "event",
+        "type": "(index: number) => void"
       }
     ]
   },
