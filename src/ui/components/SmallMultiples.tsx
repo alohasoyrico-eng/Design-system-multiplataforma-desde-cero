@@ -4,6 +4,8 @@ import css from './SmallMultiples.module.css'
 export interface SmallMultiplesItem {
   id: string
   label: string
+  /** smm-1: todas las celdas comparten la misma escala Y — comparar formas
+      con escalas distintas es una trampa visual. */
   values: number[]
 }
 
@@ -37,19 +39,24 @@ export function SmallMultiples({
     )
   }
 
+  // smm-1: escala Y compartida entre todas las celdas.
+  // smm-2: una entidad sin valores o con una sola muestra no rompe la escala.
   const all = items.flatMap((it) => it.values)
-  const min = Math.min(...all)
-  const max = Math.max(...all)
+  const min = all.length ? Math.min(...all) : 0
+  const max = all.length ? Math.max(...all) : 1
   const span = max - min || 1
 
   const sparkline = (values: number[], color: string) => {
     const w = 140
-    const px = (i: number) => 3 + (i / (values.length - 1)) * (w - 6)
     const py = (v: number) => height - 4 - ((v - min) / span) * (height - 8)
-    const pts = values.map((v, i) => `${px(i)},${py(v)}`).join(' ')
+    const pts = values.length === 1
+      ? `3,${py(values[0])} ${w - 3},${py(values[0])}`
+      : values.map((v, i) => `${3 + (i / (values.length - 1)) * (w - 6)},${py(v)}`).join(' ')
     return (
       <svg width="100%" height={height} viewBox={`0 0 ${w} ${height}`} aria-hidden="true" style={{ display: 'block' }}>
-        <polyline points={pts} fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+        {values.length > 0 && (
+          <polyline points={pts} fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+        )}
       </svg>
     )
   }

@@ -36,26 +36,41 @@ export function GanttChart({ tasks, style }: GanttChartProps) {
   return (
     <div className={css.root} style={style}>
       <div className={css.rows}>
-        {tasks.map((task) => (
-          <div key={task.id} className={css.row}>
-            <div className={css.taskName}>{task.name}</div>
-            <div className={css.track}>
-              <div
-                className={css.bar}
-                style={{
-                  left: `${getLeft(task.start)}%`,
-                  width: `${getWidth(task.start, task.end)}%`,
-                  background: task.color || 'var(--viz-1)',
-                  opacity: task.progress != null ? 1 : 0.4,
-                }}
-              >
-                {task.progress != null && (
-                  <div className={css.progress} style={{ width: `${task.progress * 100}%` }} />
+        {tasks.map((task) => {
+          const width = getWidth(task.start, task.end)
+          return (
+            <div key={task.id} className={css.row}>
+              {/* gnt-4: una tarea sin name lleva marcador visible, no una barra muda. */}
+              <div className={css.taskName} data-placeholder={!task.name || undefined}>
+                {task.name || '(sin nombre)'}
+              </div>
+              <div className={css.track}>
+                {width <= 0 ? (
+                  /* gnt-3: duracion cero es un hito, no una barra invisible. */
+                  <div
+                    className={css.milestone}
+                    data-milestone=""
+                    style={{ left: `${getLeft(task.start)}%`, background: task.color || 'var(--viz-1)' }}
+                  />
+                ) : (
+                  <div
+                    className={css.bar}
+                    style={{
+                      left: `${getLeft(task.start)}%`,
+                      width: `${width}%`,
+                      background: task.color || 'var(--viz-1)',
+                      opacity: task.progress != null ? 1 : 0.4,
+                    }}
+                  >
+                    {task.progress != null && (
+                      <div className={css.progress} style={{ width: `${task.progress * 100}%` }} />
+                    )}
+                  </div>
                 )}
               </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )
