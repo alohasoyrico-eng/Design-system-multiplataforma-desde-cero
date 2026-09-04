@@ -89,6 +89,13 @@
         "kind": "prop",
         "type": "string | number",
         "required": true
+      },
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'mono' | 'color'",
+        "default": "'mono'",
+        "note": "El fondo es lienzo: en mono los tiles van en escala de grises y el color queda reservado a pins y ruta — el matiz es del dato, no del mapa. color restaura los tiles originales."
       }
     ]
   },
