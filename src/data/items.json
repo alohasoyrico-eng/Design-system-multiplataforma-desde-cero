@@ -9002,6 +9002,33 @@
     "variants": [],
     "members": [
       {
+        "n": "open",
+        "k": "prop",
+        "t": "boolean",
+        "d": "",
+        "r": true,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "onClose",
+        "k": "event",
+        "t": "() => void",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Escape y clic en el backdrop caen aquí"
+      },
+      {
+        "n": "alignment",
+        "k": "prop",
+        "t": "'center' | 'end' | 'start' | 'bottom'",
+        "d": "'center'",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "labelledBy",
         "k": "prop",
         "t": "string",
