@@ -12,9 +12,9 @@
       {
         "name": "tasks",
         "kind": "prop",
-        "type": "Array<{ id: string; name: string; start: string; end: string; progress?: number; color?: string }>",
+        "type": "Array<{ id: string; name: string; start: string; end: string; progress?: number; color?: string; dependsOn?: string[] }>",
         "required": true,
-        "note": "La etiqueta de cada tarea es 'name'. El contrato decia 'label' y estaba mal: con la prop equivocada el Gantt dibuja sus barras con el nombre vacio y parece no renderizar."
+        "note": "La etiqueta de cada tarea es 'name'. El contrato decia 'label' y estaba mal: con la prop equivocada el Gantt dibuja sus barras con el nombre vacio y parece no renderizar. dependsOn dibuja conectores hacia las tareas previas; un ciclo se detecta y se declara en pantalla sin colgar el render (gnt-2)."
       },
       {
         "name": "style",

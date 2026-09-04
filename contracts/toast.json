@@ -33,6 +33,12 @@
         "type": "() => void"
       },
       {
+        "name": "duration",
+        "kind": "prop",
+        "type": "number",
+        "note": "Milisegundos hasta el auto-descarte; requiere onDismiss. El temporizador se pausa con el puntero encima o el foco dentro (tst-2) y se reinicia al salir."
+      },
+      {
         "name": "onDismiss",
         "kind": "event",
         "type": "() => void"
