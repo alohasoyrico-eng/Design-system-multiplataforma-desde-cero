@@ -56,7 +56,7 @@ const manoFiles = [
   ...readdirSync(join(srcDir, 'ref')).filter((f) => f.endsWith('.css')).map((f) => join(srcDir, 'ref', f)),
   ...readdirSync(srcDir).filter((f) => f.endsWith('.css')).map((f) => join(srcDir, f)),
 ]
-const genDir = join(root, 'generated/tokens/css')
+const genDir = join(root, 'packages/flow-react/generated/tokens/css')
 // compat-eone.css emite los nombres VIEJOS de eOne a proposito: es puente de
 // migracion, no parte del par de verdad diccionario↔CSS.
 const genFiles = existsSync(genDir)
