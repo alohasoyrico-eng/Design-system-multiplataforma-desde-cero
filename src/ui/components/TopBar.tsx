@@ -1,4 +1,4 @@
-import type { ReactNode, CSSProperties } from 'react'
+import { useState, type ReactNode, type CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
 import { IconButton } from '../primitives/IconButton'
 import { Badge } from '../primitives/Badge'
@@ -69,6 +69,8 @@ export function TopBar({
   style,
 }: TopBarProps) {
   const intl = useIntl()
+  // tpb-3: el selector de entidad anuncia que abre un menu y si esta abierto.
+  const [entityOpen, setEntityOpen] = useState(false)
 
   if (variant === 'fullscreen') return null
 
@@ -137,6 +139,7 @@ export function TopBar({
           value={searchValue}
           onChange={onSearchChange}
           placeholder={intl.formatMessage({ id: 'topbar.search', defaultMessage: 'Buscar unidades, conductores…' })}
+          ariaLabel={intl.formatMessage({ id: 'topbar.search', defaultMessage: 'Buscar unidades, conductores…' })}
           icon="search"
           style={{ flex: 1 }}
         />
@@ -161,8 +164,15 @@ export function TopBar({
     <>
       {leading || (
         <Popover
+          open={entityOpen}
+          onOpenChange={setEntityOpen}
           trigger={
-            <button type="button" className={css.entityBtn}>
+            <button
+              type="button"
+              className={css.entityBtn}
+              aria-haspopup="menu"
+              aria-expanded={entityOpen}
+            >
               {currentEntityObj?.label || intl.formatMessage({ id: 'common.selectEntity', defaultMessage: 'Selecciona…' })}
               <span className="flow-symbol" aria-hidden="true">expand_more</span>
             </button>

@@ -52,7 +52,7 @@
     "check:foundations": "node scripts/check-foundations.mjs",
     "check:targets": "node scripts/check-targets.mjs",
     "check:color": "node scripts/check-color.mjs",
-    "check:conformance": "node scripts/check-conformance-coverage.mjs --min 160",
+    "check:conformance": "node scripts/check-conformance-coverage.mjs --min 195",
     "check:tokens-parity": "node scripts/check-tokens-parity.mjs",
     "prepack": "npm run build:lib",
     "prepare": "node scripts/prepare.mjs"

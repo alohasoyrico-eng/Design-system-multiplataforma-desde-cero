@@ -5632,6 +5632,15 @@
         "note": "JetBrains Mono"
       },
       {
+        "n": "ariaLabel",
+        "k": "prop",
+        "t": "string",
+        "d": "Nombre accesible cuando no hay Field que etiquete el control (tpb-2).",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "size",
         "k": "prop",
         "t": "'sm'|'md'",

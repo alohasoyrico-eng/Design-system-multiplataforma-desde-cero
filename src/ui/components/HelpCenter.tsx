@@ -136,9 +136,10 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
 
       <div className={css.content}>
         {selectedArticle ? (
-          <div>
+          // hlp-4: el articulo abierto es una seccion asociada a su cabecera.
+          <section aria-labelledby={`hlp-art-${selectedArticle.id}`}>
             <span className={css.contentCategory}>{selectedArticle.category}</span>
-            <h2 className={css.contentTitle}>{selectedArticle.title}</h2>
+            <h2 id={`hlp-art-${selectedArticle.id}`} className={css.contentTitle}>{selectedArticle.title}</h2>
             {selectedArticle.content && (
               <div className={css.contentBody}>
                 {selectedArticle.content
@@ -159,7 +160,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
                 ))}
               </div>
             )}
-          </div>
+          </section>
         ) : (
           <div className={css.emptyContent}>Selecciona un artículo</div>
         )}

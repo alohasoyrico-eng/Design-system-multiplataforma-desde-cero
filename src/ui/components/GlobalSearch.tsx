@@ -118,8 +118,18 @@ export function GlobalSearch({
     return () => document.removeEventListener('keydown', onKey)
   }, [mode, open, onOpenChange, shortcut])
 
+  // gsc-2: en palette el foco entra al campo al abrir y vuelve a quien lo
+  // tenia al cerrar (el disparador, en el uso tipico de ⌘K).
+  const prevFocus = useRef<HTMLElement | null>(null)
   useEffect(() => {
-    if (mode === 'palette' && open && inputRef.current) inputRef.current.focus()
+    if (mode !== 'palette') return
+    if (open) {
+      prevFocus.current = document.activeElement as HTMLElement | null
+      inputRef.current?.focus()
+    } else if (prevFocus.current) {
+      prevFocus.current.focus?.()
+      prevFocus.current = null
+    }
   }, [mode, open])
 
   useEffect(() => {
@@ -214,14 +224,18 @@ export function GlobalSearch({
     </div>
   ) : null
 
+  // gsc-3: la carga se anuncia con aria-live y no vacia la lista anterior
+  // de golpe — mientras llegan resultados nuevos, los viejos siguen ahi.
+  const loadingStrip = loading && (
+    <div className={css.loadingState} aria-live="polite">
+      <Spinner size={14} label="Buscando" />
+      Buscando…
+    </div>
+  )
+
   let body: ReactNode
-  if (loading) {
-    body = (
-      <div className={css.loadingState} aria-live="polite">
-        <Spinner size={14} label="Buscando" />
-        Buscando…
-      </div>
-    )
+  if (loading && !flat.length) {
+    body = loadingStrip
   } else if (!flat.length) {
     body = (
       <EmptyState
@@ -238,6 +252,7 @@ export function GlobalSearch({
     let idx = -1
     body = (
       <div id="flow-search-list" role="listbox" ref={listRef} className={css.list} data-mode={mode}>
+        {loadingStrip}
         {groups.map((g) => (
           <div key={g.name} role="group" aria-labelledby={`flow-sg-${g.name}`}>
             <div id={`flow-sg-${g.name}`} className={css.groupLabel}>

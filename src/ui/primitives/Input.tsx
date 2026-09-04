@@ -17,6 +17,8 @@ export interface InputProps {
   /** Adorno al final del control (unidad, contador, icono). */
   trailing?: ReactNode
   mono?: boolean
+  /** Nombre accesible cuando no hay <Field> que etiquete el control. */
+  ariaLabel?: string
   style?: CSSProperties
   id?: string
 }
@@ -34,6 +36,7 @@ export function Input({
   revealable,
   trailing,
   mono,
+  ariaLabel,
   style,
   ...rest
 }: InputProps) {
@@ -70,6 +73,7 @@ export function Input({
         className={css.input}
         data-mono={mono || undefined}
         value={value}
+        aria-label={ariaLabel}
         aria-invalid={error || undefined}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}
