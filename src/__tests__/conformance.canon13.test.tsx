@@ -186,3 +186,18 @@ describe('conformance canon · cola de un criterio', () => {
     expect(uiDe('components/QuickActionBar.module.css')).toMatch(/overflow-x:\s*auto/)
   })
 })
+
+// ── menu (mnu-5, resuelto 4-sep) ───────────────────────────────────────────
+describe('conformance canon · menu (alineacion propia)', () => {
+  it('mnu-5: la raiz no se deforma por el contexto: declara su alineacion propia', async () => {
+    const { Menu } = await import('../ui/components/Menu')
+    const { container } = render(
+      <div style={{ display: 'flex', height: 400 }}>
+        <Menu trigger={<button>Acciones</button>} items={[{ label: 'Duplicar', onClick: () => {} }]} />
+      </div>,
+    )
+    const raiz = screen.getByRole('button', { name: 'Acciones' }).closest('[class*="root"]') as HTMLElement
+    expect(raiz.style.alignSelf).toBe('center')
+    expect(container).toBeTruthy()
+  })
+})

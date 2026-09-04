@@ -63,6 +63,19 @@ for (const abs of fuentes('src/ui', ['.tsx'])) {
   })
 }
 
+// ── spc-3: hermanos separados con gap, no con margenes por elemento ──
+// Se caza el antipatron concreto: un selector de hermanos (:not(:first/last-child)
+// o combinador +/~) cuyo bloque declara margin. Un borde entre filas es legitimo.
+for (const abs of fuentes('src/ui', ['.module.css'])) {
+  const css = readFileSync(abs, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
+  for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const esHermanos = /:not\(:(first|last)-child\)|[+~]\s*[.\w[]/.test(m[1])
+    if (!esHermanos || !/(^|;|\s)margin(-\w+)?:/.test(m[2])) continue
+    const linea = css.slice(0, m.index).split('\n').length
+    hallazgos.push({ regla: 'spc-3', archivo: rel(abs), linea, detalle: 'hermanos separados con margen: usa gap del contenedor' })
+  }
+}
+
 // ── shp-2: ningun archivo fuera de tokens/ escribe un border-radius literal ──
 // (0 y 50% no son pasos de la escala: cuadrado y circulo son geometria, no forma.)
 for (const abs of fuentes('src/ui', ['.module.css'])) {

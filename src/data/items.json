@@ -9380,6 +9380,15 @@
         "r": false,
         "rw": "",
         "note": "Control de campo: el trigger llena su contenedor; sin esto el ancho es del contenido"
+      },
+      {
+        "n": "selfAlign",
+        "k": "prop",
+        "t": "'auto' | 'flex-start' | 'center' | 'flex-end' | 'stretch'",
+        "d": "La raiz declara su alineacion propia en un flex de alto fijo; la fija el dueno (Menu la pone en center), no el shell (mnu-5).",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [],

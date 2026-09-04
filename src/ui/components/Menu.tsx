@@ -59,7 +59,13 @@ export function Menu({ trigger, items = [], align = 'left', style }: MenuProps) 
     : trigger
 
   return (
-    <Popover trigger={decoratedTrigger} align={align} open={open} onOpenChange={setOpen}>
+    <Popover
+      trigger={decoratedTrigger}
+      align={align}
+      open={open}
+      onOpenChange={setOpen}
+      selfAlign="center"
+    >
       {({ close }) => (
         <div
           role="menu"

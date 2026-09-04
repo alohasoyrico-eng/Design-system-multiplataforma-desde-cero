@@ -392,6 +392,8 @@ export function WalletAppScreen() {
               <SectionHeader>Actividad</SectionHeader>
               <IconButton icon="notifications" ariaLabel="Notificaciones" variant="tonal" badge />
             </div>
+            {/* spc-3: los grupos se separan con gap del contenedor, no con margen */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
             {groups.map((group) => (
               <TransactionGroup key={group.label} label={group.label}>
                 {group.items.map((tx, i) => (
@@ -407,6 +409,7 @@ export function WalletAppScreen() {
                 ))}
               </TransactionGroup>
             ))}
+            </div>
           </div>
         )}
 

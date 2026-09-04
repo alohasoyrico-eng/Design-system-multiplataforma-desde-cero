@@ -32,6 +32,10 @@ export interface PopoverProps {
       Un control de campo (Select) necesita llenar su contenedor: sin esto, el
       ancho depende del contenido y asignar/limpiar mueve el layout. */
   fillTrigger?: boolean
+  /** mnu-5: la raiz declara su alineacion propia — como hijo de un flex de
+      alto fijo se estiraba y el disparador con el. La fija el dueno (Menu),
+      no el shell: un control de campo en columna necesita el stretch. */
+  selfAlign?: 'auto' | 'flex-start' | 'center' | 'flex-end' | 'stretch'
 }
 
 function splitPlacement(placement: PopoverPlacement): [PopoverSide, 'start' | 'center' | 'end'] {
@@ -42,6 +46,7 @@ function splitPlacement(placement: PopoverPlacement): [PopoverSide, 'start' | 'c
 export function Popover({
   trigger,
   fillTrigger,
+  selfAlign,
   align,
   placement,
   offset = 6,
@@ -150,7 +155,7 @@ export function Popover({
   if (anchorRef) return <>{panel}</>
 
   return (
-    <div className={css.root} data-fill={fillTrigger || undefined}>
+    <div className={css.root} data-fill={fillTrigger || undefined} style={selfAlign ? { alignSelf: selfAlign } : undefined}>
       <span ref={trigRef} className={css.trigger} data-fill={fillTrigger || undefined} onClick={() => setOpen?.(!open)}>
         {trigger}
       </span>
