@@ -87,6 +87,13 @@ export function InternalToolsLayout() {
               )
             })}
 
+            <div className={css.productSwitch}>
+              <Link to="/" className={css.navItem}>
+                <span className="flow-symbol" aria-hidden="true" style={{ fontSize: 20 }}>swap_horiz</span>
+                Ir a Fleet Manager
+              </Link>
+            </div>
+
             <div className={css.sidebarFooter}>
               <Avatar name={roleLabel} size="sm" status="online" />
               <div className={css.userName}>{roleLabel}</div>

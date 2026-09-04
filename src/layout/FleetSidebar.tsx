@@ -17,8 +17,16 @@ const NAV: [string, string, string][] = [
   ['/conductores', 'group', 'Conductores'],
   ['/asistente', 'smart_toy', 'Asistente'],
   ['/reportes', 'monitoring', 'Reportes'],
-  ['/mobile', 'smartphone', 'Mobile'],
+  ['/configuracion', 'admin_panel_settings', 'Roles y permisos'],
   ['/ajustes', 'settings', 'Ajustes'],
+]
+
+// Una casa, una puerta, cuartos distintos: los otros contextos del sistema
+// se descubren desde aqui. Internal Tools conserva su shell propia a proposito
+// (es la prueba viva de multi-shell y gating por roles).
+const PRODUCTOS: [string, string, string][] = [
+  ['/internal-tools', 'support_agent', 'Internal Tools'],
+  ['/mobile', 'smartphone', 'Drivers · Mobile'],
 ]
 
 export interface FleetSidebarProps {
@@ -46,6 +54,16 @@ export function FleetSidebar({ children, open, onClose }: FleetSidebarProps) {
           )
         })}
         {NAV.map(([to, icon, label]) => {
+          const active = !!matchRoute({ to })
+          return (
+            <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined} onClick={onClose}>
+              <span className={'flow-symbol' + (active ? ' flow-symbol--fill' : '') + ' ' + css.sidebarIcon} aria-hidden="true">{icon}</span>
+              {label}
+            </Link>
+          )
+        })}
+        <div className={css.sidebarGroup}>Productos</div>
+{PRODUCTOS.map(([to, icon, label]) => {
           const active = !!matchRoute({ to })
           return (
             <Link key={to} to={to} className={css.sidebarItem} data-active={active || undefined} onClick={onClose}>
