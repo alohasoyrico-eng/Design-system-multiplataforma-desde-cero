@@ -33,7 +33,6 @@
     "dist-lib",
     "public/fonts",
     "src/data/items.json",
-    "scripts/prepare.mjs",
     "docs/USUARIO.md"
   ],
   "scripts": {
@@ -41,8 +40,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "tokens:build": "node sd.config.js",
-    "prepack": "npm run build:lib",
-    "prepare": "node scripts/prepare.mjs"
+    "prepack": "npm run build:lib"
   },
   "peerDependencies": {
     "react": ">=18",
