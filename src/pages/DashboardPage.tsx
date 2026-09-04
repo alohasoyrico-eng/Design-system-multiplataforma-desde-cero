@@ -26,6 +26,11 @@ import { GanttChart } from '../ui/components/GanttChart'
 import { MapCanvas } from '../ui/components/MapCanvas'
 import { ChartLegend } from '../ui/primitives/ChartLegend'
 import { PageHeader } from '../ui/patterns/PageHeader'
+import { ActiveFilters } from '../ui/components/ActiveFilters'
+import { DataFreshness } from '../ui/components/DataFreshness'
+import { SavedViews, type SavedView } from '../ui/components/SavedViews'
+import { WidgetFrame } from '../ui/components/WidgetFrame'
+import { WidgetLibrary, type WidgetDef } from '../ui/components/WidgetLibrary'
 import { DOMAIN } from '../data/domain-colors'
 import { useTrack } from '../growth'
 import css from './DashboardPage.module.css'
@@ -83,38 +88,119 @@ function DashboardHeader({ title, crumbs, cta }: { title: string; crumbs: string
 }
 
 function OverviewView() {
+  // El cinturon analitico del §7, con el estado en el dueño de la pantalla.
+  const [filters, setFilters] = useState([
+    { id: 'estado', dimension: 'Estado', label: 'En ruta' },
+    { id: 'zona', dimension: 'Zona', label: 'Norte' },
+  ])
+  const [views, setViews] = useState<SavedView[]>([
+    { id: 'v1', name: 'Flota norte' },
+    { id: 'v2', name: 'Solo eléctricos' },
+  ])
+  const [activeView, setActiveView] = useState<string | null>(null)
+  const [refreshing, setRefreshing] = useState(false)
+  const [customizing, setCustomizing] = useState(false)
+  const [libraryOpen, setLibraryOpen] = useState(false)
+  const [widgets, setWidgets] = useState<WidgetDef[]>([
+    { id: 'kpis', title: 'KPIs', visible: true },
+    { id: 'viajes', title: 'Viajes por día', visible: true },
+    { id: 'gasto', title: 'Gasto por categoría', visible: true },
+  ])
+  const toggleWidget = (id: string) =>
+    setWidgets(ws => ws.map(w => (w.id === id ? { ...w, visible: !w.visible } : w)))
+  const moveWidget = (id: string, dir: -1 | 1) =>
+    setWidgets(ws => {
+      const i = ws.findIndex(w => w.id === id)
+      const j = i + dir
+      if (j < 0 || j >= ws.length) return ws
+      const next = [...ws]
+      const a = next[i]!
+      next[i] = next[j]!
+      next[j] = a
+      return next
+    })
+  const refresh = () => {
+    setRefreshing(true)
+    setTimeout(() => setRefreshing(false), 1200)
+  }
+
   return (
     <>
       <DashboardHeader title="Overview" crumbs={['Dashboards', 'Overview']}
         cta={<Link to="/unidades/nueva" style={{ textDecoration: 'none' }}><Button variant="primary" icon="add">Agregar unidad</Button></Link>}
       />
-      <div className={css.kpiGrid4}>
-        <StatTile label="Unidades activas" value="128" delta="+4 vs ayer" trend={[98, 104, 112, 109, 118, 124, 128]} icon="local_taxi" />
-        <StatTile label="Viajes hoy" value="412" delta="+12%" trend={[290, 340, 310, 365, 388, 395, 412]} icon="navigation" />
-        <StatTile label="Gasto del mes" value="$248k" delta="−4% vs mes pasado" trend={[280, 270, 265, 258, 252, 250, 248]} icon="payments" />
-        <StatTile label="Alertas abiertas" value="3" delta="−2 vs ayer" icon="warning" tone="warning" />
-      </div>
-      <div className={css.dashGrid2}>
-        <Card>
-          <div className={css.chartHeaderSolo}>Viajes por dia</div>
-          <Bars height={190} data={[
-            { label: 'Lun', value: 288, color: 'var(--viz-1)' }, { label: 'Mar', value: 342, color: 'var(--viz-2)' }, { label: 'Mie', value: 315, color: 'var(--viz-3)' },
-            { label: 'Jue', value: 371, color: 'var(--viz-4)' }, { label: 'Vie', value: 412, color: 'var(--viz-5)' }, { label: 'Sab', value: 389, color: 'var(--viz-6)' }, { label: 'Dom', value: 214, color: 'var(--viz-7)' },
-          ]} />
-        </Card>
-        <Card>
-          <div className={css.chartHeaderSolo}>Gasto por categoria</div>
-          <Donut
-            segments={[
-              { label: 'Combustible', value: 182, color: DOMAIN.combustible.token, icon: DOMAIN.combustible.icon },
-              { label: 'Peaje', value: 41, color: DOMAIN.peaje.token, icon: DOMAIN.peaje.icon },
-              { label: 'Mantenimiento', value: 25, color: DOMAIN.mantenimiento.token, icon: DOMAIN.mantenimiento.icon },
-            ]}
-            centerValue="$248k"
-            centerLabel="Total"
-            legend
+      <div className={css.toolbelt}>
+        <ActiveFilters
+          filters={filters}
+          period="Últimos 30 días"
+          onRemove={id => setFilters(fs => fs.filter(f => f.id !== id))}
+          onClearAll={() => setFilters([])}
+        />
+        <div className={css.toolbeltRight}>
+          <DataFreshness
+            updatedLabel="datos al miércoles 12:40"
+            cadence="ingesta a día vencido"
+            nextRefresh="próximo refresco en 15 min"
+            refreshing={refreshing}
+            onRefresh={refresh}
           />
-        </Card>
+          <SavedViews
+            views={views}
+            activeId={activeView}
+            onApply={setActiveView}
+            onSave={name => setViews(vs => [...vs, { id: 'v' + Date.now(), name }])}
+            onDelete={id => setViews(vs => vs.filter(v => v.id !== id))}
+          />
+          <Button variant="ghost" size="sm" icon="tune" onClick={() => { setCustomizing(c => !c); setLibraryOpen(l => !l) }}>
+            Personalizar
+          </Button>
+        </div>
+      </div>
+      <WidgetLibrary
+        open={libraryOpen}
+        onClose={() => { setLibraryOpen(false); setCustomizing(false) }}
+        widgets={widgets}
+        onToggle={toggleWidget}
+        onMove={moveWidget}
+      />
+      <div className={css.widgetGrid}>
+        {widgets.map(w => (
+          <WidgetFrame
+            key={w.id}
+            title={w.title}
+            hidden={!w.visible}
+            customizing={customizing}
+            onToggle={() => toggleWidget(w.id)}
+            style={w.id === 'kpis' ? { gridColumn: '1 / -1' } : undefined}
+          >
+            {w.id === 'kpis' && (
+              <div className={css.kpiGrid4}>
+                <StatTile label="Unidades activas" value="128" delta="+4 vs ayer" trend={[98, 104, 112, 109, 118, 124, 128]} icon="local_taxi" />
+                <StatTile label="Viajes hoy" value="412" delta="+12%" trend={[290, 340, 310, 365, 388, 395, 412]} icon="navigation" />
+                <StatTile label="Gasto del mes" value="$248k" delta="−4% vs mes pasado" trend={[280, 270, 265, 258, 252, 250, 248]} icon="payments" />
+                <StatTile label="Alertas abiertas" value="3" delta="−2 vs ayer" icon="warning" tone="warning" />
+              </div>
+            )}
+            {w.id === 'viajes' && (
+              <Bars height={190} data={[
+                { label: 'Lun', value: 288, color: 'var(--viz-1)' }, { label: 'Mar', value: 342, color: 'var(--viz-2)' }, { label: 'Mie', value: 315, color: 'var(--viz-3)' },
+                { label: 'Jue', value: 371, color: 'var(--viz-4)' }, { label: 'Vie', value: 412, color: 'var(--viz-5)' }, { label: 'Sab', value: 389, color: 'var(--viz-6)' }, { label: 'Dom', value: 214, color: 'var(--viz-7)' },
+              ]} />
+            )}
+            {w.id === 'gasto' && (
+              <Donut
+                segments={[
+                  { label: 'Combustible', value: 182, color: DOMAIN.combustible.token, icon: DOMAIN.combustible.icon },
+                  { label: 'Peaje', value: 41, color: DOMAIN.peaje.token, icon: DOMAIN.peaje.icon },
+                  { label: 'Mantenimiento', value: 25, color: DOMAIN.mantenimiento.token, icon: DOMAIN.mantenimiento.icon },
+                ]}
+                centerValue="$248k"
+                centerLabel="Total"
+                legend
+              />
+            )}
+          </WidgetFrame>
+        ))}
       </div>
       <Card>
         <div className={css.chartHeader}>Mix de gasto por producto y entidad</div>

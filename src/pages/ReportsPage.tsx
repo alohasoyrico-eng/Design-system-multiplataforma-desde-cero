@@ -8,6 +8,7 @@ import { Menu } from '../ui/components/Menu'
 import { Bars } from '../ui/components/Bars'
 import { DatePicker } from '../ui/components/DatePicker'
 import { PageHeader } from '../ui/patterns/PageHeader'
+import { DocumentViewer } from '../ui/components/DocumentViewer'
 import { useTrack } from '../growth'
 import css from './ReportsPage.module.css'
 
@@ -119,6 +120,22 @@ export function ReportsPage() {
           </Card>
         </div>
       )}
+      <div style={{ marginTop: 'var(--space-4)' }}>
+        <DocumentViewer
+          title="Lámina ejecutiva · Julio 2026"
+          height={320}
+          actions={<Button variant="ghost" size="sm" icon="download" onClick={() => exportReport('pdf')}>Descargar</Button>}
+        >
+          <div style={{ padding: 'var(--space-6)', display: 'grid', gap: 'var(--space-3)', alignContent: 'start', maxWidth: 560, margin: '0 auto', background: 'var(--surface-card)', minHeight: '100%' }}>
+            <div style={{ font: 'var(--type-title-lg)', color: 'var(--brand)' }}>eOne · Resumen ejecutivo</div>
+            <div style={{ font: 'var(--type-body-sm)', color: 'var(--text-secondary)' }}>
+              412 viajes en el periodo · $7,627 de ingreso · 8 cancelaciones (−33%). La flota norte concentra el
+              62% de la actividad; el gasto de combustible baja 4% contra el mes anterior.
+            </div>
+            <div style={{ font: 'var(--type-data-sm)', color: 'var(--text-muted)' }}>Generado el miércoles 12:40 · datos a día vencido</div>
+          </div>
+        </DocumentViewer>
+      </div>
     </>
   )
 }

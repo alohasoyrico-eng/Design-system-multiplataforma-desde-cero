@@ -1,5 +1,6 @@
 
 .panel {
+  margin: 0 auto;
   background: var(--surface-card);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   box-shadow: var(--shadow-overlay);
