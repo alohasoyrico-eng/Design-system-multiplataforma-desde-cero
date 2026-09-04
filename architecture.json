@@ -1,5 +1,5 @@
 {
-  "$comment": "Contrato de capas legible por maquina. Fuente de verdad de check-layers.mjs. Ver 'Arquitectura de capas.dc.html' para el porque y contracts/_schema.json para la forma de cada item.",
+  "$comment": "Contrato de capas legible por maquina. Fuente de verdad de check-layers.mjs. El porque de la cascada vive en el CLAUDE.md de esta referencia; la forma de cada item en contracts/_schema.json.",
   "version": 1,
   "layers": [
     {

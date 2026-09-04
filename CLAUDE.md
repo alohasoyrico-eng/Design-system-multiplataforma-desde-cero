@@ -20,7 +20,7 @@ Los defectos de esta sesión —foco que no entra al modal, filas comprimidas a 
 
 ## La arquitectura
 
-Cascada de cinco capas con dependencias sólo hacia abajo. El contrato está en `architecture.json`, la revisión en `platforms/check-layers.mjs` (R1-R4, P1-P7), el porqué en `Arquitectura de capas.dc.html`, y los contratos por ítem en `contracts/`.
+Cascada de cinco capas con dependencias sólo hacia abajo. El contrato está en `architecture.json`, la revisión en `platforms/check-layers.mjs` (R1-R4, P1-P7), y los contratos por ítem en `contracts/`.
 
 Regla de oro del criterio de capa: **si el chequeo no lo puede recomputar desde el artefacto, no se puede sostener y va a derivar.** Por eso el dominio es un campo (`domain`) y no una capa.
 

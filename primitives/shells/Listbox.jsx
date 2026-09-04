@@ -6,7 +6,7 @@ const norm = (o) => (typeof o === 'string' ? { value: o, label: o } : o);
 export const Listbox = React.forwardRef(function Listbox({
   idPrefix = 'flow-lb', items = [], value, onSelect, multiple = false,
   query = '', groupOrder, renderItem, emptyLabel = 'Sin resultados',
-  onActiveIdChange, maxHeight = 260, extraRow,
+  active: activeProp, onActiveChange, maxHeight = 260, extraRow,
 }, ref) {
   const all = items.map(norm);
   const q = String(query || '').trim().toLowerCase();
@@ -26,13 +26,19 @@ export const Listbox = React.forwardRef(function Listbox({
   }
   const flat = groups.reduce((a, g) => a.concat(g.items), []);
 
-  const [active, setActive] = React.useState(0);
+  // Modo combobox (sel-7): si el dueño pasa `active`, ese índice manda y
+  // onActiveChange le devuelve cada movimiento; sin él, el estado es interno.
+  const [innerActive, setInnerActive] = React.useState(0);
+  const controlado = activeProp !== undefined;
+  const active = controlado ? activeProp : innerActive;
+  const mueve = (next) => {
+    const v = typeof next === 'function' ? next(active) : next;
+    if (!controlado) setInnerActive(v);
+    onActiveChange && onActiveChange(v);
+  };
   const listRef = React.useRef(null);
   const buf = React.useRef({ s: '', t: 0 });
-  React.useEffect(() => { setActive(0); }, [query, items.length]);
-
-  const activeId = flat[active] ? idPrefix + '-' + flat[active].value : undefined;
-  React.useEffect(() => { onActiveIdChange && onActiveIdChange(activeId); }, [activeId, onActiveIdChange]);
+  React.useEffect(() => { mueve(0); }, [query, items.length]); // eslint-disable-line
 
   // lb-4: mantiene visible la fila activa moviendo el scroll del contenedor, nunca la pagina
   React.useEffect(() => {
@@ -59,10 +65,10 @@ export const Listbox = React.forwardRef(function Listbox({
     get activeItem() { return flat[active]; },
     get count() { return flat.length; },
     onKeyDown(e) {
-      if (e.key === 'ArrowDown') { e.preventDefault(); setActive((i) => Math.min(i + 1, flat.length - 1)); return true; }
-      if (e.key === 'ArrowUp') { e.preventDefault(); setActive((i) => Math.max(i - 1, 0)); return true; }
-      if (e.key === 'Home') { e.preventDefault(); setActive(0); return true; }
-      if (e.key === 'End') { e.preventDefault(); setActive(Math.max(0, flat.length - 1)); return true; }
+      if (e.key === 'ArrowDown') { e.preventDefault(); mueve((i) => Math.min(i + 1, flat.length - 1)); return true; }
+      if (e.key === 'ArrowUp') { e.preventDefault(); mueve((i) => Math.max(i - 1, 0)); return true; }
+      if (e.key === 'Home') { e.preventDefault(); mueve(0); return true; }
+      if (e.key === 'End') { e.preventDefault(); mueve(Math.max(0, flat.length - 1)); return true; }
       if (e.key === 'Enter') { e.preventDefault(); pick(flat[active]); return true; }
       // lb-3: typeahead cuando no hay campo de busqueda
       if (e.key.length === 1 && !e.metaKey && !e.ctrlKey && !e.altKey) {
@@ -70,7 +76,7 @@ export const Listbox = React.forwardRef(function Listbox({
         buf.current.s = now - buf.current.t < 700 ? buf.current.s + e.key : e.key;
         buf.current.t = now;
         const i = flat.findIndex((o) => o.label.toLowerCase().indexOf(buf.current.s.toLowerCase()) === 0);
-        if (i > -1) { setActive(i); return true; }
+        if (i > -1) { mueve(i); return true; }
       }
       return false;
     },
@@ -96,10 +102,10 @@ export const Listbox = React.forwardRef(function Listbox({
         const sel = isSel(o.value);
         const act = i === active;
         return React.createElement('div', {
-          key: o.value, role: 'option', id: idPrefix + '-' + o.value,
+          key: o.value, role: 'option', id: idPrefix + '-opt-' + i,
           'aria-selected': sel, 'aria-disabled': o.disabled || undefined,
           'data-active': act ? '1' : undefined,
-          onMouseEnter: () => setActive(i),
+          onMouseEnter: () => mueve(i),
           onMouseDown: (e) => e.preventDefault(),
           onClick: () => pick(o),
           style: {

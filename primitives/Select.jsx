@@ -13,12 +13,11 @@ export function Select({
 }) {
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState('');
-  const [activeId, setActiveId] = React.useState(undefined);
+  const [activeIdx, setActiveIdx] = React.useState(0);
   const anchorRef = React.useRef(null);
   const fieldRef = React.useRef(null);
   const listRef = React.useRef(null);
   const lbId = React.useRef('flow-lb-' + (++uid)).current;
-  const onActiveIdChange = React.useCallback((v) => setActiveId(v), []);
 
   const items = options.map((o) => (typeof o === 'string' ? { value: o, label: o } : o));
   const typing = searchable || creatable;
@@ -70,7 +69,7 @@ export function Select({
     ? React.createElement('input', {
         id, ref: fieldRef, type: 'text',
         role: 'combobox', 'aria-expanded': open, 'aria-controls': lbId,
-        'aria-activedescendant': open ? activeId : undefined,
+        'aria-activedescendant': open ? lbId + '-opt-' + activeIdx : undefined,
         'aria-invalid': invalid || undefined, 'aria-autocomplete': 'list',
         disabled, placeholder: filled && !open ? undefined : placeholder,
         value: open ? query : (multiple ? (arr.length ? label : '') : (sel[0] ? sel[0].label : '')),
@@ -87,7 +86,7 @@ export function Select({
     : React.createElement('button', {
         id, ref: fieldRef, type: 'button', disabled,
         role: 'combobox', 'aria-expanded': open, 'aria-controls': lbId, 'aria-haspopup': 'listbox',
-        'aria-activedescendant': open ? activeId : undefined, 'aria-invalid': invalid || undefined,
+        'aria-activedescendant': open ? lbId + '-opt-' + activeIdx : undefined, 'aria-invalid': invalid || undefined,
         onClick: () => (open ? close() : setOpen(true)),
         onKeyDown,
         style: {
@@ -135,7 +134,7 @@ export function Select({
     },
       React.createElement(Listbox, {
         ref: listRef, idPrefix: lbId, items, value, multiple, query: q,
-        onSelect: commit, renderItem: renderOption, emptyLabel, extraRow, onActiveIdChange,
+        onSelect: commit, renderItem: renderOption, emptyLabel, extraRow, active: activeIdx, onActiveChange: setActiveIdx,
       })
     )
   );

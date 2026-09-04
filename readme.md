@@ -70,3 +70,15 @@ Sistema creado desde cero (sin inventario fuente); el set de componentes respond
 Agregados tras revisión de cobertura: `TabBar` (nav inferior móvil — antes hardcodeada en `drivers-app`), `Divider`, `CircularProgress`, `Timeline` (historial vertical de un registro), `OnboardingCarousel` (bienvenida con ilustración, dots y swipe — usa un círculo geométrico de marca como ilustración por defecto, sin arte final) y `StatusView` (pantalla completa de éxito/error/pendiente/cargando/sin conexión para flujos que dependen de un servicio externo — API, base de datos, pagos, biométricos).
 
 Tras una auditoría del alcance original (3 productos prometidos) se detectó que Internal Tools no existía como kit propio. Se construyó `ui_kits/internal-tools/` como CRM interno (ver ÍNDICE) para cerrar ese gap.
+
+---
+
+## ¿Vienes a adoptar Flow?
+
+Esta rama es la **referencia normativa** — contratos, arquitectura y chequeos que gobiernan el sistema. El producto instalable vive en la rama `main` del mismo repo:
+
+- **Humanos**: el `README.md` de `main` tiene el quickstart (npm, primera pantalla, migración desde 1.x).
+- **Agentes**: el `CLAUDE.md` de `main` tiene las reglas, la receta y las rejas; el MCP server (`mcp-server/`) expone inventario, APIs, tokens y reglas a cualquier agente desde otro repo.
+- **Contratos**: `import contracts from '@alohasoyrico-eng/flow-react/contracts'` — las 189 fichas viajan en el paquete.
+
+Aquí solo se edita lo normativo, contrato-primero: una prop nace en `contracts/`, luego en el código de `main`, luego en su ficha — `check:api-drift` vigila el triángulo.
