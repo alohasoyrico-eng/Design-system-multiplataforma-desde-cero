@@ -76,7 +76,7 @@
       },
       {
         "id": "tel-2",
-        "rule": "La agrupacion 3-3-4 se aplica al escribir sin impedir pegar un numero completo con o sin espacios.",
+        "rule": "La agrupacion 2-4-4 del placeholder normativo (55 1234 5678) se aplica al escribir sin impedir pegar un numero completo con o sin espacios.",
         "level": "must",
         "verify": "automated"
       },
