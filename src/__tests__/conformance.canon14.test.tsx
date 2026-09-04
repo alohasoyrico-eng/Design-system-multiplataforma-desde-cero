@@ -5,9 +5,8 @@
  * country-select-pattern, doc-hero, state-grid, agent-chat-template,
  * drivers-app-t, onboarding-fm, onboarding-driver, card-detail, config-roles,
  * internal-tools-t.
- * Fuera con nota: od-3 (la pantalla no tiene paso de subir documentos — el
- * criterio describe una feature que el template no contiene), it-6 (los
- * targets los garantizan los componentes del DS; el layout no mide propio).
+ * (od-3 e it-6 se cerraron el 4-sep en la tanda 15: el template gano el paso
+ * de documentos y check-targets ahora mide layout e internal-tools.)
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'

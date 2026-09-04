@@ -59,3 +59,22 @@
   outline: none;
   z-index: 1;
 }
+
+/* mc-2: capa de pines enfocables — inerte al puntero, real para el teclado. */
+.pinLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pinTarget {
+  position: absolute;
+  width: var(--hit-target-min);
+  height: var(--hit-target-min);
+  transform: translate(-50%, -50%);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+  padding: 0;
+}

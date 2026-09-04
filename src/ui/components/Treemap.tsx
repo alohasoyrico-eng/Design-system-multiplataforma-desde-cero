@@ -1,6 +1,10 @@
-import type { CSSProperties } from 'react'
+import { useState, useId, type CSSProperties, type KeyboardEvent } from 'react'
 import { FlowChart } from '../primitives/FlowChart'
 import { EmptyState } from '../primitives/EmptyState'
+
+// tmp-3: lista paralela al lienzo — un solo tab stop, flechas recorren,
+// Enter perfora. Invisible al ojo (el lienzo ya lo dibuja), real al oido.
+const SR: CSSProperties = { position: 'absolute', width: 1, height: 1, margin: -1, padding: 0, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0 }
 
 export interface TreemapNode {
   label: string
@@ -28,13 +32,26 @@ function autoColor(dev: number | undefined, index: number, palette: string[]): s
 const CAT_PALETTE = ['var(--viz-1)', 'var(--viz-4)', 'var(--viz-5)', 'var(--viz-3)', 'var(--viz-6)', 'var(--viz-2)']
 
 export function Treemap({ nodes = [], height = 280, format, onDrill, style }: TreemapProps) {
+  const uid = useId()
+  const [activeIdx, setActiveIdx] = useState(0)
+
   // tmp-v1: sin datos no hay lienzo vacio, hay estado vacio con texto.
+  // (Despues de los hooks: un early-return antes rompe rules-of-hooks.)
   if (!nodes.length) {
     return <EmptyState icon="grid_view" title="Sin datos" description="No hay datos para este periodo." />
   }
   const data = nodes.map((n, i) => ({ label: n.label, value: n.value, color: n.color || autoColor(n.deviation, i, CAT_PALETTE) }))
 
+  const onListKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); setActiveIdx(i => Math.min(nodes.length - 1, i + 1)) }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); setActiveIdx(i => Math.max(0, i - 1)) }
+    else if (e.key === 'Home') { e.preventDefault(); setActiveIdx(0) }
+    else if (e.key === 'End') { e.preventDefault(); setActiveIdx(nodes.length - 1) }
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (nodes[activeIdx]) onDrill?.(nodes[activeIdx]) }
+  }
+
   return (
+    <>
     <FlowChart
       type="treemap"
       height={height}
@@ -48,5 +65,22 @@ export function Treemap({ nodes = [], height = 280, format, onDrill, style }: Tr
       } : undefined}
       ariaLabel="Gasto por region, tamano por valor y color por desvio vs presupuesto"
     />
+      {onDrill && (
+        <div
+          role="listbox"
+          tabIndex={0}
+          aria-label="Regiones del treemap"
+          aria-activedescendant={`${uid}-opt-${activeIdx}`}
+          style={SR}
+          onKeyDown={onListKeyDown}
+        >
+          {nodes.map((n, i) => (
+            <div key={n.label} id={`${uid}-opt-${i}`} role="option" aria-selected={i === activeIdx}>
+              {`${n.label}: ${format ? format(n.value) : n.value}`}
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   )
 }

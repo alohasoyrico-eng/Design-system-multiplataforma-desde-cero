@@ -40,8 +40,12 @@ function fuentes(dir, exts) {
 const hallazgos = []
 const rel = (p) => relative(ROOT, p).split('\\').join('/')
 
+// it-6 (internal-tools-t): el template tambien se mide — sus controles no
+// pueden esconder medidas chicas en el layout ni en las paginas.
+const RAICES = ['src/ui', 'src/layout', 'src/pages/internal-tools']
+
 // ── .tsx: inline + tablas, como el canon ──
-for (const abs of fuentes('src/ui', ['.tsx'])) {
+for (const abs of RAICES.flatMap((r) => fuentes(r, ['.tsx']))) {
   const r = rel(abs)
   if (EXCEPCIONES.some((e) => e.archivo === r)) continue
   const lineas = readFileSync(abs, 'utf8').split('\n')
@@ -64,7 +68,7 @@ for (const abs of fuentes('src/ui', ['.tsx'])) {
 }
 
 // ── .module.css: bloques que se tocan (cursor: pointer) ──
-for (const abs of fuentes('src/ui', ['.module.css'])) {
+for (const abs of RAICES.flatMap((r) => fuentes(r, ['.module.css']))) {
   const r = rel(abs)
   if (EXCEPCIONES.some((e) => e.archivo === r)) continue
   const css = readFileSync(abs, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')

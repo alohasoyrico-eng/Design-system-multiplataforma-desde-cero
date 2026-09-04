@@ -517,6 +517,31 @@ export function MapCanvas({
         onPointerLeave={handlePointerLeave}
         onClick={handleClick}
       />
+      {/* mc-2: cada pin es un boton real, enfocable por teclado, con lugar y
+          valor en su nombre. Inerte al puntero: el raton sigue siendo del
+          canvas (pan y hit-test); Enter/Espacio disparan la seleccion. */}
+      {pins.length > 0 && (
+        <div className={css.pinLayer} aria-label="Puntos en el mapa" role="group">
+          {pins.map(pin => {
+            const px = size.w / 2 - cx + lon2x(pin.lon, zoom) * TILE
+            const py = size.h / 2 - cy + lat2y(pin.lat, zoom) * TILE
+            if (px < -22 || py < -22 || px > size.w + 22 || py > size.h + 22) return null
+            return (
+              <button
+                key={pin.id}
+                type="button"
+                className={css.pinTarget}
+                style={{ left: px, top: py }}
+                aria-label={`${pin.label ?? pin.id}${pin.subtitle ? `, ${pin.subtitle}` : ''}`}
+                aria-pressed={selectedPin != null ? pin.id === selectedPin : undefined}
+                onClick={() => onPinClick?.(pin.id)}
+                onFocus={() => setHoveredPin(pin.id)}
+                onBlur={() => setHoveredPin(h => (h === pin.id ? null : h))}
+              />
+            )
+          })}
+        </div>
+      )}
       <div className={css.controls}>
         <button
           type="button"

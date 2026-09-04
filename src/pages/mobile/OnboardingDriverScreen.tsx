@@ -10,6 +10,7 @@ import { IconButton } from '../../ui/primitives/IconButton'
 import { Button } from '../../ui/primitives/Button'
 import { Field } from '../../ui/primitives/Field'
 import { Input } from '../../ui/primitives/Input'
+import { FileUpload, type UploadedFile } from '../../ui/components/FileUpload'
 import { Switch } from '../../ui/primitives/Switch'
 
 const SLIDES = [
@@ -19,7 +20,7 @@ const SLIDES = [
   { title: 'Todo en tiempo real', description: 'Alertas de cada cargo, límites por conductor y reportes automáticos para tu flota.', icon: 'notifications_active' },
 ]
 
-const STEPS = ['carousel', 'welcome', 'email', 'emailCode', 'phone', 'smsCode', 'card', 'passcode', 'notif', 'bio', 'done', 'login', 'loginDone'] as const
+const STEPS = ['carousel', 'welcome', 'email', 'emailCode', 'phone', 'smsCode', 'docs', 'card', 'passcode', 'notif', 'bio', 'done', 'login', 'loginDone'] as const
 type Step = typeof STEPS[number]
 
 function Resend() {
@@ -76,6 +77,7 @@ export function OnboardingDriverScreen() {
   const [phoneError, setPhoneError] = useState('')
   const [phoneTouched, setPhoneTouched] = useState(false)
   const [cardValid, setCardValid] = useState(false)
+  const [docs, setDocs] = useState<UploadedFile[]>([])
   const [cardError, setCardError] = useState('')
 
   const step = STEPS[idx]
@@ -178,7 +180,7 @@ export function OnboardingDriverScreen() {
 
         {step === 'email' && (
           <>
-            <StepHeader step={1} total={7} onBack={back} title="Tu correo" subtitle="Te enviaremos un código de activación para confirmarlo." />
+            <StepHeader step={1} total={8} onBack={back} title="Tu correo" subtitle="Te enviaremos un código de activación para confirmarlo." />
             <Field label="Correo" htmlFor="ob-email" error={emailError} valid={emailValid} validMessage="Correo válido">
               <Input id="ob-email" type="email" icon="mail" size="lg" placeholder="diego@correo.mx" value={email} onChange={handleEmailChange} error={!!emailError} />
             </Field>
@@ -190,7 +192,7 @@ export function OnboardingDriverScreen() {
 
         {step === 'emailCode' && (
           <>
-            <StepHeader step={2} total={7} onBack={back} title="Confirma tu correo" subtitle={`Enviamos un código de 6 dígitos a ${email || 'tu correo'}.`} />
+            <StepHeader step={2} total={8} onBack={back} title="Confirma tu correo" subtitle={`Enviamos un código de 6 dígitos a ${email || 'tu correo'}.`} />
             <div className={css.otpCenter}>
               <OTPInput length={6} value={code1} onChange={setCode1} onComplete={() => setTimeout(next, 300)} autoFocus />
               <Resend />
@@ -200,7 +202,7 @@ export function OnboardingDriverScreen() {
 
         {step === 'phone' && (
           <>
-            <StepHeader step={3} total={7} onBack={back} title="Tu teléfono" subtitle="Lo confirmamos con un SMS. Es tu segundo canal de seguridad." />
+            <StepHeader step={3} total={8} onBack={back} title="Tu teléfono" subtitle="Lo confirmamos con un SMS. Es tu segundo canal de seguridad." />
             <Field label="Teléfono móvil" htmlFor="ob-phone" error={phoneError} valid={phoneValid} validMessage="Número válido">
               <Input id="ob-phone" type="tel" icon="smartphone" size="lg" mono placeholder="55 1234 5678" value={phone} onChange={handlePhoneChange} error={!!phoneError} />
             </Field>
@@ -212,7 +214,7 @@ export function OnboardingDriverScreen() {
 
         {step === 'smsCode' && (
           <>
-            <StepHeader step={4} total={7} onBack={back} title="Código SMS" subtitle={`Enviamos un OTP a ${phone || 'tu teléfono'}. Se llena solo al llegar.`} />
+            <StepHeader step={4} total={8} onBack={back} title="Código SMS" subtitle={`Enviamos un OTP a ${phone || 'tu teléfono'}. Se llena solo al llegar.`} />
             <div className={css.otpCenter}>
               <OTPInput length={6} value={code2} onChange={setCode2} onComplete={() => setTimeout(next, 300)} autoFocus />
               <Resend />
@@ -220,9 +222,28 @@ export function OnboardingDriverScreen() {
           </>
         )}
 
+        {/* od-3: subir se puede sin arrastrar — la zona de FileUpload es un
+            boton que abre camara o archivos (upl-1); en movil el arrastre no existe. */}
+        {step === 'docs' && (
+          <>
+            <StepHeader step={5} total={8} onBack={back} title="Tu licencia" subtitle="Una foto o PDF del frente. El botón abre tu cámara o tus archivos." />
+            <FileUpload
+              files={docs}
+              onChange={setDocs}
+              accept="image/*,.pdf"
+              multiple={false}
+              label="Subir licencia de conducir"
+              hint="JPG, PNG o PDF"
+            />
+            <div className={css.bottomAction}>
+              <Button variant="primary" size="lg" fullWidth disabled={!docs.length} onClick={next}>Continuar</Button>
+            </div>
+          </>
+        )}
+
         {step === 'card' && (
           <>
-            <StepHeader step={5} total={7} onBack={back} title="Tu tarjeta Flow" subtitle="Captura el número de 16 dígitos tal como aparece al frente." />
+            <StepHeader step={6} total={8} onBack={back} title="Tu tarjeta Flow" subtitle="Captura el número de 16 dígitos tal como aparece al frente." />
             <div className={css.cardPreview}>
               <PaymentCard
                 holder=""
@@ -243,7 +264,7 @@ export function OnboardingDriverScreen() {
         {step === 'passcode' && (
           <>
             <StepHeader
-              step={6} total={7} onBack={back}
+              step={6} total={8} onBack={back}
               title={confirmPin ? 'Repite tu passcode' : 'Crea tu passcode'}
               subtitle={confirmPin ? 'Una vez más para confirmarlo.' : '6 dígitos para entrar y autorizar pagos.'}
             />
@@ -266,7 +287,7 @@ export function OnboardingDriverScreen() {
 
         {step === 'notif' && (
           <>
-            <StepHeader step={7} total={7} onBack={back} title="Avisos que importan" subtitle="Te avisamos de cada cargo, depósito y alerta de seguridad." />
+            <StepHeader step={8} total={8} onBack={back} title="Avisos que importan" subtitle="Te avisamos de cada cargo, depósito y alerta de seguridad." />
             <div className={css.notifCard}>
               <div className={css.notifRow}>
                 <span className="flow-symbol flow-symbol--lg" aria-hidden="true" style={{ color: 'var(--text-accent)' }}>notifications_active</span>
