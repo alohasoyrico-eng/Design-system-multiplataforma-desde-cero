@@ -87,7 +87,8 @@
         "id": "crd-5",
         "rule": "La elevacion al hover no depende de que corra la transicion para que la tarjeta sea legible.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       }
     ]
   },

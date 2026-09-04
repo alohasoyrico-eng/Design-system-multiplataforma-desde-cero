@@ -85,7 +85,8 @@
         "id": "acc-4",
         "rule": "El estado final no depende de la animacion de apertura: en una pestana oculta la seccion abierta se ve abierta y con su alto real.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       },
       {
         "id": "acc-5",

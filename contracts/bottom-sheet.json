@@ -95,7 +95,8 @@
         "id": "bsh-4",
         "rule": "El estado final no depende del resorte de subida: en una pestana oculta la hoja aparece arriba, no fuera de pantalla.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       }
     ]
   },

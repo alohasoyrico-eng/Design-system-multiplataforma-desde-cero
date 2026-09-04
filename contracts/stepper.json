@@ -59,7 +59,8 @@
         "id": "stp-4",
         "rule": "El estado final no depende del resorte del check.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       }
     ]
   },

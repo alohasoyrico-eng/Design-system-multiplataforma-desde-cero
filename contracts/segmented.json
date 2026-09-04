@@ -57,7 +57,8 @@
         "id": "sgm-4",
         "rule": "El indicador final no depende del resorte.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       },
       {
         "id": "sgm-5",

@@ -52,7 +52,8 @@
         "id": "spn-3",
         "rule": "Visible en su primer frame: nada que dependa de que arranque la animacion para tener forma.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       },
       {
         "id": "spn-4",

@@ -105,7 +105,8 @@
         "id": "mc-1",
         "rule": "La atribución de OpenStreetMap es visible sobre cualquier tile.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       },
       {
         "id": "mc-2",

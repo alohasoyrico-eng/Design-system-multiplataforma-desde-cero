@@ -57,7 +57,8 @@
         "id": "skl-4",
         "rule": "Visible completo sin que corra un frame: en una pestana oculta el skeleton se ve como superficie, no como caja vacia.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
       },
       {
         "id": "skl-5",
