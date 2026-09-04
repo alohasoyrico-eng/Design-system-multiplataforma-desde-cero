@@ -82,6 +82,13 @@
         "kind": "slot",
         "type": "React.ReactNode",
         "required": true
+      },
+      {
+        "name": "fillTrigger",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "false",
+        "note": "El envoltorio del trigger es inline (shrink-to-fit) para menus. Un control de campo lo activa para llenar su contenedor: sin esto el ancho depende del contenido y asignar/limpiar mueve el layout."
       }
     ]
   },

@@ -164,6 +164,12 @@
         "rule": "Con clearable, el boton de limpiar vive en la zona trailing de la carcasa y no se dibuja encima del campo; su area operable mide --hit-target-min aunque el glifo mida 16px; y limpiar no abre el panel.",
         "level": "must",
         "verify": "automated"
+      },
+      {
+        "id": "sel-7",
+        "rule": "Asignar o limpiar no mueve el layout: el control llena su contenedor y los adornos alternan por dentro, no por fuera.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },
