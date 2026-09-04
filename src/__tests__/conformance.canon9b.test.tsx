@@ -1,8 +1,8 @@
 /**
  * Conformance con el canon — tanda 9b (interior de FlowChart, ECharts mockeado).
  * prt-2 vive en el case 'pareto' de FlowChart; fc-4 y fc-7 en su ciclo de vida.
- * fc-5 queda fuera anotado: echarts entra por import estatico, no hay carga
- * perezosa que pueda fallar y degradar a mensaje — decision pendiente.
+ * fc-5 vive en conformance.canon12: la carga perezosa que degrada a mensaje
+ * se prueba con un mock que revienta el import dinamico.
  */
 import { waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'

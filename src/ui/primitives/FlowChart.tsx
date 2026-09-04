@@ -1,17 +1,35 @@
 import { useRef, useState, useEffect, useMemo, type CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
-import * as echarts from 'echarts/core'
-import { BarChart, LineChart, PieChart, ScatterChart, RadarChart, GaugeChart, FunnelChart, TreemapChart, HeatmapChart, BoxplotChart } from 'echarts/charts'
-import { GridComponent, TooltipComponent, LegendComponent, VisualMapComponent } from 'echarts/components'
-import { CanvasRenderer } from 'echarts/renderers'
+import type { ECharts, EChartsCoreOption } from 'echarts/core'
 import css from './FlowChart.module.css'
 
-echarts.use([
-  BarChart, LineChart, PieChart, ScatterChart, RadarChart, GaugeChart,
-  FunnelChart, TreemapChart, HeatmapChart, BoxplotChart,
-  GridComponent, TooltipComponent, LegendComponent, VisualMapComponent,
-  CanvasRenderer,
-])
+// fc-5: ECharts entra por carga perezosa — una sola vez por documento, y si
+// la libreria no carga el componente degrada a mensaje, nunca a un hueco.
+// Beneficio lateral: el bundle inicial de un consumidor sin graficas no la paga.
+type EchartsCore = typeof import('echarts/core')
+let echartsListo: EchartsCore | null = null
+let echartsCarga: Promise<EchartsCore> | null = null
+
+function cargarEcharts(): Promise<EchartsCore> {
+  echartsCarga ??= Promise.all([
+    import('echarts/core'),
+    import('echarts/charts'),
+    import('echarts/components'),
+    import('echarts/renderers'),
+  ]).then(([core, charts, comps, rends]) => {
+    core.use([
+      charts.BarChart, charts.LineChart, charts.PieChart, charts.ScatterChart,
+      charts.RadarChart, charts.GaugeChart, charts.FunnelChart, charts.TreemapChart,
+      charts.HeatmapChart, charts.BoxplotChart,
+      comps.GridComponent, comps.TooltipComponent, comps.LegendComponent, comps.VisualMapComponent,
+      rends.CanvasRenderer,
+    ])
+    echartsListo = core
+    return core
+  })
+  echartsCarga.catch(() => { echartsCarga = null }) // un fallo no envenena el reintento
+  return echartsCarga
+}
 
 export type FlowChartType =
   | 'line' | 'area' | 'bar' | 'stackedBar' | 'stacked100'
@@ -627,11 +645,14 @@ export function FlowChart({
   const intl = useIntl()
   const resolvedEmptyLabel = emptyLabel ?? intl.formatMessage({ id: 'common.noData', defaultMessage: 'Sin datos para este periodo' })
   const hostRef = useRef<HTMLDivElement>(null)
-  const chartRef = useRef<echarts.ECharts | null>(null)
+  const chartRef = useRef<ECharts | null>(null)
   const rafRef = useRef(0)
   const lastSize = useRef({ w: 0, h: 0 })
   const radarHandlerRef = useRef<((e: { offsetX: number; offsetY: number }) => void) | null>(null)
   const [themeKey, setThemeKey] = useState(0)
+  // fc-5: 0 = cargando/lista, tick > 0 re-dispara el efecto al llegar la libreria
+  const [libTick, setLibTick] = useState(0)
+  const [libFallo, setLibFallo] = useState(false)
 
   const props = rest as FlowChartProps
   const hasData = useMemo(() => {
@@ -650,14 +671,23 @@ export function FlowChart({
 
   useEffect(() => {
     if (!hostRef.current || !hasData) return
+    const core = echartsListo
+    if (!core) {
+      // la libreria aun no esta: pedirla y re-entrar cuando llegue (o degradar)
+      let vivo = true
+      cargarEcharts()
+        .then(() => { if (vivo) setLibTick(t => t + 1) })
+        .catch(() => { if (vivo) setLibFallo(true) })
+      return () => { vivo = false }
+    }
     if (!chartRef.current || chartRef.current.isDisposed()) {
-      chartRef.current = echarts.init(hostRef.current, undefined, { renderer: 'canvas' })
+      chartRef.current = core.init(hostRef.current, undefined, { renderer: 'canvas' })
       if (onSelect) chartRef.current.on('click', p => onSelect(p))
     }
     const tk = readTokens(hostRef.current)
 
     const opt = resolveVars(merge(buildOption(type as FlowChartType, { ...props, type: type as FlowChartType }, tk), override as Record<string, unknown>), tk.resolve) as Record<string, unknown>
-    chartRef.current.setOption(opt as echarts.EChartsCoreOption, true)
+    chartRef.current.setOption(opt as EChartsCoreOption, true)
 
     if (type === 'radar') {
       if (radarHandlerRef.current) chartRef.current.getZr().off('mousemove', radarHandlerRef.current)
@@ -751,7 +781,7 @@ export function FlowChart({
         }))
       }
       c.clear()
-      c.setOption(still as echarts.EChartsCoreOption, true)
+      c.setOption(still as EChartsCoreOption, true)
     }, 320)
 
     return () => {
@@ -764,7 +794,7 @@ export function FlowChart({
       if (tip) tip.remove()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasData, type, themeKey, override, JSON.stringify(props.series || null), JSON.stringify(props.matrix || null), props.highlight, props.stack, props.legend, props.horizontal, props.showValues, props.palette, props.animate])
+  }, [hasData, type, themeKey, libTick, override, JSON.stringify(props.series || null), JSON.stringify(props.matrix || null), props.highlight, props.stack, props.legend, props.horizontal, props.showValues, props.palette, props.animate])
 
   useEffect(() => {
     if (!chartRef.current) return
@@ -805,6 +835,19 @@ export function FlowChart({
         <div className={css.emptyInner}>
           <span className={`flow-symbol ${css.emptyIcon}`} aria-hidden="true">bar_chart</span>
           {resolvedEmptyLabel}
+        </div>
+      </div>
+    )
+  }
+
+  // fc-5: si la libreria no carga, degrada a mensaje; nunca a un hueco.
+  if (libFallo) {
+    const fallo = intl.formatMessage({ id: 'chart.loadError', defaultMessage: 'La gráfica no pudo cargarse. Recarga la página para intentarlo de nuevo.' })
+    return (
+      <div className={css.empty} style={{ height, ...style }} role="img" aria-label={fallo}>
+        <div className={css.emptyInner}>
+          <span className={`flow-symbol ${css.emptyIcon}`} aria-hidden="true">error</span>
+          {fallo}
         </div>
       </div>
     )
