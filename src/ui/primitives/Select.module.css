@@ -40,7 +40,10 @@
   align-items: center;
   justify-content: center;
   min-width: var(--hit-target-min);
-  min-height: var(--hit-target-min);
+  /* El target vertical lo pone la carcasa (44px de alto): un boton de 44
+     dentro de un control de 44 lo inflaba a 62 y asignar saltaba de altura. */
+  min-height: 0;
+  align-self: stretch;
   font-size: var(--icon-sm);
   flex-shrink: 0;
 }
