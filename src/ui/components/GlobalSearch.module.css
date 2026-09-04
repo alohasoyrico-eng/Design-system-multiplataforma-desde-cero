@@ -163,7 +163,7 @@
   background: var(--surface-accent-subtle);
   color: var(--text-accent);
   font-weight: 700;
-  border-radius: 3px;
+  border-radius: var(--radius-mark);
   padding: 0 1px;
 }
 

@@ -31,13 +31,13 @@
 }
 
 .swatch[data-shape="square"] {
-  border-radius: 3px;
+  border-radius: var(--radius-mark);
 }
 
 .swatch[data-shape="line"] {
   width: 10px;
   height: 2.5px;
-  border-radius: 1px;
+  border-radius: var(--radius-pill);
 }
 
 .label {

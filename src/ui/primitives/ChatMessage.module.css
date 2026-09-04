@@ -43,7 +43,7 @@
 
 .bubble {
   max-width: 82%;
-  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 4px;
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-mark);
   font: var(--type-body-md);
   animation: flowIn var(--dur-fast) var(--ease-out);
 }
@@ -58,7 +58,7 @@
   color: var(--text-primary);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-rest);
-  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 4px;
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-mark);
 }
 
 .root[data-role="user"] .bubble {
@@ -66,7 +66,7 @@
   background: var(--surface-inverse);
   color: var(--text-on-inverse);
   border: none;
-  border-radius: var(--radius-lg) var(--radius-lg) 4px var(--radius-lg);
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-mark) var(--radius-lg);
 }
 
 .bubble[data-rich] {

@@ -37,9 +37,16 @@ if (!ref) {
   process.exit(0)
 }
 
+// Items que viven solo en la referencia canonica: este repo no tiene esa
+// implementacion, asi que sus criterios no pueden (ni deben) contarse aqui.
+const SOLO_REFERENCIA = {
+  'mailings-templates': 'Los mailings son HTML de tablas con estilos en linea que vive en la referencia; el paquete React no los contiene.',
+}
+
 const arq = JSON.parse(readFileSync(join(tmp, 'architecture.json'), 'utf8'))
 const criterios = [] // { item, id, rule }
 for (const it of arq.items) {
+  if (SOLO_REFERENCIA[it.id]) continue
   let c
   try { c = JSON.parse(readFileSync(join(tmp, it.contract), 'utf8')) } catch { continue }
   for (const cr of (c.conformance && c.conformance.criteria) || []) {

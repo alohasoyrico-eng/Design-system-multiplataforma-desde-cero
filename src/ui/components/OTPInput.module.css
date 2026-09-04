@@ -57,7 +57,7 @@
   width: 2px;
   height: 24px;
   background: var(--action-accent);
-  border-radius: 2px;
+  border-radius: var(--radius-pill);
   animation: flowBlink 1s step-end infinite;
 }
 

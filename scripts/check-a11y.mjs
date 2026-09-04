@@ -63,6 +63,21 @@ for (const abs of fuentes('src/ui', ['.tsx'])) {
   })
 }
 
+// ── shp-2: ningun archivo fuera de tokens/ escribe un border-radius literal ──
+// (0 y 50% no son pasos de la escala: cuadrado y circulo son geometria, no forma.)
+for (const abs of fuentes('src/ui', ['.module.css'])) {
+  const css = readFileSync(abs, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
+  css.split('\n').forEach((linea, i) => {
+    const m = linea.match(/border-radius:\s*([^;]+);/)
+    if (!m) return
+    const v = m[1].trim()
+    // valido: cualquier combinacion de tokens --radius-*, 0, 50% (circulo) e inherit
+    const piezas = v.split(/\s+/)
+    if (piezas.every((p) => /^var\(--radius-[\w-]+\)$/.test(p) || /^(0|50%|inherit)$/.test(p))) return
+    hallazgos.push({ regla: 'shp-2', archivo: rel(abs), linea: i + 1, detalle: `border-radius literal: ${v} — usa --radius-*` })
+  })
+}
+
 // ── mot-5: @keyframes y curvas literales solo en tokens/ ──
 for (const abs of [...fuentes('src/ui', ['.module.css', '.tsx'])]) {
   const src = readFileSync(abs, 'utf8')

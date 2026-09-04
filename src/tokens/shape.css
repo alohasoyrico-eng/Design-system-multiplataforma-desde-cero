@@ -6,6 +6,8 @@
   --radius-lg: var(--ref-radius-400);
   --radius-xl: var(--ref-radius-500);
   --radius-pill: var(--ref-radius-pill);
+  /* Radio de marca: swatches, hitos, resaltes — no escala con densidad. */
+  --radius-mark: var(--ref-radius-mark);
 
   --border-width: 1px;
   --border-width-strong: 1.5px;

@@ -70,7 +70,7 @@
   width: 10px;
   height: 10px;
   transform: translate(-50%, -50%) rotate(45deg);
-  border-radius: 2px;
+  border-radius: var(--radius-mark);
 }
 
 /* Conectores de dependencia: sobre la columna de pistas, filas uniformes. */

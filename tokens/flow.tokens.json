@@ -430,6 +430,10 @@
         "pill": {
           "$value": 999,
           "$type": "dimension"
+        },
+        "mark": {
+          "$value": "3px",
+          "$type": "dimension"
         }
       },
       "size": {
@@ -1374,6 +1378,10 @@
         },
         "pill": {
           "$value": "{flow.ref.radius.pill}",
+          "$type": "dimension"
+        },
+        "mark": {
+          "$value": "{flow.ref.radius.mark}",
           "$type": "dimension"
         }
       },
