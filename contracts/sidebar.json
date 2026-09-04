@@ -64,7 +64,8 @@
         "kind": "prop",
         "type": "React.CSSProperties"
       }
-    ]
+    ],
+    "types": []
   },
   "conformance": {
     "criteria": [

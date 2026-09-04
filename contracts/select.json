@@ -112,6 +112,12 @@
         "kind": "prop",
         "type": "boolean",
         "default": false
+      },
+      {
+        "name": "insetLabel",
+        "kind": "prop",
+        "type": "string",
+        "note": "Label integrada compacta para filtros: viaja dentro del trigger y da el nombre accesible. Nueve selects de eOne la piden (§6)."
       }
     ]
   },

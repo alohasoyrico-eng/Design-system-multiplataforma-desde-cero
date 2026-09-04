@@ -114,6 +114,12 @@
         "kind": "prop",
         "type": "string",
         "note": "Sin filas dice por que."
+      },
+      {
+        "name": "skin",
+        "kind": "prop",
+        "type": "Partial<Record<'root'|'table'|'th'|'thButton'|'row'|'td', string>>",
+        "note": "El gancho de las pieles: una piel reemplaza clases, jamas duplica la mecanica. Table es el primer consumidor."
       }
     ],
     "generics": [
@@ -122,7 +128,8 @@
         "default": "any",
         "describes": "La fila"
       }
-    ]
+    ],
+    "types": []
   },
   "conformance": {
     "criteria": [
