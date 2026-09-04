@@ -11,9 +11,9 @@
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { IntlProvider } from 'react-intl'
 import type { ReactNode } from 'react'
 import { AuthForm } from '../ui/patterns/AuthForm'

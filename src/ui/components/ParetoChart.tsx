@@ -19,11 +19,6 @@ export function ParetoChart({ data = [], height = 240, format, threshold = 0.8, 
   const sorted = useMemo(() => [...data].sort((a, b) => b.value - a.value), [data])
   const total = sorted.reduce((a, d) => a + d.value, 0) || 1
 
-  // prt-v1: sin datos no hay ejes ni rejilla vacia, hay estado vacio con texto.
-  if (!data.length) {
-    return <EmptyState icon="bar_chart" title="Sin datos" description="No hay datos para este periodo." />
-  }
-
   const itemColors = useMemo(() => {
     let acc = 0
     return sorted.map((d) => {
@@ -32,6 +27,12 @@ export function ParetoChart({ data = [], height = 240, format, threshold = 0.8, 
       return before < threshold ? 'var(--viz-accent)' : 'var(--viz-neutral)'
     })
   }, [sorted, total, threshold])
+
+  // prt-v1: sin datos no hay ejes ni rejilla vacia, hay estado vacio con
+  // texto. (Despues de los hooks: un early-return antes rompia rules-of-hooks.)
+  if (!data.length) {
+    return <EmptyState icon="bar_chart" title="Sin datos" description="No hay datos para este periodo." />
+  }
 
   return (
     <FlowChart

@@ -155,7 +155,7 @@ export function GlobalSearch({
       const next = (activeIndex + dir + flat.length) % flat.length
       setActiveIndex(next)
       const node = listRef.current?.querySelector(`[data-idx="${next}"]`) as HTMLElement | null
-      if (node) node.scrollIntoView({ block: 'nearest' })
+      if (node) node.scrollIntoView?.({ block: 'nearest' })
     } else if (e.key === 'Enter') {
       e.preventDefault()
       commit(flat[activeIndex])
