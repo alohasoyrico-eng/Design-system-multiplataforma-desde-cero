@@ -16,8 +16,10 @@ export interface SliderProps {
 export function Slider({ value = 0, onChange, min = 0, max = 100, step = 1, label, format, disabled, style }: SliderProps) {
   const [drag, setDrag] = useState(false)
   const [focus, setFocus] = useState(false)
-  const pct = ((value - min) / (max - min)) * 100
-  const fmt = format ? format(value) : String(value)
+  // sld-4: el valor se recorta a min y max; el input nativo ya ajusta a step.
+  const v = Math.min(max, Math.max(min, value))
+  const pct = ((v - min) / (max - min)) * 100
+  const fmt = format ? format(v) : String(v)
 
   return (
     <div className={css.root} style={style}>
@@ -43,7 +45,7 @@ export function Slider({ value = 0, onChange, min = 0, max = 100, step = 1, labe
           min={min}
           max={max}
           step={step}
-          value={value}
+          value={v}
           disabled={disabled}
           aria-label={typeof label === 'string' ? label : undefined}
           aria-valuetext={format ? fmt : undefined}

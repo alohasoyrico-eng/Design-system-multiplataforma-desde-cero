@@ -3,15 +3,16 @@ import { describe, it, expect } from 'vitest'
 import { Divider } from '../Divider'
 
 describe('Divider', () => {
-  it('renders a horizontal separator by default', () => {
-    render(<Divider />)
-    expect(screen.getByRole('separator')).toBeInTheDocument()
+  it('la linea decorativa esta oculta al lector (div-1)', () => {
+    const { container } = render(<Divider />)
+    expect(screen.queryByRole('separator')).not.toBeInTheDocument()
+    expect(container.firstElementChild).toHaveAttribute('aria-hidden', 'true')
   })
 
-  it('renders a vertical separator', () => {
-    render(<Divider orientation="vertical" />)
-    const sep = screen.getByRole('separator')
-    expect(sep).toHaveAttribute('aria-orientation', 'vertical')
+  it('el vertical sin label tambien es decorativo', () => {
+    const { container } = render(<Divider orientation="vertical" />)
+    expect(screen.queryByRole('separator')).not.toBeInTheDocument()
+    expect(container.firstElementChild).toHaveAttribute('aria-hidden', 'true')
   })
 
   it('renders label text when provided', () => {
@@ -26,7 +27,7 @@ describe('Divider', () => {
   })
 
   it('applies custom style', () => {
-    render(<Divider style={{ marginTop: 16 }} />)
-    expect(screen.getByRole('separator')).toHaveStyle({ marginTop: '16px' })
+    const { container } = render(<Divider style={{ marginTop: 16 }} />)
+    expect(container.firstElementChild).toHaveStyle({ marginTop: '16px' })
   })
 })

@@ -8,11 +8,14 @@ export interface DividerProps {
 }
 
 export function Divider({ orientation = 'horizontal', label, style }: DividerProps) {
+  // div-1: sin label la linea es decorativa y queda oculta al lector.
   if (orientation === 'vertical') {
     return (
       <span
-        role="separator"
-        aria-orientation="vertical"
+        role={label ? 'separator' : undefined}
+        aria-orientation={label ? 'vertical' : undefined}
+        aria-label={label || undefined}
+        aria-hidden={label ? undefined : true}
         className={css.vertical}
         style={style}
       />
@@ -22,7 +25,7 @@ export function Divider({ orientation = 'horizontal', label, style }: DividerPro
   if (!label) {
     return (
       <hr
-        role="separator"
+        aria-hidden="true"
         className={css.horizontal}
         style={style}
       />

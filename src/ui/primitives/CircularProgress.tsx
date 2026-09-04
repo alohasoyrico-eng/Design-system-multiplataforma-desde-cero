@@ -29,7 +29,9 @@ export function CircularProgress({
   tone = 'accent',
   style,
 }: CircularProgressProps) {
-  const pct = Math.max(0, Math.min(1, max > 0 ? value / max : 0))
+  // cpr-2: el valor se recorta al rango y el anillo no se pasa de vuelta.
+  const clamped = Math.max(0, Math.min(max, value))
+  const pct = Math.max(0, Math.min(1, max > 0 ? clamped / max : 0))
   const r = (size - strokeWidth) / 2
   const c = 2 * Math.PI * r
   const color = TONE_COLOR[tone] || TONE_COLOR.accent
@@ -38,7 +40,7 @@ export function CircularProgress({
     <div
       className={css.root}
       role="progressbar"
-      aria-valuenow={value}
+      aria-valuenow={clamped}
       aria-valuemin={0}
       aria-valuemax={max}
       aria-label={label}

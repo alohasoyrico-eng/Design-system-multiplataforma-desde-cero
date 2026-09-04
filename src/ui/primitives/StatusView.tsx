@@ -24,8 +24,16 @@ export interface StatusViewProps {
 }
 
 export function StatusView({ status = 'loading', title, description, primaryAction, secondaryAction, fullScreen = false, style }: StatusViewProps) {
+  // stv-1: el cambio de estado se anuncia — loading con aria-busy,
+  // error y offline interrumpen con role=alert, el resto avisa polite.
+  const urgente = status === 'error' || status === 'offline'
   return (
-    <div className={css.root} data-full-screen={fullScreen || undefined} style={style}>
+    <div
+      className={css.root}
+      data-full-screen={fullScreen || undefined}
+      aria-busy={status === 'loading' || undefined}
+      style={style}
+    >
       <span className={css.iconWrap} data-status={status}>
         {status === 'loading' && <span className={css.spinner} aria-hidden="true" />}
         <span
@@ -38,7 +46,7 @@ export function StatusView({ status = 'loading', title, description, primaryActi
       </span>
       {title && <div className={css.title}>{title}</div>}
       {description && (
-        <div role="status" className={css.description}>{description}</div>
+        <div role={urgente ? 'alert' : 'status'} className={css.description}>{description}</div>
       )}
       {(primaryAction || secondaryAction) && (
         <div className={css.actions}>

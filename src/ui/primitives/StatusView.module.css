@@ -72,3 +72,13 @@
   width: 100%;
   max-width: 280px;
 }
+
+/* stv-4: con prefers-reduced-motion el estado aparece sin resorte ni giro. */
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .statusIcon,
+  .iconWrap {
+    animation: none;
+    transition: none;
+  }
+}

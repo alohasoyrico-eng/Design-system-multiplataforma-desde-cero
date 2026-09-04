@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef, type KeyboardEvent } from 'react'
 import type { CSSProperties } from 'react'
 import css from './Calendar.module.css'
 
@@ -71,6 +71,56 @@ export function Calendar({
 
   const selectedSet = new Set(selected)
 
+  // dp-1 y dp-2: la rejilla se recorre con flechas y un solo dia es tabulable —
+  // el seleccionado, o hoy, o el primero; los demas quedan en tabindex -1.
+  const gridRef = useRef<HTMLDivElement>(null)
+  const [focusDate, setFocusDate] = useState<string | null>(null)
+
+  const enVista = (ds: string) => ds.startsWith(`${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-`)
+  const tabulable =
+    (focusDate && enVista(focusDate) && focusDate) ||
+    selected.find(enVista) ||
+    (enVista(todayStr) && todayStr) ||
+    toDateStr(viewYear, viewMonth, 1)
+
+  useEffect(() => {
+    if (!focusDate) return
+    gridRef.current?.querySelector<HTMLButtonElement>(`[data-date="${focusDate}"]`)?.focus()
+  }, [focusDate, viewYear, viewMonth])
+
+  const moveFocus = (target: Date) => {
+    const y = target.getFullYear()
+    const m = target.getMonth()
+    if (y !== viewYear || m !== viewMonth) {
+      setViewYear(y)
+      setViewMonth(m)
+    }
+    setFocusDate(toDateStr(y, m, target.getDate()))
+  }
+
+  const onGridKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const ds = (e.target as HTMLElement).getAttribute?.('data-date')
+    if (!ds) return
+    const d = new Date(ds + 'T00:00:00')
+    let destino: Date | null = null
+    if (e.key === 'ArrowLeft') destino = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1)
+    else if (e.key === 'ArrowRight') destino = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1)
+    else if (e.key === 'ArrowUp') destino = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 7)
+    else if (e.key === 'ArrowDown') destino = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7)
+    else if (e.key === 'Home') destino = new Date(viewYear, viewMonth, 1)
+    else if (e.key === 'End') destino = new Date(viewYear, viewMonth, total)
+    else if (e.key === 'PageUp' || e.key === 'PageDown') {
+      // mismo dia del mes vecino, fijado al fin de mes (31 may -> 30 jun)
+      const salto = e.key === 'PageUp' ? -1 : 1
+      const primero = new Date(d.getFullYear(), d.getMonth() + salto, 1)
+      const tope = daysInMonth(primero.getFullYear(), primero.getMonth())
+      destino = new Date(primero.getFullYear(), primero.getMonth(), Math.min(d.getDate(), tope))
+    }
+    else return
+    e.preventDefault()
+    moveFocus(destino)
+  }
+
   return (
     <div className={css.root} style={style}>
       <div className={css.header}>
@@ -85,7 +135,7 @@ export function Calendar({
         </div>
       </div>
       {hint && <div className={css.hint}>{hint}</div>}
-      <div className={css.grid}>
+      <div className={css.grid} ref={gridRef} onKeyDown={onGridKeyDown}>
         {DAYS.map((d, i) => (
           <span key={`h-${i}`} className={css.dayHeader}>{d}</span>
         ))}
@@ -101,10 +151,12 @@ export function Calendar({
               key={`d-${i}`}
               type="button"
               className={css.day}
+              data-date={dateStr}
               data-selected={isSelected || undefined}
               data-in-range={inRange || undefined}
               data-today={isToday || undefined}
               disabled={outOfBounds}
+              tabIndex={dateStr === tabulable ? 0 : -1}
               onClick={() => onSelect?.(dateStr)}
             >
               {day}
