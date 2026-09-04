@@ -52,10 +52,10 @@
         "type": "string"
       },
       {
-        "name": "suffix",
-        "kind": "prop",
-        "type": "string",
-        "note": "Texto fijo al final: unidad, dominio."
+        "name": "trailing",
+        "kind": "slot",
+        "type": "React.ReactNode",
+        "note": "Adorno al final de la carcasa: unidad, dominio, boton de limpiar. Absorbe al viejo suffix (string): un nodo cubre el texto y mas. No es enfocable ni parte del valor (inp-2)."
       },
       {
         "name": "revealable",
@@ -87,12 +87,25 @@
         "name": "invalid",
         "kind": "prop",
         "type": "boolean",
-        "default": false
+        "default": false,
+        "note": "El nombre canonico del estado invalido, como en Textarea/InputAmount/InputPhone."
+      },
+      {
+        "name": "error",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "DEPRECADO: alias de invalid (nombre viejo de eOne). Se retira en 1.0."
+      },
+      {
+        "name": "filled",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "Variante rellena sobre --surface-sunken (buscadores de barra)."
       },
       {
         "name": "size",
         "kind": "prop",
-        "type": "'sm' | 'md'",
+        "type": "'sm' | 'md' | 'lg'",
         "default": "md"
       },
       {
@@ -100,7 +113,8 @@
         "kind": "prop",
         "type": "React.CSSProperties"
       }
-    ]
+    ],
+    "note": "Resolucion 4-sep-2026: invalid es el nombre canonico y error queda de alias deprecado; trailing (ReactNode) absorbe a suffix."
   },
   "conformance": {
     "inherits": [
