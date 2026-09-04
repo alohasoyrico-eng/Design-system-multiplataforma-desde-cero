@@ -106,6 +106,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
                       <span
                         className={`flow-symbol ${css.catChevron}`}
                         data-open={isExpanded || undefined}
+                        aria-hidden="true"
                       >
                         chevron_right
                       </span>

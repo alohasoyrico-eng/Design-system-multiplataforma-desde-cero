@@ -13,9 +13,12 @@ export interface OverlayShellProps {
 export function OverlayShell({ open, onClose, alignment = 'center', labelledBy, children }: OverlayShellProps) {
   const panelRef = useRef<HTMLDivElement>(null)
 
+  // a11y-5: si una capa mas alta (popover, menu) ya consumio el Escape,
+  // este dialogo no cae con ella.
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' && !e.defaultPrevented && !e.nativeEvent.defaultPrevented) {
+        e.preventDefault()
         e.stopPropagation()
         onClose?.()
       }

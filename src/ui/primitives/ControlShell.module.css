@@ -34,6 +34,13 @@
   border-color: var(--border-subtle);
 }
 
+/* a11y-1: la carcasa pinta el anillo por el control completo — el campo
+   interior lo suprime tokens/a11y.css contando con esta regla. */
+.root:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: var(--focus-ring);
+}
+
 .root[data-error] {
   border-color: var(--status-danger);
 }

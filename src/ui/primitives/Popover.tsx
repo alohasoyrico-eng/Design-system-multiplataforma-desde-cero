@@ -101,9 +101,13 @@ export function Popover({
 
   useEffect(() => {
     if (!open) return
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') { e.stopPropagation(); close() } }
-    document.addEventListener('keydown', handler)
-    return () => document.removeEventListener('keydown', handler)
+    // a11y-5: Escape cierra la capa mas alta y solo esa. El popover corre en
+    // captura (antes que el dialogo de abajo) y marca el evento consumido.
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !e.defaultPrevented) { e.preventDefault(); close() }
+    }
+    document.addEventListener('keydown', handler, true)
+    return () => document.removeEventListener('keydown', handler, true)
   }, [open, close])
 
   const panelStyle: CSSProperties = {}
