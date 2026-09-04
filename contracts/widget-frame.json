@@ -19,6 +19,13 @@
         "required": true
       },
       {
+        "name": "loading",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Mientras carga, el hueco se rellena con Skeleton del tamano final y el marco lleva aria-busy: la pagina no salta al llegar el dato (dsh-p4)."
+      },
+      {
         "name": "hidden",
         "kind": "prop",
         "type": "boolean",

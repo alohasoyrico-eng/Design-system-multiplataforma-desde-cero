@@ -58,7 +58,8 @@
         "id": "ru-3",
         "rule": "La atribucion del proveedor de tiles esta visible: es una obligacion de licencia, no una preferencia.",
         "level": "must",
-        "verify": "automated"
+        "verify": "visual",
+        "note": "Reclasificado 4-sep-2026: la atribucion se traza sobre el canvas del mapa (misma especie que mc-1); se verifica mirando."
       },
       {
         "id": "ru-4",
