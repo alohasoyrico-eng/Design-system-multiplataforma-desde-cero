@@ -78,7 +78,7 @@ function propsDe(path, nombre) {
     buf = buf ? buf + ' ' + s : s
     depth += (s.match(/[({<]/g) || []).length - (s.match(/[)}>]/g) || []).length
     if (depth <= 0 && buf) {
-      const mm = buf.match(/^(\w+)\??:/)
+      const mm = buf.match(/^'?([\w-]+)'?\??:/)
       if (mm) props.add(mm[1])
       buf = ''
       depth = 0

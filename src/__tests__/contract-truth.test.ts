@@ -62,7 +62,7 @@ function realProps(name: string, codePath: string): Set<string> | null {
   const tsx = readFileSync(codePath, 'utf8')
   const im = tsx.match(new RegExp(`export interface ${name}Props(?:<[^>]+>)? \\{([\\s\\S]*?)\\n\\}`))
   if (!im) return null
-  return new Set([...im[1]!.matchAll(/^\s{2}(\w+)\??:/gm)].map(m => m[1]!))
+  return new Set([...im[1]!.matchAll(/^\s{2}'?([\w-]+)'?\??:/gm)].map(m => m[1]!))
 }
 
 const definedTokens = (() => {

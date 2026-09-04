@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
 import css from './FileUpload.module.css'
 
@@ -17,6 +17,7 @@ export interface FileUploadProps {
   /** Varios archivos (default). Con false, uno nuevo reemplaza al anterior. */
   multiple?: boolean
   disabled?: boolean
+  style?: CSSProperties
 }
 
 function formatSize(bytes: number): string {
@@ -25,7 +26,7 @@ function formatSize(bytes: number): string {
   return (bytes / 1048576).toFixed(1) + ' MB'
 }
 
-export function FileUpload({ files = [], onChange, accept, label, hint, multiple = true, disabled = false }: FileUploadProps) {
+export function FileUpload({ files = [], onChange, accept, label, hint, multiple = true, disabled = false, style }: FileUploadProps) {
   const intl = useIntl()
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragOver, setDragOver] = useState(false)
@@ -54,7 +55,7 @@ export function FileUpload({ files = [], onChange, accept, label, hint, multiple
   }
 
   return (
-    <div className={css.root} data-disabled={disabled || undefined}>
+    <div className={css.root} data-disabled={disabled || undefined} style={style}>
       <button
         type="button"
         className={css.dropzone}

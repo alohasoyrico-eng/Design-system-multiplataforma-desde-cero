@@ -14,6 +14,8 @@ export interface NotificationItem {
 
 export interface NotificationCenterProps {
   items?: NotificationItem[]
+  /** Lado del panel respecto a la campana. Default 'right'. */
+  align?: 'left' | 'right'
   onItemClick?: (item: NotificationItem) => void
   onMarkAllRead?: () => void
 }
@@ -25,7 +27,7 @@ const TONE_ICONS: Record<string, { icon: string; color: string }> = {
   info: { icon: 'info', color: 'var(--status-info-text)' },
 }
 
-export function NotificationCenter({ items = [], onItemClick, onMarkAllRead }: NotificationCenterProps) {
+export function NotificationCenter({ items = [], align = 'right', onItemClick, onMarkAllRead }: NotificationCenterProps) {
   const intl = useIntl()
   const unread = items.filter((n) => !n.read).length
   const notificationsLabel = intl.formatMessage({ id: 'notifications.label', defaultMessage: 'Notificaciones' })
@@ -40,7 +42,7 @@ export function NotificationCenter({ items = [], onItemClick, onMarkAllRead }: N
           badge={unread > 0 ? true : undefined}
         />
       }
-      align="right"
+      align={align}
     >
       {({ close }) => (
         <div className={css.root}>

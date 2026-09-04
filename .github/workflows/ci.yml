@@ -26,6 +26,7 @@ jobs:
       - run: npm run check:color
       - run: npm run check:icons
       - run: npm run check:a11y
+      - run: npm run check:api-drift
       - run: npm run check:conformance
       - run: npm run tokens:build && npm run check:tokens-parity
       - run: npm run test

@@ -1421,6 +1421,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "style",
+        "k": "prop",
+        "t": "React.CSSProperties",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -4529,6 +4538,15 @@
         "note": ""
       },
       {
+        "n": "align",
+        "k": "prop",
+        "t": "'left' | 'right'",
+        "d": "Lado del panel respecto a la campana. Default 'right'.",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "onItemClick",
         "k": "event",
         "t": "(item) => void",
@@ -5807,6 +5825,15 @@
         "k": "prop",
         "t": "—",
         "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "aria-labelledby",
+        "k": "prop",
+        "t": "string",
+        "d": "Nombre accesible por referencia; SettingsRow lo inyecta (set-p5).",
         "r": false,
         "rw": "",
         "note": ""
@@ -7174,6 +7201,15 @@
         "r": false,
         "rw": "",
         "note": "Label integrada compacta (filtros): dentro del trigger y nombre accesible del control"
+      },
+      {
+        "n": "aria-labelledby",
+        "k": "prop",
+        "t": "string",
+        "d": "Nombre accesible por referencia; SettingsRow lo inyecta (set-p5).",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [
@@ -9832,6 +9868,15 @@
         "k": "prop",
         "t": "string",
         "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "aria-labelledby",
+        "k": "prop",
+        "t": "string",
+        "d": "Nombre accesible por referencia; SettingsRow lo inyecta (set-p5).",
         "r": false,
         "rw": "",
         "note": ""

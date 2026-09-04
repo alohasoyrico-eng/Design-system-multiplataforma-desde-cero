@@ -164,7 +164,7 @@ FlowTheme(
 
 ### Contratos (para tooling y agentes)
 
-Los 182 contratos que alimentan la documentación también se exportan del paquete:
+Los 189 contratos que alimentan la documentación también se exportan del paquete:
 
 ```ts
 import contracts from '@alohasoyrico-eng/flow-react/contracts'
@@ -172,41 +172,43 @@ import contracts from '@alohasoyrico-eng/flow-react/contracts'
 
 ## Qué hay en la caja
 
-**121 piezas React** + **93 widgets Flutter**, organizadas en cuatro niveles:
+**126 piezas React** + **93 widgets Flutter**, organizadas en cuatro niveles:
 
-### Primitives (49)
+### Primitives (50)
 
 Los ladrillos. Cada una hace una sola cosa bien.
 
-`AutoGrid` `Avatar` `Badge` `Breadcrumb` `Button` `Calendar` `ChartLegend` `ChatMessage` `Checkbox` `Chip` `ChipGroup` `CircularProgress` `ControlShell` `DetailRow` `Divider` `EmptyState` `Field` `Flag` `FlowChart` `FlowLogo` `IconButton` `InlineCode` `Input` `LimitBar` `Listbox` `OverlayShell` `PageFrame` `Pagination` `Popover` `Progress` `Radio` `SectionBar` `SectionHeader` `Select` `SheetBody` `Skeleton` `Slider` `Sparkline` `Specimen` `Spinner` `StatusPill` `StatusView` `Stepper` `Switch` `TabBar` `Textarea` `Timeline` `Toast` `ToggleControl`
+`AutoGrid` `Avatar` `Badge` `Breadcrumb` `Button` `Calendar` `ChartLegend` `ChatMessage` `Checkbox` `Chip` `ChipGroup` `CircularProgress` `ControlShell` `DataGrid` `DetailRow` `Divider` `EmptyState` `Field` `Flag` `FlowChart` `FlowLogo` `IconButton` `InlineCode` `Input` `LimitBar` `Listbox` `OverlayShell` `PageFrame` `Pagination` `Popover` `Progress` `Radio` `SectionBar` `SectionHeader` `Select` `SheetBody` `Skeleton` `Slider` `Sparkline` `Specimen` `Spinner` `StatusPill` `StatusView` `Stepper` `Switch` `TabBar` `Textarea` `Timeline` `Toast` `ToggleControl`
 
-### Components (41)
+### Components (59)
 
 Combinan primitives para resolver necesidades de interfaz.
 
-**Layout y navegación** — `Accordion` `BottomSheet` `Card` `CardCarousel` `CardMedia` `CodeBlock` `DataGrid` `Dialog` `Drawer` `Menu` `NavBar` `PeekSheet` `QuickAction` `QuickActionBar` `SectionRule` `SegmentedControl` `Sidebar` `Table` `TableTree` `Tabs` `Tooltip`
+**Layout y navegación** — `Accordion` `BottomSheet` `Card` `CardCarousel` `CardMedia` `CodeBlock` `Dialog` `Drawer` `Menu` `NavBar` `PeekSheet` `QuickAction` `QuickActionBar` `SectionRule` `SegmentedControl` `Sidebar` `Table` `TableTree` `Tabs` `Tooltip` `TopBar` `WidgetFrame` `WidgetLibrary`
 
-**Formularios y entrada** — `ChatComposer` `DatePicker` `DateRangePicker` `FileUpload` `FilterBar` `KanbanBoard` `OTPInput`
+**Formularios y entrada** — `BulkActionsTable` `ChatComposer` `DatePicker` `FileUpload` `FilterBar` `FilterableEditableTable` `InputAmount` `InputPhone` `KanbanBoard` `OnboardingCarousel` `OTPInput` `PasscodeKeypad` `RoleMatrix` `Wizard`
 
-**Dataviz** — `Bars` `BulletChart` `ChatThread` `Donut` `GanttChart` `MapCanvas` `ParetoChart` `ScatterPlot` `SmallMultiples` `StatTile` `Treemap`
+**Dataviz** — `Bars` `BulletChart` `Donut` `GanttChart` `MapCanvas` `ParetoChart` `ScatterPlot` `SmallMultiples` `StatTile` `Treemap`
 
-**Comunicación** — `HelpCenter` `NotificationCenter`
+**Comunicación y estado** — `ActiveFilters` `BiometricPrompt` `ChatThread` `DataFreshness` `DocumentViewer` `GlobalSearch` `HelpCenter` `NotificationCenter` `PaymentCard` `RouteBanner` `SavedViews` `TransactionRow`
 
-### Patterns (31)
+(`DateRangePicker` sigue exportado como alias deprecado de `DatePicker mode="range"`.)
 
-Resuelven tareas recurrentes de negocio.
+### Patterns (17)
 
-`AnatomyView` · `AuthForm` · `BalanceDisplay` · `BiometricPrompt` · `BulkActionsTable` · `DocFooter` · `DocHero` · `DownloadCard` · `FilterableEditableTable` · `GlobalSearch` · `GuidanceCard` · `InputAmount` · `InputPhone` · `InstallCard` · `NavCard` · `NipReveal` · `OnboardingCarousel` · `PageHeader` · `PasscodeKeypad` · `PaymentCard` · `PlaygroundCanvas` · `ProfileMenu` · `ProposalCard` · `RoleMatrix` · `RouteBanner` · `Settings` · `StateGrid` · `TopBar` · `TransactionGroup` · `TransactionRow` · `Wizard`
+Resuelven tareas recurrentes de negocio. (La capa la decide el grafo de imports: varias piezas que vivían aquí bajaron a components en la reconciliación de sep-2026.)
+
+`AnatomyView` · `AuthForm` · `BalanceDisplay` · `DocFooter` · `DocHero` · `DownloadCard` · `GuidanceCard` · `InstallCard` · `NavCard` · `NipReveal` · `PageHeader` · `PlaygroundCanvas` · `ProfileMenu` · `ProposalCard` · `Settings` · `StateGrid` · `TransactionGroup`
 
 ### Templates
 
 Pantallas completas funcionando en la app demo:
 
-**Desktop** — `Dashboard` (5 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 182 contratos)
+**Desktop** — `Dashboard` (6 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Peaje, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 189 contratos)
 
 **Internal Tools (CRM)** — `Resumen` · `Cuentas` · `Casos` · `Tickets` · `Pricing` · `Growth` · `Backoffice`
 
-**Mobile** — `Wallet App` (4 tabs) · `Drivers App` · `Onboarding Driver` · `Auth OTP` · `Rutas`
+**Mobile** — `Wallet App` (4 tabs) · `Drivers App` · `Onboarding Driver` (8 pasos, con subida de documentos) · `Auth OTP` (biometría, passcode y código SMS) · `Card Detail` · `Rutas`
 
 ## Cómo se usa una pieza
 
@@ -307,6 +309,8 @@ Material Symbols. Escribes el nombre y aparece:
 
 Catálogo: [fonts.google.com/icons](https://fonts.google.com/icons?icon.set=Material+Symbols)
 
+La escala de iconos de UI es **16/20/24 px** (todo alias `--icon-*` resuelve a uno de esos pasos); los glifos de escena — EmptyState, StatusView — usan el tramo display 36/40/48. `check:icons` lo vigila, junto con la regla de que toda ligadura `flow-symbol` va `aria-hidden` (el nombre accesible vive en el control, no en el glifo).
+
 ## Gráficas
 
 `FlowChart` envuelve ECharts. Un solo componente, 12 tipos:
@@ -357,7 +361,7 @@ templates   →  pantallas completas (se copian, no se importan)
 
 Un `Card` (component) puede usar `Button` (primitive). Pero un `Button` no puede usar `Card`. Si necesitas que dos piezas del mismo nivel compartan algo, baja eso compartido al nivel de abajo.
 
-30 compliance tests verifican estas reglas mecánicamente — no se puede hacer merge si un primitive importa de components o un CSS module declara sus propios `@keyframes`.
+32 compliance tests verifican estas reglas mecánicamente — no se puede hacer merge si un primitive importa de components o un CSS module declara sus propios `@keyframes`.
 
 ### Para crear una pieza nueva
 
@@ -404,13 +408,30 @@ git tag v0.1.1 && git push --tags
 
 El workflow `publish.yml` corre los gates y publica a GitHub Packages solo.
 
+### La referencia canónica y el conformance
+
+Los contratos normativos del sistema viven en la rama **`canonical`** de este mismo repo (la referencia de diseño: HTML/CSS de referencia, `contracts/`, `architecture.json` y sus chequeos). `check:conformance` mide el pacto: **cada criterio automatizado de un contrato debe tener un test o chequeo del repo que lo cite por id** (`sel-7`, `tst-2`, `mc-2`…). Hoy: 355/355. El ratchet (`--min`) solo puede subir — un PR que borre un test citado pone CI en rojo. Dos reglas operativas: tras cambiar contratos en `canonical`, corre `git fetch origin canonical` antes de medir (el medidor lee el commit, no tu carpeta); y las notas de exclusión en tests **no citan ids** (una mención en comentario cuenta como cobertura).
+
 ## Verificación
 
+La batería completa que corre CI en cada push. Regla de la casa: **cada reja se corre desnuda** — una tubería (`| grep`, `| tail`) tapa el exit code y convierte la reja en decoración.
+
 ```bash
-npm run typecheck    # TypeScript — cero errores
-npm run test         # 708 tests — todos pasan
-npm run build        # build de la app demo
-npm run build:lib    # build del paquete consumible (dist-lib/)
+npm run typecheck          # TypeScript — cero errores
+npm run lint               # oxlint — cero errores (los hooks condicionales son error, no warning)
+npm run test               # 1,105 tests (32 de compliance arquitectónica)
+npm run check:catalog      # fichas ↔ barrels ↔ interfaces (C1–C5)
+npm run check:inventory    # inventario ↔ referencia canónica (S1–S3)
+npm run check:foundations  # criterios automatizados de los 7 contratos de foundations
+npm run check:targets      # ningún objetivo operable < 44px (src/ui, layout e internal-tools)
+npm run check:color        # ningún color literal ni alcance a --ref-*/--flow-* fuera de src/tokens/
+npm run check:icons        # una sola fuente de iconos; escala 16/20/24 (+display 36/40/48)
+npm run check:a11y         # anillo de foco, tabindex, keyframes, radios, gaps de hermanos
+npm run check:api-drift    # contrato canónico ↔ ficha: la misma API en ambos lados
+npm run check:conformance  # criterios del canon citados por tests — ratchet que solo sube
+npm run tokens:build && npm run check:tokens-parity   # diccionario ↔ CSS: paridad exacta
+npm run build              # build de la app demo
+npm run build:lib          # build del paquete consumible (dist-lib/)
 ```
 
 Flutter tiene sus propios gates:
@@ -443,7 +464,7 @@ Si el repo de docs vive en otra ruta: `FLOW_DOCS_PATH=/ruta npm run sync:docs`.
 | Icons | Material Symbols |
 | Flags | flag-icons (via el primitive Flag) |
 | i18n | react-intl — strings con default en español; catálogo de locales planeado |
-| Testing | Vitest · Testing Library (101 archivos, 708 tests, 30 compliance) |
+| Testing | Vitest · Testing Library (127 archivos, 1,105 tests, 32 de compliance) |
 | Build | Vite |
 | Mobile | Flutter · Dart |
 | Styling | Tokens semánticos ref→sys→comp — sin Tailwind |
@@ -494,11 +515,11 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 Si eres un agente trabajando **dentro** de este repo:
 
 1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas de arquitectura, la receta para crear componentes, y la referencia completa de tokens.
-2. La fuente de verdad de cada pieza es su contrato en `src/data/items.json` (181 entries: API, tokens, when/notWhen, a11y, plataformas). Si cambias la API de una pieza, actualiza su contrato y corre `npm run sync:docs`.
+2. La fuente de verdad de cada pieza es doble: su **ficha** en `src/data/items.json` (189 entries: API, tokens, when/notWhen, a11y, plataformas) y su **contrato normativo** en la rama `canonical` (`contracts/*.json`, con criterios de conformance). El orden es contrato-primero: una prop nueva nace en el contrato canónico, luego en el código, luego en la ficha — `check:catalog` y `check:conformance` cazan cada lado que falte. Tras editar el canon: commit + push en `canonical` y `git fetch origin canonical` aquí.
 3. Antes de crear un archivo, decide su capa (primitive / component / pattern).
-4. Busca si ya existe una pieza que haga lo que necesitas — hay 121.
+4. Busca si ya existe una pieza que haga lo que necesitas — hay 126.
 5. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).
-6. Corre `npm run typecheck` después de cada cambio.
+6. Corre las rejas desnudas después de cada cambio (`npm run typecheck`, `npm run lint`, `npm test` — sin tuberías: tapan el exit code). En React, los hooks van **antes** de cualquier early-return.
 7. Agrega cada pieza nueva al `index.ts` de su capa y crea su test.
 8. Si el cambio toca Flutter, mantén paridad: cada widget React tiene su equivalente en `flutter/lib/src/`.
 
