@@ -12,23 +12,23 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 
 // Registrados desde contracts/ (2026-09-03): especificados por contrato, sin build en la referencia.
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"anatomy-view","cat":"patterns","layer":"patterns","name":"AnatomyView","subtitle":"Descomposicion de un componente en sus partes constitutivas con specimen anotado y leyenda numerada.","status":"planned"},
-{"id":"balance-display","cat":"patterns","layer":"patterns","name":"BalanceDisplay","subtitle":"Display de saldo con label, valor en mono grande y toggle de visibilidad. Patron de wallet.","status":"planned","domain":"fintech"},
-{"id":"doc-footer","cat":"patterns","layer":"patterns","name":"DocFooter","subtitle":"Footer de pagina de documentacion con metadata (last updated, version) y links de accion.","status":"planned"},
-{"id":"doc-hero","cat":"patterns","layer":"patterns","name":"DocHero","subtitle":"Hero de pagina de documentacion con headline clamp responsivo, descripcion, pills de plataforma y badge a11y.","status":"planned"},
-{"id":"download-card","cat":"patterns","layer":"patterns","name":"DownloadCard","subtitle":"Card outlined con icono, nombre de archivo y accion de descarga.","status":"planned"},
-{"id":"guidance-card","cat":"patterns","layer":"patterns","name":"GuidanceCard","subtitle":"Card de guidance do/don't con tono semantico, specimen opcional y lista de reglas.","status":"planned"},
-{"id":"install-card","cat":"patterns","layer":"patterns","name":"InstallCard","subtitle":"Card inverse con nombre de plataforma, badge de status y CodeBlock con comando de instalacion.","status":"planned"},
-{"id":"nav-card","cat":"patterns","layer":"patterns","name":"NavCard","subtitle":"Card de navegacion prev/next entre paginas de documentacion con nombre y flecha direccional.","status":"planned"},
-{"id":"nip-reveal","cat":"patterns","layer":"patterns","name":"NipReveal","subtitle":"Revelado temporal de NIP/PIN con blur, timeout y advertencia. Patron de seguridad financiera.","status":"planned","domain":"fintech"},
-{"id":"page-header","cat":"patterns","layer":"patterns","name":"PageHeader","subtitle":"Header de pagina con titulo, breadcrumb, filtros, acciones y boton de menu responsive.","status":"planned"},
-{"id":"playground-canvas","cat":"patterns","layer":"patterns","name":"PlaygroundCanvas","subtitle":"Canvas interactivo de documentacion con selectores de variant/size/density, specimen vivo y snippet de codigo.","status":"planned"},
-{"id":"profile-menu","cat":"patterns","layer":"patterns","name":"ProfileMenu","subtitle":"Menu de perfil con avatar, nombre, rol y lista de acciones con iconos.","status":"planned"},
-{"id":"proposal-card","cat":"patterns","layer":"patterns","name":"ProposalCard","subtitle":"Comparacion before/after de propuestas MIEL con paneles semanticos y footer de acciones.","status":"planned"},
-{"id":"state-grid","cat":"patterns","layer":"patterns","name":"StateGrid","subtitle":"Grid de estados visuales de un componente (hover, focus, disabled, loading) con specimen y label por celda.","status":"planned"},
-{"id":"transaction-group","cat":"patterns","layer":"patterns","name":"TransactionGroup","subtitle":"Agrupacion de transacciones por fecha con label de seccion y lista de TransactionRow.","status":"planned","domain":"fintech"},
+{"id":"anatomy-view","cat":"patterns","layer":"patterns","name":"AnatomyView","subtitle":"Descomposicion de un componente en sus partes constitutivas con specimen anotado y leyenda numerada.","status":"stable"},
+{"id":"balance-display","cat":"patterns","layer":"patterns","name":"BalanceDisplay","subtitle":"Display de saldo con label, valor en mono grande y toggle de visibilidad. Patron de wallet.","status":"stable","domain":"fintech"},
+{"id":"doc-footer","cat":"patterns","layer":"patterns","name":"DocFooter","subtitle":"Footer de pagina de documentacion con metadata (last updated, version) y links de accion.","status":"stable"},
+{"id":"doc-hero","cat":"patterns","layer":"patterns","name":"DocHero","subtitle":"Hero de pagina de documentacion con headline clamp responsivo, descripcion, pills de plataforma y badge a11y.","status":"stable"},
+{"id":"download-card","cat":"patterns","layer":"patterns","name":"DownloadCard","subtitle":"Card outlined con icono, nombre de archivo y accion de descarga.","status":"stable"},
+{"id":"guidance-card","cat":"patterns","layer":"patterns","name":"GuidanceCard","subtitle":"Card de guidance do/don't con tono semantico, specimen opcional y lista de reglas.","status":"stable"},
+{"id":"install-card","cat":"patterns","layer":"patterns","name":"InstallCard","subtitle":"Card inverse con nombre de plataforma, badge de status y CodeBlock con comando de instalacion.","status":"stable"},
+{"id":"nav-card","cat":"patterns","layer":"patterns","name":"NavCard","subtitle":"Card de navegacion prev/next entre paginas de documentacion con nombre y flecha direccional.","status":"stable"},
+{"id":"nip-reveal","cat":"patterns","layer":"patterns","name":"NipReveal","subtitle":"Revelado temporal de NIP/PIN con blur, timeout y advertencia. Patron de seguridad financiera.","status":"stable","domain":"fintech"},
+{"id":"page-header","cat":"patterns","layer":"patterns","name":"PageHeader","subtitle":"Header de pagina con titulo, breadcrumb, filtros, acciones y boton de menu responsive.","status":"stable"},
+{"id":"playground-canvas","cat":"patterns","layer":"patterns","name":"PlaygroundCanvas","subtitle":"Canvas interactivo de documentacion con selectores de variant/size/density, specimen vivo y snippet de codigo.","status":"stable"},
+{"id":"profile-menu","cat":"patterns","layer":"patterns","name":"ProfileMenu","subtitle":"Menu de perfil con avatar, nombre, rol y lista de acciones con iconos.","status":"stable"},
+{"id":"proposal-card","cat":"patterns","layer":"patterns","name":"ProposalCard","subtitle":"Comparacion before/after de propuestas MIEL con paneles semanticos y footer de acciones.","status":"stable"},
+{"id":"state-grid","cat":"patterns","layer":"patterns","name":"StateGrid","subtitle":"Grid de estados visuales de un componente (hover, focus, disabled, loading) con specimen y label por celda.","status":"stable"},
+{"id":"transaction-group","cat":"patterns","layer":"patterns","name":"TransactionGroup","subtitle":"Agrupacion de transacciones por fecha con label de seccion y lista de TransactionRow.","status":"stable","domain":"fintech"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"dashboard-customize","cat":"patterns","layer":"patterns","name":"Dashboard customize","subtitle":"Receta de personalizacion del dashboard con estado en el dueño.","status":"planned"},
+{"id":"dashboard-customize","cat":"patterns","layer":"patterns","name":"Dashboard customize","subtitle":"Receta de personalizacion del dashboard con estado en el dueño."},
 ]);

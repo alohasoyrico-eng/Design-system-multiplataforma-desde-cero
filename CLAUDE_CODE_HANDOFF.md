@@ -62,7 +62,7 @@ La cascada no es solo una regla de imports: es el orden en que se construye. Nad
 3. **primitives** (31) y luego **components** (62) — cada control compone su shell.
 4. **patterns** (25) y **templates** (16) — al final. Los templates se copian, no se importan.
 
-De los 141 ítems, 37 están en estado `planned` (registrados 2026-09-03): tienen contrato y entrada en el registry, pero aún no tienen build de referencia aquí. En `docs/` llevan el badge Planned.
+El estado que muestra la docs es el del sistema vivo: un ítem construido en el repo de implementación aparece beta/stable aunque aquí no tenga build de referencia (eso lo registra `src: null` en `architecture.json`, no un badge). `planned` queda reservado para lo especificado y aún no construido en ningún lado.
 
 **Antes de la anchura, una rebanada vertical.** Elige una pantalla y llévala de tokens a pantalla montada. Prueba el sistema de punta a punta y descubre lo que falta cuando cuesta poco cambiarlo. `fleet-dashboard-t` es la mejor candidata: es la única plantilla con contrato escrito.
 

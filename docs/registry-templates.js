@@ -19,5 +19,5 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 
 // Registrados desde contracts/ (2026-09-03): especificados por contrato, sin build en la referencia.
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"internal-tools-t","cat":"templates","layer":"templates","name":"Internal Tools","subtitle":"CRM interno para soporte, cuentas, pricing, casos y back-office. 7 pantallas con nav lateral gated por rol y selector de rol persistente.","status":"planned"},
+{"id":"internal-tools-t","cat":"templates","layer":"templates","name":"Internal Tools","subtitle":"CRM interno para soporte, cuentas, pricing, casos y back-office. 7 pantallas con nav lateral gated por rol y selector de rol persistente.","status":"stable"},
 ]);

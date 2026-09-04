@@ -47,45 +47,45 @@ window.FlowDocs.items.push.apply(window.FlowDocs.items, [
 
 // Registrados desde contracts/ (2026-09-03): especificados por contrato, sin build en la referencia.
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"code-block","cat":"components","layer":"components","name":"CodeBlock","subtitle":"Bloque de codigo con superficie inversa, filename, copy y syntax children.","status":"planned"},
-{"id":"filter-bar","cat":"components","layer":"components","name":"FilterBar","subtitle":"Contenedor flex para filtros con gap uniforme y wrap responsivo.","status":"planned"},
-{"id":"nav-bar","cat":"components","layer":"components","name":"NavBar","subtitle":"Barra de navegacion movil con boton back, titulo centrado y trailing slot.","status":"planned"},
-{"id":"peek-sheet","cat":"components","layer":"components","name":"PeekSheet","subtitle":"Sheet inferior parcial con handle, titulo y lista. Vista previa de contenido sin cubrir toda la pantalla.","status":"planned"},
-{"id":"quick-action","cat":"components","layer":"components","name":"QuickAction","subtitle":"Boton circular con icono y etiqueta debajo. Acciones rapidas en contextos moviles: enviar, congelar, ver NIP.","status":"planned"},
-{"id":"route-banner","cat":"components","layer":"components","name":"RouteBanner","subtitle":"Banner de ruta activa con icono, titulo, subtitulo y cierre. Flota sobre el mapa.","status":"planned"},
-{"id":"section-rule","cat":"components","layer":"components","name":"SectionRule","subtitle":"Regla horizontal con label a la izquierda y meta (texto o ReactNode) a la derecha. Divide secciones.","status":"planned"},
+{"id":"code-block","cat":"components","layer":"components","name":"CodeBlock","subtitle":"Bloque de codigo con superficie inversa, filename, copy y syntax children.","status":"stable"},
+{"id":"filter-bar","cat":"components","layer":"components","name":"FilterBar","subtitle":"Contenedor flex para filtros con gap uniforme y wrap responsivo.","status":"stable"},
+{"id":"nav-bar","cat":"components","layer":"components","name":"NavBar","subtitle":"Barra de navegacion movil con boton back, titulo centrado y trailing slot.","status":"stable"},
+{"id":"peek-sheet","cat":"components","layer":"components","name":"PeekSheet","subtitle":"Sheet inferior parcial con handle, titulo y lista. Vista previa de contenido sin cubrir toda la pantalla.","status":"stable"},
+{"id":"quick-action","cat":"components","layer":"components","name":"QuickAction","subtitle":"Boton circular con icono y etiqueta debajo. Acciones rapidas en contextos moviles: enviar, congelar, ver NIP.","status":"stable"},
+{"id":"route-banner","cat":"components","layer":"components","name":"RouteBanner","subtitle":"Banner de ruta activa con icono, titulo, subtitulo y cierre. Flota sobre el mapa.","status":"stable"},
+{"id":"section-rule","cat":"components","layer":"components","name":"SectionRule","subtitle":"Regla horizontal con label a la izquierda y meta (texto o ReactNode) a la derecha. Divide secciones.","status":"stable"},
 ]);
 
 // Reclasificados por grafo de imports (fase 1 de reconciliacion, 2026-09-03).
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"card-carousel","cat":"components","layer":"components","name":"CardCarousel","subtitle":"Carrusel horizontal de cards con scroll snap, dots de navegacion y control de indice.","status":"planned"},
-{"id":"quick-action-bar","cat":"components","layer":"components","name":"QuickActionBar","subtitle":"Barra horizontal de acciones rapidas (QuickAction). Contenedor flex con scroll horizontal.","status":"planned","domain":"fintech"},
+{"id":"card-carousel","cat":"components","layer":"components","name":"CardCarousel","subtitle":"Carrusel horizontal de cards con scroll snap, dots de navegacion y control de indice.","status":"stable"},
+{"id":"quick-action-bar","cat":"components","layer":"components","name":"QuickActionBar","subtitle":"Barra horizontal de acciones rapidas (QuickAction). Contenedor flex con scroll horizontal.","status":"stable","domain":"fintech"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"wizard","cat":"components","layer":"components","name":"Wizard","subtitle":"Marco del formulario multi-paso: Stepper arriba, un paso por cuerpo y botonera Volver / Siguiente / Confirmar con estado de carga. WizardSummary, WizardSummarySection y WizardSummaryRow arman el resumen editable del paso final.","status":"planned"},
+{"id":"wizard","cat":"components","layer":"components","name":"Wizard","subtitle":"Marco del formulario multi-paso: Stepper arriba, un paso por cuerpo y botonera Volver / Siguiente / Confirmar con estado de carga. WizardSummary, WizardSummarySection y WizardSummaryRow arman el resumen editable del paso final.","status":"beta"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"active-filters","cat":"components","layer":"components","name":"ActiveFilters","subtitle":"Chips de filtros activos con quitar por dimension, periodo fijo y limpiar todo.","status":"planned"},
+{"id":"active-filters","cat":"components","layer":"components","name":"ActiveFilters","subtitle":"Chips de filtros activos con quitar por dimension, periodo fijo y limpiar todo.","status":"beta"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"data-freshness","cat":"components","layer":"components","name":"DataFreshness","subtitle":"Frescura del dato: actualizado, cadencia, proximo refresco y actualizar.","status":"planned"},
+{"id":"data-freshness","cat":"components","layer":"components","name":"DataFreshness","subtitle":"Frescura del dato: actualizado, cadencia, proximo refresco y actualizar.","status":"beta"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"saved-views","cat":"components","layer":"components","name":"SavedViews","subtitle":"Vistas guardadas: aplicar, guardar y borrar combinaciones de filtros con cupo.","status":"planned"},
+{"id":"saved-views","cat":"components","layer":"components","name":"SavedViews","subtitle":"Vistas guardadas: aplicar, guardar y borrar combinaciones de filtros con cupo.","status":"beta"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"document-viewer","cat":"components","layer":"components","name":"DocumentViewer","subtitle":"Marco unico de documento con expansion a pantalla completa.","status":"planned"},
+{"id":"document-viewer","cat":"components","layer":"components","name":"DocumentViewer","subtitle":"Marco unico de documento con expansion a pantalla completa.","status":"beta"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"widget-frame","cat":"components","layer":"components","name":"WidgetFrame","subtitle":"Marco de widget personalizable con mostrar/ocultar.","status":"planned"},
+{"id":"widget-frame","cat":"components","layer":"components","name":"WidgetFrame","subtitle":"Marco de widget personalizable con mostrar/ocultar.","status":"beta"},
 ]);
 
 window.FlowDocs.items.push.apply(window.FlowDocs.items, [
-{"id":"widget-library","cat":"components","layer":"components","name":"WidgetLibrary","subtitle":"Biblioteca de widgets: visibilidad y reorden accesible.","status":"planned"},
+{"id":"widget-library","cat":"components","layer":"components","name":"WidgetLibrary","subtitle":"Biblioteca de widgets: visibilidad y reorden accesible.","status":"beta"},
 ]);
