@@ -1,5 +1,4 @@
 import { type CSSProperties } from 'react'
-import 'flag-icons/css/flag-icons.min.css'
 import css from './Flag.module.css'
 
 const RADIUS: Record<string, string> = {

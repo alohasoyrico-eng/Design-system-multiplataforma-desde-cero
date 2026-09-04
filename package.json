@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "type": "module",
   "description": "Flow Design System — componentes React, tokens y patrones multiplataforma",
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alohasoyrico-eng/Design-system-multiplataforma-desde-cero.git"
