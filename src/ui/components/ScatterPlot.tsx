@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { useIntl } from 'react-intl'
 import { FlowChart } from '../primitives/FlowChart'
+import { EmptyState } from '../primitives/EmptyState'
 
 export interface ScatterPoint {
   id: string
@@ -28,6 +29,10 @@ export function ScatterPlot({
   height = 260, onSelect, style,
 }: ScatterPlotProps) {
   const intl = useIntl()
+  // sct-v1: sin datos no hay ejes ni rejilla vacia, hay estado vacio con texto.
+  if (!points.length) {
+    return <EmptyState icon="scatter_plot" title="Sin datos" description="No hay datos para este periodo." />
+  }
   const yDefault = intl.formatMessage({ id: 'scatter.yDefault', defaultMessage: 'Unidades' })
   const values = points.map((p) => [p.x, p.y, p.label, p.id])
   const fmt = format.y || format.x || ((v: number) => String(v))

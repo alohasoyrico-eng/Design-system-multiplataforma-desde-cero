@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { FlowChart } from '../primitives/FlowChart'
 import { ChartLegend } from '../primitives/ChartLegend'
+import { EmptyState } from '../primitives/EmptyState'
 import css from './Donut.module.css'
 
 export interface DonutSegment {
@@ -21,6 +22,10 @@ export interface DonutProps {
 }
 
 export function Donut({ segments = [], size = 160, centerLabel, centerValue, legend = true, style }: DonutProps) {
+  // dnt-v1: sin datos no hay lienzo vacio, hay estado vacio con texto.
+  if (!segments.length) {
+    return <EmptyState icon="donut_small" title="Sin datos" description="No hay datos para este periodo." />
+  }
   const total = segments.reduce((a, s) => a + s.value, 0) || 1
 
   const pick = segments.length <= 3

@@ -54,8 +54,8 @@ describe('ParetoChart', () => {
     )
   })
 
-  it('renders with empty data without error', () => {
-    const { getByTestId } = render(<ParetoChart data={[]} />)
-    expect(getByTestId('flow-chart')).toBeInTheDocument()
+  it('muestra estado vacio con texto sin datos (prt-v1)', () => {
+    const { getByText } = render(<ParetoChart data={[]} />)
+    expect(getByText('Sin datos')).toBeInTheDocument()
   })
 })

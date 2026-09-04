@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { FlowChart } from '../primitives/FlowChart'
+import { EmptyState } from '../primitives/EmptyState'
 
 export interface TreemapNode {
   label: string
@@ -27,6 +28,10 @@ function autoColor(dev: number | undefined, index: number, palette: string[]): s
 const CAT_PALETTE = ['var(--viz-1)', 'var(--viz-4)', 'var(--viz-5)', 'var(--viz-3)', 'var(--viz-6)', 'var(--viz-2)']
 
 export function Treemap({ nodes = [], height = 280, format, onDrill, style }: TreemapProps) {
+  // tmp-v1: sin datos no hay lienzo vacio, hay estado vacio con texto.
+  if (!nodes.length) {
+    return <EmptyState icon="grid_view" title="Sin datos" description="No hay datos para este periodo." />
+  }
   const data = nodes.map((n, i) => ({ label: n.label, value: n.value, color: n.color || autoColor(n.deviation, i, CAT_PALETTE) }))
 
   return (

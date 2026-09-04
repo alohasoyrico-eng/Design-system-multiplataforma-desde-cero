@@ -3201,6 +3201,15 @@
         "note": "Color base de la serie"
       },
       {
+        "n": "highlightMax",
+        "k": "prop",
+        "t": "boolean",
+        "d": "Exactamente la barra maxima va en acento; con empate en el maximo, ninguna (brs-1).",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "format",
         "k": "renderProp",
         "t": "(v)=>string",
@@ -3208,6 +3217,15 @@
         "r": false,
         "rw": "",
         "note": "Eje, tooltip y etiquetas"
+      },
+      {
+        "n": "style",
+        "k": "prop",
+        "t": "React.CSSProperties",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
       }
     ],
     "dos": [

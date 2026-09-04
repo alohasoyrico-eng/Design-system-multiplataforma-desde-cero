@@ -47,8 +47,8 @@ describe('ScatterPlot', () => {
     )
   })
 
-  it('renders with empty points without error', () => {
-    const { getByTestId } = renderWithIntl(<ScatterPlot points={[]} />)
-    expect(getByTestId('flow-chart')).toBeInTheDocument()
+  it('muestra estado vacio con texto sin puntos (sct-v1)', () => {
+    const { getByText } = renderWithIntl(<ScatterPlot points={[]} />)
+    expect(getByText('Sin datos')).toBeInTheDocument()
   })
 })

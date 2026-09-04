@@ -1,5 +1,6 @@
 import { useMemo, type CSSProperties } from 'react'
 import { FlowChart } from '../primitives/FlowChart'
+import { EmptyState } from '../primitives/EmptyState'
 
 export interface ParetoItem {
   label: string
@@ -17,6 +18,11 @@ export interface ParetoChartProps {
 export function ParetoChart({ data = [], height = 240, format, threshold = 0.8, style }: ParetoChartProps) {
   const sorted = useMemo(() => [...data].sort((a, b) => b.value - a.value), [data])
   const total = sorted.reduce((a, d) => a + d.value, 0) || 1
+
+  // prt-v1: sin datos no hay ejes ni rejilla vacia, hay estado vacio con texto.
+  if (!data.length) {
+    return <EmptyState icon="bar_chart" title="Sin datos" description="No hay datos para este periodo." />
+  }
 
   const itemColors = useMemo(() => {
     let acc = 0
