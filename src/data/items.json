@@ -9289,6 +9289,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "fillTrigger",
+        "k": "prop",
+        "t": "boolean",
+        "d": "false",
+        "r": false,
+        "rw": "",
+        "note": "Control de campo: el trigger llena su contenedor; sin esto el ancho es del contenido"
       }
     ],
     "dos": [],

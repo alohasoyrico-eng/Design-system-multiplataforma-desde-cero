@@ -85,3 +85,13 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.root[data-fill] {
+  display: block;
+  width: 100%;
+}
+
+.trigger[data-fill] {
+  display: block;
+  width: 100%;
+}

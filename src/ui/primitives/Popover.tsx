@@ -28,6 +28,10 @@ export interface PopoverProps {
   children: ReactNode | ((helpers: { close: () => void }) => ReactNode)
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  /** El envoltorio del trigger es inline (shrink-to-fit) para menus y botones.
+      Un control de campo (Select) necesita llenar su contenedor: sin esto, el
+      ancho depende del contenido y asignar/limpiar mueve el layout. */
+  fillTrigger?: boolean
 }
 
 function splitPlacement(placement: PopoverPlacement): [PopoverSide, 'start' | 'center' | 'end'] {
@@ -37,6 +41,7 @@ function splitPlacement(placement: PopoverPlacement): [PopoverSide, 'start' | 'c
 
 export function Popover({
   trigger,
+  fillTrigger,
   align,
   placement,
   offset = 6,
@@ -141,8 +146,8 @@ export function Popover({
   if (anchorRef) return <>{panel}</>
 
   return (
-    <div className={css.root}>
-      <span ref={trigRef} className={css.trigger} onClick={() => setOpen?.(!open)}>
+    <div className={css.root} data-fill={fillTrigger || undefined}>
+      <span ref={trigRef} className={css.trigger} data-fill={fillTrigger || undefined} onClick={() => setOpen?.(!open)}>
         {trigger}
       </span>
       {panel}

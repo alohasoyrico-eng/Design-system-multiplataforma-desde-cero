@@ -159,7 +159,7 @@ export function Select({
   )
 
   return (
-    <Popover trigger={trigger} open={open} onOpenChange={handleOpenChange}>
+    <Popover trigger={trigger} fillTrigger open={open} onOpenChange={handleOpenChange}>
       {searchable && (
         <div className={css.search}>
           <input
