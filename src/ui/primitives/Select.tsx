@@ -22,6 +22,9 @@ export interface SelectProps {
   clearable?: boolean
   renderOption?: (o: SelectOption) => ReactNode
   placeholder?: string
+  /** Label integrada compacta (filtros): viaja dentro del trigger y da el
+      nombre accesible al control — 9 selects de eOne la piden (§6). */
+  insetLabel?: string
   icon?: string
   disabled?: boolean
   invalid?: boolean
@@ -43,6 +46,7 @@ export function Select({
   clearable,
   renderOption,
   placeholder,
+  insetLabel,
   icon,
   disabled,
   invalid,
@@ -131,6 +135,7 @@ export function Select({
         id={id}
         className={css.trigger}
         role="combobox"
+        aria-label={insetLabel}
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-controls={open ? listboxId : undefined}
@@ -142,6 +147,7 @@ export function Select({
           }
         }}
       >
+        {insetLabel && <span className={css.insetLabel}>{insetLabel}:</span>}
         <span className={css.triggerText} data-empty={!selectedLabels || undefined}>
           {selectedLabels || resolvedPlaceholder}
         </span>
@@ -158,7 +164,7 @@ export function Select({
             className={css.searchInput}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Buscar…"
+            placeholder={intl.formatMessage({ id: 'common.search', defaultMessage: 'Buscar…' })}
             autoComplete="off"
           />
         </div>

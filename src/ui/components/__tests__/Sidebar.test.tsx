@@ -78,3 +78,20 @@ describe('Sidebar', () => {
     expect(onToggleSection).toHaveBeenCalledWith('admin')
   })
 })
+
+describe('Sidebar · SidebarItem.badge', () => {
+  const items = [
+    { id: 'tickets', label: 'Tickets', badge: 3 },
+    { id: 'vivo', label: 'Actividad', badge: true },
+    { id: 'muchos', label: 'Cola', badge: 120 },
+  ]
+  it('el contador es parte del nombre y pasa a 99+', () => {
+    render(<Sidebar items={items} />)
+    expect(screen.getByRole('button', { name: 'Tickets3' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Cola99+' })).toBeInTheDocument()
+  })
+  it('colapsado, el contador viaja al aria-label', () => {
+    render(<Sidebar items={items} collapsed />)
+    expect(screen.getByRole('button', { name: 'Tickets (3)' })).toBeInTheDocument()
+  })
+})

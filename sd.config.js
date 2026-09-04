@@ -420,6 +420,24 @@ const config = {
         filter: (t) => t.path[1] === 'brand',
       }],
     },
+    // La capa ref del CSS fuente SE GENERA desde el diccionario: es la unica
+    // capa de valores absolutos y su unica fuente es flow.tokens.json. El
+    // layout de 8 archivos se conserva porque las rejas del repo lo fijan
+    // (existencia, valores crudos, orden de imports en styles.css).
+    'css/ref-src': {
+      transforms: ['name/flow/ref', ...CSS_TRANSFORMS],
+      buildPath: 'src/tokens/ref/',
+      files: [
+        { destination: 'spacing.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'space' },
+        { destination: 'radius.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'radius' },
+        { destination: 'sizing.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'size' },
+        { destination: 'typography.css', format: 'css/flow', filter: (t) => isRef(t) && ['type', 'font', 'tracking'].includes(t.path[2]) },
+        { destination: 'colors.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'color' },
+        { destination: 'elevation.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'shadow' },
+        { destination: 'motion.css', format: 'css/flow', filter: (t) => isRef(t) && ['duration', 'easing', 'hover', 'lift', 'press'].includes(t.path[2]) },
+        { destination: 'iconography.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'icon' },
+      ],
+    },
     'css/compat-eone': {
       transforms: [...CSS_TRANSFORMS],
       buildPath: 'generated/tokens/css/',

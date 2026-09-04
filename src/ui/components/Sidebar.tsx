@@ -6,6 +6,9 @@ export interface SidebarItem {
   label: string
   icon?: string
   href?: string
+  /** Contador (número, 99+ al pasar) o punto vivo (true). Colapsado, el
+      contador viaja al nombre accesible y el punto se posa en el icono. */
+  badge?: number | boolean
   children?: SidebarItem[]
 }
 
@@ -48,7 +51,7 @@ export function Sidebar({
         <button
           type="button"
           className={css.item}
-          aria-label={collapsed ? item.label : undefined}
+          aria-label={collapsed ? (typeof item.badge === 'number' ? `${item.label} (${item.badge})` : item.label) : undefined}
           aria-current={isActive && !isSection ? 'page' : undefined}
           aria-expanded={isSection ? isOpen : undefined}
           data-active={isActive || undefined}
@@ -71,6 +74,12 @@ export function Sidebar({
             </span>
           )}
           {!collapsed && <span className={css.itemLabel}>{item.label}</span>}
+          {!collapsed && item.badge != null && item.badge !== false && (
+            <span className={css.badge} data-dot={item.badge === true || undefined} aria-hidden={item.badge === true || undefined}>
+              {typeof item.badge === 'number' ? (item.badge > 99 ? '99+' : item.badge) : ''}
+            </span>
+          )}
+          {collapsed && item.badge ? <span className={css.badgeCollapsed} aria-hidden="true" /> : null}
           {!collapsed && isSection && (
             <span
               className={`flow-symbol ${css.chevron}`}

@@ -54,3 +54,12 @@ describe('Select — id para Field', () => {
     expect(screen.getByRole('combobox')).toHaveAttribute('id', 'pais')
   })
 })
+
+describe('Select · insetLabel', () => {
+  it('la label integrada nombra el control y viaja en el trigger', () => {
+    renderWithIntl(<Select insetLabel="Estado" options={[{ value: 'a', label: 'Activo' }]} />)
+    const combo = screen.getByRole('combobox', { name: 'Estado' })
+    expect(combo).toBeInTheDocument()
+    expect(screen.getByText('Estado:')).toBeInTheDocument()
+  })
+})

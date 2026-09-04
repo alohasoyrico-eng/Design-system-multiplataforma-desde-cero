@@ -70,3 +70,16 @@ describe('DataGrid', () => {
     expect(nameCells[2]).toHaveTextContent('Maria')
   })
 })
+
+describe('DataGrid · GridColumn.priority', () => {
+  it('marca th y td con data-priority para el retiro responsivo', () => {
+    const { container } = render(
+      <DataGrid
+        columns={[{ key: 'a', label: 'Core' }, { key: 'b', label: 'Extra', priority: 3 }]}
+        rows={[{ a: 1, b: 2 }]}
+      />,
+    )
+    expect(container.querySelectorAll('[data-priority="3"]')).toHaveLength(2)
+    expect(container.querySelector('th[data-priority="3"]')).toHaveTextContent('Extra')
+  })
+})

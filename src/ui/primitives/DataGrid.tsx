@@ -6,6 +6,9 @@ export interface GridColumn<T = Record<string, unknown>> {
   label: string
   align?: 'left' | 'right' | 'center'
   mono?: boolean
+  /** Retiro responsivo: 1 (o ausente) siempre visible; 2 se retira bajo --bp-md;
+      3 se retira ya bajo --bp-lg... practico: 2 sobrevive mas que 3. */
+  priority?: 1 | 2 | 3
   render?: (row: T) => ReactNode
 }
 
@@ -15,6 +18,8 @@ export interface GridSort {
   key: string
   dir: 'asc' | 'desc'
 }
+
+export type GridSkin = Partial<Record<'root' | 'table' | 'th' | 'thButton' | 'row' | 'td', string>>
 
 export interface DataGridProps<T = Record<string, unknown>> {
   columns?: GridColumn<T>[]
@@ -30,6 +35,8 @@ export interface DataGridProps<T = Record<string, unknown>> {
   onSortChange?: (sort: GridSort | null) => void
   density?: Density
   zebraToken?: string
+  /** El gancho de las pieles (Table): reemplaza clases sin duplicar la mecanica. */
+  skin?: GridSkin
   style?: CSSProperties
 }
 
@@ -44,8 +51,10 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
   onSortChange,
   density = 'default',
   zebraToken = 'var(--surface-sunken)',
+  skin,
   style,
 }: DataGridProps<T>) {
+  const cls = (k: keyof NonNullable<GridSkin>) => skin?.[k] ?? css[k as string]
   const controlled = sort !== undefined
   const [internalSort, setInternalSort] = useState<GridSort | null>(null)
   const active = controlled ? sort : internalSort
@@ -74,20 +83,21 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
   }
 
   return (
-    <div className={css.root} data-density={density !== 'default' ? density : undefined} style={{ '--_zebra': zebraToken, ...style } as CSSProperties}>
-      <table className={css.table}>
+    <div className={cls('root')} data-density={density !== 'default' ? density : undefined} style={{ '--_zebra': zebraToken, ...style } as CSSProperties}>
+      <table className={cls('table')}>
         <thead>
           <tr>
             {columns.map((col) => (
               <th
                 key={col.key}
-                className={css.th}
+                className={cls('th')}
                 data-sortable={sortable || undefined}
+                data-priority={col.priority && col.priority > 1 ? col.priority : undefined}
                 aria-sort={sortCol === col.key ? (sortDir === 'asc' ? 'ascending' : 'descending') : undefined}
                 style={{ textAlign: col.align || 'left' }}
               >
                 {sortable ? (
-                  <button type="button" className={css.thButton} onClick={() => handleSort(col.key)}>
+                  <button type="button" className={cls('thButton')} onClick={() => handleSort(col.key)}>
                     {col.label}
                     {sortCol === col.key && <span aria-hidden="true" style={{ marginLeft: 4 }}>{sortDir === 'asc' ? '↑' : '↓'}</span>}
                   </button>
@@ -105,7 +115,7 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
             return (
               <tr
                 key={key}
-                className={css.row}
+                className={cls('row')}
                 data-selected={isSelected || undefined}
                 data-clickable={onRowClick ? '' : undefined}
                 onClick={() => onRowClick?.(row)}
@@ -113,8 +123,9 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
                 {columns.map((col) => (
                   <td
                     key={col.key}
-                    className={css.td}
+                    className={cls('td')}
                     data-mono={col.mono || undefined}
+                    data-priority={col.priority && col.priority > 1 ? col.priority : undefined}
                     style={{ textAlign: col.align || 'left' }}
                   >
                     {col.render ? col.render(row) : (row[col.key] as ReactNode)}

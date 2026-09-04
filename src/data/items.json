@@ -586,7 +586,7 @@
         "d": "[]",
         "r": false,
         "rw": "",
-        "note": "{id,label,icon?,href?,children?}"
+        "note": "{id,label,icon?,href?,children?} · badge: contador (99+) o punto vivo; colapsado viaja al nombre"
       },
       {
         "n": "collapsed",
@@ -1578,7 +1578,7 @@
         "d": "[]",
         "r": false,
         "rw": "",
-        "note": ""
+        "note": "priority 2/3: retiro responsivo bajo 982/576px"
       },
       {
         "n": "rows",
@@ -7102,6 +7102,15 @@
         "r": false,
         "rw": "",
         "note": "Boton de limpiar la seleccion"
+      },
+      {
+        "n": "insetLabel",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Label integrada compacta (filtros): dentro del trigger y nombre accesible del control"
       }
     ],
     "dos": [
@@ -9421,7 +9430,7 @@
         "d": "",
         "r": true,
         "rw": "",
-        "note": ""
+        "note": "priority 2/3: retiro responsivo bajo 982/576px"
       },
       {
         "n": "rows",
@@ -9503,6 +9512,15 @@
         "r": false,
         "rw": "",
         "note": ""
+      },
+      {
+        "n": "skin",
+        "k": "prop",
+        "t": "GridSkin",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "El gancho de las pieles (Table): reemplaza clases sin duplicar la mecánica"
       }
     ],
     "dos": [],

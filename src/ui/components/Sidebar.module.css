@@ -109,3 +109,38 @@
 .sectionChildren {
   background: var(--surface-sunken);
 }
+
+.item {
+  position: relative;
+}
+
+.badge {
+  margin-left: auto;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: var(--status-live, var(--action-accent));
+  color: var(--text-on-accent);
+  font: var(--type-data-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge[data-dot] {
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+}
+
+.badgeCollapsed {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--status-live, var(--action-accent));
+}

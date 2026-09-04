@@ -73,3 +73,16 @@
   box-shadow: var(--focus-ring);
   border-radius: var(--radius-sm);
 }
+
+/* Retiro responsivo de columnas: por atributo, para que aplique en cualquier
+   piel del shell. 3 se retira primero (bajo 982px), 2 despues (bajo 576px). */
+@media (max-width: 982px) {
+  :global([data-priority='3']) {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  :global([data-priority='2']) {
+    display: none;
+  }
+}
