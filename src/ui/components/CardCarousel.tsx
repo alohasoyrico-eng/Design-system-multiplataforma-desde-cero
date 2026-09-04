@@ -27,7 +27,7 @@ export function CardCarousel({ children, activeIndex, onChange, style }: CardCar
     if (!child) return
     scrolling.current = true
     const targetLeft = child.offsetLeft - (el.clientWidth - child.offsetWidth) / 2
-    el.scrollTo({ left: targetLeft, behavior: 'smooth' })
+    el.scrollTo?.({ left: targetLeft, behavior: 'smooth' })
     const timer = setTimeout(() => { scrolling.current = false }, 350)
     return () => clearTimeout(timer)
   }, [idx])

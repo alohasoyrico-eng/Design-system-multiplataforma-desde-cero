@@ -1,5 +1,6 @@
 .root {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--ag-min, 320px), 1fr));
+  /* ag-1: si el minimo excede el viewport, colapsa a 1 columna en vez de forzar scroll. */
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--ag-min, 320px), 100%), 1fr));
   gap: var(--ag-gap, var(--gap-stack));
 }

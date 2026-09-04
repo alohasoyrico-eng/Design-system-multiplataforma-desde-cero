@@ -5,6 +5,8 @@
   right: var(--space-3);
   z-index: 5;
   display: flex;
+  /* fb-1: envuelve en viewports estrechos sin overflow horizontal. */
+  flex-wrap: wrap;
   gap: var(--space-2);
   align-items: center;
 }
