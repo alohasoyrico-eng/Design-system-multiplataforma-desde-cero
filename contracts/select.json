@@ -125,6 +125,23 @@
         "kind": "prop",
         "type": "string",
         "note": "Label integrada compacta para filtros: viaja dentro del trigger y da el nombre accesible. Nueve selects de eOne la piden (§6)."
+      },
+      {
+        "name": "id",
+        "kind": "prop",
+        "type": "string",
+        "note": "Id del control focusable — permite asociar Field htmlFor."
+      },
+      {
+        "name": "aria-labelledby",
+        "kind": "prop",
+        "type": "string",
+        "note": "Nombre accesible por referencia; SettingsRow lo inyecta (set-p5)."
+      },
+      {
+        "name": "style",
+        "kind": "prop",
+        "type": "React.CSSProperties"
       }
     ]
   },

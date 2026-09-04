@@ -19,6 +19,18 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "homeIcon",
+        "kind": "prop",
+        "type": "string",
+        "note": "'home'"
+      },
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'default' | 'subtle'",
+        "note": "'default'"
       }
     ]
   },

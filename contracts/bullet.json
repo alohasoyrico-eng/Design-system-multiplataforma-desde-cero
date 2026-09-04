@@ -24,6 +24,11 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "color",
+        "kind": "prop",
+        "type": "string"
       }
     ]
   },

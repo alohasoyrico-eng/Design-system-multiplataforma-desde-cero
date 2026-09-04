@@ -27,6 +27,12 @@
         "note": "Clickeable: forma parte del target."
       },
       {
+        "name": "aria-labelledby",
+        "kind": "prop",
+        "type": "string",
+        "note": "Nombre accesible por referencia; SettingsRow lo inyecta (set-p5)."
+      },
+      {
         "name": "disabled",
         "kind": "prop",
         "type": "boolean",

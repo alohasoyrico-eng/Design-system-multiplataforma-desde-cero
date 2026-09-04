@@ -41,17 +41,12 @@
         "variantAxis": true
       },
       {
-        "name": "size",
-        "kind": "prop",
-        "type": "'sm' | 'md'",
-        "default": "md"
-      },
-      {
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
       }
-    ]
+    ],
+    "note": "size nunca se construyo — sin consumidor que lo exija."
   },
   "conformance": {
     "criteria": [

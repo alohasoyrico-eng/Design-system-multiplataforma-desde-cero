@@ -15,26 +15,7 @@
         "type": "React.ReactNode"
       },
       {
-        "name": "variant",
-        "kind": "prop",
-        "type": "'default' | 'accent'",
-        "default": "default",
-        "variantAxis": true
-      },
-      {
-        "name": "accent",
-        "kind": "prop",
-        "type": "string",
-        "default": "var(--action-accent)"
-      },
-      {
         "name": "interactive",
-        "kind": "prop",
-        "type": "boolean",
-        "default": false
-      },
-      {
-        "name": "selected",
         "kind": "prop",
         "type": "boolean",
         "default": false
@@ -54,8 +35,21 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "hover",
+        "kind": "prop",
+        "type": "'lift' | 'fill' | 'none'",
+        "note": "'none'"
+      },
+      {
+        "name": "surface",
+        "kind": "prop",
+        "type": "'elevated' | 'outlined' | 'inverse'",
+        "note": "'elevated'"
       }
-    ]
+    ],
+    "note": "API real: hover/surface. accent/selected/variant eran el diseno inicial y no se construyeron."
   },
   "conformance": {
     "criteria": [

@@ -58,11 +58,6 @@
         "type": "MapPin[]"
       },
       {
-        "name": "selectedId",
-        "kind": "prop",
-        "type": "string"
-      },
-      {
         "name": "onPinClick",
         "kind": "event",
         "type": "(pin: MapPin) => void"
@@ -73,31 +68,24 @@
         "type": "Array<{ lat: number; lng: number }>"
       },
       {
-        "name": "dark",
-        "kind": "prop",
-        "type": "boolean",
-        "default": false,
-        "note": "No se deriva del tema: el set de tiles es una decisión de datos, no de token."
-      },
-      {
-        "name": "width",
-        "kind": "prop",
-        "type": "string | number"
-      },
-      {
-        "name": "height",
-        "kind": "prop",
-        "type": "string | number",
-        "required": true
-      },
-      {
         "name": "tone",
         "kind": "prop",
         "type": "'mono' | 'color'",
         "default": "'mono'",
         "note": "El fondo es lienzo: en mono los tiles van en escala de grises y el color queda reservado a pins y ruta — el matiz es del dato, no del mapa. color restaura los tiles originales."
+      },
+      {
+        "name": "selectedPin",
+        "kind": "prop",
+        "type": "string | null"
+      },
+      {
+        "name": "routeColor",
+        "kind": "prop",
+        "type": "string"
       }
-    ]
+    ],
+    "note": "API real: selectedPin/routeColor; el alto lo fija la hoja y el modo lo hereda de data-mode. dark/height/width/selectedId no se construyeron."
   },
   "conformance": {
     "criteria": [

@@ -37,6 +37,11 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "as",
+        "kind": "prop",
+        "type": "'span' | 'kbd'"
       }
     ]
   },

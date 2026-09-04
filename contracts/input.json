@@ -41,6 +41,12 @@
         "note": "Nativo. type='email' con el error de Field es lo que sustituyo a InputEmail."
       },
       {
+        "name": "autoComplete",
+        "kind": "prop",
+        "type": "string",
+        "note": "Autorrelleno del navegador (email, current-password, tel...): sin esto el gestor de contrasenas no funciona (aut-p3)."
+      },
+      {
         "name": "icon",
         "kind": "prop",
         "type": "string"
@@ -64,6 +70,12 @@
         "type": "boolean",
         "default": false,
         "note": "Para placas, IDs y montos."
+      },
+      {
+        "name": "ariaLabel",
+        "kind": "prop",
+        "type": "string",
+        "note": "Nombre accesible cuando no hay Field que etiquete el control (tpb-2)."
       },
       {
         "name": "disabled",

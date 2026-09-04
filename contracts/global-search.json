@@ -78,6 +78,45 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "emptyDescription",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "emptyHint",
+        "kind": "prop",
+        "type": "string",
+        "note": "Qué escribir cuando no hay resultados"
+      },
+      {
+        "name": "emptyTitle",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "minChars",
+        "kind": "prop",
+        "type": "number",
+        "note": "1"
+      },
+      {
+        "name": "noResultsTitle",
+        "kind": "prop",
+        "type": "(query: string) => string"
+      },
+      {
+        "name": "shortcut",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "true"
+      },
+      {
+        "name": "suggestions",
+        "kind": "prop",
+        "type": "string[]",
+        "note": "[]"
       }
     ]
   },

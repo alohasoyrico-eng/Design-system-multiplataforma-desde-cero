@@ -148,6 +148,82 @@
         "type": "string",
         "required": true,
         "note": "La conclusión, no el tipo de chart."
+      },
+      {
+        "name": "area",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "Relleno bajo la linea"
+      },
+      {
+        "name": "color",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "emptyLabel",
+        "kind": "prop",
+        "type": "string",
+        "note": "Sin datos para este periodo"
+      },
+      {
+        "name": "height",
+        "kind": "prop",
+        "type": "number",
+        "note": "280"
+      },
+      {
+        "name": "horizontal",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "false"
+      },
+      {
+        "name": "itemColors",
+        "kind": "prop",
+        "type": "string[]",
+        "note": "Color por dato; gana sobre palette"
+      },
+      {
+        "name": "legend",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "false"
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "number",
+        "note": "gauge y límites de eje"
+      },
+      {
+        "name": "min",
+        "kind": "prop",
+        "type": "number",
+        "note": "gauge y límites de eje"
+      },
+      {
+        "name": "showValues",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "false"
+      },
+      {
+        "name": "smooth",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "false"
+      },
+      {
+        "name": "stack",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "false"
+      },
+      {
+        "name": "thresholds",
+        "kind": "prop",
+        "type": "[number, string][]"
       }
     ]
   },

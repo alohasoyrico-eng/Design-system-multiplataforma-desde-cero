@@ -88,24 +88,30 @@
         "type": "string | number"
       },
       {
-        "name": "dense",
+        "name": "density",
+        "kind": "prop",
+        "type": "Density",
+        "note": "'default'"
+      },
+      {
+        "name": "sort",
+        "kind": "prop",
+        "type": "TableSort | null",
+        "note": "Controlado: el dueño ordena (también en servidor); el grid solo pinta y emite"
+      },
+      {
+        "name": "onSortChange",
+        "kind": "event",
+        "type": "(sort: TableSort | null) => void"
+      },
+      {
+        "name": "sortable",
         "kind": "prop",
         "type": "boolean",
-        "default": false,
-        "variantAxis": true
-      },
-      {
-        "name": "renderDetail",
-        "kind": "renderProp",
-        "type": "(row: T) => React.ReactNode",
-        "note": "Activa chevron y fila de detalle."
-      },
-      {
-        "name": "defaultSort",
-        "kind": "prop",
-        "type": "{ key: string; dir: 1 | -1 }"
+        "note": "true"
       }
-    ]
+    ],
+    "note": "API real desde sep-2026: density/sort/onSortChange/sortable. Los nombres defaultSort/dense/renderDetail nunca se construyeron."
   },
   "variants": [
     {

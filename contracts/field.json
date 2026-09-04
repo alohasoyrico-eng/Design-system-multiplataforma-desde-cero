@@ -47,6 +47,16 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "valid",
+        "kind": "prop",
+        "type": "boolean"
+      },
+      {
+        "name": "validMessage",
+        "kind": "prop",
+        "type": "string"
       }
     ]
   },

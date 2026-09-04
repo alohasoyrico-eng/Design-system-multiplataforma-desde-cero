@@ -40,6 +40,11 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "media",
+        "kind": "slot",
+        "type": "ReactNode"
       }
     ]
   },

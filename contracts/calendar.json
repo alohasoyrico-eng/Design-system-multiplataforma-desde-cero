@@ -49,6 +49,18 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "string",
+        "note": "ISO — días posteriores deshabilitados"
+      },
+      {
+        "name": "min",
+        "kind": "prop",
+        "type": "string",
+        "note": "ISO — días anteriores deshabilitados"
       }
     ]
   },

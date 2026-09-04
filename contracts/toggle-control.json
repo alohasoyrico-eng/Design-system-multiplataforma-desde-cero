@@ -44,6 +44,12 @@
         "type": "string"
       },
       {
+        "name": "aria-labelledby",
+        "kind": "prop",
+        "type": "string",
+        "note": "Nombre accesible por referencia; SettingsRow lo inyecta (set-p5)."
+      },
+      {
         "name": "description",
         "kind": "prop",
         "type": "string"

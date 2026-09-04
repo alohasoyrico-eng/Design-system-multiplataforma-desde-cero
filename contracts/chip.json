@@ -16,6 +16,26 @@
         "required": true
       },
       {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'default' | 'ghost'",
+        "default": "default"
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md'",
+        "default": "md",
+        "note": "sm compacta tipografia y padding; el objetivo NUNCA baja de --hit-target-min (chp-1, decision 4-sep-2026)."
+      },
+      {
+        "name": "mono",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Placas e IDs en --font-mono."
+      },
+      {
         "name": "selected",
         "kind": "prop",
         "type": "boolean",

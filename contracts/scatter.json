@@ -36,6 +36,17 @@
         "type": "number"
       },
       {
+        "name": "color",
+        "kind": "prop",
+        "type": "string",
+        "note": "Color de la serie; default de la paleta de dataviz."
+      },
+      {
+        "name": "format",
+        "kind": "prop",
+        "type": "{ x?: (v: number) => string; y?: (v: number) => string }"
+      },
+      {
         "name": "height",
         "kind": "prop",
         "type": "number",

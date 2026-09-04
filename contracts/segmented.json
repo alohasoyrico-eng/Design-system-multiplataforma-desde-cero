@@ -30,6 +30,12 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'md' | 'sm'",
+        "note": "'md'"
       }
     ]
   },

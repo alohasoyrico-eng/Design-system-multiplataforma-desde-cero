@@ -50,6 +50,26 @@
         "name": "onClick",
         "kind": "event",
         "type": "() => void"
+      },
+      {
+        "name": "balance",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "hidden",
+        "kind": "prop",
+        "type": "boolean"
+      },
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "onToggleHidden",
+        "kind": "event",
+        "type": "() => void"
       }
     ]
   },

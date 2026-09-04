@@ -81,6 +81,38 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "leading",
+        "kind": "slot",
+        "type": "ReactNode"
+      },
+      {
+        "name": "navSize",
+        "kind": "prop",
+        "type": "'md' | 'sm'",
+        "note": "'md'"
+      },
+      {
+        "name": "sticky",
+        "kind": "prop",
+        "type": "boolean"
+      },
+      {
+        "name": "surface",
+        "kind": "prop",
+        "type": "'card' | 'inverse' | 'glass'",
+        "note": "'card'"
+      },
+      {
+        "name": "trailing",
+        "kind": "slot",
+        "type": "ReactNode"
+      },
+      {
+        "name": "version",
+        "kind": "prop",
+        "type": "string"
       }
     ]
   },

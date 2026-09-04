@@ -30,6 +30,12 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "contained",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "false"
       }
     ]
   },

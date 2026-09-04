@@ -45,6 +45,12 @@
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
+      },
+      {
+        "name": "variant",
+        "kind": "prop",
+        "type": "'default' | 'inline'",
+        "note": "'default'"
       }
     ]
   },
