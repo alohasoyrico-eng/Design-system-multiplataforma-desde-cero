@@ -9000,7 +9000,17 @@
     "anatomy": "",
     "tokens": [],
     "variants": [],
-    "members": [],
+    "members": [
+      {
+        "n": "labelledBy",
+        "k": "prop",
+        "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Id del título que etiqueta el diálogo (aria-labelledby en la carcasa)"
+      }
+    ],
     "dos": [],
     "donts": [],
     "when": [],
@@ -9634,6 +9644,24 @@
         "n": "id",
         "k": "prop",
         "t": "string",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
+        "n": "active",
+        "k": "prop",
+        "t": "number",
+        "d": "",
+        "r": false,
+        "rw": "",
+        "note": "Modo combobox: el dueño (Select) conduce el resaltado desde su trigger"
+      },
+      {
+        "n": "onActiveChange",
+        "k": "event",
+        "t": "(index: number) => void",
         "d": "",
         "r": false,
         "rw": "",
