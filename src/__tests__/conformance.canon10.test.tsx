@@ -40,7 +40,7 @@ describe('conformance canon · smallmultiples', () => {
     expect(uiDe('components/SmallMultiples.tsx')).toMatch(/misma escala Y/)
   })
 
-  it('smm-2: una entidad sin valores o con una sola muestra no rompe la escala de las demas', () => {
+  it('smm-2 y smm-v2: una entidad sin valores o con una sola muestra no rompe la escala ni divide por cero', () => {
     const { container } = render(
       <SmallMultiples items={[...celdas, { id: 'u3', label: 'Nueva', values: [50] }, { id: 'u4', label: 'Vacia', values: [] }]} />,
     )
