@@ -41,15 +41,9 @@ createRoot(document.getElementById('root')!).render(
 
 `npm run dev` y ya estás viendo Flow renderizado. A partir de aquí: el catálogo completo vive en el sitio de docs y cada pieza se importa igual que estas tres.
 
-<details>
-<summary>Alternativa sin registry: instalar desde git</summary>
-
-```bash
-npm install github:alohasoyrico-eng/Design-system-multiplataforma-desde-cero
-```
-
-Funciona igual, pero el build de librería corre en tu máquina al instalar (hook `prepare`).
-</details>
+> Sin acceso al registry, la ruta es el `.tgz` (sección «Instalación local»). La instalación
+> directa por git se retiró: descargaba el repo completo — banco de plantillas, Flutter,
+> assets — a tu `node_modules`, peso que un usuario no tiene por qué pagar.
 
 Dos cosas más en tu `index.html` para que la tipografía e iconos carguen:
 
@@ -204,7 +198,7 @@ Resuelven tareas recurrentes de negocio. (La capa la decide el grafo de imports:
 
 ### Templates
 
-Pantallas completas funcionando en la app demo:
+**Los templates no viajan en el paquete ni son documentación** — el sitio de docs vive en su propio repo. Son la quinta capa del canon: pantallas completas con contrato y criterios de conformance propios (testeados contra estas páginas), y el banco donde cada pieza se prueba con datos reales antes de publicarse. Se copian como punto de partida, no se importan:
 
 **Desktop** — `Dashboard` (6 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Peaje, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 189 contratos)
 
@@ -400,7 +394,7 @@ npm install
 npm run dev
 ```
 
-Abre `localhost:5173` — la app demo con todas las pantallas (dashboards, wallet móvil, internal tools, Component Detail). El sitio de documentación vive en [su propio repo](https://github.com/alohasoyrico-eng/Docs-para-design-system-multiplataforma-desde-cero) y **lo gobierna el equipo de diseño exclusivamente**: consume este paquete y recibe los contratos vía `npm run sync:docs`.
+Abre `localhost:5173` — el **banco de plantillas**: las implementaciones de la capa templates del canon (dashboards, wallet móvil, internal tools, Component Detail) donde se ejercitan las piezas y corren los tests de conformance de página. Nada de esto llega al paquete: el tarball lleva solo `dist-lib`, fuentes, la ficha de contratos y la guía del usuario — verifícalo con `npm pack --dry-run`. El sitio de documentación vive en [su propio repo](https://github.com/alohasoyrico-eng/Docs-para-design-system-multiplataforma-desde-cero) y **lo gobierna el equipo de diseño exclusivamente**: consume este paquete y recibe los contratos vía `npm run sync:docs`.
 
 **Publicar una versión nueva:** sube `version` en `package.json`, luego
 

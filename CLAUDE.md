@@ -17,7 +17,7 @@ bájalo a la capa que ambos comparten — no lo copies.
 | primitives | **Átomo UI.** Un solo concepto visual, una sola responsabilidad. No importa nada del sistema salvo tokens (foundations). Hoja del grafo. | foundations |
 | components | **Molécula UI.** Concepto de **interfaz** compuesto — coordina múltiples sub-conceptos (paneles, estados, sub-áreas) O envuelve interacción compleja (focus trap, scroll virtual, drag). *Debe* componer primitives cuando existe uno que cubra una de sus partes. | primitives |
 | patterns | **Receta de dominio.** Nombra un concepto de **negocio**, no de interfaz. *Debe* componer desde components o primitives — si no importa nada de la cascada, le falta composición o le sobra capa. | components |
-| templates | **Pantalla ensamblada.** Importa patterns como unidad principal. Si el ratio directo/patterns es >5:1, le faltan patterns intermedios. No crea clases CSS reutilizables — si una clase se repite en 2+ templates, debe promoverse. No declara @keyframes. Inline styles solo para valores runtime. | patterns |
+| templates | **Pantalla ensamblada** — el banco de pruebas del canon: no viaja en el paquete, se copia como punto de partida. Importa patterns como unidad principal. Si el ratio directo/patterns es >5:1, le faltan patterns intermedios. No crea clases CSS reutilizables — si una clase se repite en 2+ templates, debe promoverse. No declara @keyframes. Inline styles solo para valores runtime. | patterns |
 
 Dos criterios que resuelven casi todas las dudas:
 
