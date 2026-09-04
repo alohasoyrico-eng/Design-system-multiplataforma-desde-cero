@@ -121,7 +121,7 @@ export function AuthForm({
           placeholder="ana@flota.mx"
           type="email"
           autoComplete="email"
-          error={!!emailErr}
+          invalid={!!emailErr}
         />
       </Field>
 

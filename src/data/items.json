@@ -5659,10 +5659,19 @@
         "note": "convención leading/trailing"
       },
       {
+        "n": "invalid",
+        "k": "prop",
+        "t": "boolean",
+        "d": "Estado invalido — el nombre canonico, como en Textarea/InputAmount/InputPhone.",
+        "r": false,
+        "rw": "",
+        "note": ""
+      },
+      {
         "n": "error",
         "k": "prop",
         "t": "boolean",
-        "d": "false",
+        "d": "DEPRECADO: alias de invalid (nombre viejo de eOne). Se retira en 1.0.",
         "r": false,
         "rw": "",
         "note": "Borde danger + aria-invalid · renombrado de invalid: consistencia con Field"
@@ -9799,7 +9808,7 @@
     "name": "ToggleControl",
     "layer": "primitives",
     "status": "beta",
-    "summary": "La mecanica compartida de Checkbox, Radio y Switch: target, label clickeable, estados y agrupacion.",
+    "summary": "La mecanica compartida de Checkbox y Switch: target, label clickeable y estados. Radio queda fuera deliberadamente: el grupo nativo por name y la descripcion referenciada son semantica propia.",
     "fn": [
       "forms"
     ],
@@ -9810,7 +9819,6 @@
     "stubNote": "",
     "shellOf": [
       "checkbox",
-      "radio",
       "switch"
     ],
     "src": "primitives/ToggleControl.tsx",

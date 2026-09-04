@@ -23,20 +23,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const EXENTAS = new Set(['children', 'style', 'className'])
 
 // Divergencias declaradas pendientes de decision del dueno del sistema.
-// Una excepcion sin motivo escrito es un defecto sin registrar.
-const EXCEPCIONES = {
-  input: {
-    nombres: ['invalid', 'suffix', 'error', 'filled', 'trailing'],
-    motivo: 'Conflicto de nombres pendiente de decision (4-sep-2026): el canon dice invalid/suffix, ' +
-      'el Input construido dice error/trailing (+filled). Los hermanos (Textarea, InputAmount, InputPhone) ' +
-      'usan invalid: el inconsistente es Input, pero renombrarlo rompe consumidores.',
-  },
-  'toggle-control': {
-    nombres: ['type', 'description', 'name', 'renderIndicator'],
-    motivo: 'El canon modela un ToggleControl unificado (type/renderIndicator) que nunca se construyo asi: ' +
-      'el repo compone con children y Radio ni siquiera lo usa. Decision de arquitectura pendiente.',
-  },
-}
+// (4-sep-2026: las dos que hubo — input error/invalid y el modelo de
+// toggle-control — se resolvieron; la lista queda vacia y ojala se quede asi.)
+const EXCEPCIONES = {}
 
 // items que viven solo en la referencia (mismo criterio que el medidor)
 const SOLO_REFERENCIA = new Set(['mailings-templates'])

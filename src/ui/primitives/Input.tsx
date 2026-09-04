@@ -11,6 +11,9 @@ export interface InputProps {
   size?: 'sm' | 'md' | 'lg'
   filled?: boolean
   disabled?: boolean
+  /** Estado inválido — el nombre canónico, como en Textarea/InputAmount/InputPhone. */
+  invalid?: boolean
+  /** @deprecated Alias de `invalid` (nombre viejo de eOne). */
   error?: boolean
   type?: string
   revealable?: boolean
@@ -34,6 +37,7 @@ export function Input({
   size = 'md',
   filled,
   disabled,
+  invalid,
   error,
   type = 'text',
   revealable,
@@ -66,7 +70,7 @@ export function Input({
       size={size}
       filled={filled}
       disabled={disabled}
-      error={error}
+      error={invalid ?? error}
       leading={icon && <span className="flow-symbol flow-symbol--md" aria-hidden="true">{icon}</span>}
       trailing={reveal ?? trailing}
       style={style}
@@ -77,7 +81,7 @@ export function Input({
         data-mono={mono || undefined}
         value={value}
         aria-label={ariaLabel}
-        aria-invalid={error || undefined}
+        aria-invalid={(invalid ?? error) || undefined}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}
         disabled={disabled}

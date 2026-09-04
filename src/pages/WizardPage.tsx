@@ -132,7 +132,7 @@ export function WizardPage() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-stack)' }}>
                 <div data-field="plate">
                   <Field label="Placa" htmlFor="wz-plate" required error={errors.plate}>
-                    <Input value={data.plate} onChange={set('plate')} placeholder="ABC-123-X" error={!!errors.plate} />
+                    <Input value={data.plate} onChange={set('plate')} placeholder="ABC-123-X" invalid={!!errors.plate} />
                   </Field>
                 </div>
                 <div data-field="vin">
@@ -144,12 +144,12 @@ export function WizardPage() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-stack)' }}>
                 <div data-field="brand">
                   <Field label="Marca" htmlFor="wz-brand" required error={errors.brand}>
-                    <Input value={data.brand} onChange={set('brand')} placeholder="Toyota" error={!!errors.brand} />
+                    <Input value={data.brand} onChange={set('brand')} placeholder="Toyota" invalid={!!errors.brand} />
                   </Field>
                 </div>
                 <div data-field="model">
                   <Field label="Modelo" htmlFor="wz-model" required error={errors.model}>
-                    <Input value={data.model} onChange={set('model')} placeholder="Corolla" error={!!errors.model} />
+                    <Input value={data.model} onChange={set('model')} placeholder="Corolla" invalid={!!errors.model} />
                   </Field>
                 </div>
               </div>
@@ -183,18 +183,18 @@ export function WizardPage() {
             <div ref={formRef} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
               <div data-field="driver">
                 <Field label="Nombre completo" htmlFor="wz-driver" required error={errors.driver}>
-                  <Input value={data.driver} onChange={set('driver')} placeholder="Juan Pérez" error={!!errors.driver} />
+                  <Input value={data.driver} onChange={set('driver')} placeholder="Juan Pérez" invalid={!!errors.driver} />
                 </Field>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--gap-stack)' }}>
                 <div data-field="license">
                   <Field label="Número de licencia" htmlFor="wz-license" required error={errors.license}>
-                    <Input value={data.license} onChange={set('license')} placeholder="LIC-12345" error={!!errors.license} />
+                    <Input value={data.license} onChange={set('license')} placeholder="LIC-12345" invalid={!!errors.license} />
                   </Field>
                 </div>
                 <div data-field="phone">
                   <Field label="Teléfono" htmlFor="wz-phone" required error={errors.phone}>
-                    <Input value={data.phone} onChange={set('phone')} placeholder="+52 55 1234 5678" type="tel" error={!!errors.phone} />
+                    <Input value={data.phone} onChange={set('phone')} placeholder="+52 55 1234 5678" type="tel" invalid={!!errors.phone} />
                   </Field>
                 </div>
               </div>

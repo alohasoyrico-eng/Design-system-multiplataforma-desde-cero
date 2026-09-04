@@ -182,7 +182,7 @@ export function OnboardingDriverScreen() {
           <>
             <StepHeader step={1} total={8} onBack={back} title="Tu correo" subtitle="Te enviaremos un código de activación para confirmarlo." />
             <Field label="Correo" htmlFor="ob-email" error={emailError} valid={emailValid} validMessage="Correo válido">
-              <Input id="ob-email" type="email" icon="mail" size="lg" placeholder="diego@correo.mx" value={email} onChange={handleEmailChange} error={!!emailError} />
+              <Input id="ob-email" type="email" icon="mail" size="lg" placeholder="diego@correo.mx" value={email} onChange={handleEmailChange} invalid={!!emailError} />
             </Field>
             <div className={css.bottomAction}>
               <Button variant="primary" size="lg" fullWidth onClick={handleEmailSubmit}>Enviar código</Button>
@@ -204,7 +204,7 @@ export function OnboardingDriverScreen() {
           <>
             <StepHeader step={3} total={8} onBack={back} title="Tu teléfono" subtitle="Lo confirmamos con un SMS. Es tu segundo canal de seguridad." />
             <Field label="Teléfono móvil" htmlFor="ob-phone" error={phoneError} valid={phoneValid} validMessage="Número válido">
-              <Input id="ob-phone" type="tel" icon="smartphone" size="lg" mono placeholder="55 1234 5678" value={phone} onChange={handlePhoneChange} error={!!phoneError} />
+              <Input id="ob-phone" type="tel" icon="smartphone" size="lg" mono placeholder="55 1234 5678" value={phone} onChange={handlePhoneChange} invalid={!!phoneError} />
             </Field>
             <div className={css.bottomAction}>
               <Button variant="primary" size="lg" fullWidth onClick={handlePhoneSubmit}>Enviar SMS</Button>
@@ -253,7 +253,7 @@ export function OnboardingDriverScreen() {
               />
             </div>
             <Field label="Número de tarjeta" htmlFor="ob-card" error={cardError} valid={cardValid} validMessage="Tarjeta válida">
-              <Input id="ob-card" mono icon="credit_card" size="lg" placeholder="5231 0000 0000 0000" value={cardNum} onChange={(v) => { setCardNum(fmtCard(v)); setCardError(''); setCardValid(false) }} error={!!cardError} />
+              <Input id="ob-card" mono icon="credit_card" size="lg" placeholder="5231 0000 0000 0000" value={cardNum} onChange={(v) => { setCardNum(fmtCard(v)); setCardError(''); setCardValid(false) }} invalid={!!cardError} />
             </Field>
             <div className={css.bottomAction}>
               <Button variant="primary" size="lg" fullWidth onClick={handleCardSubmit}>Validar tarjeta</Button>

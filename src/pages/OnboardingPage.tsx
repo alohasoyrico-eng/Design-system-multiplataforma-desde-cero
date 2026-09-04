@@ -172,7 +172,7 @@ export function OnboardingPage() {
                   onChange={v => { setCompany(v); clearError('company') }}
                   icon="apartment"
                   placeholder="Transportes Vidal SA"
-                  error={!!errors.company}
+                  invalid={!!errors.company}
                 />
               </Field>
               <div className={css.grid2}>
@@ -191,7 +191,7 @@ export function OnboardingPage() {
                     type="email"
                     icon="mail"
                     placeholder="marta@flota.mx"
-                    error={!!errors.email}
+                    invalid={!!errors.email}
                   />
                 </Field>
               </div>
