@@ -3,7 +3,7 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
-## [Unreleased]
+## [0.5.0] — 2026-09-04
 
 ### Añadido
 - **DataTable** (patrón nuevo): búsqueda, orden y paginación coordinados sobre Table — la consulta filtra, el orden se aplica al conjunto filtrado completo y la paginación recorta al final; buscar devuelve a la primera página y el recuento se anuncia en `aria-live` (dtb-1..dtb-5).

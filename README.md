@@ -409,7 +409,7 @@ Abre `localhost:5173` — el **banco de plantillas**: las implementaciones de la
 **Publicar una versión nueva:** sube `version` en `packages/flow-react/package.json`, luego
 
 ```bash
-git tag v0.4.0 && git push --tags
+git tag v0.5.0 && git push --tags
 ```
 
 El workflow `publish.yml` corre los gates y publica a GitHub Packages solo.
