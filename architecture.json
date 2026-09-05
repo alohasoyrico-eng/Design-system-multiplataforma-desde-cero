@@ -495,6 +495,41 @@
       "contract": "contracts/card.json"
     },
     {
+      "id": "control-shell",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/control-shell.json"
+    },
+    {
+      "id": "listbox",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/listbox.json"
+    },
+    {
+      "id": "overlay-shell",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/overlay-shell.json"
+    },
+    {
+      "id": "popover",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/popover.json"
+    },
+    {
+      "id": "toggle-control",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/toggle-control.json"
+    },
+    {
       "id": "data-grid",
       "layer": "primitives",
       "domain": null,

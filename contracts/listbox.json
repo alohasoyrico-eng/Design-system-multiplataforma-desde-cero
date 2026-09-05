@@ -18,53 +18,36 @@
       {
         "name": "items",
         "kind": "prop",
-        "type": "Array<{ value: string; label: string; group?: string; disabled?: boolean }>",
+        "type": "ListboxItem[]",
         "required": true
       },
       {
         "name": "value",
         "kind": "prop",
-        "type": "string | string[]"
+        "type": "string | number"
       },
       {
-        "name": "onSelect",
+        "name": "onChange",
         "kind": "event",
-        "type": "(value: string | string[]) => void",
-        "required": true
-      },
-      {
-        "name": "multiple",
-        "kind": "prop",
-        "type": "boolean",
-        "default": false
-      },
-      {
-        "name": "query",
-        "kind": "prop",
-        "type": "string",
-        "note": "Filtrado controlado. Sin esto cada consumidor reimplementa el includes()."
-      },
-      {
-        "name": "groupOrder",
-        "kind": "prop",
-        "type": "string[]"
+        "type": "(item: ListboxItem) => void",
+        "note": "En el prototipo se llamaba onSelect; el paquete embarco onChange."
       },
       {
         "name": "renderItem",
         "kind": "renderProp",
-        "type": "(item, state: { active: boolean; selected: boolean }) => React.ReactNode"
+        "type": "(item, { selected, active }) => React.ReactNode"
       },
       {
-        "name": "emptyLabel",
+        "name": "id",
         "kind": "prop",
         "type": "string",
-        "default": "Sin resultados"
+        "note": "Prefijo de los ids de opcion — lo que referencia aria-activedescendant desde el combobox dueno."
       },
       {
         "name": "active",
         "kind": "prop",
         "type": "number",
-        "note": "Modo combobox: el dueño conduce el resaltado desde su trigger y este indice manda."
+        "note": "Modo combobox: el dueno (Select) conduce el resaltado desde su trigger y este indice manda."
       },
       {
         "name": "onActiveChange",
@@ -107,7 +90,7 @@
       },
       {
         "id": "lb-6",
-        "rule": "Sin resultados dice por que, no queda en blanco.",
+        "rule": "Sin resultados el dueno (Select) pinta el porque: la lista no queda en blanco.",
         "level": "must",
         "verify": "visual"
       }
@@ -123,7 +106,8 @@
   ],
   "nonGoals": [
     "No dibuja panel ni se posiciona: eso es Popover.",
-    "No filtra por su cuenta: recibe query ya resuelto."
+    "No filtra por su cuenta: recibe query ya resuelto.",
+    "multiple, query y groupOrder NO se embarcaron: el filtrado y la agrupacion son del dueno (Select searchable agrupa y filtra fuera). El prototipo de la referencia los tiene como historia."
   ],
   "reference": {
     "src": "primitives/shells/Listbox.jsx"

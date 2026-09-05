@@ -23,23 +23,23 @@
         "note": "38 / 46 / 54px. Es la unica fuente de alturas de control del sistema."
       },
       {
+        "name": "filled",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "Variante rellena sobre --surface-sunken, sin borde en reposo."
+      },
+      {
         "name": "invalid",
         "kind": "prop",
         "type": "boolean",
-        "default": false
+        "default": false,
+        "note": "Nombre canonico, como en Input/Textarea. `error` queda como alias @deprecated hasta 1.0."
       },
       {
         "name": "disabled",
         "kind": "prop",
         "type": "boolean",
         "default": false
-      },
-      {
-        "name": "multiline",
-        "kind": "prop",
-        "type": "boolean",
-        "default": false,
-        "note": "Padding en bloque y contenido estirado, para Textarea."
       },
       {
         "name": "leading",
@@ -65,9 +65,16 @@
         "required": true
       },
       {
-        "name": "onShellClick",
+        "name": "onClick",
         "kind": "event",
-        "type": "() => void"
+        "type": "() => void",
+        "note": "El nombre embarcado. Clic en la carcasa (p. ej. enfocar el campo interior)."
+      },
+      {
+        "name": "error",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "@deprecated Alias de invalid (nombre viejo)."
       }
     ]
   },

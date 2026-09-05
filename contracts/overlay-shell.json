@@ -28,17 +28,18 @@
         "required": true
       },
       {
-        "name": "align",
+        "name": "alignment",
         "kind": "prop",
         "type": "'center' | 'end' | 'start' | 'bottom'",
         "default": "center",
-        "note": "center=Dialog, end=Drawer, bottom=BottomSheet. Las tres capas dejan de ser tres backdrops."
+        "note": "El nombre embarcado."
       },
       {
         "name": "dismissOnBackdrop",
         "kind": "prop",
         "type": "boolean",
-        "default": true
+        "default": true,
+        "note": "false para dialogos que exigen decision: el backdrop no cierra. Default true."
       },
       {
         "name": "labelledBy",
