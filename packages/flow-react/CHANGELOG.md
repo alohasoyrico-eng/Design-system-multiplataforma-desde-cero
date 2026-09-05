@@ -3,7 +3,7 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
-## [Unreleased]
+## [0.6.0] — 2026-09-05
 
 ### Añadido
 - **Demos móviles homogéneas**: los 8 CTAs de flujo que quedaban en md (Aceptar/Pasar/Finalizar del Driver, Disputar/Cerrar de Wallet y CardDetail, el submit de Auth) pasan a lg — y una reja nueva del banco lo vigila (todo Button fullWidth de pages/mobile declara lg).
