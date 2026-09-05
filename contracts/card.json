@@ -23,8 +23,9 @@
       {
         "name": "padding",
         "kind": "prop",
-        "type": "string | number",
-        "default": "var(--pad-card)"
+        "type": "'none' | 'sm' | 'md' | 'lg' | string | number",
+        "default": "var(--pad-card)",
+        "note": "Escala primero (none/sm/md/lg sobre tokens de espaciado; md = --pad-card, sensible a densidad). Un valor libre es puente de migracion, no destino."
       },
       {
         "name": "onClick",
@@ -47,6 +48,12 @@
         "kind": "prop",
         "type": "'elevated' | 'outlined' | 'inverse'",
         "note": "'elevated'"
+      },
+      {
+        "name": "status",
+        "kind": "prop",
+        "type": "'success' | 'warning' | 'danger' | 'info'",
+        "note": "Franja de estado en el borde de ataque, pintada con --status-*. Es refuerzo: el estado se dice tambien en el contenido."
       }
     ],
     "note": "API real: hover/surface. accent/selected/variant eran el diseno inicial y no se construyeron."
@@ -83,6 +90,12 @@
         "level": "must",
         "verify": "visual",
         "note": "Reclasificado 4-sep-2026: el estado final de una animacion o pintura no se mide en DOM sintetico; se verifica mirando (pestana oculta / primer frame)."
+      },
+      {
+        "id": "crd-6",
+        "rule": "La franja de estado sale de los tokens --status-*, jamas de un color a mano, y es refuerzo visual: el estado se dice tambien en texto dentro de la tarjeta.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

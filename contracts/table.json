@@ -109,6 +109,12 @@
         "kind": "prop",
         "type": "boolean",
         "note": "true"
+      },
+      {
+        "name": "caption",
+        "kind": "prop",
+        "type": "string",
+        "note": "Nombre de la tabla para el lector de pantalla: <caption> visualmente oculto. Si la vista ya la titula, repite ese titulo aqui."
       }
     ],
     "note": "API real desde sep-2026: density/sort/onSortChange/sortable. Los nombres defaultSort/dense/renderDetail nunca se construyeron."
@@ -151,6 +157,12 @@
         "rule": "Cifras, placas e IDs en --type-data.",
         "level": "must",
         "verify": "visual"
+      },
+      {
+        "id": "tb-5",
+        "rule": "La tabla se nombra: con caption el <caption> existe en el DOM (visualmente oculto), y el lector la anuncia por su nombre.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

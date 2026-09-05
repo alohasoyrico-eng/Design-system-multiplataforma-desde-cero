@@ -1,0 +1,118 @@
+{
+  "id": "data-table",
+  "name": "DataTable",
+  "layer": "patterns",
+  "function": [
+    "data"
+  ],
+  "status": "stable",
+  "summary": "Tabla con busqueda, orden y paginacion coordinados. La busqueda filtra, el orden se aplica al conjunto filtrado completo y la paginacion recorta al final: las tres cosas van juntas o el usuario ve mentiras.",
+  "api": {
+    "members": [
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "GridColumn<T>[]",
+        "required": true
+      },
+      {
+        "name": "rows",
+        "kind": "prop",
+        "type": "T[]",
+        "required": true
+      },
+      {
+        "name": "rowKey",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "caption",
+        "kind": "prop",
+        "type": "string",
+        "required": true,
+        "note": "Nombre de la tabla; tambien etiqueta la region de la toolbar."
+      },
+      {
+        "name": "searchKeys",
+        "kind": "prop",
+        "type": "string[]",
+        "note": "Campos donde busca la consulta. Sin ella, todos los campos de texto de la fila."
+      },
+      {
+        "name": "searchPlaceholder",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "pageSize",
+        "kind": "prop",
+        "type": "number",
+        "note": "Filas por pagina; la paginacion solo aparece si hay mas filas que pageSize. Por defecto 10."
+      },
+      {
+        "name": "onRowClick",
+        "kind": "prop",
+        "type": "(row: T) => void"
+      },
+      {
+        "name": "selectedKey",
+        "kind": "prop",
+        "type": "string | number"
+      },
+      {
+        "name": "density",
+        "kind": "prop",
+        "type": "Density"
+      },
+      {
+        "name": "emptyLabel",
+        "kind": "prop",
+        "type": "string",
+        "note": "Mensaje del estado sin resultados; la consulta se interpola."
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "dtb-1",
+        "rule": "Buscar devuelve a la primera pagina y el recuento de resultados se anuncia en una region aria-live cortes.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dtb-2",
+        "rule": "El orden se aplica sobre el conjunto filtrado completo, no sobre la pagina visible: cambiar de pagina nunca cambia el criterio.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dtb-3",
+        "rule": "La caja de busqueda es un input type=search con nombre accesible propio; no roba el foco al montar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dtb-4",
+        "rule": "Sin resultados la tabla no queda muda: aparece un estado vacio que repite la consulta y como salir de el.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "dtb-5",
+        "rule": "La toolbar comparte el ancho de la tabla y la altura de la zona de filas no baila al cambiar de pagina.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [],
+  "nonGoals": [
+    "Seleccion masiva y edicion en linea: eso es BulkActionsTable / FilterableEditableTable.",
+    "Busqueda en servidor: el patron filtra lo que tiene; con datos remotos el dueño filtra fuera y pasa rows."
+  ],
+  "reference": null,
+  "platforms": {}
+}

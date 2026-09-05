@@ -27,6 +27,30 @@
         "type": "(page: number) => void"
       },
       {
+        "name": "total",
+        "kind": "prop",
+        "type": "number",
+        "note": "Total de filas: habilita el rotulo de rango «X–Y de Z». Sin pageSize no hay rango."
+      },
+      {
+        "name": "pageSize",
+        "kind": "prop",
+        "type": "number",
+        "note": "Filas por pagina, para calcular el rango."
+      },
+      {
+        "name": "pageSizeOptions",
+        "kind": "prop",
+        "type": "number[]",
+        "note": "Pasos del selector de tamano; sin ella el selector no existe."
+      },
+      {
+        "name": "onPageSizeChange",
+        "kind": "event",
+        "type": "(size: number) => void",
+        "note": "Cambiar el tamano tambien emite onChange(1): se vuelve a la primera pagina."
+      },
+      {
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
@@ -64,6 +88,12 @@
         "rule": "El ancho no salta al cambiar de pagina: con elipsis, el numero de huecos se mantiene mientras se pueda.",
         "level": "should",
         "verify": "visual"
+      },
+      {
+        "id": "pag-6",
+        "rule": "Con total y pageSize el rango se dice en texto («1–10 de 63»), y cambiar el tamano de pagina vuelve a la primera: nadie se queda mirando la pagina 9 de un conjunto que ya no la tiene.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

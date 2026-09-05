@@ -44,6 +44,18 @@
         "type": "'neutral' | 'success' | 'warning' | 'danger'"
       },
       {
+        "name": "description",
+        "kind": "prop",
+        "type": "string",
+        "note": "Contexto de la cifra bajo el delta: que significa o de donde sale. Muted; no es dato."
+      },
+      {
+        "name": "loading",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "Estado de carga: esqueleto en lugar de cifra y delta. La etiqueta permanece."
+      },
+      {
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
@@ -79,6 +91,18 @@
       {
         "id": "stt-5",
         "rule": "El delta dice contra que compara, en el propio texto: '+4 vs ayer', no '+4'.",
+        "level": "must",
+        "verify": "visual"
+      },
+      {
+        "id": "stt-6",
+        "rule": "En loading la tarjeta anuncia ocupado (aria-busy) y no pinta cifras falsas: el hueco es esqueleto oculto al lector; la etiqueta permanece visible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "stt-7",
+        "rule": "La descripcion es contexto, no dato: va en muted bajo la cifra y no compite tipograficamente con el delta.",
         "level": "must",
         "verify": "visual"
       }

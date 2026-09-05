@@ -28,6 +28,12 @@
         "variantAxis": true
       },
       {
+        "name": "description",
+        "kind": "prop",
+        "type": "string",
+        "note": "Bajada del titulo en muted: contexto de la seccion, fuera del heading para no ensuciar el outline."
+      },
+      {
         "name": "style",
         "kind": "prop",
         "type": "React.CSSProperties"
@@ -52,6 +58,12 @@
       {
         "id": "sh-2",
         "rule": "El titulo es un heading real (h2 por defecto, nivel configurable): un span rompe el outline del documento.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sh-3",
+        "rule": "La descripcion vive fuera del heading: el outline del documento dice el titulo limpio y la bajada queda como texto normal en muted.",
         "level": "must",
         "verify": "automated"
       }

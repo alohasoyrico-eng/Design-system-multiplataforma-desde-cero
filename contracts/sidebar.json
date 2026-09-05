@@ -12,8 +12,9 @@
       {
         "name": "items",
         "kind": "prop",
-        "type": "Array<{ id: string; label: string; icon?: string; section?: string; children?: Array<object> }>",
-        "required": true
+        "type": "Array<{ id: string; label: string; icon?: string; badge?: number | boolean; caption?: boolean; children?: Array<object> }>",
+        "required": true,
+        "note": "Un item con caption:true es un rotulo de grupo, no un destino: no es interactivo y sus hijos se listan siempre."
       },
       {
         "name": "activeId",
@@ -96,6 +97,12 @@
       {
         "id": "sbr-5",
         "rule": "El globo del modo colapsado es decorativo y esta oculto al lector: el nombre accesible lo lleva el propio boton. Un tooltip como unica fuente del nombre no existe para quien no ve.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "sbr-6",
+        "rule": "Un grupo con caption no es interactivo: el rotulo no entra al orden de tabulacion ni responde al click, y sus hijos se listan siempre. Colapsado, el rotulo se reduce a separador sin llevarse los hijos.",
         "level": "must",
         "verify": "automated"
       }

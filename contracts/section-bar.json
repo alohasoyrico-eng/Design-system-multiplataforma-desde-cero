@@ -43,7 +43,7 @@
     "criteria": [
       {
         "id": "sb-1",
-        "rule": "Con sticky=true se pega a top: 72px (debajo de TopBar) con z-index 30.",
+        "rule": "Con sticky=true se pega a top: 72px (debajo de TopBar) en la capa --z-sticky de la escala del sistema.",
         "level": "must",
         "verify": "automated"
       }

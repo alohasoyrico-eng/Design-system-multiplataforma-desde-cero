@@ -26,7 +26,7 @@
         "kind": "slot",
         "type": "React.ReactNode",
         "required": true,
-        "note": "Envuelve exactamente un elemento."
+        "note": "El disparador. Si es un elemento, recibe aria-describedby hacia el globo mientras esta visible (tip-6)."
       },
       {
         "name": "style",
@@ -69,6 +69,12 @@
         "rule": "No lleva informacion imprescindible: es apoyo. Lo que hace falta para operar va en la pantalla.",
         "level": "must",
         "verify": "manual"
+      },
+      {
+        "id": "tip-6",
+        "rule": "El disparador queda descrito: mientras el globo esta visible, el elemento hijo lleva aria-describedby apuntando al tooltip — el lector oye la descripcion al enfocar, no solo el nombre.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

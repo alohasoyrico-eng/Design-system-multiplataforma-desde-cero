@@ -502,6 +502,13 @@
       "contract": "contracts/table.json"
     },
     {
+      "id": "data-table",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/data-table.json"
+    },
+    {
       "id": "emptystate",
       "layer": "primitives",
       "domain": null,
