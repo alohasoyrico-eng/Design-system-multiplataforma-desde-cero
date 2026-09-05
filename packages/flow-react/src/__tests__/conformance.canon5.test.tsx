@@ -308,9 +308,11 @@ describe('conformance canon · flag', () => {
   })
 
   it('flag-4: la hoja de flag-icons se inyecta una sola vez por documento', () => {
-    // via @import unico a nivel de modulo: el bundler la deduplica por documento
-    const hoja = uiDe('primitives/Flag.module.css')
-    expect(hoja.match(/@import.*flag-icons/g)).toHaveLength(1)
-    expect(uiDe('primitives/Flag.tsx')).not.toMatch(/createElement\('style'\)|appendChild/)
+    // 5-sep: la fuente unica es GLOBAL (styles.css). Dentro del module,
+    // lightningcss hasheaba las clases del vendor y las banderas no pintaban.
+    const styles = uiDe('../styles.css')
+    expect(styles.match(/@import "flag-icons\/css\/flag-icons\.min\.css"/g)).toHaveLength(1)
+    expect(uiDe('primitives/Flag.module.css')).not.toMatch(/@import/)
+    expect(uiDe('primitives/Flag.tsx')).not.toMatch(/createElement\('style'\)/)
   })
 })
