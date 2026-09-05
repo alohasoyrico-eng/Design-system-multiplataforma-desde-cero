@@ -128,7 +128,7 @@ export function Select({
       trailing={
         <>
           {clearable && selectedValues.length > 0 && !open && (
-            <button className={css.clear} onClick={handleClear} aria-label="Limpiar" type="button">
+            <button className={css.clear} onClick={handleClear} aria-label={intl.formatMessage({ id: 'common.clear', defaultMessage: 'Limpiar' })} type="button">
               <span className="flow-symbol" aria-hidden="true">close</span>
             </button>
           )}

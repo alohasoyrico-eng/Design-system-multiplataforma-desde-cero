@@ -8,7 +8,7 @@
  */
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { ControlShell } from '../ui/primitives/ControlShell'
@@ -16,6 +16,7 @@ import { Listbox } from '../ui/primitives/Listbox'
 import { OverlayShell } from '../ui/primitives/OverlayShell'
 import { Popover } from '../ui/primitives/Popover'
 import { ToggleControl } from '../ui/primitives/ToggleControl'
+import { ToastHost, useToast, type ToastOptions } from '../ui/primitives/Toast'
 
 const hoja = (rel: string) => readFileSync(join(__dirname, rel), 'utf8')
 
@@ -273,6 +274,67 @@ describe('conformance canon · popover', () => {
     expect(hoja('../ui/primitives/Popover.module.css')).toMatch(/\.drop\s*\{[^}]*animation:\s*flowScaleIn/)
     // el consumidor con surface=none no declara la suya (R3)
     expect(hoja('../ui/components/Menu.module.css')).not.toMatch(/animation:/)
+  })
+})
+
+// ── toast-host ─────────────────────────────────────────────────────────────
+describe('conformance canon · toast-host', () => {
+  function Disparador({ opciones, texto = 'Disparar' }: { opciones: ToastOptions; texto?: string }) {
+    const { show } = useToast()
+    return <button onClick={() => show(opciones)}>{texto}</button>
+  }
+
+  it('th-1: apila con tope FIFO', () => {
+    render(
+      <ToastHost max={2}>
+        <Disparador opciones={{ message: 'Uno', duration: null }} texto="A" />
+        <Disparador opciones={{ message: 'Dos', duration: null }} texto="B" />
+        <Disparador opciones={{ message: 'Tres', duration: null }} texto="C" />
+      </ToastHost>,
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'A' }))
+    fireEvent.click(screen.getByRole('button', { name: 'B' }))
+    expect(screen.getByText('Uno')).toBeInTheDocument()
+    expect(screen.getByText('Dos')).toBeInTheDocument()
+    // el tercero echa al más viejo
+    fireEvent.click(screen.getByRole('button', { name: 'C' }))
+    expect(screen.queryByText('Uno')).toBeNull()
+    expect(screen.getByText('Dos')).toBeInTheDocument()
+    expect(screen.getByText('Tres')).toBeInTheDocument()
+  })
+
+  it('th-1: el aviso con duration desaparece solo', async () => {
+    render(
+      <ToastHost>
+        <Disparador opciones={{ message: 'Efimero', duration: 25 }} />
+      </ToastHost>,
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'Disparar' }))
+    expect(screen.getByText('Efimero')).toBeInTheDocument()
+    await waitFor(() => expect(screen.queryByText('Efimero')).toBeNull())
+  })
+
+  it('th-2: la accion retira el aviso al ejecutarse', () => {
+    const onAction = vi.fn()
+    render(
+      <ToastHost>
+        <Disparador opciones={{ message: 'Borrado', actionLabel: 'Deshacer', onAction, duration: null }} />
+      </ToastHost>,
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'Disparar' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Deshacer' }))
+    expect(onAction).toHaveBeenCalled()
+    expect(screen.queryByText('Borrado')).toBeNull()
+  })
+
+  it('th-3: useToast fuera del host truena con mensaje claro', () => {
+    const silencio = vi.spyOn(console, 'error').mockImplementation(() => {})
+    function Huerfano() {
+      useToast()
+      return null
+    }
+    expect(() => render(<Huerfano />)).toThrow(/ToastHost/)
+    silencio.mockRestore()
   })
 })
 

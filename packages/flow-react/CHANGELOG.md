@@ -17,6 +17,8 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 - **Escala de capas** `--z-*` en tokens (base/sticky/header/overlay/popover/toast/tooltip): los diez z-index globales de la librería salen de la escala; el diccionario y el CSS mantienen paridad (398/398).
 
 ### Añadido (shells)
+- **ToastHost + useToast**: la cola de avisos vive una sola vez — apila con tope FIFO (`max`, default 3), `show()` devuelve id, `dismiss(id)` retira, la acción del aviso también lo retira, y cada aviso vive su `duration` propia (default 5000 ms, `null` = persistente). `useToast` fuera del host truena con mensaje claro (th-1..th-3).
+- **D5 (i18n)**: los strings hardcodeados de Calendar («Mes anterior/siguiente»), Select («Limpiar»), ChatMessage («Escribiendo»), Toast y Drawer («Cerrar») pasan por intl con default en español — sin provider nada cambia.
 - **Popover en portal** con colisión completa (pp-1/pp-2): ningún overflow o transform del ancestro lo recorta; voltea al lado opuesto solo si allí cabe mejor, se recorta contra la ventana con 8px en el eje cruzado y, si no cabe en ningún lado, limita su altura con scroll interno en vez de deslizarse sobre el ancla. Sigue al ancla en scroll/resize y el origen de la animación sale del lado real.
 - **OverlayShell en portal** + `dismissOnBackdrop` (false para diálogos que exigen decisión).
 - **Listbox**: `aria-activedescendant` en la lista, Home/End y typeahead (lb-2/lb-3).

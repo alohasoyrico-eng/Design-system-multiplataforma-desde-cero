@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef, type KeyboardEvent } from 'react'
 import type { CSSProperties } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './Calendar.module.css'
 
 export interface CalendarProps {
@@ -44,6 +45,7 @@ export function Calendar({
   hint,
   style,
 }: CalendarProps) {
+  const t = useT()
   const today = new Date()
   const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate())
 
@@ -126,10 +128,10 @@ export function Calendar({
       <div className={css.header}>
         <button type="button" className={css.monthLabel}>{monthLabel}</button>
         <div className={css.nav}>
-          <button type="button" className={css.navBtn} onClick={prevMonth} aria-label="Mes anterior">
+          <button type="button" className={css.navBtn} onClick={prevMonth} aria-label={t('flow.calendar.prevMonth', 'Mes anterior')}>
             <span className="flow-symbol" aria-hidden="true">keyboard_arrow_up</span>
           </button>
-          <button type="button" className={css.navBtn} onClick={nextMonth} aria-label="Mes siguiente">
+          <button type="button" className={css.navBtn} onClick={nextMonth} aria-label={t('flow.calendar.nextMonth', 'Mes siguiente')}>
             <span className="flow-symbol" aria-hidden="true">keyboard_arrow_down</span>
           </button>
         </div>

@@ -53,7 +53,7 @@ export function ChatMessage({
             className={css.streamingDots}
             data-no-text={!text ? '' : undefined}
             role="status"
-            aria-label="Escribiendo"
+            aria-label={intl.formatMessage({ id: 'chat.typing', defaultMessage: 'Escribiendo' })}
           >
             <span className={css.dot} aria-hidden="true" />
             <span className={css.dot} aria-hidden="true" />

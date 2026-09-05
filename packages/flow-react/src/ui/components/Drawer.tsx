@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from 'react'
 import { OverlayShell } from '../primitives/OverlayShell'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './Drawer.module.css'
 
 export interface DrawerProps {
@@ -14,6 +15,7 @@ export interface DrawerProps {
 }
 
 export function Drawer({ open, onClose, title, width = 380, side = 'right', footer, children }: DrawerProps) {
+  const t = useT()
   const titleId = useId()
   return (
     <OverlayShell
@@ -25,7 +27,7 @@ export function Drawer({ open, onClose, title, width = 380, side = 'right', foot
       <div className={css.root} style={{ width }}>
         <div className={css.header}>
           <div id={titleId} className={css.title}>{title}</div>
-          <button className={css.close} onClick={onClose} aria-label="Cerrar">
+          <button className={css.close} onClick={onClose} aria-label={t('common.close', 'Cerrar')}>
             <span className="flow-symbol flow-symbol--default" aria-hidden="true">close</span>
           </button>
         </div>

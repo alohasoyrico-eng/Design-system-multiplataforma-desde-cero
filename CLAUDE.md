@@ -472,7 +472,7 @@ La verdad de cada pieza vive en dos documentos vigilados en triángulo:
 - **Contrato normativo** — `contracts/<id>.json` en la rama `canonical`: API prometida, criterios de conformance (`automated`/`visual`/`manual`), excepciones con motivo. Es quien manda.
 - **Ficha** — `packages/flow-react/src/data/items.json`: API documentada, tokens, when/notWhen, plataformas. Es lo que consume el sitio de docs y el export `@alohasoyrico-eng/flow-react/contracts`.
 
-Las rejas cierran el triángulo: `check:catalog` (ficha ↔ interfaz), `check:api-drift` (canon ↔ ficha), `check:conformance` (criterios ↔ tests). Hoy: 0 drift, 395/395 criterios citados.
+Las rejas cierran el triángulo: `check:catalog` (ficha ↔ interfaz), `check:api-drift` (canon ↔ ficha), `check:conformance` (criterios ↔ tests). Hoy: 0 drift, 398/398 criterios citados.
 
 Cada pieza declara su estado por plataforma con la escala oficial — no existen otros valores:
 

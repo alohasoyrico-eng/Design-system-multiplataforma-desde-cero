@@ -13984,5 +13984,57 @@
    "La caja es type=search con nombre accesible propio"
   ],
   "nonGoals": []
+ },
+ "toast-host": {
+  "name": "ToastHost",
+  "layer": "primitives",
+  "status": "",
+  "summary": "La cola de avisos: apila con tope FIFO y presta useToast() para disparar desde cualquier parte.",
+  "fn": [
+   "feedback"
+  ],
+  "domain": "",
+  "shell": false,
+  "stub": false,
+  "stubNote": "",
+  "shellOf": [],
+  "src": "primitives/Toast.tsx",
+  "platforms": {},
+  "anatomy": "Provider de contexto que porta la pila en un ToastStack (aria-live, --z-toast) montado en portal. <code>useToast()</code> devuelve <code>{ show(opciones) → id, dismiss(id) }</code>; cada aviso es un Toast con su duration propia (default 5000 ms, null = persistente) y la acción también lo retira.",
+  "tokens": [
+   "--z-toast"
+  ],
+  "variants": [],
+  "members": [
+   {
+    "n": "max",
+    "k": "prop",
+    "t": "number",
+    "d": "3",
+    "r": false,
+    "rw": "",
+    "note": "Avisos visibles a la vez; al llegar uno más, el más viejo sale primero"
+   }
+  ],
+  "dos": [
+   "Un solo ToastHost en la raíz de la app: la cola vive una vez",
+   "duration: null para avisos que exigen lectura — con botón de cerrar siempre"
+  ],
+  "donts": [
+   "Apilar toasts a mano con ToastStack cuando hay host: esa cola ya existe",
+   "Usarlo de confirmación: eso es Dialog (el toast desaparece)"
+  ],
+  "when": [
+   "Confirmaciones de acción («Guardado», «Enviado») desde cualquier profundidad del árbol"
+  ],
+  "notWhen": [
+   "Lo que hay que releer: NotificationCenter",
+   "La única vía para completar una tarea (tst-5)"
+  ],
+  "a11y": [
+   "La pila es región aria-live polite: anuncia sin robar el foco",
+   "useToast fuera del host truena con mensaje claro, no con undefined"
+  ],
+  "nonGoals": []
  }
 }
