@@ -9,6 +9,9 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 - **Registro de especímenes** (`@alohasoyrico-eng/flow-react/specimens`): la tercera pata de cada pieza — el contrato promete, la ficha describe, el specimen demuestra. 29 piezas con render vivo y sus variantes, typechequeado contra las interfaces reales (spm-1), como entry propio que el principal no arrastra (spm-2, verificado en dist), consumido genéricamente por Component Detail (spm-3). Contrato canónico `specimen-registry` nuevo.
 
 ### Arreglado (pasada visual, 5-sep)
+- **ChipGroup** apaga el borde individual de los chips hijos (cg-1).
+- **Breadcrumb** colapsa rutas largas por el medio conservando el primero y el actual (brc-3).
+- **Calendar** en rango: los extremos redondean solo por su lado exterior (dp-6).
 - **`MarkLineComponent` de ECharts nunca estuvo registrado**: toda línea de referencia (`markLine`) del sistema era invisible en silencio. Registrado; con ello el Pareto dibuja su umbral (prt-3, nueva prop `threshold` de FlowChart) y el scatter sus cuadrantes (sct-2, ahora en tinta `--viz-label` distinguible de la rejilla).
 - **Treemap**: la etiqueta de un nodo demasiado pequeño para ella ya no se trunca («Manten…») — se oculta y el tooltip la conserva (tmp-2).
 - **Flag**: anillo interior `--border-subtle` — una bandera con blanco al borde ya no se desvanece (flag-2).

@@ -174,3 +174,13 @@
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/* dp-6: los extremos del rango redondean solo por su lado exterior — el
+   interior queda recto contra el tramo, sin muesca. */
+.day[data-range-start] {
+  border-radius: var(--radius-xs) 0 0 var(--radius-xs);
+}
+
+.day[data-range-end] {
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}

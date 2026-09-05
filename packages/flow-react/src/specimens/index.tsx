@@ -263,7 +263,11 @@ export const SPECIMENS: Record<string, Specimen> = {
   },
   breadcrumb: {
     render: () => (
-      <Breadcrumb items={[{ label: 'Flota', href: '#' }, { label: 'Unidades', href: '#' }, { label: 'KTR-882' }]} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <Breadcrumb items={[{ label: 'Flota', href: '#' }, { label: 'Unidades', href: '#' }, { label: 'KTR-882' }]} />
+        {/* brc-3: la ruta larga colapsa por el medio y conserva el primero y el actual */}
+        <Breadcrumb items={[{ label: 'Flota', href: '#' }, { label: 'Regiones', href: '#' }, { label: 'Norte', href: '#' }, { label: 'Unidades', href: '#' }, { label: 'KTR-882', href: '#' }, { label: 'Servicio 40k' }]} />
+      </div>
     ),
   },
   pagination: { render: () => <PaginationDemo /> },

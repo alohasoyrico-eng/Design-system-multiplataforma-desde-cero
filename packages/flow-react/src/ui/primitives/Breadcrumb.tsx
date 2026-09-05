@@ -14,16 +14,35 @@ export interface BreadcrumbProps {
   homeIcon?: string
 }
 
+const MAX_VISIBLE = 4
+
 export function Breadcrumb({ items = [], variant = 'default', homeIcon = 'home' }: BreadcrumbProps) {
   const t = useT()
   const isSubtle = variant === 'subtle'
 
+  // brc-3: una ruta larga colapsa por el medio y conserva el primero y el
+  // tramo final (el actual siempre visible). La elipsis es hueco, no salto.
+  const visibles: (BreadcrumbItem | '…')[] =
+    items.length > MAX_VISIBLE
+      ? [items[0], '…', ...items.slice(items.length - (MAX_VISIBLE - 2))]
+      : items
+
   return (
     <nav aria-label={t('nav.breadcrumb', 'Breadcrumb')} data-variant={variant}>
       <ol className={css.list} data-variant={variant}>
-        {items.map((item, i) => {
+        {visibles.map((item, i) => {
+          if (item === '…') {
+            return (
+              <li key="gap" className={css.item}>
+                {isSubtle
+                  ? <span className={css.separator} aria-hidden="true">/</span>
+                  : <span className={`flow-symbol ${css.separator}`} aria-hidden="true">chevron_right</span>}
+                <span className={css.gap} aria-hidden="true">…</span>
+              </li>
+            )
+          }
           const isFirst = i === 0
-          const isLast = i === items.length - 1
+          const isLast = i === visibles.length - 1
           const showIcon = item.icon || (isSubtle && isFirst)
 
           const content = showIcon

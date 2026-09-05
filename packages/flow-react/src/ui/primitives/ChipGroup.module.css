@@ -6,3 +6,9 @@
   padding: 2px;
   background: var(--surface-card);
 }
+
+/* cg-1: dentro del grupo el borde lo pone el grupo — los chips hijos no
+   muestran el suyo (el seleccionado conserva su relleno de tinta). */
+.root > button {
+  border-color: transparent;
+}

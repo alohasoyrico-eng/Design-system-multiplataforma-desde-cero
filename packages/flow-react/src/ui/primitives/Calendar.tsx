@@ -156,6 +156,8 @@ export function Calendar({
               data-date={dateStr}
               data-selected={isSelected || undefined}
               data-in-range={inRange || undefined}
+              data-range-start={(rangeStart && dateStr === rangeStart && rangeEnd) || undefined}
+              data-range-end={(rangeEnd && dateStr === rangeEnd && rangeStart) || undefined}
               data-today={isToday || undefined}
               disabled={outOfBounds}
               tabIndex={dateStr === tabulable ? 0 : -1}

@@ -92,3 +92,9 @@
 .list[data-variant="subtle"] .link:hover .homeIcon {
   color: var(--text-primary);
 }
+
+/* brc-3: la elipsis del colapso es hueco, no destino */
+.gap {
+  color: var(--text-muted);
+  padding: 0 var(--space-1);
+}
