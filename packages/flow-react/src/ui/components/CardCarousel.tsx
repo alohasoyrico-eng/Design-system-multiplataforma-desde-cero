@@ -1,4 +1,5 @@
 import { Children, useState, useRef, useEffect, useCallback, type ReactNode, type CSSProperties } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './CardCarousel.module.css'
 
 export interface CardCarouselProps {
@@ -9,6 +10,7 @@ export interface CardCarouselProps {
 }
 
 export function CardCarousel({ children, activeIndex, onChange, style }: CardCarouselProps) {
+  const t = useT()
   const items = Children.toArray(children)
   const [internal, setInternal] = useState(0)
   const idx = activeIndex ?? internal
@@ -71,7 +73,7 @@ export function CardCarousel({ children, activeIndex, onChange, style }: CardCar
               data-active={i === idx || undefined}
               role="tab"
               aria-selected={i === idx}
-              aria-label={`Tarjeta ${i + 1}`}
+              aria-label={t('carousel.card', 'Tarjeta {n}').replace('{n}', String(i + 1))}
               onClick={() => goTo(i)}
             />
           ))}

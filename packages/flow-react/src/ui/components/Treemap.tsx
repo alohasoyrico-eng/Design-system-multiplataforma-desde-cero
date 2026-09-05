@@ -1,4 +1,5 @@
 import { useState, useId, type CSSProperties, type KeyboardEvent } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import { FlowChart } from '../primitives/FlowChart'
 import { EmptyState } from '../primitives/EmptyState'
 
@@ -32,6 +33,7 @@ function autoColor(dev: number | undefined, index: number, palette: string[]): s
 const CAT_PALETTE = ['var(--viz-1)', 'var(--viz-4)', 'var(--viz-5)', 'var(--viz-3)', 'var(--viz-6)', 'var(--viz-2)']
 
 export function Treemap({ nodes = [], height = 280, format, onDrill, style }: TreemapProps) {
+  const t = useT()
   const uid = useId()
   const [activeIdx, setActiveIdx] = useState(0)
 
@@ -63,13 +65,13 @@ export function Treemap({ nodes = [], height = 280, format, onDrill, style }: Tr
         const hit = nodes.find((n) => n.label === params.name)
         if (hit) onDrill(hit)
       } : undefined}
-      ariaLabel="Gasto por region, tamano por valor y color por desvio vs presupuesto"
+      ariaLabel={t('treemap.chart', 'Gasto por región, tamaño por valor y color por desvío vs presupuesto')}
     />
       {onDrill && (
         <div
           role="listbox"
           tabIndex={0}
-          aria-label="Regiones del treemap"
+          aria-label={t('treemap.regions', 'Regiones del treemap')}
           aria-activedescendant={`${uid}-opt-${activeIdx}`}
           style={SR}
           onKeyDown={onListKeyDown}

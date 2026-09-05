@@ -200,7 +200,7 @@ export function GlobalSearch({
       {value ? (
         <IconButton
           icon="close"
-          ariaLabel="Limpiar búsqueda"
+          ariaLabel={intl.formatMessage({ id: 'search.clear', defaultMessage: 'Limpiar búsqueda' })}
           size="sm"
           onClick={() => { onValueChange?.(''); inputRef.current?.focus() }}
         />

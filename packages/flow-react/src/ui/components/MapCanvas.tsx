@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback, type CSSProperties } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './MapCanvas.module.css'
 
 export interface MapPin {
@@ -102,6 +103,7 @@ export function MapCanvas({
   onPinClick, route, routeColor, style,
   tone = 'mono',
 }: MapCanvasProps) {
+  const t = useT()
   const dataMode = useDataMode()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -521,7 +523,7 @@ export function MapCanvas({
           valor en su nombre. Inerte al puntero: el raton sigue siendo del
           canvas (pan y hit-test); Enter/Espacio disparan la seleccion. */}
       {pins.length > 0 && (
-        <div className={css.pinLayer} aria-label="Puntos en el mapa" role="group">
+        <div className={css.pinLayer} aria-label={t('map.pins', 'Puntos en el mapa')} role="group">
           {pins.map(pin => {
             const px = size.w / 2 - cx + lon2x(pin.lon, zoom) * TILE
             const py = size.h / 2 - cy + lat2y(pin.lat, zoom) * TILE
@@ -546,13 +548,13 @@ export function MapCanvas({
         <button
           type="button"
           className={css.zoomBtn}
-          aria-label="Acercar"
+          aria-label={t('map.zoomIn', 'Acercar')}
           onClick={() => setZoom(z => Math.min(18, z + 1))}
         >+</button>
         <button
           type="button"
           className={css.zoomBtn}
-          aria-label="Alejar"
+          aria-label={t('map.zoomOut', 'Alejar')}
           onClick={() => setZoom(z => Math.max(2, z - 1))}
         >-</button>
       </div>

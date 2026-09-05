@@ -1,6 +1,7 @@
 import type { ReactNode, CSSProperties } from 'react'
 import { Breadcrumb } from '../primitives/Breadcrumb'
 import { useSidebarToggle } from './sidebar-context'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './PageHeader.module.css'
 
 export interface PageHeaderProps {
@@ -24,6 +25,7 @@ export function PageHeader({
   trailing,
   style,
 }: PageHeaderProps) {
+  const t = useT()
   const hasSecondRow = !!(filters || actions)
   const toggleSidebar = useSidebarToggle()
 
@@ -35,7 +37,7 @@ export function PageHeader({
             type="button"
             className={css.menuBtn}
             onClick={toggleSidebar}
-            aria-label="Abrir navegación"
+            aria-label={t('nav.open', 'Abrir navegación')}
           >
             <span className="flow-symbol" aria-hidden="true">menu</span>
           </button>

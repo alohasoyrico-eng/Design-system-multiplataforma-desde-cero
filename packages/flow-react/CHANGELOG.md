@@ -25,6 +25,12 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 - **ControlShell** `invalid` (canónico; `error` queda como alias `@deprecated`) + `filled` documentado.
 - Los cinco contratos de shells (control-shell, listbox, overlay-shell, popover, toggle-control) entran a la arquitectura del canon y sus 24 criterios automatizados quedan medidos.
 
+### Añadido (deuda saldada)
+- **Barrido i18n completo**: los ~25 aria-labels y textos en español duro que quedaban (TopBar, Sidebar, BulkActionsTable, FilterableEditableTable, GlobalSearch, MapCanvas, PasscodeKeypad, KanbanBoard, CardCarousel, NipReveal, Breadcrumb, PageHeader, HelpCenter, ChatComposer, NavBar, RouteBanner, Treemap, CodeBlock…) pasan por intl con default en español. `CodeBlock` ahora dice «Copiar código» (antes «Copy code»).
+- **Banco documental con dientes**: 13 criterios automatizados nuevos para las piezas de documentación (AnatomyView, BalanceDisplay, CardCarousel, DocFooter, DownloadCard, GuidanceCard, InstallCard, NipReveal, PageHeader, PlaygroundCanvas, ProfileMenu, ProposalCard) + `nr-1` promovido de manual a automated. El id `tg-1` de transaction-group pasa a `trg-1` (colisión con toggle-control).
+- **GanttChart**: cada tarea dice sus fechas en texto («14 ago – 17 ago») bajo su nombre (gnt-1 — antes solo geometría).
+- **Auditoría visual con acta** (`docs/audits/visual-2026-09-04.md`): recorrido del banco contra los 181 criterios `visual`; 46 verificados, 2 defectos corregidos (gnt-1 y el treemap de Finanzas que pintaba por categoría en vez de por desvío, tmp-1), y la cola restante enumerada con causa.
+
 ### Cambiado
 - El contrato canónico de `data-grid` deja de ser huérfano: reescrito al API real del primitivo, registrado en la arquitectura y medido (dg-1/2/3/9/10). Selección masiva, edición y árbol siguen en sus propias piezas, como decide el paquete.
 - El nombre accesible de Pagination es «Paginación» (antes «Paginacion»), y sus textos pasan por `useT` (caen a español sin provider).

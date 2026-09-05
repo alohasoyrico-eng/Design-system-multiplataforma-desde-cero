@@ -43,7 +43,7 @@ describe('Treemap', () => {
     const { getByTestId } = render(<Treemap nodes={nodes} />)
     expect(getByTestId('flow-chart')).toHaveAttribute(
       'aria-label',
-      'Gasto por region, tamano por valor y color por desvio vs presupuesto',
+      'Gasto por región, tamaño por valor y color por desvío vs presupuesto',
     )
   })
 })

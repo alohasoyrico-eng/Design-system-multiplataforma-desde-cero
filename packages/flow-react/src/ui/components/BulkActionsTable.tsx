@@ -3,6 +3,7 @@ import { DataGrid, type GridColumn } from '../primitives/DataGrid'
 import { Button } from '../primitives/Button'
 import { IconButton } from '../primitives/IconButton'
 import { Checkbox } from '../primitives/Checkbox'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './BulkActionsTable.module.css'
 
 export interface BulkAction {
@@ -22,6 +23,7 @@ export interface BulkActionsTableProps {
 }
 
 export function BulkActionsTable({ columns, rows, rowKey, actions = [], onActionClick, style }: BulkActionsTableProps) {
+  const t = useT()
   const [selection, setSelection] = useState<string[]>([])
   const n = selection.length
   const allSelected = rows.length > 0 && n === rows.length
@@ -40,7 +42,7 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
       label: '',
       render: (row: Record<string, unknown>) => {
         const k = String(row[rowKey])
-        return <Checkbox checked={selection.includes(k)} onChange={() => toggle(k)} aria-label={`Seleccionar ${k}`} />
+        return <Checkbox checked={selection.includes(k)} onChange={() => toggle(k)} aria-label={t('bulk.selectRow', 'Seleccionar {k}').replace('{k}', k)} />
       },
     },
     ...columns,
@@ -51,7 +53,7 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
       {n > 0 && (
         <div
           role="toolbar"
-          aria-label="Acciones sobre la selección"
+          aria-label={t('bulk.actions', 'Acciones sobre la selección')}
           style={{
             background: 'var(--surface-accent-subtle)', border: '1px solid var(--border-focus)',
             borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', padding: 'var(--space-3) var(--space-4)',
@@ -60,9 +62,9 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
           }}
         >
           {/* blk-2: el estado parcial es indeterminate real en el input nativo. */}
-          <Checkbox checked={allSelected} indeterminate={n > 0 && !allSelected} onChange={toggleAll} aria-label="Seleccionar todo" />
+          <Checkbox checked={allSelected} indeterminate={n > 0 && !allSelected} onChange={toggleAll} aria-label={t('bulk.selectAll', 'Seleccionar todo')} />
           <span aria-live="polite" className={css.selectionCount}>
-            {n} seleccionado{n > 1 ? 's' : ''}
+            {n} {n === 1 ? t('bulk.selectedOne', 'seleccionado') : t('bulk.selectedMany', 'seleccionados')}
           </span>
           <div style={{ flex: 1 }} />
           {actions.map(a => (
@@ -76,7 +78,7 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
               {a.label}
             </Button>
           ))}
-          <IconButton icon="close" ariaLabel="Limpiar selección" variant="ghost" onClick={() => setSelection([])} />
+          <IconButton icon="close" ariaLabel={t('bulk.clear', 'Limpiar selección')} variant="ghost" onClick={() => setSelection([])} />
         </div>
       )}
       {n === 0 && (
@@ -85,9 +87,9 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
           borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', padding: 'var(--space-2) var(--space-4)',
           display: 'flex', alignItems: 'center', gap: 'var(--space-2)',
         }}>
-          <Checkbox checked={false} onChange={toggleAll} aria-label="Seleccionar todo" />
+          <Checkbox checked={false} onChange={toggleAll} aria-label={t('bulk.selectAll', 'Seleccionar todo')} />
           <span className={css.recordCount}>
-            {rows.length} registro{rows.length !== 1 ? 's' : ''}
+            {rows.length} {rows.length === 1 ? t('bulk.recordOne', 'registro') : t('bulk.recordMany', 'registros')}
           </span>
         </div>
       )}

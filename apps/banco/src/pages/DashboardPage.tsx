@@ -713,12 +713,14 @@ function FinanzasView() {
       </div>
       <Card style={{ marginBottom: 16 }}>
         <div className={css.chartHeader}>Gasto por region</div>
-        <div className={css.chartDesc}>Tamaño = gasto — click para entrar a la region</div>
+        {/* tmp-1: el color codifica desvio vs presupuesto — el componente lo
+            pinta solo desde deviation; forzar colores categoricos aqui mentia. */}
+        <div className={css.chartDesc}>Tamaño = gasto · color = desvío vs presupuesto — click para entrar a la region</div>
         <Treemap nodes={[
-          { label: 'CDMX', value: 812, deviation: 0.06, color: 'var(--viz-1)' },
-          { label: 'Guadalajara', value: 340, deviation: -0.03, color: 'var(--viz-4)' },
-          { label: 'Monterrey', value: 298, deviation: 0.12, color: 'var(--viz-5)' },
-          { label: 'Puebla', value: 120, deviation: -0.08, color: 'var(--viz-3)' },
+          { label: 'CDMX', value: 812, deviation: 0.06 },
+          { label: 'Guadalajara', value: 340, deviation: -0.03 },
+          { label: 'Monterrey', value: 298, deviation: 0.12 },
+          { label: 'Puebla', value: 120, deviation: -0.08 },
         ]} />
       </Card>
       <Card style={{ marginBottom: 16 }}>

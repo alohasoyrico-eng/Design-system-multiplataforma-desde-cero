@@ -129,7 +129,7 @@ describe('conformance canon · cola de un criterio', () => {
   })
 
   it('nb-1: el boton back tiene nombre accesible y objetivo de IconButton (44)', () => {
-    expect(uiDe('components/NavBar.tsx')).toMatch(/ariaLabel="Volver"/)
+    expect(uiDe('components/NavBar.tsx')).toMatch(/ariaLabel=\{t\('nav.back', 'Volver'\)\}/)
   })
 
   it('qa-1: el circulo mide al menos --hit-target-min (48px)', () => {
@@ -137,7 +137,7 @@ describe('conformance canon · cola de un criterio', () => {
   })
 
   it('rb-1: el boton de cierre existe con nombre y objetivo de IconButton (44)', () => {
-    expect(uiDe('components/RouteBanner.tsx')).toMatch(/icon="close" ariaLabel="Cerrar"/)
+    expect(uiDe('components/RouteBanner.tsx')).toMatch(/icon="close" ariaLabel=\{t\('common.close', 'Cerrar'\)\}/)
   })
 
   it('sb-1 (section-bar): sticky se pega bajo el TopBar en la capa --z-sticky de la escala', () => {

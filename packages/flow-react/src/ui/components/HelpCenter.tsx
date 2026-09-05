@@ -56,7 +56,7 @@ export function HelpCenter({ articles, style }: HelpCenterProps) {
         <div className={css.searchWrap}>
           <input
             type="text"
-            aria-label="Buscar artículos de ayuda"
+            aria-label={intl.formatMessage({ id: 'help.search', defaultMessage: 'Buscar artículos de ayuda' })}
             placeholder="Busca…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

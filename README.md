@@ -416,7 +416,7 @@ El workflow `publish.yml` corre los gates y publica a GitHub Packages solo.
 
 ### La referencia canónica y el conformance
 
-Los contratos normativos del sistema viven en la rama **`canonical`** de este mismo repo (la referencia de diseño: HTML/CSS de referencia, `contracts/`, `architecture.json` y sus chequeos). `check:conformance` mide el pacto: **cada criterio automatizado de un contrato debe tener un test o chequeo del repo que lo cite por id** (`sel-7`, `tst-2`, `mc-2`…). Hoy: 398/398. El ratchet (`--min`) solo puede subir — un PR que borre un test citado pone CI en rojo. Dos reglas operativas: tras cambiar contratos en `canonical`, corre `git fetch origin canonical` antes de medir (el medidor lee el commit, no tu carpeta); y las notas de exclusión en tests **no citan ids** (una mención en comentario cuenta como cobertura).
+Los contratos normativos del sistema viven en la rama **`canonical`** de este mismo repo (la referencia de diseño: HTML/CSS de referencia, `contracts/`, `architecture.json` y sus chequeos). `check:conformance` mide el pacto: **cada criterio automatizado de un contrato debe tener un test o chequeo del repo que lo cite por id** (`sel-7`, `tst-2`, `mc-2`…). Hoy: 411/411. El ratchet (`--min`) solo puede subir — un PR que borre un test citado pone CI en rojo. Dos reglas operativas: tras cambiar contratos en `canonical`, corre `git fetch origin canonical` antes de medir (el medidor lee el commit, no tu carpeta); y las notas de exclusión en tests **no citan ids** (una mención en comentario cuenta como cobertura).
 
 ## Verificación
 

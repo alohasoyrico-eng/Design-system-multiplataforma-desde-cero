@@ -63,6 +63,9 @@ export function GanttChart({ tasks, style }: GanttChartProps) {
   const maxDate = Math.max(...dates)
   const totalMs = maxDate - minDate || 1
 
+  const fechaCorta = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString('es', { day: 'numeric', month: 'short' })
+
   const getLeft = (dateStr: string) => ((new Date(dateStr).getTime() - minDate) / totalMs) * 100
   const getWidth = (start: string, end: string) => ((new Date(end).getTime() - new Date(start).getTime()) / totalMs) * 100
 
@@ -126,6 +129,10 @@ export function GanttChart({ tasks, style }: GanttChartProps) {
               {/* gnt-4: una tarea sin name lleva marcador visible, no una barra muda. */}
               <div className={css.taskName} data-placeholder={!task.name || undefined}>
                 {task.name || '(sin nombre)'}
+                {/* gnt-1: las fechas se dicen en texto — la geometría no se puede verificar sola. */}
+                <span className={css.taskDates}>
+                  {fechaCorta(task.start)} – {fechaCorta(task.end)}
+                </span>
               </div>
               <div className={css.track}>
                 {width <= 0 ? (

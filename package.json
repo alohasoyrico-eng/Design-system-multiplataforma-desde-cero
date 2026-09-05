@@ -25,7 +25,7 @@
     "check:icons": "node scripts/check-icons.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:api-drift": "node scripts/check-api-drift.mjs",
-    "check:conformance": "node scripts/check-conformance-coverage.mjs --min 398",
+    "check:conformance": "node scripts/check-conformance-coverage.mjs --min 411",
     "check:tokens-parity": "node scripts/check-tokens-parity.mjs"
   },
   "devDependencies": {

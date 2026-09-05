@@ -1,4 +1,5 @@
 import { useEffect, type CSSProperties } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './PasscodeKeypad.module.css'
 
 export interface PasscodeKeypadProps {
@@ -24,6 +25,7 @@ export function PasscodeKeypad({
   onBiometric,
   style,
 }: PasscodeKeypadProps) {
+  const t = useT()
   useEffect(() => {
     if (invalid) onChange?.('')
   }, [invalid])
@@ -83,7 +85,7 @@ export function PasscodeKeypad({
               className={css.key}
               type="button"
               onClick={onBiometric}
-              aria-label="Usar biométrico"
+              aria-label={t('passcode.biometric', 'Usar biométrico')}
               data-special
             >
               <span className="flow-symbol" aria-hidden="true">
@@ -106,7 +108,7 @@ export function PasscodeKeypad({
           className={css.key}
           type="button"
           onClick={backspace}
-          aria-label="Borrar"
+          aria-label={t('passcode.delete', 'Borrar')}
           data-special
         >
           <span className="flow-symbol" aria-hidden="true">backspace</span>

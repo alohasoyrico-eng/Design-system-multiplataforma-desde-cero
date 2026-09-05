@@ -1,3 +1,4 @@
+import { useT } from '../../i18n/useSafeIntl'
 import css from './Breadcrumb.module.css'
 
 export interface BreadcrumbItem {
@@ -14,10 +15,11 @@ export interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items = [], variant = 'default', homeIcon = 'home' }: BreadcrumbProps) {
+  const t = useT()
   const isSubtle = variant === 'subtle'
 
   return (
-    <nav aria-label="Breadcrumb" data-variant={variant}>
+    <nav aria-label={t('nav.breadcrumb', 'Breadcrumb')} data-variant={variant}>
       <ol className={css.list} data-variant={variant}>
         {items.map((item, i) => {
           const isFirst = i === 0

@@ -1,5 +1,6 @@
 import { useState, type CSSProperties, type ReactNode } from 'react'
 import { IconButton } from '../primitives/IconButton'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './CodeBlock.module.css'
 
 export interface CodeBlockProps {
@@ -14,6 +15,7 @@ export interface CodeBlockProps {
 }
 
 export function CodeBlock({ code, filename, heading, trailing, copyable = true, variant = 'default', children, style }: CodeBlockProps) {
+  const t = useT()
   const [copied, setCopied] = useState(false)
 
   const handleCopy = () => {
@@ -31,7 +33,7 @@ export function CodeBlock({ code, filename, heading, trailing, copyable = true, 
         {copyable && code && (
           <IconButton
             icon={copied ? 'check' : 'content_copy'}
-            ariaLabel="Copy code"
+            ariaLabel={t('common.copyCode', 'Copiar código')}
             variant="ghost"
             size="sm"
             onClick={handleCopy}
@@ -52,7 +54,7 @@ export function CodeBlock({ code, filename, heading, trailing, copyable = true, 
           {copyable && code && (
             <IconButton
               icon={copied ? 'check' : 'content_copy'}
-              ariaLabel="Copy code"
+              ariaLabel={t('common.copyCode', 'Copiar código')}
               variant="ghost"
               size="sm"
               onClick={handleCopy}

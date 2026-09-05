@@ -98,3 +98,12 @@
   padding: var(--space-2) var(--space-3);
   margin-bottom: var(--space-3);
 }
+
+/* gnt-1: la fecha en texto, en familia de dato */
+.taskDates {
+  display: block;
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}

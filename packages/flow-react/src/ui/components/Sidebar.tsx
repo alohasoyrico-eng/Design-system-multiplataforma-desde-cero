@@ -1,4 +1,5 @@
 import { useState, type ReactNode, type CSSProperties } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './Sidebar.module.css'
 
 export interface SidebarItem {
@@ -40,6 +41,7 @@ export function Sidebar({
   width = '240px',
   style,
 }: SidebarProps) {
+  const t = useT()
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   const renderItem = (item: SidebarItem, level: number) => {
@@ -138,7 +140,7 @@ export function Sidebar({
       )}
       <nav
         className={css.nav}
-        aria-label="Navegación principal"
+        aria-label={t('nav.main', 'Navegación principal')}
         style={{ padding: collapsed ? '8px 0' : '12px 0' }}
       >
         {items.map((item) => renderItem(item, 0))}

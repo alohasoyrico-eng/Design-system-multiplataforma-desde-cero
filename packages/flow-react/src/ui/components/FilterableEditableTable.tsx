@@ -110,13 +110,13 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
         display: 'flex', alignItems: 'center', gap: 'var(--space-2)', flexWrap: 'wrap',
       }}>
         <span className={css.filterLabel}>
-          Filtrar:
+          {intl.formatMessage({ id: 'filter.label', defaultMessage: 'Filtrar:' })}
         </span>
         {columns.filter(c => c.filterable).map(c => (
           <Input
             key={c.key}
             size="sm"
-            aria-label={`Filtrar por ${c.label}`}
+            aria-label={intl.formatMessage({ id: 'filter.by', defaultMessage: 'Filtrar por {col}' }, { col: c.label }) as string}
             placeholder={`${c.label}…`}
             value={filters[c.key] || ''}
             onChange={v => setFilter(c.key, v)}
@@ -126,7 +126,7 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
         {/* fie-2: el resultado del filtrado se anuncia con las filas restantes. */}
         {dirty && (
           <span aria-live="polite" className={css.resultCount}>
-            {filtered.length} {filtered.length === 1 ? 'fila' : 'filas'}
+            {filtered.length} {filtered.length === 1 ? intl.formatMessage({ id: 'filter.rowOne', defaultMessage: 'fila' }) : intl.formatMessage({ id: 'filter.rowMany', defaultMessage: 'filas' })}
           </span>
         )}
         {dirty && (
@@ -135,7 +135,7 @@ export function FilterableEditableTable({ columns, rows, rowKey, onUpdate, onFil
             onClick={() => { setFilters({}); onFilter?.({}) }}
             className={css.clearBtn}
           >
-            Limpiar
+            {intl.formatMessage({ id: 'common.clear', defaultMessage: 'Limpiar' })}
           </button>
         )}
       </div>

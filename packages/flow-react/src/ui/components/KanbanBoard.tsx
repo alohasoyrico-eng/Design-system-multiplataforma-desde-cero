@@ -257,7 +257,7 @@ export function KanbanBoard<T extends object>({
               <span className={css.detailLabel}>
                 Detalle
               </span>
-              <IconButton icon="close" variant="ghost" ariaLabel="Cerrar" onClick={() => setOpen(null)} />
+              <IconButton icon="close" variant="ghost" ariaLabel={intl.formatMessage({ id: 'common.close', defaultMessage: 'Cerrar' })} onClick={() => setOpen(null)} />
             </header>
             <div style={{ flex: 1, overflowY: 'auto', padding: 'var(--space-4) var(--space-5) var(--space-6)' }}>
               {renderDetail(openItem)}

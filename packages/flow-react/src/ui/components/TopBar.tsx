@@ -81,11 +81,11 @@ export function TopBar({
     <>
       {onToggleSidebar && (
         <div className={css.menuBtn}>
-          <IconButton icon="menu" ariaLabel="Abrir navegación" onClick={onToggleSidebar} />
+          <IconButton icon="menu" ariaLabel={intl.formatMessage({ id: 'nav.open', defaultMessage: 'Abrir navegación' })} onClick={onToggleSidebar} />
         </div>
       )}
       {leading || (logo && <div className={css.logoWrap}>{logo}</div>)}
-      <nav aria-label="Secciones" className={css.navWrap}>
+      <nav aria-label={intl.formatMessage({ id: 'topbar.sections', defaultMessage: 'Secciones' })} className={css.navWrap}>
         {navItems.map(n => (
           <a
             key={n.id}
@@ -110,7 +110,7 @@ export function TopBar({
     <>
       {leading}
       {breadcrumb.length > 0 && (
-        <nav aria-label="Ruta" className={css.breadcrumbNav}>
+        <nav aria-label={intl.formatMessage({ id: 'topbar.breadcrumb', defaultMessage: 'Ruta' })} className={css.breadcrumbNav}>
           {breadcrumb.map((c, i) => {
             const isLast = i === breadcrumb.length - 1
             return (
@@ -205,7 +205,7 @@ export function TopBar({
   const renderMobile = () => (
     <>
       {leading || (
-        <IconButton icon="menu" ariaLabel="Abrir navegación" onClick={onToggleSidebar} />
+        <IconButton icon="menu" ariaLabel={intl.formatMessage({ id: 'nav.open', defaultMessage: 'Abrir navegación' })} onClick={onToggleSidebar} />
       )}
       {logo && <div className={css.logoCenter}>{logo}</div>}
       {tail}

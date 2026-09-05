@@ -1,4 +1,5 @@
 import { useState, useCallback, type CSSProperties } from 'react'
+import { useT } from '../../i18n/useSafeIntl'
 import css from './NipReveal.module.css'
 import { Button } from '../primitives/Button'
 
@@ -11,6 +12,7 @@ export interface NipRevealProps {
 }
 
 export function NipReveal({ digits, blurLast = true, duration = 5000, warning, style }: NipRevealProps) {
+  const t = useT()
   const [visible, setVisible] = useState(false)
 
   const handleShow = useCallback(() => {
@@ -22,7 +24,7 @@ export function NipReveal({ digits, blurLast = true, duration = 5000, warning, s
     return (
       <div className={css.root} style={style}>
         {warning && <span className={css.warning}>{warning}</span>}
-        <Button variant="primary" onClick={handleShow}>Mostrar NIP</Button>
+        <Button variant="primary" onClick={handleShow}>{t('nip.show', 'Mostrar NIP')}</Button>
       </div>
     )
   }
@@ -39,7 +41,7 @@ export function NipReveal({ digits, blurLast = true, duration = 5000, warning, s
             : <span key={i}>{ch}</span>
         )}
       </span>
-      <span className={css.hint}>Se ocultará automáticamente</span>
+      <span className={css.hint}>{t('nip.hint', 'Se ocultará automáticamente')}</span>
     </div>
   )
 }

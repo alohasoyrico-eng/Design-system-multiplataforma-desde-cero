@@ -79,7 +79,7 @@ export function ChatComposer({
         <button
           type="button"
           className={css.sendBtn}
-          aria-label="Enviar"
+          aria-label={intl.formatMessage({ id: 'chat.send', defaultMessage: 'Enviar' })}
           disabled={!canSend}
           data-active={canSend ? '' : undefined}
           onClick={send}
