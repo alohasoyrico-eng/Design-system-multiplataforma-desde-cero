@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
@@ -61,5 +62,26 @@ describe('Select · insetLabel', () => {
     const combo = screen.getByRole('combobox', { name: 'Estado' })
     expect(combo).toBeInTheDocument()
     expect(screen.getByText('Estado:')).toBeInTheDocument()
+  })
+
+  it('el trigger conserva la cara del renderOption al elegir (la bandera no muere)', async () => {
+    const user = userEvent.setup()
+    function Arnes() {
+      const [v, setV] = useState<string | string[] | undefined>('mx')
+      return (
+        <Select
+          value={v}
+          onChange={setV}
+          options={[{ value: 'mx', label: 'México' }, { value: 'co', label: 'Colombia' }]}
+          renderOption={(o) => <span data-cara={o.value}>{o.label}</span>}
+        />
+      )
+    }
+    renderWithIntl(<Arnes />)
+    const combo = screen.getByRole('combobox')
+    expect(combo.querySelector('[data-cara="mx"]')).not.toBeNull()
+    await user.click(combo)
+    await user.click(screen.getByRole('option', { name: 'Colombia' }))
+    expect(screen.getByRole('combobox').querySelector('[data-cara="co"]')).not.toBeNull()
   })
 })

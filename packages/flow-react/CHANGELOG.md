@@ -6,6 +6,7 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 ## [Unreleased]
 
 ### Añadido
+- **Select**: lo elegido no pierde su cara — en single, el trigger viste el valor con el mismo `renderOption` de las filas (la bandera del país sigue ahí tras elegir; en multiple resume con texto).
 - **`InputPhone.prefix` admite ReactNode**: bandera compacta + lada como adorno de la carcasa, sincronizada al selector de país — sigue fuera del valor y no borrable (tel-1). El onboarding del banco ahora usa la pieza real (antes un Input genérico con la lada al lado equivocado). Specimen `input-phone` registrado (ratchet 37).
 
 - **`Card.selected`** (decisión 5-sep): anillo inset `--border-focus` + superficie `--surface-accent-subtle` — seleccionado legible sin color (crd-3, ahora automated). `aria-pressed` cuando la tarjeta es operable.

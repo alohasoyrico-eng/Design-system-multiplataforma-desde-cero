@@ -76,6 +76,17 @@ export function Select({
     .map((v) => items.find((i) => i.value === v)?.label ?? v)
     .join(', ')
 
+  // Lo elegido no pierde su cara: en single, el trigger viste el valor con el
+  // mismo renderOption de las filas (la bandera del país sigue ahí tras
+  // elegir). En multiple el trigger resume con texto.
+  const selectedFace =
+    !multiple && renderOption && selectedValues.length === 1
+      ? (() => {
+          const it = items.find((i) => i.value === selectedValues[0])
+          return it ? renderOption(it) : null
+        })()
+      : null
+
   const handleSelect = useCallback(
     (item: ListboxItem) => {
       if (multiple) {
@@ -167,7 +178,7 @@ export function Select({
       >
         {insetLabel && <span className={css.insetLabel}>{insetLabel}:</span>}
         <span className={css.triggerText} data-empty={!selectedLabels || undefined}>
-          {selectedLabels || resolvedPlaceholder}
+          {selectedFace ?? (selectedLabels || resolvedPlaceholder)}
         </span>
       </span>
     </ControlShell>
