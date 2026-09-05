@@ -109,7 +109,7 @@ mapea variantes a roles — no le pidas el componente al DS.
 3. Versionado: 0.x — la API puede moverse entre minors; los deprecados
    (`error`, `DateRangePicker`) anuncian su retiro en 1.0.
 4. Si un componente de Flow parece incumplir su contrato, no lo parches en tu
-   repo: repórtalo — hay 366 criterios de conformance con test del lado del DS.
+   repo: repórtalo — hay 371 criterios de conformance con test del lado del DS.
 
 ## Migración desde Flow 1.x
 

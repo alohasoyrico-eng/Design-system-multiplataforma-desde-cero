@@ -1,7 +1,10 @@
+import { readFileSync } from 'node:fs'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import { DataGrid } from '../DataGrid'
+
+const fuente = (rel: string) => readFileSync(new URL(rel, import.meta.url), 'utf8')
 
 const columns = [
   { key: 'name', label: 'Nombre' },
@@ -68,6 +71,48 @@ describe('DataGrid', () => {
     expect(nameCells[0]).toHaveTextContent('Ana')
     expect(nameCells[1]).toHaveTextContent('Luis')
     expect(nameCells[2]).toHaveTextContent('Maria')
+  })
+})
+
+describe('DataGrid · conformance canon', () => {
+  // dg-1: zebra por token, jamas rgba a mano
+  it('dg-1: el zebra default sale de --surface-sunken', () => {
+    expect(fuente('../DataGrid.tsx')).toMatch(/zebraToken = 'var\(--surface-sunken\)'/)
+  })
+
+  // dg-2: header ordenable = boton enfocable con aria-sort
+  it('dg-2: ordenar pone aria-sort y el header es un boton', async () => {
+    const user = userEvent.setup()
+    render(<DataGrid columns={columns} rows={rows} />)
+    const boton = screen.getByRole('button', { name: 'Nombre' })
+    await user.click(boton)
+    expect(boton.closest('th')).toHaveAttribute('aria-sort', 'ascending')
+  })
+
+  // dg-3: fila clickeable enfocable, Enter y Espacio, sin role=button
+  it('dg-3: la fila clickeable tabula, dispara con Enter y Espacio y conserva su rol de fila', async () => {
+    const onRowClick = vi.fn()
+    render(<DataGrid columns={columns} rows={rows} onRowClick={onRowClick} />)
+    const fila = screen.getByText('Ana').closest('tr')!
+    expect(fila.getAttribute('role')).toBeNull()
+    fila.focus()
+    expect(fila).toHaveFocus()
+    await userEvent.keyboard('{Enter}')
+    await userEvent.keyboard(' ')
+    expect(onRowClick).toHaveBeenCalledTimes(2)
+  })
+
+  // dg-9: el contenedor desplaza en horizontal, nunca recorta
+  it('dg-9: el root desplaza con overflow-x auto en vez de recortar', () => {
+    expect(fuente('../DataGrid.module.css')).toMatch(/\.root\s*\{[^}]*overflow-x:\s*auto/)
+  })
+
+  // dg-10: la piel reemplaza clases sin duplicar la mecanica
+  it('dg-10: Table es DataGrid con skin — no reimplementa orden ni teclado', () => {
+    const piel = fuente('../../components/Table.tsx')
+    expect(piel).toMatch(/<DataGrid/)
+    expect(piel).toMatch(/skin=\{\{/)
+    expect(piel).not.toMatch(/aria-sort|onKeyDown|localeCompare/)
   })
 })
 

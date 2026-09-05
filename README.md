@@ -416,7 +416,7 @@ El workflow `publish.yml` corre los gates y publica a GitHub Packages solo.
 
 ### La referencia canónica y el conformance
 
-Los contratos normativos del sistema viven en la rama **`canonical`** de este mismo repo (la referencia de diseño: HTML/CSS de referencia, `contracts/`, `architecture.json` y sus chequeos). `check:conformance` mide el pacto: **cada criterio automatizado de un contrato debe tener un test o chequeo del repo que lo cite por id** (`sel-7`, `tst-2`, `mc-2`…). Hoy: 366/366. El ratchet (`--min`) solo puede subir — un PR que borre un test citado pone CI en rojo. Dos reglas operativas: tras cambiar contratos en `canonical`, corre `git fetch origin canonical` antes de medir (el medidor lee el commit, no tu carpeta); y las notas de exclusión en tests **no citan ids** (una mención en comentario cuenta como cobertura).
+Los contratos normativos del sistema viven en la rama **`canonical`** de este mismo repo (la referencia de diseño: HTML/CSS de referencia, `contracts/`, `architecture.json` y sus chequeos). `check:conformance` mide el pacto: **cada criterio automatizado de un contrato debe tener un test o chequeo del repo que lo cite por id** (`sel-7`, `tst-2`, `mc-2`…). Hoy: 371/371. El ratchet (`--min`) solo puede subir — un PR que borre un test citado pone CI en rojo. Dos reglas operativas: tras cambiar contratos en `canonical`, corre `git fetch origin canonical` antes de medir (el medidor lee el commit, no tu carpeta); y las notas de exclusión en tests **no citan ids** (una mención en comentario cuenta como cobertura).
 
 ## Verificación
 
@@ -425,7 +425,7 @@ La batería completa que corre CI en cada push. Regla de la casa: **cada reja se
 ```bash
 npm run typecheck          # TypeScript — cero errores
 npm run lint               # oxlint — cero errores (los hooks condicionales son error, no warning)
-npm run test               # 1,117 tests (32 de compliance arquitectónica)
+npm run test               # 1,122 tests (32 de compliance arquitectónica)
 npm run check:catalog      # fichas ↔ barrels ↔ interfaces (C1–C5)
 npm run check:inventory    # inventario ↔ referencia canónica (S1–S3)
 npm run check:foundations  # criterios automatizados de los 7 contratos de foundations

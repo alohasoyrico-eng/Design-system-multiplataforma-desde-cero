@@ -17,6 +17,7 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 - **Escala de capas** `--z-*` en tokens (base/sticky/header/overlay/popover/toast/tooltip): los diez z-index globales de la librería salen de la escala; el diccionario y el CSS mantienen paridad (398/398).
 
 ### Cambiado
+- El contrato canónico de `data-grid` deja de ser huérfano: reescrito al API real del primitivo, registrado en la arquitectura y medido (dg-1/2/3/9/10). Selección masiva, edición y árbol siguen en sus propias piezas, como decide el paquete.
 - El nombre accesible de Pagination es «Paginación» (antes «Paginacion»), y sus textos pasan por `useT` (caen a español sin provider).
 - Popover ahora se apila por encima del backdrop de overlay (`--z-popover` > `--z-overlay`): un popover abierto dentro de un modal ya no queda debajo.
 
