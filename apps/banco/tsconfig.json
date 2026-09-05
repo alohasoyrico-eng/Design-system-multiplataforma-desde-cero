@@ -25,6 +25,9 @@
       "@alohasoyrico-eng/flow-react": [
         "../../packages/flow-react/src/ui/lib.ts"
       ],
+      "@alohasoyrico-eng/flow-react/specimens": [
+        "../../packages/flow-react/src/specimens/index.tsx"
+      ],
       "@alohasoyrico-eng/flow-react/contracts": [
         "../../packages/flow-react/src/data/items.json"
       ]

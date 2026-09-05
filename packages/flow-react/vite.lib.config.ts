@@ -18,7 +18,11 @@ export default defineConfig({
     outDir: 'dist-lib',
     cssCodeSplit: false,
     lib: {
-      entry: 'src/ui/lib-entry.ts',
+      entry: {
+        'ui/lib-entry': 'src/ui/lib-entry.ts',
+        // spm-2: entry propio — el principal no lo importa y no se paga sin querer
+        'specimens/index': 'src/specimens/index.tsx',
+      },
       formats: ['es'],
       cssFileName: 'flow',
     },

@@ -14583,5 +14583,75 @@
    "useToast fuera del host truena con mensaje claro, no con undefined"
   ],
   "nonGoals": []
+ },
+ "specimen-registry": {
+  "name": "SpecimenRegistry",
+  "layer": "foundations",
+  "status": "",
+  "summary": "La tercera pata de cada pieza: el contrato promete, la ficha describe, el specimen demuestra. Registro ejecutable id → render vivo, entry propio /specimens.",
+  "fn": [],
+  "domain": "",
+  "shell": false,
+  "stub": false,
+  "stubNote": "",
+  "shellOf": [],
+  "src": "specimens/index.tsx",
+  "platforms": {},
+  "anatomy": "Dos capas: <b>paleta base</b> (red, ink, sand, semanticos) y <b>tokens semanticos</b> (surface, text, border, action, status) que son los unicos que se usan en producto. El tema oscuro Asphalt redefine los semanticos bajo <code>[data-mode=dark]</code>.",
+  "tokens": [
+   "--surface-canvas",
+   "--surface-card",
+   "--text-primary",
+   "--text-accent",
+   "--border-focus",
+   "--action-accent",
+   "--status-success",
+   "--status-danger"
+  ],
+  "variants": [],
+  "members": [
+   {
+    "n": "SPECIMENS",
+    "k": "const",
+    "t": "Record<string, Specimen>",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "id de ficha → specimen"
+   },
+   {
+    "n": "Specimen",
+    "k": "type",
+    "t": "{ variants?; sizes?; render(state) }",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "El render recibe el estado del playground"
+   }
+  ],
+  "dos": [
+   "Usa siempre tokens semanticos: <code>var(--text-primary)</code>, nunca hex directos",
+   "Reserva el rojo marca para 1 CTA por vista, estados vivos y foco",
+   "Usa <code>--status-danger</code> (#D92D20) para destructivo — es distinto del rojo marca"
+  ],
+  "donts": [
+   "Rojo como decoracion, fondos grandes o texto largo",
+   "Gradientes o glassmorphism en superficies",
+   "Inventar grises: usa ink/sand"
+  ],
+  "when": [
+   "Cualquier superficie o texto nuevo: parte de los semanticos",
+   "Nuevos estados: mapea a success/warning/danger/info antes de pedir un color nuevo"
+  ],
+  "notWhen": [
+   "Necesitas un color de grafica adicional — usa la paleta de Avatar/Charts",
+   "Campanas de marketing (fuera de alcance del DS)"
+  ],
+  "a11y": [
+   "Todo texto con contraste 4.5:1 o mas sobre su superficie",
+   "Rojo marca sobre blanco solo en 18px bold o mayor; en texto usa <code>--text-accent</code> (#E62D10)",
+   "El tema oscuro sube el acento a #FF6A52 para mantener contraste"
+  ],
+  "nonGoals": []
  }
 }

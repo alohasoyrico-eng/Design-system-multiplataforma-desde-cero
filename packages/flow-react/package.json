@@ -27,7 +27,11 @@
     "./reset.css": "./dist-lib/reset.css",
     "./fonts/*": "./public/fonts/*",
     "./contracts": "./src/data/items.json",
-    "./compat-eone.css": "./dist-lib/compat-eone.css"
+    "./compat-eone.css": "./dist-lib/compat-eone.css",
+    "./specimens": {
+      "types": "./dist-lib/types/specimens/index.d.ts",
+      "import": "./dist-lib/specimens/index.js"
+    }
   },
   "files": [
     "CHANGELOG.md",

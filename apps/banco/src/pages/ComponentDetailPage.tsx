@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import { useParams } from '@tanstack/react-router'
+import { SPECIMENS } from '@alohasoyrico-eng/flow-react/specimens'
 import { Button } from '@alohasoyrico-eng/flow-react'
 import { Breadcrumb } from '@alohasoyrico-eng/flow-react'
 import { Tabs } from '@alohasoyrico-eng/flow-react'
@@ -239,7 +240,7 @@ export function ComponentDetailPage() {
         <Tabs value={tab} onChange={setTab} items={TABS} variant="bar" />
       </SectionBar>
 
-      {tab === 'overview' && <OverviewTab contract={contract} />}
+      {tab === 'overview' && <OverviewTab contract={contract} componentId={componentId ?? ''} />}
       {tab === 'design' && <DesignTab contract={contract} />}
       {tab === 'build' && <BuildTab contract={contract} />}
       {tab === 'miel' && <MielTab contract={contract} />}
@@ -279,9 +280,13 @@ export function ComponentDetailPage() {
 
 /* ── Overview Tab ── */
 
-function OverviewTab({ contract }: { contract: ContractItem }) {
-  const variants = contract.variants.map(v => ({ value: v.v, label: v.v }))
-  const sizes = ['sm', 'md', 'lg']
+function OverviewTab({ contract, componentId }: { contract: ContractItem; componentId: string }) {
+  // spm-3: el template consume el registro de forma genérica — no conoce
+  // ninguna pieza por nombre. Los ejes del playground salen del specimen
+  // cuando existe; si no, de la ficha.
+  const specimen = componentId ? SPECIMENS[componentId] : undefined
+  const variants = (specimen?.variants ?? contract.variants.map(v => v.v)).map(v => ({ value: v, label: v }))
+  const sizes = specimen?.sizes ?? ['sm', 'md', 'lg']
 
   return (
     <div>
@@ -302,12 +307,16 @@ function OverviewTab({ contract }: { contract: ContractItem }) {
           densities={['compact', 'default', 'comfortable']}
           snippet={generateSnippet(contract.name, variants[0]?.value ?? 'primary', 'md')}
         >
-          {({ variant, size }) => (
-            <div className={css.specimenPlaceholder}>
-              <span className={css.specimenName}>{contract.name}</span>
-              <span className={css.specimenMeta}>{variant} · {size}</span>
-            </div>
-          )}
+          {({ variant, size, density }) =>
+            specimen ? (
+              specimen.render({ variant, size, density })
+            ) : (
+              <div className={css.specimenPlaceholder}>
+                <span className={css.specimenName}>{contract.name}</span>
+                <span className={css.specimenMeta}>{variant} · {size} · specimen pendiente</span>
+              </div>
+            )
+          }
         </PlaygroundCanvas>
       </RevealSection>
 
