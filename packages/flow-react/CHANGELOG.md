@@ -6,6 +6,16 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 ## [Unreleased]
 
 ### Añadido
+- **`Card.selected`** (decisión 5-sep): anillo inset `--border-focus` + superficie `--surface-accent-subtle` — seleccionado legible sin color (crd-3, ahora automated). `aria-pressed` cuando la tarjeta es operable.
+- **NotificationCenter**: estado vacío real («Sin notificaciones — todo al día») en vez de panel en blanco (ntf-6).
+- 7 especímenes más (DataTable, ToastHost, Sidebar con grupos, TransactionGroup, DocumentViewer, HelpCenter, NotificationCenter) — ratchet spm-1 en 36.
+
+### Arreglado (cierre visual, 5-sep)
+- **DataTable**: la zona de filas ancla su altura a la de una página completa — la última página corta ya no encoge la tabla (dtb-5).
+- **Card**: la franja de `status` ya no la pisa el borde de la piel outlined (cascada corregida).
+- **TransactionGroup**: el label de fecha va en mono como manda trg-1.
+- **Banco**: la cola casera de toasts (AppLayout) reemplazada por ToastHost/useToast; receta de país con bandera en el onboarding (pai-p1..p4, sin componente nuevo — pai-p5); pantallas Driver y Rutas ruteadas.
+
 - **Registro de especímenes** (`@alohasoyrico-eng/flow-react/specimens`): la tercera pata de cada pieza — el contrato promete, la ficha describe, el specimen demuestra. 29 piezas con render vivo y sus variantes, typechequeado contra las interfaces reales (spm-1), como entry propio que el principal no arrastra (spm-2, verificado en dist), consumido genéricamente por Component Detail (spm-3). Contrato canónico `specimen-registry` nuevo.
 
 ### Arreglado (pasada visual, 5-sep)

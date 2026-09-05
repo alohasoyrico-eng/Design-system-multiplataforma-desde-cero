@@ -55,6 +55,13 @@ export function NotificationCenter({ items = [], align = 'right', onItemClick, o
             )}
           </div>
           <div className={css.list}>
+            {/* ntf-6: la lista vacia no es un panel en blanco */}
+            {items.length === 0 && (
+              <div style={{ padding: 'var(--space-6) var(--space-4)', textAlign: 'center', color: 'var(--text-muted)', font: 'var(--type-body-sm)' }}>
+                <span className="flow-symbol flow-symbol--lg" aria-hidden="true" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>notifications_off</span>
+                {intl.formatMessage({ id: 'notifications.empty', defaultMessage: 'Sin notificaciones — todo al día.' })}
+              </div>
+            )}
             {items.map((n) => {
               const t = TONE_ICONS[n.tone] || TONE_ICONS.info
               return (

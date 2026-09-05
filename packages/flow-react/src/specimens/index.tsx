@@ -35,6 +35,14 @@ import { Menu } from '../ui/components/Menu'
 import { Tooltip } from '../ui/components/Tooltip'
 import { StatTile } from '../ui/components/StatTile'
 import { SectionHeader } from '../ui/primitives/SectionHeader'
+import { DataTable } from '../ui/patterns/DataTable'
+import { ToastHost, useToast } from '../ui/primitives/Toast'
+import { Sidebar } from '../ui/components/Sidebar'
+import { TransactionGroup } from '../ui/patterns/TransactionGroup'
+import { TransactionRow } from '../ui/components/TransactionRow'
+import { DocumentViewer } from '../ui/components/DocumentViewer'
+import { HelpCenter } from '../ui/components/HelpCenter'
+import { NotificationCenter } from '../ui/components/NotificationCenter'
 
 export interface SpecimenState {
   variant: string
@@ -144,6 +152,17 @@ function SelectDemo({ size }: { size: 'sm' | 'md' | 'lg' }) {
 function SliderDemo() {
   const [v, setV] = useState(80)
   return <Slider label="Velocidad máxima" value={v} onChange={setV} min={0} max={140} format={(n) => `${n} km/h`} />
+}
+
+function ToastDemo() {
+  const { show } = useToast()
+  return (
+    <div style={{ display: 'flex', gap: 8 }}>
+      <Button variant="secondary" onClick={() => show({ message: 'Cambios guardados', tone: 'success' })}>Éxito</Button>
+      <Button variant="secondary" onClick={() => show({ message: 'La unidad quedó sin conductor', tone: 'warning', actionLabel: 'Asignar', onAction: () => {} })}>Con acción</Button>
+      <Button variant="secondary" onClick={() => show({ message: 'No se pudo exportar', tone: 'danger', duration: null })}>Persistente</Button>
+    </div>
+  )
 }
 
 function PaginationDemo() {
@@ -303,9 +322,14 @@ export const SPECIMENS: Record<string, Specimen> = {
     ),
   },
   card: {
-    variants: ['elevated', 'outlined', 'inverse'],
+    variants: ['elevated', 'outlined', 'inverse', 'selected'],
     render: ({ variant }) => (
-      <Card surface={variant as 'elevated'} status={variant === 'outlined' ? 'warning' : undefined} style={{ width: 280 }}>
+      <Card
+        surface={variant === 'selected' ? 'outlined' : (variant as 'elevated')}
+        selected={variant === 'selected'}
+        status={variant === 'outlined' ? 'warning' : undefined}
+        style={{ width: 280 }}
+      >
         <SectionHeader size="sm" level={3} description="Radio interior menor que el de la tarjeta.">
           Tarjeta {variant}
         </SectionHeader>
@@ -351,6 +375,102 @@ export const SPECIMENS: Record<string, Specimen> = {
         description="Completados esta semana"
         loading={density === 'loading'}
         style={{ width: 240 }}
+      />
+    ),
+  },
+  'data-table': {
+    render: () => (
+      <DataTable
+        caption="Personas del equipo"
+        rowKey="n"
+        pageSize={5}
+        columns={[
+          { key: 'n', label: 'Nombre' },
+          { key: 'rol', label: 'Rol' },
+          { key: 'viajes', label: 'Viajes', align: 'right', mono: true },
+        ]}
+        rows={Array.from({ length: 13 }, (_, i) => ({
+          n: ['Ana Sosa', 'Luis Prieto', 'Marta Vidal', 'Diego Vera', 'Rosa Duarte'][i % 5] + (i > 4 ? ' ' + i : ''),
+          rol: i % 2 ? 'Conductor' : 'Admin',
+          viajes: 40 - i * 3,
+        }))}
+        style={{ width: 520 }}
+      />
+    ),
+  },
+  'toast-host': {
+    render: () => (
+      <ToastHost max={3}>
+        <ToastDemo />
+      </ToastHost>
+    ),
+  },
+  sidebar: {
+    render: () => (
+      <Sidebar
+        style={{ height: 360 }}
+        activeId="unidades"
+        items={[
+          {
+            id: 'op', label: 'Operación', caption: true,
+            children: [
+              { id: 'unidades', label: 'Unidades', icon: 'local_taxi', badge: 3 },
+              { id: 'conductores', label: 'Conductores', icon: 'group' },
+            ],
+          },
+          {
+            id: 'adm', label: 'Administración', caption: true,
+            children: [
+              { id: 'roles', label: 'Roles', icon: 'admin_panel_settings' },
+              { id: 'ajustes', label: 'Ajustes', icon: 'settings' },
+            ],
+          },
+        ]}
+      />
+    ),
+  },
+  'transaction-group': {
+    render: () => (
+      <div style={{ width: 340 }}>
+        <TransactionGroup label="Hoy">
+          <TransactionRow category="fuel" title="Gasolinera Pemex #412" subtitle="14:23" amount={-850.5} />
+          <TransactionRow category="toll" title="Caseta Tepotzotlán" subtitle="09:10" amount={-118} />
+        </TransactionGroup>
+        <TransactionGroup label="Ayer">
+          <TransactionRow category="fuel" title="G500 Roma Norte" subtitle="19:44" amount={-620.4} />
+        </TransactionGroup>
+      </div>
+    ),
+  },
+  'document-viewer': {
+    render: () => (
+      <DocumentViewer title="Tarjeta de circulación.pdf" height={180} actions={<Button variant="ghost" size="sm" icon="download">Descargar</Button>}>
+        <div style={{ display: 'grid', placeItems: 'center', height: '100%', color: 'var(--text-muted)' }}>
+          (el documento lo pinta el producto)
+        </div>
+      </DocumentViewer>
+    ),
+  },
+  'help-center': {
+    render: () => (
+      <HelpCenter
+        style={{ width: 560, height: 300 }}
+        articles={[
+          { id: 'a', title: 'Cómo agregar una unidad', category: 'Flota', content: 'Ve a Unidades y pulsa Agregar.' },
+          { id: 'b', title: 'Congelar una tarjeta', category: 'Tarjetas', content: 'Desde el detalle de la tarjeta.' },
+          { id: 'c', title: 'Exportar reportes', category: 'Reportes', content: 'Cada dashboard exporta a CSV.' },
+        ]}
+      />
+    ),
+  },
+  'notification-center': {
+    variants: ['con-avisos', 'vacio'],
+    render: ({ variant }) => (
+      <NotificationCenter
+        items={variant === 'vacio' ? [] : [
+          { id: '1', tone: 'warning', title: 'Consumo 38% sobre promedio', desc: 'KTR-882-A', time: 'hace 2 h', read: false },
+          { id: '2', tone: 'success', title: 'Servicio completado', desc: 'MVD-101-C', time: 'ayer', read: true },
+        ]}
       />
     ),
   },

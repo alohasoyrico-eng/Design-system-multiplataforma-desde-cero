@@ -79,6 +79,16 @@ describe('Card · conformance canon', () => {
     expect((container.firstChild as HTMLElement).getAttribute('tabindex')).toBeNull()
   })
 
+  // crd-3: selected se lee sin color — anillo de peso + superficie por tokens
+  it('crd-3: selected marca data-selected y el CSS usa anillo y superficie de tokens', () => {
+    const { container } = render(<Card selected surface="outlined">Elegida</Card>)
+    expect((container.firstChild as HTMLElement).hasAttribute('data-selected')).toBe(true)
+    const hojaCard = css('../ui/components/Card.module.css')
+    const bloque = hojaCard.match(/\.root\[data-selected\]\s*\{([^}]*)\}/)![1]
+    expect(bloque).toMatch(/inset 0 0 0 2px var\(--border-focus\)/)
+    expect(bloque).toMatch(/background:\s*var\(--surface-accent-subtle\)/)
+  })
+
   // crd-6: la franja de estado sale de --status-*, jamas de un color a mano
   it('crd-6: status pinta la franja con tokens y la escala de padding vive en CSS', () => {
     const { container } = render(<Card status="danger" padding="sm">Alerta</Card>)

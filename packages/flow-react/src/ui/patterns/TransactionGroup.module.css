@@ -4,7 +4,9 @@
 }
 
 .label {
-  font: var(--type-body-sm);
+  /* trg-1: el label de fecha va en --type-label-sm uppercase MONO */
+  font: var(--type-label-sm);
+  font-family: var(--font-mono);
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;

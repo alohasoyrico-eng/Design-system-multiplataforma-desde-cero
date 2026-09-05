@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from 'react'
+import { useMemo, useState, useRef, useLayoutEffect, type CSSProperties } from 'react'
 import { Table, type GridColumn, type TableSort, type Density } from '../components/Table'
 import { Input } from '../primitives/Input'
 import { Pagination } from '../primitives/Pagination'
@@ -48,6 +48,10 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   style,
 }: DataTableProps<T>) {
   const t = useT()
+  // dtb-5: la altura de la zona de filas no baila al cambiar de página — se
+  // ancla a la de una página completa en cuanto se ve una.
+  const zonaRef = useRef<HTMLDivElement>(null)
+  const [altoPagina, setAltoPagina] = useState<number>()
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState<TableSort | null>(null)
@@ -88,6 +92,12 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
 
   const vacio = emptyLabel ?? t('flow.dataTable.empty', 'Sin resultados para «{q}»')
 
+  useLayoutEffect(() => {
+    if (zonaRef.current && visible.length === pageSize) {
+      setAltoPagina(zonaRef.current.offsetHeight)
+    }
+  }, [visible.length, pageSize, density])
+
   return (
     <div className={css.root} style={style}>
       <div className={css.toolbar}>
@@ -108,6 +118,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
             : ''}
         </p>
       </div>
+      <div ref={zonaRef} style={altoPagina ? { minHeight: altoPagina } : undefined}>
       {sorted.length === 0 ? (
         /* dtb-4: sin resultados la tabla no queda muda */
         <EmptyState
@@ -132,6 +143,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
           density={density}
         />
       )}
+      </div>
       {pages > 1 && <Pagination page={safePage} pages={pages} onChange={setPage} />}
     </div>
   )

@@ -109,9 +109,26 @@ mapea variantes a roles — no le pidas el componente al DS.
 3. Versionado: 0.x — la API puede moverse entre minors; los deprecados
    (`error`, `DateRangePicker`) anuncian su retiro en 1.0.
 4. Si un componente de Flow parece incumplir su contrato, no lo parches en tu
-   repo: repórtalo — hay 414 criterios de conformance con test del lado del DS.
+   repo: repórtalo — hay 415 criterios de conformance con test del lado del DS.
 
 ## Migración desde Flow 1.x
 
 La ruta completa (convivencia, `compat-eone.css`, mapa de iconos, renombres)
 está en el README del paquete, sección «Migración desde Flow 1.x».
+
+## Checklist visual por pantalla
+
+Reglas de uso que ninguna reja puede verificar una sola vez — se revisan en CADA pantalla nueva o modificada:
+
+1. **Un solo acento por vista** (btn-5, dsh-p1): un CTA `accent`/primario protagonista; dos acentos no jerarquizan nada.
+2. **El rojo de marca no decora** (col-4): solo acción, estado vivo o foco — nunca color de serie ni adorno.
+3. **Nada comunica solo por color** (a11y-3): todo estado va con texto, forma o icono.
+4. **Cifras en familia de dato** (typ-1): montos, placas, IDs y KPIs en `--type-data`; el resto en la familia de texto.
+5. **Tracking en su sitio** (typ-4): `--tracking-tight` solo en display/title; `--tracking-overline` solo en overlines.
+6. **Padding por tokens de zona** (spc-4): `--pad-card`/`--pad-section`, no reescritos por pantalla.
+7. **Pill solo donde la altura fija el radio** (shp-3): botones, chips, badges — no en tarjetas.
+8. **Spring solo como respuesta** (mot-4): `--ease-spring` en toque/hover; `--ease-out` en lo que entra.
+9. **Icono activo por relleno** (ico-4): `flow-symbol--fill`, no solo cambio de color.
+10. **`live` solo en lo que cambia solo** (bdg-3): un badge de categoría que late, miente.
+11. **Nada encima del área del control** (cs-6): accesorios en leading/trailing/footer.
+12. **Texto sobre imagen con velo** (cmd-3): 4.5:1 garantizado por velo, no por suerte.

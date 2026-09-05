@@ -472,7 +472,7 @@ La verdad de cada pieza vive en dos documentos vigilados en triángulo:
 - **Contrato normativo** — `contracts/<id>.json` en la rama `canonical`: API prometida, criterios de conformance (`automated`/`visual`/`manual`), excepciones con motivo. Es quien manda.
 - **Ficha** — `packages/flow-react/src/data/items.json`: API documentada, tokens, when/notWhen, plataformas. Es lo que consume el sitio de docs y el export `@alohasoyrico-eng/flow-react/contracts`.
 
-Las rejas cierran el triángulo: `check:catalog` (ficha ↔ interfaz), `check:api-drift` (canon ↔ ficha), `check:conformance` (criterios ↔ tests). Hoy: 0 drift, 414/414 criterios citados.
+Las rejas cierran el triángulo: `check:catalog` (ficha ↔ interfaz), `check:api-drift` (canon ↔ ficha), `check:conformance` (criterios ↔ tests). Hoy: 0 drift, 415/415 criterios citados.
 
 Cada pieza declara su estado por plataforma con la escala oficial — no existen otros valores:
 
@@ -524,3 +524,20 @@ Verifica el comportamiento **midiendo el DOM montado**, no leyendo el código: u
 - **Dividir entre `length - 1`.** Con un solo dato es dividir entre cero: Sparkline y SmallMultiples pintaron `NaN` en el DOM por esto.
 - **`htmlFor` sin `id`.** Un Field con `htmlFor="x"` cuyo Input no lleva `id="x"` es una etiqueta rota que se ve perfecta.
 - **Editar el canon sin `git fetch origin canonical` después.** Las rejas leen el commit, no tu carpeta.
+
+## Checklist visual por pantalla
+
+Reglas de uso que ninguna reja puede verificar una sola vez — se revisan en CADA pantalla nueva o modificada:
+
+1. **Un solo acento por vista** (btn-5, dsh-p1): un CTA `accent`/primario protagonista; dos acentos no jerarquizan nada.
+2. **El rojo de marca no decora** (col-4): solo acción, estado vivo o foco — nunca color de serie ni adorno.
+3. **Nada comunica solo por color** (a11y-3): todo estado va con texto, forma o icono.
+4. **Cifras en familia de dato** (typ-1): montos, placas, IDs y KPIs en `--type-data`; el resto en la familia de texto.
+5. **Tracking en su sitio** (typ-4): `--tracking-tight` solo en display/title; `--tracking-overline` solo en overlines.
+6. **Padding por tokens de zona** (spc-4): `--pad-card`/`--pad-section`, no reescritos por pantalla.
+7. **Pill solo donde la altura fija el radio** (shp-3): botones, chips, badges — no en tarjetas.
+8. **Spring solo como respuesta** (mot-4): `--ease-spring` en toque/hover; `--ease-out` en lo que entra.
+9. **Icono activo por relleno** (ico-4): `flow-symbol--fill`, no solo cambio de color.
+10. **`live` solo en lo que cambia solo** (bdg-3): un badge de categoría que late, miente.
+11. **Nada encima del área del control** (cs-6): accesorios en leading/trailing/footer.
+12. **Texto sobre imagen con velo** (cmd-3): 4.5:1 garantizado por velo, no por suerte.

@@ -3,17 +3,23 @@ import css from './MobilePage.module.css'
 import { OnboardingDriverScreen } from './OnboardingDriverScreen'
 import { WalletAppScreen } from './WalletAppScreen'
 import { AuthOTPScreen } from './AuthOTPScreen'
+import { DriversAppScreen } from './DriversAppScreen'
+import { RutasScreen } from './RutasScreen'
 
 const TEMPLATES = [
   { value: 'onboarding', label: 'Onboarding' },
   { value: 'wallet', label: 'Wallet' },
   { value: 'auth', label: 'Auth' },
+  { value: 'driver', label: 'Driver' },
+  { value: 'rutas', label: 'Rutas' },
 ]
 
 const SCREENS: Record<string, { component: React.ComponentType; desc: string }> = {
   onboarding: { component: OnboardingDriverScreen, desc: 'Propuesta de valor, alta completa (correo, OTP, teléfono, tarjeta, passcode), biométricos y autenticación.' },
   wallet: { component: WalletAppScreen, desc: 'App completa — inicio con saldo y carrusel, tarjetas con detalle, actividad y mapa de estaciones. Perfil vía avatar.' },
   auth: { component: AuthOTPScreen, desc: 'Autenticación por capas: biométrico, passcode con intentos contados y OTP por SMS de respaldo.' },
+  driver: { component: DriversAppScreen, desc: 'La app del conductor: viaje asignado con aceptar como único acento, y ganancias en mono con periodo.' },
+  rutas: { component: RutasScreen, desc: 'Mapa de estaciones con precio en el pin y atribución del proveedor de tiles.' },
 }
 
 export function MobilePage() {

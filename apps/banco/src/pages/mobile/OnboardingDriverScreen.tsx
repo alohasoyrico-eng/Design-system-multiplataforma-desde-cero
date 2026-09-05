@@ -4,6 +4,7 @@ import { PhoneFrame } from './PhoneFrame'
 import { OnboardingCarousel } from '@alohasoyrico-eng/flow-react'
 import { OTPInput } from '@alohasoyrico-eng/flow-react'
 import { PasscodeKeypad } from '@alohasoyrico-eng/flow-react'
+import { Select, Flag } from '@alohasoyrico-eng/flow-react'
 import { BiometricPrompt } from '@alohasoyrico-eng/flow-react'
 import { PaymentCard } from '@alohasoyrico-eng/flow-react'
 import { IconButton } from '@alohasoyrico-eng/flow-react'
@@ -18,6 +19,18 @@ const SLIDES = [
   { title: 'Paga sin efectivo', description: 'Una tarjeta inteligente para gasolina, casetas y servicios. Sin vales, sin recibos.', icon: 'credit_card' },
   { title: 'Rutas más baratas', description: 'Te mostramos la estación con el mejor precio en tu camino. Ahorra en cada viaje.', icon: 'route' },
   { title: 'Todo en tiempo real', description: 'Alertas de cada cargo, límites por conductor y reportes automáticos para tu flota.', icon: 'notifications_active' },
+]
+
+// pai-p5: el pais es RECETA, no componente — Select searchable + Flag +
+// renderOption, con la lista como dato del proyecto. pai-p2: se busca por
+// nombre, ISO y lada (todo viaja en el label buscable).
+const PAISES = [
+  { value: 'MX', label: 'México · MX · +52', lada: '+52' },
+  { value: 'CO', label: 'Colombia · CO · +57', lada: '+57' },
+  { value: 'AR', label: 'Argentina · AR · +54', lada: '+54' },
+  { value: 'CL', label: 'Chile · CL · +56', lada: '+56' },
+  { value: 'ES', label: 'España · ES · +34', lada: '+34' },
+  { value: 'US', label: 'Estados Unidos · US · +1', lada: '+1' },
 ]
 
 const STEPS = ['carousel', 'welcome', 'email', 'emailCode', 'phone', 'smsCode', 'docs', 'card', 'passcode', 'notif', 'bio', 'done', 'login', 'loginDone'] as const
@@ -59,6 +72,7 @@ export function OnboardingDriverScreen() {
   const [phone, setPhone] = useState('')
   const [code1, setCode1] = useState('')
   const [code2, setCode2] = useState('')
+  const [pais, setPais] = useState<string | string[] | undefined>('MX')
   const [cardNum, setCardNum] = useState('')
   const [pin, setPin] = useState('')
   const [pin2, setPin2] = useState('')
@@ -203,8 +217,36 @@ export function OnboardingDriverScreen() {
         {step === 'phone' && (
           <>
             <StepHeader step={3} total={8} onBack={back} title="Tu teléfono" subtitle="Lo confirmamos con un SMS. Es tu segundo canal de seguridad." />
+            {/* pai-p1: la bandera acompaña al nombre, nunca lo sustituye.
+                pai-p3: país y teléfono son dos controles; la lada viaja como prefijo. */}
+            <Field label="País" htmlFor="ob-pais">
+              <Select
+                id="ob-pais"
+                searchable
+                value={pais}
+                onChange={setPais}
+                options={PAISES}
+                renderOption={(o) => (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                    <Flag country={String(o.value).toLowerCase()} size={16} />
+                    {o.label}
+                  </span>
+                )}
+              />
+            </Field>
             <Field label="Teléfono móvil" htmlFor="ob-phone" error={phoneError} valid={phoneValid} validMessage="Número válido">
-              <Input id="ob-phone" type="tel" icon="smartphone" size="lg" mono placeholder="55 1234 5678" value={phone} onChange={handlePhoneChange} invalid={!!phoneError} />
+              <Input
+                id="ob-phone"
+                type="tel"
+                icon="smartphone"
+                size="lg"
+                mono
+                placeholder="55 1234 5678"
+                value={phone}
+                onChange={handlePhoneChange}
+                invalid={!!phoneError}
+                trailing={<span>{PAISES.find((c) => c.value === pais)?.lada ?? '+52'}</span>}
+              />
             </Field>
             <div className={css.bottomAction}>
               <Button variant="primary" size="lg" fullWidth onClick={handlePhoneSubmit}>Enviar SMS</Button>

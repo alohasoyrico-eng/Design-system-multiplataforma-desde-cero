@@ -28,7 +28,7 @@ describe('conformance canon · specimen-registry', () => {
       expect(fichas, `specimen "${id}" sin ficha`).toHaveProperty(id)
     }
     // ratchet: como el --min de conformance, este numero solo puede subir
-    expect(ids.length).toBeGreaterThanOrEqual(29)
+    expect(ids.length).toBeGreaterThanOrEqual(36)
   })
 
   it('spm-2: el entry de la libreria no importa specimens — quien no documenta no lo paga', () => {

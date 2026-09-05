@@ -1546,6 +1546,15 @@
     "r": false,
     "rw": "",
     "note": "Franja de estado (--status-*) en el borde de ataque; refuerzo, el estado se dice también en el contenido"
+   },
+   {
+    "n": "selected",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Tarjetas-lista: borde fuerte + superficie tenue, sin depender de color"
    }
   ],
   "dos": [

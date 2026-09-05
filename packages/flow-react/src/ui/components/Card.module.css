@@ -23,7 +23,29 @@
   padding: var(--space-6);
 }
 
-/* ── crd-6: franja de estado con tokens --status-*, refuerzo visual ── */
+/* ── Surface variants ── */
+
+.root[data-surface='outlined'] {
+  box-shadow: none;
+  border: 1px solid var(--border-subtle);
+}
+
+.root[data-surface='inverse'] {
+  background: var(--surface-inverse);
+  color: var(--text-on-inverse);
+  box-shadow: none;
+}
+
+/* ── crd-3: selected se lee sin color — anillo de mayor peso Y superficie,
+   sin mover el layout (inset) y por encima de cualquier piel ── */
+
+.root[data-selected] {
+  box-shadow: inset 0 0 0 2px var(--border-focus);
+  background: var(--surface-accent-subtle);
+}
+
+/* ── crd-6: franja de estado con tokens --status-* — después de las pieles
+   para que el shorthand border de outlined no la pise ── */
 
 .root[data-status] {
   border-inline-start: 3px solid transparent;
@@ -43,19 +65,6 @@
 
 .root[data-status='info'] {
   border-inline-start-color: var(--status-info);
-}
-
-/* ── Surface variants ── */
-
-.root[data-surface='outlined'] {
-  box-shadow: none;
-  border: 1px solid var(--border-subtle);
-}
-
-.root[data-surface='inverse'] {
-  background: var(--surface-inverse);
-  color: var(--text-on-inverse);
-  box-shadow: none;
 }
 
 /* ── Hover variants ── */

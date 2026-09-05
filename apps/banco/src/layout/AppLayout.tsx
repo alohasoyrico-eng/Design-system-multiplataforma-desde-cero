@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react'
 import { Outlet, useNavigate } from '@tanstack/react-router'
-import { Toast, ToastStack } from '@alohasoyrico-eng/flow-react'
+import { ToastHost, useToast } from '@alohasoyrico-eng/flow-react'
 import { GlobalSearch, type SearchResult } from '@alohasoyrico-eng/flow-react'
 import { FleetSidebar } from './FleetSidebar'
 import { NotifyProvider } from '../app/NotifyContext'
@@ -35,17 +35,24 @@ const ROUTES: Record<string, string> = {
 }
 
 export function AppLayout() {
-  const [toast, setToast] = useState<string | null>(null)
+  // La cola de avisos es del DS (th-1..th-3): el host apila, pausa y retira.
+  // La cola casera que vivia aqui (setToast + setTimeout) queda retirada.
+  return (
+    <ToastHost>
+      <AppLayoutInner />
+    </ToastHost>
+  )
+}
+
+function AppLayoutInner() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [recents, setRecents] = useState<SearchResult[]>([])
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
 
-  const notify = (msg: string) => {
-    setToast(msg)
-    setTimeout(() => setToast(null), 4000)
-  }
+  const { show } = useToast()
+  const notify = (msg: string) => { show({ message: msg, tone: 'success' }) }
 
   const openSearch = useCallback(() => setSearchOpen(true), [])
 
@@ -93,11 +100,6 @@ export function AppLayout() {
             suggestions={SEARCH_SUGGESTIONS}
             placeholder="Buscar…"
           />
-          {toast && (
-            <ToastStack>
-              <Toast tone="success" message={toast} onDismiss={() => setToast(null)} />
-            </ToastStack>
-          )}
         </div>
       </SidebarProvider>
       </SearchProvider>
