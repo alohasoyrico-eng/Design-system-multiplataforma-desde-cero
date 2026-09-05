@@ -119,7 +119,7 @@ export function AuthOTPScreen() {
               </span>
             </span>
             <span className={css.successTitle}>Sesión iniciada</span>
-            <Button variant="primary" onClick={reset}>Reiniciar demo</Button>
+            <Button variant="primary" size="lg" onClick={reset}>Reiniciar demo</Button>
           </div>
         )}
       </div>

@@ -6,6 +6,7 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 ## [Unreleased]
 
 ### Añadido
+- **Demos móviles homogéneas**: los 8 CTAs de flujo que quedaban en md (Aceptar/Pasar/Finalizar del Driver, Disputar/Cerrar de Wallet y CardDetail, el submit de Auth) pasan a lg — y una reja nueva del banco lo vigila (todo Button fullWidth de pages/mobile declara lg).
 - **`InputPhone.size` gana `lg`**: las pantallas de alta hablan lg — un campo md entre controles lg desentona. El paso de teléfono del onboarding queda homogéneo (Select lg + InputPhone lg, 52px medidos iguales).
 - **Select**: lo elegido no pierde su cara — en single, el trigger viste el valor con el mismo `renderOption` de las filas (la bandera del país sigue ahí tras elegir; en multiple resume con texto).
 - **`InputPhone.prefix` admite ReactNode**: bandera compacta + lada como adorno de la carcasa, sincronizada al selector de país — sigue fuera del valor y no borrable (tel-1). El onboarding del banco ahora usa la pieza real (antes un Input genérico con la lada al lado equivocado). Specimen `input-phone` registrado (ratchet 37).

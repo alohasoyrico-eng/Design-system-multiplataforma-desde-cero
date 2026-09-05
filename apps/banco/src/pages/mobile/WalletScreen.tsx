@@ -209,7 +209,7 @@ export function WalletScreen() {
                 ))}
               </div>
             </Card>
-            <Button variant="ghost" fullWidth onClick={() => {}}>Disputar este cargo</Button>
+            <Button variant="ghost" size="lg" fullWidth onClick={() => {}}>Disputar este cargo</Button>
           </SheetBody>
         )}
       </BottomSheet>

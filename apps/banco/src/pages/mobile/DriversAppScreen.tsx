@@ -143,8 +143,8 @@ export function DriversAppScreen() {
                   <span className={css.ridePrice}>$185</span>
                 </div>
                 <div className={css.rideCtas}>
-                  <Button variant="ghost" onClick={handlePass}>Pasar</Button>
-                  <Button variant="primary" onClick={handleAccept}>Aceptar</Button>
+                  <Button variant="ghost" size="lg" onClick={handlePass}>Pasar</Button>
+                  <Button variant="primary" size="lg" onClick={handleAccept}>Aceptar</Button>
                 </div>
               </div>
             )}
@@ -157,7 +157,7 @@ export function DriversAppScreen() {
                 </div>
                 <div className={css.tripRoute}>Av. Chapultepec 234 → Plaza del Sol</div>
                 <div className={css.tripCta}>
-                  <Button variant="primary" fullWidth onClick={handleFinish}>
+                  <Button variant="primary" size="lg" fullWidth onClick={handleFinish}>
                     Finalizar viaje
                   </Button>
                 </div>

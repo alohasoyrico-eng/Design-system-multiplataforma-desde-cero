@@ -506,3 +506,20 @@ describe('Typography tokens in CSS', () => {
     expect(hits, `Hardcoded font-size in UI CSS:\n${formatHits(hits)}`).toHaveLength(0)
   })
 })
+
+describe('Lenguaje de tamaño — pantallas móviles', () => {
+  // Regla 5-sep (hallazgo del dueño): las pantallas móviles hablan lg. Un
+  // control de flujo en md entre vecinos lg desentona 8px. Todo Button
+  // fullWidth de pages/mobile declara size="lg".
+  it('todo Button fullWidth de pages/mobile va en lg', () => {
+    const dir = join(__dirname, '../pages/mobile')
+    const faltas: string[] = []
+    for (const f of readdirSync(dir).filter((n) => n.endsWith('.tsx'))) {
+      const src = readFileSync(join(dir, f), 'utf-8')
+      for (const m of src.matchAll(/<Button\b[^>]*?fullWidth[^>]*?>/gs)) {
+        if (!/size="lg"/.test(m[0])) faltas.push(`${f}: ${m[0].slice(0, 60).replace(/\s+/g, ' ')}`)
+      }
+    }
+    expect(faltas, faltas.join('\n')).toHaveLength(0)
+  })
+})

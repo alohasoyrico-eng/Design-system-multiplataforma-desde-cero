@@ -80,7 +80,7 @@ export function CardDetailScreen() {
             <LimitBar key={limit.label} label={limit.label} current={limit.current} max={limit.max} />
           ))}
           <div className={css.sheetAction}>
-            <Button variant="primary" fullWidth onClick={() => setShowLimits(false)}>Cerrar</Button>
+            <Button variant="primary" size="lg" fullWidth onClick={() => setShowLimits(false)}>Cerrar</Button>
           </div>
         </SheetBody>
       </BottomSheet>
