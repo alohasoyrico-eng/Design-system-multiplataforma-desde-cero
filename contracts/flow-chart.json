@@ -224,6 +224,12 @@
         "name": "thresholds",
         "kind": "prop",
         "type": "[number, string][]"
+      },
+      {
+        "name": "threshold",
+        "kind": "prop",
+        "type": "number",
+        "note": "Solo pareto: fraccion (0-1) del corte acumulado. Ademas de colorear las barras, dibuja la linea de referencia en el eje % (prt-3)."
       }
     ]
   },
