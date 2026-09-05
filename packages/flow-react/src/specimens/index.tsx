@@ -29,6 +29,8 @@ import { ChartLegend } from '../ui/primitives/ChartLegend'
 import { Button } from '../ui/primitives/Button'
 import { IconButton } from '../ui/primitives/IconButton'
 import { Card } from '../ui/components/Card'
+import { InputPhone } from '../ui/components/InputPhone'
+import { Flag } from '../ui/primitives/Flag'
 import { Tabs } from '../ui/components/Tabs'
 import { SegmentedControl } from '../ui/components/SegmentedControl'
 import { Menu } from '../ui/components/Menu'
@@ -250,6 +252,25 @@ export const SPECIMENS: Record<string, Specimen> = {
         ariaLabel="Ejemplo"
         trailing={variant === 'mono' ? <span>placa</span> : undefined}
       />
+    ),
+  },
+  'input-phone': {
+    sizes: ['sm', 'md'],
+    render: ({ size }) => (
+      <Field label="Teléfono móvil" htmlFor="sp-tel">
+        <InputPhone
+          id="sp-tel"
+          size={size === 'sm' ? 'sm' : 'md'}
+          value="5512345678"
+          onChange={() => {}}
+          prefix={
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Flag country="mx" size={16} />
+              +52
+            </span>
+          }
+        />
+      </Field>
     ),
   },
   textarea: { render: () => (

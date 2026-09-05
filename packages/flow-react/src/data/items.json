@@ -1039,11 +1039,11 @@
    {
     "n": "prefix",
     "k": "prop",
-    "t": "string",
+    "t": "ReactNode | string",
     "d": "'+52'",
     "r": false,
     "rw": "",
-    "note": "Lada, en mono"
+    "note": "La lada como adorno — con bandera si el producto la quiere; fuera del valor (tel-1)"
    },
    {
     "n": "size",

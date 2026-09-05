@@ -4,7 +4,7 @@ import { PhoneFrame } from './PhoneFrame'
 import { OnboardingCarousel } from '@alohasoyrico-eng/flow-react'
 import { OTPInput } from '@alohasoyrico-eng/flow-react'
 import { PasscodeKeypad } from '@alohasoyrico-eng/flow-react'
-import { Select, Flag } from '@alohasoyrico-eng/flow-react'
+import { Select, Flag, InputPhone } from '@alohasoyrico-eng/flow-react'
 import { BiometricPrompt } from '@alohasoyrico-eng/flow-react'
 import { PaymentCard } from '@alohasoyrico-eng/flow-react'
 import { IconButton } from '@alohasoyrico-eng/flow-react'
@@ -235,17 +235,20 @@ export function OnboardingDriverScreen() {
               />
             </Field>
             <Field label="Teléfono móvil" htmlFor="ob-phone" error={phoneError} valid={phoneValid} validMessage="Número válido">
-              <Input
+              {/* tel-1..tel-4: la pieza real — lada como adorno con bandera,
+                  sincronizada al país; formateo 2-4-4; emite solo dígitos. */}
+              <InputPhone
                 id="ob-phone"
-                type="tel"
-                icon="smartphone"
-                size="lg"
-                mono
                 placeholder="55 1234 5678"
                 value={phone}
                 onChange={handlePhoneChange}
                 invalid={!!phoneError}
-                trailing={<span>{PAISES.find((c) => c.value === pais)?.lada ?? '+52'}</span>}
+                prefix={
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    <Flag country={String(pais ?? 'mx').toLowerCase()} size={16} />
+                    {PAISES.find((c) => c.value === pais)?.lada ?? '+52'}
+                  </span>
+                }
               />
             </Field>
             <div className={css.bottomAction}>

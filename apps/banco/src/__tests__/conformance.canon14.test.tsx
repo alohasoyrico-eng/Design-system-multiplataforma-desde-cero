@@ -215,7 +215,9 @@ describe('conformance canon · onboarding', () => {
   })
 
   it('od-4: el teclado es el adecuado por campo: telefonico para el telefono', () => {
-    expect(fuente('pages/mobile/OnboardingDriverScreen.tsx')).toMatch(/type="tel"/)
+    // 5-sep: el teclado tel lo garantiza la pieza (InputPhone, tel-3) — la
+    // pantalla ya no escribe type="tel" a mano.
+    expect(fuente('pages/mobile/OnboardingDriverScreen.tsx')).toMatch(/<InputPhone/)
   })
 })
 

@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { ControlShell } from '../primitives/ControlShell'
 import css from './InputPhone.module.css'
 
@@ -7,7 +7,9 @@ export interface InputPhoneProps {
   value?: string
   onChange?: (value: string) => void
   placeholder?: string
-  prefix?: string
+  /** La lada como adorno — con bandera si el producto la quiere
+      (<Flag/> + '+52'). Fuera del valor y no borrable (tel-1). */
+  prefix?: ReactNode | string
   size?: 'sm' | 'md'
   disabled?: boolean
   invalid?: boolean
