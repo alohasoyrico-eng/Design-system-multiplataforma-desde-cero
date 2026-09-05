@@ -255,12 +255,12 @@ export const SPECIMENS: Record<string, Specimen> = {
     ),
   },
   'input-phone': {
-    sizes: ['sm', 'md'],
+    sizes: ['sm', 'md', 'lg'],
     render: ({ size }) => (
       <Field label="Teléfono móvil" htmlFor="sp-tel">
         <InputPhone
           id="sp-tel"
-          size={size === 'sm' ? 'sm' : 'md'}
+          size={size as 'sm' | 'md' | 'lg'}
           value="5512345678"
           onChange={() => {}}
           prefix={

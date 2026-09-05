@@ -10,7 +10,7 @@ export interface InputPhoneProps {
   /** La lada como adorno — con bandera si el producto la quiere
       (<Flag/> + '+52'). Fuera del valor y no borrable (tel-1). */
   prefix?: ReactNode | string
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'lg'
   disabled?: boolean
   invalid?: boolean
   style?: CSSProperties

@@ -1048,7 +1048,7 @@
    {
     "n": "size",
     "k": "prop",
-    "t": "'sm'|'md'|'lg'",
+    "t": "'sm' | 'md' | 'lg'",
     "d": "'md'",
     "r": false,
     "rw": "",

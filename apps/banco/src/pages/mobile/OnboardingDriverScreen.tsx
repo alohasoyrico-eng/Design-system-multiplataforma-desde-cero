@@ -222,6 +222,7 @@ export function OnboardingDriverScreen() {
             <Field label="País" htmlFor="ob-pais">
               <Select
                 id="ob-pais"
+                size="lg"
                 searchable
                 value={pais}
                 onChange={setPais}
@@ -239,6 +240,7 @@ export function OnboardingDriverScreen() {
                   sincronizada al país; formateo 2-4-4; emite solo dígitos. */}
               <InputPhone
                 id="ob-phone"
+                size="lg"
                 placeholder="55 1234 5678"
                 value={phone}
                 onChange={handlePhoneChange}
