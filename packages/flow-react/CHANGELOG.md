@@ -16,6 +16,13 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 - **SectionHeader** `description`: bajada en muted fuera del heading — el outline queda limpio (sh-3).
 - **Escala de capas** `--z-*` en tokens (base/sticky/header/overlay/popover/toast/tooltip): los diez z-index globales de la librería salen de la escala; el diccionario y el CSS mantienen paridad (398/398).
 
+### Añadido (shells)
+- **Popover en portal** con colisión completa (pp-1/pp-2): ningún overflow o transform del ancestro lo recorta; voltea al lado opuesto solo si allí cabe mejor, se recorta contra la ventana con 8px en el eje cruzado y, si no cabe en ningún lado, limita su altura con scroll interno en vez de deslizarse sobre el ancla. Sigue al ancla en scroll/resize y el origen de la animación sale del lado real.
+- **OverlayShell en portal** + `dismissOnBackdrop` (false para diálogos que exigen decisión).
+- **Listbox**: `aria-activedescendant` en la lista, Home/End y typeahead (lb-2/lb-3).
+- **ControlShell** `invalid` (canónico; `error` queda como alias `@deprecated`) + `filled` documentado.
+- Los cinco contratos de shells (control-shell, listbox, overlay-shell, popover, toggle-control) entran a la arquitectura del canon y sus 24 criterios automatizados quedan medidos.
+
 ### Cambiado
 - El contrato canónico de `data-grid` deja de ser huérfano: reescrito al API real del primitivo, registrado en la arquitectura y medido (dg-1/2/3/9/10). Selección masiva, edición y árbol siguen en sus propias piezas, como decide el paquete.
 - El nombre accesible de Pagination es «Paginación» (antes «Paginacion»), y sus textos pasan por `useT` (caen a español sin provider).

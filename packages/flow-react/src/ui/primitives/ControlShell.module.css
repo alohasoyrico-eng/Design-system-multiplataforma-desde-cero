@@ -41,7 +41,7 @@
   box-shadow: var(--focus-ring);
 }
 
-.root[data-error] {
+.root[data-invalid] {
   border-color: var(--status-danger);
 }
 

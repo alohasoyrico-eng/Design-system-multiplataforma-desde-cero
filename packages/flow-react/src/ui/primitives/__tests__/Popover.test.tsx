@@ -55,43 +55,49 @@ describe('Popover', () => {
   })
 
   it('align="right" legado mapea a bottom-end', () => {
-    const { container } = render(
+    render(
       <Popover trigger={<button>Trigger</button>} open align="right">
         <div>Aligned</div>
       </Popover>,
     )
-    expect(container.querySelector('[data-side="bottom"][data-cross="end"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-side="bottom"][data-cross="end"]')).toBeInTheDocument()
   })
 })
 
 describe('Popover — posicionamiento y piel', () => {
   it('placement top-center marca lado y eje cruzado', () => {
-    const { container } = render(
+    // jsdom mide todo 0 en (0,0): sin geometria, arriba nunca cabe y pp-2
+    // voltearia. Se le da sitio real al ancla para que el lado pedido valga.
+    const spy = vi.spyOn(Element.prototype, 'getBoundingClientRect').mockReturnValue(
+      { top: 400, bottom: 420, left: 100, right: 160, width: 60, height: 20, x: 100, y: 400, toJSON: () => ({}) } as DOMRect,
+    )
+    render(
       <Popover trigger={<button>T</button>} open placement="top-center"><div>P</div></Popover>,
     )
-    expect(container.querySelector('[data-side="top"][data-cross="center"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-side="top"][data-cross="center"]')).toBeInTheDocument()
+    spy.mockRestore()
   })
 
   it('surface none no lleva la piel de card', () => {
-    const { container } = render(
+    render(
       <Popover trigger={<button>T</button>} open surface="none"><div>P</div></Popover>,
     )
-    expect(container.querySelector('[data-surface="none"]')).toBeInTheDocument()
+    expect(document.querySelector('[data-surface="none"]')).toBeInTheDocument()
   })
 
   it('interactive=false hace el panel no señalable', () => {
-    const { container } = render(
+    render(
       <Popover trigger={<button>T</button>} open interactive={false}><div>P</div></Popover>,
     )
-    const drop = container.querySelector('[data-surface]') as HTMLElement
+    const drop = document.querySelector('[data-surface]') as HTMLElement
     expect(drop.hasAttribute('data-interactive')).toBe(false)
   })
 
   it('minWidth aplica al panel', () => {
-    const { container } = render(
+    render(
       <Popover trigger={<button>T</button>} open minWidth={320}><div>P</div></Popover>,
     )
-    expect((container.querySelector('[data-surface]') as HTMLElement).style.minWidth).toBe('320px')
+    expect((document.querySelector('[data-surface]') as HTMLElement).style.minWidth).toBe('320px')
   })
 
   it('anchorRef posiciona fixed junto al ancla externa', () => {
@@ -99,10 +105,10 @@ describe('Popover — posicionamiento y piel', () => {
     document.body.appendChild(anchor)
     anchor.getBoundingClientRect = () => ({ top: 100, bottom: 120, left: 40, right: 240, width: 200, height: 20 } as DOMRect)
     const ref = { current: anchor }
-    const { container } = render(
+    render(
       <Popover open anchorRef={ref} matchAnchorWidth><div>P</div></Popover>,
     )
-    const drop = container.querySelector('[data-surface]') as HTMLElement
+    const drop = document.querySelector('[data-surface]') as HTMLElement
     expect(drop.style.position).toBe('fixed')
     expect(drop.style.width).toBe('200px')
     document.body.removeChild(anchor)

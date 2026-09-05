@@ -64,7 +64,7 @@ export function InputAmount({
     <ControlShell
       size={size}
       disabled={disabled}
-      error={invalid}
+      invalid={invalid}
       leading={<span className={css.currency}>{currency}</span>}
       style={style}
     >

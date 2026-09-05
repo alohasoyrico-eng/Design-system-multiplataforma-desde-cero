@@ -9135,7 +9135,89 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "size",
+    "k": "prop",
+    "t": "'sm' | 'md' | 'lg'",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "filled",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Variante rellena sobre --surface-sunken"
+   },
+   {
+    "n": "invalid",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Nombre canónico, como en Input/Textarea"
+   },
+   {
+    "n": "error",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "@deprecated Alias de invalid"
+   },
+   {
+    "n": "disabled",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Baja opacidad y el control nativo también queda disabled"
+   },
+   {
+    "n": "leading",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Adorno inicial, centrado por su cuenta"
+   },
+   {
+    "n": "trailing",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Adorno final"
+   },
+   {
+    "n": "footer",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Fila inferior dentro de la carcasa"
+   },
+   {
+    "n": "onClick",
+    "k": "event",
+    "t": "MouseEventHandler",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Clic en la carcasa (p. ej. enfocar el campo interior)"
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -9202,6 +9284,15 @@
     "r": false,
     "rw": "",
     "note": "Id del título que etiqueta el diálogo (aria-labelledby en la carcasa)"
+   },
+   {
+    "n": "dismissOnBackdrop",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "false para diálogos que exigen decisión: el backdrop no cierra. Default true"
    }
   ],
   "dos": [],
@@ -9818,7 +9909,7 @@
    {
     "n": "items",
     "k": "prop",
-    "t": "Array<{ value: string; label: string; group?: string; disabled?: boolean }>",
+    "t": "ListboxItem[]",
     "d": "",
     "r": true,
     "rw": "",
@@ -9827,7 +9918,7 @@
    {
     "n": "value",
     "k": "prop",
-    "t": "string | string[]",
+    "t": "string | number",
     "d": "",
     "r": false,
     "rw": "",
@@ -9836,7 +9927,7 @@
    {
     "n": "onChange",
     "k": "event",
-    "t": "(item: T) => void",
+    "t": "(item: ListboxItem) => void",
     "d": "",
     "r": false,
     "rw": "",
@@ -9845,7 +9936,7 @@
    {
     "n": "renderItem",
     "k": "renderProp",
-    "t": "(item: T, state: { selected: boolean; active: boolean }) => ReactNode",
+    "t": "(item, { selected, active }) => ReactNode",
     "d": "",
     "r": false,
     "rw": "",
@@ -9858,7 +9949,7 @@
     "d": "",
     "r": false,
     "rw": "",
-    "note": ""
+    "note": "Prefijo de los ids de opción — lo que referencia aria-activedescendant"
    },
    {
     "n": "active",
@@ -9867,7 +9958,7 @@
     "d": "",
     "r": false,
     "rw": "",
-    "note": "Modo combobox: el dueño (Select) conduce el resaltado desde su trigger"
+    "note": "Modo combobox: el dueño (Select) conduce el resaltado"
    },
    {
     "n": "onActiveChange",

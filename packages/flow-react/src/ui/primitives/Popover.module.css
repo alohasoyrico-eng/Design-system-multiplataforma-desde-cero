@@ -7,9 +7,10 @@
   display: inline-flex;
 }
 
+/* pp-1: el panel vive en portal con posición fija medida por el shell —
+   ningún overflow del ancestro lo recorta. */
 .drop {
-  position: absolute;
-  --popover-offset: var(--space-2);
+  position: fixed;
   z-index: var(--z-popover);
   min-width: 180px;
   animation: flowScaleIn var(--dur-fast) var(--ease-out);
@@ -27,63 +28,22 @@
   pointer-events: none;
 }
 
-/* ── Lados (ancla = trigger) ── */
-
+/* pp-6: el origen de la transformación sale del lado REAL tras voltear —
+   un panel que abre hacia arriba se escala desde abajo. */
 .drop[data-side='bottom'] {
-  top: 100%;
-  margin-top: var(--popover-offset);
+  transform-origin: top center;
 }
 
 .drop[data-side='top'] {
-  bottom: 100%;
-  margin-bottom: var(--popover-offset);
+  transform-origin: bottom center;
 }
 
 .drop[data-side='left'] {
-  right: 100%;
-  margin-right: var(--popover-offset);
-  top: 0;
+  transform-origin: right center;
 }
 
 .drop[data-side='right'] {
-  left: 100%;
-  margin-left: var(--popover-offset);
-  top: 0;
-}
-
-/* ── Alineación en el eje cruzado ── */
-
-.drop[data-side='bottom'][data-cross='start'],
-.drop[data-side='top'][data-cross='start'] {
-  left: 0;
-}
-
-.drop[data-side='bottom'][data-cross='end'],
-.drop[data-side='top'][data-cross='end'] {
-  right: 0;
-}
-
-.drop[data-side='bottom'][data-cross='center'],
-.drop[data-side='top'][data-cross='center'] {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.drop[data-side='left'][data-cross='start'],
-.drop[data-side='right'][data-cross='start'] {
-  top: 0;
-}
-
-.drop[data-side='left'][data-cross='end'],
-.drop[data-side='right'][data-cross='end'] {
-  top: auto;
-  bottom: 0;
-}
-
-.drop[data-side='left'][data-cross='center'],
-.drop[data-side='right'][data-cross='center'] {
-  top: 50%;
-  transform: translateY(-50%);
+  transform-origin: left center;
 }
 
 .root[data-fill] {

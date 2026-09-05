@@ -62,12 +62,12 @@ describe('Drawer', () => {
 
 describe('Drawer — side', () => {
   it('side="left" alinea el shell al inicio', () => {
-    const { container } = render(<Drawer open side="left" title="Filtros" />)
-    expect(container.querySelector('[data-alignment="start"]')).not.toBeNull()
+    render(<Drawer open side="left" title="Filtros" />)
+    expect(document.querySelector('[data-alignment="start"]')).not.toBeNull()
   })
 
   it('default entra por la derecha (end)', () => {
-    const { container } = render(<Drawer open title="Filtros" />)
-    expect(container.querySelector('[data-alignment="end"]')).not.toBeNull()
+    render(<Drawer open title="Filtros" />)
+    expect(document.querySelector('[data-alignment="end"]')).not.toBeNull()
   })
 })

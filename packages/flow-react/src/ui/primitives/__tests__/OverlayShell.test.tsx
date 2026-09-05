@@ -27,8 +27,9 @@ describe('OverlayShell', () => {
   it('calls onClose when backdrop is clicked', async () => {
     const user = userEvent.setup()
     const onClose = vi.fn()
-    const { container } = render(<OverlayShell open onClose={onClose}><button>Inside</button></OverlayShell>)
-    const backdrop = container.querySelector('.backdrop')!
+    render(<OverlayShell open onClose={onClose}><button>Inside</button></OverlayShell>)
+    // el shell vive en portal: el backdrop se busca en el documento
+    const backdrop = document.querySelector('[class*="backdrop"]')!
     await user.click(backdrop)
     expect(onClose).toHaveBeenCalledOnce()
   })

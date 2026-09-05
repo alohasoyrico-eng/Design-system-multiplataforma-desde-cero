@@ -47,14 +47,15 @@ describe('Menu', () => {
 
   it('renders divider between items', async () => {
     const user = userEvent.setup()
-    const { container } = render(
+    render(
       <Menu
         trigger={<button>Open</button>}
         items={[{ label: 'A' }, 'divider', { label: 'B' }]}
       />,
     )
     await user.click(screen.getByRole('button', { name: 'Open' }))
-    expect(container.querySelector('[role="separator"]')).toBeInTheDocument()
+    // el panel vive en portal: el separador se busca en el documento
+    expect(document.querySelector('[role="separator"]')).toBeInTheDocument()
   })
 })
 

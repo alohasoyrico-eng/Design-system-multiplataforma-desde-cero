@@ -123,7 +123,7 @@ export function Select({
     <ControlShell
       size={size}
       disabled={disabled}
-      error={invalid}
+      invalid={invalid}
       leading={icon && <span className="flow-symbol flow-symbol--md" aria-hidden="true">{icon}</span>}
       trailing={
         <>

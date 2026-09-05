@@ -32,6 +32,9 @@ export function Listbox<T extends ListboxItem = ListboxItem>({ items = [], value
   }
   const listRef = useRef<HTMLUListElement>(null)
 
+  // lb-3: typeahead — las teclas imprimibles saltan al primer item que empieza así
+  const typeahead = useRef({ q: '', t: 0 })
+
   const handleKeyDown = useCallback(
     (e: ReactKeyboardEvent) => {
       const len = items.length
@@ -42,9 +45,23 @@ export function Listbox<T extends ListboxItem = ListboxItem>({ items = [], value
       } else if (e.key === 'ArrowUp') {
         e.preventDefault()
         setActive((p) => (p <= 0 ? len - 1 : p - 1))
+      } else if (e.key === 'Home') {
+        e.preventDefault()
+        setActive(0)
+      } else if (e.key === 'End') {
+        e.preventDefault()
+        setActive(len - 1)
       } else if (e.key === 'Enter' && active >= 0) {
         e.preventDefault()
         onChange?.(items[active])
+      } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const ahora = e.timeStamp
+        const ta = typeahead.current
+        ta.q = ahora - ta.t > 700 ? e.key : ta.q + e.key
+        ta.t = ahora
+        const q = ta.q.toLowerCase()
+        const idx = items.findIndex((it) => String(it.label).toLowerCase().startsWith(q))
+        if (idx >= 0) setActive(idx)
       }
     },
     [items, active, onChange],
@@ -58,7 +75,16 @@ export function Listbox<T extends ListboxItem = ListboxItem>({ items = [], value
   }, [active])
 
   return (
-    <ul ref={listRef} role="listbox" id={id} tabIndex={-1} onKeyDown={handleKeyDown} className={css.root}>
+    <ul
+      ref={listRef}
+      role="listbox"
+      id={id}
+      tabIndex={-1}
+      onKeyDown={handleKeyDown}
+      // lb-2: el resaltado viaja por aria-activedescendant; el foco no se mueve de fila
+      aria-activedescendant={id && active >= 0 ? `${id}-opt-${active}` : undefined}
+      className={css.root}
+    >
       {items.map((item, i) => {
         const selected = value != null && item.value === value
         return (

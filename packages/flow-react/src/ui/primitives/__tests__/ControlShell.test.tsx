@@ -14,10 +14,12 @@ describe('ControlShell', () => {
     expect(container.firstChild).not.toHaveAttribute('data-disabled')
   })
 
-  // cs-2: error state
-  it('sets data-error when error is true', () => {
-    const { container } = render(<ControlShell error>content</ControlShell>)
-    expect(container.firstChild).toHaveAttribute('data-error')
+  it('invalid es el nombre canonico y error queda como alias', () => {
+    const { container, unmount } = render(<ControlShell invalid>content</ControlShell>)
+    expect(container.firstChild).toHaveAttribute('data-invalid')
+    unmount()
+    const { container: c2 } = render(<ControlShell error>content</ControlShell>)
+    expect(c2.firstChild).toHaveAttribute('data-invalid')
   })
 
   // cs-5/cs-7: all sizes render

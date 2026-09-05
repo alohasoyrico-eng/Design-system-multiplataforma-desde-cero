@@ -44,7 +44,7 @@ export function InputPhone({
     <ControlShell
       size={size}
       disabled={disabled}
-      error={invalid}
+      invalid={invalid}
       leading={<span className={css.prefix}>{prefix}</span>}
       style={style}
     >

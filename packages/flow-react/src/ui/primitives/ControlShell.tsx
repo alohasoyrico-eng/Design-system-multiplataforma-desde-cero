@@ -5,6 +5,9 @@ export interface ControlShellProps {
   size?: 'sm' | 'md' | 'lg'
   filled?: boolean
   disabled?: boolean
+  /** Estado inválido — el nombre canónico, como en Input/Textarea. */
+  invalid?: boolean
+  /** @deprecated Alias de `invalid` (nombre viejo). */
   error?: boolean
   leading?: ReactNode
   trailing?: ReactNode
@@ -15,7 +18,7 @@ export interface ControlShellProps {
 }
 
 export const ControlShell = forwardRef<HTMLDivElement, ControlShellProps>(function ControlShell(
-  { size = 'md', filled, disabled, error, leading, trailing, footer, children, style, onClick, ...rest },
+  { size = 'md', filled, disabled, invalid, error, leading, trailing, footer, children, style, onClick, ...rest },
   ref,
 ) {
   return (
@@ -26,7 +29,7 @@ export const ControlShell = forwardRef<HTMLDivElement, ControlShellProps>(functi
       data-footer={footer ? '' : undefined}
       data-size={size}
       data-filled={filled || undefined}
-      data-error={error || undefined}
+      data-invalid={(invalid ?? error) || undefined}
       data-disabled={disabled || undefined}
       onClick={onClick}
       style={style}

@@ -39,7 +39,7 @@ export function Textarea({
   return (
     <ControlShell
       disabled={disabled}
-      error={invalid}
+      invalid={invalid}
       style={style}
       footer={maxLength != null ? <span className={css.counter}>{count}/{maxLength}</span> : undefined}
     >

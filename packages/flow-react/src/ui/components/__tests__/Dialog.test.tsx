@@ -26,8 +26,8 @@ describe('Dialog', () => {
   })
 
   it('sets danger tone on title', () => {
-    const { container } = render(<Dialog open title="Peligro" tone="danger" />)
-    expect(container.querySelector('.title')).toHaveAttribute('data-tone', 'danger')
+    render(<Dialog open title="Peligro" tone="danger" />)
+    expect(document.querySelector('[class*="title"]')).toHaveAttribute('data-tone', 'danger')
   })
 
   it('calls onClose on Escape', async () => {
@@ -46,8 +46,8 @@ describe('Dialog', () => {
 
 describe('Dialog — width', () => {
   it('aplica el ancho pedido al contenedor', () => {
-    const { container } = render(<Dialog open title="Confirmar" width={560} />)
-    const sized = container.querySelector('[style*="width"]') as HTMLElement
+    render(<Dialog open title="Confirmar" width={560} />)
+    const sized = document.querySelector('[role="dialog"] [style*="width"], [role="dialog"][style*="width"]') as HTMLElement
     expect(sized.style.width).toBe('560px')
   })
 })

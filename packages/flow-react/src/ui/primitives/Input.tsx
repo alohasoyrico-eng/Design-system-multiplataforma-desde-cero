@@ -70,7 +70,7 @@ export function Input({
       size={size}
       filled={filled}
       disabled={disabled}
-      error={invalid ?? error}
+      invalid={invalid ?? error}
       leading={icon && <span className="flow-symbol flow-symbol--md" aria-hidden="true">{icon}</span>}
       trailing={reveal ?? trailing}
       style={style}

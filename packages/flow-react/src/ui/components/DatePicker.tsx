@@ -109,7 +109,7 @@ export function DatePicker({
   const trigger = (
     <ControlShell
       disabled={disabled}
-      error={invalid}
+      invalid={invalid}
       leading={<span className="flow-symbol" aria-hidden="true">{mode === 'range' ? 'date_range' : 'calendar_today'}</span>}
     >
       <span

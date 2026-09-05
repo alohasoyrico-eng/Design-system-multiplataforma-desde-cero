@@ -44,7 +44,3 @@
 @keyframes flowSlideDown { from { opacity: 0; transform: translateY(-4px) } to { opacity: 1; transform: translateY(0) } }
 @keyframes flowPeekUp { from { transform: translateY(100%) } to { transform: translateY(0) } }
 @keyframes flowDropIn { from { opacity: 0; transform: translateY(-8px) } to { opacity: 1; transform: translateY(0) } }
-
-@media (prefers-reduced-motion: reduce) {
-  .flow-ov-back, .flow-ov-panel { animation: none !important }
-}

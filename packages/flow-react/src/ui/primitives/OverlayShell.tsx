@@ -1,16 +1,19 @@
 import { useEffect, useRef, useCallback, type ReactNode, type KeyboardEvent } from 'react'
+import { createPortal } from 'react-dom'
 import css from './OverlayShell.module.css'
 
 export interface OverlayShellProps {
   open: boolean
   onClose?: () => void
   alignment?: 'center' | 'end' | 'start' | 'bottom'
+  /** false para diálogos que exigen decisión: el backdrop no cierra. Default true. */
+  dismissOnBackdrop?: boolean
   /** Id del titulo que etiqueta este dialogo (aria-labelledby en la carcasa). */
   labelledBy?: string
   children: ReactNode
 }
 
-export function OverlayShell({ open, onClose, alignment = 'center', labelledBy, children }: OverlayShellProps) {
+export function OverlayShell({ open, onClose, alignment = 'center', dismissOnBackdrop = true, labelledBy, children }: OverlayShellProps) {
   const panelRef = useRef<HTMLDivElement>(null)
 
   // a11y-5: si una capa mas alta (popover, menu) ya consumio el Escape,
@@ -61,14 +64,17 @@ export function OverlayShell({ open, onClose, alignment = 'center', labelledBy, 
     }
   }, [open])
 
-  if (!open) return null
+  if (!open || typeof document === 'undefined') return null
 
-  return (
+  // El dialogo vive en un portal: ningún transform/overflow del ancestro lo
+  // atrapa (position:fixed dentro de un containing block deja de ser fixed).
+  return createPortal(
     <div className={css.root} data-alignment={alignment} onKeyDown={handleKeyDown}>
-      <div className={css.backdrop} onClick={onClose} />
+      <div className={css.backdrop} onClick={dismissOnBackdrop ? onClose : undefined} />
       <div ref={panelRef} className={css.panel} role="dialog" aria-labelledby={labelledBy} aria-modal="true">
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
