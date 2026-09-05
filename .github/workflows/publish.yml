@@ -20,7 +20,7 @@ jobs:
           node-version: 22
           cache: npm
           registry-url: https://npm.pkg.github.com
-      - run: npm ci          # prepare → build:lib
+      - run: npm ci
       - run: npm run typecheck
       - run: npm run test
       - name: Verify tag matches package version
@@ -30,6 +30,7 @@ jobs:
           if [ "$PKG_V" != "$TAG_V" ]; then
             echo "Tag $GITHUB_REF_NAME no coincide con package.json ($PKG_V)"; exit 1
           fi
+      - run: npm run tokens:build   # prepack (build:lib) copia compat-eone.css desde generated/
       - run: npm publish -w packages/flow-react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

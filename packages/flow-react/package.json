@@ -1,6 +1,6 @@
 {
   "name": "@alohasoyrico-eng/flow-react",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "description": "Flow Design System — componentes React, tokens y patrones multiplataforma",
   "license": "UNLICENSED",

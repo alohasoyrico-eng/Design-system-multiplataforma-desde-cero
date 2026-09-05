@@ -406,10 +406,10 @@ El banco consume el paquete **por su nombre** (`@alohasoyrico-eng/flow-react`, s
 
 Abre `localhost:5173` — el **banco de plantillas**: las implementaciones de la capa templates del canon (dashboards, wallet móvil, internal tools, Component Detail) donde se ejercitan las piezas y corren los tests de conformance de página. Nada de esto llega al paquete: el tarball lleva solo `dist-lib`, fuentes, la ficha de contratos y la guía del usuario — verifícalo con `npm pack --dry-run`. El sitio de documentación vive en [su propio repo](https://github.com/alohasoyrico-eng/Docs-para-design-system-multiplataforma-desde-cero) y **lo gobierna el equipo de diseño exclusivamente**: consume este paquete y recibe los contratos vía `npm run sync:docs`.
 
-**Publicar una versión nueva:** sube `version` en `package.json`, luego
+**Publicar una versión nueva:** sube `version` en `packages/flow-react/package.json`, luego
 
 ```bash
-git tag v0.1.1 && git push --tags
+git tag v0.4.0 && git push --tags
 ```
 
 El workflow `publish.yml` corre los gates y publica a GitHub Packages solo.
