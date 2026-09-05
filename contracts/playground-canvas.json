@@ -32,5 +32,34 @@
   },
   "reference": {
     "src": "patterns/PlaygroundCanvas.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "variants",
+        "kind": "prop",
+        "type": "PlaygroundOption[]"
+      },
+      {
+        "name": "sizes",
+        "kind": "prop",
+        "type": "string[]"
+      },
+      {
+        "name": "densities",
+        "kind": "prop",
+        "type": "string[]"
+      },
+      {
+        "name": "snippet",
+        "kind": "prop",
+        "type": "string | ((state: { variant: string; size: string }) => string)"
+      },
+      {
+        "name": "specLabels",
+        "kind": "prop",
+        "type": "(state: { variant: string; size: string; density: string }) => SpecLabels"
+      }
+    ]
   }
 }

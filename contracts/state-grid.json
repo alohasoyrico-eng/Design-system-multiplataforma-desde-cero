@@ -29,5 +29,20 @@
   },
   "reference": {
     "src": "patterns/StateGrid.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "states",
+        "kind": "prop",
+        "type": "StateGridItem[]",
+        "required": true
+      },
+      {
+        "name": "columns",
+        "kind": "prop",
+        "type": "number"
+      }
+    ]
   }
 }

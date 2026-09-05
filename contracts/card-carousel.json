@@ -33,6 +33,17 @@
     "src": "patterns/CardCarousel.tsx"
   },
   "api": {
-    "members": []
+    "members": [
+      {
+        "name": "activeIndex",
+        "kind": "prop",
+        "type": "number"
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(index: number) => void"
+      }
+    ]
   }
 }

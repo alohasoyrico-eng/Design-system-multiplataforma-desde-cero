@@ -35,5 +35,31 @@
   },
   "reference": {
     "src": "patterns/DocHero.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "name",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "summary",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "platforms",
+        "kind": "prop",
+        "type": "DocHeroPlatform[]"
+      },
+      {
+        "name": "a11yLevel",
+        "kind": "prop",
+        "type": "string"
+      }
+    ]
   }
 }

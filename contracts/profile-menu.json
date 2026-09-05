@@ -28,5 +28,38 @@
   },
   "reference": {
     "src": "patterns/ProfileMenu.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "name",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "avatarName",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "role",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "badge",
+        "kind": "prop",
+        "type": "ReactNode"
+      },
+      {
+        "name": "items",
+        "kind": "prop",
+        "type": "ProfileMenuItem[]",
+        "required": true
+      }
+    ]
   }
 }

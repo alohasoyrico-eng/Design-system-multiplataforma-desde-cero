@@ -29,5 +29,30 @@
   },
   "reference": {
     "src": "patterns/BalanceDisplay.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "value",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "hidden",
+        "kind": "prop",
+        "type": "boolean"
+      },
+      {
+        "name": "onToggleHidden",
+        "kind": "event",
+        "type": "() => void"
+      }
+    ]
   }
 }

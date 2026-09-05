@@ -35,5 +35,30 @@
   },
   "reference": {
     "src": "patterns/NipReveal.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "digits",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "blurLast",
+        "kind": "prop",
+        "type": "boolean"
+      },
+      {
+        "name": "duration",
+        "kind": "prop",
+        "type": "number"
+      },
+      {
+        "name": "warning",
+        "kind": "prop",
+        "type": "string"
+      }
+    ]
   }
 }

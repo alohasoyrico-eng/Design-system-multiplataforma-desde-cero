@@ -25,5 +25,24 @@
   },
   "reference": {
     "src": "patterns/DocFooter.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "lastUpdated",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "links",
+        "kind": "prop",
+        "type": "DocFooterLink[]"
+      }
+    ]
   }
 }

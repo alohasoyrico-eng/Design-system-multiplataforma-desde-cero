@@ -29,5 +29,26 @@
   },
   "reference": {
     "src": "patterns/GuidanceCard.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "tone",
+        "kind": "prop",
+        "type": "'success' | 'danger'",
+        "required": true
+      },
+      {
+        "name": "rules",
+        "kind": "prop",
+        "type": "string[]",
+        "required": true
+      },
+      {
+        "name": "specimen",
+        "kind": "prop",
+        "type": "ReactNode"
+      }
+    ]
   }
 }

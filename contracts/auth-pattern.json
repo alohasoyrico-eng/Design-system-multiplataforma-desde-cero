@@ -66,5 +66,58 @@
     "web": "reference",
     "angular": "reference",
     "flutter": "reference"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "mode",
+        "kind": "prop",
+        "type": "'login'|'signup'|'recover'",
+        "required": true,
+        "note": "Las tres cajas comparten campos y validación"
+      },
+      {
+        "name": "onSubmit",
+        "kind": "event",
+        "type": "(data: AuthSubmitData)=>void",
+        "required": true,
+        "note": "Solo dispara con validación local aprobada"
+      },
+      {
+        "name": "loading",
+        "kind": "prop",
+        "type": "boolean",
+        "default": "false",
+        "note": "El botón muestra la carga"
+      },
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "ReactNode"
+      },
+      {
+        "name": "subtitle",
+        "kind": "prop",
+        "type": "ReactNode"
+      },
+      {
+        "name": "submitLabel",
+        "kind": "prop",
+        "type": "string",
+        "note": "Default según mode"
+      },
+      {
+        "name": "footer",
+        "kind": "prop",
+        "type": "ReactNode",
+        "note": "Enlaces secundarios abajo"
+      },
+      {
+        "name": "children",
+        "kind": "prop",
+        "type": "ReactNode",
+        "note": "Campos extra entre password y submit"
+      }
+    ]
   }
 }

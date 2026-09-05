@@ -29,5 +29,15 @@
   },
   "reference": {
     "src": "patterns/TransactionGroup.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      }
+    ]
   }
 }

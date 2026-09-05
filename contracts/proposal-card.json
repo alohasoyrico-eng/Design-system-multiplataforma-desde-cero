@@ -28,5 +28,36 @@
   },
   "reference": {
     "src": "patterns/ProposalCard.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "before",
+        "kind": "prop",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "after",
+        "kind": "prop",
+        "type": "ReactNode",
+        "required": true
+      },
+      {
+        "name": "beforeLabel",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "afterLabel",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "footer",
+        "kind": "prop",
+        "type": "ReactNode"
+      }
+    ]
   }
 }

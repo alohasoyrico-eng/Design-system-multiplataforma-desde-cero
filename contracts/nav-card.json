@@ -31,5 +31,32 @@
   },
   "reference": {
     "src": "patterns/NavCard.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "label",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "name",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "href",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "direction",
+        "kind": "prop",
+        "type": "'prev' | 'next'"
+      }
+    ]
   }
 }

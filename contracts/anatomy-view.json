@@ -28,5 +28,15 @@
   },
   "reference": {
     "src": "patterns/AnatomyView.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "parts",
+        "kind": "prop",
+        "type": "AnatomyPart[]",
+        "required": true
+      }
+    ]
   }
 }

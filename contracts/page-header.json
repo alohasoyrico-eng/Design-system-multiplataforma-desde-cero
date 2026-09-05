@@ -25,5 +25,45 @@
   },
   "reference": {
     "src": "patterns/PageHeader.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "title",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "overline",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "breadcrumb",
+        "kind": "prop",
+        "type": "string[]"
+      },
+      {
+        "name": "filters",
+        "kind": "prop",
+        "type": "ReactNode"
+      },
+      {
+        "name": "actions",
+        "kind": "prop",
+        "type": "ReactNode"
+      },
+      {
+        "name": "trailing",
+        "kind": "prop",
+        "type": "ReactNode"
+      }
+    ]
   }
 }

@@ -28,5 +28,30 @@
   },
   "reference": {
     "src": "patterns/DownloadCard.tsx"
+  },
+  "api": {
+    "members": [
+      {
+        "name": "filename",
+        "kind": "prop",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "description",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "icon",
+        "kind": "prop",
+        "type": "string"
+      },
+      {
+        "name": "href",
+        "kind": "prop",
+        "type": "string"
+      }
+    ]
   }
 }
