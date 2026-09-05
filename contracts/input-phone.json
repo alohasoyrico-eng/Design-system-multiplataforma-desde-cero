@@ -41,8 +41,9 @@
       {
         "name": "size",
         "kind": "prop",
-        "type": "'sm' | 'md'",
-        "default": "md"
+        "type": "'sm' | 'md' | 'lg'",
+        "default": "md",
+        "note": "lg existe porque las pantallas moviles de alta hablan lg: un campo md entre controles lg desentona."
       },
       {
         "name": "disabled",
