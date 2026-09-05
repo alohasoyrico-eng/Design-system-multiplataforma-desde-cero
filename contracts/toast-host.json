@@ -1,0 +1,68 @@
+{
+  "id": "toast-host",
+  "name": "ToastHost",
+  "layer": "primitives",
+  "shell": false,
+  "status": "stable",
+  "summary": "La cola de avisos, una sola vez: ToastHost apila, recorta al tope y presta useToast() para disparar desde cualquier parte. El timeout ya era del Toast (duration con pausa); el apilado deja de ser de la app.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "feedback"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "number",
+        "default": 3,
+        "note": "Avisos visibles a la vez; al llegar uno mas, el mas viejo sale primero."
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "th-1",
+        "rule": "El host apila con tope: al llegar un aviso mas alla de max, el mas viejo sale primero. Cada aviso vive su duration propia (con la pausa de tst-2) y desaparece solo.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "th-2",
+        "rule": "show devuelve un id y dismiss(id) retira ese aviso; ejecutar la accion del aviso tambien lo retira.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "th-3",
+        "rule": "useToast fuera del host truena con un mensaje que dice que falta el host, no con un undefined.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "th-4",
+        "rule": "La pila vive en --z-toast, en la esquina, y no crece sin tope ni tapa la barra superior.",
+        "level": "should",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--z-toast"
+  ],
+  "nonGoals": [
+    "No es un centro de notificaciones: lo que hay que releer va en NotificationCenter.",
+    "No decide el contenido: message/tone/accion son del que dispara (contrato toast)."
+  ],
+  "reference": null
+}

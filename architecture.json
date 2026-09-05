@@ -600,6 +600,13 @@
       "contract": "contracts/toast.json"
     },
     {
+      "id": "toast-host",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/toast-host.json"
+    },
+    {
       "id": "tooltip",
       "layer": "components",
       "domain": null,
