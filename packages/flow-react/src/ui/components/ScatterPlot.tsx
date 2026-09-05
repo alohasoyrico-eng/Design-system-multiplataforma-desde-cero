@@ -76,7 +76,8 @@ export function ScatterPlot({
         color,
         markLine: lines.length ? {
           silent: true, symbol: 'none',
-          lineStyle: { color: 'var(--viz-axis)', type: 'dashed', width: 1 },
+          // sct-2: el umbral se distingue de la rejilla — mismo trazo, tinta mas fuerte
+          lineStyle: { color: 'var(--viz-label)', type: 'dashed', width: 1.25 },
           label: { show: false },
           data: lines,
         } : undefined,

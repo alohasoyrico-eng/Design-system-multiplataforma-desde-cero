@@ -2,15 +2,18 @@ import { useState } from 'react'
 import css from './MobilePage.module.css'
 import { OnboardingDriverScreen } from './OnboardingDriverScreen'
 import { WalletAppScreen } from './WalletAppScreen'
+import { AuthOTPScreen } from './AuthOTPScreen'
 
 const TEMPLATES = [
   { value: 'onboarding', label: 'Onboarding' },
   { value: 'wallet', label: 'Wallet' },
+  { value: 'auth', label: 'Auth' },
 ]
 
 const SCREENS: Record<string, { component: React.ComponentType; desc: string }> = {
   onboarding: { component: OnboardingDriverScreen, desc: 'Propuesta de valor, alta completa (correo, OTP, teléfono, tarjeta, passcode), biométricos y autenticación.' },
   wallet: { component: WalletAppScreen, desc: 'App completa — inicio con saldo y carrusel, tarjetas con detalle, actividad y mapa de estaciones. Perfil vía avatar.' },
+  auth: { component: AuthOTPScreen, desc: 'Autenticación por capas: biométrico, passcode con intentos contados y OTP por SMS de respaldo.' },
 }
 
 export function MobilePage() {

@@ -7,4 +7,7 @@
   flex: none;
   background-size: cover;
   background-position: center;
+  /* flag-2: anillo interior — una bandera con blanco al borde no se desvanece
+     sobre superficie clara. */
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
 }

@@ -7683,6 +7683,15 @@
     "r": false,
     "rw": "",
     "note": ""
+   },
+   {
+    "n": "threshold",
+    "k": "prop",
+    "t": "number",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Solo pareto: fracción (0–1) del corte — colorea barras Y dibuja la línea de referencia (prt-3)"
    }
   ],
   "dos": [

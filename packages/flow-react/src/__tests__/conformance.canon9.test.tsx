@@ -141,7 +141,8 @@ describe('conformance canon · scatter', () => {
 
   it('sct-v3: el color de series y umbrales sale de la paleta de dataviz', () => {
     conIntl(<ScatterPlot points={[{ id: 'u1', x: 4, y: 9 }]} xThreshold={5} />)
-    expect(JSON.stringify(ultima().series)).toContain('var(--viz-axis)')
+    // sct-2: el umbral se distingue de la rejilla — viz-label, no viz-axis
+    expect(JSON.stringify(ultima().series)).toContain('var(--viz-label)')
   })
 })
 

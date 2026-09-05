@@ -26,7 +26,7 @@ vi.mock('echarts/charts', () => ({
   HeatmapChart: {}, BoxplotChart: {},
 }))
 vi.mock('echarts/components', () => ({
-  GridComponent: {}, TooltipComponent: {}, LegendComponent: {}, VisualMapComponent: {},
+  GridComponent: {}, TooltipComponent: {}, LegendComponent: {}, VisualMapComponent: {}, MarkLineComponent: {},
 }))
 vi.mock('echarts/renderers', () => ({ CanvasRenderer: {} }))
 

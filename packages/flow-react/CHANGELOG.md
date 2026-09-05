@@ -3,6 +3,15 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [Unreleased]
+
+### Arreglado (pasada visual, 5-sep)
+- **`MarkLineComponent` de ECharts nunca estuvo registrado**: toda línea de referencia (`markLine`) del sistema era invisible en silencio. Registrado; con ello el Pareto dibuja su umbral (prt-3, nueva prop `threshold` de FlowChart) y el scatter sus cuadrantes (sct-2, ahora en tinta `--viz-label` distinguible de la rejilla).
+- **Treemap**: la etiqueta de un nodo demasiado pequeño para ella ya no se trunca («Manten…») — se oculta y el tooltip la conserva (tmp-2).
+- **Flag**: anillo interior `--border-subtle` — una bandera con blanco al borde ya no se desvanece (flag-2).
+- **TabBar**: respeta `env(safe-area-inset-bottom)` (tbr-5).
+- **Banco**: el passcode fallido dice cuántos intentos quedan y la pantalla de Auth quedó ruteada como tercer demo móvil (ao-3).
+
 ## [0.5.0] — 2026-09-04
 
 ### Añadido

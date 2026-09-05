@@ -3,7 +3,9 @@
   align-items: stretch;
   background: var(--surface-card);
   border-radius: var(--radius-pill);
-  margin: var(--space-2) var(--space-3) var(--space-4);
+  /* tbr-5: la barra flotante respeta el area segura inferior del dispositivo
+     — el margen crece con el indicador del sistema, nunca queda debajo. */
+  margin: var(--space-2) var(--space-3) max(var(--space-4), env(safe-area-inset-bottom));
   padding: var(--space-1) var(--space-2);
   box-shadow: var(--shadow-overlay);
   z-index: var(--z-sticky);

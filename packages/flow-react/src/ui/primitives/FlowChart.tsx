@@ -22,6 +22,8 @@ function cargarEcharts(): Promise<EchartsCore> {
       charts.RadarChart, charts.GaugeChart, charts.FunnelChart, charts.TreemapChart,
       charts.HeatmapChart, charts.BoxplotChart,
       comps.GridComponent, comps.TooltipComponent, comps.LegendComponent, comps.VisualMapComponent,
+      comps.MarkLineComponent, // prt-3/sct-2: las lineas de referencia necesitan su componente registrado
+
       rends.CanvasRenderer,
     ])
     echartsListo = core
@@ -52,6 +54,8 @@ export interface ChartMatrix {
 }
 
 export interface FlowChartProps {
+  /** Solo pareto: fracción (0–1) del corte acumulado — colorea las barras Y dibuja la línea de referencia (prt-3). */
+  threshold?: number
   type?: FlowChartType
   series?: ChartSeries[]
   labels?: string[]
@@ -176,7 +180,7 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
   const {
     series = [], labels = [], format, legend = false, stack = false, smooth = true,
     highlight, horizontal = false, matrix, indicators, target, max, min,
-    showValues = false, area, palette = 'auto', animate = true, itemColors, color, thresholds,
+    showValues = false, area, palette = 'auto', animate = true, itemColors, color, thresholds, threshold,
   } = props
 
   const motion = animate && !isReduced()
@@ -527,6 +531,15 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
           merge({
             name: 'Acumulado', type: 'line', yAxisIndex: 1, data: cum, smooth: false,
             lineStyle: { color: tk.accent, width: 2.25, cap: 'round', join: 'round' }, itemStyle: { color: tk.accent }, symbolSize: 6,
+            // prt-3: el umbral se dibuja como referencia visible, no solo como color de barras
+            ...(threshold != null ? {
+              markLine: {
+                silent: true, symbol: 'none', animation: false,
+                lineStyle: { color: tk.muted, type: 'dashed', width: 1 },
+                label: { show: true, position: 'insideEndTop', formatter: Math.round(threshold * 100) + '%', color: tk.muted, fontFamily: tk.fontMono, fontSize: 10 },
+                data: [{ yAxis: Math.round(threshold * 100) }],
+              },
+            } : {}),
           }, motion ? { animationDuration: 900, animationDelay: 260 } : { animation: false }),
         ],
       })
@@ -607,10 +620,20 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
           left: 0, right: 0, top: legend ? 34 : 0, bottom: 0,
           itemStyle: { borderColor: tk.card, borderWidth: 2, gapWidth: 2, borderRadius: 4 },
           label: { fontFamily: tk.fontBody, fontSize: 12, fontWeight: 600 },
-          data: data.map((d, i) => {
-            const fill = rz(d.color || colorFor(i, d.label || d.name || ''))
-            return { name: d.label || d.name, value: d.value, itemStyle: { color: fill } }
-          }),
+          data: (() => {
+            const totalTm = data.reduce((s, d) => s + d.value, 0) || 1
+            return data.map((d, i) => {
+              const fill = rz(d.color || colorFor(i, d.label || d.name || ''))
+              // tmp-2: un nodo demasiado pequeño PARA SU ETIQUETA no la recorta
+              // a la mitad — la oculta y el tooltip la conserva. Heurística sin
+              // píxeles: los nodos chicos nunca la muestran; los medianos solo
+              // si la etiqueta es corta.
+              const share = d.value / totalTm
+              const etiqueta = String(d.label || d.name || '')
+              const cabe = share >= 0.06 && (share >= 0.14 || etiqueta.length <= 9)
+              return { name: d.label || d.name, value: d.value, itemStyle: { color: fill }, label: { show: cabe } }
+            })
+          })(),
         }, mount(false))],
       })
     }

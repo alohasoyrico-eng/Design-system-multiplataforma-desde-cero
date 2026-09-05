@@ -41,6 +41,7 @@ export function ParetoChart({ data = [], height = 240, format, threshold = 0.8, 
       format={format}
       style={style}
       itemColors={itemColors}
+      threshold={threshold}
       labels={sorted.map((d) => d.label)}
       series={[{ label: 'Valor', values: sorted.map((d) => d.value) }]}
       ariaLabel={`Pareto: pocas causas concentran el ${Math.round(threshold * 100)}% del total`}

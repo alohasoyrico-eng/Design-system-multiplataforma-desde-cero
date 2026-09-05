@@ -12,6 +12,8 @@ export function AuthOTPScreen() {
   const [mode, setMode] = useState<Mode>('bio')
   const [pin, setPin] = useState('')
   const [pinErr, setPinErr] = useState(false)
+  // ao-3: un intento fallido dice cuantos quedan antes de bloquear
+  const [intentos, setIntentos] = useState(3)
   const [sms, setSms] = useState('')
   const [bioState, setBioState] = useState<'idle' | 'scanning' | 'success' | 'error'>('idle')
 
@@ -26,6 +28,7 @@ export function AuthOTPScreen() {
   const handlePasscodeComplete = (v: string) => {
     if (v === '000000') {
       setPinErr(true)
+      setIntentos((n) => n - 1)
       setTimeout(() => { setPin(''); setPinErr(false) }, 500)
     } else {
       setMode('done')
@@ -75,6 +78,14 @@ export function AuthOTPScreen() {
               onChange={(v) => { setPinErr(false); setPin(v) }}
               onComplete={handlePasscodeComplete}
             />
+            {/* ao-3: el fallo dice cuantos intentos quedan, no solo que fallo */}
+            {intentos < 3 && (
+              <span className={css.hint} role="alert" style={{ color: 'var(--status-danger-text)' }}>
+                {intentos > 0
+                  ? `Código incorrecto. Te quedan ${intentos} intento${intentos === 1 ? '' : 's'} antes de bloquear la cuenta.`
+                  : 'Cuenta bloqueada temporalmente. Usa el código por SMS.'}
+              </span>
+            )}
             <span className={css.hint}>Tip: 000000 simula el error</span>
             <button type="button" className={css.linkBtn} onClick={() => setMode('sms')}>
               Recibir código por SMS
