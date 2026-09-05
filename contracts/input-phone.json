@@ -34,9 +34,9 @@
       {
         "name": "prefix",
         "kind": "prop",
-        "type": "string",
+        "type": "React.ReactNode | string",
         "default": "+52",
-        "note": "Lada. El pais se elige con Select, no aqui."
+        "note": "La lada como adorno de la carcasa — con bandera si el producto la quiere (Flag compacta + '+52'). Sigue fuera del valor y sin poder borrarse (tel-1)."
       },
       {
         "name": "size",
