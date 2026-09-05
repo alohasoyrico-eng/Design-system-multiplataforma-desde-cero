@@ -34,4 +34,16 @@ describe('Flag', () => {
     const { container } = render(<Flag country="br" ring={false} />)
     expect(container.firstChild).toHaveStyle({ boxShadow: 'none' })
   })
+
+  // Regresión 5-sep: el CSS de flag-icons DEBE ser global. Dentro de un CSS
+  // Module, lightningcss hashea sus clases (.Xxx_fi-mx) y el componente pone
+  // las globales (fi fi-mx): banderas invisibles en 0.4.0/0.5.0.
+  it('flag-icons entra global desde styles.css, jamas desde el module', () => {
+    const { readFileSync } = require('node:fs') as typeof import('node:fs')
+    const { join } = require('node:path') as typeof import('node:path')
+    const styles = readFileSync(join(__dirname, '../../../styles.css'), 'utf8')
+    const modulo = readFileSync(join(__dirname, '../Flag.module.css'), 'utf8')
+    expect(styles).toMatch(/@import "flag-icons\/css\/flag-icons\.min\.css"/)
+    expect(modulo).not.toMatch(/@import/)
+  })
 })

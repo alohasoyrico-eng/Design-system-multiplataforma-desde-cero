@@ -11,6 +11,7 @@ La regla de la casa: toda prop nace en el contrato canónico antes que en el có
 - 7 especímenes más (DataTable, ToastHost, Sidebar con grupos, TransactionGroup, DocumentViewer, HelpCenter, NotificationCenter) — ratchet spm-1 en 36.
 
 ### Arreglado (cierre visual, 5-sep)
+- **Las banderas no pintaban — en ninguna parte, desde 0.4.0**: el `@import` de flag-icons vivía dentro de un CSS Module y lightningcss hasheaba sus clases (`.Xxx_fi-mx`) mientras el componente ponía las globales (`fi fi-mx`). Ahora entra global desde `styles.css` (SVGs inlineados como data-URI en `flow.css`, +~1.7 MB autocontenidos) y hay test de regresión que lo vigila.
 - **DataTable**: la zona de filas ancla su altura a la de una página completa — la última página corta ya no encoge la tabla (dtb-5).
 - **Card**: la franja de `status` ya no la pisa el borde de la piel outlined (cascada corregida).
 - **TransactionGroup**: el label de fecha va en mono como manda trg-1.

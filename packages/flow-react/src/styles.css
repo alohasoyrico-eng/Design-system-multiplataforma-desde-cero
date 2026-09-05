@@ -1,3 +1,8 @@
+/* Vendor — flag-icons DEBE entrar como CSS global: dentro de un CSS Module
+   lightningcss hashea sus clases (.U8aIqq_fi-mx) y el componente Flag pone
+   las globales (fi fi-mx) — jamás matchean. Estuvo roto así en 0.4.0/0.5.0. */
+@import "flag-icons/css/flag-icons.min.css";
+
 /* Ref layer — raw platform-agnostic values */
 @import "tokens/ref/spacing.css";
 @import "tokens/ref/radius.css";

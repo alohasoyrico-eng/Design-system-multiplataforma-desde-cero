@@ -1,7 +1,5 @@
-/* El CSS de las banderas viaja por CSS, no por TS: un side-effect import en el
-   .tsx se filtraba a los .d.ts y rompia el typecheck de cada consumidor. */
-@import 'flag-icons/css/flag-icons.min.css';
-
+/* El CSS de flag-icons entra GLOBAL desde styles.css — aquí dentro (module)
+   lightningcss hashearía sus clases y el componente pone las globales. */
 .root {
   display: inline-block;
   flex: none;
