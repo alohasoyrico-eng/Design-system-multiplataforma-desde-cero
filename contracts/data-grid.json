@@ -3,8 +3,8 @@
   "name": "DataGrid",
   "layer": "primitives",
   "shell": true,
-  "status": "beta",
-  "summary": "La mecanica de una tabla: columnas, header sticky, zebra por token, seleccion, orden y celda editable.",
+  "status": "stable",
+  "summary": "La mecanica de una tabla, una sola vez: orden (controlado o interno), fila clickeable con teclado, zebra por token y piel intercambiable. Las pieles (Table) cambian la ropa, jamas la mecanica.",
   "platforms": {
     "web": "reference",
     "angular": "n/a",
@@ -19,7 +19,8 @@
         "name": "columns",
         "kind": "prop",
         "type": "GridColumn<T>[]",
-        "required": true
+        "required": true,
+        "note": "key/label/align/mono/render y priority (1 siempre visible; 2 se retira bajo --bp-md; 3 ya bajo --bp-lg)."
       },
       {
         "name": "rows",
@@ -31,78 +32,7 @@
         "name": "rowKey",
         "kind": "prop",
         "type": "string",
-        "default": "id"
-      },
-      {
-        "name": "sort",
-        "kind": "prop",
-        "type": "{ key: string; dir: 1 | -1 }"
-      },
-      {
-        "name": "onSortChange",
-        "kind": "event",
-        "type": "(sort) => void",
-        "unusedByDesign": "Orden en servidor: ningun consumidor de este repo lo necesita porque todos ordenan en cliente. Existe para el codebase destino."
-      },
-      {
-        "name": "selection",
-        "kind": "prop",
-        "type": "string[]",
-        "note": "Habilita la columna de seleccion. Absorbe BulkActionsTable."
-      },
-      {
-        "name": "onSelectionChange",
-        "kind": "event",
-        "type": "(keys: string[]) => void"
-      },
-      {
-        "name": "editable",
-        "kind": "prop",
-        "type": "boolean",
-        "default": false,
-        "note": "Enter guarda, Escape cancela. Absorbe FilterableEditableTable."
-      },
-      {
-        "name": "stickyHeader",
-        "kind": "prop",
-        "type": "boolean",
-        "default": true
-      },
-      {
-        "name": "density",
-        "kind": "prop",
-        "type": "'default' | 'dense'",
-        "default": "default"
-      },
-      {
-        "name": "renderDetail",
-        "kind": "renderProp",
-        "type": "(row: T) => React.ReactNode"
-      },
-      {
-        "name": "zebra",
-        "kind": "prop",
-        "type": "boolean",
-        "default": false,
-        "note": "Bandas desde --surface-sunken. Nunca un rgba a mano."
-      },
-      {
-        "name": "tree",
-        "kind": "prop",
-        "type": "boolean",
-        "default": false,
-        "note": "Filas con hijos, chevron e indentacion. Absorbe TableTree."
-      },
-      {
-        "name": "childrenKey",
-        "kind": "prop",
-        "type": "string",
-        "default": "children"
-      },
-      {
-        "name": "onRowClick",
-        "kind": "event",
-        "type": "(row: T) => void"
+        "note": "Sin ella, el indice — suficiente solo para listas estaticas."
       },
       {
         "name": "selectedKey",
@@ -110,68 +40,72 @@
         "type": "string | number"
       },
       {
-        "name": "emptyLabel",
+        "name": "onRowClick",
+        "kind": "event",
+        "type": "(row: T) => void",
+        "note": "La fila se vuelve enfocable y se opera con Enter y Espacio (dg-3)."
+      },
+      {
+        "name": "sortable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "name": "sort",
+        "kind": "prop",
+        "type": "GridSort | null",
+        "note": "Orden controlado: con sort el grid NO reordena — el dueno ordena (tambien en servidor) y el grid pinta el estado y emite el cambio."
+      },
+      {
+        "name": "onSortChange",
+        "kind": "event",
+        "type": "(sort: GridSort | null) => void"
+      },
+      {
+        "name": "density",
+        "kind": "prop",
+        "type": "'default' | 'compact'",
+        "default": "default"
+      },
+      {
+        "name": "caption",
         "kind": "prop",
         "type": "string",
-        "note": "Sin filas dice por que."
+        "note": "Nombre de la tabla para el lector: <caption> visualmente oculto (tb-5, compartido con la piel Table)."
+      },
+      {
+        "name": "zebraToken",
+        "kind": "prop",
+        "type": "string",
+        "default": "var(--surface-sunken)",
+        "note": "Bandas por token (dg-1). Nunca un rgba a mano."
       },
       {
         "name": "skin",
         "kind": "prop",
         "type": "Partial<Record<'root'|'table'|'th'|'thButton'|'row'|'td', string>>",
-        "note": "El gancho de las pieles: una piel reemplaza clases, jamas duplica la mecanica. Table es el primer consumidor."
+        "note": "El gancho de las pieles: una piel reemplaza clases, jamas duplica la mecanica (dg-10). Table es el primer consumidor."
       }
-    ],
-    "generics": [
-      {
-        "param": "T",
-        "default": "any",
-        "describes": "La fila"
-      }
-    ],
-    "types": []
+    ]
   },
   "conformance": {
     "criteria": [
       {
         "id": "dg-1",
-        "rule": "Zebra desde --surface-sunken; ningun rgba a mano.",
+        "rule": "El zebra sale de --surface-sunken (o del token que pase zebraToken); ningun rgba a mano.",
         "level": "must",
         "verify": "automated"
       },
       {
         "id": "dg-2",
-        "rule": "Header ordenable anuncia aria-sort y es un boton enfocable.",
+        "rule": "El header ordenable es un boton enfocable y anuncia aria-sort en el th.",
         "level": "must",
         "verify": "automated"
       },
       {
         "id": "dg-3",
-        "rule": "Fila clickeable es enfocable y se opera con Enter y Espacio. No se le pone role=button: rompe la semantica de tabla; la fila conserva su rol de fila.",
-        "level": "must",
-        "verify": "automated"
-      },
-      {
-        "id": "dg-4",
-        "rule": "Seleccion con checkbox real y estado indeterminate en el header.",
-        "level": "must",
-        "verify": "automated"
-      },
-      {
-        "id": "dg-5",
-        "rule": "La celda en edicion guarda con Enter y cancela con Escape sin perder el foco de la tabla.",
-        "level": "must",
-        "verify": "automated"
-      },
-      {
-        "id": "dg-6",
-        "rule": "El header sticky no tapa la primera fila al llegar arriba.",
-        "level": "should",
-        "verify": "visual"
-      },
-      {
-        "id": "dg-7",
-        "rule": "Una fila { __group } se pinta como encabezado de seccion a todo el ancho y no participa en la seleccion ni en el orden.",
+        "rule": "La fila clickeable es enfocable y se opera con Enter y Espacio. No se le pone role=button: rompe la semantica de tabla; la fila conserva su rol de fila.",
         "level": "must",
         "verify": "automated"
       },
@@ -180,14 +114,17 @@
         "rule": "Cuando la tabla es mas ancha que su contenedor, el contenedor desplaza en horizontal. Nunca recorta: la ultima columna es donde viven los botones de accion de cada fila, y un control recortado es un control inalcanzable.",
         "level": "must",
         "verify": "automated"
+      },
+      {
+        "id": "dg-10",
+        "rule": "La mecanica vive una sola vez: la piel reemplaza clases via skin y ningun consumidor de piel reimplementa orden, seleccion de fila o teclado.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },
   "composition": {
-    "primitives": [
-      "checkbox",
-      "icon-button"
-    ],
+    "primitives": [],
     "allowDeviation": true
   },
   "tokens": [
@@ -197,10 +134,12 @@
   ],
   "nonGoals": [
     "No virtualiza.",
-    "No trae filtros: el filtrado es del contenedor.",
+    "No trae filtros ni busqueda: eso es del contenedor (DataTable como patron).",
+    "Seleccion masiva, celda editable y arbol NO se absorbieron: viven en BulkActionsTable, FilterableEditableTable y TableTree, cada una con su pieza. El prototipo unificado de la referencia (primitives/shells/DataGrid.jsx, con selection/editable/tree) queda como historia: el paquete embarcado eligio el modelo partido.",
     "No es una linea de tiempo: TableTimeline no tiene columnas ni filas, es otra cosa con nombre de tabla."
   ],
   "reference": {
-    "src": "primitives/shells/DataGrid.jsx"
+    "src": "primitives/shells/DataGrid.jsx",
+    "note": "La referencia implementa el shell unificado previo a la decision de partirlo; el contrato describe el API embarcado."
   }
 }
