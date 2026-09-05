@@ -12571,7 +12571,17 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "parts",
+    "k": "prop",
+    "t": "AnatomyPart[]",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12603,7 +12613,44 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "label",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "value",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "hidden",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "onToggleHidden",
+    "k": "event",
+    "t": "() => void",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12635,7 +12682,26 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "activeIndex",
+    "k": "prop",
+    "t": "number",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "onChange",
+    "k": "event",
+    "t": "(index: number) => void",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12668,7 +12734,35 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "lastUpdated",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "version",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "links",
+    "k": "prop",
+    "t": "DocFooterLink[]",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12700,7 +12794,44 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "name",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "summary",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "platforms",
+    "k": "prop",
+    "t": "DocHeroPlatform[]",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "a11yLevel",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12733,7 +12864,44 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "filename",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "description",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "icon",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "href",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12765,7 +12933,35 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "tone",
+    "k": "prop",
+    "t": "'success' | 'danger'",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "rules",
+    "k": "prop",
+    "t": "string[]",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "specimen",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12797,7 +12993,44 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "platform",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "command",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "status",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "statusTone",
+    "k": "prop",
+    "t": "BadgeTone",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12829,7 +13062,44 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "label",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "name",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "href",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "direction",
+    "k": "prop",
+    "t": "'prev' | 'next'",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12862,7 +13132,44 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "digits",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "blurLast",
+    "k": "prop",
+    "t": "boolean",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "duration",
+    "k": "prop",
+    "t": "number",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "warning",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12895,7 +13202,71 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "title",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "overline",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "description",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "breadcrumb",
+    "k": "prop",
+    "t": "string[]",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "filters",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "actions",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "trailing",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12927,7 +13298,53 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "variants",
+    "k": "prop",
+    "t": "PlaygroundOption[]",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "sizes",
+    "k": "prop",
+    "t": "string[]",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "densities",
+    "k": "prop",
+    "t": "string[]",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "snippet",
+    "k": "prop",
+    "t": "string | ((state: { variant: string; size: string }) => string)",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "specLabels",
+    "k": "prop",
+    "t": "(state: { variant: string; size: string; density: string }) => SpecLabels",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12959,7 +13376,53 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "name",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "avatarName",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "role",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "badge",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "items",
+    "k": "prop",
+    "t": "ProfileMenuItem[]",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -12991,7 +13454,53 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "before",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "after",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "beforeLabel",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "afterLabel",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "footer",
+    "k": "prop",
+    "t": "ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -13055,7 +13564,26 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "states",
+    "k": "prop",
+    "t": "StateGridItem[]",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "columns",
+    "k": "prop",
+    "t": "number",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
@@ -13087,7 +13615,17 @@
   "anatomy": "",
   "tokens": [],
   "variants": [],
-  "members": [],
+  "members": [
+   {
+    "n": "label",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   }
+  ],
   "dos": [],
   "donts": [],
   "when": [],
