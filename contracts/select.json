@@ -95,7 +95,7 @@
         "name": "renderOption",
         "kind": "renderProp",
         "type": "(o: SelectOption) => React.ReactNode",
-        "note": "Así la bandera de SelectCountry deja de necesitar un componente propio."
+        "note": "Viste las filas del listbox Y el valor seleccionado en el trigger (single): lo que se elige no pierde su cara — la bandera del pais sigue ahi tras elegir. En multiple el trigger resume con texto."
       },
       {
         "name": "placeholder",
