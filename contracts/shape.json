@@ -32,7 +32,8 @@
         "id": "shp-3",
         "rule": "--radius-pill solo donde la altura fija el radio: botones, chips, badges. En una tarjeta produce una capsula, no una tarjeta.",
         "level": "must",
-        "verify": "visual"
+        "verify": "manual",
+        "nota_reclasificacion": "5-sep-2026: juicio de uso por vista — entra a la checklist de revision por pantalla, no a una verificacion unica."
       },
       {
         "id": "shp-4",

@@ -40,7 +40,8 @@
         "id": "mot-4",
         "rule": "--ease-spring solo en respuesta a un toque o un hover; --ease-out en lo que entra o se expande; --ease-in-out en lo que se mueve o transforma.",
         "level": "must",
-        "verify": "visual"
+        "verify": "manual",
+        "nota_reclasificacion": "5-sep-2026: juicio de uso por vista — entra a la checklist de revision por pantalla, no a una verificacion unica."
       },
       {
         "id": "mot-5",

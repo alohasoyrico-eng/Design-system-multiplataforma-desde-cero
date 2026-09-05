@@ -46,7 +46,8 @@
         "id": "typ-4",
         "rule": "--tracking-tight solo en escalas display y title; --tracking-overline solo en overline.",
         "level": "should",
-        "verify": "visual"
+        "verify": "manual",
+        "nota_reclasificacion": "5-sep-2026: juicio de uso por vista — entra a la checklist de revision por pantalla, no a una verificacion unica."
       }
     ]
   },

@@ -39,7 +39,8 @@
         "id": "flt-p4",
         "rule": "Toda grafica con miles de puntos declara que hace con los que no caben: agrega, muestrea o recorta, y lo dice.",
         "level": "must",
-        "verify": "visual"
+        "verify": "manual",
+        "nota_reclasificacion": "5-sep-2026: juicio de uso por vista — entra a la checklist de revision por pantalla, no a una verificacion unica."
       },
       {
         "id": "flt-p5",

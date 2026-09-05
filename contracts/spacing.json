@@ -47,7 +47,8 @@
         "id": "spc-4",
         "rule": "El padding de tarjeta y de seccion sale de --pad-card y --pad-section; no se reescribe por pantalla.",
         "level": "should",
-        "verify": "visual"
+        "verify": "manual",
+        "nota_reclasificacion": "5-sep-2026: juicio de uso por vista — entra a la checklist de revision por pantalla, no a una verificacion unica."
       }
     ]
   },

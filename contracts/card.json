@@ -54,6 +54,12 @@
         "kind": "prop",
         "type": "'success' | 'warning' | 'danger' | 'info'",
         "note": "Franja de estado en el borde de ataque, pintada con --status-*. Es refuerzo: el estado se dice tambien en el contenido."
+      },
+      {
+        "name": "selected",
+        "kind": "prop",
+        "type": "boolean",
+        "note": "Estado seleccionado para tarjetas-lista: borde fuerte y superficie tenue, legible sin color (crd-3)."
       }
     ],
     "note": "API real: hover/surface. accent/selected/variant eran el diseno inicial y no se construyeron."
@@ -74,9 +80,9 @@
       },
       {
         "id": "crd-3",
-        "rule": "selected se lee sin color: borde o superficie, no solo matiz.",
+        "rule": "selected se lee sin color: borde de mayor peso Y superficie distinta (tokens), no solo un matiz. Decision 5-sep: la prop nace en Card (antes el criterio hablaba de un selected que no existia).",
         "level": "must",
-        "verify": "visual"
+        "verify": "automated"
       },
       {
         "id": "crd-4",

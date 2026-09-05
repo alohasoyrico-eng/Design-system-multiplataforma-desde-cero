@@ -114,7 +114,8 @@
         "id": "cs-6",
         "rule": "Nada se dibuja encima del area del control: los accesorios van en leading, trailing o footer. Un contador nunca comparte pixeles con el asa de resize.",
         "level": "must",
-        "verify": "visual"
+        "verify": "manual",
+        "nota_reclasificacion": "5-sep-2026: juicio de uso por vista — entra a la checklist de revision por pantalla, no a una verificacion unica."
       },
       {
         "id": "cs-7",

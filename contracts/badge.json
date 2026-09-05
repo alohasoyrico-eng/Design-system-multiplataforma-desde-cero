@@ -63,7 +63,8 @@
         "id": "bdg-3",
         "rule": "live solo en estados que cambian sin intervencion. Un badge de categoria que late miente sobre su naturaleza.",
         "level": "must",
-        "verify": "visual"
+        "verify": "manual",
+        "nota_reclasificacion": "5-sep-2026: juicio de uso por vista — entra a la checklist de revision por pantalla, no a una verificacion unica."
       },
       {
         "id": "bdg-4",
