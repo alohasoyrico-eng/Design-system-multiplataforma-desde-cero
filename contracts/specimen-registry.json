@@ -1,0 +1,58 @@
+{
+  "id": "specimen-registry",
+  "name": "SpecimenRegistry",
+  "layer": "foundations",
+  "status": "stable",
+  "summary": "La tercera pata de cada pieza: el contrato promete, la ficha describe, el specimen DEMUESTRA. Un registro ejecutable id-de-ficha → render vivo con sus variantes, que viaja como entry propio del paquete y alimenta cualquier pagina de documentacion (Component Detail del banco, flow-docs) sin que el template conozca ninguna pieza por nombre.",
+  "platforms": {
+    "web": "reference",
+    "angular": "n/a",
+    "flutter": "n/a"
+  },
+  "function": [
+    "docs"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "SPECIMENS",
+        "kind": "const",
+        "type": "Record<string, Specimen>",
+        "note": "id de ficha → specimen."
+      },
+      {
+        "name": "Specimen",
+        "kind": "type",
+        "type": "{ variants?: string[]; sizes?: string[]; densities?: string[]; render(state: { variant: string; size: string; density: string }): ReactNode }",
+        "note": "El render recibe el estado del playground — el enchufe que PlaygroundCanvas ya expone."
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "spm-1",
+        "rule": "Todo specimen registrado apunta a una ficha existente y typechequea contra la interfaz real de su pieza: un specimen que compila mintiendo no existe. El registro solo crece (ratchet).",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spm-2",
+        "rule": "El registro viaja como entry propio (/specimens): el entry de la libreria no lo importa y una app que no documenta no lo paga.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "spm-3",
+        "rule": "Cada specimen se rinde sin errores bajo el playground con sus variantes declaradas; el template lo consume de forma generica, sin conocer piezas por nombre.",
+        "level": "must",
+        "verify": "automated"
+      }
+    ]
+  },
+  "nonGoals": [
+    "No es un catalogo de props exhaustivo: eso es la ficha. El specimen muestra la pieza viva en sus variantes, con datos minimos honestos.",
+    "No embarca estilos ni datos de demo en el entry principal."
+  ],
+  "reference": null
+}

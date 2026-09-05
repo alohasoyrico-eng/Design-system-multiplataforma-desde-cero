@@ -187,6 +187,13 @@
       "contract": "contracts/a11y.json"
     },
     {
+      "id": "specimen-registry",
+      "layer": "foundations",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/specimen-registry.json"
+    },
+    {
       "id": "flag",
       "layer": "primitives",
       "domain": null,
