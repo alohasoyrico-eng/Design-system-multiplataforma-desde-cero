@@ -14,6 +14,12 @@
         "rule": "La fecha y version usan --font-mono.",
         "level": "must",
         "verify": "visual"
+      },
+      {
+        "id": "df-2",
+        "rule": "Los enlaces del pie son <a> reales con href, no spans clickeables.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

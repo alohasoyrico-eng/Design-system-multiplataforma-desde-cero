@@ -14,6 +14,12 @@
         "rule": "Cada parte tiene un numero visible y un label legible.",
         "level": "must",
         "verify": "visual"
+      },
+      {
+        "id": "av-2",
+        "rule": "Cada parte numerada existe con su label en el DOM: sin numeros huerfanos ni labels sin numero.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

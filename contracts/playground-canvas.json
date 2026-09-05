@@ -14,6 +14,12 @@
         "rule": "Cambiar variant/size/density actualiza el specimen y el snippet.",
         "level": "must",
         "verify": "manual"
+      },
+      {
+        "id": "pc-2",
+        "rule": "El snippet refleja la variante activa: cambiarla reescribe el codigo mostrado.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

@@ -14,6 +14,12 @@
         "rule": "Cada item de accion tiene hit target >= 44px.",
         "level": "must",
         "verify": "automated"
+      },
+      {
+        "id": "pm-2",
+        "rule": "Cada item es un boton real y su icono decorativo va aria-hidden.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

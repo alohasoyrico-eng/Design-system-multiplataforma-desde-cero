@@ -14,6 +14,12 @@
         "rule": "El tono (success/danger) es distinguible por la franja de 3px ademas del color.",
         "level": "must",
         "verify": "visual"
+      },
+      {
+        "id": "gc-2",
+        "rule": "La franja y el texto del tono salen de los tokens --status-*, jamas de un hex a mano.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

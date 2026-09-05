@@ -14,6 +14,12 @@
         "rule": "El breadcrumb no se trunca en desktop: se trunca en movil.",
         "level": "should",
         "verify": "visual"
+      },
+      {
+        "id": "ph-2",
+        "rule": "El titulo es un h1 real y el boton de menu movil tiene nombre accesible.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

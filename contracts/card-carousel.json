@@ -20,6 +20,12 @@
         "rule": "Los dots reflejan la posicion actual.",
         "level": "must",
         "verify": "automated"
+      },
+      {
+        "id": "cc-3",
+        "rule": "Los dots viven en un tablist y cada uno tiene nombre accesible propio (Tarjeta N).",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

@@ -14,6 +14,12 @@
         "rule": "Con hidden=true no revela el valor en el DOM ni en el aria-label.",
         "level": "must",
         "verify": "automated"
+      },
+      {
+        "id": "bd-2",
+        "rule": "El toggle de visibilidad es un boton con nombre accesible que alterna (Mostrar/Ocultar saldo).",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

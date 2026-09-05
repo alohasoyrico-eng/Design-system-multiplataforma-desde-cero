@@ -10,7 +10,7 @@
   "conformance": {
     "criteria": [
       {
-        "id": "tg-1",
+        "id": "trg-1",
         "rule": "El label de fecha usa --type-label-sm uppercase mono.",
         "level": "must",
         "verify": "visual"

@@ -14,6 +14,12 @@
         "rule": "Los paneles usan tonos semanticos: danger para before, success para after.",
         "level": "must",
         "verify": "visual"
+      },
+      {
+        "id": "prc-2",
+        "rule": "Los tonos de before/after salen de los tokens --status-*, jamas de un hex a mano.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

@@ -13,13 +13,19 @@
         "id": "nr-1",
         "rule": "Se oculta automaticamente despues del timeout.",
         "level": "must",
-        "verify": "manual"
+        "verify": "automated"
       },
       {
         "id": "nr-2",
         "rule": "Con blurLast el ultimo digito se desenfoca para proteccion parcial.",
         "level": "should",
         "verify": "visual"
+      },
+      {
+        "id": "nr-3",
+        "rule": "El NIP no vive en el DOM hasta revelarse, y el boton de mostrar tiene nombre accesible.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },

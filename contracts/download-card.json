@@ -14,6 +14,12 @@
         "rule": "El filename usa --font-mono.",
         "level": "must",
         "verify": "visual"
+      },
+      {
+        "id": "dc-2",
+        "rule": "La descarga es un enlace real con href: funciona con teclado, boton central y guardar-como.",
+        "level": "must",
+        "verify": "automated"
       }
     ]
   },
