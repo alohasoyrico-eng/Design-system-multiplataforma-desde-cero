@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { Sparkline } from '../primitives/Sparkline'
+import { Skeleton } from '../primitives/Skeleton'
 import css from './StatTile.module.css'
 
 export interface StatTileProps {
@@ -9,10 +10,12 @@ export interface StatTileProps {
   trend?: number[]
   icon?: string
   tone?: 'neutral' | 'success' | 'warning' | 'danger'
+  description?: string
+  loading?: boolean
   style?: CSSProperties
 }
 
-export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', style }: StatTileProps) {
+export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', description, loading, style }: StatTileProps) {
   const toneColor = tone === 'success' ? 'var(--status-success-text)'
     : tone === 'danger' ? 'var(--status-danger-text)'
     : tone === 'warning' ? 'var(--status-warning-text)'
@@ -22,6 +25,21 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', s
   const deltaDown = delta && (delta.startsWith('-') || delta.startsWith('−') || delta.startsWith('↓'))
   const deltaColor = deltaUp ? 'var(--status-success-text)' : deltaDown ? 'var(--status-danger-text)' : 'var(--text-muted)'
   const deltaIcon = deltaUp ? 'trending_up' : deltaDown ? 'trending_down' : 'trending_flat'
+
+  // stt-6: en loading la cifra no existe — esqueleto oculto al lector, sin datos falsos
+  if (loading) {
+    return (
+      <div className={css.root} style={style} aria-busy="true">
+        <div className={css.header}>
+          <span className={css.label}>{label}</span>
+        </div>
+        <div className={css.body}>
+          <Skeleton variant="title" width={96} height={28} />
+        </div>
+        <Skeleton variant="text" width={64} />
+      </div>
+    )
+  }
 
   return (
     <div className={css.root} style={style}>
@@ -53,6 +71,7 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', s
           {delta}
         </div>
       )}
+      {description && <p className={css.description}>{description}</p>}
     </div>
   )
 }

@@ -10,7 +10,7 @@
 .drop {
   position: absolute;
   --popover-offset: var(--space-2);
-  z-index: 999;
+  z-index: var(--z-popover);
   min-width: 180px;
   animation: flowScaleIn var(--dur-fast) var(--ease-out);
 }

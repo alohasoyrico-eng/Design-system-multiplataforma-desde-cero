@@ -30,6 +30,18 @@ describe('SectionHeader', () => {
     expect(container.querySelector('h3')).toHaveTextContent('Titulo')
   })
 
+  // sh-3: la bajada vive fuera del heading — el outline dice el titulo limpio
+  it('sh-3: la descripcion queda fuera del heading, en un parrafo aparte', () => {
+    const { container } = render(
+      <SectionHeader description="Los viajes de esta semana">Actividad</SectionHeader>,
+    )
+    const heading = container.querySelector('h2')!
+    expect(heading.textContent).toBe('Actividad')
+    const bajada = screen.getByText('Los viajes de esta semana')
+    expect(bajada.tagName).toBe('P')
+    expect(heading.contains(bajada)).toBe(false)
+  })
+
   it('sets data-size attribute', () => {
     const { container } = render(<SectionHeader size="sm">Mini</SectionHeader>)
     expect(container.firstChild).toHaveAttribute('data-size', 'sm')

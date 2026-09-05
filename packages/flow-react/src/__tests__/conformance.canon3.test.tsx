@@ -86,6 +86,21 @@ describe('conformance canon · tooltip', () => {
   it('tip-4: el texto largo envuelve dentro de un ancho maximo', () => {
     expect(cssDe('components/Tooltip.module.css')).toMatch(/\.bubble\s*\{[^}]*max-width:/)
   })
+
+  it('tip-6: el disparador lleva aria-describedby hacia el globo mientras se ve', () => {
+    render(
+      <Tooltip content="Explica el boton">
+        <button type="button">Accion</button>
+      </Tooltip>,
+    )
+    const boton = screen.getByRole('button', { name: 'Accion' })
+    expect(boton).not.toHaveAttribute('aria-describedby')
+    fireEvent.focus(boton)
+    const globo = screen.getByRole('tooltip')
+    expect(boton.getAttribute('aria-describedby')).toBe(globo.id)
+    fireEvent.blur(boton)
+    expect(boton).not.toHaveAttribute('aria-describedby')
+  })
 })
 
 // ── stepper ────────────────────────────────────────────────────────────────
@@ -144,7 +159,7 @@ describe('conformance canon · pagination', () => {
   it('pag-1: navegacion con nombre; la pagina actual lleva aria-current y queda inerte', () => {
     const onChange = vi.fn()
     render(<Pagination page={3} pages={9} onChange={onChange} />)
-    expect(screen.getByRole('navigation', { name: 'Paginacion' })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: 'Paginación' })).toBeInTheDocument()
     const actual = screen.getByRole('button', { name: '3' })
     expect(actual.getAttribute('aria-current')).toBe('page')
     expect(actual).toBeDisabled()

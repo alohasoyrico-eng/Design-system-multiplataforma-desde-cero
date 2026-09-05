@@ -1,7 +1,22 @@
 .root {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.row {
+  display: flex;
   align-items: baseline;
   justify-content: space-between;
+}
+
+/* sh-3: la bajada vive fuera del heading, en muted */
+.description {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 65ch;
 }
 
 .title {

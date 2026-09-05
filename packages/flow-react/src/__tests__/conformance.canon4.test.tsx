@@ -152,6 +152,22 @@ describe('conformance canon · sidebar', () => {
     expect(globo).not.toBeNull()
     expect(globo!.getAttribute('aria-hidden')).toBe('true')
   })
+
+  it('sbr-6: el rotulo de grupo no es interactivo y sus hijos se listan siempre', () => {
+    const conGrupo = [
+      { id: 'op', label: 'Operación', caption: true, children: itemsSidebar },
+    ]
+    render(<Sidebar items={conGrupo} />)
+    // el rótulo existe pero no como botón ni con tabindex
+    expect(screen.getByText('Operación')).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Operación' })).toBeNull()
+    // los hijos se listan sin expandir nada
+    expect(screen.getByRole('button', { name: /Inicio/ })).toBeInTheDocument()
+    // colapsado: el rótulo se reduce a separador sin llevarse los hijos
+    const { container } = render(<Sidebar items={conGrupo} collapsed />)
+    expect(container.querySelector('hr[aria-hidden="true"]')).not.toBeNull()
+    expect(screen.getAllByRole('button', { name: 'Inicio' }).length).toBeGreaterThan(0)
+  })
 })
 
 // ── tabs ───────────────────────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, type ReactNode, type CSSProperties } from 'react'
+import { useState, useRef, useEffect, useCallback, useId, isValidElement, cloneElement, type ReactNode, type ReactElement, type CSSProperties } from 'react'
 import css from './Tooltip.module.css'
 
 export interface TooltipProps {
@@ -10,6 +10,7 @@ export interface TooltipProps {
 
 export function Tooltip({ content, position = 'top', children, style }: TooltipProps) {
   const [show, setShow] = useState(false)
+  const tipId = useId()
   const anchorRef = useRef<HTMLSpanElement>(null)
   const bubbleRef = useRef<HTMLSpanElement>(null)
   const [coords, setCoords] = useState({ top: 0, left: 0 })
@@ -77,10 +78,16 @@ export function Tooltip({ content, position = 'top', children, style }: TooltipP
       onFocus={() => setShow(true)}
       onBlur={() => setShow(false)}
     >
-      {children}
+      {/* tip-6: el disparador queda descrito mientras el globo está visible */}
+      {isValidElement(children)
+        ? cloneElement(children as ReactElement<{ 'aria-describedby'?: string }>, {
+            'aria-describedby': show ? tipId : undefined,
+          })
+        : children}
       {show && (
         <span
           ref={bubbleRef}
+          id={tipId}
           role="tooltip"
           className={css.bubble}
           style={{

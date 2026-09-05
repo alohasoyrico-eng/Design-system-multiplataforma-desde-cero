@@ -1,0 +1,48 @@
+# Changelog — @alohasoyrico-eng/flow-react
+
+Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
+La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
+
+## [Unreleased]
+
+### Añadido
+- **DataTable** (patrón nuevo): búsqueda, orden y paginación coordinados sobre Table — la consulta filtra, el orden se aplica al conjunto filtrado completo y la paginación recorta al final; buscar devuelve a la primera página y el recuento se anuncia en `aria-live` (dtb-1..dtb-5).
+- **Table / DataGrid** `caption`: la tabla se nombra para el lector con `<caption>` visualmente oculto (tb-5).
+- **StatTile** `description` (contexto bajo el delta) y `loading` (esqueleto con `aria-busy`, sin cifras falsas) (stt-6, stt-7).
+- **Sidebar**: grupos con `caption: true` — rótulo no interactivo con hijos siempre listados; colapsado se reduce a separador (sbr-6).
+- **Tooltip**: el disparador recibe `aria-describedby` hacia el globo mientras está visible (tip-6).
+- **Card** `status` ('success' | 'warning' | 'danger' | 'info'): franja de estado con tokens `--status-*` (crd-6) — y escala de `padding` ('none' | 'sm' | 'md' | 'lg'); el valor libre sigue aceptado como puente de migración.
+- **Pagination** `total` + `pageSize` (rótulo «X–Y de Z»), `pageSizeOptions` + `onPageSizeChange` (selector de tamaño; cambiar el tamaño emite `onChange(1)`) (pag-6).
+- **SectionHeader** `description`: bajada en muted fuera del heading — el outline queda limpio (sh-3).
+- **Escala de capas** `--z-*` en tokens (base/sticky/header/overlay/popover/toast/tooltip): los diez z-index globales de la librería salen de la escala; el diccionario y el CSS mantienen paridad (398/398).
+
+### Cambiado
+- El nombre accesible de Pagination es «Paginación» (antes «Paginacion»), y sus textos pasan por `useT` (caen a español sin provider).
+- Popover ahora se apila por encima del backdrop de overlay (`--z-popover` > `--z-overlay`): un popover abierto dentro de un modal ya no queda debajo.
+
+## [0.4.0] — 2026-09-04
+
+### Añadido
+- Primera publicación en **GitHub Packages**; la instalación por git queda retirada (registry o `.tgz` de respaldo vía `npm pack -w packages/flow-react`).
+- `docs/USUARIO.md` viaja en el paquete: las reglas del repo consumidor para humanos y agentes.
+- Servidor MCP con `get_contract` y `get_user_guide` (además de inventario, APIs, tokens y reglas de arquitectura).
+- `Toast.duration` con pausa en hover/foco — el timeout deja de ser de la app (tst-2).
+- FileUpload valida `accept` también al soltar, y su zona es botón (teclado ✓).
+- Teclado sobre canvas: MapCanvas con pines-botón; ScatterPlot/Treemap con listbox paralelo (`aria-activedescendant`).
+
+### Cambiado
+- El repo es workspace: `packages/flow-react` (publicable) + `apps/banco` (banco de plantillas, privado). El tarball no lleva banco.
+- `Input.invalid` es el nombre canónico; `error` queda como alias `@deprecated` hasta 1.0.
+- ToggleControl se reescribe a composición por children (Radio queda fuera a propósito).
+
+## [0.3.0] — 2026-09-04
+
+### Añadido
+- Programa de conformance completo: 355/355 criterios automatizados del canon citados por test o check (`check:conformance` con ratchet).
+- Triángulo de API cerrado: `check:api-drift` (canon ↔ ficha) en cero, sin divergencias declaradas.
+- Rejas de CI: catálogo, inventario, foundations, targets, color, iconos, a11y estática, paridad de tokens.
+- Lazy ECharts con degradación; ~60 defectos reales corregidos (anillo de foco global, Escape por capas, trampa de Tab en diálogos, sparklines NaN, AuthForm sin autocomplete, entre otros).
+
+## [0.1.0] — 2026-09-02
+
+- Arranque del paquete: 126 piezas (50 primitives, 59 components, 17 patterns), tokens ref→sys→comp con Style Dictionary, catálogo con fichas (`items.json`).

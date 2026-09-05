@@ -17,6 +17,8 @@ export interface TableProps<T = Record<string, unknown>> {
   sort?: TableSort | null
   onSortChange?: (sort: TableSort | null) => void
   density?: Density
+  /** Nombre de la tabla para el lector: <caption> visualmente oculto (tb-5). */
+  caption?: string
   style?: CSSProperties
 }
 

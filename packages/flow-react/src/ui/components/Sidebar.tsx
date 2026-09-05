@@ -9,6 +9,9 @@ export interface SidebarItem {
   /** Contador (número, 99+ al pasar) o punto vivo (true). Colapsado, el
       contador viaja al nombre accesible y el punto se posa en el icono. */
   badge?: number | boolean
+  /** Rótulo de grupo, no destino: no es interactivo y sus hijos se listan
+      siempre (sbr-6). Colapsado se reduce a separador. */
+  caption?: boolean
   children?: SidebarItem[]
 }
 
@@ -40,6 +43,19 @@ export function Sidebar({
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   const renderItem = (item: SidebarItem, level: number) => {
+    // sbr-6: el rótulo de grupo no tabula ni clickea; sus hijos se listan siempre
+    if (item.caption) {
+      return (
+        <div key={item.id} className={css.captionGroup}>
+          {collapsed ? (
+            <hr className={css.captionRule} aria-hidden="true" />
+          ) : (
+            <div className={css.caption}>{item.label}</div>
+          )}
+          {item.children?.map((child) => renderItem(child, level))}
+        </div>
+      )
+    }
     const isSection = !!(item.children && item.children.length)
     const isOpen = expandedSections.has(item.id)
     const isActive = item.id === activeId

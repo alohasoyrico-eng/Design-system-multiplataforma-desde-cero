@@ -1,6 +1,7 @@
 export { AnatomyView, type AnatomyViewProps, type AnatomyPart } from './AnatomyView'
 export { AuthForm, type AuthFormProps, type AuthMode, type AuthSubmitData } from './AuthForm'
 export { BalanceDisplay, type BalanceDisplayProps } from './BalanceDisplay'
+export { DataTable, type DataTableProps } from './DataTable'
 export { DocFooter, type DocFooterProps, type DocFooterLink } from './DocFooter'
 export { DocHero, type DocHeroProps, type DocHeroPlatform } from './DocHero'
 export { DownloadCard, type DownloadCardProps } from './DownloadCard'

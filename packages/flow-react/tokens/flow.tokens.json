@@ -710,6 +710,37 @@
           "$value": "0.08em",
           "$type": "dimension"
         }
+      },
+      "z": {
+        "$description": "Escala de capas: quien tapa a quien es decision del sistema, no de cada modulo.",
+        "base": {
+          "$value": 0,
+          "$type": "number"
+        },
+        "sticky": {
+          "$value": 100,
+          "$type": "number"
+        },
+        "header": {
+          "$value": 200,
+          "$type": "number"
+        },
+        "overlay": {
+          "$value": 1000,
+          "$type": "number"
+        },
+        "popover": {
+          "$value": 1100,
+          "$type": "number"
+        },
+        "toast": {
+          "$value": 1200,
+          "$type": "number"
+        },
+        "tooltip": {
+          "$value": 1300,
+          "$type": "number"
+        }
       }
     },
     "sys": {
@@ -1837,6 +1868,36 @@
         },
         "overline": {
           "$value": "{flow.ref.tracking.overline}"
+        }
+      },
+      "z": {
+        "base": {
+          "$value": "{flow.ref.z.base}",
+          "$type": "number"
+        },
+        "sticky": {
+          "$value": "{flow.ref.z.sticky}",
+          "$type": "number"
+        },
+        "header": {
+          "$value": "{flow.ref.z.header}",
+          "$type": "number"
+        },
+        "overlay": {
+          "$value": "{flow.ref.z.overlay}",
+          "$type": "number"
+        },
+        "popover": {
+          "$value": "{flow.ref.z.popover}",
+          "$type": "number"
+        },
+        "toast": {
+          "$value": "{flow.ref.z.toast}",
+          "$type": "number"
+        },
+        "tooltip": {
+          "$value": "{flow.ref.z.tooltip}",
+          "$type": "number"
         }
       }
     },

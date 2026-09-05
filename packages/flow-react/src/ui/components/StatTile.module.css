@@ -45,6 +45,13 @@
   margin-top: var(--space-1);
 }
 
+/* stt-7: la descripción es contexto en muted, no compite con el delta */
+.description {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin: var(--space-1) 0 0; /* anula el margen UA del <p>: el reset es opcional */
+}
+
 .toneIcon {
   flex-shrink: 0;
 }

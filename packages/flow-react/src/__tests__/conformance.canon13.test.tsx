@@ -140,11 +140,11 @@ describe('conformance canon · cola de un criterio', () => {
     expect(uiDe('components/RouteBanner.tsx')).toMatch(/icon="close" ariaLabel="Cerrar"/)
   })
 
-  it('sb-1 (section-bar): sticky se pega bajo el TopBar con z-index 30 — token en vez del 72px literal', () => {
+  it('sb-1 (section-bar): sticky se pega bajo el TopBar en la capa --z-sticky de la escala', () => {
     const hoja = uiDe('primitives/SectionBar.module.css')
     expect(hoja).toMatch(/position:\s*sticky/)
     expect(hoja).toMatch(/top:\s*var\(--height-bar\)/)
-    expect(hoja).toMatch(/z-index:\s*30/)
+    expect(hoja).toMatch(/z-index:\s*var\(--z-sticky\)/)
   })
 
   it('sb-1 (sheet-body): el scroll es interno, nunca desborda el overlay', () => {

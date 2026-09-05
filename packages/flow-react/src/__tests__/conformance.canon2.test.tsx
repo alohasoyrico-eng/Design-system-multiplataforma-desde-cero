@@ -93,6 +93,11 @@ describe('Table · conformance canon', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Nombre' }))
     expect(screen.getByText('Nombre').closest('th')).toHaveAttribute('aria-sort', 'ascending')
   })
+  // tb-5: la tabla se nombra con <caption> oculto
+  it('tb-5: caption existe en el DOM y nombra la tabla', () => {
+    render(<Table columns={cols} rows={rows} caption="Personas del equipo" />)
+    expect(screen.getByRole('table', { name: 'Personas del equipo' })).toBeInTheDocument()
+  })
 })
 
 describe('Progress · conformance canon', () => {

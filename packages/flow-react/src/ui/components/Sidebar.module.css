@@ -94,7 +94,7 @@
   transform: translateY(-50%);
   margin-left: var(--space-2);
   pointer-events: none;
-  z-index: 1000;
+  z-index: var(--z-popover);
   white-space: nowrap;
   background: var(--surface-card);
   color: var(--text-primary);
@@ -143,4 +143,24 @@
   height: 8px;
   border-radius: var(--radius-pill);
   background: var(--status-live, var(--action-accent));
+}
+
+/* sbr-6: rótulo de grupo — overline muted, jamás interactivo */
+.caption {
+  font: var(--type-label-sm);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: var(--space-4) var(--space-3) var(--space-1);
+}
+
+.captionGroup {
+  min-width: 0;
+}
+
+/* Colapsado el rótulo se reduce a separador: el grupo sigue existiendo */
+.captionRule {
+  border: none;
+  border-top: var(--border-width) solid var(--border-subtle);
+  margin: var(--space-2) var(--space-3);
 }

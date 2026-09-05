@@ -78,6 +78,20 @@ describe('Card · conformance canon', () => {
     expect(screen.queryByRole('button')).toBeNull()
     expect((container.firstChild as HTMLElement).getAttribute('tabindex')).toBeNull()
   })
+
+  // crd-6: la franja de estado sale de --status-*, jamas de un color a mano
+  it('crd-6: status pinta la franja con tokens y la escala de padding vive en CSS', () => {
+    const { container } = render(<Card status="danger" padding="sm">Alerta</Card>)
+    const raiz = container.firstChild as HTMLElement
+    expect(raiz.getAttribute('data-status')).toBe('danger')
+    expect(raiz.getAttribute('data-padding')).toBe('sm')
+    // el paso de escala no viaja como estilo en linea
+    expect(raiz.style.padding).toBe('')
+    const cssCard = css('../ui/components/Card.module.css')
+    for (const tono of ['success', 'warning', 'danger', 'info']) {
+      expect(cssCard).toMatch(new RegExp(`data-status='${tono}'\\][^}]*var\\(--status-${tono}\\)`))
+    }
+  })
 })
 
 describe('EmptyState · conformance canon', () => {
@@ -104,6 +118,25 @@ describe('StatTile · conformance canon', () => {
     )
     const svg = container.querySelector('svg')
     expect(svg).toHaveAttribute('aria-hidden', 'true')
+  })
+
+  // stt-6: loading anuncia ocupado y no pinta cifras falsas
+  it('stt-6: loading pone aria-busy, mantiene la etiqueta y esconde el esqueleto', () => {
+    const { container } = render(
+      <StatTile label="Viajes" value="412" delta="+4 vs ayer" loading />,
+    )
+    expect(container.querySelector('[aria-busy="true"]')).toBeInTheDocument()
+    expect(screen.getByText('Viajes')).toBeInTheDocument()
+    expect(screen.queryByText('412')).toBeNull()
+    expect(screen.queryByText(/\+4/)).toBeNull()
+    for (const esq of container.querySelectorAll('[data-variant]')) {
+      expect(esq).toHaveAttribute('aria-hidden', 'true')
+    }
+  })
+
+  it('la descripción aparece como contexto bajo la cifra', () => {
+    render(<StatTile label="Viajes" value="412" description="Completados esta semana" />)
+    expect(screen.getByText('Completados esta semana')).toBeInTheDocument()
   })
 })
 

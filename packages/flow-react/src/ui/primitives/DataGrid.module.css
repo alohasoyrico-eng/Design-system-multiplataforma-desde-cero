@@ -11,6 +11,16 @@
   font: var(--type-body-md);
 }
 
+/* tb-5: la tabla se nombra sin ocupar sitio — caption solo para el lector */
+.caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .th {
   padding: var(--density-head-y) var(--density-cell-x);
   font: var(--type-label-sm);

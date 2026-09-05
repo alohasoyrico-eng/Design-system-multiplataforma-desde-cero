@@ -5,4 +5,14 @@
   --shadow-float: var(--ref-shadow-float);
   --shadow-overlay: var(--ref-shadow-overlay);
   --shadow-accent-glow: var(--ref-shadow-accent-glow);
+
+  /* Escala de capas: quién tapa a quién es decisión del sistema, no de cada
+     módulo. sticky < header < overlay < popover < toast < tooltip. */
+  --z-base: var(--ref-z-base);
+  --z-sticky: var(--ref-z-sticky);
+  --z-header: var(--ref-z-header);
+  --z-overlay: var(--ref-z-overlay);
+  --z-popover: var(--ref-z-popover);
+  --z-toast: var(--ref-z-toast);
+  --z-tooltip: var(--ref-z-tooltip);
 }

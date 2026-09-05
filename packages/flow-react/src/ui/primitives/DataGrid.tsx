@@ -34,6 +34,8 @@ export interface DataGridProps<T = Record<string, unknown>> {
   sort?: GridSort | null
   onSortChange?: (sort: GridSort | null) => void
   density?: Density
+  /** Nombre de la tabla para el lector: <caption> visualmente oculto (tb-5). */
+  caption?: string
   zebraToken?: string
   /** El gancho de las pieles (Table): reemplaza clases sin duplicar la mecanica. */
   skin?: GridSkin
@@ -50,6 +52,7 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
   sort,
   onSortChange,
   density = 'default',
+  caption,
   zebraToken = 'var(--surface-sunken)',
   skin,
   style,
@@ -85,6 +88,7 @@ export function DataGrid<T extends Record<string, unknown> = Record<string, unkn
   return (
     <div className={cls('root')} data-density={density !== 'default' ? density : undefined} style={{ '--_zebra': zebraToken, ...style } as CSSProperties}>
       <table className={cls('table')}>
+        {caption && <caption className={css.caption}>{caption}</caption>}
         <thead>
           <tr>
             {columns.map((col) => (

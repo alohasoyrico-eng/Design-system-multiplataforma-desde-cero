@@ -160,7 +160,7 @@ FlowTheme(
 
 ### Contratos (para tooling y agentes)
 
-Los 189 contratos que alimentan la documentación también se exportan del paquete:
+Los 190 contratos que alimentan la documentación también se exportan del paquete:
 
 ```ts
 import contracts from '@alohasoyrico-eng/flow-react/contracts'
@@ -168,7 +168,7 @@ import contracts from '@alohasoyrico-eng/flow-react/contracts'
 
 ## Qué hay en la caja
 
-**126 piezas React** + **93 widgets Flutter**, organizadas en cuatro niveles:
+**127 piezas React** + **93 widgets Flutter**, organizadas en cuatro niveles:
 
 ### Primitives (50)
 
@@ -190,17 +190,17 @@ Combinan primitives para resolver necesidades de interfaz.
 
 (`DateRangePicker` sigue exportado como alias deprecado de `DatePicker mode="range"`.)
 
-### Patterns (17)
+### Patterns (18)
 
 Resuelven tareas recurrentes de negocio. (La capa la decide el grafo de imports: varias piezas que vivían aquí bajaron a components en la reconciliación de sep-2026.)
 
-`AnatomyView` · `AuthForm` · `BalanceDisplay` · `DocFooter` · `DocHero` · `DownloadCard` · `GuidanceCard` · `InstallCard` · `NavCard` · `NipReveal` · `PageHeader` · `PlaygroundCanvas` · `ProfileMenu` · `ProposalCard` · `Settings` · `StateGrid` · `TransactionGroup`
+`AnatomyView` · `AuthForm` · `BalanceDisplay` · `DataTable` · `DocFooter` · `DocHero` · `DownloadCard` · `GuidanceCard` · `InstallCard` · `NavCard` · `NipReveal` · `PageHeader` · `PlaygroundCanvas` · `ProfileMenu` · `ProposalCard` · `Settings` · `StateGrid` · `TransactionGroup`
 
 ### Templates
 
 **Los templates no viajan en el paquete ni son documentación** — el sitio de docs vive en su propio repo. Son la quinta capa del canon: pantallas completas con contrato y criterios de conformance propios (testeados contra estas páginas), y el banco donde cada pieza se prueba con datos reales antes de publicarse. Se copian como punto de partida, no se importan:
 
-**Desktop** — `Dashboard` (6 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Peaje, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 189 contratos)
+**Desktop** — `Dashboard` (6 vistas: Overview, Combustible, Mantenimiento, Electromovilidad, Peaje, Finanzas) · `Units` · `Drivers` · `Reports` · `Agent Chat` · `Mailings` · `Config Roles` · `Settings` · `Wizard` · `Auth` · `Onboarding` · `Wallet` · `Primitives Showcase` · `TopBar Demo` · `Component Detail` (parametrizado, alimentado por 190 contratos)
 
 **Internal Tools (CRM)** — `Resumen` · `Cuentas` · `Casos` · `Tickets` · `Pricing` · `Growth` · `Backoffice`
 
@@ -416,7 +416,7 @@ El workflow `publish.yml` corre los gates y publica a GitHub Packages solo.
 
 ### La referencia canónica y el conformance
 
-Los contratos normativos del sistema viven en la rama **`canonical`** de este mismo repo (la referencia de diseño: HTML/CSS de referencia, `contracts/`, `architecture.json` y sus chequeos). `check:conformance` mide el pacto: **cada criterio automatizado de un contrato debe tener un test o chequeo del repo que lo cite por id** (`sel-7`, `tst-2`, `mc-2`…). Hoy: 355/355. El ratchet (`--min`) solo puede subir — un PR que borre un test citado pone CI en rojo. Dos reglas operativas: tras cambiar contratos en `canonical`, corre `git fetch origin canonical` antes de medir (el medidor lee el commit, no tu carpeta); y las notas de exclusión en tests **no citan ids** (una mención en comentario cuenta como cobertura).
+Los contratos normativos del sistema viven en la rama **`canonical`** de este mismo repo (la referencia de diseño: HTML/CSS de referencia, `contracts/`, `architecture.json` y sus chequeos). `check:conformance` mide el pacto: **cada criterio automatizado de un contrato debe tener un test o chequeo del repo que lo cite por id** (`sel-7`, `tst-2`, `mc-2`…). Hoy: 366/366. El ratchet (`--min`) solo puede subir — un PR que borre un test citado pone CI en rojo. Dos reglas operativas: tras cambiar contratos en `canonical`, corre `git fetch origin canonical` antes de medir (el medidor lee el commit, no tu carpeta); y las notas de exclusión en tests **no citan ids** (una mención en comentario cuenta como cobertura).
 
 ## Verificación
 
@@ -425,7 +425,7 @@ La batería completa que corre CI en cada push. Regla de la casa: **cada reja se
 ```bash
 npm run typecheck          # TypeScript — cero errores
 npm run lint               # oxlint — cero errores (los hooks condicionales son error, no warning)
-npm run test               # 1,105 tests (32 de compliance arquitectónica)
+npm run test               # 1,117 tests (32 de compliance arquitectónica)
 npm run check:catalog      # fichas ↔ barrels ↔ interfaces (C1–C5)
 npm run check:inventory    # inventario ↔ referencia canónica (S1–S3)
 npm run check:foundations  # criterios automatizados de los 7 contratos de foundations
@@ -523,9 +523,9 @@ En tu otro proyecto, crea o edita `.claude/settings.json`:
 Si eres un agente trabajando **dentro** de este repo:
 
 1. Lee `CLAUDE.md` antes de tocar código — tiene las reglas de arquitectura, la receta para crear componentes, y la referencia completa de tokens.
-2. La fuente de verdad de cada pieza es doble: su **ficha** en `packages/flow-react/src/data/items.json` (189 entries: API, tokens, when/notWhen, a11y, plataformas) y su **contrato normativo** en la rama `canonical` (`contracts/*.json`, con criterios de conformance). El orden es contrato-primero: una prop nueva nace en el contrato canónico, luego en el código, luego en la ficha — `check:catalog` y `check:conformance` cazan cada lado que falte. Tras editar el canon: commit + push en `canonical` y `git fetch origin canonical` aquí.
+2. La fuente de verdad de cada pieza es doble: su **ficha** en `packages/flow-react/src/data/items.json` (190 entries: API, tokens, when/notWhen, a11y, plataformas) y su **contrato normativo** en la rama `canonical` (`contracts/*.json`, con criterios de conformance). El orden es contrato-primero: una prop nueva nace en el contrato canónico, luego en el código, luego en la ficha — `check:catalog` y `check:conformance` cazan cada lado que falte. Tras editar el canon: commit + push en `canonical` y `git fetch origin canonical` aquí.
 3. Antes de crear un archivo, decide su capa (primitive / component / pattern).
-4. Busca si ya existe una pieza que haga lo que necesitas — hay 126.
+4. Busca si ya existe una pieza que haga lo que necesitas — hay 127.
 5. Usa tokens semánticos (`var(--surface-card)`), nunca hex (`#ffffff`).
 6. Corre las rejas desnudas después de cada cambio (`npm run typecheck`, `npm run lint`, `npm test` — sin tuberías: tapan el exit code). En React, los hooks van **antes** de cualquier early-return.
 7. Agrega cada pieza nueva al `index.ts` de su capa y crea su test.

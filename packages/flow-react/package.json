@@ -30,6 +30,7 @@
     "./compat-eone.css": "./dist-lib/compat-eone.css"
   },
   "files": [
+    "CHANGELOG.md",
     "dist-lib",
     "public/fonts",
     "src/data/items.json",

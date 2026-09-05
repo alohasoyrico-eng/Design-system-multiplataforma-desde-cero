@@ -7,7 +7,7 @@
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0 var(--space-4);
-  z-index: 30;
+  z-index: var(--z-sticky);
 }
 
 .root[data-sticky] {

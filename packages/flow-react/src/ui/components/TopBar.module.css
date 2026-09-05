@@ -59,7 +59,7 @@
 .root[data-sticky] {
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: var(--z-header);
 }
 
 /* ── Inner container ── */

@@ -40,7 +40,7 @@ inmediato: modo oscuro gratis. Un hex tuyo se ve bien en claro y se rompe en
 
 ### 2. Busca antes de construir
 
-Hay **126 piezas**. Antes de escribir un componente propio, pregunta si ya existe:
+Hay **127 piezas**. Antes de escribir un componente propio, pregunta si ya existe:
 `list_inventory` y `get_contract` en el MCP, o el sitio de docs. Una pieza que te
 falte de verdad es una petición al equipo del DS (demanda medida = prioridad), no
 una copia local.
@@ -104,12 +104,12 @@ mapea variantes a roles — no le pidas el componente al DS.
 1. Conecta el **MCP server** (sección del README) y consulta antes de escribir:
    `get_contract("bottom-sheet")` te da la API con descripciones, cuándo usarla
    y cuándo no, y su madurez por plataforma.
-2. Las 189 fichas también viajan en el paquete:
+2. Las 190 fichas también viajan en el paquete:
    `import contracts from '@alohasoyrico-eng/flow-react/contracts'`.
 3. Versionado: 0.x — la API puede moverse entre minors; los deprecados
    (`error`, `DateRangePicker`) anuncian su retiro en 1.0.
 4. Si un componente de Flow parece incumplir su contrato, no lo parches en tu
-   repo: repórtalo — hay 355 criterios de conformance con test del lado del DS.
+   repo: repórtalo — hay 366 criterios de conformance con test del lado del DS.
 
 ## Migración desde Flow 1.x
 

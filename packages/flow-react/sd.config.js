@@ -433,7 +433,7 @@ const config = {
         { destination: 'sizing.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'size' },
         { destination: 'typography.css', format: 'css/flow', filter: (t) => isRef(t) && ['type', 'font', 'tracking'].includes(t.path[2]) },
         { destination: 'colors.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'color' },
-        { destination: 'elevation.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'shadow' },
+        { destination: 'elevation.css', format: 'css/flow', filter: (t) => isRef(t) && (t.path[2] === 'shadow' || t.path[2] === 'z') },
         { destination: 'motion.css', format: 'css/flow', filter: (t) => isRef(t) && ['duration', 'easing', 'hover', 'lift', 'press'].includes(t.path[2]) },
         { destination: 'iconography.css', format: 'css/flow', filter: (t) => isRef(t) && t.path[2] === 'icon' },
       ],

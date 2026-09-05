@@ -9,6 +9,42 @@
     background var(--dur-fast) var(--ease-out);
 }
 
+/* ── Escala de padding (md es el propio --pad-card del .root) ── */
+
+.root[data-padding='none'] {
+  padding: 0;
+}
+
+.root[data-padding='sm'] {
+  padding: var(--space-3);
+}
+
+.root[data-padding='lg'] {
+  padding: var(--space-6);
+}
+
+/* ── crd-6: franja de estado con tokens --status-*, refuerzo visual ── */
+
+.root[data-status] {
+  border-inline-start: 3px solid transparent;
+}
+
+.root[data-status='success'] {
+  border-inline-start-color: var(--status-success);
+}
+
+.root[data-status='warning'] {
+  border-inline-start-color: var(--status-warning);
+}
+
+.root[data-status='danger'] {
+  border-inline-start-color: var(--status-danger);
+}
+
+.root[data-status='info'] {
+  border-inline-start-color: var(--status-info);
+}
+
 /* ── Surface variants ── */
 
 .root[data-surface='outlined'] {

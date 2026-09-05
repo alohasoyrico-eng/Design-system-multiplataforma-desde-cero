@@ -49,3 +49,16 @@
   color: var(--text-muted);
   cursor: default;
 }
+
+/* pag-6: el rango se dice en texto, en cifra de dato */
+.range {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  margin-inline-end: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.sizer {
+  margin-inline-start: var(--space-2);
+  min-width: 0;
+}
