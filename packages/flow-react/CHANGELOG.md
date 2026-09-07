@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.6] — 2026-09-07
+
+### Añadido
+- **`StatTile.deltaArrow`** (default `true`): permite retirar el glifo de tendencia del delta. Con `deltaTone` en juego, `trending_up` (culturalmente «mejora») junto a un danger rojo manda dos señales opuestas — cazado en eOne: «↗ +325 %» en rojo leía como contradicción. El signo del texto ya dice la dirección (stt-2 se cumple con texto); sin glifo quedan signo = dirección y color = juicio.
+
 ## [0.6.5] — 2026-09-07
 
 ### Añadido

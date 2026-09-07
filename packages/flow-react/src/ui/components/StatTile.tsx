@@ -15,12 +15,18 @@ export interface StatTileProps {
       gasto o consumo, «+330%» pintaba success (cazado en eOne). La flecha
       sigue diciendo la DIRECCIÓN por el signo; esto dice si es buena. */
   deltaTone?: 'success' | 'danger' | 'neutral'
+  /** Glifo de tendencia junto al delta. Con `deltaTone` en juego puede
+      CONTRADECIR al color — trending_up (culturalmente «mejora») junto a un
+      danger rojo manda dos señales opuestas (cazado en eOne: «↗ +325 %» en
+      rojo). El signo del texto ya dice la dirección (stt-2); `false` deja
+      signo + color, sin glifo que dispute. */
+  deltaArrow?: boolean
   description?: string
   loading?: boolean
   style?: CSSProperties
 }
 
-export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', deltaTone, description, loading, style }: StatTileProps) {
+export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', deltaTone, deltaArrow = true, description, loading, style }: StatTileProps) {
   const toneColor = tone === 'success' ? 'var(--status-success-text)'
     : tone === 'danger' ? 'var(--status-danger-text)'
     : tone === 'warning' ? 'var(--status-warning-text)'
@@ -75,7 +81,9 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', d
       </div>
       {delta && (
         <div className={css.delta} style={{ color: deltaColor }}>
-          <span className={`flow-symbol flow-symbol--xs ${css.deltaIcon}`} aria-hidden="true">{deltaIcon}</span>
+          {deltaArrow && (
+            <span className={`flow-symbol flow-symbol--xs ${css.deltaIcon}`} aria-hidden="true">{deltaIcon}</span>
+          )}
           {delta}
         </div>
       )}
