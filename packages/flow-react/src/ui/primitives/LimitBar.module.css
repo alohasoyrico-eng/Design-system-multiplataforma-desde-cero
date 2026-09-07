@@ -15,8 +15,33 @@
 }
 
 .values {
-  font: var(--type-body-md);
+  /* Cifras en familia de DATO — la misma regla que el valor del StatTile
+     (stt-1); body-md las dejaba fuera del idioma numérico del sistema. */
+  font: var(--type-data-sm);
+  font-variant-numeric: tabular-nums;
   color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Apilada: etiqueta arriba, valores abajo — y los valores hablan a tamaño
+   de estadística, que es lo que la tarjeta-medidor es. */
+.root[data-stacked] .header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+}
+
+.root[data-stacked] .values {
+  font: var(--type-data-md);
+  color: var(--text-primary);
+}
+
+.root[data-stacked] .values[data-state='over'] {
+  color: var(--status-danger-text);
+}
+
+.root[data-stacked] .values[data-state='met'] {
+  color: var(--status-success-text);
 }
 
 .track {

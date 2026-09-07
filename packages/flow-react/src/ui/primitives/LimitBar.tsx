@@ -10,6 +10,10 @@ export interface LimitBarProps {
       success. Cazado en eOne: su objetivo de unidades (≥ 92%) pintaba
       danger justo al cumplirse. */
   kind?: 'cap' | 'goal'
+  /** Etiqueta arriba y valores abajo, en dos FILAS — para tarjetas
+      estrechas donde la fila única obliga a envolver ambos lados en un
+      dos-columnas apretado (cazado en eOne: sus tarjetas-medidor). */
+  stacked?: boolean
   /** Formatea los valores del encabezado. Por defecto, moneda con $ — el
       origen wallet de la pieza; un techo de litros o un objetivo en % pasan
       el suyo (cazado en eOne, 7-sep: pintaba «$70.952,8» para litros). */
@@ -17,14 +21,14 @@ export interface LimitBarProps {
   style?: CSSProperties
 }
 
-export function LimitBar({ label, current, max, kind = 'cap', format, style }: LimitBarProps) {
+export function LimitBar({ label, current, max, kind = 'cap', stacked, format, style }: LimitBarProps) {
   const pct = max > 0 ? (current / max) * 100 : 0
   const fmt = format ?? ((value: number) => `$${value.toLocaleString()}`)
   const crossed = pct >= 100
   const state = crossed ? (kind === 'goal' ? 'met' : 'over') : undefined
 
   return (
-    <div className={css.root} style={style}>
+    <div className={css.root} data-stacked={stacked || undefined} style={style}>
       <div className={css.header}>
         <span className={css.label}>{label}</span>
         <span className={css.values} data-state={state}>

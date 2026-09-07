@@ -3,6 +3,14 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.5] — 2026-09-07
+
+### Añadido
+- **`LimitBar.stacked`**: etiqueta arriba y valores abajo, en dos filas — para tarjetas estrechas donde la fila única envolvía ambos lados en un dos-columnas apretado. En apilada, los valores hablan a tamaño de estadística (`--type-data-md`, en primary; over/met conservan su color).
+
+### Arreglado
+- **LimitBar: las cifras entran a la familia de dato** (`--type-data-sm`, tabular) — iban en `body-md`, fuera del idioma numérico del sistema (stt-1 lo exige para StatTile; la misma regla vale aquí). Cazado en eOne: sus tarjetas-medidor desentonaban con los KPIs vecinos.
+
 ## [0.6.4] — 2026-09-07
 
 ### Añadido
