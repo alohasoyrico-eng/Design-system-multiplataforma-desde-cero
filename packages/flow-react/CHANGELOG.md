@@ -3,6 +3,19 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.3] — 2026-09-07
+
+### Añadido
+- **`LimitBar.kind`** (`cap` | `goal`): cruzar el 100% de un techo es danger; cruzar un OBJETIVO es la meta cumplida — success. La pieza solo conocía techos y el objetivo de unidades de eOne (≥ 92%) pintaba danger justo al cumplirse. El «en peligro» de V1, completado por la segunda pantalla que lo pidió.
+
+## [0.6.2] — 2026-09-07
+
+### Añadido
+- **`LimitBar.format`**: los valores del encabezado aceptan formateador propio — el default sigue siendo moneda con `$` (el origen wallet de la pieza), pero un techo de litros o un objetivo en % ya no se disfrazan de dinero (cazado en eOne: «$70.952,8» para 70 952,8 L).
+
+### Arreglado
+- **LimitBar: el relleno se acota al 100%** — sin tope, un 111% desbordaba la pista redondeada. Pasarse del límite ahora se dice con color (`data-over`: relleno y valores en danger), no saliéndose del carril — el «en peligro» que V1 dejaba pendiente de pantalla, decidido por la primera pantalla que lo pidió.
+
 ## [0.6.1] — 2026-09-07
 
 ### Arreglado

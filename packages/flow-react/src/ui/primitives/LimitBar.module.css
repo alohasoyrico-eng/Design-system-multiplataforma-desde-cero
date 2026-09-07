@@ -30,3 +30,21 @@
   border-radius: var(--radius-pill);
   background: var(--viz-1);
 }
+
+/* Cruzar el 100% habla en color, no desbordando el carril: un techo
+   excedido es danger; un objetivo cumplido, success. */
+.fill[data-state='over'] {
+  background: var(--status-danger-text);
+}
+
+.values[data-state='over'] {
+  color: var(--status-danger-text);
+}
+
+.fill[data-state='met'] {
+  background: var(--status-success-text);
+}
+
+.values[data-state='met'] {
+  color: var(--status-success-text);
+}
