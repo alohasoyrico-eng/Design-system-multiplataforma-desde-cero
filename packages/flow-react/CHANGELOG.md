@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.7] — 2026-09-07
+
+### Añadido
+- **`LimitBar.bare`**: solo la pista, sin encabezado — para composiciones que ya dicen etiqueta y valores en su propio lenguaje. Conserva `kind` y el estado over/met del relleno. (Las tarjetas-medidor de eOne hablan en el idioma del StatTile — cabecera con icono y numerales en familia de dato grande — y la pista es el refuerzo.)
+
 ## [0.6.6] — 2026-09-07
 
 ### Añadido
