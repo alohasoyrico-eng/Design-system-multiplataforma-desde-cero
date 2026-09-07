@@ -72,6 +72,34 @@ for (const it of arq.items) {
   for (const n of doc) {
     if (!canon.has(n) && !permitido(n)) hallazgos.push({ item: it.id, lado: 'ficha-sin-canon', prop: n })
   }
+  // Nivel de tipo (7-sep-2026): comparar solo nombres dejo vivir una deriva a
+  // tres bandas en Progress.tone (canon: 4 tonos · codigo: 2 · ficha: string).
+  // Comparar strings crudos seria churn notacional (ReactNode vs
+  // React.ReactNode, firmas abreviadas); la regla se limita a la clase de
+  // deriva que si es API: uniones de literales. Dos casos:
+  //   1. ambos lados son union de literales ⇒ mismo set exacto
+  //   2. un lado es union y el otro dice "string" a secas ⇒ esconde, no documenta
+  const literales = (t) => {
+    const s = String(t ?? '').trim()
+    if (!s) return null
+    // solo tipos que son PURA union de literales de string ('a' | 'b' | ...)
+    if (!/^'[^']+'(\s*\|\s*'[^']+')*$/.test(s)) return null
+    return new Set([...s.matchAll(/'([^']+)'/g)].map((m) => m[1]))
+  }
+  const canonPorNombre = new Map(canonMs.map((m) => [m.name, m]))
+  for (const m of ficha.members) {
+    const cm = canonPorNombre.get(m.n)
+    if (!cm || permitido(m.n)) continue
+    const lc = literales(cm.type)
+    const lf = literales(m.t)
+    const esString = (t) => String(t ?? '').trim() === 'string'
+    if (lc && lf) {
+      const igual = lc.size === lf.size && [...lc].every((v) => lf.has(v))
+      if (!igual) hallazgos.push({ item: it.id, lado: 'tipo', prop: m.n, canon: cm.type, ficha: m.t })
+    } else if ((lc && esString(m.t)) || (lf && esString(cm.type))) {
+      hallazgos.push({ item: it.id, lado: 'tipo', prop: m.n, canon: cm.type, ficha: m.t })
+    }
+  }
 }
 rmSync(tmp, { recursive: true, force: true })
 
@@ -80,7 +108,7 @@ if (process.argv.includes('--json')) {
 } else if (!hallazgos.length) {
   console.log(`api-drift: ${comparados} items con contrato y ficha dicen la misma API. ${Object.keys(EXCEPCIONES).length} divergencias declaradas pendientes de decision.`)
 } else {
-  for (const h of hallazgos) console.log(`  [${h.lado}] ${h.item}: ${h.prop}`)
+  for (const h of hallazgos) console.log(`  [${h.lado}] ${h.item}: ${h.prop}${h.lado === 'tipo' ? ` — canon "${h.canon}" · ficha "${h.ficha}"` : ''}`)
   console.log(`\n${hallazgos.length} hallazgo(s). Contrato-primero: la prop nace en el canon, luego el codigo, luego la ficha.`)
 }
 process.exit(hallazgos.length ? 1 : 0)

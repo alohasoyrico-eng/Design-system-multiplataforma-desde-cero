@@ -60,6 +60,14 @@ auditados pieza por pieza).
   interactividad, no el color. Un chip tintado de solo lectura es `Badge` con `tone`;
   un filtro interactivo no carga color semántico. Los `variants` viejos
   (`filled/filter/outlined/tonal`) mueren con él.
+- **`Card.padding="xl"` no vuelve** (V3, decidido 7-sep-2026): reintroducir `xl` solo
+  en Card contradiría la muerte global de `xl` (V8). Codemod `xl`→`lg` (×4 en eOne);
+  para una excepción real existe el puente declarado: `padding` acepta un valor libre.
+- **`tone="danger"` en Progress no nace** (V1, decidido 7-sep-2026): una barra "en
+  peligro" es semánticamente un techo — trabajo de `LimitBar`, cuyo contrato deja
+  declarado el color-por-porcentaje como enhancement a decidir con pantalla. Los tonos
+  reales de Progress son `accent | success | warning | ink` (los que su contrato
+  siempre prometió).
 
 ## Muertes declaradas — piezas (censo 7-sep-2026)
 
@@ -86,5 +94,8 @@ pantalla.
 - **Swipe en filas**: criterio trw-5 de `transaction-row` — el gesto es atajo, nunca
   única vía, y vive encapsulado en la pieza dueña.
 
-Backlog de reintroducciones aún abierto: `Progress.tone` success/danger (V1) y
-`Card.padding="xl"` (V3).
+La tabla V1–V12 quedó sin reintroducciones pendientes: V1 resultó deriva interna
+(el contrato de Progress ya prometía `success`/`ink` y el código implementaba dos
+tonos — cerrado en el código, no agregado por eOne) y V3 murió con V8. Solo V4
+(Dialog form) y V5 (Stepper error por paso) siguen a prueba, atadas a sus tandas
+de F3.

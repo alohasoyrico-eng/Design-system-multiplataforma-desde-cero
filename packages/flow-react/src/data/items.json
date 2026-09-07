@@ -141,7 +141,7 @@
    {
     "n": "tone",
     "k": "prop",
-    "t": "'accent'|'success'|'warning'|'ink'",
+    "t": "'accent' | 'success' | 'warning' | 'danger'",
     "d": "'accent'",
     "r": false,
     "rw": "",
@@ -943,7 +943,7 @@
    {
     "n": "size",
     "k": "prop",
-    "t": "'sm'|'md'|'lg'",
+    "t": "'sm' | 'md'",
     "d": "'md'",
     "r": false,
     "rw": "",
@@ -1924,7 +1924,7 @@
    {
     "n": "variant",
     "k": "prop",
-    "t": "string",
+    "t": "'pill' | 'underline' | 'bar'",
     "d": "'pill'",
     "r": false,
     "rw": "",
@@ -3479,7 +3479,7 @@
    {
     "n": "variant",
     "k": "prop",
-    "t": "string",
+    "t": "'ink' | 'accent' | 'sand' | 'fuel' | 'ev' | 'maintenance' | 'toll'",
     "d": "'ink'",
     "r": false,
     "rw": "",
@@ -3603,7 +3603,7 @@
    {
     "n": "category",
     "k": "prop",
-    "t": "string",
+    "t": "'transfer' | 'fuel' | 'toll' | 'service' | 'payment'",
     "d": "'transfer'",
     "r": false,
     "rw": "",
@@ -5075,7 +5075,7 @@
    {
     "n": "tone",
     "k": "prop",
-    "t": "string",
+    "t": "'neutral' | 'success' | 'warning' | 'danger'",
     "d": "",
     "r": false,
     "rw": "",
@@ -5520,7 +5520,7 @@
    {
     "n": "type",
     "k": "prop",
-    "t": "string",
+    "t": "'button' | 'submit' | 'reset'",
     "d": "'button'",
     "r": false,
     "rw": "",
@@ -5611,7 +5611,7 @@
    {
     "n": "variant",
     "k": "prop",
-    "t": "string",
+    "t": "'ghost' | 'tonal' | 'primary' | 'secondary'",
     "d": "'ghost'",
     "r": false,
     "rw": "",
@@ -5791,7 +5791,7 @@
    {
     "n": "size",
     "k": "prop",
-    "t": "'sm'|'md'",
+    "t": "'sm' | 'md' | 'lg'",
     "d": "'md'",
     "r": false,
     "rw": "",
@@ -5827,7 +5827,7 @@
    {
     "n": "type",
     "k": "prop",
-    "t": "'text'|'password'|'email'|'number'|'tel'",
+    "t": "string",
     "d": "text",
     "r": false,
     "rw": "",
@@ -6420,7 +6420,7 @@
    {
     "n": "variant",
     "k": "prop",
-    "t": "string",
+    "t": "'text' | 'title' | 'circle' | 'card'",
     "d": "'text'",
     "r": false,
     "rw": "",
@@ -6838,7 +6838,7 @@
    {
     "n": "tone",
     "k": "prop",
-    "t": "string",
+    "t": "'accent' | 'success' | 'warning' | 'ink'",
     "d": "'accent'",
     "r": false,
     "rw": "",

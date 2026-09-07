@@ -36,6 +36,12 @@
 .bar[data-tone='accent'] {
   background: var(--action-accent);
 }
+.bar[data-tone='success'] {
+  background: var(--status-success);
+}
 .bar[data-tone='warning'] {
   background: var(--status-warning);
+}
+.bar[data-tone='ink'] {
+  background: var(--text-primary);
 }

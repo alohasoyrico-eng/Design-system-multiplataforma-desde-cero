@@ -6,7 +6,7 @@ export interface ProgressProps {
   max?: number
   label?: string
   showValue?: boolean
-  tone?: 'accent' | 'warning'
+  tone?: 'accent' | 'success' | 'warning' | 'ink'
   style?: CSSProperties
 }
 
