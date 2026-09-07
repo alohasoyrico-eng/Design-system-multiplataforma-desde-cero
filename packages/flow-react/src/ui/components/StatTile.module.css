@@ -1,9 +1,6 @@
+/* La superficie la pone el Card que envuelve (una sola tarjeta en el
+   sistema); aquí solo el layout interior. */
 .root {
-  background: var(--surface-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  box-shadow: var(--shadow-rest);
   min-width: 0;
 }
 

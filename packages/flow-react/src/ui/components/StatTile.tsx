@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { Card } from './Card'
 import { Sparkline } from '../primitives/Sparkline'
 import { Skeleton } from '../primitives/Skeleton'
 import css from './StatTile.module.css'
@@ -41,22 +42,29 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', d
   const deltaIcon = deltaUp ? 'trending_up' : deltaDown ? 'trending_down' : 'trending_flat'
 
   // stt-6: en loading la cifra no existe — esqueleto oculto al lector, sin datos falsos
+  /* La SUPERFICIE es del Card — una sola tarjeta en el sistema. StatTile
+     dibujaba la suya propia (borde + sombra a la vez: un híbrido que no
+     existe en el vocabulario del Card) y cualquier tarjeta vecina
+     desentonaba por construcción (cazado en eOne, 7-sep). */
   if (loading) {
     return (
-      <div className={css.root} style={style} aria-busy="true">
-        <div className={css.header}>
-          <span className={css.label}>{label}</span>
+      <Card padding="md" style={style}>
+        <div className={css.root} aria-busy="true">
+          <div className={css.header}>
+            <span className={css.label}>{label}</span>
+          </div>
+          <div className={css.body}>
+            <Skeleton variant="title" width={96} height={28} />
+          </div>
+          <Skeleton variant="text" width={64} />
         </div>
-        <div className={css.body}>
-          <Skeleton variant="title" width={96} height={28} />
-        </div>
-        <Skeleton variant="text" width={64} />
-      </div>
+      </Card>
     )
   }
 
   return (
-    <div className={css.root} style={style}>
+    <Card padding="md" style={style}>
+    <div className={css.root}>
       <div className={css.header}>
         {icon && (
           <span className={`flow-symbol flow-symbol--md ${css.toneIcon}`} aria-hidden="true" style={{ color: toneColor }}>
@@ -89,5 +97,6 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', d
       )}
       {description && <p className={css.description}>{description}</p>}
     </div>
+    </Card>
   )
 }

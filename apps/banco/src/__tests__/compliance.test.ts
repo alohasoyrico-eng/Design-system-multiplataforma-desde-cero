@@ -210,8 +210,10 @@ describe('Architecture — layer imports', () => {
   })
 
   it('components never import from same layer (other components)', () => {
-    // Exception: RouteBanner imports Card (layout container coupling, documented)
-    const SAME_LAYER_EXCEPTIONS = ['RouteBanner.tsx']
+    // Exceptions: acoplamiento de CONTENEDOR documentado — RouteBanner y
+    // StatTile componen Card como superficie (una sola tarjeta en el
+    // sistema, 0.6.8); no es composición de comportamiento entre pares.
+    const SAME_LAYER_EXCEPTIONS = ['RouteBanner.tsx', 'StatTile.tsx']
     const filtered = componentsTsx.filter(f => !SAME_LAYER_EXCEPTIONS.some(e => f.endsWith(e)))
     const hits = grepFiles(
       filtered,

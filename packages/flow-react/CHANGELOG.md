@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.8] — 2026-09-07
+
+### Arreglado
+- **StatTile compone Card — una sola superficie de tarjeta en el sistema.** Dibujaba la suya propia con un híbrido que no existe en el vocabulario del Card (borde Y sombra; elevated es sombra sin borde, outlined es borde sin sombra), así que cualquier Card vecino desentonaba por construcción (cazado en eOne: sus tarjetas-medidor en Card real nunca podían igualar a los StatTile). Cambio visible: el StatTile pierde el borde de 1px y pasa al padding del Card (--pad-card, sensible a densidad).
+
 ## [0.6.7] — 2026-09-07
 
 ### Añadido
