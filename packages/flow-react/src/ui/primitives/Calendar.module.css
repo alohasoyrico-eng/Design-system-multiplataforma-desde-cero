@@ -1,5 +1,9 @@
 .root {
-  width: 20rem;
+  /* El ancho se CALCULA del contenido: 7 columnas de hit-target + padding.
+     El 20rem a mano dejaba 296px útiles para 308px de celdas — la última
+     columna desbordaba el panel y la banda de rango sangraba por el borde
+     derecho (cazado en eOne, 7-sep). */
+  width: calc(7 * var(--hit-target-min) + 2 * var(--space-3));
   padding: var(--space-3);
 }
 
@@ -63,7 +67,10 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
+  /* Sin hueco horizontal: la continuidad del rango la da el CONTACTO entre
+     celdas (antes dependía de que las celdas de 44px desbordaran columnas
+     de 40 — accidente, no diseño). Vertical conserva sus 2px. */
+  gap: 2px 0;
   text-align: center;
 }
 

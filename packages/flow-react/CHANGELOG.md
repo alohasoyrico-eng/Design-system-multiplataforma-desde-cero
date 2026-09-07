@@ -3,6 +3,12 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.1] — 2026-09-07
+
+### Arreglado
+- **Calendar: la última columna desbordaba el panel** — el ancho de `.root` era un 20rem a mano que dejaba 296px útiles para 308px de celdas (7 × hit-target); la banda de rango sangraba por el borde derecho. El ancho ahora se calcula del contenido, y el hueco horizontal del grid muere: la continuidad del rango la da el contacto entre celdas, no el desborde accidental.
+- **Anillo de foco doblado en triggers-span** (Select, DatePicker): el supresor del anillo interior de ControlShell solo cubría `input/textarea/button`; los spans con `tabindex` recibían el anillo global ENCIMA del `focus-within` de la carcasa. El `:where()` gana `[tabindex]`. (Ambos cazados en la migración de eOne.)
+
 ## [0.6.0] — 2026-09-05
 
 ### Añadido

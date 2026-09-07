@@ -11,8 +11,11 @@
 }
 
 /* El campo interior de una carcasa no dobla el anillo; los adornos de la zona
-   trailing (limpiar, por ejemplo) si lo llevan, porque son objetivos aparte. */
-[data-control-shell] > div > :where(input, textarea, button):focus-visible {
+   trailing (limpiar, por ejemplo) si lo llevan, porque son objetivos aparte.
+   Cubre tambien los triggers-span con tabindex (Select, DatePicker): eran el
+   agujero por el que el anillo global se doblaba sobre el de la carcasa
+   (cazado en eOne, 7-sep: aro del focus-within del shell + aro del span). */
+[data-control-shell] > div > :where(input, textarea, button, [tabindex]):focus-visible {
   box-shadow: none;
 }
 
