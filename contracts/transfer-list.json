@@ -1,0 +1,83 @@
+{
+  "id": "transfer-list",
+  "name": "TransferList",
+  "layer": "patterns",
+  "function": [
+    "forms"
+  ],
+  "status": "proposed",
+  "summary": "Asignacion masiva entre dos conjuntos: agregar, editar o quitar usuarios, unidades o permisos moviendolos entre paneles con busqueda por lado. Nace del censo 1.x (7-sep-2026) por decision explicita: la asignacion masiva es operacion central de flotas. Historia exigente: config-roles y fleet-assignment.",
+  "api": {
+    "members": [
+      {
+        "name": "source",
+        "kind": "prop",
+        "type": "TransferItem[]",
+        "required": true,
+        "note": "Disponibles. TransferItem = { id, label, meta? }."
+      },
+      {
+        "name": "target",
+        "kind": "prop",
+        "type": "TransferItem[]",
+        "required": true,
+        "note": "Asignados. Controlado: la pantalla es duena del estado."
+      },
+      {
+        "name": "onChange",
+        "kind": "event",
+        "type": "(target: TransferItem[]) => void",
+        "required": true
+      },
+      {
+        "name": "titles",
+        "kind": "prop",
+        "type": "[string, string]",
+        "note": "Nombre de cada panel: 'Disponibles' / 'Asignados' es el punto de partida, no el limite."
+      },
+      {
+        "name": "searchable",
+        "kind": "prop",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "trl-1",
+        "rule": "Cada panel dice su total y cuantos hay seleccionados, y mover anuncia el resultado en una region viva: la operacion masiva se confirma con palabras, no con la sola mudanza visual.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "trl-2",
+        "rule": "Todo el ciclo es operable por teclado: seleccionar, mover en ambos sentidos y volver a mover lo recien movido.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "trl-3",
+        "rule": "En pantallas angostas los paneles se apilan y mover conserva el contexto: el scroll del panel destino no se pierde con cada traslado.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--border-subtle",
+    "--hit-target-min",
+    "--gap-stack"
+  ],
+  "nonGoals": [
+    "No persiste nada: la pantalla decide cuando confirmar la asignacion.",
+    "No es un arbol: conjuntos planos; jerarquias van en table-tree."
+  ],
+  "platforms": {
+    "web": "spec",
+    "angular": "n/a",
+    "flutter": "n/a"
+  }
+}

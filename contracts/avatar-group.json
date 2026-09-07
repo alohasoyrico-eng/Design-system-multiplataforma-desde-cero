@@ -1,0 +1,71 @@
+{
+  "id": "avatar-group",
+  "name": "AvatarGroup",
+  "layer": "primitives",
+  "function": [
+    "display"
+  ],
+  "status": "proposed",
+  "summary": "Apilado de avatares con solape y desborde '+N'. Extiende avatar: mismo tamano, mismo anillo. Nace del censo 1.x (7-sep-2026). Historia exigente: fleet-assignment — una unidad con varios conductores asignados.",
+  "implements": [
+    "avatar"
+  ],
+  "api": {
+    "members": [
+      {
+        "name": "people",
+        "kind": "prop",
+        "type": "AvatarProps[]",
+        "required": true
+      },
+      {
+        "name": "max",
+        "kind": "prop",
+        "type": "number",
+        "default": 4,
+        "note": "Del quinto en adelante, '+N'."
+      },
+      {
+        "name": "size",
+        "kind": "prop",
+        "type": "'sm' | 'md' | 'lg'",
+        "default": "md"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "avg-1",
+        "rule": "El grupo tiene un solo nombre accesible con el total ('5 conductores asignados'), no N imagenes anonimas en el orden de lectura.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "avg-2",
+        "rule": "max recorta lo visible, nunca la informacion: el '+N' es texto real y el total completo viaja en el nombre accesible.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "avg-3",
+        "rule": "El solape separa cada avatar con un anillo de token de superficie, legible en ambos temas: apilar no es fundir.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--surface-card",
+    "--radius-pill"
+  ],
+  "nonGoals": [
+    "No lista a las personas: al tocar, la pantalla decide que abrir.",
+    "No reordena por estado: el orden es el que llega."
+  ],
+  "platforms": {
+    "web": "spec",
+    "angular": "n/a",
+    "flutter": "spec"
+  }
+}

@@ -2,6 +2,7 @@
   "id": "wizard-pattern",
   "name": "Formulario multi-paso",
   "layer": "patterns",
+  "kind": "receta",
   "function": [
     "forms"
   ],

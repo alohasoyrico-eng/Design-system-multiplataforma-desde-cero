@@ -83,6 +83,12 @@
         "rule": "Con onClick la fila entera es operable por teclado y mide --hit-target-min.",
         "level": "must",
         "verify": "automated"
+      },
+      {
+        "id": "trw-5",
+        "rule": "Si la fila ofrece acciones al deslizar (archivar, compartir, reportar), cada una tiene un equivalente visible sin gesto: el deslizamiento es atajo, nunca unica via. El swipe vive encapsulado en la pieza duena — no existe un SwipeActions generico (censo 1.x, 7-sep-2026).",
+        "level": "must",
+        "verify": "manual"
       }
     ]
   },

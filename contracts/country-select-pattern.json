@@ -2,6 +2,7 @@
   "id": "country-select-pattern",
   "name": "Selector de pais",
   "layer": "patterns",
+  "kind": "receta",
   "function": [
     "forms"
   ],

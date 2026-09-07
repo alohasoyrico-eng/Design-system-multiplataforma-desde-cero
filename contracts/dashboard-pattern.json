@@ -2,6 +2,7 @@
   "id": "dashboard-pattern",
   "name": "Dashboard / analytics",
   "layer": "patterns",
+  "kind": "receta",
   "function": [
     "dataviz"
   ],

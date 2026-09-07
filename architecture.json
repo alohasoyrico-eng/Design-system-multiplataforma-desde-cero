@@ -917,13 +917,36 @@
     {
       "id": "country-select-pattern",
       "layer": "patterns",
+      "kind": "receta",
       "domain": null,
       "src": null,
       "contract": "contracts/country-select-pattern.json"
     },
     {
+      "id": "pull-to-refresh",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/pull-to-refresh.json"
+    },
+    {
+      "id": "transfer-list",
+      "layer": "patterns",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/transfer-list.json"
+    },
+    {
+      "id": "avatar-group",
+      "layer": "primitives",
+      "domain": null,
+      "src": null,
+      "contract": "contracts/avatar-group.json"
+    },
+    {
       "id": "search-pattern",
       "layer": "patterns",
+      "kind": "receta",
       "domain": null,
       "src": null,
       "contract": "contracts/search-pattern.json"
@@ -931,6 +954,7 @@
     {
       "id": "crud",
       "layer": "patterns",
+      "kind": "receta",
       "domain": null,
       "src": null,
       "contract": "contracts/crud.json"
@@ -938,6 +962,7 @@
     {
       "id": "wizard-pattern",
       "layer": "patterns",
+      "kind": "receta",
       "domain": null,
       "src": null,
       "contract": "contracts/wizard-pattern.json"
@@ -945,6 +970,7 @@
     {
       "id": "dashboard-pattern",
       "layer": "patterns",
+      "kind": "receta",
       "domain": null,
       "src": null,
       "contract": "contracts/dashboard-pattern.json"

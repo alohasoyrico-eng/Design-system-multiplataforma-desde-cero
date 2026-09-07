@@ -2,6 +2,7 @@
   "id": "search-pattern",
   "name": "Busqueda global",
   "layer": "patterns",
+  "kind": "receta",
   "function": [
     "navigation"
   ],

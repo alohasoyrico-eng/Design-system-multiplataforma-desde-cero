@@ -1,0 +1,68 @@
+{
+  "id": "pull-to-refresh",
+  "name": "PullToRefresh",
+  "layer": "patterns",
+  "function": [
+    "feedback"
+  ],
+  "status": "proposed",
+  "summary": "Tirar hacia abajo para refrescar una lista en touch. Nace del censo 1.x (7-sep-2026): existia como FlowPullToRefresh y no cruzo el puente. Historia exigente: Wallet y Rutas del banco mobile.",
+  "api": {
+    "members": [
+      {
+        "name": "onRefresh",
+        "kind": "event",
+        "type": "() => Promise<void>",
+        "required": true
+      },
+      {
+        "name": "refreshing",
+        "kind": "prop",
+        "type": "boolean",
+        "default": false,
+        "note": "Controlado: la pantalla decide cuando termino."
+      },
+      {
+        "name": "children",
+        "kind": "slot",
+        "type": "React.ReactNode"
+      }
+    ]
+  },
+  "conformance": {
+    "criteria": [
+      {
+        "id": "ptr-1",
+        "rule": "El gesto es atajo, nunca unica via: la misma pantalla ofrece refresco sin gesto (boton visible o recarga automatica).",
+        "level": "must",
+        "verify": "manual"
+      },
+      {
+        "id": "ptr-2",
+        "rule": "El indicador anuncia el estado al lector (aria-busy en la region) y con prefers-reduced-motion deja de girar sin dejar de informar.",
+        "level": "must",
+        "verify": "automated"
+      },
+      {
+        "id": "ptr-3",
+        "rule": "El umbral de disparo da retroalimentacion progresiva y soltar antes del umbral cancela sin efecto: tirar no es disparar.",
+        "level": "must",
+        "verify": "visual"
+      }
+    ]
+  },
+  "tokens": [
+    "--status-live",
+    "--surface-sunken",
+    "--dur-fast"
+  ],
+  "nonGoals": [
+    "No pagina ni carga incremental: eso es de List.",
+    "No existe en desktop: con mouse el refresco es el boton."
+  ],
+  "platforms": {
+    "web": "spec",
+    "angular": "n/a",
+    "flutter": "spec"
+  }
+}

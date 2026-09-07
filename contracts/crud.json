@@ -2,6 +2,7 @@
   "id": "crud",
   "name": "Listado + detalle (CRUD)",
   "layer": "patterns",
+  "kind": "receta",
   "function": [
     "display"
   ],
