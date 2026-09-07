@@ -10,12 +10,17 @@ export interface StatTileProps {
   trend?: number[]
   icon?: string
   tone?: 'neutral' | 'success' | 'warning' | 'danger'
+  /** JUICIO del delta — el color verde/rojo. Sin él, se deriva del signo
+      («+» sube = success), que solo vale cuando subir es bueno: en un KPI de
+      gasto o consumo, «+330%» pintaba success (cazado en eOne). La flecha
+      sigue diciendo la DIRECCIÓN por el signo; esto dice si es buena. */
+  deltaTone?: 'success' | 'danger' | 'neutral'
   description?: string
   loading?: boolean
   style?: CSSProperties
 }
 
-export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', description, loading, style }: StatTileProps) {
+export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', deltaTone, description, loading, style }: StatTileProps) {
   const toneColor = tone === 'success' ? 'var(--status-success-text)'
     : tone === 'danger' ? 'var(--status-danger-text)'
     : tone === 'warning' ? 'var(--status-warning-text)'
@@ -23,7 +28,10 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', d
 
   const deltaUp = delta && (delta.startsWith('+') || delta.startsWith('↑'))
   const deltaDown = delta && (delta.startsWith('-') || delta.startsWith('−') || delta.startsWith('↓'))
-  const deltaColor = deltaUp ? 'var(--status-success-text)' : deltaDown ? 'var(--status-danger-text)' : 'var(--text-muted)'
+  const judgement = deltaTone ?? (deltaUp ? 'success' : deltaDown ? 'danger' : 'neutral')
+  const deltaColor = judgement === 'success' ? 'var(--status-success-text)'
+    : judgement === 'danger' ? 'var(--status-danger-text)'
+    : 'var(--text-muted)'
   const deltaIcon = deltaUp ? 'trending_up' : deltaDown ? 'trending_down' : 'trending_flat'
 
   // stt-6: en loading la cifra no existe — esqueleto oculto al lector, sin datos falsos

@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.4] — 2026-09-07
+
+### Añadido
+- **`StatTile.deltaTone`**: el color del delta deja de deducirse SOLO del signo. «+» pintaba success siempre — y en un KPI de gasto o consumo, subir es malo (cazado en eOne: «+330 % de gasto» en verde). La flecha sigue diciendo la dirección; `deltaTone` dice si es buena. Sin la prop, el comportamiento de siempre.
+
 ## [0.6.3] — 2026-09-07
 
 ### Añadido
