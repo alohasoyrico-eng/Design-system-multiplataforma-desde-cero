@@ -31,7 +31,8 @@
     "./specimens": {
       "types": "./dist-lib/types/specimens/index.d.ts",
       "import": "./dist-lib/specimens/index.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "CHANGELOG.md",
