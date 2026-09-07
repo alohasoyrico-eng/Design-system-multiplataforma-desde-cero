@@ -15,6 +15,10 @@
  *   C3  toda prop documentada existe en la interfaz <Name>Props real
  *   C4  toda prop real está documentada (children/style/className exentas)
  *   C5  ninguna ficha recomienda un componente absorbido
+ *   C6  toda ficha declara qué es: receta (kind), stub, backlog (proposed/
+ *       deprecated) o código (src). Antes cada medidor saltaba en silencio lo
+ *       que no podía clasificar y las fichas sin naturaleza sobrevivían
+ *       auditoría tras auditoría (censo 7-sep-2026: 9 fichas arrastradas).
  */
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
@@ -97,6 +101,25 @@ for (const [id, v] of Object.entries(items)) {
   const doc = new Set(v.members.map((x) => x.n))
   for (const n of doc) if (!real.has(n) && !EXENTAS.has(n)) F('C3', 'ficha:' + id, `documenta la prop "${n}" y la interfaz no la tiene`)
   for (const n of real) if (!doc.has(n) && !EXENTAS.has(n)) F('C4', 'ficha:' + id, `la prop "${n}" existe en la interfaz y no está documentada`)
+}
+
+// ---------- C6: toda ficha declara qué es ----------
+// El default se invierte: una ficha que ninguna regla reclama es hallazgo,
+// no skip. status vacío significa "estable" para inventory-sync; aquí solo
+// se exige que, de venir, esté en el enum.
+const STATUS_ENUM = new Set(['', 'stable', 'beta', 'proposed', 'deprecated'])
+const tieneSrc = (v) => (Array.isArray(v.src) ? v.src.length > 0 : Boolean(v.src))
+for (const [id, v] of Object.entries(items)) {
+  if (!STATUS_ENUM.has(v.status ?? '')) {
+    F('C6', 'ficha:' + id, `status "${v.status}" fuera del enum: la ficha no dice qué es`)
+    continue
+  }
+  if (v.kind === 'receta') {
+    if (tieneSrc(v)) F('C6', 'ficha:' + id, 'es receta y declara src: una receta se demuestra con pantallas que la siguen, no con un componente propio')
+    continue
+  }
+  if (v.stub || v.status === 'proposed' || v.status === 'deprecated') continue
+  if (!tieneSrc(v)) F('C6', 'ficha:' + id, 'sin src, sin stub y sin estado de backlog: nadie la reclama — o es receta (kind), o es stub, o le falta el código')
 }
 
 // ---------- C5: absorbidos recomendados ----------

@@ -7784,6 +7784,7 @@
  "country-select-pattern": {
   "name": "Selector de país",
   "layer": "patterns",
+  "kind": "receta",
   "status": "",
   "summary": "País con bandera y código telefónico: Select searchable + renderOption + Flag. La lista de países es dato del producto, no del sistema.",
   "fn": [],
@@ -7822,6 +7823,7 @@
  "search-pattern": {
   "name": "Búsqueda global",
   "layer": "patterns",
+  "kind": "receta",
   "status": "",
   "summary": "Ir a una entidad conocida: palette ⌘K, input inline o página de resultados. Elige la forma por el trabajo, no por el gusto.",
   "fn": [],
@@ -7862,6 +7864,7 @@
  "crud": {
   "name": "Listado + detalle (CRUD)",
   "layer": "patterns",
+  "kind": "receta",
   "status": "",
   "summary": "Tabla con filtros, panel de detalle en Drawer y confirmación destructiva en Dialog.",
   "fn": [],
@@ -8008,6 +8011,7 @@
  "wizard-pattern": {
   "name": "Formulario multi-paso (Wizard)",
   "layer": "patterns",
+  "kind": "receta",
   "status": "",
   "summary": "Stepper con validación por paso, estado persistente y resumen antes de enviar.",
   "fn": [],
@@ -8048,6 +8052,7 @@
  "dashboard-pattern": {
   "name": "Dashboard / analytics",
   "layer": "patterns",
+  "kind": "receta",
   "status": "",
   "summary": "KPIs arriba, una gráfica principal, apoyo secundario y tabla de actividad. Un solo CTA accent por vista.",
   "fn": [],
@@ -10101,8 +10106,8 @@
   ],
   "domain": "",
   "shell": false,
-  "stub": false,
-  "stubNote": "",
+  "stub": true,
+  "stubNote": "Spec completa sin codigo: nace cuando una pantalla lo exija (SwipeActions vivira aqui — trw-5). Censo 7-sep-2026: la ficha afirmaba src implicito que nunca existio en este repo.",
   "shellOf": [],
   "src": "",
   "platforms": {
@@ -10214,8 +10219,8 @@
   ],
   "domain": "mobility",
   "shell": false,
-  "stub": false,
-  "stubNote": "",
+  "stub": true,
+  "stubNote": "Spec sin codigo. Historia esperando: qr-station-scan (banco driver). Censo 7-sep-2026.",
   "shellOf": [],
   "src": "",
   "platforms": {
@@ -13973,8 +13978,8 @@
   ],
   "domain": "",
   "shell": false,
-  "stub": false,
-  "stubNote": "",
+  "stub": true,
+  "stubNote": "Prioridad eOne (personalizar dashboard). Base disponible: dashboard-pattern + widget-library + widget-frame. Censo 7-sep-2026: estaba en beta sin codigo — beta afirma existencia; stub dice la verdad.",
   "shellOf": [],
   "src": "",
   "platforms": {
@@ -14662,5 +14667,218 @@
    "El tema oscuro sube el acento a #FF6A52 para mantener contraste"
   ],
   "nonGoals": []
+ },
+ "pull-to-refresh": {
+  "name": "PullToRefresh",
+  "layer": "patterns",
+  "status": "proposed",
+  "summary": "Tirar hacia abajo para refrescar una lista en touch. Nace del censo 1.x (7-sep-2026): existia como FlowPullToRefresh y no cruzo el puente. Historia exigente: Wallet y Rutas del banco mobile.",
+  "fn": [
+   "feedback"
+  ],
+  "domain": "",
+  "shell": false,
+  "stub": false,
+  "stubNote": "",
+  "shellOf": [],
+  "src": "",
+  "platforms": {
+   "web": "spec",
+   "angular": "n/a",
+   "flutter": "spec"
+  },
+  "anatomy": "",
+  "tokens": [
+   "--status-live",
+   "--surface-sunken",
+   "--dur-fast"
+  ],
+  "variants": [],
+  "members": [
+   {
+    "n": "onRefresh",
+    "k": "event",
+    "t": "() => Promise<void>",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "refreshing",
+    "k": "prop",
+    "t": "boolean",
+    "d": "false",
+    "r": false,
+    "rw": "",
+    "note": "Controlado: la pantalla decide cuando termino."
+   },
+   {
+    "n": "children",
+    "k": "slot",
+    "t": "React.ReactNode",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
+  "dos": [],
+  "donts": [],
+  "when": [],
+  "notWhen": [],
+  "a11y": [],
+  "nonGoals": [
+   "No pagina ni carga incremental: eso es de List.",
+   "No existe en desktop: con mouse el refresco es el boton."
+  ]
+ },
+ "transfer-list": {
+  "name": "TransferList",
+  "layer": "patterns",
+  "status": "proposed",
+  "summary": "Asignacion masiva entre dos conjuntos: agregar, editar o quitar usuarios, unidades o permisos moviendolos entre paneles con busqueda por lado. Nace del censo 1.x (7-sep-2026) por decision explicita. Historia exigente: config-roles y fleet-assignment.",
+  "fn": [
+   "forms"
+  ],
+  "domain": "",
+  "shell": false,
+  "stub": false,
+  "stubNote": "",
+  "shellOf": [],
+  "src": "",
+  "platforms": {
+   "web": "spec",
+   "angular": "n/a",
+   "flutter": "n/a"
+  },
+  "anatomy": "",
+  "tokens": [
+   "--surface-card",
+   "--border-subtle",
+   "--hit-target-min",
+   "--gap-stack"
+  ],
+  "variants": [],
+  "members": [
+   {
+    "n": "source",
+    "k": "prop",
+    "t": "TransferItem[]",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": "Disponibles. TransferItem = { id, label, meta? }."
+   },
+   {
+    "n": "target",
+    "k": "prop",
+    "t": "TransferItem[]",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": "Asignados. Controlado: la pantalla es duena del estado."
+   },
+   {
+    "n": "onChange",
+    "k": "event",
+    "t": "(target: TransferItem[]) => void",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "titles",
+    "k": "prop",
+    "t": "[string, string]",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Nombre de cada panel."
+   },
+   {
+    "n": "searchable",
+    "k": "prop",
+    "t": "boolean",
+    "d": "true",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
+  "dos": [],
+  "donts": [],
+  "when": [],
+  "notWhen": [],
+  "a11y": [],
+  "nonGoals": [
+   "No persiste nada: la pantalla decide cuando confirmar la asignacion.",
+   "No es un arbol: conjuntos planos; jerarquias van en table-tree."
+  ]
+ },
+ "avatar-group": {
+  "name": "AvatarGroup",
+  "layer": "primitives",
+  "status": "proposed",
+  "summary": "Apilado de avatares con solape y desborde '+N'. Extiende avatar: mismo tamano, mismo anillo. Nace del censo 1.x (7-sep-2026). Historia exigente: fleet-assignment — una unidad con varios conductores asignados.",
+  "fn": [
+   "display"
+  ],
+  "domain": "",
+  "shell": false,
+  "stub": false,
+  "stubNote": "",
+  "shellOf": [],
+  "src": "",
+  "platforms": {
+   "web": "spec",
+   "angular": "n/a",
+   "flutter": "spec"
+  },
+  "anatomy": "",
+  "tokens": [
+   "--surface-card",
+   "--radius-pill"
+  ],
+  "variants": [],
+  "members": [
+   {
+    "n": "people",
+    "k": "prop",
+    "t": "AvatarProps[]",
+    "d": "",
+    "r": true,
+    "rw": "",
+    "note": ""
+   },
+   {
+    "n": "max",
+    "k": "prop",
+    "t": "number",
+    "d": "4",
+    "r": false,
+    "rw": "",
+    "note": "Del quinto en adelante, '+N'."
+   },
+   {
+    "n": "size",
+    "k": "prop",
+    "t": "'sm' | 'md' | 'lg'",
+    "d": "md",
+    "r": false,
+    "rw": "",
+    "note": ""
+   }
+  ],
+  "dos": [],
+  "donts": [],
+  "when": [],
+  "notWhen": [],
+  "a11y": [],
+  "nonGoals": [
+   "No lista a las personas: al tocar, la pantalla decide que abrir.",
+   "No reordena por estado: el orden es el que llega."
+  ]
  }
 }

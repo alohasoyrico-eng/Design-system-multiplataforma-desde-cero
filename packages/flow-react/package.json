@@ -38,7 +38,8 @@
     "dist-lib",
     "public/fonts",
     "src/data/items.json",
-    "docs/USUARIO.md"
+    "docs/USUARIO.md",
+    "docs/MIGRACION-1x.md"
   ],
   "scripts": {
     "build:lib": "vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json && cp src/reset.css dist-lib/reset.css && cp generated/tokens/css/compat-eone.css dist-lib/compat-eone.css",

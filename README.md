@@ -135,6 +135,7 @@ La ruta pantalla-a-pantalla, con los puentes que trae el paquete:
    - `FlowTag` → `StatusPill` (tonos `success|warning|danger|info|neutral`); el `variant=code` es `InlineCode`.
    - `FlowKPICard` → `StatTile` · `FlowDataTable` → `Table` + `Pagination` + `ActiveFilters` · `FlowMultiSelect` → `Select multiple` · `FlowFullscreenSheet` → `BottomSheet fullscreen`.
    - `DateRangePicker` sigue exportado como alias deprecado de `DatePicker mode="range"`.
+   - El mapa completo — renombres, absorciones, muertes declaradas (V6–V12 + censo de piezas) y nacencias `proposed` — vive en [`docs/MIGRACION-1x.md`](packages/flow-react/docs/MIGRACION-1x.md), que también viaja en el paquete.
 6. **Text (×841)**: el DS no tiene componente Text a propósito — la tipografía son roles `--type-*` consumidos con `font:`. El puente es un shim en eOne (capa de la app) que mapea variantes a roles: `caption`→`--type-data-sm`, `label-s`→`--type-label-sm`, `heading-*`→`--type-title-*`, `code`→`--type-data`.
 7. **i18n**: envuelve la app con `FlowIntlProvider` (o tu propio `IntlProvider` de react-intl).
 
