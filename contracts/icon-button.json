@@ -24,7 +24,7 @@
       {
         "name": "variant",
         "kind": "prop",
-        "type": "'ghost' | 'tonal' | 'primary' | 'accent'",
+        "type": "'ghost' | 'tonal' | 'primary' | 'secondary'",
         "default": "ghost",
         "variantAxis": true
       },

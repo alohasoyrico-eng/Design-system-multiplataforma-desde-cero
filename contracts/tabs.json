@@ -52,7 +52,7 @@
       {
         "name": "variant",
         "kind": "prop",
-        "type": "'pill' | 'underline'",
+        "type": "'pill' | 'underline' | 'bar'",
         "default": "pill",
         "variantAxis": true
       },

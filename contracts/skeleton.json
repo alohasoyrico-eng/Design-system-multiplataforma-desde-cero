@@ -12,7 +12,7 @@
       {
         "name": "variant",
         "kind": "prop",
-        "type": "'text' | 'title' | 'circle' | 'card' | 'pill'",
+        "type": "'text' | 'title' | 'circle' | 'card'",
         "default": "text",
         "variantAxis": true
       },

@@ -12,7 +12,7 @@
       {
         "name": "status",
         "kind": "prop",
-        "type": "'loading' | 'success' | 'error' | 'offline'",
+        "type": "'loading' | 'success' | 'error' | 'pending' | 'offline'",
         "default": "loading",
         "variantAxis": true
       },
