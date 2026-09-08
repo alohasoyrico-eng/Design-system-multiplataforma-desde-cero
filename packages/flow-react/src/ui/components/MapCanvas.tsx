@@ -30,6 +30,12 @@ export interface MapCanvasProps {
   onPinClick?: (id: string) => void
   route?: MapRoute
   routeColor?: string
+  /** mpc-2: puntos a ENCUADRAR. Cuando el conjunto cambia, el mapa se centra
+      y elige el zoom que los contiene con margen — el gesto de «enséñame lo
+      filtrado» (cazado en eOne: al filtrar por estado, el mapa viaja a ese
+      estado; al soltar el filtro, vuelve al país). El pan del usuario se
+      respeta hasta el siguiente cambio del conjunto. */
+  fitBounds?: [number, number][]
   /** El fondo es lienzo: en mono (default) los tiles van en escala de grises y
       el color queda reservado a pins y ruta — el matiz es del dato, no del mapa. */
   tone?: 'mono' | 'color'
@@ -118,7 +124,7 @@ function useDataMode() {
 
 export function MapCanvas({
   center, zoom: zoomProp = 13, pins = [], selectedPin,
-  onPinClick, route, routeColor, style,
+  onPinClick, route, routeColor, fitBounds, style,
   tone = 'mono',
 }: MapCanvasProps) {
   const t = useT()
@@ -150,6 +156,58 @@ export function MapCanvas({
 
   const cx = lon2x(center[1], zoom) * TILE + offset.x
   const cy = lat2y(center[0], zoom) * TILE + offset.y
+
+  /* mpc-2: el centro es CONTROLADO — cuando el dueño lo cambia, el mapa va
+     ahí y el pan acumulado se suelta. Sin esto, seguir una selección tras
+     un encuadre sumaba el desplazamiento viejo y centraba en otro sitio. */
+  const centerKey = `${center[0]},${center[1]}`
+  useEffect(() => {
+    setOffset({ x: 0, y: 0 })
+  }, [centerKey])
+
+  /* mpc-2: encuadre. La clave resume el conjunto — recuento + caja — para
+     no reencuadrar en cada render con la misma selección; el tamaño del
+     lienzo se lee por ref para que un resize no pelee con el pan. */
+  const sizeRef = useRef(size)
+  sizeRef.current = size
+  const fitKey = (() => {
+    if (!fitBounds || fitBounds.length === 0) return ''
+    let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity
+    for (const [lat, lon] of fitBounds) {
+      if (lat < minLat) minLat = lat
+      if (lat > maxLat) maxLat = lat
+      if (lon < minLon) minLon = lon
+      if (lon > maxLon) maxLon = lon
+    }
+    return `${fitBounds.length}|${minLat.toFixed(4)},${minLon.toFixed(4)},${maxLat.toFixed(4)},${maxLon.toFixed(4)}`
+  })()
+
+  useEffect(() => {
+    if (!fitKey) return
+    const [n, box] = fitKey.split('|')
+    void n
+    const [minLat, minLon, maxLat, maxLon] = box!.split(',').map(Number) as [number, number, number, number]
+    const { w, h } = sizeRef.current
+    const pad = 48
+
+    let z = 18
+    for (; z > 2; z--) {
+      const bw = (lon2x(maxLon, z) - lon2x(minLon, z)) * TILE
+      const bh = (lat2y(minLat, z) - lat2y(maxLat, z)) * TILE
+      if (bw <= w - pad * 2 && bh <= h - pad * 2) break
+    }
+
+    const cLat = (minLat + maxLat) / 2
+    const cLon = (minLon + maxLon) / 2
+    setZoom(z)
+    // El centro es un prop: el viaje se expresa como pan respecto a él.
+    setOffset({
+      x: (lon2x(cLon, z) - lon2x(center[1], z)) * TILE,
+      y: (lat2y(cLat, z) - lat2y(center[0], z)) * TILE,
+    })
+    // Solo cuando CAMBIA el conjunto: el pan del usuario manda entre medias.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fitKey])
 
   const loadTile = useCallback((key: string, src: string): HTMLImageElement | null => {
     const cached = tileCache.current.get(key)

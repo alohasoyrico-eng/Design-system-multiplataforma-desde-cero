@@ -129,6 +129,24 @@ describe('MapCanvas', () => {
     expect(screen.getByLabelText(/CDMX/)).toBeInTheDocument()
   })
 
+  // mpc-2: el encuadre no revienta y convive con pins y ruta.
+  it('acepta fitBounds sin reventar (mpc-2)', () => {
+    const { container, rerender } = render(
+      <MapCanvas
+        center={[23.6, -102.5]}
+        zoom={5}
+        pins={pins}
+        fitBounds={[[19.4, -99.1], [20.7, -103.3]]}
+      />,
+    )
+    expect(container.querySelector('canvas')).toBeInTheDocument()
+    // cambiar el conjunto reencuadra sin error
+    rerender(
+      <MapCanvas center={[23.6, -102.5]} zoom={5} pins={pins} fitBounds={[[25.7, -100.3]]} />,
+    )
+    expect(container.querySelector('canvas')).toBeInTheDocument()
+  })
+
   it('acepta la ruta por tramos sin reventar (mpc-1)', () => {
     const { container } = render(
       <MapCanvas

@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.23] — 2026-09-08
+
+### Añadido
+- **MapCanvas: encuadre y centro controlado (mpc-2)** — `fitBounds` recibe los puntos a encuadrar: cuando el conjunto cambia, el mapa se centra y elige el zoom que los contiene con margen; entre cambios, el pan del usuario manda. Y el `center` pasa a ser controlado de verdad: al cambiarlo, el mapa va ahí y suelta el pan acumulado — sin esto, seguir una selección tras un encuadre sumaba el desplazamiento viejo y centraba en otro sitio. Cazado en eOne: al filtrar por estado el mapa viaja a ese estado, al soltar el filtro vuelve al país. Era la pérdida asumida del 0.6.21 (el fitBounds de Leaflet); dejó de ser asumible cuando el dueño la pidió.
+
 ## [0.6.22] — 2026-09-08
 
 ### Añadido
