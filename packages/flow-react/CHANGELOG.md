@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.28] — 2026-09-08
+
+### Añadido
+- **DataTable usa la Paginación completa (dtb-7)** — el pie pasa de páginas peladas al contrato entero que Pagination ya tenía: rango «X–Y de Z», páginas y selector de tamaño (`pageSizeOptions`). El nav se estira al ancho del pie y el rango empuja a la izquierda — páginas y selector cierran por la derecha; en uso compacto nada cambia. Pedido por el dueño de eOne para el directorio de estaciones.
+
 ## [0.6.27] — 2026-09-08
 
 ### Arreglado

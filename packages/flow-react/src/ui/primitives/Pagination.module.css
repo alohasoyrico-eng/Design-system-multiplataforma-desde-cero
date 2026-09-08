@@ -51,10 +51,15 @@
 }
 
 /* pag-6: el rango se dice en texto, en cifra de dato */
+/* dtb-7: con el nav estirado a lo ancho, el rango empuja a la izquierda y
+   páginas + selector cierran por la derecha; compacto, no cambia nada. */
 .range {
   font: var(--type-body-sm);
   color: var(--text-muted);
-  margin-inline-end: var(--space-2);
+  padding-inline-end: var(--space-2);
+  /* dtb-7: con el nav estirado, el rango empuja a la izquierda y páginas +
+     selector cierran por la derecha; compacto, el auto colapsa y no cambia. */
+  margin-inline-end: auto;
   font-variant-numeric: tabular-nums;
 }
 

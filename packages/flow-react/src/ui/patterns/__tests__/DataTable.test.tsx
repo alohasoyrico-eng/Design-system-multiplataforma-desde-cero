@@ -20,6 +20,23 @@ describe('DataTable', () => {
     expect(screen.getByRole('searchbox')).toBeInTheDocument()
   })
 
+  // dtb-7: con pageSizeOptions el pie trae rango y selector de tamaño.
+  it('la paginación completa enseña rango y selector (dtb-7)', () => {
+    const muchos = Array.from({ length: 30 }, (_, i) => ({ id: String(i), nombre: `Fila ${i}`, valor: i }))
+    renderWithIntl(
+      <DataTable
+        columns={columns}
+        rows={muchos}
+        rowKey="id"
+        caption="Cosas"
+        pageSize={10}
+        pageSizeOptions={[10, 25]}
+      />,
+    )
+    expect(screen.getByText('1–10 de 30')).toBeInTheDocument()
+    expect(screen.getByText(/Por página/)).toBeInTheDocument()
+  })
+
   // dtb-6: sin buscador cuando el dueño ya filtra aguas arriba.
   it('searchable=false oculta el buscador (dtb-6)', () => {
     renderWithIntl(

@@ -21,6 +21,9 @@ export interface DataTableProps<T = Record<string, unknown>> {
   searchable?: boolean
   /** Filas por página; la paginación solo aparece si hay más filas. */
   pageSize?: number
+  /** dtb-7: pasos del selector de tamaño de página. Con ella, el pie usa la
+      Paginación COMPLETA del sistema: rango «X–Y de Z», páginas y selector. */
+  pageSizeOptions?: number[]
   onRowClick?: (row: T) => void
   selectedKey?: string | number
   density?: Density
@@ -45,6 +48,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   searchPlaceholder,
   searchable = true,
   pageSize = 10,
+  pageSizeOptions,
   onRowClick,
   selectedKey,
   density,
@@ -58,6 +62,8 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   const [altoPagina, setAltoPagina] = useState<number>()
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
+  /* dtb-7: el tamaño de página es del usuario cuando hay selector. */
+  const [size, setSize] = useState(pageSize)
   const [sort, setSort] = useState<TableSort | null>(null)
 
   const filtered = useMemo(() => {
@@ -85,9 +91,9 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
     })
   }, [filtered, sort])
 
-  const pages = Math.max(1, Math.ceil(sorted.length / pageSize))
+  const pages = Math.max(1, Math.ceil(sorted.length / size))
   const safePage = Math.min(page, pages)
-  const visible = sorted.slice((safePage - 1) * pageSize, safePage * pageSize)
+  const visible = sorted.slice((safePage - 1) * size, safePage * size)
 
   const buscar = (v: string) => {
     setQuery(v)
@@ -102,10 +108,10 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
     : t('flow.dataTable.empty', 'Sin resultados para «{q}»', { q: consulta })
 
   useLayoutEffect(() => {
-    if (zonaRef.current && visible.length === pageSize) {
+    if (zonaRef.current && visible.length === size) {
       setAltoPagina(zonaRef.current.offsetHeight)
     }
-  }, [visible.length, pageSize, density])
+  }, [visible.length, size, density])
 
   return (
     <div className={css.root} style={style}>
@@ -157,7 +163,23 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
         />
       )}
       </div>
-      {pages > 1 && <Pagination page={safePage} pages={pages} onChange={setPage} />}
+      {/* dtb-7: la Paginación completa, a lo ancho del pie — el rango a la
+          izquierda, páginas y selector de tamaño cierran por la derecha. */}
+      {pages > 1 && (
+        <Pagination
+          page={safePage}
+          pages={pages}
+          onChange={setPage}
+          total={sorted.length}
+          pageSize={size}
+          pageSizeOptions={pageSizeOptions}
+          onPageSizeChange={(next) => {
+            setSize(next)
+            setPage(1)
+          }}
+          style={{ width: '100%' }}
+        />
+      )}
     </div>
   )
 }
