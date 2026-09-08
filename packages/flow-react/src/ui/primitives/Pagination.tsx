@@ -29,14 +29,18 @@ export function Pagination({
   style,
 }: PaginationProps) {
   const t = useT()
+  /* pag-7: ventana de ancho CONSTANTE (7 casillas). Cerca de los bordes la
+     vecindad se ensancha en vez de encoger, para que la fila no cambie de
+     ancho ni las flechas se muevan bajo el cursor al navegar. */
   const range = (): (number | '...')[] => {
-    const r: (number | '...')[] = []
-    for (let i = 1; i <= pages; i++) {
-      if (i === 1 || i === pages || Math.abs(i - page) <= 1) r.push(i)
-      else if (r[r.length - 1] !== '...') r.push('...')
-    }
-    return r
+    if (pages <= 7) return Array.from({ length: pages }, (_, i) => i + 1)
+    if (page <= 4) return [1, 2, 3, 4, 5, '...', pages]
+    if (page >= pages - 3) return [1, '...', pages - 4, pages - 3, pages - 2, pages - 1, pages]
+    return [1, '...', page - 1, page, page + 1, '...', pages]
   }
+  /* pag-7: primera/última solo cuando la lista se trunca — con todos los
+     números visibles el salto ya está a un clic y las flechas extra estorban. */
+  const truncada = pages > 7
 
   // pag-6: el rango se dice en texto
   const desde = total != null && pageSize != null ? Math.min((page - 1) * pageSize + 1, total) : null
@@ -48,6 +52,16 @@ export function Pagination({
         <span className={css.range}>
           {t('flow.pagination.range', '{a}–{b} de {n}', { a: desde, b: hasta ?? desde, n: total ?? desde })}
         </span>
+      )}
+      {truncada && (
+        <button
+          className={css.arrow}
+          onClick={() => page > 1 && onChange?.(1)}
+          disabled={page <= 1}
+          aria-label={t('flow.pagination.first', 'Primera página')}
+        >
+          <span className="flow-symbol flow-symbol--default" aria-hidden="true">first_page</span>
+        </button>
       )}
       <button
         className={css.arrow}
@@ -87,6 +101,16 @@ export function Pagination({
       >
         <span className="flow-symbol flow-symbol--default" aria-hidden="true">chevron_right</span>
       </button>
+      {truncada && (
+        <button
+          className={css.arrow}
+          onClick={() => page < pages && onChange?.(pages)}
+          disabled={page >= pages}
+          aria-label={t('flow.pagination.last', 'Última página')}
+        >
+          <span className="flow-symbol flow-symbol--default" aria-hidden="true">last_page</span>
+        </button>
+      )}
       {pageSizeOptions && pageSizeOptions.length > 0 && (
         <span className={css.sizer}>
           <Select

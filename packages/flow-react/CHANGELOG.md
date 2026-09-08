@@ -3,6 +3,14 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.29] — 2026-09-08
+
+### Cambiado
+- **Pagination: ventana de ancho constante (pag-7)** — la vecindad `±1 + extremos` encogía la fila en los bordes (en la página 1 de 582 quedaban solo «1 2 … 582»). Ahora la ventana son SIEMPRE 7 casillas cuando hay más de 7 páginas: cerca de los bordes la vecindad se ensancha en vez de encoger, así la fila no cambia de ancho ni las flechas se mueven bajo el cursor al navegar.
+
+### Añadido
+- **Pagination: primera/última página (pag-7)** — botones de salto a los extremos (`first_page`/`last_page`), solo cuando la lista se trunca: con todos los números visibles el salto ya está a un clic y las flechas extra estorban. Pedido por el dueño de eOne para el directorio de estaciones.
+
 ## [0.6.28] — 2026-09-08
 
 ### Añadido
