@@ -93,6 +93,8 @@ describe('MapCanvas', () => {
     render(<MapCanvas center={[19.43, -99.13]} />)
     expect(screen.getByLabelText('Acercar')).toBeInTheDocument()
     expect(screen.getByLabelText('Alejar')).toBeInTheDocument()
+    // mpc-5: el pan y el zoom manual siempre tienen regreso.
+    expect(screen.getByLabelText('Centrar el mapa')).toBeInTheDocument()
   })
 
   it('renders with pins without error', () => {

@@ -3,6 +3,14 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.27] — 2026-09-08
+
+### Arreglado
+- **MapCanvas: el zoom conserva el lugar (mpc-5)** — el offset del paneo vive en píxeles de mundo y el mundo duplica su tamaño por nivel: los botones ± cambiaban de nivel sin reescalarlo y la rueda además reseteaba el paneo a cero, así que zoomear estando paneado «teletransportaba» (cazado en eOne: «el zoom está súper buggy»). Ahora todo cambio de nivel reescala el offset y el lugar bajo el cursor se queda donde estaba.
+
+### Añadido
+- **MapCanvas: botón de centrar (mpc-5)** — junto al zoom, vuelve al encuadre: del conjunto de `fitBounds` si lo hay, del centro declarado si no. El pan y el zoom manual siempre tienen regreso.
+
 ## [0.6.26] — 2026-09-08
 
 ### Añadido

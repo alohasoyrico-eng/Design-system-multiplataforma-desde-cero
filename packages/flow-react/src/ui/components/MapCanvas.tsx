@@ -187,11 +187,27 @@ export function MapCanvas({
     return `${fitBounds.length}|${minLat.toFixed(4)},${minLon.toFixed(4)},${maxLat.toFixed(4)},${maxLon.toFixed(4)}`
   })()
 
-  useEffect(() => {
-    if (!fitKey) return
-    const [n, box] = fitKey.split('|')
-    void n
-    const [minLat, minLon, maxLat, maxLon] = box!.split(',').map(Number) as [number, number, number, number]
+  const fitBoundsRef = useRef(fitBounds)
+  fitBoundsRef.current = fitBounds
+  const centerRef = useRef(center)
+  centerRef.current = center
+
+  /* mpc-5: el encuadre como función — la usan el efecto (cuando cambia el
+     conjunto) y el botón de centrar (cuando quien panea quiere volver). */
+  const runFit = useCallback(() => {
+    const points = fitBoundsRef.current
+    if (!points || points.length === 0) {
+      setZoom(zoomProp)
+      setOffset({ x: 0, y: 0 })
+      return
+    }
+    let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity
+    for (const [lat, lon] of points) {
+      if (lat < minLat) minLat = lat
+      if (lat > maxLat) maxLat = lat
+      if (lon < minLon) minLon = lon
+      if (lon > maxLon) maxLon = lon
+    }
     const { w, h } = sizeRef.current
     const pad = 48
 
@@ -204,12 +220,18 @@ export function MapCanvas({
 
     const cLat = (minLat + maxLat) / 2
     const cLon = (minLon + maxLon) / 2
+    const [centerLat, centerLon] = centerRef.current
     setZoom(z)
     // El centro es un prop: el viaje se expresa como pan respecto a él.
     setOffset({
-      x: (lon2x(cLon, z) - lon2x(center[1], z)) * TILE,
-      y: (lat2y(cLat, z) - lat2y(center[0], z)) * TILE,
+      x: (lon2x(cLon, z) - lon2x(centerLon, z)) * TILE,
+      y: (lat2y(cLat, z) - lat2y(centerLat, z)) * TILE,
     })
+  }, [zoomProp])
+
+  useEffect(() => {
+    if (!fitKey) return
+    runFit()
     // Solo cuando CAMBIA el conjunto: el pan del usuario manda entre medias.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fitKey])
@@ -535,13 +557,21 @@ export function MapCanvas({
 
   /* ── Event handlers ──────────────────────────────────── */
 
+  /* mpc-5: cambiar de zoom CONSERVA el lugar. El offset vive en píxeles de
+     mundo y el mundo duplica su tamaño por nivel: sin reescalarlo, el mismo
+     offset apunta a otro sitio y el zoom «teletransporta» (cazado en eOne).
+     La rueda, además, reseteaba el paneo a cero. */
+  const applyZoom = (next: number) => {
+    const clamped = Math.max(2, Math.min(18, next))
+    if (clamped === zoom) return
+    const factor = Math.pow(2, clamped - zoom)
+    setOffset((current) => ({ x: current.x * factor, y: current.y * factor }))
+    setZoom(clamped)
+  }
+
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault()
-    const next = Math.max(2, Math.min(18, zoom + (e.deltaY < 0 ? 1 : -1)))
-    if (next !== zoom) {
-      setOffset({ x: 0, y: 0 })
-      setZoom(next)
-    }
+    applyZoom(zoom + (e.deltaY < 0 ? 1 : -1))
   }
 
   const handlePointerDown = (e: React.PointerEvent) => {
@@ -666,14 +696,24 @@ export function MapCanvas({
           type="button"
           className={css.zoomBtn}
           aria-label={t('map.zoomIn', 'Acercar')}
-          onClick={() => setZoom(z => Math.min(18, z + 1))}
+          onClick={() => applyZoom(zoom + 1)}
         >+</button>
         <button
           type="button"
           className={css.zoomBtn}
           aria-label={t('map.zoomOut', 'Alejar')}
-          onClick={() => setZoom(z => Math.max(2, z - 1))}
+          onClick={() => applyZoom(zoom - 1)}
         >-</button>
+        {/* mpc-5: volver al encuadre — del conjunto si lo hay, del centro
+            declarado si no. El pan y el zoom manual siempre tienen regreso. */}
+        <button
+          type="button"
+          className={css.zoomBtn}
+          aria-label={t('map.recenter', 'Centrar el mapa')}
+          onClick={runFit}
+        >
+          <span className="flow-symbol" aria-hidden="true" style={{ fontSize: 16 }}>recenter</span>
+        </button>
       </div>
     </div>
   )
