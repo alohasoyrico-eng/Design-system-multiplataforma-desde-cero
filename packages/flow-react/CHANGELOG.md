@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.24] — 2026-09-08
+
+### Arreglado
+- **ScaleLegend: el icono grande antes de su etiqueta** — icono→texto en los dos extremos, no en espejo (dueño de eOne, 8-sep): «$ Más barato … $ Más caro».
+
 ## [0.6.23] — 2026-09-08
 
 ### Añadido

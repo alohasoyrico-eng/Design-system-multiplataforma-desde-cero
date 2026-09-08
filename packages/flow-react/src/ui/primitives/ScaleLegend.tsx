@@ -75,12 +75,14 @@ export function ScaleLegend({
           />
         ))}
       </span>
-      <span className={css.label}>{maxLabel}</span>
+      {/* El icono grande ANTES de su etiqueta, como el chico (dueño de
+          eOne, 8-sep): icono→texto en los dos extremos, no en espejo. */}
       {icon && (
         <span className={`flow-symbol ${css.iconMax}`} aria-hidden="true">
           {icon}
         </span>
       )}
+      <span className={css.label}>{maxLabel}</span>
 
       {emptyLabel && (
         <span className={css.empty}>
