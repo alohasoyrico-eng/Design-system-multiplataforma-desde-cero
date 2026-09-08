@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.10] — 2026-09-07
+
+### Arreglado
+- **WidgetFrame compone Card — muere la cuarta superficie.** La pieza llegó PORTADA del registro de eOne con su piel legada (radius-md + borde, sin sombra), que no existe en el vocabulario del Card (elevated/outlined/inverse, todas radius-lg). El dueño de eOne lo cazó comparando tarjetas vecinas: el marco de widget desentonaba con todo Card/StatTile por construcción. Mismo tratamiento que StatTile en 0.6.8; el banco hereda el cambio (widgets pasan de borde+16 a sombra+20).
+
 ## [0.6.9] — 2026-09-07
 
 ### Añadido

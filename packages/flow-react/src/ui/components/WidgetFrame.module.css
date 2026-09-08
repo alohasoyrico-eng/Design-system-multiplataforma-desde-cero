@@ -1,9 +1,10 @@
+/* La superficie la pone el Card que envuelve; aquí solo el layout y el
+   recorte de esquinas (hereda el radio usado del Card). */
 .root {
   display: flex;
   flex-direction: column;
-  background: var(--surface-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  height: 100%;
+  border-radius: inherit;
   overflow: hidden;
 }
 

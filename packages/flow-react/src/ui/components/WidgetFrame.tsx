@@ -1,4 +1,5 @@
 import type { ReactNode, CSSProperties } from 'react'
+import { Card } from './Card'
 import { IconButton } from '../primitives/IconButton'
 import { Skeleton } from '../primitives/Skeleton'
 import { useT } from '../../i18n/useSafeIntl'
@@ -26,13 +27,17 @@ export function WidgetFrame({ title, children, hidden, customizing, loading, onT
   const t = useT()
   // wf-1: oculto y sin personalizar, nada en el árbol.
   if (hidden && !customizing) return null
+  /* La SUPERFICIE es del Card — una sola tarjeta en el sistema. La pieza
+     llegó PORTADA del registro de eOne con su superficie legada (radius-md
+     + borde, sin sombra): una cuarta piel que no existía en el vocabulario
+     del Card. Cazado por el dueño de eOne, 7-sep — tres veces. */
   return (
+    <Card padding="none" style={style}>
     <section
       className={css.root}
       data-hidden={hidden || undefined}
       aria-label={title}
       aria-busy={loading || undefined}
-      style={style}
     >
       <div className={css.header}>
         <span className={css.title}>{title}</span>
@@ -49,5 +54,6 @@ export function WidgetFrame({ title, children, hidden, customizing, loading, onT
         {loading ? <Skeleton variant="card" style={{ width: '100%', height: '100%', minHeight: 120 }} /> : children}
       </div>
     </section>
+    </Card>
   )
 }
