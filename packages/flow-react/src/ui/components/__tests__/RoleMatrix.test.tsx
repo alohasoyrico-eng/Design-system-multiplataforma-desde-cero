@@ -67,4 +67,41 @@ describe('RoleMatrix', () => {
     const readAdmin = screen.getByRole('button', { name: /Leer — Admin/ })
     expect(readAdmin).toBeDisabled()
   })
+
+  // rmx-1: matriz por niveles — presentacional, badge por celda, «—» explícito.
+  it('pinta niveles con su nota y la denegación como guion (rmx-1)', () => {
+    render(
+      <RoleMatrix
+        roles={roles}
+        permissions={permissions}
+        levels={[
+          { id: 'full', label: 'Completo', tone: 'success' },
+          { id: 'read', label: 'Lectura' },
+        ]}
+        values={{
+          read: { admin: { level: 'full', note: 'todas las cuentas' }, editor: { level: 'read' } },
+          write: { admin: { level: 'full' } },
+        }}
+      />,
+    )
+    expect(screen.getAllByText('Completo')).toHaveLength(2)
+    expect(screen.getByText('Lectura')).toBeInTheDocument()
+    expect(screen.getByText('todas las cuentas')).toBeInTheDocument()
+    // la celda sin concesión es una denegación explícita, no un hueco
+    expect(screen.getByLabelText(/Escribir — Editor: sin acceso/)).toHaveTextContent('—')
+    // en modo niveles no hay toggles
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
+  })
+
+  it('el matiz del permiso acompaña a su nombre (rmx-1)', () => {
+    render(
+      <RoleMatrix
+        roles={roles}
+        permissions={[{ id: 'read', label: 'Leer', hint: 'módulo pendiente' }]}
+        levels={[{ id: 'full', label: 'Completo' }]}
+        values={{ read: { admin: { level: 'full' } } }}
+      />,
+    )
+    expect(screen.getByText('módulo pendiente')).toBeInTheDocument()
+  })
 })

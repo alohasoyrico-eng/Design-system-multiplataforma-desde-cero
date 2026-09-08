@@ -89,6 +89,33 @@
   animation: flowScaleIn var(--dur-fast) var(--ease-spring);
 }
 
+/* rmx-1: celdas por nivel — badge del nivel con su nota de alcance debajo. */
+.levelCell {
+  display: inline-grid;
+  gap: 2px;
+  justify-items: center;
+}
+
+.cellNote {
+  font: var(--type-data-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.dash {
+  color: var(--text-muted);
+}
+
+.permLabel {
+  display: grid;
+  gap: 2px;
+}
+
+.permHint {
+  font: var(--type-data-xs);
+  color: var(--text-muted);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .checkIcon { animation: none; }
 }

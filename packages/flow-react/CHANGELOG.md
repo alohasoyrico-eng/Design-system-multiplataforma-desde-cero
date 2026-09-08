@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.19] — 2026-09-08
+
+### Añadido
+- **RoleMatrix por niveles (rmx-1)** — una matriz de permisos no siempre es booleana: un RBAC real concede NIVELES (completo, lectura, gestión…) con un alcance por celda. Con `levels` declarado, la celda es `{ level, note? }` y se pinta como badge del tono del nivel con su nota; la celda vacía es una denegación explícita y se dice con «—», no con hueco. `Permission.hint` lleva el matiz bajo el nombre («módulo pendiente de construcción»). Cazado en eOne: la matriz de ADR-001, la fuente de verdad de su control de acceso.
+
 ## [0.6.18] — 2026-09-08
 
 ### Arreglado

@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { Badge, type BadgeTone } from '../primitives/Badge'
 import css from './RoleMatrix.module.css'
 
 interface Role {
@@ -11,19 +12,36 @@ interface Permission {
   id: string
   label: string
   group?: string
+  /** Matiz bajo el nombre del permiso («módulo pendiente de construcción»). */
+  hint?: string
 }
 
-type Values = Record<string, Record<string, boolean>>
+/* rmx-1: una matriz de permisos no siempre es booleana. Un RBAC real concede
+   NIVELES —completo, lectura, gestión…— con un alcance por celda (cazado en
+   eOne: la matriz de su ADR-001). Con `levels` declarado, la celda es un
+   `{ level, note? }` y se pinta como badge del tono del nivel + su nota; la
+   celda vacía es una denegación explícita y se dice con «—», no con hueco. */
+export interface RoleMatrixLevel {
+  id: string
+  label: string
+  tone?: BadgeTone
+}
+
+export type RoleMatrixCell = boolean | { level: string; note?: string }
+
+type Values = Record<string, Record<string, RoleMatrixCell>>
 
 export interface RoleMatrixProps {
   roles: Role[]
   permissions: Permission[]
   values: Values
+  /** Diccionario de niveles (rmx-1). Con él la matriz es presentacional. */
+  levels?: RoleMatrixLevel[]
   onChange?: (next: Values, permId: string, roleId: string) => void
   style?: CSSProperties
 }
 
-export function RoleMatrix({ roles, permissions, values, onChange, style }: RoleMatrixProps) {
+export function RoleMatrix({ roles, permissions, values, levels, onChange, style }: RoleMatrixProps) {
   const toggle = (pid: string, rid: string) => {
     if (!onChange) return
     const next: Values = {}
@@ -72,9 +90,40 @@ export function RoleMatrix({ roles, permissions, values, onChange, style }: Role
             const p = row.perm
             return (
               <tr key={p.id} className={css.permRow}>
-                <td>{p.label}</td>
+                <td>
+                  {p.hint ? (
+                    <span className={css.permLabel}>
+                      {p.label}
+                      <span className={css.permHint}>{p.hint}</span>
+                    </span>
+                  ) : (
+                    p.label
+                  )}
+                </td>
                 {roles.map(r => {
-                  const on = !!(values[p.id]?.[r.id])
+                  const cell = values[p.id]?.[r.id]
+
+                  // rmx-1: modo por niveles — presentacional, un badge por celda.
+                  if (levels) {
+                    const grant = typeof cell === 'object' && cell !== null ? cell : null
+                    const level = grant ? levels.find(l => l.id === grant.level) : undefined
+                    return (
+                      <td key={r.id} className={css.cell}>
+                        {level ? (
+                          <span className={css.levelCell}>
+                            <Badge tone={level.tone ?? 'default'}>{level.label}</Badge>
+                            {grant?.note && <span className={css.cellNote}>{grant.note}</span>}
+                          </span>
+                        ) : (
+                          <span className={css.dash} aria-label={`${p.label} — ${r.label}: sin acceso`}>
+                            —
+                          </span>
+                        )}
+                      </td>
+                    )
+                  }
+
+                  const on = !!cell
                   return (
                     <td key={r.id} className={css.cell}>
                       <button
