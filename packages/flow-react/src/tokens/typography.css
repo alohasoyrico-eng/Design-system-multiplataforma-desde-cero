@@ -11,9 +11,11 @@
   /* Headline — Edenred Bold (page titles) */
   --type-headline-lg: var(--ref-type-wt-bold) var(--ref-type-size-28)/var(--ref-type-lh-125) var(--font-display);
 
-  /* Title — Edenred Bold (section) / Regular (card) */
-  --type-title-lg: var(--ref-type-wt-bold) var(--ref-type-size-20)/var(--ref-type-lh-130) var(--font-display);
-  --type-title-md: var(--ref-type-wt-regular) var(--ref-type-size-16)/var(--ref-type-lh-140) var(--font-display);
+  /* Title — Edenred Black (dueño eOne, 8-sep): el título de sección/card
+     debe pesar MÁS que el contenido destacado que vive dentro; en bold y
+     regular competía con los strong del cuerpo y la jerarquía se invertía. */
+  --type-title-lg: var(--ref-type-wt-black) var(--ref-type-size-20)/var(--ref-type-lh-130) var(--font-display);
+  --type-title-md: var(--ref-type-wt-black) var(--ref-type-size-16)/var(--ref-type-lh-140) var(--font-display);
 
   /* Body — Ubuntu Regular/SemiBold */
   --type-body-lg: var(--ref-type-wt-regular) var(--ref-type-size-20)/var(--ref-type-lh-155) var(--font-body);
@@ -40,8 +42,8 @@
   --type-display-lg: var(--ref-type-wt-bold) 40px/var(--ref-type-lh-100) var(--font-display);
   --type-display-md: var(--ref-type-wt-bold) 30px/var(--ref-type-lh-115) var(--font-display);
   --type-headline-lg: var(--ref-type-wt-bold) 24px/var(--ref-type-lh-125) var(--font-display);
-  --type-title-lg: var(--ref-type-wt-bold) 18px/var(--ref-type-lh-130) var(--font-display);
-  --type-title-md: var(--ref-type-wt-regular) var(--ref-type-size-14)/var(--ref-type-lh-140) var(--font-display);
+  --type-title-lg: var(--ref-type-wt-black) 18px/var(--ref-type-lh-130) var(--font-display);
+  --type-title-md: var(--ref-type-wt-black) var(--ref-type-size-14)/var(--ref-type-lh-140) var(--font-display);
   --type-body-lg: var(--ref-type-wt-regular) 18px/var(--ref-type-lh-145) var(--font-body);
   --type-body-md: var(--ref-type-wt-regular) var(--ref-type-size-14)/var(--ref-type-lh-145) var(--font-body);
   --type-body-md-strong: var(--ref-type-wt-semi) var(--ref-type-size-14)/var(--ref-type-lh-145) var(--font-body);

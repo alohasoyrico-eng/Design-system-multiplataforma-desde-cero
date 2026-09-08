@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.17] — 2026-09-08
+
+### Cambiado
+- **La familia title pasa a Edenred Black** — `--type-title-lg` y `--type-title-md` suben de Bold/Regular a Black 900 (decisión del dueño, análisis de jerarquía en eOne): un título de sección o de card debe pesar MÁS que el contenido destacado que vive dentro, y en regular el título de card competía —y perdía— contra los `body-md-strong` del cuerpo. Entra `--ref-type-wt-black` (900) al catálogo de pesos y el corte real `edenred_black-webfont.woff2` a `public/fonts` (existía en eOne; el DS solo había vendoreado Regular y Bold — nada de bold sintético).
+
 ## [0.6.16] — 2026-09-07
 
 ### Arreglado

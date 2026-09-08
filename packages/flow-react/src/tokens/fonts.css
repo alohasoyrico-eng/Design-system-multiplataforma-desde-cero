@@ -15,6 +15,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Edenred';
+  src: url('/fonts/edenred_black-webfont.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Ubuntu + IBM Plex Mono loaded via <link> in index.html */
 
