@@ -46,9 +46,14 @@
   transform-origin: left center;
 }
 
+/* pp-4: block SIN width:100%. En flujo de bloque un block llena su
+   contenedor igual (width:auto), que es lo que piden los formularios; pero
+   un flex item con width:100% dentro de una fila que envuelve SIEMPRE se
+   queda su línea entera — ningún Select podía convivir en fila con un
+   botón (cazado en eOne: la cabecera del organigrama partía en dos filas;
+   el grid de su barra de filtros era un workaround de este mismo defecto). */
 .root[data-fill] {
   display: block;
-  width: 100%;
 }
 
 .trigger[data-fill] {

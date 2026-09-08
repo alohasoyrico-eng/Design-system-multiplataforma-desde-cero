@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.16] — 2026-09-07
+
+### Arreglado
+- **Popover/Select: el control ya convive en fila (pp-4)** — `.root[data-fill]` llevaba `width: 100%`, y un flex item con width 100% dentro de una fila que envuelve se queda SIEMPRE su línea entera: ningún Select podía sentarse junto a un botón. En flujo de bloque un `display: block` llena su contenedor igual, así que los formularios no cambian. Cazado en eOne (la cabecera del organigrama partía selector y botón en dos filas); el grid de su barra de filtros era un workaround de este mismo defecto y el diagnóstico anotado entonces —«el panel oculto infla el max-content»— era incorrecto: el panel vive en portal desde pp-1.
+
 ## [0.6.15] — 2026-09-07
 
 ### Añadido
