@@ -46,10 +46,7 @@ export function Pagination({
     <nav aria-label={t('flow.pagination.label', 'Paginación')} className={css.root} style={style}>
       {desde != null && (
         <span className={css.range}>
-          {t('flow.pagination.range', '{a}–{b} de {n}')
-            .replace('{a}', String(desde))
-            .replace('{b}', String(hasta))
-            .replace('{n}', String(total))}
+          {t('flow.pagination.range', '{a}–{b} de {n}', { a: desde, b: hasta ?? desde, n: total ?? desde })}
         </span>
       )}
       <button

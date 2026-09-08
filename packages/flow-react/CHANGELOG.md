@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.18] — 2026-09-08
+
+### Arreglado
+- **i18n: los valores viajan por `formatMessage`, no por `.replace()` (i18n-2)** — `useT` acepta valores y DataTable, Pagination, CardCarousel y BulkActionsTable los usan. Formatear «Buscar en {caption}» sin la variable revienta con `FORMAT_ERROR` en consola en cada render (cazado en eOne: 100+ errores al abrir el desglose del ranking de consumos). Sin provider, la interpolación cae al reemplazo simple.
+
 ## [0.6.17] — 2026-09-08
 
 ### Cambiado

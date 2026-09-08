@@ -73,7 +73,7 @@ export function CardCarousel({ children, activeIndex, onChange, style }: CardCar
               data-active={i === idx || undefined}
               role="tab"
               aria-selected={i === idx}
-              aria-label={t('carousel.card', 'Tarjeta {n}').replace('{n}', String(i + 1))}
+              aria-label={t('carousel.card', 'Tarjeta {n}', { n: i + 1 })}
               onClick={() => goTo(i)}
             />
           ))}

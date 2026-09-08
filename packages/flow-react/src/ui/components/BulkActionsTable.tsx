@@ -42,7 +42,7 @@ export function BulkActionsTable({ columns, rows, rowKey, actions = [], onAction
       label: '',
       render: (row: Record<string, unknown>) => {
         const k = String(row[rowKey])
-        return <Checkbox checked={selection.includes(k)} onChange={() => toggle(k)} aria-label={t('bulk.selectRow', 'Seleccionar {k}').replace('{k}', k)} />
+        return <Checkbox checked={selection.includes(k)} onChange={() => toggle(k)} aria-label={t('bulk.selectRow', 'Seleccionar {k}', { k })} />
       },
     },
     ...columns,

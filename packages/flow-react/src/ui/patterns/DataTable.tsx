@@ -90,7 +90,12 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
     setPage(1) // dtb-1: buscar devuelve a la primera página
   }
 
-  const vacio = emptyLabel ?? t('flow.dataTable.empty', 'Sin resultados para «{q}»')
+  // El emptyLabel del consumidor puede traer {q}; el del sistema interpola
+  // por formatMessage (i18n-2).
+  const consulta = query.trim()
+  const vacio = emptyLabel
+    ? emptyLabel.replace('{q}', consulta)
+    : t('flow.dataTable.empty', 'Sin resultados para «{q}»', { q: consulta })
 
   useLayoutEffect(() => {
     if (zonaRef.current && visible.length === pageSize) {
@@ -107,14 +112,12 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
           value={query}
           onChange={buscar}
           placeholder={searchPlaceholder ?? t('flow.dataTable.search', 'Buscar…')}
-          ariaLabel={t('flow.dataTable.searchIn', 'Buscar en {caption}').replace('{caption}', caption)}
+          ariaLabel={t('flow.dataTable.searchIn', 'Buscar en {caption}', { caption })}
         />
         {/* dtb-1: el recuento se anuncia sin robar el foco */}
         <p className={css.count} aria-live="polite">
           {query
-            ? t('flow.dataTable.count', '{n} de {total}')
-                .replace('{n}', String(sorted.length))
-                .replace('{total}', String(rows.length))
+            ? t('flow.dataTable.count', '{n} de {total}', { n: sorted.length, total: rows.length })
             : ''}
         </p>
       </div>
@@ -123,7 +126,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
         /* dtb-4: sin resultados la tabla no queda muda */
         <EmptyState
           icon="search_off"
-          title={vacio.replace('{q}', query.trim())}
+          title={vacio}
           action={
             <Button variant="secondary" onClick={() => buscar('')}>
               {t('flow.dataTable.clear', 'Limpiar búsqueda')}

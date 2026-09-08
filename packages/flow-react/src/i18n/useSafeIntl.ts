@@ -13,8 +13,18 @@ export function useSafeIntl(): IntlShape | null {
   }
 }
 
+/* i18n-2: los valores viajan POR formatMessage, nunca por .replace() encima
+   del resultado — formatear «Buscar en {caption}» sin la variable revienta
+   con FORMAT_ERROR en consola (cazado en eOne: 100+ errores por render del
+   DataTable). Sin provider, la interpolación cae al reemplazo simple. */
 export function useT() {
   const intl = useSafeIntl()
-  return (id: string, defaultMessage: string) =>
-    intl ? intl.formatMessage({ id, defaultMessage }) : defaultMessage
+  return (id: string, defaultMessage: string, values?: Record<string, string | number>) => {
+    if (intl) return intl.formatMessage({ id, defaultMessage }, values)
+    if (!values) return defaultMessage
+    return Object.entries(values).reduce(
+      (message, [key, value]) => message.replaceAll(`{${key}}`, String(value)),
+      defaultMessage,
+    )
+  }
 }
