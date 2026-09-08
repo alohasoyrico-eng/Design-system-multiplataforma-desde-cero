@@ -3,6 +3,12 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.15] — 2026-09-07
+
+### Añadido
+- **`TableTree.defaultExpanded` (tt-1)** — claves abiertas al montar. Un árbol que nace todo colapsado no puede enseñar su primer nivel ni revelar una selección restaurada. Cazado en eOne: la vista de organigrama abre con las divisiones a la vista, y el nodo elegido en una sesión anterior no puede quedar escondido tras un chevron.
+- **`TableTreeRow` y `TableTreeColumn` salen al barrel** — un consumidor con filas tipadas (celdas compuestas vía `render`) no podía nombrar el tipo que ya usaba.
+
 ## [0.6.14] — 2026-09-07
 
 ### Añadido

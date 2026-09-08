@@ -21,12 +21,16 @@ export interface TableTreeProps {
   rowKey?: string
   onRowClick?: (row: TableTreeRow) => void
   selectedKey?: string
+  /** Claves abiertas al montar (tt-1). Un árbol que nace todo colapsado no
+      puede enseñar su primer nivel ni revelar una selección restaurada —
+      cazado en eOne: el organigrama abre con las divisiones a la vista. */
+  defaultExpanded?: string[]
   style?: CSSProperties
 }
 
-export function TableTree({ columns, rows, rowKey = 'id', onRowClick, selectedKey, style }: TableTreeProps) {
+export function TableTree({ columns, rows, rowKey = 'id', onRowClick, selectedKey, defaultExpanded, style }: TableTreeProps) {
   const intl = useIntl()
-  const [expanded, setExpanded] = useState<Set<string>>(new Set())
+  const [expanded, setExpanded] = useState<Set<string>>(() => new Set(defaultExpanded))
 
   const toggle = useCallback((key: string) => {
     setExpanded((prev) => {

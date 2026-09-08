@@ -74,4 +74,19 @@ describe('TableTree', () => {
     renderWithIntl(<TableTree columns={columns} rows={rows} />)
     expect(screen.getByRole('treegrid')).toBeInTheDocument()
   })
+
+  // tt-1: el árbol puede nacer con niveles abiertos — sin esto, una
+  // selección restaurada quedaría escondida tras un chevron.
+  it('abre al montar las claves de defaultExpanded (tt-1)', () => {
+    renderWithIntl(<TableTree columns={columns} rows={rows} defaultExpanded={['1']} />)
+    expect(screen.getByText('Monterrey')).toBeInTheDocument()
+    expect(screen.getByText('Saltillo')).toBeInTheDocument()
+  })
+
+  it('defaultExpanded no impide colapsar después (tt-1)', async () => {
+    const user = userEvent.setup()
+    renderWithIntl(<TableTree columns={columns} rows={rows} defaultExpanded={['1']} />)
+    await user.click(screen.getAllByRole('button')[0]!)
+    expect(screen.queryByText('Monterrey')).not.toBeInTheDocument()
+  })
 })
