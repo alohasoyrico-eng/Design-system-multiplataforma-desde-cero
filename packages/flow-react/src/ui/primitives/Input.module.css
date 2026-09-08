@@ -11,6 +11,21 @@
   min-width: 0;
 }
 
+/* El stepper NATIVO de type=number es cromo del navegador sin diseñar —
+   se colaba al enfocar, junto al adorno trailing (cazado en eOne, en el
+   diálogo de objetivos). El DS es dueño del control: fuera. */
+.input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.input[type='number']::-webkit-inner-spin-button,
+.input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 .input[data-mono] {
   font-family: var(--font-mono);
   letter-spacing: 0.04em;

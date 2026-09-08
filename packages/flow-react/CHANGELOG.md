@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.13] — 2026-09-07
+
+### Arreglado
+- **Input `type="number"`: muere el stepper nativo** — el spinner del navegador (▲▼) aparecía al enfocar, cromo del sistema operativo sin diseñar dentro de un control que el DS promete poseer (cazado en eOne: el diálogo de objetivos con foco y sin foco no eran el mismo control). `appearance: textfield` + supresión webkit.
+
 ## [0.6.12] — 2026-09-07
 
 ### Añadido
