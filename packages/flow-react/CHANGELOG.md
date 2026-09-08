@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.20] — 2026-09-08
+
+### Eliminado
+- **Muere el modo por niveles de RoleMatrix (rmx-1, 0.6.19)** — vivió un día. Nació para acomodar el vocabulario compuesto del RBAC legado de eOne (completo/lectura/gestión con nota por celda) y el dueño lo señaló como lo que era: preferir el legado antes que adoptar Flow. Un «nivel» no pide celdas nuevas: pide DESCOMPONERSE en las acciones booleanas que concede —ver, escribir, administrar—, cada una en su fila, que es exactamente lo que la matriz booleana ya expresaba. `Permission.hint` sobrevive como rmx-2: el matiz bajo el nombre del permiso es anatomía legítima de la fila, no herencia del legado.
+
 ## [0.6.19] — 2026-09-08
 
 ### Añadido
