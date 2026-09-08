@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { Card } from './Card'
 import { Sparkline } from '../primitives/Sparkline'
 import { Skeleton } from '../primitives/Skeleton'
@@ -22,12 +22,16 @@ export interface StatTileProps {
       rojo). El signo del texto ya dice la dirección (stt-2); `false` deja
       signo + color, sin glifo que dispute. */
   deltaArrow?: boolean
+  /** Acción de la tarjeta en la esquina del encabezado — un IconButton
+      (ajustar, abrir detalle). Nació de eOne: sus objetivos editables
+      viven como StatTiles con el engrane a la vista. */
+  action?: ReactNode
   description?: string
   loading?: boolean
   style?: CSSProperties
 }
 
-export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', deltaTone, deltaArrow = true, description, loading, style }: StatTileProps) {
+export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', deltaTone, deltaArrow = true, action, description, loading, style }: StatTileProps) {
   const toneColor = tone === 'success' ? 'var(--status-success-text)'
     : tone === 'danger' ? 'var(--status-danger-text)'
     : tone === 'warning' ? 'var(--status-warning-text)'
@@ -72,6 +76,7 @@ export function StatTile({ label, value, delta, trend, icon, tone = 'neutral', d
           </span>
         )}
         <span className={css.label}>{label}</span>
+        {action && <span className={css.action}>{action}</span>}
       </div>
       <div className={css.body}>
         <div className={css.value}>{value}</div>

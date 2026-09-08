@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.12] — 2026-09-07
+
+### Añadido
+- **`StatTile.action`**: acción de la tarjeta en la esquina del encabezado — un IconButton (ajustar, abrir detalle). Nació de eOne: sus objetivos editables se disuelven en StatTiles con el engrane a la vista, en la misma familia que el resto de sus KPIs.
+
 ## [0.6.11] — 2026-09-07
 
 ### Arreglado
