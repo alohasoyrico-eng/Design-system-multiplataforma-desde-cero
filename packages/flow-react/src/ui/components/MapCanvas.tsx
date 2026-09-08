@@ -85,6 +85,8 @@ const BASE_RADIUS = 24
 const ICON_BASE = 20
 const HIT_RADIUS = 28
 const BORDER_W = 3.5
+/** mpc-3: alto de la cola de la gota, del anclaje a la cabeza. */
+const PIN_TAIL = 10
 const LERP = 0.14
 const SNAP = 0.01
 
@@ -309,97 +311,77 @@ export function MapCanvas({
         ctx.setLineDash([])
       }
 
-      /* mpc-1: el tooltip lo comparten chips y puntos — `clearance` es lo que
-         el globo debe despejar por encima del centro del pin. */
-      const drawTooltip = (pin: MapPin, px: number, py: number, clearance: number, isSelected: boolean, color: string) => {
+      /* mpc-3: el tooltip del mapa habla el idioma del Tooltip del sistema —
+         burbuja inversa (surface-inverse, texto claro, radius-sm,
+         shadow-float), como los tooltips de las gráficas. `clearance` es lo
+         que el globo debe despejar por encima del punto de anclaje. */
+      const drawTooltip = (pin: MapPin, px: number, py: number, clearance: number) => {
         if (!pin.label) return
-        {
-          const gap = 8
-          const tipAnchor = py - clearance - gap
-          const hasSubtitle = !!pin.subtitle
+        const gap = 8
+        const tipAnchor = py - clearance - gap
+        const hasSubtitle = !!pin.subtitle
 
-          const idFont = `300 13px ${fontMono}`
-          const subFont = `400 12px ${fontBody}`
+        const tipBg = getTokenValue('--surface-inverse', dark ? '#F8FAFC' : '#0F172A')
+        const tipText = getTokenValue('--text-on-inverse', dark ? '#0F172A' : '#F8FAFC')
+
+        const idFont = `500 12.5px ${fontBody}`
+        const subFont = `400 12px ${fontBody}`
+        ctx.font = idFont
+        const idW = ctx.measureText(pin.label).width
+        let contentW = idW
+        if (hasSubtitle) {
+          ctx.font = subFont
+          const subW = ctx.measureText(pin.subtitle!).width
+          contentW = Math.max(idW, subW)
+        }
+
+        const padH = 12
+        const padV = hasSubtitle ? 8 : 7
+        const tipW = contentW + padH * 2
+        const lineH = hasSubtitle ? 34 : 16
+        const tipH = lineH + padV * 2
+        const tipR = 8
+        const tipX = px - tipW / 2
+        const tipTop = tipAnchor - tipH
+        const arrowW = 5
+
+        ctx.save()
+
+        /* Sombra — Depth: --shadow-float, como la burbuja del sistema. */
+        ctx.shadowColor = dark ? 'rgba(0,0,0,0.45)' : 'rgba(15,23,42,0.18)'
+        ctx.shadowBlur = 16
+        ctx.shadowOffsetY = 4
+
+        ctx.fillStyle = tipBg
+        ctx.beginPath()
+        ctx.roundRect(tipX, tipTop, tipW, tipH, tipR)
+        ctx.fill()
+
+        /* Flecha, del mismo cuerpo. */
+        ctx.beginPath()
+        ctx.moveTo(px - arrowW, tipTop + tipH)
+        ctx.lineTo(px, tipTop + tipH + arrowW)
+        ctx.lineTo(px + arrowW, tipTop + tipH)
+        ctx.fill()
+
+        ctx.restore()
+
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        if (hasSubtitle) {
           ctx.font = idFont
-          const idW = ctx.measureText(pin.label).width
-          let contentW = idW
-          if (hasSubtitle) {
-            ctx.font = subFont
-            const subW = ctx.measureText(pin.subtitle!).width
-            contentW = Math.max(idW, subW)
-          }
-
-          const padH = 14
-          const padV = hasSubtitle ? 10 : 8
-          const tipW = contentW + padH * 2
-          const lineH = hasSubtitle ? 36 : 16
-          const tipH = lineH + padV * 2
-          const tipR = 10
-          const tipX = px - tipW / 2
-          const tipTop = tipAnchor - tipH
-          const arrowW = 6
-
-          ctx.save()
-
-          /* Tooltip shadow — Depth: --shadow-float */
-          ctx.shadowColor = dark ? 'rgba(0,0,0,0.45)' : 'rgba(15,23,42,0.1)'
-          ctx.shadowBlur = 16
-          ctx.shadowOffsetY = 4
-
-          /* Background — Frame: --surface-card + --radius-sm */
-          ctx.fillStyle = cardBg
-          ctx.beginPath()
-          ctx.roundRect(tipX, tipTop, tipW, tipH, tipR)
-          ctx.fill()
-
-          ctx.shadowColor = 'transparent'
-
-          /* Border — Frame: --border-subtle */
-          ctx.strokeStyle = borderSubtle
-          ctx.lineWidth = 1
-          ctx.stroke()
-
-          /* Arrow */
-          ctx.fillStyle = cardBg
-          ctx.beginPath()
-          ctx.moveTo(px - arrowW, tipTop + tipH)
-          ctx.lineTo(px, tipTop + tipH + arrowW)
-          ctx.lineTo(px + arrowW, tipTop + tipH)
-          ctx.fill()
-
-          ctx.strokeStyle = borderSubtle
-          ctx.beginPath()
-          ctx.moveTo(px - arrowW, tipTop + tipH - 0.5)
-          ctx.lineTo(px, tipTop + tipH + arrowW)
-          ctx.lineTo(px + arrowW, tipTop + tipH - 0.5)
-          ctx.stroke()
-
-          ctx.fillStyle = cardBg
-          ctx.fillRect(px - arrowW + 1, tipTop + tipH - 1, (arrowW - 1) * 2, 2)
-
-          ctx.restore()
-
-          if (hasSubtitle) {
-            const textSecondary = getTokenValue('--text-secondary', dark ? '#94A3B8' : '#475569')
-            ctx.font = subFont
-            ctx.textAlign = 'center'
-            ctx.textBaseline = 'middle'
-            ctx.fillStyle = textSecondary
-            ctx.fillText(pin.subtitle!, px, tipTop + padV + 10)
-
-            ctx.font = idFont
-            ctx.fillStyle = isSelected ? color : textPrimary
-            ctx.fillText(pin.label, px, tipTop + padV + 28)
-          } else {
-            ctx.font = idFont
-            ctx.textAlign = 'center'
-            ctx.textBaseline = 'middle'
-            ctx.fillStyle = isSelected ? color : textPrimary
-            ctx.fillText(pin.label, px, tipTop + tipH / 2)
-          }
+          ctx.fillStyle = tipText
+          ctx.fillText(pin.label, px, tipTop + padV + 8)
+          ctx.font = subFont
+          ctx.globalAlpha = 0.72
+          ctx.fillText(pin.subtitle!, px, tipTop + padV + 26)
+          ctx.globalAlpha = 1
+        } else {
+          ctx.font = idFont
+          ctx.fillStyle = tipText
+          ctx.fillText(pin.label, px, tipTop + tipH / 2)
         }
       }
-
 
       /* ─ Pins (z-sorted: rest → hovered → selected) ─ */
       const sorted = [...pins].sort((a, b) => {
@@ -433,19 +415,34 @@ export function MapCanvas({
           ctx.stroke()
           ctx.restore()
           if (pin.label && (isSelected || hoveredPin === pin.id)) {
-            drawTooltip(pin, px, py, dotR + 2, isSelected, color)
+            drawTooltip(pin, px, py, dotR + 2)
           }
           return
         }
 
         const r = BASE_RADIUS * anim.scale
 
+        /* mpc-3: el pin es una GOTA anclada a su coordenada — cabeza
+           circular y cola que toca el punto exacto, la anatomía clásica de
+           «aquí». El círculo flotante de antes tapaba el lugar que decía
+           señalar. La cola crece con la cabeza. */
+        const tail = PIN_TAIL * anim.scale
+        const hy = py - tail - r
+        const dropPath = (radius: number) => {
+          ctx.beginPath()
+          // Arco por arriba entre los dos hombros de la cola (63°..117°),
+          // y de cada hombro una recta al punto de anclaje.
+          ctx.arc(px, hy, radius, Math.PI * 0.65, Math.PI * 0.35, false)
+          ctx.lineTo(px, py)
+          ctx.closePath()
+        }
+
         ctx.save()
 
         /* Glow ring — Depth: accent glow */
         if (anim.glowAlpha > 0.005) {
           ctx.beginPath()
-          ctx.arc(px, py, r + 10, 0, Math.PI * 2)
+          ctx.arc(px, hy, r + 10, 0, Math.PI * 2)
           const a = Math.round(anim.glowAlpha * 255).toString(16).padStart(2, '0')
           ctx.fillStyle = color + a
           ctx.fill()
@@ -456,37 +453,35 @@ export function MapCanvas({
         ctx.shadowBlur = anim.shadowBlur
         ctx.shadowOffsetY = anim.shadowY
 
-        /* White border ring — Frame: --surface-card */
-        ctx.beginPath()
-        ctx.arc(px, py, r + BORDER_W, 0, Math.PI * 2)
-        ctx.fillStyle = cardBg
+        /* Color fill */
+        dropPath(r)
+        ctx.fillStyle = color
         ctx.fill()
 
         ctx.shadowColor = 'transparent'
         ctx.shadowBlur = 0
         ctx.shadowOffsetY = 0
 
-        /* Color fill */
-        ctx.beginPath()
-        ctx.arc(px, py, r, 0, Math.PI * 2)
-        ctx.fillStyle = color
-        ctx.fill()
+        /* Ring — Frame: --surface-card, el aro del sistema. */
+        ctx.strokeStyle = cardBg
+        ctx.lineWidth = BORDER_W
+        ctx.stroke()
 
-        /* Icon glyph — Voice: Material Symbols */
+        /* Icon glyph — Voice: Material Symbols, en la cabeza. */
         if (pin.icon) {
           const iconSz = Math.round(ICON_BASE * anim.scale)
           ctx.font = `${iconSz}px "Material Symbols Rounded"`
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
           ctx.fillStyle = '#FFFFFF'
-          ctx.fillText(pin.icon, px, py)
+          ctx.fillText(pin.icon, px, hy)
         }
 
         ctx.restore()
 
         /* ─ Tooltip (hover or selected) ─ */
         if (pin.label && (isSelected || hoveredPin === pin.id)) {
-          drawTooltip(pin, px, py, r + BORDER_W, isSelected, color)
+          drawTooltip(pin, px, py, PIN_TAIL + r * 2 + BORDER_W)
         }
       })
 

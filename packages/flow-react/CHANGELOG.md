@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.25] — 2026-09-08
+
+### Cambiado
+- **MapCanvas: el pin es una GOTA y el tooltip habla el idioma del sistema (mpc-3)** — el pin chip pasa a la anatomía clásica de «aquí»: cabeza circular con su icono y cola que toca la coordenada exacta (el círculo flotante tapaba el lugar que decía señalar); aro `--surface-card`, halo y sombra como estaban. Y el tooltip del mapa deja la tarjeta blanca con mono: es la burbuja INVERSA del sistema —`surface-inverse`, texto claro, `radius-sm`, `shadow-float`—, la misma voz que el Tooltip de UI y los tooltips de las gráficas. Pedido por el dueño de eOne para su red de afiliados.
+
 ## [0.6.24] — 2026-09-08
 
 ### Arreglado
