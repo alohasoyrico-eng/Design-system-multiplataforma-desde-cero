@@ -1,0 +1,47 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.label {
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+}
+
+/* Los pasos crecen con el valor y se apoyan en la misma base. */
+.steps {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.step {
+  width: 14px;
+  border-radius: 3px 3px 2px 2px;
+}
+
+.iconMin {
+  font-size: var(--icon-xs);
+  color: var(--text-muted);
+}
+
+.iconMax {
+  font-size: var(--icon-default);
+  color: var(--text-muted);
+}
+
+/* La ausencia de dato, aparte: no es un tramo de la escala. */
+.empty {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-4);
+}
+
+.emptySwatch {
+  width: 14px;
+  height: 12px;
+  border-radius: 3px;
+}

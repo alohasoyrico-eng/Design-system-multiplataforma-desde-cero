@@ -3,6 +3,12 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.22] — 2026-09-08
+
+### Añadido
+- **ScaleLegend (scl-1)** — la leyenda de una ESCALA: un rango continuo cortado en tramos, de menor a mayor. Tres decisiones de nacimiento (dueño de eOne, la escala de precio de su red de afiliados): tonos de un mismo color y no un semáforo —verde→rojo dice bueno/malo y un rango no juzga—; la geometría CRECE con el valor, así la dirección se lee sin distinguir tonos; iconografía de refuerzo opcional, chica en el mínimo y grande en el máximo. La casilla de ausencia de dato va aparte: «sin dato» no es un tramo del rango.
+- **Tokens `--viz-scale-1..5`** — escala de color para rangos SOBRE IMAGEN (azules claro→oscuro): la rampa gris de heatmaps desaparece sobre los tiles grises de un mapa. En oscuro evita los extremos que se funden con el fondo.
+
 ## [0.6.21] — 2026-09-08
 
 ### Añadido

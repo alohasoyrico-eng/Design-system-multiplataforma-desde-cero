@@ -30,6 +30,16 @@
   --viz-ramp-5: var(--ref-grey-700);
   --viz-ramp-6: var(--ref-grey-900);
 
+  /* Escala de color para RANGOS sobre imagen (menor → mayor) — scl-1.
+     Tonos de un mismo color, no un semáforo: verde→rojo dice bueno/malo y
+     un rango de precio no juzga. La rampa gris no sirve aquí: sobre los
+     tiles grises de un mapa desaparece (cazado en eOne, red de afiliados). */
+  --viz-scale-1: var(--ref-blue-100);
+  --viz-scale-2: var(--ref-blue-300);
+  --viz-scale-3: var(--ref-blue-500);
+  --viz-scale-4: var(--ref-blue-700);
+  --viz-scale-5: var(--ref-blue-900);
+
   /* Cromo del chart */
   --viz-grid: var(--border-subtle);
   --viz-axis: var(--border-default);

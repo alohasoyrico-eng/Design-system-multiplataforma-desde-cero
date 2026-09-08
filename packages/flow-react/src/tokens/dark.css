@@ -88,4 +88,12 @@
   --viz-ramp-4: var(--ref-grey-600);
   --viz-ramp-5: var(--ref-grey-400);
   --viz-ramp-6: var(--ref-grey-300);
+
+  /* scl-1: en oscuro la escala evita los extremos que se funden con el
+     fondo — el azul 900 sobre tiles invertidos es invisible. */
+  --viz-scale-1: var(--ref-blue-200);
+  --viz-scale-2: var(--ref-blue-300);
+  --viz-scale-3: var(--ref-blue-400);
+  --viz-scale-4: var(--ref-blue-500);
+  --viz-scale-5: var(--ref-blue-600);
 }
