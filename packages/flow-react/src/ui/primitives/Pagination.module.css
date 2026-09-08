@@ -34,7 +34,9 @@
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--text-primary);
-  font: var(--type-data);
+  /* pag-8: los numerales hablan en cifra de dato GRANDE — son solo números,
+     la voz mono a 20px los hace legibles de un vistazo. */
+  font: var(--type-data-md);
   cursor: pointer;
   transition: background var(--dur-fast) var(--ease-out);
 }

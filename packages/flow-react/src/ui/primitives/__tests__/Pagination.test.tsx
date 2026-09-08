@@ -51,16 +51,25 @@ describe('Pagination', () => {
   })
 
   it('renders ellipsis for many pages (inerte, fuera del orden de tabulacion)', () => {
-    const { container } = render(<Pagination page={5} pages={10} />)
+    const { container } = render(<Pagination page={16} pages={40} />)
     expect(container.querySelectorAll('[data-ellipsis]').length).toBeGreaterThan(0)
   })
 
-  // pag-7: la ventana no encoge en los bordes — siempre 7 casillas si hay más de 7 páginas.
-  it('la ventana mantiene 7 casillas cerca del borde (pag-7)', () => {
+  // pag-7/pag-8: la ventana no encoge en los bordes — 15 casillas y los dos
+  // extremos enseñan 5 páginas; la elipsis nunca desemboca en un número suelto.
+  it('la ventana mantiene 15 casillas y 5 páginas por extremo (pag-8)', () => {
     render(<Pagination page={1} pages={582} />)
-    for (const n of ['1', '2', '3', '4', '5', '582']) {
+    for (const n of ['1', '2', '9', '578', '579', '580', '581', '582']) {
       expect(screen.getByText(n)).toBeInTheDocument()
     }
+  })
+
+  it('en medio, ambos extremos conservan sus 5 páginas (pag-8)', () => {
+    render(<Pagination page={300} pages={582} />)
+    for (const n of ['1', '5', '299', '300', '301', '578', '582']) {
+      expect(screen.getByText(n)).toBeInTheDocument()
+    }
+    expect(screen.queryByText('6')).not.toBeInTheDocument()
   })
 
   // pag-7: primera/última saltan a los extremos cuando la lista se trunca.

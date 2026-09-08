@@ -29,18 +29,21 @@ export function Pagination({
   style,
 }: PaginationProps) {
   const t = useT()
-  /* pag-7: ventana de ancho CONSTANTE (7 casillas). Cerca de los bordes la
+  /* pag-7: ventana de ancho CONSTANTE (15 casillas). Cerca de los bordes la
      vecindad se ensancha en vez de encoger, para que la fila no cambie de
-     ancho ni las flechas se muevan bajo el cursor al navegar. */
+     ancho ni las flechas se muevan bajo el cursor al navegar.
+     pag-8: los DOS extremos enseñan 5 páginas — la elipsis nunca desemboca
+     en un número suelto. */
+  const serie = (a: number, b: number) => Array.from({ length: b - a + 1 }, (_, i) => a + i)
   const range = (): (number | '...')[] => {
-    if (pages <= 7) return Array.from({ length: pages }, (_, i) => i + 1)
-    if (page <= 4) return [1, 2, 3, 4, 5, '...', pages]
-    if (page >= pages - 3) return [1, '...', pages - 4, pages - 3, pages - 2, pages - 1, pages]
-    return [1, '...', page - 1, page, page + 1, '...', pages]
+    if (pages <= 15) return serie(1, pages)
+    if (page <= 8) return [...serie(1, 9), '...', ...serie(pages - 4, pages)]
+    if (page >= pages - 7) return [...serie(1, 5), '...', ...serie(pages - 8, pages)]
+    return [...serie(1, 5), '...', page - 1, page, page + 1, '...', ...serie(pages - 4, pages)]
   }
   /* pag-7: primera/última solo cuando la lista se trunca — con todos los
      números visibles el salto ya está a un clic y las flechas extra estorban. */
-  const truncada = pages > 7
+  const truncada = pages > 15
 
   // pag-6: el rango se dice en texto
   const desde = total != null && pageSize != null ? Math.min((page - 1) * pageSize + 1, total) : null

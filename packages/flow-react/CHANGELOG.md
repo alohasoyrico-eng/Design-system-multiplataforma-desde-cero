@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.30] — 2026-09-08
+
+### Cambiado
+- **Pagination: 5 páginas por extremo y numerales en cifra grande (pag-8)** — la elipsis ya no desemboca en un número suelto: los DOS extremos enseñan 5 páginas (ventana constante de 15 casillas; con 15 páginas o menos se ven todas). Y los números de página suben a `--type-data-md` — son solo numerales, la voz mono a 20px los hace legibles de un vistazo. Pedido por el dueño de eOne para el directorio de estaciones.
+
 ## [0.6.29] — 2026-09-08
 
 ### Cambiado
