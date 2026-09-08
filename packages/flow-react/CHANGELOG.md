@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.26] — 2026-09-08
+
+### Añadido
+- **MapCanvas: el tooltip lista sus atributos y el punto lleva glifo (mpc-4)** — `MapPin.details` pinta los atributos como LISTA en la burbuja (una fila por dato; `subtitle` queda como forma corta de una fila), y el modo punto acepta `icon`: el glifo a escala del punto, como textura de identidad. Pedido por el dueño de eOne para las estaciones de su red.
+
 ## [0.6.25] — 2026-09-08
 
 ### Cambiado

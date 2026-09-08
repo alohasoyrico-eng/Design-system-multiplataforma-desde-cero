@@ -8,6 +8,9 @@ export interface MapPin {
   lon: number
   label?: string
   subtitle?: string
+  /** mpc-4: atributos del tooltip como LISTA — una fila por dato, en vez de
+      una sola línea con separadores. Si existe, manda sobre `subtitle`. */
+  details?: string[]
   color?: string
   icon?: string
   /** mpc-1: radio en px para el modo de RED DENSA. Un pin con `size` se pinta
@@ -319,27 +322,26 @@ export function MapCanvas({
         if (!pin.label) return
         const gap = 8
         const tipAnchor = py - clearance - gap
-        const hasSubtitle = !!pin.subtitle
+        /* mpc-4: los atributos como LISTA — una fila por dato. `subtitle`
+           queda como forma corta de una sola fila. */
+        const rows = pin.details ?? (pin.subtitle ? [pin.subtitle] : [])
 
         const tipBg = getTokenValue('--surface-inverse', dark ? '#F8FAFC' : '#0F172A')
         const tipText = getTokenValue('--text-on-inverse', dark ? '#0F172A' : '#F8FAFC')
 
         const idFont = `500 12.5px ${fontBody}`
-        const subFont = `400 12px ${fontBody}`
+        const rowFont = `400 12px ${fontBody}`
         ctx.font = idFont
-        const idW = ctx.measureText(pin.label).width
-        let contentW = idW
-        if (hasSubtitle) {
-          ctx.font = subFont
-          const subW = ctx.measureText(pin.subtitle!).width
-          contentW = Math.max(idW, subW)
-        }
+        let contentW = ctx.measureText(pin.label).width
+        ctx.font = rowFont
+        for (const row of rows) contentW = Math.max(contentW, ctx.measureText(row).width)
 
         const padH = 12
-        const padV = hasSubtitle ? 8 : 7
+        const padV = 8
+        const labelH = 16
+        const rowH = 16
         const tipW = contentW + padH * 2
-        const lineH = hasSubtitle ? 34 : 16
-        const tipH = lineH + padV * 2
+        const tipH = padV * 2 + labelH + rows.length * rowH + (rows.length > 0 ? 3 : 0)
         const tipR = 8
         const tipX = px - tipW / 2
         const tipTop = tipAnchor - tipH
@@ -368,19 +370,15 @@ export function MapCanvas({
 
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        if (hasSubtitle) {
-          ctx.font = idFont
-          ctx.fillStyle = tipText
-          ctx.fillText(pin.label, px, tipTop + padV + 8)
-          ctx.font = subFont
-          ctx.globalAlpha = 0.72
-          ctx.fillText(pin.subtitle!, px, tipTop + padV + 26)
-          ctx.globalAlpha = 1
-        } else {
-          ctx.font = idFont
-          ctx.fillStyle = tipText
-          ctx.fillText(pin.label, px, tipTop + tipH / 2)
-        }
+        ctx.font = idFont
+        ctx.fillStyle = tipText
+        ctx.fillText(pin.label, px, tipTop + padV + labelH / 2)
+        ctx.font = rowFont
+        ctx.globalAlpha = 0.72
+        rows.forEach((row, index) => {
+          ctx.fillText(row, px, tipTop + padV + labelH + 3 + rowH * index + rowH / 2)
+        })
+        ctx.globalAlpha = 1
       }
 
       /* ─ Pins (z-sorted: rest → hovered → selected) ─ */
@@ -413,6 +411,15 @@ export function MapCanvas({
           ctx.lineWidth = emphasized ? 2 : 1
           ctx.strokeStyle = emphasized ? textPrimary : cardBg
           ctx.stroke()
+          /* mpc-4: el punto también lleva su glifo cuando lo declara — a
+             escala del punto, como textura de identidad. */
+          if (pin.icon) {
+            ctx.font = `${Math.round(dotR * 1.35)}px "Material Symbols Rounded"`
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'middle'
+            ctx.fillStyle = '#FFFFFF'
+            ctx.fillText(pin.icon, px, py)
+          }
           ctx.restore()
           if (pin.label && (isSelected || hoveredPin === pin.id)) {
             drawTooltip(pin, px, py, dotR + 2)
