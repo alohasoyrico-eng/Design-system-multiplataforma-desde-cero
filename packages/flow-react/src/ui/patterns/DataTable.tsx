@@ -16,6 +16,9 @@ export interface DataTableProps<T = Record<string, unknown>> {
   /** Campos donde busca la consulta. Sin ella, todos los campos de texto de la fila. */
   searchKeys?: string[]
   searchPlaceholder?: string
+  /** dtb-6: `false` oculta el buscador — para tablas cuyo dueño ya filtra
+      aguas arriba y una segunda caja confundiría sobre cuál filtra qué. */
+  searchable?: boolean
   /** Filas por página; la paginación solo aparece si hay más filas. */
   pageSize?: number
   onRowClick?: (row: T) => void
@@ -40,6 +43,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   caption,
   searchKeys,
   searchPlaceholder,
+  searchable = true,
   pageSize = 10,
   onRowClick,
   selectedKey,
@@ -105,22 +109,28 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
 
   return (
     <div className={css.root} style={style}>
-      <div className={css.toolbar}>
-        <Input
-          type="search"
-          icon="search"
-          value={query}
-          onChange={buscar}
-          placeholder={searchPlaceholder ?? t('flow.dataTable.search', 'Buscar…')}
-          ariaLabel={t('flow.dataTable.searchIn', 'Buscar en {caption}', { caption })}
-        />
-        {/* dtb-1: el recuento se anuncia sin robar el foco */}
-        <p className={css.count} aria-live="polite">
-          {query
-            ? t('flow.dataTable.count', '{n} de {total}', { n: sorted.length, total: rows.length })
-            : ''}
-        </p>
-      </div>
+      {/* dtb-6: sin buscador cuando el dueño ya filtra aguas arriba — dos
+          cajas de búsqueda pegadas confunden sobre cuál filtra qué (cazado
+          en eOne: el directorio de estaciones ya tiene «Buscar estación»
+          en los filtros de la pantalla). */}
+      {searchable && (
+        <div className={css.toolbar}>
+          <Input
+            type="search"
+            icon="search"
+            value={query}
+            onChange={buscar}
+            placeholder={searchPlaceholder ?? t('flow.dataTable.search', 'Buscar…')}
+            ariaLabel={t('flow.dataTable.searchIn', 'Buscar en {caption}', { caption })}
+          />
+          {/* dtb-1: el recuento se anuncia sin robar el foco */}
+          <p className={css.count} aria-live="polite">
+            {query
+              ? t('flow.dataTable.count', '{n} de {total}', { n: sorted.length, total: rows.length })
+              : ''}
+          </p>
+        </div>
+      )}
       <div ref={zonaRef} style={altoPagina ? { minHeight: altoPagina } : undefined}>
       {sorted.length === 0 ? (
         /* dtb-4: sin resultados la tabla no queda muda */

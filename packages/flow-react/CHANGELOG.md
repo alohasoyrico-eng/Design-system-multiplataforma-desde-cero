@@ -3,6 +3,13 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.21] — 2026-09-08
+
+### Añadido
+- **MapCanvas: modo de red densa (mpc-1)** — `MapPin.size` pinta el pin como PUNTO: relleno + aro fino, sin sombra ni halo, y SIN botón DOM propio (miles de marcas de dato harían el grupo intransitable a teclado; su superficie accesible es la tabla que las lista, como en una gráfica). El punto elegido u hovered crece y gana aro de tinta; su tooltip de label/subtitle sigue vivo. Cazado en eOne: 6 977 estaciones ahogaban el chip de 24px y sus 6 977 botones.
+- **MapCanvas: la ruta acepta TRAMOS (mpc-1)** — `route` admite `[lat,lon][][]` además de la polilínea simple. Una ruta real llega a menudo como MultiLineString con tramos que no se tocan (el ruteo del INEGI); unirlos trazaría rectas que cruzan un golfo y que nadie puede conducir.
+- **DataTable: `searchable` (dtb-6)** — `false` oculta el buscador, para tablas cuyo dueño ya filtra aguas arriba: dos cajas de búsqueda pegadas confunden sobre cuál filtra qué (cazado en eOne: el directorio de estaciones ya tiene «Buscar estación» en los filtros de la pantalla).
+
 ## [0.6.20] — 2026-09-08
 
 ### Eliminado

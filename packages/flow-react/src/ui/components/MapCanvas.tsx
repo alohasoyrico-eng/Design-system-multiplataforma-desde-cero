@@ -10,7 +10,17 @@ export interface MapPin {
   subtitle?: string
   color?: string
   icon?: string
+  /** mpc-1: radio en px para el modo de RED DENSA. Un pin con `size` se pinta
+      como PUNTO —relleno + aro fino, sin sombra ni halo ni botón DOM propio—:
+      miles de estaciones son marcas de dato, como las barras de una gráfica,
+      y su superficie accesible es el directorio que las lista (cazado en
+      eOne: 6 977 estaciones ahogaban el chip de 24px y sus 6 977 botones). */
+  size?: number
 }
+
+/** mpc-1: una ruta real llega a menudo en TRAMOS que no se tocan (el INEGI
+    devuelve MultiLineString); unirlos trazaría rectas que cruzan un golfo. */
+export type MapRoute = [number, number][] | [number, number][][]
 
 export interface MapCanvasProps {
   center: [number, number]
@@ -18,12 +28,20 @@ export interface MapCanvasProps {
   pins?: MapPin[]
   selectedPin?: string | null
   onPinClick?: (id: string) => void
-  route?: [number, number][]
+  route?: MapRoute
   routeColor?: string
   /** El fondo es lienzo: en mono (default) los tiles van en escala de grises y
       el color queda reservado a pins y ruta — el matiz es del dato, no del mapa. */
   tone?: 'mono' | 'color'
   style?: CSSProperties
+}
+
+/** Normaliza la ruta a tramos: una polilínea simple es un tramo único. */
+function routeSegments(route: MapRoute | undefined): [number, number][][] {
+  if (!route || route.length === 0) return []
+  return Array.isArray(route[0][0])
+    ? (route as [number, number][][])
+    : [route as [number, number][]]
 }
 
 const TILE = 256
@@ -211,10 +229,12 @@ export function MapCanvas({
       const fontBody     = getTokenValue('--font-body', 'Ubuntu, system-ui, sans-serif')
       const fontMono     = getTokenValue('--font-mono', '"IBM Plex Mono", monospace')
 
-      /* ─ Route ─ */
-      if (route && route.length >= 2) {
+      /* ─ Route — por TRAMOS (mpc-1): tramos que no se tocan no se unen ─ */
+      const segments = routeSegments(route)
+      for (const segment of segments) {
+        if (segment.length < 2) continue
         ctx.beginPath()
-        route.forEach(([lat, lon], i) => {
+        segment.forEach(([lat, lon], i) => {
           const px = originX + lon2x(lon, zoom) * TILE
           const py = originY + lat2y(lat, zoom) * TILE
           if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py)
@@ -231,69 +251,13 @@ export function MapCanvas({
         ctx.setLineDash([])
       }
 
-      /* ─ Pins (z-sorted: rest → hovered → selected) ─ */
-      const sorted = [...pins].sort((a, b) => {
-        const za = a.id === selectedPin ? 2 : a.id === hoveredPin ? 1 : 0
-        const zb = b.id === selectedPin ? 2 : b.id === hoveredPin ? 1 : 0
-        return za - zb
-      })
-
-      sorted.forEach(pin => {
-        const px = originX + lon2x(pin.lon, zoom) * TILE
-        const py = originY + lat2y(pin.lat, zoom) * TILE
-        const isSelected = selectedPin === pin.id
-        const color = resolveColor(pin.color || (isSelected ? accentColor : infoColor))
-        const anim = pinAnimRef.current.get(pin.id) || { ...ANIM_REST }
-        const r = BASE_RADIUS * anim.scale
-
-        ctx.save()
-
-        /* Glow ring — Depth: accent glow */
-        if (anim.glowAlpha > 0.005) {
-          ctx.beginPath()
-          ctx.arc(px, py, r + 10, 0, Math.PI * 2)
-          const a = Math.round(anim.glowAlpha * 255).toString(16).padStart(2, '0')
-          ctx.fillStyle = color + a
-          ctx.fill()
-        }
-
-        /* Shadow — Depth: rest → raised → float */
-        ctx.shadowColor = dark ? 'rgba(0,0,0,0.5)' : 'rgba(15,23,42,0.18)'
-        ctx.shadowBlur = anim.shadowBlur
-        ctx.shadowOffsetY = anim.shadowY
-
-        /* White border ring — Frame: --surface-card */
-        ctx.beginPath()
-        ctx.arc(px, py, r + BORDER_W, 0, Math.PI * 2)
-        ctx.fillStyle = cardBg
-        ctx.fill()
-
-        ctx.shadowColor = 'transparent'
-        ctx.shadowBlur = 0
-        ctx.shadowOffsetY = 0
-
-        /* Color fill */
-        ctx.beginPath()
-        ctx.arc(px, py, r, 0, Math.PI * 2)
-        ctx.fillStyle = color
-        ctx.fill()
-
-        /* Icon glyph — Voice: Material Symbols */
-        if (pin.icon) {
-          const iconSz = Math.round(ICON_BASE * anim.scale)
-          ctx.font = `${iconSz}px "Material Symbols Rounded"`
-          ctx.textAlign = 'center'
-          ctx.textBaseline = 'middle'
-          ctx.fillStyle = '#FFFFFF'
-          ctx.fillText(pin.icon, px, py)
-        }
-
-        ctx.restore()
-
-        /* ─ Tooltip (hover or selected) ─ */
-        if (pin.label && (isSelected || hoveredPin === pin.id)) {
+      /* mpc-1: el tooltip lo comparten chips y puntos — `clearance` es lo que
+         el globo debe despejar por encima del centro del pin. */
+      const drawTooltip = (pin: MapPin, px: number, py: number, clearance: number, isSelected: boolean, color: string) => {
+        if (!pin.label) return
+        {
           const gap = 8
-          const tipAnchor = py - r - BORDER_W - gap
+          const tipAnchor = py - clearance - gap
           const hasSubtitle = !!pin.subtitle
 
           const idFont = `300 13px ${fontMono}`
@@ -375,6 +339,96 @@ export function MapCanvas({
             ctx.fillStyle = isSelected ? color : textPrimary
             ctx.fillText(pin.label, px, tipTop + tipH / 2)
           }
+        }
+      }
+
+
+      /* ─ Pins (z-sorted: rest → hovered → selected) ─ */
+      const sorted = [...pins].sort((a, b) => {
+        const za = a.id === selectedPin ? 2 : a.id === hoveredPin ? 1 : 0
+        const zb = b.id === selectedPin ? 2 : b.id === hoveredPin ? 1 : 0
+        return za - zb
+      })
+
+      sorted.forEach(pin => {
+        const px = originX + lon2x(pin.lon, zoom) * TILE
+        const py = originY + lat2y(pin.lat, zoom) * TILE
+        const isSelected = selectedPin === pin.id
+        const color = resolveColor(pin.color || (isSelected ? accentColor : infoColor))
+        const anim = pinAnimRef.current.get(pin.id) || { ...ANIM_REST }
+
+        /* mpc-1: modo punto — marca de dato, sin cromo de chip. El punto
+           elegido u hovered crece un paso y gana aro de tinta para no
+           perderse entre miles. El tooltip de label/subtitle sigue vivo. */
+        if (pin.size != null) {
+          const emphasized = isSelected || hoveredPin === pin.id
+          const dotR = emphasized ? pin.size * 1.8 : pin.size
+          ctx.save()
+          ctx.beginPath()
+          ctx.arc(px, py, dotR, 0, Math.PI * 2)
+          ctx.fillStyle = color
+          ctx.globalAlpha = 0.88
+          ctx.fill()
+          ctx.globalAlpha = 1
+          ctx.lineWidth = emphasized ? 2 : 1
+          ctx.strokeStyle = emphasized ? textPrimary : cardBg
+          ctx.stroke()
+          ctx.restore()
+          if (pin.label && (isSelected || hoveredPin === pin.id)) {
+            drawTooltip(pin, px, py, dotR + 2, isSelected, color)
+          }
+          return
+        }
+
+        const r = BASE_RADIUS * anim.scale
+
+        ctx.save()
+
+        /* Glow ring — Depth: accent glow */
+        if (anim.glowAlpha > 0.005) {
+          ctx.beginPath()
+          ctx.arc(px, py, r + 10, 0, Math.PI * 2)
+          const a = Math.round(anim.glowAlpha * 255).toString(16).padStart(2, '0')
+          ctx.fillStyle = color + a
+          ctx.fill()
+        }
+
+        /* Shadow — Depth: rest → raised → float */
+        ctx.shadowColor = dark ? 'rgba(0,0,0,0.5)' : 'rgba(15,23,42,0.18)'
+        ctx.shadowBlur = anim.shadowBlur
+        ctx.shadowOffsetY = anim.shadowY
+
+        /* White border ring — Frame: --surface-card */
+        ctx.beginPath()
+        ctx.arc(px, py, r + BORDER_W, 0, Math.PI * 2)
+        ctx.fillStyle = cardBg
+        ctx.fill()
+
+        ctx.shadowColor = 'transparent'
+        ctx.shadowBlur = 0
+        ctx.shadowOffsetY = 0
+
+        /* Color fill */
+        ctx.beginPath()
+        ctx.arc(px, py, r, 0, Math.PI * 2)
+        ctx.fillStyle = color
+        ctx.fill()
+
+        /* Icon glyph — Voice: Material Symbols */
+        if (pin.icon) {
+          const iconSz = Math.round(ICON_BASE * anim.scale)
+          ctx.font = `${iconSz}px "Material Symbols Rounded"`
+          ctx.textAlign = 'center'
+          ctx.textBaseline = 'middle'
+          ctx.fillStyle = '#FFFFFF'
+          ctx.fillText(pin.icon, px, py)
+        }
+
+        ctx.restore()
+
+        /* ─ Tooltip (hover or selected) ─ */
+        if (pin.label && (isSelected || hoveredPin === pin.id)) {
+          drawTooltip(pin, px, py, r + BORDER_W, isSelected, color)
         }
       })
 
@@ -519,12 +573,15 @@ export function MapCanvas({
         onPointerLeave={handlePointerLeave}
         onClick={handleClick}
       />
-      {/* mc-2: cada pin es un boton real, enfocable por teclado, con lugar y
-          valor en su nombre. Inerte al puntero: el raton sigue siendo del
-          canvas (pan y hit-test); Enter/Espacio disparan la seleccion. */}
-      {pins.length > 0 && (
+      {/* mc-2: cada pin CHIP es un boton real, enfocable por teclado, con
+          lugar y valor en su nombre. Inerte al puntero: el raton sigue siendo
+          del canvas (pan y hit-test); Enter/Espacio disparan la seleccion.
+          mpc-1: los pins con `size` (modo punto) NO emiten boton — miles de
+          marcas de dato harian el grupo intransitable a teclado y lector; su
+          superficie accesible es la tabla que las lista, como en una grafica. */}
+      {pins.some(p => p.size == null) && (
         <div className={css.pinLayer} aria-label={t('map.pins', 'Puntos en el mapa')} role="group">
-          {pins.map(pin => {
+          {pins.filter(p => p.size == null).map(pin => {
             const px = size.w / 2 - cx + lon2x(pin.lon, zoom) * TILE
             const py = size.h / 2 - cy + lat2y(pin.lat, zoom) * TILE
             if (px < -22 || py < -22 || px > size.w + 22 || py > size.h + 22) return null

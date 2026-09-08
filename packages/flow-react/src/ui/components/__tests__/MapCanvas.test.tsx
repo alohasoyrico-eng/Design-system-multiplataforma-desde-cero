@@ -110,4 +110,35 @@ describe('MapCanvas', () => {
     // This test ensures the component doesn't throw when pins and onPinClick are provided
     expect(canvas).toBeInTheDocument()
   })
+
+  // mpc-1: los pins CHIP emiten botón accesible; los pins con `size` (modo
+  // punto, red densa) no — su superficie accesible es la tabla que los lista.
+  it('los puntos densos no emiten botón; los chips sí (mpc-1)', () => {
+    render(
+      <MapCanvas
+        center={[19.43, -99.13]}
+        pins={[
+          { id: 'chip', lat: 19.43, lon: -99.13, label: 'CDMX' },
+          { id: 'dot1', lat: 20.66, lon: -103.35, label: 'GDL', size: 4 },
+          { id: 'dot2', lat: 25.67, lon: -100.31, label: 'MTY', size: 4 },
+        ]}
+      />,
+    )
+    const grupo = screen.getByRole('group')
+    expect(grupo.querySelectorAll('button')).toHaveLength(1)
+    expect(screen.getByLabelText(/CDMX/)).toBeInTheDocument()
+  })
+
+  it('acepta la ruta por tramos sin reventar (mpc-1)', () => {
+    const { container } = render(
+      <MapCanvas
+        center={[19.43, -99.13]}
+        route={[
+          [[19.4, -99.1], [19.6, -99.3]],
+          [[20.0, -100.0], [20.2, -100.4]],
+        ]}
+      />,
+    )
+    expect(container.querySelector('canvas')).toBeInTheDocument()
+  })
 })
