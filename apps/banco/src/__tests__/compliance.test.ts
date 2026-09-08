@@ -213,7 +213,7 @@ describe('Architecture — layer imports', () => {
     // Exceptions: acoplamiento de CONTENEDOR documentado — RouteBanner y
     // StatTile componen Card como superficie (una sola tarjeta en el
     // sistema, 0.6.8); no es composición de comportamiento entre pares.
-    const SAME_LAYER_EXCEPTIONS = ['RouteBanner.tsx', 'StatTile.tsx', 'WidgetFrame.tsx']
+    const SAME_LAYER_EXCEPTIONS = ['RouteBanner.tsx', 'StatTile.tsx', 'WidgetFrame.tsx', 'CardMedia.tsx']
     const filtered = componentsTsx.filter(f => !SAME_LAYER_EXCEPTIONS.some(e => f.endsWith(e)))
     const hits = grepFiles(
       filtered,

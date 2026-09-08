@@ -1,4 +1,5 @@
 import type { ReactNode, CSSProperties } from 'react'
+import { Card } from './Card'
 import css from './CardMedia.module.css'
 
 export interface CardMediaProps {
@@ -13,28 +14,32 @@ export interface CardMediaProps {
 }
 
 export function CardMedia({ image, media, title, description, interactive, onClick, style, children }: CardMediaProps) {
-  const Tag = interactive ? 'button' : 'div'
-
   const mediaContent = media ?? (image ? (
     <div className={css.image} style={{ backgroundImage: `url(${image})` }} />
   ) : null)
 
+  /* La SUPERFICIE es del Card — una sola tarjeta en el sistema. Esta pieza
+     dibujaba la suya propia con el híbrido borde+sombra que no existe en el
+     vocabulario del Card (el mismo que se retiró de StatTile en 0.6.8).
+     El comportamiento operable (foco, teclado, rol) también es del Card
+     (crd-1); aquí quedan medios, cuerpo y el recorte de esquinas. */
   return (
-    <Tag
-      className={css.root}
-      data-interactive={interactive || undefined}
+    <Card
+      padding="none"
+      interactive={interactive}
       onClick={interactive ? onClick : undefined}
-      type={interactive ? 'button' : undefined}
       style={style}
     >
-      {mediaContent && <div className={css.media}>{mediaContent}</div>}
-      {(title || description || children) && (
-        <div className={css.body}>
-          {title && <h3 className={css.title}>{title}</h3>}
-          {description && <p className={css.description}>{description}</p>}
-          {children}
-        </div>
-      )}
-    </Tag>
+      <div className={css.root}>
+        {mediaContent && <div className={css.media}>{mediaContent}</div>}
+        {(title || description || children) && (
+          <div className={css.body}>
+            {title && <h3 className={css.title}>{title}</h3>}
+            {description && <p className={css.description}>{description}</p>}
+            {children}
+          </div>
+        )}
+      </div>
+    </Card>
   )
 }

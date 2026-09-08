@@ -3,6 +3,12 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.11] — 2026-09-07
+
+### Arreglado
+- **CardMedia compone Card** — dibujaba su propia superficie con el híbrido borde+sombra que no existe en el vocabulario del Card (el mismo retirado de StatTile en 0.6.8). El modo `interactive` (foco, teclado, hover lift) también pasa a ser del Card (crd-1). Hallazgo de la auditoría de superficies pedida por el dueño de eOne al inventariar la familia de tarjetas.
+- Pendiente anotado de la misma auditoría: **NavCard** usa surface-card+radius-lg sin sombra ni borde — desviación menor en pieza de docs; se decidirá con su pantalla.
+
 ## [0.6.10] — 2026-09-07
 
 ### Arreglado
