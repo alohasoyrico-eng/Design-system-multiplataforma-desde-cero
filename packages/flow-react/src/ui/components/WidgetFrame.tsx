@@ -15,10 +15,14 @@ export interface WidgetFrameProps {
       final y el marco lleva aria-busy — la página no salta al llegar el dato. */
   loading?: boolean
   onToggle?: () => void
+  /** Acciones del widget en su cabecera (Ajustar, Exportar…) — a la derecha
+      del título, antes del toggle de personalización. Nació de eOne: sus
+      widgets con escritura (Objetivos) necesitan actuar desde el marco. */
+  actions?: ReactNode
   style?: CSSProperties
 }
 
-export function WidgetFrame({ title, children, hidden, customizing, loading, onToggle, style }: WidgetFrameProps) {
+export function WidgetFrame({ title, children, hidden, customizing, loading, onToggle, actions, style }: WidgetFrameProps) {
   const t = useT()
   // wf-1: oculto y sin personalizar, nada en el árbol.
   if (hidden && !customizing) return null
@@ -32,6 +36,7 @@ export function WidgetFrame({ title, children, hidden, customizing, loading, onT
     >
       <div className={css.header}>
         <span className={css.title}>{title}</span>
+        {actions && <div className={css.actions}>{actions}</div>}
         {customizing && onToggle && (
           <IconButton
             icon={hidden ? 'visibility' : 'visibility_off'}

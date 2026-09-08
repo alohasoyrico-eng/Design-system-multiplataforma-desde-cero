@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.9] — 2026-09-07
+
+### Añadido
+- **`WidgetFrame.actions`**: acciones del widget en su cabecera, a la derecha del título y antes del toggle de personalización. Nació de eOne: sus widgets con escritura (Objetivos del periodo — Ajustar/Restaurar) necesitan actuar desde el marco, no inventarse una cabecera propia dentro del cuerpo.
+
 ## [0.6.8] — 2026-09-07
 
 ### Arreglado
