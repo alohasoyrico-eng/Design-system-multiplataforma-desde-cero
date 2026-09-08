@@ -151,4 +151,45 @@ describe('FlowChart', () => {
     expect(echarts.init).toHaveBeenCalled()
     expect(mockSetOption).toHaveBeenCalled()
   })
+
+  // fc-6: la comparación sobre barras — una serie que declara type line se
+  // pinta como línea del sistema, con sus extras respetados.
+  it('bar acepta una serie type line como superposición (fc-6)', async () => {
+    await import('echarts/core')
+    renderWithIntl(
+      <FlowChart
+        ariaLabel="Consumo"
+        type="bar"
+        labels={['06', '07']}
+        series={[
+          { label: 'Litros', values: [10, 20] },
+          { label: 'Ayer', values: [8, 18], type: 'line', lineStyle: { type: 'dashed' } },
+        ]}
+      />
+    )
+    const opt = mockSetOption.mock.calls[0][0] as { series: Array<Record<string, any>> }
+    expect(opt.series[0].type).toBe('bar')
+    expect(opt.series[1].type).toBe('line')
+    expect(opt.series[1].showSymbol).toBe(false)
+    // el extra de la serie se respeta y el trazo del sistema se conserva
+    expect(opt.series[1].lineStyle.type).toBe('dashed')
+    expect(opt.series[1].lineStyle.width).toBe(2.25)
+  })
+
+  // fc-6: la barra negativa redondea su extremo LIBRE, no el remate contra cero.
+  it('bar negativa redondea el extremo libre (fc-6)', async () => {
+    await import('echarts/core')
+    renderWithIntl(
+      <FlowChart
+        ariaLabel="Consumo"
+        type="bar"
+        labels={['06', '07']}
+        series={[{ label: 'Litros', values: [10, -4] }]}
+      />
+    )
+    const opt = mockSetOption.mock.calls[0][0] as { series: Array<Record<string, any>> }
+    const data = opt.series[0].data as Array<{ value: number; itemStyle: Record<string, unknown> }>
+    expect(data[0].itemStyle.borderRadius).toBeUndefined()
+    expect(data[1].itemStyle.borderRadius).toEqual([0, 0, 17, 17])
+  })
 })

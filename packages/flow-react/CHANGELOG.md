@@ -3,6 +3,14 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.14] — 2026-09-07
+
+### Añadido
+- **FlowChart `bar`: superposición de línea (fc-6)** — una serie que declara `type: 'line'` se pinta como línea del sistema sobre las barras, con sus extras respetados (el mismo mecanismo que scatter). Nació de eOne: la línea de «ayer a esta hora» sobre las barras de consumo — sin ella, «hemos consumido 18 000 L» no dice si es mucho o poco.
+
+### Arreglado
+- **FlowChart `bar`: la barra negativa redondea su extremo libre (fc-6)** — el remate redondeado quedaba contra la línea de cero y la barra parecía rota. Cazado en eOne: los litros de un tramo salen negativos cuando los abonos superan a las cargas, y ese tramo es justo el que no se puede esconder.
+
 ## [0.6.13] — 2026-09-07
 
 ### Arreglado

@@ -302,6 +302,11 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
     case 'bar':
     case 'stackedBar': {
       const stacked = type === 'stackedBar' || stack
+      // fc-6: la barra negativa lleva el redondeo en su extremo LIBRE — el
+      // remate contra la línea de cero parecía una barra rota (cazado en
+      // eOne: los litros de un tramo salen negativos cuando los abonos
+      // superan a las cargas).
+      const negRadius = horizontal ? [cap, 0, 0, cap] : [0, 0, cap, cap]
       return merge(base, {
         tooltip: {
           trigger: 'axis', axisPointer: { type: 'shadow' },
@@ -310,17 +315,39 @@ function buildOption(type: FlowChartType, props: FlowChartProps, tk: Tokens) {
         },
         xAxis: horizontal ? valAxis : catAxis,
         yAxis: horizontal ? merge(catAxis, { boundaryGap: true, inverse: true }) : valAxis,
-        series: series.map((s, i) => merge({
-          name: s.label, type: 'bar',
-          data: itemColors
-            ? (s.values || []).map((v, j) => ({ value: v, itemStyle: { color: rz(itemColors[j] || colorFor(i, s.label)) } }))
-            : s.values,
-          stack: stacked ? 'total' : undefined,
-          barMaxWidth: BAR_W,
-          itemStyle: { color: rz(s.color || colorFor(i, s.label)), borderRadius: barRadius(!!stacked) },
-          emphasis: { focus: 'series' },
-          label: labelOpt,
-        }, mount(true))),
+        series: series.map((s, i) => {
+          // fc-6: una serie que declara `type: 'line'` se pinta como LÍNEA del
+          // sistema sobre las barras — la superposición de comparación («ayer
+          // a esta hora» sobre el consumo, cazado en eOne). Hereda el trazo
+          // del caso line; el resto de extras de la serie se respeta, como ya
+          // hacía scatter.
+          if ((s as Record<string, unknown>).type === 'line') {
+            const c = rz(s.color || colorFor(i, s.label))
+            return merge(merge({
+              name: s.label, type: 'line', data: s.values, smooth: smooth ? 0.35 : false,
+              showSymbol: false, symbolSize: 7,
+              lineStyle: { width: 2.25, color: c, cap: 'round', join: 'round' },
+              itemStyle: { color: c },
+              emphasis: { focus: 'series', scale: 1.4 },
+              z: 3,
+            }, extra(s)), motion ? { animationDuration: 900, animationDelay: 260, animationEasing: 'cubicOut' } : { animation: false })
+          }
+          const hasNeg = (s.values || []).some(v => v < 0)
+          return merge(merge({
+            name: s.label, type: 'bar',
+            data: (itemColors || hasNeg)
+              ? (s.values || []).map((v, j) => ({ value: v, itemStyle: {
+                  color: rz((itemColors && itemColors[j]) || s.color || colorFor(i, s.label)),
+                  ...(v < 0 && !stacked ? { borderRadius: negRadius } : {}),
+                } }))
+              : s.values,
+            stack: stacked ? 'total' : undefined,
+            barMaxWidth: BAR_W,
+            itemStyle: { color: rz(s.color || colorFor(i, s.label)), borderRadius: barRadius(!!stacked) },
+            emphasis: { focus: 'series' },
+            label: labelOpt,
+          }, extra(s)), mount(true))
+        }),
       })
     }
     case 'stacked100': {
