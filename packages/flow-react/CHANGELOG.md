@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.31] — 2026-09-08
+
+### Arreglado
+- **Pagination: la cifra grande era el contador de rango (pag-8 corregido)** — en 0.6.30 la subida a `--type-data-md` cayó en los números de página; el dueño se refería al contador «X–Y de Z». Los numerales regresan a su talla de control (`--type-data`) y el rango pasa a dato grande en mono: es LA cifra del pie. Las 5 páginas por extremo se quedan como estaban.
+
 ## [0.6.30] — 2026-09-08
 
 ### Cambiado

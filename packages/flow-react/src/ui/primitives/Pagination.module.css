@@ -34,9 +34,7 @@
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--text-primary);
-  /* pag-8: los numerales hablan en cifra de dato GRANDE — son solo números,
-     la voz mono a 20px los hace legibles de un vistazo. */
-  font: var(--type-data-md);
+  font: var(--type-data);
   cursor: pointer;
   transition: background var(--dur-fast) var(--ease-out);
 }
@@ -55,8 +53,10 @@
 /* pag-6: el rango se dice en texto, en cifra de dato */
 /* dtb-7: con el nav estirado a lo ancho, el rango empuja a la izquierda y
    páginas + selector cierran por la derecha; compacto, no cambia nada. */
+/* pag-8: el contador de rango es LA cifra del pie — dato grande en mono;
+   los números de página se quedan en su talla de control. */
 .range {
-  font: var(--type-body-sm);
+  font: var(--type-data-md);
   color: var(--text-muted);
   padding-inline-end: var(--space-2);
   /* dtb-7: con el nav estirado, el rango empuja a la izquierda y páginas +
