@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.34] — 2026-09-08
+
+### Añadido
+- **StatTile sin tarjeta (stt-8)** — `bare` pinta la cifra con su rótulo y su nota, pero SIN la superficie del Card, para composiciones que ya tienen la suya: una fila de cifras dentro de un panel, una ficha dentro de una lámina. Sin esta salida el consumidor tenía dos caminos malos —anidar tarjeta dentro de tarjeta, o copiar a mano rótulo+cifra+nota—, y eOne tomó el segundo cinco veces en su organigrama y otras tantas en la ficha de estación, calcando declaración por declaración lo que ya vivía aquí. Mismo escape que `LimitBar.bare`.
+
 ## [0.6.33] — 2026-09-08
 
 ### Arreglado

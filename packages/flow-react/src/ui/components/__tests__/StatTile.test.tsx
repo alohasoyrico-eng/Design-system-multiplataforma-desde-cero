@@ -25,4 +25,19 @@ describe('StatTile', () => {
     const { container } = render(<StatTile label="X" value="0" />)
     expect(container.querySelector('svg')).not.toBeInTheDocument()
   })
+
+  // stt-8: sin tarjeta, para composiciones que ya tienen superficie propia.
+  it('bare deja la cifra sin su tarjeta (stt-8)', () => {
+    // La tarjeta se reconoce por la superficie que declara el Card.
+    const conTarjeta = render(<StatTile label="Unidades" value="12" />)
+    expect(conTarjeta.container.querySelector('[data-surface]')).toBeInTheDocument()
+    conTarjeta.unmount()
+
+    const desnudo = render(<StatTile label="Unidades" value="12" description="12 activas" bare />)
+    expect(desnudo.container.querySelector('[data-surface]')).not.toBeInTheDocument()
+    // la cifra, su rótulo y su nota siguen enteros
+    expect(screen.getByText('Unidades')).toBeInTheDocument()
+    expect(screen.getByText('12')).toBeInTheDocument()
+    expect(screen.getByText('12 activas')).toBeInTheDocument()
+  })
 })
