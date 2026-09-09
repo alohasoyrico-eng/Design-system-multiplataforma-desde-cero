@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.33] — 2026-09-08
+
+### Arreglado
+- **SegmentedControl: la píldora sigue a su casilla (sgc-1)** — la medida se tomaba una sola vez por cambio de valor o de número de casillas, y la geometría cambia por más motivos: reetiquetar (otro idioma, una cifra viva en la etiqueta) mueve el ancho sin mover la cuenta, y el contenedor puede estrecharse o la tipografía cargar tarde. La píldora se quedaba con la medida vieja y desbordaba sobre la casilla vecina (cazado en eOne, migrando Conductores: indicador de 119 px sobre una casilla de 98). Ahora un `ResizeObserver` sobre la casilla activa y la raíz la mantiene medida.
+
 ## [0.6.32] — 2026-09-08
 
 ### Cambiado

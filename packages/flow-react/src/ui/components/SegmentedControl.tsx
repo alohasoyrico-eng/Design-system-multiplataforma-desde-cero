@@ -20,9 +20,30 @@ export function SegmentedControl({ items, value, onChange, size = 'md', style }:
   const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({})
   const [indicator, setIndicator] = useState<{ left: number; width: number } | null>(null)
 
+  /**
+   * sgc-1: la píldora SIGUE a su casilla.
+   *
+   * La medida se tomaba una vez por cambio de valor o de número de casillas, y
+   * la geometría cambia por más motivos: reetiquetar (otro idioma, una cifra
+   * viva en la etiqueta) mueve el ancho sin mover la cuenta, y el contenedor
+   * puede estrecharse o la tipografía cargar tarde. La píldora se quedaba con
+   * la medida vieja y desbordaba a la casilla vecina (cazado en eOne).
+   */
   useLayoutEffect(() => {
     const el = buttonRefs.current[value]
-    if (el) setIndicator({ left: el.offsetLeft, width: el.offsetWidth })
+    if (!el) return
+    const medir = () => {
+      const left = el.offsetLeft
+      const width = el.offsetWidth
+      // Sin cambio no hay estado nuevo: el observador dispara en cada pintado.
+      setIndicator((prev) => (prev && prev.left === left && prev.width === width ? prev : { left, width }))
+    }
+    medir()
+    if (typeof ResizeObserver === 'undefined') return
+    const observador = new ResizeObserver(medir)
+    observador.observe(el)
+    if (rootRef.current) observador.observe(rootRef.current)
+    return () => observador.disconnect()
   }, [value, items.length])
 
   const handleKeyDown = useCallback(

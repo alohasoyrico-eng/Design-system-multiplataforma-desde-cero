@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import { SegmentedControl } from '../SegmentedControl'
@@ -46,5 +46,51 @@ describe('SegmentedControl', () => {
     render(<SegmentedControl items={items} value="day" />)
     expect(screen.getByRole('tab', { name: 'Día' })).toHaveAttribute('tabIndex', '0')
     expect(screen.getByRole('tab', { name: 'Semana' })).toHaveAttribute('tabIndex', '-1')
+  })
+
+  // sgc-1: reetiquetar (otro idioma, una cifra viva) mueve el ancho sin mover
+  // la cuenta de casillas; la píldora tiene que volver a medir.
+  it('la píldora re-mide cuando la casilla cambia de ancho (sgc-1)', () => {
+    let ancho = 120
+    const anchoSpy = vi
+      .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+      .mockImplementation(() => ancho)
+    const izquierdaSpy = vi
+      .spyOn(HTMLElement.prototype, 'offsetLeft', 'get')
+      .mockImplementation(() => 0)
+    let disparar = () => {}
+    class ObservadorFalso {
+      constructor(cb: () => void) {
+        disparar = cb
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    }
+    vi.stubGlobal('ResizeObserver', ObservadorFalso)
+
+    const { container, rerender } = render(<SegmentedControl items={items} value="day" />)
+    const pildora = () => container.querySelector<HTMLElement>('[class*="indicator"]')
+    expect(pildora()).toHaveStyle({ width: '120px' })
+
+    // Mismas tres casillas, etiquetas más cortas: el efecto de medida NO se
+    // vuelve a lanzar (sus dependencias no cambian) — lo hace el observador.
+    ancho = 80
+    rerender(
+      <SegmentedControl
+        items={[
+          { value: 'day', label: 'D' },
+          { value: 'week', label: 'S' },
+          { value: 'month', label: 'M' },
+        ]}
+        value="day"
+      />,
+    )
+    act(() => disparar())
+    expect(pildora()).toHaveStyle({ width: '80px' })
+
+    anchoSpy.mockRestore()
+    izquierdaSpy.mockRestore()
+    vi.unstubAllGlobals()
   })
 })
