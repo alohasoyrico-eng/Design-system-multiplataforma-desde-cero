@@ -1,28 +1,50 @@
-import { useState, useRef, useEffect, type FormEvent, type ReactNode } from 'react'
-import { useIntl } from 'react-intl'
-import { Input } from '../primitives/Input'
-import { Button } from '../primitives/Button'
-import { Field } from '../primitives/Field'
-import css from './AuthForm.module.css'
+import {
+  useState,
+  useRef,
+  useEffect,
+  type FormEvent,
+  type ReactNode,
+} from "react";
+import { useIntl } from "react-intl";
+import { Input } from "../primitives/Input";
+import { Button } from "../primitives/Button";
+import { Field } from "../primitives/Field";
+import css from "./AuthForm.module.css";
 
-export type AuthMode = 'login' | 'signup' | 'recover'
+/**
+ * Las cuatro formas en que una app deja entrar.
+ *
+ * `sso` es el TRASPASO: la app no recoge credenciales porque no es quien
+ * autentica —lo hace un proveedor de identidad— y su contrato con el usuario
+ * suele ser justamente que nunca ve su contraseña. Sin este modo, una pantalla
+ * de SSO no tenía forma de usar este patrón: o pintaba campos que no puede
+ * tener, o se escribía a mano (cazado en eOne, cuya única pantalla de acceso
+ * es un traspaso a Edenred Connect).
+ *
+ * El SEGUNDO FACTOR no está aquí a propósito: es `OTPInput` o
+ * `BiometricPrompt`, compuestos en la misma carcasa. Lo dice el canon.
+ */
+export type AuthMode = "login" | "signup" | "recover" | "sso";
 
 export interface AuthSubmitData {
-  email: string
-  password: string
-  name: string
-  mode: AuthMode
+  email: string;
+  password: string;
+  name: string;
+  mode: AuthMode;
 }
 
 export interface AuthFormProps {
-  mode: AuthMode
-  loading?: boolean
-  onSubmit: (data: AuthSubmitData) => void
-  title?: ReactNode
-  subtitle?: ReactNode
-  children?: ReactNode
-  footer?: ReactNode
-  submitLabel?: string
+  mode: AuthMode;
+  loading?: boolean;
+  onSubmit: (data: AuthSubmitData) => void;
+  title?: ReactNode;
+  subtitle?: ReactNode;
+  children?: ReactNode;
+  footer?: ReactNode;
+  submitLabel?: string;
+  /** Glifo del botón de envío — el candado del traspaso, la marca del
+      proveedor. */
+  submitIcon?: string;
 }
 
 export function AuthForm({
@@ -34,63 +56,113 @@ export function AuthForm({
   children,
   footer,
   submitLabel,
+  submitIcon,
 }: AuthFormProps) {
-  const intl = useIntl()
-  const [email, setEmail] = useState('')
-  const [pass, setPass] = useState('')
-  const [name, setName] = useState('')
-  const [emailErr, setEmailErr] = useState<string | null>(null)
-  const [passErr, setPassErr] = useState<string | null>(null)
-  const [formErr, setFormErr] = useState<string | null>(null)
-  const formRef = useRef<HTMLFormElement>(null)
+  const intl = useIntl();
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [name, setName] = useState("");
+  const [emailErr, setEmailErr] = useState<string | null>(null);
+  const [passErr, setPassErr] = useState<string | null>(null);
+  const [formErr, setFormErr] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    setEmailErr(null)
-    setPassErr(null)
-    setFormErr(null)
-  }, [mode])
+    setEmailErr(null);
+    setPassErr(null);
+    setFormErr(null);
+  }, [mode]);
 
   const focusInput = (n: number) => {
-    const inputs = formRef.current?.querySelectorAll<HTMLInputElement>('input')
-    inputs?.[n]?.focus()
-  }
+    const inputs = formRef.current?.querySelectorAll<HTMLInputElement>("input");
+    inputs?.[n]?.focus();
+  };
 
-  const emailIndex = mode === 'signup' ? 1 : 0
-  const passIndex = mode === 'signup' ? 2 : 1
+  const emailIndex = mode === "signup" ? 1 : 0;
+  const passIndex = mode === "signup" ? 2 : 1;
 
   const submit = (e: FormEvent) => {
-    e.preventDefault()
-    setEmailErr(null)
-    setPassErr(null)
-    setFormErr(null)
+    e.preventDefault();
+    setEmailErr(null);
+    setPassErr(null);
+    setFormErr(null);
 
-    if (!email.includes('@')) {
-      setEmailErr(intl.formatMessage({ id: 'auth.emailError', defaultMessage: 'Ingresa un correo válido.' }))
-      focusInput(emailIndex)
-      return
+    // sso: no hay credenciales que comprobar — quien autentica es el proveedor.
+    if (mode === "sso") {
+      onSubmit({ email: "", password: "", name: "", mode });
+      return;
     }
 
-    if (mode !== 'recover' && (!pass || pass.length < 8)) {
-      if (mode === 'signup') {
-        setPassErr(intl.formatMessage({ id: 'auth.passwordError', defaultMessage: 'La contraseña debe tener al menos 8 caracteres.' }))
-        focusInput(passIndex)
+    if (!email.includes("@")) {
+      setEmailErr(
+        intl.formatMessage({
+          id: "auth.emailError",
+          defaultMessage: "Ingresa un correo válido.",
+        }),
+      );
+      focusInput(emailIndex);
+      return;
+    }
+
+    if (mode !== "recover" && (!pass || pass.length < 8)) {
+      if (mode === "signup") {
+        setPassErr(
+          intl.formatMessage({
+            id: "auth.passwordError",
+            defaultMessage: "La contraseña debe tener al menos 8 caracteres.",
+          }),
+        );
+        focusInput(passIndex);
       } else {
-        setFormErr(intl.formatMessage({ id: 'auth.credentialsError', defaultMessage: 'Correo o contraseña incorrectos.' }))
-        focusInput(emailIndex)
+        setFormErr(
+          intl.formatMessage({
+            id: "auth.credentialsError",
+            defaultMessage: "Correo o contraseña incorrectos.",
+          }),
+        );
+        focusInput(emailIndex);
       }
-      return
+      return;
     }
 
-    onSubmit({ email, password: pass, name, mode })
-  }
+    onSubmit({ email, password: pass, name, mode });
+  };
 
-  const defaultTitle = mode === 'login' ? intl.formatMessage({ id: 'auth.login', defaultMessage: 'Entrar' })
-    : mode === 'signup' ? intl.formatMessage({ id: 'auth.signup', defaultMessage: 'Crear cuenta' })
-    : intl.formatMessage({ id: 'auth.recover', defaultMessage: 'Recuperar contraseña' })
+  const defaultTitle =
+    mode === "login"
+      ? intl.formatMessage({ id: "auth.login", defaultMessage: "Entrar" })
+      : mode === "signup"
+        ? intl.formatMessage({
+            id: "auth.signup",
+            defaultMessage: "Crear cuenta",
+          })
+        : mode === "sso"
+          ? intl.formatMessage({ id: "auth.sso", defaultMessage: "Entrar" })
+          : intl.formatMessage({
+              id: "auth.recover",
+              defaultMessage: "Recuperar contraseña",
+            });
 
-  const defaultSubmitLabel = mode === 'login' ? intl.formatMessage({ id: 'auth.submitLogin', defaultMessage: 'Entrar' })
-    : mode === 'signup' ? intl.formatMessage({ id: 'auth.submitSignup', defaultMessage: 'Crear cuenta' })
-    : intl.formatMessage({ id: 'auth.submitRecover', defaultMessage: 'Enviar instrucciones' })
+  const defaultSubmitLabel =
+    mode === "login"
+      ? intl.formatMessage({ id: "auth.submitLogin", defaultMessage: "Entrar" })
+      : mode === "signup"
+        ? intl.formatMessage({
+            id: "auth.submitSignup",
+            defaultMessage: "Crear cuenta",
+          })
+        : mode === "sso"
+          ? intl.formatMessage({
+              id: "auth.submitSso",
+              defaultMessage: "Continuar con tu proveedor",
+            })
+          : intl.formatMessage({
+              id: "auth.submitRecover",
+              defaultMessage: "Enviar instrucciones",
+            });
+
+  // La caja del traspaso no tiene campos: nada que teclear, nada que validar.
+  const conCampos = mode !== "sso";
 
   return (
     <form ref={formRef} onSubmit={submit} className={css.root}>
@@ -99,7 +171,7 @@ export function AuthForm({
         {subtitle && <p className={css.subtitle}>{subtitle}</p>}
       </div>
 
-      {mode === 'signup' && (
+      {conCampos && mode === "signup" && (
         <Field label="Nombre" htmlFor="auth-name" required>
           <Input
             id="auth-name"
@@ -112,40 +184,67 @@ export function AuthForm({
         </Field>
       )}
 
-      <Field label="Correo" htmlFor="auth-email" required error={emailErr ?? undefined}>
-        <Input
-          id="auth-email"
-          value={email}
-          onChange={v => { setEmail(v); if (emailErr) setEmailErr(null) }}
-          icon="mail"
-          placeholder="ana@flota.mx"
-          type="email"
-          autoComplete="email"
-          invalid={!!emailErr}
-        />
-      </Field>
+      {conCampos && (
+        <Field
+          label="Correo"
+          htmlFor="auth-email"
+          required
+          error={emailErr ?? undefined}
+        >
+          <Input
+            id="auth-email"
+            value={email}
+            onChange={(v) => {
+              setEmail(v);
+              if (emailErr) setEmailErr(null);
+            }}
+            icon="mail"
+            placeholder="ana@flota.mx"
+            type="email"
+            autoComplete="email"
+            invalid={!!emailErr}
+          />
+        </Field>
+      )}
 
-      {mode !== 'recover' && (
+      {conCampos && mode !== "recover" && (
         <Field
           label="Contraseña"
           htmlFor="auth-pass"
           required
-          help={mode === 'signup' ? intl.formatMessage({ id: 'auth.passwordHint', defaultMessage: 'Mínimo 8 caracteres.' }) : undefined}
+          help={
+            mode === "signup"
+              ? intl.formatMessage({
+                  id: "auth.passwordHint",
+                  defaultMessage: "Mínimo 8 caracteres.",
+                })
+              : undefined
+          }
           error={passErr ?? undefined}
         >
           <Input
             id="auth-pass"
             value={pass}
-            onChange={v => { setPass(v); if (passErr) setPassErr(null); if (formErr) setFormErr(null) }}
+            onChange={(v) => {
+              setPass(v);
+              if (passErr) setPassErr(null);
+              if (formErr) setFormErr(null);
+            }}
             icon="lock"
             placeholder="••••••••"
-            autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+            autoComplete={
+              mode === "signup" ? "new-password" : "current-password"
+            }
             revealable
           />
         </Field>
       )}
 
-      {formErr && <p className={css.error} role="alert">{formErr}</p>}
+      {formErr && (
+        <p className={css.error} role="alert">
+          {formErr}
+        </p>
+      )}
 
       {children}
 
@@ -155,11 +254,12 @@ export function AuthForm({
         size="lg"
         fullWidth
         loading={loading}
+        icon={submitIcon}
       >
         {submitLabel ?? defaultSubmitLabel}
       </Button>
 
       {footer}
     </form>
-  )
+  );
 }

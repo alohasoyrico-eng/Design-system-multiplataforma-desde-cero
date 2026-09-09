@@ -108,4 +108,25 @@ describe('AuthForm', () => {
     const submitButton = screen.getByRole('button', { name: /entrar/i })
     expect(submitButton).toBeDisabled()
   })
+
+  // auth-1: el traspaso no recoge credenciales — quien autentica es el proveedor.
+  it('mode sso: sin campos y el envío dispara directo (auth-1)', async () => {
+    const user = userEvent.setup()
+    const onSubmit = vi.fn()
+    renderWithIntl(
+      <AuthForm
+        mode="sso"
+        onSubmit={onSubmit}
+        title="eOne"
+        submitLabel="Continuar con Edenred Connect"
+        submitIcon="lock"
+      />,
+    )
+    // Ni correo ni contraseña: la pantalla que delega no puede pedirlos.
+    expect(screen.queryByLabelText(/Correo/i)).not.toBeInTheDocument()
+    expect(screen.queryByLabelText(/Contraseña/i)).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /Continuar con Edenred Connect/i }))
+    expect(onSubmit).toHaveBeenCalledWith({ email: '', password: '', name: '', mode: 'sso' })
+  })
 })

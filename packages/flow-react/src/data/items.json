@@ -8131,7 +8131,7 @@
   "name": "AuthForm",
   "layer": "patterns",
   "status": "beta",
-  "summary": "Ingreso, registro y recuperación: un campo por línea, errores por campo y estado de carga en el botón.",
+  "summary": "Ingreso, registro, recuperación y TRASPASO a un proveedor: un campo por línea, errores por campo y estado de carga en el botón.",
   "fn": [],
   "domain": "",
   "shell": false,
@@ -8144,7 +8144,7 @@
    "angular": "planned",
    "flutter": "beta"
   },
-  "anatomy": "Un campo por línea con <b>Field</b>, error por campo, estado de carga en el botón y enlaces secundarios abajo. Ingreso, registro y recuperación comparten la misma caja.",
+  "anatomy": "Un campo por línea con <b>Field</b>, error por campo, estado de carga en el botón y enlaces secundarios abajo. Ingreso, registro y recuperación comparten la misma caja; en <b>sso</b> la caja se queda sin campos —quien autentica es el proveedor— y el botón de envío ES el traspaso.",
   "tokens": [
    "--space-4 (gap de stack)",
    "--status-danger-text (error de formulario)"
@@ -8154,11 +8154,11 @@
    {
     "n": "mode",
     "k": "prop",
-    "t": "'login'|'signup'|'recover'",
+    "t": "'login'|'signup'|'recover'|'sso'",
     "d": "",
     "r": true,
     "rw": "",
-    "note": "Las tres cajas comparten campos y validación"
+    "note": "Las tres primeras comparten campos y validación; sso no recoge credenciales"
    },
    {
     "n": "onSubmit",
@@ -8167,7 +8167,7 @@
     "d": "",
     "r": true,
     "rw": "",
-    "note": "Solo dispara con validación local aprobada"
+    "note": "Solo dispara con validación local aprobada; en sso dispara directo (no hay qué validar)"
    },
    {
     "n": "loading",
@@ -8221,21 +8221,33 @@
     "d": "",
     "r": false,
     "rw": "",
-    "note": "Campos extra entre password y submit"
+    "note": "Campos extra entre password y submit; en sso, el cuerpo de la pantalla"
+   },
+   {
+    "n": "submitIcon",
+    "k": "prop",
+    "t": "string",
+    "d": "",
+    "r": false,
+    "rw": "",
+    "note": "Glifo del botón de envío — el candado del traspaso"
    }
   ],
   "dos": [
    "Error por campo, no un banner genérico",
    "El botón muestra la carga: sin eso la gente lo presiona dos veces",
-   "Recuperación siempre visible desde el ingreso"
+   "Recuperación siempre visible desde el ingreso",
+   "En sso, decir qué proveedor autentica y que la app no ve la contraseña"
   ],
   "donts": [
    "Decir si el correo existe: eso filtra información",
    "Reglas de contraseña escondidas hasta que falla",
-   "Captcha antes del primer intento"
+   "Captcha antes del primer intento",
+   "Pedir credenciales en una pantalla que delega en un IdP: la app no debe verlas"
   ],
   "when": [
-   "Ingreso web y móvil"
+   "Ingreso web y móvil",
+   "Traspaso a un proveedor de identidad (SSO corporativo, social)"
   ],
   "notWhen": [
    "Segundo factor: eso es OTPInput o BiometricPrompt"

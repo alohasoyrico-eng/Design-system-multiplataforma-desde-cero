@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.35] — 2026-09-09
+
+### Añadido
+- **AuthForm: modo `sso` — el traspaso a un proveedor (auth-1)** — el patrón cubría ingreso, registro y recuperación: las tres cajas que RECOGEN credenciales. Una pantalla que delega en un IdP no tenía cómo usarlo —o pintaba campos que no puede tener, o se escribía a mano—, y eso es la forma en que entra media empresa (cazado en eOne, cuyo único acceso es un traspaso a Edenred Connect bajo el contrato de que la app nunca ve la contraseña). En `sso` la caja se queda sin campos, no hay nada que validar y el botón de envío ES el traspaso; `submitIcon` le pone su candado. El segundo factor sigue fuera a propósito: es `OTPInput` o `BiometricPrompt` compuestos en la misma carcasa, como dice el canon.
+
 ## [0.6.34] — 2026-09-08
 
 ### Añadido
