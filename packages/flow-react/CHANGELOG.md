@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · versionado [SemVer](https://semver.org/lang/es/).
 La regla de la casa: toda prop nace en el contrato canónico antes que en el código; lo que aparece aquí ya pasó por esa puerta.
 
+## [0.6.32] — 2026-09-08
+
+### Cambiado
+- **Pagination: el bloque de páginas se centra (pag-9)** — con el nav estirado, las páginas quedaban pegadas al selector de tamaño; ahora el espacio libre se reparte por igual a ambos lados y el bloque queda centrado entre el contador y el selector. En uso compacto los autos colapsan y nada cambia. Pedido por el dueño de eOne para el directorio de estaciones.
+
 ## [0.6.31] — 2026-09-08
 
 ### Arreglado

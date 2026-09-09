@@ -66,6 +66,10 @@
 }
 
 .sizer {
-  margin-inline-start: var(--space-2);
+  /* pag-9: con el nav estirado, el auto de cada lado reparte el espacio
+     libre por igual y el bloque de páginas queda CENTRADO entre contador y
+     selector; compacto, ambos autos colapsan y nada cambia. */
+  margin-inline-start: auto;
+  padding-inline-start: var(--space-2);
   min-width: 0;
 }
